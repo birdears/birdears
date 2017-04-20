@@ -94,11 +94,11 @@ def get_question(scale, octave_int):
 
 
 while True:
-	tonic = notes[randrange(len(notes))]
-	scale = major[tonic]
-	octave = randrange(2,6)
-	get_question(scale,octave)
-	getch()
-
-
+    tonic = notes[randrange(len(notes))]
+    scale = major[tonic]
+    octave = randrange(2,6)
+    get_question(scale,octave)
+    print(getch())
+    #if ch==3:
+    #    exit(0)
 
