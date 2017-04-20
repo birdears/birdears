@@ -84,13 +84,20 @@ class _GetchWindows:
 getch = _Getch()
 
 def get_question(scale, octave_int):
-	scale_size = len(scale)
-	tonic = scale[0]
-	octave = str(octave_int)
-	upper_octave = str(octave_int+1)
-	concrete_sc = [tone+octave for tone in scale[:-1]]
-	concrete_sc.append(tonic+upper_octave)
-	print(concrete_sc)
+    scale_size = len(scale)
+    tonic = scale[0]
+    octave = str(octave_int)
+    upper_octave = str(octave_int+1)
+    
+    concrete_sc = [tone+octave for tone in scale[:-1]]
+    concrete_sc.append(tonic+upper_octave)
+    
+    interval_idx = randrange(scale_size)
+    interval_concrete = concrete_sc[interval_idx]
+    interval_note = scale[interval_idx]
+
+    print([interval_idx,interval_concrete, interval_note])
+    print(concrete_sc)
 
 
 while True:
