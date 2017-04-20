@@ -4,6 +4,7 @@ import subprocess
 import time
 from random import randrange
 
+from pprint import pprint
 
 # maybe we'd better use circle of fifths here
 notes = ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B']
@@ -48,7 +49,7 @@ chromatic = {'A': ['A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'A
  'G': ['G', 'Ab', 'A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G']}
 
 intervals = {0: [0, 'P1', 'Perfect Unison'],
- 1: [1, 'A1', 'Augmented Unison'],
+ 1: [1, 'm2', 'Minor Second'],
  2: [2, 'M2', 'Major Second'],
  3: [3, 'm3', 'Minor Third'],
  4: [4, 'M3', 'Major Third'],
@@ -60,6 +61,9 @@ intervals = {0: [0, 'P1', 'Perfect Unison'],
  10: [10, 'm7', 'Minor Seventh'],
  11: [11, 'M7', 'Major Seventh'],
  12: [12, 'P8', 'Perfect Octave']}
+
+major_ints = [0,2,4,5,7,9,11,12]
+#minor_ints = [0,2,3,5,5,9,10,12]
 
 # http://code.activestate.com/recipes/134892/
 class _Getch:
@@ -110,7 +114,13 @@ def play_note(note='C', duration=4, delay=0):
     if delay:
         wait(delay)
 
-def get_question(scale, octave_int):
+def play_question():
+    pass
+
+def play_resolution():
+    pass
+
+def get_question(scale, octave_int, chromatic):
     scale_size = len(scale)
     tonic = scale[0]
     octave = str(octave_int)
@@ -119,14 +129,33 @@ def get_question(scale, octave_int):
     concrete_sc = [tone+octave for tone in scale[:-1]]
     concrete_sc.append(tonic+upper_octave)
     
-    interval_idx = randrange(scale_size)
-    interval = {'idx' : interval_idx,
-            'concrete' : concrete_sc[interval_idx],
-            'note' : scale[interval_idx] }
+    question_tonic = {
+            'idx' : 0,
+            'concrete' : concrete_sc[0],
+            'note' : tonic,
+        }
+    
+    question_interval_idx = randrange(0, scale_size)
+    question_interval = {
+            'idx' : question_interval_idx,
+            'concrete' : concrete_sc[question_interval_idx],
+            'note' : scale[question_interval_idx]
+        }
 
-    print(interval)
-    print(concrete_sc)
+    #print(question_interval)
+    #print(concrete_sc)
 
+    question = { 
+            'scale': scale,
+            'concrete': concrete_sc,
+            'tonic': question_tonic,
+            'question_interval': question_interval,
+        }
+
+    return question
+
+def check_question():
+    pass
 
 getch = _Getch()
 
@@ -134,9 +163,14 @@ while True:
     tonic = notes[randrange(len(notes))]
     scale = major[tonic]
     octave = randrange(2,6)
-    get_question(scale,octave)
+    question = get_question(scale,octave, chromatic[tonic])
+    pprint(question)
     user_input = getch()
+
+    keyidx = "zxcvbnm"
 
     if user_input == 'q':
         exit(0)
+    elif keyidx.index(user_input) == question['question_interval']['idx']:
+        print('EUREKA!!!!!!!')
 
