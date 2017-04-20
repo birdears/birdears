@@ -167,7 +167,7 @@ while True:
     pprint(question)
     user_input = getch()
 
-    keyidx = "zxcvbnm"
+    keyidx = "zxcvbnm" # semitones on chromatic dont have keyboard keys for them
 
     if user_input == 'q':
         exit(0)
