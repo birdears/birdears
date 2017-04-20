@@ -47,6 +47,20 @@ chromatic = {'A': ['A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'A
  'F#': ['F#', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#'],
  'G': ['G', 'Ab', 'A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G']}
 
+intervals = {0: [0, 'P1', 'Perfect Unison'],
+ 1: [1, 'A1', 'Augmented Unison'],
+ 2: [2, 'M2', 'Major Second'],
+ 3: [3, 'm3', 'Minor Third'],
+ 4: [4, 'M3', 'Major Third'],
+ 5: [5, 'P4', 'Perfect Fourth'],
+ 6: [6, 'A4', 'Augmented Fourth'],
+ 7: [7, 'P5', 'Perfect Fifth'],
+ 8: [8, 'm6', 'Minor Sixth'],
+ 9: [9, 'M6', 'Major Sixth'],
+ 10: [10, 'm7', 'Minor Seventh'],
+ 11: [11, 'M7', 'Major Seventh'],
+ 12: [12, 'P8', 'Perfect Octave']}
+
 # http://code.activestate.com/recipes/134892/
 class _Getch:
     """Gets a single character from standard input.  Does not echo to the
