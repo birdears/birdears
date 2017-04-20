@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 
+import subprocess
+import time
 from random import randrange
+
 
 # maybe we'd better use circle of fifths here
 notes = ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B']
@@ -44,6 +47,7 @@ chromatic = {'A': ['A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'A
  'F#': ['F#', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#'],
  'G': ['G', 'Ab', 'A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G']}
 
+# http://code.activestate.com/recipes/134892/
 class _Getch:
     """Gets a single character from standard input.  Does not echo to the
 screen."""
@@ -54,8 +58,6 @@ screen."""
             self.impl = _GetchUnix()
 
     def __call__(self): return self.impl()
-
-
 class _GetchUnix:
     def __init__(self):
         import tty, sys
@@ -70,8 +72,6 @@ class _GetchUnix:
         finally:
             termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
         return ch
-
-
 class _GetchWindows:
     def __init__(self):
         import msvcrt
@@ -80,8 +80,21 @@ class _GetchWindows:
         import msvcrt
         return msvcrt.getch()
 
+def wait(seconds):
+    time.sleep(seconds)
 
-getch = _Getch()
+
+def play_note(note='C', duration=4, delay=0):
+    # requires sox to be installed
+    command = (
+        "play -qn synth {duration} pluck {note}"
+        " fade l 0 {duration} 2 reverb"
+    ).format(note=note, duration=duration)
+
+    subprocess.Popen(command.split())
+
+    if delay:
+        wait(delay)
 
 def get_question(scale, octave_int):
     scale_size = len(scale)
@@ -93,19 +106,23 @@ def get_question(scale, octave_int):
     concrete_sc.append(tonic+upper_octave)
     
     interval_idx = randrange(scale_size)
-    interval_concrete = concrete_sc[interval_idx]
-    interval_note = scale[interval_idx]
+    interval = {'idx' : interval_idx,
+            'concrete' : concrete_sc[interval_idx],
+            'note' : scale[interval_idx] }
 
-    print([interval_idx,interval_concrete, interval_note])
+    print(interval)
     print(concrete_sc)
 
+
+getch = _Getch()
 
 while True:
     tonic = notes[randrange(len(notes))]
     scale = major[tonic]
     octave = randrange(2,6)
     get_question(scale,octave)
-    print(getch())
-    #if ch==3:
-    #    exit(0)
+    user_input = getch()
+
+    if user_input == 'q':
+        exit(0)
 
