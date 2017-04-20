@@ -63,7 +63,7 @@ intervals = {0: [0, 'P1', 'Perfect Unison'],
  12: [12, 'P8', 'Perfect Octave']}
 
 major_ints = [0,2,4,5,7,9,11,12]
-#minor_ints = [0,2,3,5,5,9,10,12]
+minor_ints = [0,2,3,5,7,8,10,12]
 
 # http://code.activestate.com/recipes/134892/
 class _Getch:
