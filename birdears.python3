@@ -45,9 +45,17 @@ chromatic = {'A': ['A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'A
  'G': ['G', 'Ab', 'A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G']}
 
 
-tonic = notes[randrange(12)]
+def get_question(scale, octave):
+	scale_size = len(scale)
+	tonic = scale[0]
+	concrete_sc = [tone+str(octave) for tone in scale]
+	print(concrete_sc)
+
+
+tonic = notes[randrange(len(notes))]
+scale = major[tonic]
 octave = randrange(2,6)
-sup_octave = octave+1
-print(major[tonic])
+get_question(scale,octave)
+
 
 
