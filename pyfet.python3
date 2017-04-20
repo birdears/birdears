@@ -1,0 +1,53 @@
+#/usr/bin/env python3
+
+from random import randrange
+
+# maybe we'd better use circle of fifths here
+notes = ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B']
+
+major = {'A': ['A', 'B', 'C#', 'D', 'E', 'F#', 'G#', 'A'],
+ 'Ab': ['Ab', 'Bb', 'C', 'Db', 'Eb', 'F', 'G', 'Ab'],
+ 'B': ['B', 'C#', 'D#', 'E', 'F#', 'G#', 'A#', 'B'],
+ 'Bb': ['Bb', 'C', 'D', 'Eb', 'F', 'G', 'A', 'Bb'],
+ 'C': ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C'],
+ 'C#': ['C#', 'D#', 'E#', 'F#', 'G#', 'A#', 'B#', 'C#'],
+ 'D': ['D', 'E', 'F#', 'G', 'A', 'B', 'C#', 'D'],
+ 'E': ['E', 'F#', 'G#', 'A', 'B', 'C#', 'D#', 'E'],
+ 'Eb': ['Eb', 'F', 'G', 'Ab', 'Bb', 'C', 'D', 'Eb'],
+ 'F': ['F', 'G', 'A', 'Bb', 'C', 'D', 'E', 'F'],
+ 'F#': ['F#', 'G#', 'A#', 'B', 'C#', 'D#', 'E#', 'F#'],
+ 'G': ['G', 'A', 'B', 'C', 'D', 'E', 'F#', 'G']}
+
+minor = {'A': ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'A'],
+ 'Ab': ['Ab', 'Bb', 'Cb', 'Db', 'Eb', 'Fb', 'Gb', 'Ab'],
+ 'B': ['B', 'C#', 'D', 'E', 'F#', 'G', 'A', 'B'],
+ 'Bb': ['Bb', 'C', 'Db', 'Eb', 'F', 'Gb', 'Ab', 'Bb'],
+ 'C': ['C', 'D', 'Eb', 'F', 'G', 'Ab', 'Bb', 'C'],
+ 'C#': ['C#', 'D#', 'E', 'F#', 'G#', 'A', 'B', 'C#'],
+ 'D': ['D', 'E', 'F', 'G', 'A', 'Bb', 'C', 'D'],
+ 'E': ['E', 'F#', 'G', 'A', 'B', 'C', 'D', 'E'],
+ 'Eb': ['Eb', 'F', 'Gb', 'Ab', 'Bb', 'Cb', 'Db', 'Eb'],
+ 'F': ['F', 'G', 'Ab', 'Bb', 'C', 'Db', 'Eb', 'F'],
+ 'F#': ['F#', 'G#', 'A', 'B', 'C#', 'D', 'E', 'F#'],
+ 'G': ['G', 'A', 'Bb', 'C', 'D', 'Eb', 'F', 'G']}
+
+chromatic = {'A': ['A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A'],
+ 'Ab': ['Ab', 'A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab'],
+ 'B': ['B', 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B'],
+ 'Bb': ['Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb'],
+ 'C': ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B', 'C'],
+ 'C#': ['C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'C#'],
+ 'D': ['D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'C#', 'D'],
+ 'E': ['E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E'],
+ 'Eb': ['Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb'],
+ 'F': ['F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E', 'F'],
+ 'F#': ['F#', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#'],
+ 'G': ['G', 'Ab', 'A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G']}
+
+
+tonic = notes[randrange(12)]
+octave = randrange(2,6)
+sup_octave = octave+1
+print(major[tonic])
+
+
