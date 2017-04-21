@@ -6,7 +6,9 @@ In current development though functional
 
 ## Usage 
 
-Install `sox` and `python3` and, 
+### Install the Dependencies
+
+Install `sox` and `python3` (see [below](https://github.com/iacchus/birdears#installing--dependencies)) and, 
 
 ### clone the repository 
 
