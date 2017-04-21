@@ -6,17 +6,17 @@ In current development though functional
 
 ## Usage 
 
-### Install the Dependencies
+### 1. Install the Dependencies
 
 Install `sox` and `python3` (see [below](https://github.com/iacchus/birdears#installing--dependencies)) and, 
 
-### clone the repository 
+### 2. clone the repository 
 
 ```
 git clone https://github.com/iacchus/birdears.git
 ```
 
-### and just run the script:
+### 3. and just run the script:
 
 ```
 python3 birdears.python3
