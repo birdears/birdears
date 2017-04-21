@@ -69,15 +69,15 @@ class QuestionBase:
     enharmonics = {
         'C#' : 'Db',
         'D#' : 'Eb',
-        #'E#' : 'F',
+        'E#' : 'F',
         'F#' : 'Gb',
         'G#' : 'Ab',
         'A#' : 'Bb',
-        #'B#' : 'C',
-        #'Cb' : 'B',
+        'B#' : 'C',
+        'Cb' : 'B',
         'Db' : 'C#',
         'Eb' : 'D#',
-        #'Fb' : 'E',
+        'Fb' : 'E',
         'Gb' : 'F#',
         'Ab' : 'G#',
         'Bb' : 'A#',
@@ -87,13 +87,15 @@ class QuestionBase:
         pass
 
     def get_semitones(self, note_name, chromatic):
-        try:
-            semitones = chromatic.index(note_name)
-        except:
-            pass
+        
+        semitones = False
 
-        if not semitones:
+        if note_name in self.enharmonics:
             enharmonic = self.enharmonics[note_name]
+
+        if note_name in chromatic:
+            semitones = chromatic.index(note_name)
+        elif enharmonic in chromatic:
             semitones = chromatic.index(enharmonic)
 
         return semitones
@@ -190,7 +192,7 @@ while True:
     #question = get_question(scale,octave, chromatic[tonic])
     question = Question()
 
-    pprint([question.scale,question.ival_nome_name,question.semitones])
+    pprint([question.scale,question.ival_note_name,question.ival_semitones])
     user_input = getch()
 
     keyidx = "zxcvbnm" # semitones on chromatic dont have keyboard keys for them
