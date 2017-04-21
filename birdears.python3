@@ -188,10 +188,22 @@ class QuestionBase:
 
         semitones = self.keyboard_index.index(user_input_char)
 
+        user_interval = self.intervals[semitones][2]
+        correct_interval = self.intervals[self.ival_semitones][2] 
+
+        response = {
+                'is_correct': False,
+                'user_interval' : user_interval,
+                'correct_interval' : correct_interval,
+                }
+
         if semitones == self.ival_semitones:
-            return True
+            response.update({ 'is_correct' : True })
+            return response
+
         else:
-            return False
+            response.update({ 'is_correct' : False })
+            return response
 
     def make_interval(self):
 
@@ -408,11 +420,13 @@ if __name__ == "__main__":
         # any response input interval from valid keys
         if user_input in question.keyboard_index and user_input != ' ': # space char 
             
-            if question.check_question(user_input):
-                print("Correct!")
+            response = question.check_question(user_input)
+
+            if response['is_correct']:
+                print("Correct!.. it is “{}”".format(response['user_interval']))
             
             else:
-                print("Incorrect")
+                print("Incorrect.. the correct is “{}” ! You aswered “{}”..".format(response['correct_interval'], response['user_interval']))
            
             question.play_resolution()
             
