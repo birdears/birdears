@@ -169,8 +169,15 @@ class Question(QuestionBase):
         self.scale_size = scale_size = len(scale)
         self.tonic = tonic = scale[0]
         
-        self.concrete_scale = ["{}{}".format(tone,self.octave) for tone in self.scale[:-1]]
-        self.concrete_scale.append("{}{}".format(tonic,upper_octave))
+        #self.concrete_scale = ["{}{}".format(tone,self.octave) for tone in self.scale[:-1]]
+        #self.concrete_scale.append("{}{}".format(tonic,upper_octave))
+        self.concrete_scale = []
+        current_octave = self.octave
+        for idx,tone in enumerate(self.scale):
+            if 'C' in tone and idx>0:
+                current_octave+=1
+
+            self.concrete_scale.append("{}{}".format(tone, current_octave))
 
         self.concrete_tonic = self.concrete_scale[0]
         
@@ -187,7 +194,8 @@ class Question(QuestionBase):
         interval = self.ival_note_concrete
 
         play_note(note=tonic, duration=self.question_duration, delay=self.question_delay)
-        play_note(note=interval, duration=self.question_duration, delay=self.question_delay)
+        #play_note(note=interval, duration=self.question_duration, delay=self.question_delay)
+        play_note(note=interval, duration=self.question_duration, delay=0)
 
     def play_resolution(self):
         self.resolution_duration = 2.5
@@ -210,7 +218,7 @@ while True:
     #question = get_question(scale,octave, chromatic[tonic])
     question = Question()
 
-    pprint([question.scale,question.ival_note_name,question.ival_semitones])
+    pprint([question.concrete_scale, question.ival_note_name, question.ival_semitones])
     question.play_question()
 
     user_input = getch()
