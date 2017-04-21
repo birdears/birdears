@@ -110,6 +110,22 @@ class QuestionBase:
 
         return semitones
 
+    def wait(self, seconds):
+        time.sleep(seconds)
+
+
+    def play_note(self, note='C', duration=4, delay=0):
+        # requires sox to be installed
+        command = (
+            "play -qn synth {duration} pluck {note}"
+            " fade l 0 {duration} 2 reverb"
+        ).format(note=note, duration=duration)
+
+        subprocess.Popen(command.split())
+
+        if delay:
+            self.wait(delay)
+
 # http://code.activestate.com/recipes/134892/
 class _Getch:
     """Gets a single character from standard input.  Does not echo to the
@@ -143,21 +159,6 @@ class _GetchWindows:
         import msvcrt
         return msvcrt.getch()
 
-def wait(seconds):
-    time.sleep(seconds)
-
-
-def play_note(note='C', duration=4, delay=0):
-    # requires sox to be installed
-    command = (
-        "play -qn synth {duration} pluck {note}"
-        " fade l 0 {duration} 2 reverb"
-    ).format(note=note, duration=duration)
-
-    subprocess.Popen(command.split())
-
-    if delay:
-        wait(delay)
 
 class Question(QuestionBase):
     def __init__(self, kind='major', octave=[2,6]):
@@ -173,8 +174,6 @@ class Question(QuestionBase):
             self.octave = octave
         elif type(octave) == list and len(octave) == 2:
             self.octave = randrange(octave[0], octave[1])
-
-        self.upper_octave = upper_octave = self.octave+1
 
         self.scale_size = scale_size = len(scale)
         self.tonic = tonic = scale[0]
@@ -200,7 +199,6 @@ class Question(QuestionBase):
         self.ival_idx = randrange(scale_size)
         self.ival_note_concrete = self.concrete_scale[self.ival_idx]
         self.ival_note_name = self.scale[self.ival_idx]
-        #self.ival_semitones = self.get_semitones(self.ival_note_name, self.tone_chroma)
         self.ival_semitones = self.get_semitones(self.ival_note_name, self.tone_chroma, self.octave, self.ival_note_concrete)
 
         self.resolution_concrete = []
@@ -217,6 +215,8 @@ class Question(QuestionBase):
         tonic = self.concrete_tonic
         interval = self.ival_note_concrete
 
+        play_note = self.play_note
+
         play_note(note=tonic, duration=self.question_duration, delay=self.question_delay)
         #play_note(note=interval, duration=self.question_duration, delay=self.question_delay)
         play_note(note=interval, duration=self.question_duration, delay=0)
@@ -229,11 +229,13 @@ class Question(QuestionBase):
         tonic = self.concrete_tonic
         interval = self.ival_note_concrete
 
+        play_note = self.play_note
+
         for tone in self.resolution_concrete:
             play_note(note=tone, duration=self.resolution_duration, delay=self.resolution_delay)
 
 
-        wait(self.resolution_pos_delay)
+        self.wait(self.resolution_pos_delay)
 
     def check_question(self, semitones):
         if semitones == self.ival_semitones:
@@ -266,6 +268,3 @@ while True:
 
     question.play_resolution()
     
-    
-    #    print('EUREKA!!!!!!!')
-
