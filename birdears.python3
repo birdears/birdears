@@ -6,64 +6,65 @@ from random import randrange
 
 from pprint import pprint
 
-# maybe we'd better use circle of fifths here
-notes = ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B']
+class QuestionBase:
+    # maybe we'd better use circle of fifths here
+    notes = ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B']
 
-major = {'A': ['A', 'B', 'C#', 'D', 'E', 'F#', 'G#', 'A'],
- 'Ab': ['Ab', 'Bb', 'C', 'Db', 'Eb', 'F', 'G', 'Ab'],
- 'B': ['B', 'C#', 'D#', 'E', 'F#', 'G#', 'A#', 'B'],
- 'Bb': ['Bb', 'C', 'D', 'Eb', 'F', 'G', 'A', 'Bb'],
- 'C': ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C'],
- 'C#': ['C#', 'D#', 'E#', 'F#', 'G#', 'A#', 'B#', 'C#'],
- 'D': ['D', 'E', 'F#', 'G', 'A', 'B', 'C#', 'D'],
- 'E': ['E', 'F#', 'G#', 'A', 'B', 'C#', 'D#', 'E'],
- 'Eb': ['Eb', 'F', 'G', 'Ab', 'Bb', 'C', 'D', 'Eb'],
- 'F': ['F', 'G', 'A', 'Bb', 'C', 'D', 'E', 'F'],
- 'F#': ['F#', 'G#', 'A#', 'B', 'C#', 'D#', 'E#', 'F#'],
- 'G': ['G', 'A', 'B', 'C', 'D', 'E', 'F#', 'G']}
+    major = {'A': ['A', 'B', 'C#', 'D', 'E', 'F#', 'G#', 'A'],
+     'Ab': ['Ab', 'Bb', 'C', 'Db', 'Eb', 'F', 'G', 'Ab'],
+     'B': ['B', 'C#', 'D#', 'E', 'F#', 'G#', 'A#', 'B'],
+     'Bb': ['Bb', 'C', 'D', 'Eb', 'F', 'G', 'A', 'Bb'],
+     'C': ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C'],
+     'C#': ['C#', 'D#', 'E#', 'F#', 'G#', 'A#', 'B#', 'C#'],
+     'D': ['D', 'E', 'F#', 'G', 'A', 'B', 'C#', 'D'],
+     'E': ['E', 'F#', 'G#', 'A', 'B', 'C#', 'D#', 'E'],
+     'Eb': ['Eb', 'F', 'G', 'Ab', 'Bb', 'C', 'D', 'Eb'],
+     'F': ['F', 'G', 'A', 'Bb', 'C', 'D', 'E', 'F'],
+     'F#': ['F#', 'G#', 'A#', 'B', 'C#', 'D#', 'E#', 'F#'],
+     'G': ['G', 'A', 'B', 'C', 'D', 'E', 'F#', 'G']}
 
-minor = {'A': ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'A'],
- 'Ab': ['Ab', 'Bb', 'Cb', 'Db', 'Eb', 'Fb', 'Gb', 'Ab'],
- 'B': ['B', 'C#', 'D', 'E', 'F#', 'G', 'A', 'B'],
- 'Bb': ['Bb', 'C', 'Db', 'Eb', 'F', 'Gb', 'Ab', 'Bb'],
- 'C': ['C', 'D', 'Eb', 'F', 'G', 'Ab', 'Bb', 'C'],
- 'C#': ['C#', 'D#', 'E', 'F#', 'G#', 'A', 'B', 'C#'],
- 'D': ['D', 'E', 'F', 'G', 'A', 'Bb', 'C', 'D'],
- 'E': ['E', 'F#', 'G', 'A', 'B', 'C', 'D', 'E'],
- 'Eb': ['Eb', 'F', 'Gb', 'Ab', 'Bb', 'Cb', 'Db', 'Eb'],
- 'F': ['F', 'G', 'Ab', 'Bb', 'C', 'Db', 'Eb', 'F'],
- 'F#': ['F#', 'G#', 'A', 'B', 'C#', 'D', 'E', 'F#'],
- 'G': ['G', 'A', 'Bb', 'C', 'D', 'Eb', 'F', 'G']}
+    minor = {'A': ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'A'],
+     'Ab': ['Ab', 'Bb', 'Cb', 'Db', 'Eb', 'Fb', 'Gb', 'Ab'],
+     'B': ['B', 'C#', 'D', 'E', 'F#', 'G', 'A', 'B'],
+     'Bb': ['Bb', 'C', 'Db', 'Eb', 'F', 'Gb', 'Ab', 'Bb'],
+     'C': ['C', 'D', 'Eb', 'F', 'G', 'Ab', 'Bb', 'C'],
+     'C#': ['C#', 'D#', 'E', 'F#', 'G#', 'A', 'B', 'C#'],
+     'D': ['D', 'E', 'F', 'G', 'A', 'Bb', 'C', 'D'],
+     'E': ['E', 'F#', 'G', 'A', 'B', 'C', 'D', 'E'],
+     'Eb': ['Eb', 'F', 'Gb', 'Ab', 'Bb', 'Cb', 'Db', 'Eb'],
+     'F': ['F', 'G', 'Ab', 'Bb', 'C', 'Db', 'Eb', 'F'],
+     'F#': ['F#', 'G#', 'A', 'B', 'C#', 'D', 'E', 'F#'],
+     'G': ['G', 'A', 'Bb', 'C', 'D', 'Eb', 'F', 'G']}
 
-chromatic = {'A': ['A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A'],
- 'Ab': ['Ab', 'A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab'],
- 'B': ['B', 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B'],
- 'Bb': ['Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb'],
- 'C': ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B', 'C'],
- 'C#': ['C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'C#'],
- 'D': ['D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'C#', 'D'],
- 'E': ['E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E'],
- 'Eb': ['Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb'],
- 'F': ['F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E', 'F'],
- 'F#': ['F#', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#'],
- 'G': ['G', 'Ab', 'A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G']}
+    chromatic = {'A': ['A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A'],
+     'Ab': ['Ab', 'A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab'],
+     'B': ['B', 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B'],
+     'Bb': ['Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb'],
+     'C': ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B', 'C'],
+     'C#': ['C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'C#'],
+     'D': ['D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'C#', 'D'],
+     'E': ['E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E'],
+     'Eb': ['Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb'],
+     'F': ['F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E', 'F'],
+     'F#': ['F#', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#'],
+     'G': ['G', 'Ab', 'A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G']}
 
-intervals = {0: [0, 'P1', 'Perfect Unison'],
- 1: [1, 'm2', 'Minor Second'],
- 2: [2, 'M2', 'Major Second'],
- 3: [3, 'm3', 'Minor Third'],
- 4: [4, 'M3', 'Major Third'],
- 5: [5, 'P4', 'Perfect Fourth'],
- 6: [6, 'A4', 'Augmented Fourth'],
- 7: [7, 'P5', 'Perfect Fifth'],
- 8: [8, 'm6', 'Minor Sixth'],
- 9: [9, 'M6', 'Major Sixth'],
- 10: [10, 'm7', 'Minor Seventh'],
- 11: [11, 'M7', 'Major Seventh'],
- 12: [12, 'P8', 'Perfect Octave']}
+    intervals = {0: [0, 'P1', 'Perfect Unison'],
+     1: [1, 'm2', 'Minor Second'],
+     2: [2, 'M2', 'Major Second'],
+     3: [3, 'm3', 'Minor Third'],
+     4: [4, 'M3', 'Major Third'],
+     5: [5, 'P4', 'Perfect Fourth'],
+     6: [6, 'A4', 'Augmented Fourth'],
+     7: [7, 'P5', 'Perfect Fifth'],
+     8: [8, 'm6', 'Minor Sixth'],
+     9: [9, 'M6', 'Major Sixth'],
+     10: [10, 'm7', 'Minor Seventh'],
+     11: [11, 'M7', 'Major Seventh'],
+     12: [12, 'P8', 'Perfect Octave']}
 
-major_ints = [0,2,4,5,7,9,11,12]
-minor_ints = [0,2,3,5,7,8,10,12]
+    major_ints = [0,2,4,5,7,9,11,12]
+    minor_ints = [0,2,3,5,7,8,10,12]
 
 # http://code.activestate.com/recipes/134892/
 class _Getch:
@@ -114,63 +115,52 @@ def play_note(note='C', duration=4, delay=0):
     if delay:
         wait(delay)
 
-def play_question():
-    pass
+class Question(QuestionBase):
+    def __init__(self, kind='major', octave=[2,6]):
 
-def play_resolution():
-    pass
+        self.tonic = tonic = self.notes[randrange(len(self.notes))]
 
-def get_question(scale, octave_int, chromatic):
-    scale_size = len(scale)
-    tonic = scale[0]
-    octave = str(octave_int)
-    upper_octave = str(octave_int+1)
-    
-    concrete_sc = [tone+octave for tone in scale[:-1]]
-    concrete_sc.append(tonic+upper_octave)
-    
-    question_tonic = {
-            'idx' : 0,
-            'concrete' : concrete_sc[0],
-            'note' : tonic,
-        }
-    
-    question_interval_idx = randrange(0, scale_size)
-    question_interval = {
-            'idx' : question_interval_idx,
-            'concrete' : concrete_sc[question_interval_idx],
-            'note' : scale[question_interval_idx]
-        }
+        self.scale = scale = getattr(self, kind)[tonic]
 
-    #print(question_interval)
-    #print(concrete_sc)
+        if type(octave) == int:
+            self.octave = octave
+        elif type(octave) == list and len(octave) == 2:
+            self.octave = randrange(octave[0], octave[1])
 
-    question = { 
-            'scale': scale,
-            'concrete': concrete_sc,
-            'tonic': question_tonic,
-            'question_interval': question_interval,
-        }
+        self.upper_octave = upper_octave = self.octave+1
 
-    return question
+        self.scale_size = scale_size = len(scale)
+        self.tonic = tonic = scale[0]
+        
+        self.concrete_scale = ["{}{}".format(tone,self.octave) for tone in self.scale[:-1]]
+        self.concrete_scale.append("{}{}".format(tonic,upper_octave))
+        
+        self.ival_idx = randrange(scale_size)
+        self.ival_note_concrete = self.concrete_scale[self.ival_idx]
+        self.ival_note_name = self.scale[self.ival_idx]
 
-def check_question():
-    pass
+    def play_question():
+        pass
+
+    def play_resolution():
+        pass
+
+    def check_question():
+        pass
 
 getch = _Getch()
 
 while True:
-    tonic = notes[randrange(len(notes))]
-    scale = major[tonic]
-    octave = randrange(2,6)
-    question = get_question(scale,octave, chromatic[tonic])
-    pprint(question)
+    #question = get_question(scale,octave, chromatic[tonic])
+    question = Question()
+
+    pprint(question.scale)
     user_input = getch()
 
     keyidx = "zxcvbnm" # semitones on chromatic dont have keyboard keys for them
 
     if user_input == 'q':
         exit(0)
-    elif keyidx.index(user_input) == question['question_interval']['idx']:
-        print('EUREKA!!!!!!!')
+    #elif keyidx.index(user_input) == question['question_interval']['idx']:
+    #    print('EUREKA!!!!!!!')
 
