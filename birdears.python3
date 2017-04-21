@@ -171,20 +171,38 @@ class Question(QuestionBase):
         
         self.concrete_scale = ["{}{}".format(tone,self.octave) for tone in self.scale[:-1]]
         self.concrete_scale.append("{}{}".format(tonic,upper_octave))
+
+        self.concrete_tonic = self.concrete_scale[0]
         
         self.ival_idx = randrange(scale_size)
         self.ival_note_concrete = self.concrete_scale[self.ival_idx]
         self.ival_note_name = self.scale[self.ival_idx]
         self.ival_semitones = self.get_semitones(self.ival_note_name, self.tone_chroma)
 
-    def play_question():
-        pass
+    def play_question(self):
+        self.question_duration = 2
+        self.question_delay = 1.5
 
-    def play_resolution():
-        pass
+        tonic = self.concrete_tonic
+        interval = self.ival_note_concrete
 
-    def check_question():
-        pass
+        play_note(note=tonic, duration=self.question_duration, delay=self.question_delay)
+        play_note(note=interval, duration=self.question_duration, delay=self.question_delay)
+
+    def play_resolution(self):
+        self.resolution_duration = 2.5
+        self.resolution_delay = 0.5
+
+        tonic = self.concrete_tonic
+        interval = self.ival_note_concrete
+
+        #play_note(note=tonic, duration=self.resolution_duration, delay=self.resolution_delay)
+
+    def check_question(self, semitones):
+        if semitones == self.ival_semitones:
+            return True
+        else:
+            return False
 
 getch = _Getch()
 
@@ -193,6 +211,8 @@ while True:
     question = Question()
 
     pprint([question.scale,question.ival_note_name,question.ival_semitones])
+    question.play_question()
+
     user_input = getch()
 
     keyidx = "zxcvbnm" # semitones on chromatic dont have keyboard keys for them
