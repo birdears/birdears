@@ -353,7 +353,7 @@ class _GetchWindows:
         import msvcrt
         return msvcrt.getch()
 
-
+# this is for debugging
 def print_stuff(question):
         padd="─" * 30; # vim: insert mode, ^vu2500
         print("""
