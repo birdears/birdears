@@ -86,17 +86,40 @@ class QuestionBase:
     def __init__(self):
         pass
 
-    def get_semitones(self, note_name, chromatic):
-        
+    #def get_semitones(self, note_name_concrete, chromatic_concrete):
+    def get_semitones(self, note_name, chromatic, tonic_octave, note_concrete):
+
         semitones = False
 
-        if note_name in self.enharmonics:
-            enharmonic = self.enharmonics[note_name]
+        chroma = []
+        current_octave = tonic_octave
+        for idx,tone in enumerate(chromatic):
+            if tone == 'C' and idx>0:
+                current_octave+=1
+            chroma.append("{}{}".format(tone, current_octave))
 
-        if note_name in chromatic:
-            semitones = chromatic.index(note_name)
-        elif enharmonic in chromatic:
-            semitones = chromatic.index(enharmonic)
+        if note_concrete in chroma:
+            semitones = chroma.index(note_concrete)
+
+        elif len(note_concrete) == 3:
+            note_name = note_concrete[:2]
+            note_octave = note_concrete[2:3]
+
+            if note_name in self.enharmonics:
+                note = "{}{}".format(self.enharmonics[note_name], note_octave)
+                semitones = chroma.index(note)
+
+            #if not in self.enharmonics:
+            #    enharmonic = self.enharmonics[note_concrete[:2]]
+
+            #if note_name in self.enharmonics:
+            #    enharmonic = self.enharmonics[note_name]
+            #if note_name in chromatic:
+                #semitones = chromatic.index(note_name)
+            #    semitones = chroma.index(note_concrete)
+            #elif enharmonic in chromatic:
+                #semitones = chromatic.index(enharmonic)
+            #    semitones = chroma.index(enharmonic)
 
         return semitones
 
@@ -178,13 +201,29 @@ class Question(QuestionBase):
                 current_octave+=1
 
             self.concrete_scale.append("{}{}".format(tone, current_octave))
+        
+        self.chroma_concrete = []
+        current_octave = self.octave
+        for idx,tone in enumerate(self.tone_chroma):
+            if tone == 'C' and idx>0:
+                current_octave+=1
+
+            self.chroma_concrete.append("{}{}".format(tone, current_octave))
 
         self.concrete_tonic = self.concrete_scale[0]
         
         self.ival_idx = randrange(scale_size)
         self.ival_note_concrete = self.concrete_scale[self.ival_idx]
         self.ival_note_name = self.scale[self.ival_idx]
-        self.ival_semitones = self.get_semitones(self.ival_note_name, self.tone_chroma)
+        #self.ival_semitones = self.get_semitones(self.ival_note_name, self.tone_chroma)
+        self.ival_semitones = self.get_semitones(self.ival_note_name, self.tone_chroma, self.octave, self.ival_note_concrete)
+
+        self.resolution_concrete = []
+        if self.ival_semitones <= 6:
+            self.resolution_concrete = self.concrete_scale[0:self.ival_idx+1] #hotfix
+            self.resolution_concrete.reverse() 
+        else:
+            self.resolution_concrete = self.concrete_scale[self.ival_idx:]
 
     def play_question(self):
         self.question_duration = 2
@@ -204,7 +243,8 @@ class Question(QuestionBase):
         tonic = self.concrete_tonic
         interval = self.ival_note_concrete
 
-        #play_note(note=tonic, duration=self.resolution_duration, delay=self.resolution_delay)
+        for tone in self.resolution_concrete:
+            play_note(note=tone, duration=self.resolution_duration, delay=self.resolution_delay)
 
     def check_question(self, semitones):
         if semitones == self.ival_semitones:
@@ -218,7 +258,7 @@ while True:
     #question = get_question(scale,octave, chromatic[tonic])
     question = Question()
 
-    pprint([question.concrete_scale, question.ival_note_name, question.ival_semitones])
+    pprint([question.concrete_scale, question.ival_note_name, question.ival_semitones, question.resolution_concrete, question.chroma_concrete])
     question.play_question()
 
     user_input = getch()
