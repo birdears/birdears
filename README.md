@@ -6,13 +6,21 @@ In current development though functional
 
 ## Usage 
 
-Install `sox` and `python3` and just run it:
+Install `sox` and `python3` and, clone the repository  just run the script:
+
 
 ```
 python3 birdears.python3
 ```
 
-### Keybindings for intervals
+#### or
+
+```
+chmod +x birdears.python3
+./birdears.python3
+```
+
+## Keybindings for intervals
 
 ```
 MAJOR keyboard keys (with chromatics)
@@ -34,4 +42,20 @@ keyindex for minor and chromatic minor context
 
  s   f g   j k   eg.:      a#   c# d#    f# g#
 z x c v b n m    -------  a  b c  d  e  f  g
+```
+
+### Other keys
+
+**q** to quit.
+
+**r** to repeat the tonic/interval.
+
+## Installing  Dependencies
+
+Submit your distro's too..
+
+### Arch Linux
+
+```
+sudo pacman -S python sox
 ```
