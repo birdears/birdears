@@ -96,6 +96,18 @@ class QuestionBase:
             }
     }
 
+    # MAJOR keyboard keys (with chromatics)
+    # keyindex for major and chromatic major context
+    #  s d   g h j        IIb  IIIb       Vb VIb  VIIb 
+    # z x c v b n m  <-  I   II   III  IV   V   VI   VII
+    #
+    #  -- SHIFT meaning an octave higher
+
+    # MINOR keyboard keys (with chromatics)
+    # keyindex for minor and chromatic minor context
+    #
+    #  s   f g   j k   eg.:      a#   c# d#    f# g#
+    # z x c v b n m    -------  a  b c  d  e  f  g
     def __init__(self):
 
         self.question_duration = 2
@@ -106,19 +118,6 @@ class QuestionBase:
         self.resolution_delay = 0.5
         self.resolution_pos_delay = 1
 
-        # keyindex for major and chromatic major context
-        #keyidx_maj = "zsxdcvgbhnjmZSXDCVGBHN" # semitones (e-f, b-c) on chromatic dont have keyboard keys for them
-
-        #  s d   g h j        IIb  IIIb       Vb VIb  VIIb 
-        # z x c v b n m  <-  I   II   III  IV   V   VI   VII
-        #
-        #  -- SHIFT meaning an octave higher
-
-        # keyindex for minor and chromatic minor context
-
-        #  s   f g   j         a   db eb  gb
-        # z x c v b n m  ---- a b c  d e f  g
-        #keyidx_min = "zsxcfvgbnjmZSXCFVBNJM" 
 
     def get_semitones(self, note_name, chromatic, tonic_octave, note_concrete):
 
