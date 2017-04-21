@@ -224,12 +224,16 @@ class Question(QuestionBase):
     def play_resolution(self):
         self.resolution_duration = 2.5
         self.resolution_delay = 0.5
+        self.resolution_pos_delay = 1
 
         tonic = self.concrete_tonic
         interval = self.ival_note_concrete
 
         for tone in self.resolution_concrete:
             play_note(note=tone, duration=self.resolution_duration, delay=self.resolution_delay)
+
+
+        wait(self.resolution_pos_delay)
 
     def check_question(self, semitones):
         if semitones == self.ival_semitones:
