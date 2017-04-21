@@ -63,9 +63,11 @@ class QuestionBase:
      11: [11, 'M7', 'Major Seventh'],
      12: [12, 'P8', 'Perfect Octave']}
 
-    major_ints = [0,2,4,5,7,9,11,12]
-    minor_ints = [0,2,3,5,7,8,10,12]
-    
+    diatonic_indices = {
+            'major' : [0,2,4,5,7,9,11,12],
+            'minor' : [0,2,3,5,7,8,10,12],
+    }
+
     enharmonics = {
         'C#' : 'Db',
         'D#' : 'Eb',
@@ -211,11 +213,41 @@ class QuestionBase:
     def make_resolution(self):
 
         self.resolution_concrete = []
-        if self.ival_semitones <= 6:
-            self.resolution_concrete = self.concrete_scale[:self.ival_idx+1] #hotfix
-            self.resolution_concrete.reverse() 
-        else:
-            self.resolution_concrete = self.concrete_scale[self.ival_idx:]
+
+        if self.mode is 'diatonic':
+            #if self.ival_semitones <= 6:
+            if self.ival_semitones <= 5:
+                self.resolution_concrete = self.concrete_scale[:self.ival_idx+1] #hotfix
+                self.resolution_concrete.reverse() 
+            else:
+                self.resolution_concrete = self.concrete_scale[self.ival_idx:]
+        
+        elif self.mode is 'chromatic':
+            self.is_intv_chromatic = not(self.chroma_concrete[self.ival_idx] in self.concrete_scale)
+
+            if self.is_intv_chromatic:
+                diatonic_index = self.concrete_scale.index(self.chroma_concrete[self.ival_idx-1])
+            else:
+                diatonic_index = self.concrete_scale.index(self.chroma_concrete[self.ival_idx])
+
+            if self.ival_semitones <= 5:
+                if self.is_intv_chromatic:
+                    ##self.resolution_concrete = self.concrete_scale[:self.ival_idx] #hotfix #2
+                    self.resolution_concrete = self.concrete_scale[:diatonic_index] #hotfix #2
+                    self.resolution_concrete.append(self.chroma_concrete[self.ival_idx])
+                else:
+                    self.resolution_concrete = self.concrete_scale[:diatonic_index] #hotfix
+                
+                self.resolution_concrete.reverse() 
+
+            else:
+                if self.is_intv_chromatic:
+                    self.resolution_concrete.append(self.chroma_concrete[self.ival_idx])
+                self.resolution_concrete = self.concrete_scale[diatonic_index:]
+
+        if len(self.resolution_concrete) == 1:
+            repeat_unison = self.resolution_concrete[0]
+            self.resolution_concrete.append(repeat_unison)
 
 
     def make_concrete_scale(self):
@@ -303,19 +335,14 @@ class _GetchWindows:
         import msvcrt
         return msvcrt.getch()
 
-if __name__ == "__main__":
-    getch = _Getch()
-
-    while True:
-        question = Question(kind='minor', mode='chromatic')
-
-        padd="─"*20; # vim: insert mode, ^vu2500
+def print_stuff(question):
+        padd="─" * 30; # vim: insert mode, ^vu2500
         print("""
 {}
 
 Tonic: {}, Conc. Scale: {},
-Note(Int): {} Int Semitones: {}, Interval: {},
-Resolution: {}
+Note(Int): {}, Int Semitones: {}, Interval: {},
+Resolution: {},
 Chrom. Conc. Scale: {}
 
 """.format(
@@ -328,19 +355,44 @@ Chrom. Conc. Scale: {}
             question.resolution_concrete,
             question.chroma_concrete
         ))
-        question.play_question()
+
+if __name__ == "__main__":
+    getch = _Getch()
+
+    new_question_bit = True 
+
+    while True:
+        if new_question_bit is True:
+            
+            new_question_bit = False
+            question = Question(kind='major', mode='chromatic')
+        
+            # debug
+            print_stuff(question)
+
+            question.play_question()
 
         user_input = getch()
 
-        if user_input == 'q':
-            exit(0)
-
+        # any response input interval from valid keys
         if user_input in question.keyboard_index and user_input != ' ': # space char 
-
+            
             if question.check_question(user_input):
                 print("Correct!")
+            
             else:
                 print("Incorrect")
+           
+            question.play_resolution()
+            
+            new_question_bit = True 
+        
+        # q - quit
+        elif user_input == 'q':
+            exit(0)
 
-        question.play_resolution()
+        # r - repeat interval
+        elif user_input == 'r':
+            question.play_question()
+
         
