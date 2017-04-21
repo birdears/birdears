@@ -353,29 +353,8 @@ class _GetchWindows:
         import msvcrt
         return msvcrt.getch()
 
+
 def print_stuff(question):
-        padd="─" * 30; # vim: insert mode, ^vu2500
-        print("""
-{}
-
-Tonic: {}, Conc. Scale: {},
-Note(Int): {}, Int Semitones: {}, Interval: {}, Is Intv. Chromatic: {},
-Resolution: {},
-Chrom. Conc. Scale: {}
-
-""".format(
-            padd,
-            question.tonic,
-            question.concrete_scale,
-            question.ival_note_name,
-            question.ival_semitones,
-            question.intervals[question.ival_semitones],
-            question.ival_is_chromatic,
-            question.resolution_concrete,
-            question.chroma_concrete
-        ))
-
-def print_stuff2(question):
         padd="─" * 30; # vim: insert mode, ^vu2500
         print("""
 {}
@@ -411,7 +390,7 @@ if __name__ == "__main__":
             question = Question(kind='major', mode='chromatic')
         
             # debug
-            print_stuff2(question)
+            print_stuff(question)
 
             question.play_question()
 
