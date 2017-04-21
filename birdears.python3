@@ -83,6 +83,17 @@ class QuestionBase:
         'Bb' : 'A#',
         }
 
+    keyboard_indices = {
+            'diatonic': {
+                'minor' : 'z xc v bn m Z XC V BN M',
+                'major' : 'z x cv b n mZ X CV B NM'
+            },
+            'chromatic': {
+                'minor' : "zsxcfvgbnjmkZSXCFVGBNJMK",
+                'major' : "zsxdcvgbhnjmZSXDCVGBHNJM",
+            }
+    }
+
     def __init__(self):
 
         self.question_duration = 2
@@ -92,6 +103,20 @@ class QuestionBase:
         self.resolution_duration = 2.5
         self.resolution_delay = 0.5
         self.resolution_pos_delay = 1
+
+        # keyindex for major and chromatic major context
+        #keyidx_maj = "zsxdcvgbhnjmZSXDCVGBHN" # semitones (e-f, b-c) on chromatic dont have keyboard keys for them
+
+        #  s d   g h j        IIb  IIIb       Vb VIb  VIIb 
+        # z x c v b n m  <-  I   II   III  IV   V   VI   VII
+        #
+        #  -- SHIFT meaning an octave higher
+
+        # keyindex for minor and chromatic minor context
+
+        #  s   f g   j         a   db eb  gb
+        # z x c v b n m  ---- a b c  d e f  g
+        #keyidx_min = "zsxcfvgbnjmZSXCFVBNJM" 
 
     def get_semitones(self, note_name, chromatic, tonic_octave, note_concrete):
 
@@ -155,7 +180,12 @@ class QuestionBase:
         if self.resolution_pos_delay:
             self.wait(self.resolution_pos_delay)
 
-    def check_question(self, semitones):
+    #def check_question(self, semitones):
+    def check_question(self, user_input_char):
+
+
+        semitones = self.keyboard_index.index(user_input_char)
+
         if semitones == self.ival_semitones:
             return True
         else:
@@ -221,6 +251,8 @@ class Question(QuestionBase):
             self.octave = octave
         elif type(octave) == list and len(octave) == 2:
             self.octave = randrange(octave[0], octave[1])
+
+        self.keyboard_index = self.keyboard_indices[self.mode][self.kind]
 
         self.tonic = tonic = self.notes[randrange(len(self.notes))]
 
@@ -317,8 +349,9 @@ Chrom. Conc. Scale: {}
         if user_input == 'q':
             exit(0)
 
-        if user_input in keyidx_min: 
-            if question.check_question(keyidx_min.index(user_input)):
+        if user_input in question.keyboard_index: 
+            #if question.check_question(keyidx_min.index(user_input)):
+            if question.check_question(user_input):
                 print("Correct!")
             else:
                 print("Incorrect")
