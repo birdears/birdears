@@ -6,8 +6,15 @@ In current development though functional
 
 ## Usage 
 
-Install `sox` and `python3` and, clone the repository  just run the script:
+Install `sox` and `python3` and, 
 
+### clone the repository 
+
+```
+git clone https://github.com/iacchus/birdears.git
+```
+
+### and just run the script:
 
 ```
 python3 birdears.python3
