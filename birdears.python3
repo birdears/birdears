@@ -306,22 +306,8 @@ class _GetchWindows:
 if __name__ == "__main__":
     getch = _Getch()
 
-    # keyindex for major and chromatic major context
-    keyidx_maj = "zsxdcvgbhnjmZSXDCVGBHN" # semitones (e-f, b-c) on chromatic dont have keyboard keys for them
-
-    #  s d   g h j        IIb  IIIb       Vb VIb  VIIb 
-    # z x c v b n m  <-  I   II   III  IV   V   VI   VII
-    #
-    #  -- SHIFT meaning an octave higher
-
-    # keyindex for minor and chromatic minor context
-
-    #  s   f g   j         a   db eb  gb
-    # z x c v b n m  ---- a b c  d e f  g
-    keyidx_min = "zsxcfvgbnjmZSXCFVBNJM" 
-
     while True:
-        question = Question(kind='minor')
+        question = Question(kind='minor', mode='chromatic')
 
         padd="─"*20; # vim: insert mode, ^vu2500
         print("""
@@ -349,8 +335,8 @@ Chrom. Conc. Scale: {}
         if user_input == 'q':
             exit(0)
 
-        if user_input in question.keyboard_index: 
-            #if question.check_question(keyidx_min.index(user_input)):
+        if user_input in question.keyboard_index and user_input != ' ': # space char 
+
             if question.check_question(user_input):
                 print("Correct!")
             else:
