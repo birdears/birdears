@@ -65,6 +65,38 @@ class QuestionBase:
 
     major_ints = [0,2,4,5,7,9,11,12]
     minor_ints = [0,2,3,5,7,8,10,12]
+    
+    enharmonics = {
+        'C#' : 'Db',
+        'D#' : 'Eb',
+        #'E#' : 'F',
+        'F#' : 'Gb',
+        'G#' : 'Ab',
+        'A#' : 'Bb',
+        #'B#' : 'C',
+        #'Cb' : 'B',
+        'Db' : 'C#',
+        'Eb' : 'D#',
+        #'Fb' : 'E',
+        'Gb' : 'F#',
+        'Ab' : 'G#',
+        'Bb' : 'A#',
+        }
+
+    def __init__(self):
+        pass
+
+    def get_semitones(self, note_name, chromatic):
+        try:
+            semitones = chromatic.index(note_name)
+        except:
+            pass
+
+        if not semitones:
+            enharmonic = self.enharmonics[note_name]
+            semitones = chromatic.index(enharmonic)
+
+        return semitones
 
 # http://code.activestate.com/recipes/134892/
 class _Getch:
@@ -117,10 +149,13 @@ def play_note(note='C', duration=4, delay=0):
 
 class Question(QuestionBase):
     def __init__(self, kind='major', octave=[2,6]):
+        super(Question, self).__init__() # runs base class init
 
         self.tonic = tonic = self.notes[randrange(len(self.notes))]
 
         self.scale = scale = getattr(self, kind)[tonic]
+
+        self.tone_chroma = self.chromatic[tonic]
 
         if type(octave) == int:
             self.octave = octave
@@ -138,6 +173,7 @@ class Question(QuestionBase):
         self.ival_idx = randrange(scale_size)
         self.ival_note_concrete = self.concrete_scale[self.ival_idx]
         self.ival_note_name = self.scale[self.ival_idx]
+        self.ival_semitones = self.get_semitones(self.ival_note_name, self.tone_chroma)
 
     def play_question():
         pass
@@ -154,7 +190,7 @@ while True:
     #question = get_question(scale,octave, chromatic[tonic])
     question = Question()
 
-    pprint(question.scale)
+    pprint([question.scale,question.ival_nome_name,question.semitones])
     user_input = getch()
 
     keyidx = "zxcvbnm" # semitones on chromatic dont have keyboard keys for them
