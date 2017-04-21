@@ -236,15 +236,10 @@ class QuestionBase:
         
         elif self.mode is 'chromatic':
 
-            #if self.ival_is_chromatic:
-            #    diatonic_index = self.concrete_scale.index(self.chroma_concrete[self.ival_idx-1])
-            #else:
-            #    diatonic_index = self.concrete_scale.index(self.chroma_concrete[self.ival_idx])
-
             if self.ival_semitones <= 5:
                 if self.ival_is_chromatic:
                     ##self.resolution_concrete = self.concrete_scale[:self.ival_idx] #hotfix #2
-                    self.resolution_concrete = self.concrete_scale[:self.ival_diatonic_index] #hotfix #2
+                    self.resolution_concrete = self.concrete_scale[:self.ival_diatonic_index+1] #hotfix #2
                     self.resolution_concrete.append(self.chroma_concrete[self.ival_idx])
                 else:
                     self.resolution_concrete = self.concrete_scale[:self.ival_diatonic_index+1] #hotfix
@@ -254,7 +249,7 @@ class QuestionBase:
             else:
                 if self.ival_is_chromatic:
                     self.resolution_concrete.append(self.chroma_concrete[self.ival_idx])
-                self.resolution_concrete = self.concrete_scale[self.ival_diatonic_index:]
+                self.resolution_concrete.extend(self.concrete_scale[self.ival_diatonic_index:])
 
         if len(self.resolution_concrete) == 1:
             repeat_unison = self.resolution_concrete[0]
@@ -352,7 +347,7 @@ def print_stuff(question):
 {}
 
 Tonic: {}, Conc. Scale: {},
-Note(Int): {}, Int Semitones: {}, Interval: {}, Is Intv. Chromatic {}, 
+Note(Int): {}, Int Semitones: {}, Interval: {}, Is Intv. Chromatic: {},
 Resolution: {},
 Chrom. Conc. Scale: {}
 
@@ -368,6 +363,30 @@ Chrom. Conc. Scale: {}
             question.chroma_concrete
         ))
 
+def print_stuff2(question):
+        padd="─" * 30; # vim: insert mode, ^vu2500
+        print("""
+{}
+
+Tonic: {} | Note(Int): {} |  Interval: {} | Semitones(Int): {} |
+Is Note Chromatic: {} |
+Scale: {}, Octave: {}
+Resolution: {},
+Chromatic: {}
+
+""".format(
+            padd,
+            question.tonic,
+            question.ival_note_name,
+            "─".join(question.intervals[question.ival_semitones][1:]),
+            question.ival_semitones,
+            question.ival_is_chromatic,
+            "─".join(question.scale),
+            "{}-{}".format(question.octave,question.octave+1),
+            "─".join(question.resolution_concrete),
+            "─".join(question.tone_chroma)
+        ))
+
 if __name__ == "__main__":
     getch = _Getch()
 
@@ -380,7 +399,7 @@ if __name__ == "__main__":
             question = Question(kind='major', mode='chromatic')
         
             # debug
-            print_stuff(question)
+            print_stuff2(question)
 
             question.play_question()
 
