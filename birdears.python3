@@ -163,9 +163,19 @@ class QuestionBase:
 
     def make_interval(self):
 
-        self.ival_idx = randrange(self.scale_size)
-        self.ival_note_concrete = self.concrete_scale[self.ival_idx]
-        self.ival_note_name = self.scale[self.ival_idx]
+        
+        if self.mode == 'diatonic':
+            self.ival_idx = randrange(self.scale_size)
+
+            self.ival_note_concrete = self.concrete_scale[self.ival_idx]
+            self.ival_note_name = self.scale[self.ival_idx]
+
+        elif self.mode == 'chromatic':
+            self.ival_idx = randrange(len(self.tone_chroma))
+
+            self.ival_note_concrete = self.chroma_concrete[self.ival_idx]
+            self.ival_note_name = self.tone_chroma[self.ival_idx]
+
         self.ival_semitones = self.get_semitones(self.ival_note_name, self.tone_chroma, self.octave, self.ival_note_concrete)
 
     def make_resolution(self):
@@ -200,9 +210,17 @@ class QuestionBase:
 
 class Question(QuestionBase):
 
-    def __init__(self, kind='major', octave=[2,6]):
+    def __init__(self, kind='major', mode='diatonic', octave=[2,6]):
     
         super(Question, self).__init__() # runs base class init
+
+        self.kind = kind
+        self.mode = mode
+
+        if type(octave) == int:
+            self.octave = octave
+        elif type(octave) == list and len(octave) == 2:
+            self.octave = randrange(octave[0], octave[1])
 
         self.tonic = tonic = self.notes[randrange(len(self.notes))]
 
@@ -211,28 +229,8 @@ class Question(QuestionBase):
 
         self.tone_chroma = self.chromatic[tonic]
 
-        if type(octave) == int:
-            self.octave = octave
-        elif type(octave) == list and len(octave) == 2:
-            self.octave = randrange(octave[0], octave[1])
-
-        #self.concrete_scale = []
-        #current_octave = self.octave
-        #for idx,tone in enumerate(self.scale):
-        #    if 'C' in tone and idx>0:
-        #        current_octave+=1
-        #
-        #    self.concrete_scale.append("{}{}".format(tone, current_octave))
         self.make_concrete_scale()
         
-        #self.chroma_concrete = []
-        #current_octave = self.octave
-        #for idx,tone in enumerate(self.tone_chroma):
-        #    if tone == 'C' and idx>0:
-        #        current_octave+=1
-        #
-        #    self.chroma_concrete.append("{}{}".format(tone, current_octave))
-
         self.make_concrete_chroma()
         self.concrete_tonic = self.concrete_scale[0]
         
@@ -277,17 +275,41 @@ if __name__ == "__main__":
     getch = _Getch()
 
     # keyindex for major and chromatic major context
-    keyidx = "zsxdcvgbhnjmZSXDCVGBHNJM" # semitones (e-f, b-c) on chromatic dont have keyboard keys for them
+    keyidx_maj = "zsxdcvgbhnjmZSXDCVGBHN" # semitones (e-f, b-c) on chromatic dont have keyboard keys for them
 
-    #  s d   g h j        ii iii    v vi vii 
-    # z x c v b n m  <-  I II III IV V VI VII
+    #  s d   g h j        IIb  IIIb       Vb VIb  VIIb 
+    # z x c v b n m  <-  I   II   III  IV   V   VI   VII
     #
     #  -- SHIFT meaning an octave higher
 
-    while True:
-        question = Question()
+    # keyindex for minor and chromatic minor context
 
-        pprint([question.concrete_scale, question.ival_note_name, question.ival_semitones, question.resolution_concrete, question.chroma_concrete])
+    #  s   f g   j         a   db eb  gb
+    # z x c v b n m  ---- a b c  d e f  g
+    keyidx_min = "zsxcfvgbnjmZSXCFVBNJM" 
+
+    while True:
+        question = Question(kind='minor')
+
+        padd="─"*20; # vim: insert mode, ^vu2500
+        print("""
+{}
+
+Tonic: {}, Conc. Scale: {},
+Note(Int): {} Int Semitones: {}, Interval: {},
+Resolution: {}
+Chrom. Conc. Scale: {}
+
+""".format(
+            padd,
+            question.tonic,
+            question.concrete_scale,
+            question.ival_note_name,
+            question.ival_semitones,
+            question.intervals[question.ival_semitones],
+            question.resolution_concrete,
+            question.chroma_concrete
+        ))
         question.play_question()
 
         user_input = getch()
@@ -295,8 +317,8 @@ if __name__ == "__main__":
         if user_input == 'q':
             exit(0)
 
-        if user_input in keyidx: 
-            if question.check_question(keyidx.index(user_input)):
+        if user_input in keyidx_min: 
+            if question.check_question(keyidx_min.index(user_input)):
                 print("Correct!")
             else:
                 print("Incorrect")
