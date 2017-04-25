@@ -9,6 +9,7 @@ from pprint import pprint
 class QuestionBase:
     # maybe we'd better use circle of fifths here
     notes = ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B']
+    #notes = ['C', 'G', 'D', 'A', 'E', 'B', 'F#', 'Db', 'Ab', 'Eb', 'Bb', 'F' ]
 
     major = {'A': ['A', 'B', 'C#', 'D', 'E', 'F#', 'G#', 'A'],
      'Ab': ['Ab', 'Bb', 'C', 'Db', 'Eb', 'F', 'G', 'Ab'],
@@ -98,7 +99,7 @@ class QuestionBase:
 
     # MAJOR keyboard keys (with chromatics)
     # keyindex for major and chromatic major context
-    #  s d   g h j        IIb  IIIb       Vb VIb  VIIb 
+    #  s d   g h j        IIb  IIIb       Vb VIb  VIIb
     # z x c v b n m  <-  I   II   III  IV   V   VI   VII
     #
     #  -- SHIFT meaning an octave higher
@@ -108,6 +109,7 @@ class QuestionBase:
     #
     #  s   f g   j k   eg.:      a#   c# d#    f# g#
     # z x c v b n m    -------  a  b c  d  e  f  g
+
     def __init__(self):
 
         self.question_duration = 2
@@ -117,7 +119,6 @@ class QuestionBase:
         self.resolution_duration = 2.5
         self.resolution_delay = 0.5
         self.resolution_pos_delay = 1
-
 
     def get_semitones(self, note_name, chromatic, tonic_octave, note_concrete):
 
@@ -181,14 +182,12 @@ class QuestionBase:
         if self.resolution_pos_delay:
             self.wait(self.resolution_pos_delay)
 
-    #def check_question(self, semitones):
     def check_question(self, user_input_char):
-
 
         semitones = self.keyboard_index.index(user_input_char)
 
         user_interval = self.intervals[semitones][2]
-        correct_interval = self.intervals[self.ival_semitones][2] 
+        correct_interval = self.intervals[self.ival_semitones][2]
 
         response = {
                 'is_correct': False,
@@ -206,21 +205,17 @@ class QuestionBase:
 
     def make_interval(self):
 
-        
         if self.mode == 'diatonic':
             self.ival_idx = randrange(self.scale_size)
 
             self.ival_note_concrete = self.concrete_scale[self.ival_idx]
             self.ival_note_name = self.scale[self.ival_idx]
 
-            #self.ival_is_chromatic = False
-
         elif self.mode == 'chromatic':
             self.ival_idx = randrange(len(self.tone_chroma))
 
             self.ival_note_concrete = self.chroma_concrete[self.ival_idx]
             self.ival_note_name = self.tone_chroma[self.ival_idx]
-            
 
         self.ival_semitones = s = self.get_semitones(self.ival_note_name, self.tone_chroma, self.octave, self.ival_note_concrete)
         self.ival_is_chromatic = c = not(self.ival_semitones in self.diatonic_indices[self.kind])
@@ -231,7 +226,7 @@ class QuestionBase:
                 self.ival_diatonic_index = self.diatonic_indices[self.kind].index(s+1)
         else:
                 self.ival_diatonic_index = self.diatonic_indices[self.kind].index(s)
-            
+
 
     def make_resolution(self):
 
@@ -241,10 +236,10 @@ class QuestionBase:
             #if self.ival_semitones <= 6:
             if self.ival_semitones <= 5:
                 self.resolution_concrete = self.concrete_scale[:self.ival_idx+1] #hotfix
-                self.resolution_concrete.reverse() 
+                self.resolution_concrete.reverse()
             else:
                 self.resolution_concrete = self.concrete_scale[self.ival_idx:]
-        
+
         elif self.mode is 'chromatic':
 
             if self.ival_semitones <= 5:
@@ -254,8 +249,8 @@ class QuestionBase:
                     self.resolution_concrete.append(self.chroma_concrete[self.ival_idx])
                 else:
                     self.resolution_concrete = self.concrete_scale[:self.ival_diatonic_index+1] #hotfix
-                
-                self.resolution_concrete.reverse() 
+
+                self.resolution_concrete.reverse()
 
             else:
                 if self.ival_is_chromatic:
@@ -290,7 +285,7 @@ class QuestionBase:
 class Question(QuestionBase):
 
     def __init__(self, kind='major', mode='diatonic', octave=[2,6]):
-    
+
         super(Question, self).__init__() # runs base class init
 
         self.kind = kind
@@ -311,10 +306,10 @@ class Question(QuestionBase):
         self.tone_chroma = self.chromatic[tonic]
 
         self.make_concrete_scale()
-        
+
         self.make_concrete_chroma()
         self.concrete_tonic = self.concrete_scale[0]
-        
+
         self.make_interval()
 
         self.make_resolution()
@@ -380,14 +375,14 @@ Chromatic: {}
 if __name__ == "__main__":
     getch = _Getch()
 
-    new_question_bit = True 
+    new_question_bit = True
 
     while True:
         if new_question_bit is True:
-            
+
             new_question_bit = False
             question = Question(kind='major', mode='chromatic')
-        
+
             # debug
             print_stuff(question)
 
@@ -396,20 +391,20 @@ if __name__ == "__main__":
         user_input = getch()
 
         # any response input interval from valid keys
-        if user_input in question.keyboard_index and user_input != ' ': # space char 
-            
+        if user_input in question.keyboard_index and user_input != ' ': # space char
+
             response = question.check_question(user_input)
 
             if response['is_correct']:
                 print("Correct!.. it is “{}”".format(response['user_interval']))
-            
+
             else:
                 print("Incorrect.. the correct is “{}” ! You aswered “{}”..".format(response['correct_interval'], response['user_interval']))
-           
+
             question.play_resolution()
-            
-            new_question_bit = True 
-        
+
+            new_question_bit = True
+
         # q - quit
         elif user_input == 'q':
             exit(0)
@@ -417,5 +412,3 @@ if __name__ == "__main__":
         # r - repeat interval
         elif user_input == 'r':
             question.play_question()
-
-        
