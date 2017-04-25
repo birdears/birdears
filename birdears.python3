@@ -11,6 +11,9 @@ class QuestionBase:
     notes = ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B']
     #notes = ['C', 'G', 'D', 'A', 'E', 'B', 'F#', 'Db', 'Ab', 'Eb', 'Bb', 'F' ]
 
+    notes2 = ['C', ('C#','Db'), 'D', ('D#','Eb'), 'E', 'F', ('F#','Gb'), 'G', ('G#','Ab'), 'A', ('A#','Bb'), 'B']
+
+    """
     major = {'A': ['A', 'B', 'C#', 'D', 'E', 'F#', 'G#', 'A'],
      'Ab': ['Ab', 'Bb', 'C', 'Db', 'Eb', 'F', 'G', 'Ab'],
      'B': ['B', 'C#', 'D#', 'E', 'F#', 'G#', 'A#', 'B'],
@@ -49,6 +52,7 @@ class QuestionBase:
      'F': ['F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E', 'F'],
      'F#': ['F#', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#'],
      'G': ['G', 'Ab', 'A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G']}
+"""
 
     intervals = {0: [0, 'P1', 'Perfect Unison'],
      1: [1, 'm2', 'Minor Second'],
@@ -65,26 +69,9 @@ class QuestionBase:
      12: [12, 'P8', 'Perfect Octave']}
 
     diatonic_indices = {
-            'major' : [0,2,4,5,7,9,11,12],
-            'minor' : [0,2,3,5,7,8,10,12],
+            'major' : [0,2,4,5,7,9,11,-12],
+            'minor' : [0,2,3,5,7,8,10,-12],
     }
-
-    enharmonics = {
-        'C#' : 'Db',
-        'D#' : 'Eb',
-        'E#' : 'F',
-        'F#' : 'Gb',
-        'G#' : 'Ab',
-        'A#' : 'Bb',
-        'B#' : 'C',
-        'Cb' : 'B',
-        'Db' : 'C#',
-        'Eb' : 'D#',
-        'Fb' : 'E',
-        'Gb' : 'F#',
-        'Ab' : 'G#',
-        'Bb' : 'A#',
-        }
 
     keyboard_indices = {
             'diatonic': {
@@ -262,25 +249,56 @@ class QuestionBase:
             self.resolution_concrete.append(repeat_unison)
 
 
-    def make_concrete_scale(self):
+    def get_chromatic(self, tonic='C', octave=None, descending=None):
+	
+	#notes = ['C', ('C#','Db'), 'D', ('D#','Eb'), 'E', 'F', ('F#','Gb'), 'G', ('G#','Ab'), 'A', ('A#','Bb'), 'B']
 
-        self.concrete_scale = []
-        current_octave = self.octave
-        for idx,tone in enumerate(self.scale):
-            if 'C' in tone and idx>0:
-                current_octave+=1
+	#if tonic == 'F' or 'b' in tonic:
+	#    use_flat = True
+	#else:
+	#    use_flat = False
+        notes = self.notes2
 
-            self.concrete_scale.append("{}{}".format(tone, current_octave))
+        use_flat = True if (tonic == 'F' or 'b' in tonic) else False
+            
+        #tonic_index = (pitch_class-1) if pitch_class else [note[0] if not use_flat else note[-1] for note in notes].index(tonic)
+        tonic_index = [note[0] if not use_flat else note[-1] for note in notes].index(tonic)
+        last_note_index = tonic_index + 12
 
-    def make_concrete_chroma(self):
+        chromatic = [note[0] if not use_flat else note[-1] for note in (notes*2)[tonic_index:last_note_index]]
 
-        self.chroma_concrete = []
-        current_octave = self.octave
-        for idx,tone in enumerate(self.tone_chroma):
-            if tone == 'C' and idx>0:
-                current_octave+=1
+        if octave:
+            cur_octave = octave
+            for idx,note in enumerate(chromatic):
+                if idx > 0 and chromatic[idx] == 'C':
+                    cur_octave += 1
 
-            self.chroma_concrete.append("{}{}".format(tone, current_octave))
+                chromatic[idx] = "{}{}".format(note, cur_octave)
+                
+        if descending:
+            chromatic.reverse()
+
+        return chromatic
+
+    def get_diatonic(self, tonic='C', mode='major', octave=None, descending=None):
+
+        diatonic_index = self.diatonic_indices[mode]
+
+        chroma = self.get_chromatic(tonic)
+        diatonic = [chroma[step] for step in diatonic_index]
+
+        if octave:
+            cur_octave = octave
+            for idx,note in enumerate(diatonic):
+                if idx > 0 and diatonic[idx] == 'C':
+                    cur_octave += 1
+
+                diatonic[idx] = "{}{}".format(note, cur_octave)
+                
+        if descending:
+            diatonic.reverse()
+
+        return diatonic
 
 class Question(QuestionBase):
 
@@ -298,16 +316,32 @@ class Question(QuestionBase):
 
         self.keyboard_index = self.keyboard_indices[self.mode][self.kind]
 
-        self.tonic = tonic = self.notes[randrange(len(self.notes))]
+        sort_tonic = self.notes2[randrange(len(self.notes2))]
 
-        self.scale = scale = getattr(self, kind)[tonic]
+        if type(sort_tonic) == tuple:
+            self.tonic = tonic = sort_tonic[randrange(2)]
+        else:
+            self.tonic = tonic = sort_tonic
+
+        if mode == 'diatonic':
+            self.scale = scale = self.get_diatonic(tonic=tonic, mode=kind, octave=None, descending=None)
+        elif mode == 'chromatic':
+            self.scale = scale = self.get_chromatic(tonic=tonic, octave=None, descending=None)
+
+        self.tone_chroma = self.get_chromatic(tonic=tonic, octave=None, descending=None)
+
+
+        #self.scale = scale = getattr(self, kind)[tonic]
         self.scale_size = scale_size = len(scale)
 
-        self.tone_chroma = self.chromatic[tonic]
+        #self.tone_chroma = self.chromatic[tonic]
 
-        self.make_concrete_scale()
+        #self.make_concrete_scale()
 
-        self.make_concrete_chroma()
+        #self.make_concrete_chroma()
+
+        self.concrete_scale = self.get_diatonic(tonic=tonic, mode=kind, octave=self.octave, descending=None)
+        self.chroma_concrete = self.get_chromatic(tonic=tonic, octave=self.octave, descending=None) 
         self.concrete_tonic = self.concrete_scale[0]
 
         self.make_interval()
