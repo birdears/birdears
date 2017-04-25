@@ -4,7 +4,7 @@ import subprocess
 import time
 from random import randrange
 
-from pprint import pprint
+#from pprint import pprint
 
 class QuestionBase:
     # maybe we'd better use circle of fifths here
@@ -108,7 +108,7 @@ class QuestionBase:
     def play_question(self):
 
         tonic = self.concrete_tonic
-        interval = self.ival_note_concrete
+        interval = self.interval['note_octave']
 
         play_note = self.play_note
 
@@ -133,7 +133,7 @@ class QuestionBase:
         semitones = self.keyboard_index.index(user_input_char)
 
         user_interval = self.intervals[semitones][2]
-        correct_interval = self.intervals[self.ival_semitones][2]
+        correct_interval = self.intervals[self.interval['semitones']][2]
 
         response = {
                 'is_correct': False,
@@ -141,74 +141,104 @@ class QuestionBase:
                 'correct_interval' : correct_interval,
                 }
 
-        if semitones == self.ival_semitones:
+        if semitones == self.interval['semitones']:
             response.update({ 'is_correct' : True })
             return response
 
         else:
             response.update({ 'is_correct' : False })
             return response
+    
+    def make_interval(self, mode,  chromatic_concrete):
+        """Chooses an interval for the question."""
+        interval = dict()
+        
+        diatonic_index = self.diatonic_indices[self.kind]
+            
+        if mode == 'diatonic':
+            
+            index = randrange(self.scale_size)
 
-    def make_interval(self):
+            note_octave = self.concrete_scale[index]
+            note_name = self.scale[index]
+            
+            semitones = 0
+            for x in diatonic_index[0:self.ival_idx]:
+                semitones += x
+            
+        elif mode == 'chromatic':
+            index = randrange(len(self.tone_chroma))
 
-        if self.mode == 'diatonic':
-            self.ival_idx = randrange(self.scale_size)
+            note_octave = self.chroma_concrete[index]
+            note_name = self.tone_chroma[index]
+            
+            semitones = chromatic_concrete.index(note_octave)
 
-            self.ival_note_concrete = self.concrete_scale[self.ival_idx]
-            self.ival_note_name = self.scale[self.ival_idx]
-
-        elif self.mode == 'chromatic':
-            self.ival_idx = randrange(len(self.tone_chroma))
-
-            self.ival_note_concrete = self.chroma_concrete[self.ival_idx]
-            self.ival_note_name = self.tone_chroma[self.ival_idx]
-
-        self.ival_semitones = s = self.get_semitones(self.ival_note_name, self.tone_chroma, self.octave, self.ival_note_concrete)
-        self.ival_is_chromatic = c = not(self.ival_semitones in self.diatonic_indices[self.kind])
-        if c is True:
+        s = semitones
+            
+        is_chromatic = True if not note_octave in [chromatic_concrete[intv] for intv in diatonic_index] else False
+        
+        if is_chromatic:
             if s <= 5:
-                self.ival_diatonic_index = self.diatonic_indices[self.kind].index(s-1)
+                interval_diatonic_index = diatonic_index.index(s-1)
             else:
-                self.ival_diatonic_index = self.diatonic_indices[self.kind].index(s+1)
+                interval_diatonic_index = diatonic_index.index(s+1)
         else:
-                self.ival_diatonic_index = self.diatonic_indices[self.kind].index(s)
+                interval_diatonic_index = diatonic_index.index(s)
+        
+        interval.update({
+            'index': index,
+            'note_octave': note_octave,
+            'note_name': note_name,
+            'semitones': semitones, 
+            'is_chromatic': is_chromatic,
+            'diatonic_index' : interval_diatonic_index,  
+            })
+            
+        self.interval = interval
+        
+        return interval
 
-    def make_resolution(self):
+    def make_resolution(self, mode,  interval=None):
 
-        self.resolution_concrete = []
+        resolution_concrete = []
+        interval = self.interval
+        concrete_scale = self.concrete_scale
 
-        if self.mode is 'diatonic':
+        if mode is 'diatonic':
             #if self.ival_semitones <= 6:
-            if self.ival_semitones <= 5:
-                self.resolution_concrete = self.concrete_scale[:self.ival_idx+1] #hotfix
-                self.resolution_concrete.reverse()
+            if interval['semitones'] <= 5:
+                resolution_concrete = concrete_scale[:interval['index']+1] #hotfix
+                resolution_concrete.reverse()
             else:
-                self.resolution_concrete = self.concrete_scale[self.ival_idx:]
+                resolution_concrete = concrete_scale[interval['index']:]
 
-        elif self.mode is 'chromatic':
+        elif mode is 'chromatic':
 
-            if self.ival_semitones <= 5:
-                if self.ival_is_chromatic:
-                    ##self.resolution_concrete = self.concrete_scale[:self.ival_idx] #hotfix #2
-                    self.resolution_concrete = self.concrete_scale[:self.ival_diatonic_index+1] #hotfix #2
-                    self.resolution_concrete.append(self.chroma_concrete[self.ival_idx])
+            if interval['semitones'] <= 5:
+                if interval['is_chromatic']:
+                    resolution_concrete = concrete_scale[:interval['diatonic_index']+1] #hotfix #2
+                    resolution_concrete.append(self.chroma_concrete[interval['index']])
                 else:
-                    self.resolution_concrete = self.concrete_scale[:self.ival_diatonic_index+1] #hotfix
+                    resolution_concrete = concrete_scale[:interval['diatonic_index']+1] #hotfix
 
-                self.resolution_concrete.reverse()
+                resolution_concrete.reverse()
 
             else:
-                if self.ival_is_chromatic:
-                    self.resolution_concrete.append(self.chroma_concrete[self.ival_idx])
-                self.resolution_concrete.extend(self.concrete_scale[self.ival_diatonic_index:])
+                if interval['is_chromatic']:
+                    resolution_concrete.append(self.chroma_concrete[interval['index']])
+                resolution_concrete.extend(self.concrete_scale[interval['diatonic_index']:])
 
-        if len(self.resolution_concrete) == 1:
-            repeat_unison = self.resolution_concrete[0]
-            self.resolution_concrete.append(repeat_unison)
+        if len(resolution_concrete) == 1:
+            repeat_unison = resolution_concrete[0]
+            resolution_concrete.append(repeat_unison)
+
+        self.resolution_concrete = resolution_concrete
+        return self.resolution_concrete
 
 
     def get_chromatic(self, tonic='C', octave=None, descending=None):
-	
+    
         notes = self.notes2
 
         use_flat = True if (tonic == 'F' or 'b' in tonic) else False
@@ -232,7 +262,7 @@ class QuestionBase:
         return chromatic
 
     def get_diatonic(self, tonic='C', mode='major', octave=None, descending=None):
-
+        
         diatonic_index = self.diatonic_indices[mode]
 
         chroma = self.get_chromatic(tonic)
@@ -275,21 +305,21 @@ class Question(QuestionBase):
             self.tonic = tonic = sort_tonic
 
         if mode == 'diatonic':
-            self.scale = scale = self.get_diatonic(tonic=tonic, mode=kind, octave=None, descending=None)
+            self.scale = self.get_diatonic(tonic=tonic, mode=kind, octave=None, descending=None)
         elif mode == 'chromatic':
-            self.scale = scale = self.get_chromatic(tonic=tonic, octave=None, descending=None)
+            self.scale = self.get_chromatic(tonic=tonic, octave=None, descending=None)
 
         self.tone_chroma = self.get_chromatic(tonic=tonic, octave=None, descending=None)
 
-        self.scale_size = scale_size = len(scale)
+        self.scale_size = len(self.scale)
 
         self.concrete_scale = self.get_diatonic(tonic=tonic, mode=kind, octave=self.octave, descending=None)
         self.chroma_concrete = self.get_chromatic(tonic=tonic, octave=self.octave, descending=None) 
         self.concrete_tonic = self.concrete_scale[0]
 
-        self.make_interval()
+        self.make_interval(mode=mode, chromatic_concrete=self.chroma_concrete)
 
-        self.make_resolution()
+        self.make_resolution(mode=mode)
 
 # http://code.activestate.com/recipes/134892/
 class _Getch:
@@ -339,10 +369,10 @@ Chromatic: {}
 """.format(
             padd,
             question.tonic,
-            question.ival_note_name,
-            "─".join(question.intervals[question.ival_semitones][1:]),
-            question.ival_semitones,
-            question.ival_is_chromatic,
+            question.interval['note_name'],
+            "─".join(question.intervals[question.interval['semitones']][1:]),
+            question.interval['semitones'],
+            question.interval['is_chromatic'],
             "─".join(question.scale),
             "{}-{}".format(question.octave,question.octave+1),
             "─".join(question.resolution_concrete),
