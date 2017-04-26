@@ -1,5 +1,9 @@
 # BirdEars 
 
+[![Coverage Status](https://coveralls.io/repos/github/iacchus/birdears/badge.svg)](https://coveralls.io/github/iacchus/birdears)
+
+[![Build Status](https://travis-ci.org/iacchus/birdears.svg?branch=master)](https://travis-ci.org/iacchus/birdears)
+
 ## Functional Ear Training for Musicians
 
 In current development though functional

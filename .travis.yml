@@ -9,5 +9,5 @@ install:
 script: coverage run -m pytest -v tests/
 env:
   - PYTHONPATH=''
-after-success:
+after_success:
   coveralls
