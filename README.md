@@ -35,20 +35,25 @@ chmod +x birdears.python3
 
 ## Keybindings for intervals
 
-```
-MAJOR keyboard keys (with chromatics)
-keyindex for major and chromatic major context
+**MAJOR keyboard keys** (with *chromatics*)
 
+Key Index for major and chromatic major context
+
+
+```
   keyboard              would represent
 
  s d   g h j        IIb  IIIb       Vb VIb  VIIb
 z x c v b n m  <-  I   II   III  IV   V   VI   VII
+```
 
- -- SHIFT meaning an octave higher
+(**SHIFT** key meaning an octave higher)
 
-MINOR keyboard keys (with chromatics)
-keyindex for minor and chromatic minor context
+**MINOR keyboard keys** (with *chromatics*)
 
+Key index for minor and chromatic minor context
+
+```
    keyboard                 would represent
                            in chromatics in
                             'a' minor context
