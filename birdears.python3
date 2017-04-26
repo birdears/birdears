@@ -8,12 +8,13 @@ from random import randrange
 
 class QuestionBase:
     # maybe we'd better use circle of fifths here
-    notes = ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B']
+    #notes = ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B']
     #notes = ['C', 'G', 'D', 'A', 'E', 'B', 'F#', 'Db', 'Ab', 'Eb', 'Bb', 'F' ]
 
     notes2 = ['C', ('C#','Db'), 'D', ('D#','Eb'), 'E', 'F', ('F#','Gb'), 'G', ('G#','Ab'), 'A', ('A#','Bb'), 'B']
 
-    intervals = {0: [0, 'P1', 'Perfect Unison'],
+    intervals = {
+     0: [0, 'P1', 'Perfect Unison'],
      1: [1, 'm2', 'Minor Second'],
      2: [2, 'M2', 'Major Second'],
      3: [3, 'm3', 'Minor Third'],
@@ -56,6 +57,15 @@ class QuestionBase:
     #  s   f g   j k   eg.:      a#   c# d#    f# g#
     # z x c v b n m    -------  a  b c  d  e  f  g
 
+    
+    # how many steps to resolve on tonic,
+    # after which resolves on tonic octave
+    # (begins on 0 as it is an index)
+    # 5 is tritone; then
+    # [0 1 2 3 4 5] resolves below (tonic)
+    # and [6 7 8 9 10 11] resolves above (octave)
+    max_semitones_index_resolve_below_inclusive = 5
+
     def __init__(self):
 
         self.question_duration = 2
@@ -65,31 +75,7 @@ class QuestionBase:
         self.resolution_duration = 2.5
         self.resolution_delay = 0.5
         self.resolution_pos_delay = 1
-
-    def get_semitones(self, note_name, chromatic, tonic_octave, note_concrete):
-
-        semitones = False
-
-        chroma = []
-        current_octave = tonic_octave
-        for idx,tone in enumerate(chromatic):
-            if tone == 'C' and idx>0:
-                current_octave+=1
-            chroma.append("{}{}".format(tone, current_octave))
-
-        if note_concrete in chroma:
-            semitones = chroma.index(note_concrete)
-
-        elif len(note_concrete) == 3:
-            note_name = note_concrete[:2]
-            note_octave = note_concrete[2:3]
-
-            if note_name in self.enharmonics:
-                note = "{}{}".format(self.enharmonics[note_name], note_octave)
-                semitones = chroma.index(note)
-
-        return semitones
-
+    
     def wait(self, seconds):
         time.sleep(seconds)
 
@@ -149,8 +135,8 @@ class QuestionBase:
             response.update({ 'is_correct' : False })
             return response
     
+    """
     def make_interval(self, mode,  chromatic_concrete):
-        """Chooses an interval for the question."""
         interval = dict()
         
         diatonic_index = self.diatonic_indices[self.kind]
@@ -163,7 +149,7 @@ class QuestionBase:
             note_name = self.scale[index]
             
             semitones = 0
-            for x in diatonic_index[0:self.ival_idx]:
+            for x in diatonic_index[0:index]:
                 semitones += x
             
         elif mode == 'chromatic':
@@ -173,6 +159,85 @@ class QuestionBase:
             note_name = self.tone_chroma[index]
             
             semitones = chromatic_concrete.index(note_octave)
+
+        s = semitones
+            
+        is_chromatic = True if not note_octave in [chromatic_concrete[intv] for intv in diatonic_index] else False
+        
+        if is_chromatic:
+            if s <= 5:
+                interval_diatonic_index = diatonic_index.index(s-1)
+            else:
+                interval_diatonic_index = diatonic_index.index(s+1)
+        else:
+                interval_diatonic_index = diatonic_index.index(s)
+        
+        interval.update({
+            'index': index,
+            'note_octave': note_octave,
+            'note_name': note_name,
+            'semitones': semitones, 
+            'is_chromatic': is_chromatic,
+            'diatonic_index' : interval_diatonic_index,  
+            })
+            
+        self.interval = interval
+        
+        return interval
+        """
+        
+    def make_diatonic_interval(self,  chromatic_concrete):
+        """Chooses an diatonic interval for the question."""
+        interval = dict()
+        
+        diatonic_index = self.diatonic_indices[self.kind]
+                        
+        index = randrange(self.scale_size)
+
+        note_octave = self.concrete_scale[index]
+        note_name = self.scale[index]
+        
+        semitones = 0
+        for x in diatonic_index[0:index]:
+            semitones += x
+            
+        s = semitones
+            
+        is_chromatic = True if not note_octave in [chromatic_concrete[intv] for intv in diatonic_index] else False
+        
+        if is_chromatic:
+            if s <= 5:
+                interval_diatonic_index = diatonic_index.index(s-1)
+            else:
+                interval_diatonic_index = diatonic_index.index(s+1)
+        else:
+                interval_diatonic_index = diatonic_index.index(s)
+        
+        interval.update({
+            'index': index,
+            'note_octave': note_octave,
+            'note_name': note_name,
+            'semitones': semitones, 
+            'is_chromatic': is_chromatic,
+            'diatonic_index' : interval_diatonic_index,  
+            })
+            
+        self.interval = interval
+        
+        return interval
+        
+    def make_chromatic_interval(self,  chromatic_concrete):
+        """Chooses an interval for the question."""
+        interval = dict()
+        
+        diatonic_index = self.diatonic_indices[self.kind]
+            
+        index = randrange(len(self.tone_chroma))
+
+        note_octave = self.chroma_concrete[index]
+        note_name = self.tone_chroma[index]
+        
+        semitones = chromatic_concrete.index(note_octave)
 
         s = semitones
             
@@ -317,7 +382,10 @@ class Question(QuestionBase):
         self.chroma_concrete = self.get_chromatic(tonic=tonic, octave=self.octave, descending=None) 
         self.concrete_tonic = self.concrete_scale[0]
 
-        self.make_interval(mode=mode, chromatic_concrete=self.chroma_concrete)
+        if mode == 'chromatic':
+            self.make_chromatic_interval(chromatic_concrete=self.chroma_concrete)
+        elif mode == 'diatonic':
+            self.make_ditonic_interval(chromatic_concrete=self.chroma_concrete)
 
         self.make_resolution(mode=mode)
 
