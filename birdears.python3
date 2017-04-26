@@ -10,7 +10,7 @@ class QuestionBase:
     # maybe we'd better use circle of fifths here
     notes = ['C', ('C#','Db'), 'D', ('D#','Eb'), 'E', 'F', ('F#','Gb'), 'G', ('G#','Ab'), 'A', ('A#','Bb'), 'B']
 
-    intervals = {
+    """intervals = {
      0: [0, 'P1', 'Perfect Unison'],
      1: [1, 'm2', 'Minor Second'],
      2: [2, 'M2', 'Major Second'],
@@ -24,7 +24,23 @@ class QuestionBase:
      10: [10, 'm7', 'Minor Seventh'],
      11: [11, 'M7', 'Major Seventh'],
      12: [12, 'P8', 'Perfect Octave']}
+     """
 
+    intervals = [
+         [0, 'P1', 'Perfect Unison'],
+         [1, 'm2', 'Minor Second'],
+         [2, 'M2', 'Major Second'],
+         [3, 'm3', 'Minor Third'],
+         [4, 'M3', 'Major Third'],
+         [5, 'P4', 'Perfect Fourth'],
+         [6, 'A4', 'Augmented Fourth'],
+         [7, 'P5', 'Perfect Fifth'],
+         [8, 'm6', 'Minor Sixth'],
+         [9, 'M6', 'Major Sixth'],
+         [10, 'm7', 'Minor Seventh'],
+         [11, 'M7', 'Major Seventh'],
+         [12, 'P8', 'Perfect Octave']
+     ]
     diatonic_indices = {
             'major' : [0,2,4,5,7,9,11,-12],
             'minor' : [0,2,3,5,7,8,10,-12],
@@ -163,6 +179,7 @@ class QuestionBase:
 
     def make_chromatic_interval(self,  chromatic_concrete):
         """Chooses a chromatic interval for the question."""
+
         interval = dict()
 
         diatonic_index = self.diatonic_indices[self.kind]
@@ -178,7 +195,7 @@ class QuestionBase:
 
         is_chromatic = True if not note_octave in [chromatic_concrete[intv] for intv in diatonic_index] else False
 
-        if is_chromatic:
+        if is_chromatic: # TODO: check if augmented forth is really correct in question resolution
             if s <= 5:
                 interval_diatonic_index = diatonic_index.index(s-1)
             else:
