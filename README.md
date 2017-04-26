@@ -62,7 +62,7 @@ Key index for minor and chromatic minor context
 z x c v b n m    -------  a  b c  d  e  f  g
 ```
 
-### Screenshot or didn't happen
+## Screenshot or didn't happen
 
 *(development version)* 
 
@@ -83,3 +83,20 @@ Submit your distro's too..
 ```
 sudo pacman -S python sox
 ```
+
+## Contributing
+
+### Documentation
+
+We are beginning to use [numpydoc](https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt)
+to document the library.
+
+### Unit Tests
+
+We use pytest to run tests; we use coverage to report code coverage;
+
+coverage run --source=birdears --module pytest --verbose tests/
+
+We use coveralls and Travis CI.
+
+Out tests are in repo's `tests/` directory.

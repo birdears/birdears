@@ -7,6 +7,20 @@ from random import randrange
 #from pprint import pprint
 
 class QuestionBase:
+    """
+    Base Class to be subclassed for Question classes.
+    
+    This class implements attributes and routines to be used in Question
+    subclasses. 
+    
+    Attributes
+    ----------
+    
+    notes : list
+            list of notes and enharmonics to be used by the class 
+    
+    """
+    
     # maybe we'd better use circle of fifths here
     notes = ['C', ('C#','Db'), 'D', ('D#','Eb'), 'E', 'F', ('F#','Gb'), 'G', ('G#','Ab'), 'A', ('A#','Bb'), 'B']
 
