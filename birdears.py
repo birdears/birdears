@@ -12,13 +12,13 @@ class QuestionBase:
     Base Class to be subclassed for Question classes.
 
     This class implements attributes and routines to be used in Question
-    subclasses. 
+    subclasses.
 
     Attributes
     ----------
 
     notes : list
-            list of notes and enharmonics to be used by the class 
+            list of notes and enharmonics to be used by the class
 
     """
 
@@ -77,7 +77,7 @@ class QuestionBase:
     # 5 is tritone; then
     # [0 1 2 3 4 5] resolves below (tonic)
     # and [6 7 8 9 10 11] resolves above (octave)
-    max_semitones_index_resolve_below_inclusive = 5
+    max_semitones_resolve_below = 5
 
     def __init__(self):
 
@@ -89,10 +89,10 @@ class QuestionBase:
         self.resolution_delay = 0.5
         self.resolution_pos_delay = 1
 
-    def wait(self, seconds):
+    def _wait(self, seconds):
         time.sleep(seconds)
 
-    def play_note(self, note='C', duration=4, delay=0):
+    def _play_note(self, note='C', duration=4, delay=0):
         # requires sox to be installed
         command = (
             "play -qn synth {duration} pluck {note}"
@@ -102,32 +102,32 @@ class QuestionBase:
         subprocess.Popen(command.split())
 
         if delay:
-            self.wait(delay)
+            self._wait(delay)
 
     def play_question(self):
 
         tonic = self.concrete_tonic
         interval = self.interval['note_octave']
 
-        play_note = self.play_note
+        play_note = self._play_note
 
         play_note(note=tonic, duration=self.question_duration,
                   delay=self.question_delay)
         play_note(note=interval, duration=self.question_duration, delay=0)
 
         if self.question_pos_delay:
-            self.wait(self.resolution_pos_delay)
+            self._wait(self.resolution_pos_delay)
 
     def play_resolution(self):
 
-        play_note = self.play_note
+        play_note = self._play_note
 
         for tone in self.resolution_concrete:
             play_note(note=tone, duration=self.resolution_duration,
                       delay=self.resolution_delay)
 
         if self.resolution_pos_delay:
-            self.wait(self.resolution_pos_delay)
+            self._wait(self.resolution_pos_delay)
 
     def check_question(self, user_input_char):
 
@@ -202,12 +202,12 @@ class QuestionBase:
             chromatic_concrete[intv] for intv in diatonic_index] else False
 
         if is_chromatic:  # TODO: check if augmented forth is really correct in question resolution
-            if s <= 5:
-                interval_diatonic_index = diatonic_index.index(s - 1)
+            if semitones <= self.max_semitones_resolve_below:
+                interval_diatonic_index = diatonic_index.index(semitones - 1)
             else:
-                interval_diatonic_index = diatonic_index.index(s + 1)
+                interval_diatonic_index = diatonic_index.index(semitones + 1)
         else:
-            interval_diatonic_index = diatonic_index.index(s)
+            interval_diatonic_index = diatonic_index.index(semitones)
 
         interval.update({
             'index': index,
@@ -230,7 +230,7 @@ class QuestionBase:
 
         if mode is 'diatonic':
             # if self.ival_semitones <= 6:
-            if interval['semitones'] <= 5:
+            if interval['semitones'] <= self.max_semitones_resolve_below:
                 # hotfix
                 resolution_concrete = concrete_scale[:interval['index'] + 1]
                 resolution_concrete.reverse()
@@ -239,7 +239,7 @@ class QuestionBase:
 
         elif mode is 'chromatic':
 
-            if interval['semitones'] <= 5:
+            if interval['semitones'] <= self.max_semitones_resolve_below5:
                 if interval['is_chromatic']:
                     # hotfix #2
                     resolution_concrete = concrete_scale[:
@@ -272,15 +272,13 @@ class QuestionBase:
 
         notes = self.notes
 
-        #use_flat = True if (tonic == 'F' or 'b' in tonic) else False
+        # lets use last item of tuples, if FMaj or flat keys
         use_flat = -1 if (tonic == 'F' or 'b' in tonic) else 0
 
-        #tonic_index = [note[0] if not use_flat else note[-1] for note in notes].index(tonic)
         tonic_index = [note[use_flat] for note in notes].index(tonic)
-        # last_note_index = tonic_index + 12 # FIXME!
-        last_note_index = tonic_index + 12
+        #last_note_index = tonic_index + 12 # FIXME
+        last_note_index = tonic_index + 13 # FIXME
 
-        #chromatic = [note[0] if not use_flat else note[-1] for note in (notes*2)[tonic_index:last_note_index]]
         chromatic = [(notes * 2)[y][use_flat]
                      for y in range(tonic_index, last_note_index)]
 
@@ -317,7 +315,6 @@ class QuestionBase:
             diatonic.reverse()
 
         return diatonic
-
 
 class Question(QuestionBase):
 
@@ -370,8 +367,6 @@ class Question(QuestionBase):
         self.make_resolution(mode=mode)
 
 # http://code.activestate.com/recipes/134892/
-
-
 class _Getch:
     """Gets a single character from standard input.  Does not echo to the
 screen."""
