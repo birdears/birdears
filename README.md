@@ -93,10 +93,18 @@ to document the library.
 
 ### Unit Tests
 
-We use pytest to run tests; we use coverage to report code coverage;
+We use [pytest](https://docs.pytest.org/en/latest/) to run tests; we use [coverage.py](https://coverage.readthedocs.io) to report code coverage;
 
+```
 coverage run --source=birdears --module pytest --verbose tests/
+```
 
-We use coveralls and Travis CI.
+We use [coveralls](https://coveralls.io/github/iacchus/birdears) and [Travis CI](https://travis-ci.org/iacchus/birdears).
 
 Out tests are in repo's `tests/` directory.
+
+### Misc documentation
+
+[PEP 8](https://pep8.org) — the Style Guide for Python Code
+
+[Python.org PEP8](https://www.python.org/dev/peps/pep-0008/)
