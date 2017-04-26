@@ -91,6 +91,8 @@ sudo pacman -S python sox
 We are beginning to use [numpydoc](https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt)
 to document the library.
 
+Also see `pdoc --html`
+
 ### Unit Tests
 
 We use [pytest](https://docs.pytest.org/en/latest/) to run tests; we use [coverage.py](https://coverage.readthedocs.io) to report code coverage;
@@ -108,3 +110,4 @@ Out tests are in repo's `tests/` directory.
 [PEP 8](https://pep8.org) — the Style Guide for Python Code
 
 [Python.org PEP8](https://www.python.org/dev/peps/pep-0008/)
+
