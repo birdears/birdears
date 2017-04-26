@@ -261,12 +261,16 @@ class QuestionBase:
 
         notes = self.notes
 
-        use_flat = True if (tonic == 'F' or 'b' in tonic) else False
+        #use_flat = True if (tonic == 'F' or 'b' in tonic) else False
+        use_flat = -1 if (tonic == 'F' or 'b' in tonic) else 0
 
-        tonic_index = [note[0] if not use_flat else note[-1] for note in notes].index(tonic)
+        #tonic_index = [note[0] if not use_flat else note[-1] for note in notes].index(tonic)
+        tonic_index = [note[use_flat] for note in notes].index(tonic)
+        #last_note_index = tonic_index + 12 # FIXME!
         last_note_index = tonic_index + 12
 
-        chromatic = [note[0] if not use_flat else note[-1] for note in (notes*2)[tonic_index:last_note_index]]
+        #chromatic = [note[0] if not use_flat else note[-1] for note in (notes*2)[tonic_index:last_note_index]]
+        chromatic = [(notes*2)[y][use_flat] for y in range(tonic_index, last_note_index)]
 
         if octave:
             cur_octave = octave
