@@ -6,7 +6,7 @@ python:
 install:
   - pip install coveralls
 # command to run tests
-script: coverage run -m pytest -v tests/
+script: coverage run --source=birdears.py --module pytest -v tests/
 env:
   - PYTHONPATH=''
 after_success:
