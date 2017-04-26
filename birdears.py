@@ -6,54 +6,56 @@ from random import randrange
 
 #from pprint import pprint
 
+
 class QuestionBase:
     """
     Base Class to be subclassed for Question classes.
-    
+
     This class implements attributes and routines to be used in Question
     subclasses. 
-    
+
     Attributes
     ----------
-    
+
     notes : list
             list of notes and enharmonics to be used by the class 
-    
+
     """
-    
+
     # maybe we'd better use circle of fifths here
-    notes = ['C', ('C#','Db'), 'D', ('D#','Eb'), 'E', 'F', ('F#','Gb'), 'G', ('G#','Ab'), 'A', ('A#','Bb'), 'B']
+    notes = ['C', ('C#', 'Db'), 'D', ('D#', 'Eb'), 'E', 'F',
+             ('F#', 'Gb'), 'G', ('G#', 'Ab'), 'A', ('A#', 'Bb'), 'B']
 
     intervals = [
-         [0, 'P1', 'Perfect Unison'],
-         [1, 'm2', 'Minor Second'],
-         [2, 'M2', 'Major Second'],
-         [3, 'm3', 'Minor Third'],
-         [4, 'M3', 'Major Third'],
-         [5, 'P4', 'Perfect Fourth'],
-         [6, 'A4', 'Augmented Fourth'],
-         [7, 'P5', 'Perfect Fifth'],
-         [8, 'm6', 'Minor Sixth'],
-         [9, 'M6', 'Major Sixth'],
-         [10, 'm7', 'Minor Seventh'],
-         [11, 'M7', 'Major Seventh'],
-         [12, 'P8', 'Perfect Octave']
-     ]
+        [0, 'P1', 'Perfect Unison'],
+        [1, 'm2', 'Minor Second'],
+        [2, 'M2', 'Major Second'],
+        [3, 'm3', 'Minor Third'],
+        [4, 'M3', 'Major Third'],
+        [5, 'P4', 'Perfect Fourth'],
+        [6, 'A4', 'Augmented Fourth'],
+        [7, 'P5', 'Perfect Fifth'],
+        [8, 'm6', 'Minor Sixth'],
+        [9, 'M6', 'Major Sixth'],
+        [10, 'm7', 'Minor Seventh'],
+        [11, 'M7', 'Major Seventh'],
+        [12, 'P8', 'Perfect Octave']
+    ]
 
     diatonic_indices = {
-            'major' : [0,2,4,5,7,9,11,-12],
-            'minor' : [0,2,3,5,7,8,10,-12],
+        'major': [0, 2, 4, 5, 7, 9, 11, -12],
+        'minor': [0, 2, 3, 5, 7, 8, 10, -12],
     }
 
     keyboard_indices = {
-            'diatonic': {
-                'minor' : 'z xc v bn m Z XC V BN M',
-                'major' : 'z x cv b n mZ X CV B NM'
-            },
-            'chromatic': {
-                'minor' : "zsxcfvgbnjmkZSXCFVGBNJMK",
-                'major' : "zsxdcvgbhnjmZSXDCVGBHNJM",
-            }
+        'diatonic': {
+            'minor': 'z xc v bn m Z XC V BN M',
+            'major': 'z x cv b n mZ X CV B NM'
+        },
+        'chromatic': {
+            'minor': "zsxcfvgbnjmkZSXCFVGBNJMK",
+            'major': "zsxdcvgbhnjmZSXDCVGBHNJM",
+        }
     }
 
     # MAJOR keyboard keys (with chromatics)
@@ -68,7 +70,6 @@ class QuestionBase:
     #
     #  s   f g   j k   eg.:      a#   c# d#    f# g#
     # z x c v b n m    -------  a  b c  d  e  f  g
-
 
     # how many steps to resolve on tonic,
     # after which resolves on tonic octave
@@ -110,7 +111,8 @@ class QuestionBase:
 
         play_note = self.play_note
 
-        play_note(note=tonic, duration=self.question_duration, delay=self.question_delay)
+        play_note(note=tonic, duration=self.question_duration,
+                  delay=self.question_delay)
         play_note(note=interval, duration=self.question_duration, delay=0)
 
         if self.question_pos_delay:
@@ -121,7 +123,8 @@ class QuestionBase:
         play_note = self.play_note
 
         for tone in self.resolution_concrete:
-            play_note(note=tone, duration=self.resolution_duration, delay=self.resolution_delay)
+            play_note(note=tone, duration=self.resolution_duration,
+                      delay=self.resolution_delay)
 
         if self.resolution_pos_delay:
             self.wait(self.resolution_pos_delay)
@@ -134,17 +137,17 @@ class QuestionBase:
         correct_interval = self.intervals[self.interval['semitones']][2]
 
         response = {
-                'is_correct': False,
-                'user_interval' : user_interval,
-                'correct_interval' : correct_interval,
-                }
+            'is_correct': False,
+            'user_interval': user_interval,
+            'correct_interval': correct_interval,
+        }
 
         if semitones == self.interval['semitones']:
-            response.update({ 'is_correct' : True })
+            response.update({'is_correct': True})
             return response
 
         else:
-            response.update({ 'is_correct' : False })
+            response.update({'is_correct': False})
             return response
 
     def make_diatonic_interval(self,  chromatic_concrete):
@@ -172,8 +175,8 @@ class QuestionBase:
             'note_name': note_name,
             'semitones': semitones,
             'is_chromatic': is_chromatic,
-            'diatonic_index' : interval_diatonic_index,
-            })
+            'diatonic_index': interval_diatonic_index,
+        })
 
         self.interval = interval
 
@@ -195,15 +198,16 @@ class QuestionBase:
 
         s = semitones
 
-        is_chromatic = True if not note_octave in [chromatic_concrete[intv] for intv in diatonic_index] else False
+        is_chromatic = True if not note_octave in [
+            chromatic_concrete[intv] for intv in diatonic_index] else False
 
-        if is_chromatic: # TODO: check if augmented forth is really correct in question resolution
+        if is_chromatic:  # TODO: check if augmented forth is really correct in question resolution
             if s <= 5:
-                interval_diatonic_index = diatonic_index.index(s-1)
+                interval_diatonic_index = diatonic_index.index(s - 1)
             else:
-                interval_diatonic_index = diatonic_index.index(s+1)
+                interval_diatonic_index = diatonic_index.index(s + 1)
         else:
-                interval_diatonic_index = diatonic_index.index(s)
+            interval_diatonic_index = diatonic_index.index(s)
 
         interval.update({
             'index': index,
@@ -211,8 +215,8 @@ class QuestionBase:
             'note_name': note_name,
             'semitones': semitones,
             'is_chromatic': is_chromatic,
-            'diatonic_index' : interval_diatonic_index,
-            })
+            'diatonic_index': interval_diatonic_index,
+        })
 
         self.interval = interval
 
@@ -225,9 +229,10 @@ class QuestionBase:
         concrete_scale = self.concrete_scale
 
         if mode is 'diatonic':
-            #if self.ival_semitones <= 6:
+            # if self.ival_semitones <= 6:
             if interval['semitones'] <= 5:
-                resolution_concrete = concrete_scale[:interval['index']+1] #hotfix
+                # hotfix
+                resolution_concrete = concrete_scale[:interval['index'] + 1]
                 resolution_concrete.reverse()
             else:
                 resolution_concrete = concrete_scale[interval['index']:]
@@ -236,17 +241,24 @@ class QuestionBase:
 
             if interval['semitones'] <= 5:
                 if interval['is_chromatic']:
-                    resolution_concrete = concrete_scale[:interval['diatonic_index']+1] #hotfix #2
-                    resolution_concrete.append(self.chroma_concrete[interval['index']])
+                    # hotfix #2
+                    resolution_concrete = concrete_scale[:
+                                                         interval['diatonic_index'] + 1]
+                    resolution_concrete.append(
+                        self.chroma_concrete[interval['index']])
                 else:
-                    resolution_concrete = concrete_scale[:interval['diatonic_index']+1] #hotfix
+                    # hotfix
+                    resolution_concrete = concrete_scale[:
+                                                         interval['diatonic_index'] + 1]
 
                 resolution_concrete.reverse()
 
             else:
                 if interval['is_chromatic']:
-                    resolution_concrete.append(self.chroma_concrete[interval['index']])
-                resolution_concrete.extend(self.concrete_scale[interval['diatonic_index']:])
+                    resolution_concrete.append(
+                        self.chroma_concrete[interval['index']])
+                resolution_concrete.extend(
+                    self.concrete_scale[interval['diatonic_index']:])
 
         if len(resolution_concrete) == 1:
             repeat_unison = resolution_concrete[0]
@@ -254,7 +266,6 @@ class QuestionBase:
 
         self.resolution_concrete = resolution_concrete
         return self.resolution_concrete
-
 
     def get_chromatic_scale(self, tonic='C', octave=None, descending=None):
         """Returns a chromatic scale from tonic"""
@@ -266,15 +277,16 @@ class QuestionBase:
 
         #tonic_index = [note[0] if not use_flat else note[-1] for note in notes].index(tonic)
         tonic_index = [note[use_flat] for note in notes].index(tonic)
-        #last_note_index = tonic_index + 12 # FIXME!
+        # last_note_index = tonic_index + 12 # FIXME!
         last_note_index = tonic_index + 12
 
         #chromatic = [note[0] if not use_flat else note[-1] for note in (notes*2)[tonic_index:last_note_index]]
-        chromatic = [(notes*2)[y][use_flat] for y in range(tonic_index, last_note_index)]
+        chromatic = [(notes * 2)[y][use_flat]
+                     for y in range(tonic_index, last_note_index)]
 
         if octave:
             cur_octave = octave
-            for idx,note in enumerate(chromatic):
+            for idx, note in enumerate(chromatic):
                 if idx > 0 and chromatic[idx] == 'C':
                     cur_octave += 1
 
@@ -295,7 +307,7 @@ class QuestionBase:
 
         if octave:
             cur_octave = octave
-            for idx,note in enumerate(diatonic):
+            for idx, note in enumerate(diatonic):
                 if idx > 0 and 'C' in diatonic[idx]:
                     cur_octave += 1
 
@@ -306,11 +318,12 @@ class QuestionBase:
 
         return diatonic
 
+
 class Question(QuestionBase):
 
-    def __init__(self, kind='major', mode='diatonic', octave=[2,6]):
+    def __init__(self, kind='major', mode='diatonic', octave=[2, 6]):
 
-        super(Question, self).__init__() # runs base class init
+        super(Question, self).__init__()  # runs base class init
 
         self.kind = kind
         self.mode = mode
@@ -330,29 +343,39 @@ class Question(QuestionBase):
             self.tonic = tonic = sort_tonic
 
         if mode == 'diatonic':
-            self.scale = self.get_diatonic_scale(tonic=tonic, mode=kind, octave=None, descending=None)
+            self.scale = self.get_diatonic_scale(
+                tonic=tonic, mode=kind, octave=None, descending=None)
         elif mode == 'chromatic':
-            self.scale = self.get_chromatic_scale(tonic=tonic, octave=None, descending=None)
+            self.scale = self.get_chromatic_scale(
+                tonic=tonic, octave=None, descending=None)
 
-        self.tone_chroma = self.get_chromatic_scale(tonic=tonic, octave=None, descending=None)
+        self.tone_chroma = self.get_chromatic_scale(
+            tonic=tonic, octave=None, descending=None)
 
         self.scale_size = len(self.scale)
 
-        self.concrete_scale = self.get_diatonic_scale(tonic=tonic, mode=kind, octave=self.octave, descending=None)
-        self.chroma_concrete = self.get_chromatic_scale(tonic=tonic, octave=self.octave, descending=None)
+        self.concrete_scale = self.get_diatonic_scale(
+            tonic=tonic, mode=kind, octave=self.octave, descending=None)
+        self.chroma_concrete = self.get_chromatic_scale(
+            tonic=tonic, octave=self.octave, descending=None)
         self.concrete_tonic = self.concrete_scale[0]
 
         if mode == 'chromatic':
-            self.make_chromatic_interval(chromatic_concrete=self.chroma_concrete)
+            self.make_chromatic_interval(
+                chromatic_concrete=self.chroma_concrete)
         elif mode == 'diatonic':
-            self.make_diatonic_interval(chromatic_concrete=self.chroma_concrete)
+            self.make_diatonic_interval(
+                chromatic_concrete=self.chroma_concrete)
 
         self.make_resolution(mode=mode)
 
 # http://code.activestate.com/recipes/134892/
+
+
 class _Getch:
     """Gets a single character from standard input.  Does not echo to the
 screen."""
+
     def __init__(self):
         try:
             self.impl = _GetchWindows()
@@ -360,12 +383,17 @@ screen."""
             self.impl = _GetchUnix()
 
     def __call__(self): return self.impl()
+
+
 class _GetchUnix:
     def __init__(self):
-        import tty, sys
+        import tty
+        import sys
 
     def __call__(self):
-        import sys, tty, termios
+        import sys
+        import tty
+        import termios
         fd = sys.stdin.fileno()
         old_settings = termios.tcgetattr(fd)
         try:
@@ -374,6 +402,8 @@ class _GetchUnix:
         finally:
             termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
         return ch
+
+
 class _GetchWindows:
     def __init__(self):
         import msvcrt
@@ -383,9 +413,11 @@ class _GetchWindows:
         return msvcrt.getch()
 
 # this is for debugging
+
+
 def print_stuff(question):
-        padd="─" * 30; # vim: insert mode, ^vu2500
-        print("""
+    padd = "─" * 30;  # vim: insert mode, ^vu2500
+    print("""
 {}
 
 Tonic: {} | Note(Int): {} |  Interval: {} | Semitones(Int): {} |
@@ -396,19 +428,20 @@ Chromatic: {}
 Concrete Scale: {} | Chroma Concrete: {}
 
 """.format(
-            padd,
-            question.tonic,
-            question.interval['note_name'],
-            "─".join(question.intervals[question.interval['semitones']][1:]),
-            question.interval['semitones'],
-            question.interval['is_chromatic'],
-            "─".join(question.scale),
-            "{}-{}".format(question.octave,question.octave+1),
-            "─".join(question.resolution_concrete),
-            "─".join(question.tone_chroma),
-            "─".join(question.concrete_scale),
-            "─".join(question.chroma_concrete)
-        ))
+        padd,
+        question.tonic,
+        question.interval['note_name'],
+        "─".join(question.intervals[question.interval['semitones']][1:]),
+        question.interval['semitones'],
+        question.interval['is_chromatic'],
+        "─".join(question.scale),
+        "{}-{}".format(question.octave, question.octave + 1),
+        "─".join(question.resolution_concrete),
+        "─".join(question.tone_chroma),
+        "─".join(question.concrete_scale),
+        "─".join(question.chroma_concrete)
+    ))
+
 
 if __name__ == "__main__":
     getch = _Getch()
@@ -430,14 +463,16 @@ if __name__ == "__main__":
         user_input = getch()
 
         # any response input interval from valid keys
-        if user_input in question.keyboard_index and user_input != ' ': # space char
+        if user_input in question.keyboard_index and user_input != ' ':  # space char
 
             response = question.check_question(user_input)
 
             if response['is_correct']:
-                print("Correct!.. it is “{}”".format(response['user_interval']))
+                print("Correct!.. it is “{}”".format(
+                    response['user_interval']))
             else:
-                print("Incorrect.. the correct is “{}” ! You aswered “{}”..".format(response['correct_interval'], response['user_interval']))
+                print("Incorrect.. the correct is “{}” ! You aswered “{}”..".format(
+                    response['correct_interval'], response['user_interval']))
 
             question.play_resolution()
 
