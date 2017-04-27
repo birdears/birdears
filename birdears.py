@@ -26,6 +26,14 @@ class QuestionBase:
     notes = ['C', ('C#', 'Db'), 'D', ('D#', 'Eb'), 'E', 'F',
              ('F#', 'Gb'), 'G', ('G#', 'Ab'), 'A', ('A#', 'Bb'), 'B']
 
+    notes2 = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
+    notes3 = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B']
+
+             # from birdears import *
+             # import iterools as it
+             # a = QuestionBase()
+             #for i in it.cycle(a.notes):
+             #  print(i)
     intervals = [
         [0, 'P1', 'Perfect Unison'],
         [1, 'm2', 'Minor Second'],
@@ -48,8 +56,8 @@ class QuestionBase:
     #}
 
     diatonic_indices = {
-        'major': [0, 2, 4, 5, 7, 9, 11],
-        'minor': [0, 2, 3, 5, 7, 8, 10],
+        'major': [0, 2, 4, 5, 7, 9, 11, 12],
+        'minor': [0, 2, 3, 5, 7, 8, 10, 12],
     }
 
     keyboard_indices = {
@@ -232,6 +240,7 @@ class QuestionBase:
         resolution_concrete = []
         interval = self.interval
         concrete_scale = self.concrete_scale
+        # FIXME: we have this in octave; Resolution: Db3─Db3,
 
         if mode is 'diatonic':
             # if self.ival_semitones <= 6:
@@ -281,8 +290,8 @@ class QuestionBase:
         use_flat = -1 if (tonic == 'F' or 'b' in tonic) else 0
 
         tonic_index = [note[use_flat] for note in notes].index(tonic)
-        last_note_index = tonic_index + 12 # FIXME
-        #last_note_index = tonic_index + 13 # FIXME
+        #last_note_index = tonic_index + 12 # FIXME
+        last_note_index = tonic_index + 13 # FIXME
 
         chromatic = [(notes * 2)[y][use_flat]
                      for y in range(tonic_index, last_note_index)]
@@ -309,8 +318,8 @@ class QuestionBase:
         chroma = self.get_chromatic_scale(tonic)
         diatonic = [chroma[step] for step in diatonic_index]
 
-        if repeat_tonic:
-            diatonic.append(chroma[0])
+        #if repeat_tonic:
+        #    diatonic.append(chroma[0])
 
         if octave:
             cur_octave = octave
