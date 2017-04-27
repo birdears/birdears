@@ -1,13 +1,11 @@
 # BirdEars
 
-[![Build Status](https://travis-ci.org/iacchus/birdears.svg?branch=master)](https://travis-ci.org/iacchus/birdears)
-[![Coverage Status](https://coveralls.io/repos/github/iacchus/birdears/badge.svg)](https://coveralls.io/github/iacchus/birdears)
-[![codecov](https://codecov.io/gh/iacchus/birdears/branch/master/graph/badge.svg)](https://codecov.io/gh/iacchus/birdears)
-
 [![Travis Build Status](https://img.shields.io/travis/iacchus/birdears.svg?label=Travis+CI+build)](https://travis-ci.org/iacchus/birdears)
 [![Coveralls](https://img.shields.io/coveralls/iacchus/birdears.svg?label=Coveralls+coverage)](https://coveralls.io/github/iacchus/birdears)
 [![Codecov](https://img.shields.io/codecov/c/github/iacchus/birdears.svg?label=Codecov+coverage)](https://codecov.io/gh/iacchus/birdears)
-[![Code Climate](https://img.shields.io/codeclimate/coverage/github/iacchus/birdears.svg?Codeclimate+coverage)](https://codeclimate.com/github/iacchus/birdears)
+[![Code Climate coverage](https://img.shields.io/codeclimate/coverage/github/iacchus/birdears.svg?label=Codeclimate+coverage)](https://codeclimate.com/github/iacchus/birdears)
+[![Code Climate issues](https://img.shields.io/codeclimate/issues/github/iacchus/birdears.svg?Codeclimate+issues)](https://codeclimate.com/github/iacchus/birdears/issues)
+[![Code Climate gpa](https://img.shields.io/codeclimate/github/iacchus/birdears.svg?label=Codeclimate+gpa)]()
 
 ## Functional Ear Training for Musicians
 
