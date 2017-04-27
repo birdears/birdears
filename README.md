@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/iacchus/birdears.svg?branch=master)](https://travis-ci.org/iacchus/birdears) 
 [![Coverage Status](https://coveralls.io/repos/github/iacchus/birdears/badge.svg)](https://coveralls.io/github/iacchus/birdears)
+[![codecov](https://codecov.io/gh/iacchus/birdears/branch/master/graph/badge.svg)](https://codecov.io/gh/iacchus/birdears)
 
 
 ## Functional Ear Training for Musicians

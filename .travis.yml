@@ -4,7 +4,7 @@ python:
   - "3.6"
 # command to install dependencies
 install:
-  - pip install coveralls codecov
+  - pip install coveralls codecov codeclimate-test-reporter
 # command to run tests
 script: coverage run --source=birdears --module pytest --capture=no --verbose tests/
 env:
@@ -12,3 +12,4 @@ env:
 after_success:
   - coveralls
   - codecov
+  - codeclimate-test-reporter
