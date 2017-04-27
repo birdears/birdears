@@ -4,10 +4,11 @@ python:
   - "3.6"
 # command to install dependencies
 install:
-  - pip install coveralls
+  - pip install coveralls codecov
 # command to run tests
 script: coverage run --source=birdears --module pytest --capture=no --verbose tests/
 env:
   - PYTHONPATH=''
 after_success:
-  coveralls
+  - coveralls
+  - codecov
