@@ -1,5 +1,9 @@
 from birdears import *
 
-def test_is_importing():
+def test_questionbase():
+    a = QuestionBase()
+    assert(a)
+
+def test_questinclass():
     a = Question()
     assert(a)
