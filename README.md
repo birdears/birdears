@@ -1,21 +1,25 @@
-# BirdEars 
+# BirdEars
 
-[![Build Status](https://travis-ci.org/iacchus/birdears.svg?branch=master)](https://travis-ci.org/iacchus/birdears) 
+[![Build Status](https://travis-ci.org/iacchus/birdears.svg?branch=master)](https://travis-ci.org/iacchus/birdears)
 [![Coverage Status](https://coveralls.io/repos/github/iacchus/birdears/badge.svg)](https://coveralls.io/github/iacchus/birdears)
 [![codecov](https://codecov.io/gh/iacchus/birdears/branch/master/graph/badge.svg)](https://codecov.io/gh/iacchus/birdears)
 
+[![Travis Build Status](https://img.shields.io/travis/iacchus/birdears.svg?label=Travis+CI+build)](https://travis-ci.org/iacchus/birdears)
+[![Coveralls](https://img.shields.io/coveralls/iacchus/birdears.svg?label=Coveralls+coverage)](https://coveralls.io/github/iacchus/birdears)
+[![Codecov](https://img.shields.io/codecov/c/github/iacchus/birdears.svg?label=Codecov+coverage)](https://codecov.io/gh/iacchus/birdears)
+[![Code Climate](https://img.shields.io/codeclimate/coverage/github/iacchus/birdears.svg?Codeclimate+coverage)](https://codeclimate.com/github/iacchus/birdears)
 
 ## Functional Ear Training for Musicians
 
 In current development though functional
 
-## Usage 
+## Usage
 
 ### 1. Install the Dependencies
 
-Install `sox` and `python3` (see [below](https://github.com/iacchus/birdears#installing--dependencies)) and, 
+Install `sox` and `python3` (see [below](https://github.com/iacchus/birdears#installing--dependencies)) and,
 
-### 2. clone the repository 
+### 2. clone the repository
 
 ```
 git clone https://github.com/iacchus/birdears.git
@@ -65,7 +69,7 @@ z x c v b n m    -------  a  b c  d  e  f  g
 
 ## Screenshot or didn't happen
 
-*(development version)* 
+*(development version)*
 
 ![birsears screenshot](https://i.imgur.com/PSZCL2a.png)
 
@@ -111,4 +115,3 @@ Out tests are in repo's `tests/` directory.
 [PEP 8](https://pep8.org) — the Style Guide for Python Code
 
 [Python.org PEP8](https://www.python.org/dev/peps/pep-0008/)
-
