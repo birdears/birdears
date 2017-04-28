@@ -544,7 +544,8 @@ if __name__ == "__main__":
 
             new_question_bit = False
             #question = Question(mode='major', scale_type='chromatic', descending=True)
-            question = Question(mode='major', scale_type='diatonic', descending=True)
+            #question = Question(mode='major', scale_type='diatonic', descending=True)
+            question = Question(mode='major', scale_type='diatonic', octave=[3,5], n_octaves=2)
 
             # debug
             if DEBUG:
