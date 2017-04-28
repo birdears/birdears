@@ -31,33 +31,76 @@ class QuestionBase:
     notes3 = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B']
 
     notes4 = ['C', 'C#', 'Db', 'D', 'D#', 'Eb', 'E', 'F',
-             'F#', 'Gb', 'G', 'G#', 'Ab', 'A', 'A#', 'Bb', 'B']
+              'F#', 'Gb', 'G', 'G#', 'Ab', 'A', 'A#', 'Bb', 'B']
 
-             # from birdears import *
-             # import iterools as it
-             # a = QuestionBase()
-             #for i in it.cycle(a.notes):
-             #  print(i)
+    # from birdears import *
+    # import iterools as it
+    # a = QuestionBase()
+    # for i in it.cycle(a.notes):
+    #  print(i)
     intervals = [
-        [0, 'P1', 'Perfect Unison'],
-        [1, 'm2', 'Minor Second'],
-        [2, 'M2', 'Major Second'],
-        [3, 'm3', 'Minor Third'],
-        [4, 'M3', 'Major Third'],
-        [5, 'P4', 'Perfect Fourth'],
-        [6, 'A4', 'Augmented Fourth'],
-        [7, 'P5', 'Perfect Fifth'],
-        [8, 'm6', 'Minor Sixth'],
-        [9, 'M6', 'Major Sixth'],
-        [10, 'm7', 'Minor Seventh'],
-        [11, 'M7', 'Major Seventh'],
-        [12, 'P8', 'Perfect Octave']
+        (0, 'P1', 'Perfect Unison'),
+        (1, 'A1', 'Augmented Unison'),
+        (2, 'M2', 'Major Second'),
+        (3, 'm3', 'Minor Third'),
+        (4, 'M3', 'Major Third'),
+        (5, 'P4', 'Perfect Fourth'),
+        (6, 'A4', 'Augmented Fourth'),
+        (7, 'P5', 'Perfect Fifth'),
+        (8, 'm6', 'Minor Sixth'),
+        (9, 'M6', 'Major Sixth'),
+        (10, 'm7', 'Minor Seventh'),
+        (11, 'M7', 'Major Seventh'),
+        (12, 'P8', 'Perfect Octave'),
+        (13, 'A8', 'Augmented Octave'),
+        (14, 'M9', 'Major Ninth'),
+        (15, 'm10', 'Minor Tenth'),
+        (16, 'M10', 'Major Tenth'),
+        (17, 'P11', 'Perfect Eleventh'),
+        (18, 'A11', 'Augmented Eleventh'),
+        (19, 'P12', 'Perfect Twelfth'),
+        (20, 'm13', 'Minor Thirteenth'),
+        (21, 'M13', 'Major Thirteenth'),
+        (22, 'm14', 'Minor Fourteenth'),
+        (23, 'M14', 'Major Fourteenth'),
+        (24, 'P15', 'Perfect Double-octave'),
+        (25, 'A15', 'Augmented Double-octave'),
+        (26, 'M16', 'Major Sixteenth'),
+        (27, 'm17', 'Minor Seventeenth'),
+        (28, 'M17', 'Major Seventeenth'),
+        (29, 'P18', 'Perfect Eighteenth'),
+        (30, 'A18', 'Augmented Eighteenth'),
+        (31, 'P19', 'Perfect Nineteenth'),
+        (32, 'm20', 'Minor Twentieth'),
+        (33, 'M20', 'Major Twentieth'),
+        (34, 'm21', 'Minor Twenty-first'),
+        (35, 'M21', 'Major Twenty-first'),
+        (36, 'P22', 'Perfect Triple-octave'),   # the
+        (37, 'A22', 'Augmented Triple-octave'), # pattern ends here
+        (38, 'M23', 'Major 23'),
+        (39, 'm24', 'Minor 24'),
+        (40, 'M24', 'Major 24'),
+        (41, 'P25', 'Perfect 25'),
+        (42, 'A25', 'Augmented 25'),
+        (43, 'P26', 'Perfect 26'),
+        (44, 'm27', 'Minor 27'),
+        (45, 'M27', 'Major 27'),
+        (46, 'm28', 'Minor 28'),
+        (47, 'M28', 'Major 28'),
+        (48, 'P29', 'Perfect 29'),
+        (49, 'A29', 'Augmented 29'),
+        (50, 'M30', 'Major 30'),
+        (51, 'm31', 'Minor 31'),
+        (52, 'M31', 'Major 31'),
+        (53, 'P32', 'Perfect 32'),
+        (54, 'A32', 'Augmented 32'),
+        (55, 'P33', 'Perfect 33'),
+        (56, 'm34', 'Minor 34'),
+        (57, 'M34', 'Major 34'),
+        (58, 'm35', 'Minor 35'),
+        (59, 'M35', 'Major 35'),
+        (60, 'P36', 'Perfect 36')
     ]
-
-    #diatonic_indices = {
-    #    'major': [0, 2, 4, 5, 7, 9, 11, -12],
-    #    'minor': [0, 2, 3, 5, 7, 8, 10, -12],
-    #}
 
     chromatic_type = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
     diatonic_modes = {
@@ -140,7 +183,7 @@ class QuestionBase:
 
         play_note = self._play_note
 
-        for tone in self.resolution_concrete:
+        for tone in self.resolution_pitch:
             play_note(note=tone, duration=self.resolution_duration,
                       delay=self.resolution_delay)
 
@@ -169,7 +212,7 @@ class QuestionBase:
             response.update({'is_correct': False})
             return response
 
-    def make_diatonic_interval(self,  chromatic_concrete):
+    def make_diatonic_interval(self,  chromatic_pitch):
         """Chooses a diatonic interval for the question."""
 
         interval = dict()
@@ -179,15 +222,15 @@ class QuestionBase:
         semitones = choice(diatonic_mode)
 
         interval_index = diatonic_mode.index(semitones)
-        degree = interval_index + 1 # I II III IV VI VII VIII
+        degree = interval_index + 1  # I II III IV VI VII VIII
         #index = randrange(self.scale_size) - 1
 
-        note_and_octave = self.concrete_scale[interval_index]
+        note_and_octave = self.scale_pitch[interval_index]
         note_name = self.scale[interval_index]
 
-        #is_chromatic = True if not note_octave in [chromatic_concrete[intv] for intv in diatonic_index] else False
-        #FIXME: this is redundant now, lets stay there for debugging porpuses:
-        is_chromatic = True if not note_and_octave in self.concrete_scale else False
+        #is_chromatic = True if not note_octave in [chromatic_pitch[intv] for intv in diatonic_index] else False
+        # FIXME: this is redundant now, lets stay there for debugging porpuses:
+        is_chromatic = True if not note_and_octave in self.scale_pitch else False
 
         # FIXME: fix this.
         interval_diatonic_index = diatonic_mode.index(semitones)
@@ -205,24 +248,22 @@ class QuestionBase:
 
         return interval
 
-    def make_chromatic_interval(self,  chromatic_concrete):
+    def make_chromatic_interval(self,  chromatic_pitch):
         """Chooses a chromatic interval for the question."""
 
         interval = dict()
 
-        #diatonic_index = self.diatonic_modes[self.mode]
         diatonic_mode = self.diatonic_modes[self.mode]
 
-        #index = randrange(len(self.tone_chroma))
         semitones = choice(self.chromatic_type)
         interval_index = semitones
 
         # FIXME : these should be passed to function instead
-        note_and_octave = self.chroma_concrete[interval_index]
-        note_name = self.tone_chroma[interval_index]
+        note_and_octave = self.chromatic_pitch[interval_index]
+        note_name = self.chromatic[interval_index]
 
         is_chromatic = True if not note_and_octave in [
-            chromatic_concrete[intv] for intv in diatonic_mode] else False
+            chromatic_pitch[intv] for intv in diatonic_mode] else False
 
         if is_chromatic:  # TODO: check if augmented forth is really correct in question resolution
             if semitones <= self.max_semitones_resolve_below:
@@ -247,49 +288,49 @@ class QuestionBase:
 
     def make_resolution(self, scale_type, interval=None):
 
-        resolution_concrete = []
+        resolution_pitch = []
         interval = self.interval
-        concrete_scale = self.concrete_scale
+        scale_pitch = self.scale_pitch
         # FIXME: we have this in octave; Resolution: Db3─Db3,
 
         if scale_type is 'diatonic':
             # if self.ival_semitones <= 6:
             if interval['semitones'] <= self.max_semitones_resolve_below:
                 # hotfix
-                resolution_concrete = concrete_scale[:interval['index'] + 1]
-                resolution_concrete.reverse()
+                resolution_pitch = scale_pitch[:interval['index'] + 1]
+                resolution_pitch.reverse()
             else:
-                resolution_concrete = concrete_scale[interval['index']:]
+                resolution_pitch = scale_pitch[interval['index']:]
 
         elif scale_type is 'chromatic':
 
             if interval['semitones'] <= self.max_semitones_resolve_below:
                 if interval['is_chromatic']:
                     # hotfix #2 FIXME
-                    resolution_concrete = concrete_scale[:
+                    resolution_pitch = scale_pitch[:
                                                          interval['diatonic_index'] + 1]
-                    resolution_concrete.append(
-                        self.chroma_concrete[interval['index']])
+                    resolution_pitch.append(
+                        self.chromatic_pitch[interval['index']])
                 else:
                     # hotfix FIXME
-                    resolution_concrete = concrete_scale[:
+                    resolution_pitch = scale_pitch[:
                                                          interval['diatonic_index'] + 1]
 
-                resolution_concrete.reverse()
+                resolution_pitch.reverse()
 
             else:
                 if interval['is_chromatic']:
-                    resolution_concrete.append(
-                        self.chroma_concrete[interval['index']])
-                resolution_concrete.extend(
-                    self.concrete_scale[interval['diatonic_index']:])
+                    resolution_pitch.append(
+                        self.chromatic_pitch[interval['index']])
+                resolution_pitch.extend(
+                    self.scale_pitch[interval['diatonic_index']:])
 
-        if len(resolution_concrete) == 1:
-            repeat_unison = resolution_concrete[0]
-            resolution_concrete.append(repeat_unison)
+        if len(resolution_pitch) == 1:
+            repeat_unison = resolution_pitch[0]
+            resolution_pitch.append(repeat_unison)
 
-        self.resolution_concrete = resolution_concrete
-        return self.resolution_concrete
+        self.resolution_pitch = resolution_pitch
+        return self.resolution_pitch
 
     def append_octave_to_scale(self, scale, starting_octave, descending=None):
         """Inserts scientific octave number to the notes on a the given scale.
@@ -303,12 +344,12 @@ class QuestionBase:
         current_octave = starting_octave
 
         if not descending:
-            for closest in ['C','C#','Db']:
+            for closest in ['C', 'C#', 'Db']:
                 if closest in scale:
                     changing_note = closest
                     break
         else:
-            for closest in ['B','Bb','A#']:
+            for closest in ['B', 'Bb', 'A#']:
                 if closest in scale:
                     changing_note = closest
                     break
@@ -334,7 +375,6 @@ class QuestionBase:
 
         return note_index
 
-
     def get_chromatic_scale(self, tonic, octave=None, n_octaves=None, descending=None, dont_repeat_tonic=None):
         """Returns a chromatic scale from tonic."""
 
@@ -359,25 +399,35 @@ class QuestionBase:
             chromatic.reverse()
 
         if octave:
-            chromatic = self.append_octave_to_scale(chromatic, octave, descending)
+            chromatic = self.append_octave_to_scale(
+                chromatic, octave, descending)
 
         return chromatic
 
-    def get_diatonic_scale(self, tonic, mode, octave=None, descending=None, repeat_tonic=True):
+    def get_diatonic_scale(self, tonic, mode, octave=None, n_octaves=None, descending=None, dont_repeat_tonic=None):
         """Returns a diatonic scale from tonic and mode"""
 
         diatonic_mode = self.diatonic_modes[mode]
 
         chromatic = self.get_chromatic_scale(tonic)
-        diatonic = [chromatic[semitones] for semitones in diatonic_mode]
+
+        diatonic = [chromatic[semitones] for semitones in diatonic_mode[:-1]]
+
+        if n_octaves:
+            diatonic = diatonic * n_octaves
+
+        if not dont_repeat_tonic:
+            diatonic.append(chromatic[diatonic_mode[-1]])
 
         if descending:
             diatonic.reverse()
 
         if octave:
-            diatonic = self.append_octave_to_scale(diatonic, octave, descending)
+            diatonic = self.append_octave_to_scale(
+                diatonic, octave, descending)
 
         return diatonic
+
 
 class Question(QuestionBase):
 
@@ -386,7 +436,7 @@ class Question(QuestionBase):
         super(Question, self).__init__(*args, **kwargs)  # runs base class init
 
         self.mode = mode
-        #FIXME: scale_type should be changed to something like interval_type
+        # FIXME: scale_type should be changed to something like interval_type
         self.scale_type = scale_type
 
         if type(octave) == int:
@@ -406,27 +456,29 @@ class Question(QuestionBase):
             self.scale = self.get_chromatic_scale(
                 tonic=tonic, octave=None, descending=None)
 
-        self.tone_chroma = self.get_chromatic_scale(
+        self.chromatic = self.get_chromatic_scale(
             tonic=tonic, octave=None, descending=None)
 
         self.scale_size = len(self.scale)
 
-        self.concrete_scale = self.get_diatonic_scale(
+        self.scale_pitch = self.get_diatonic_scale(
             tonic=tonic, mode=mode, octave=self.octave, descending=None)
-        self.chroma_concrete = self.get_chromatic_scale(
+        self.chromatic_pitch = self.get_chromatic_scale(
             tonic=tonic, octave=self.octave, descending=None)
-        self.concrete_tonic = self.concrete_scale[0]
+        self.concrete_tonic = self.scale_pitch[0]
 
         if scale_type == 'chromatic':
             self.make_chromatic_interval(
-                chromatic_concrete=self.chroma_concrete)
+                chromatic_pitch=self.chromatic_pitch)
         elif scale_type == 'diatonic':
             self.make_diatonic_interval(
-                chromatic_concrete=self.chroma_concrete)
+                chromatic_pitch=self.chromatic_pitch)
 
         self.make_resolution(scale_type=scale_type)
 
 # http://code.activestate.com/recipes/134892/
+
+
 class _Getch:
     """Gets a single character from standard input.  Does not echo to the
 screen."""
@@ -491,10 +543,10 @@ Concrete Scale: {} | Chroma Concrete: {}
         question.interval['is_chromatic'],
         "─".join(question.scale),
         "{}-{}".format(question.octave, question.octave + 1),
-        "─".join(question.resolution_concrete),
-        "─".join(question.tone_chroma),
-        "─".join(question.concrete_scale),
-        "─".join(question.chroma_concrete)
+        "─".join(question.resolution_pitch),
+        "─".join(question.chromatic),
+        "─".join(question.scale_pitch),
+        "─".join(question.chromatic_pitch)
     ))
 
 
