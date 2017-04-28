@@ -108,6 +108,11 @@ We use [coveralls](https://coveralls.io/github/iacchus/birdears) and [Travis CI]
 
 Out tests are in repo's `tests/` directory.
 
+### Etc
+
+We aim to build a method / music theory together with this software, maybe in the
+GitHub repo's wiki.
+
 ### Misc documentation
 
 [PEP 8](https://pep8.org) — the Style Guide for Python Code

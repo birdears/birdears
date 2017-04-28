@@ -3,6 +3,7 @@
 import subprocess
 import time
 from random import randrange, choice
+from collections import deque
 
 #from pprint import pprint
 
@@ -28,6 +29,7 @@ class QuestionBase:
 
     notes2 = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
     notes3 = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B']
+
     notes4 = ['C', 'C#', 'Db', 'D', 'D#', 'Eb', 'E', 'F',
              'F#', 'Gb', 'G', 'G#', 'Ab', 'A', 'A#', 'Bb', 'B']
 
@@ -303,7 +305,7 @@ class QuestionBase:
         scale_with_octave = []
         changing_note = None
 
-        cur_octave = starting_octave
+        current_octave = starting_octave
 
         if not descending:
             for closest in ['C','C#','Db']:
@@ -318,28 +320,51 @@ class QuestionBase:
 
         for idx, note in enumerate(scale):
             if idx > 0 and note == changing_note:
-                cur_octave += next_octave
+                current_octave += next_octave
 
-            scale_with_octave.append("{}{}".format(note, cur_octave))
+            scale_with_octave.append("{}{}".format(note, current_octave))
 
         return scale_with_octave
 
+    def _get_chromatic_idx(self, note):
+        use_flat = -1 if (note == 'F' or 'b' in note) else 0
 
-    def get_chromatic_scale(self, tonic, octave=None, descending=None):
-        """Returns a chromatic scale from tonic"""
+        # FIXME
+        if note in self.notes2:
+            note_index = self.notes2.index(note)
+        elif note in self.notes3:
+            note_index = self.notes3.index(note)
+        else:
+            note_index = False
 
-        notes = self.notes
+        return note_index
 
-        # lets use last item of tuples, if FMaj or flat keys
-        use_flat = -1 if (tonic == 'F' or 'b' in tonic) else 0
 
-        tonic_index = [note[use_flat] for note in notes].index(tonic)
+    def get_chromatic_scale(self, tonic, octave=None, n_octaves=None, descending=None, dont_repeat_tonic=None):
+        """Returns a chromatic scale from tonic."""
+
+        tonic_index = self._get_chromatic_idx(tonic)
+
+        if tonic == 'F' or 'b' in tonic:
+            notes = deque(self.notes3)
+        else:
+            notes = deque(self.notes2)
+
+        notes.rotate(-(tonic_index))
+
+        if n_octaves:
+            chromatic = list(notes * n_octaves)
+        else:
+            chromatic = list(notes)
+
+        if not dont_repeat_tonic:
+            chromatic.append(chromatic[0])
         #last_note_index = tonic_index + 12 # FIXME
-        last_note_index = tonic_index + 13 # FIXME
+        #last_note_index = tonic_index + 13 # FIXME
 
-        chromatic = [(notes * 2)[y][use_flat]
-                     for y in range(tonic_index, last_note_index)]
-                            # FIXME: REMEBER TO CHECK range()
+        #chromatic = [(notes * 2)[y][use_flat]
+        #             for y in range(tonic_index, last_note_index)]
+        #                    # FIXME: REMEBER TO CHECK range()
 
         if descending:
             chromatic.reverse()
@@ -352,10 +377,10 @@ class QuestionBase:
     def get_diatonic_scale(self, tonic, mode, octave=None, descending=None, repeat_tonic=True):
         """Returns a diatonic scale from tonic and mode"""
 
-        diatonic_index = self.diatonic_modes[mode]
+        diatonic_mode = self.diatonic_modes[mode]
 
-        chroma = self.get_chromatic_scale(tonic)
-        diatonic = [chroma[step] for step in diatonic_index]
+        chromatic = self.get_chromatic_scale(tonic)
+        diatonic = [chromatic[semitones] for semitones in diatonic_mode]
 
         if descending:
             diatonic.reverse()
@@ -367,11 +392,12 @@ class QuestionBase:
 
 class Question(QuestionBase):
 
-    def __init__(self, mode='major', scale_type='diatonic', octave=[2, 6], *args, **kwargs):
+    def __init__(self, mode='major', scale_type='diatonic', octave=[2, 6], descending=None, n_octaves=None, *args, **kwargs):
 
         super(Question, self).__init__(*args, **kwargs)  # runs base class init
 
         self.mode = mode
+        #FIXME: scale_type should be changed to something like interval_type
         self.scale_type = scale_type
 
         if type(octave) == int:
@@ -381,14 +407,7 @@ class Question(QuestionBase):
 
         self.keyboard_index = self.keyboard_indices[self.scale_type][self.mode]
 
-        #sort_tonic = self.notes[randrange(len(self.notes))]
-        #if not tonic:
         tonic = choice(self.notes4)
-
-        #if type(sort_tonic) == tuple:
-        #    self.tonic = tonic = sort_tonic[randrange(2)]
-        #else:
-        #    self.tonic = tonic = sort_tonic
 
         if scale_type == 'diatonic':
             self.scale = self.get_diatonic_scale(
