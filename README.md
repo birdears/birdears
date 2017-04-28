@@ -96,7 +96,7 @@ to document the library.
 
 Also see `pdoc --html`
 
-### Unit Tests
+### Writing Tests
 
 We use [pytest](https://docs.pytest.org/en/latest/) to run tests; we use [coverage.py](https://coverage.readthedocs.io) to report code coverage;
 

@@ -185,10 +185,8 @@ class QuestionBase:
         note_and_octave = self.concrete_scale[interval_index]
         note_name = self.scale[interval_index]
 
-        #semitones = diatonic_mode[index]
-
         #is_chromatic = True if not note_octave in [chromatic_concrete[intv] for intv in diatonic_index] else False
-        #FIXME: this is redundant now:
+        #FIXME: this is redundant now, lets stay there for debugging porpuses:
         is_chromatic = True if not note_and_octave in self.concrete_scale else False
 
         # FIXME: fix this.
@@ -222,9 +220,6 @@ class QuestionBase:
         # FIXME : these should be passed to function instead
         note_and_octave = self.chroma_concrete[interval_index]
         note_name = self.tone_chroma[interval_index]
-
-        #semitones = chromatic_concrete.index(note_octave)
-        #s = semitones
 
         is_chromatic = True if not note_and_octave in [
             chromatic_concrete[intv] for intv in diatonic_mode] else False
@@ -359,12 +354,6 @@ class QuestionBase:
 
         if not dont_repeat_tonic:
             chromatic.append(chromatic[0])
-        #last_note_index = tonic_index + 12 # FIXME
-        #last_note_index = tonic_index + 13 # FIXME
-
-        #chromatic = [(notes * 2)[y][use_flat]
-        #             for y in range(tonic_index, last_note_index)]
-        #                    # FIXME: REMEBER TO CHECK range()
 
         if descending:
             chromatic.reverse()
@@ -405,6 +394,7 @@ class Question(QuestionBase):
         elif type(octave) == list and len(octave) == 2:
             self.octave = randrange(octave[0], octave[1])
 
+        # FIXME: maybe this should go to __main__
         self.keyboard_index = self.keyboard_indices[self.scale_type][self.mode]
 
         tonic = choice(self.notes4)
