@@ -342,7 +342,7 @@ class QuestionBase:
 
 class Question(QuestionBase):
 
-    def __init__(self, mode='major', scale_type='diatonic', octave=[2, 6]):
+    def __init__(self, mode='major', scale_type='diatonic', octave=[2, 6], *args, **kwargs):
 
         super(Question, self).__init__(*args, **kwargs)  # runs base class init
 
@@ -365,10 +365,10 @@ class Question(QuestionBase):
         #else:
         #    self.tonic = tonic = sort_tonic
 
-        if mode == 'diatonic':
+        if scale_type == 'diatonic':
             self.scale = self.get_diatonic_scale(
                 tonic=tonic, mode=mode, octave=None, descending=None)
-        elif mode == 'chromatic':
+        elif scale_type == 'chromatic':
             self.scale = self.get_chromatic_scale(
                 tonic=tonic, octave=None, descending=None)
 
