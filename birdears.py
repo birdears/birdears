@@ -57,7 +57,8 @@ class QuestionBase:
     #    'minor': [0, 2, 3, 5, 7, 8, 10, -12],
     #}
 
-    diatonic_indices = {
+    chromatic_type = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    diatonic_modes = {
         'major': [0, 2, 4, 5, 7, 9, 11, 12],
         'minor': [0, 2, 3, 5, 7, 8, 10, 12],
     }
@@ -122,7 +123,7 @@ class QuestionBase:
     def play_question(self):
 
         tonic = self.concrete_tonic
-        interval = self.interval['note_octave']
+        interval = self.interval['note_and_octave']
 
         play_note = self._play_note
 
@@ -145,6 +146,7 @@ class QuestionBase:
             self._wait(self.resolution_pos_delay)
 
     def check_question(self, user_input_char):
+        """Checks whether the given answer is correct."""
 
         semitones = self.keyboard_index.index(user_input_char)
 
@@ -170,27 +172,33 @@ class QuestionBase:
 
         interval = dict()
 
-        diatonic_index = self.diatonic_indices[self.mode]
+        diatonic_mode = self.diatonic_modes[self.mode]
 
-        index = randrange(self.scale_size) - 1
+        semitones = choice(diatonic_mode)
 
-        note_octave = self.concrete_scale[index]
-        note_name = self.scale[index]
+        interval_index = diatonic_mode.index(semitones)
+        degree = interval_index + 1 # I II III IV VI VII VIII
+        #index = randrange(self.scale_size) - 1
 
-        semitones = diatonic_index[index]
+        note_and_octave = self.concrete_scale[interval_index]
+        note_name = self.scale[interval_index]
+
+        #semitones = diatonic_mode[index]
 
         #is_chromatic = True if not note_octave in [chromatic_concrete[intv] for intv in diatonic_index] else False
-        is_chromatic = True if not note_octave in self.concrete_scale else False
+        #FIXME: this is redundant now:
+        is_chromatic = True if not note_and_octave in self.concrete_scale else False
 
-        interval_diatonic_index = diatonic_index.index(semitones)
+        # FIXME: fix this.
+        interval_diatonic_index = diatonic_mode.index(semitones)
 
         interval.update({
-            'index': index,
-            'note_octave': note_octave,
+            'index': interval_index,
+            'note_and_octave': note_and_octave,
             'note_name': note_name,
             'semitones': semitones,
             'is_chromatic': is_chromatic,
-            'diatonic_index': interval_diatonic_index,
+            'diatonic_index': interval_index,
         })
 
         self.interval = interval
@@ -202,31 +210,34 @@ class QuestionBase:
 
         interval = dict()
 
-        diatonic_index = self.diatonic_indices[self.mode]
+        #diatonic_index = self.diatonic_modes[self.mode]
+        diatonic_mode = self.diatonic_modes[self.mode]
 
-        index = randrange(len(self.tone_chroma))
+        #index = randrange(len(self.tone_chroma))
+        semitones = choice(self.chromatic_type)
+        interval_index = semitones
 
-        note_octave = self.chroma_concrete[index]
-        note_name = self.tone_chroma[index]
+        # FIXME : these should be passed to function instead
+        note_and_octave = self.chroma_concrete[interval_index]
+        note_name = self.tone_chroma[interval_index]
 
-        semitones = chromatic_concrete.index(note_octave)
+        #semitones = chromatic_concrete.index(note_octave)
+        #s = semitones
 
-        s = semitones
-
-        is_chromatic = True if not note_octave in [
-            chromatic_concrete[intv] for intv in diatonic_index] else False
+        is_chromatic = True if not note_and_octave in [
+            chromatic_concrete[intv] for intv in diatonic_mode] else False
 
         if is_chromatic:  # TODO: check if augmented forth is really correct in question resolution
             if semitones <= self.max_semitones_resolve_below:
-                interval_diatonic_index = diatonic_index.index(semitones - 1)
+                interval_diatonic_index = diatonic_mode.index(semitones - 1)
             else:
-                interval_diatonic_index = diatonic_index.index(semitones + 1)
+                interval_diatonic_index = diatonic_mode.index(semitones + 1)
         else:
-            interval_diatonic_index = diatonic_index.index(semitones)
+            interval_diatonic_index = diatonic_mode.index(semitones)
 
         interval.update({
-            'index': index,
-            'note_octave': note_octave,
+            'index': interval_index,
+            'note_and_octave': note_and_octave,
             'note_name': note_name,
             'semitones': semitones,
             'is_chromatic': is_chromatic,
@@ -255,15 +266,15 @@ class QuestionBase:
 
         elif scale_type is 'chromatic':
 
-            if interval['semitones'] <= self.max_semitones_resolve_below5:
+            if interval['semitones'] <= self.max_semitones_resolve_below:
                 if interval['is_chromatic']:
-                    # hotfix #2
+                    # hotfix #2 FIXME
                     resolution_concrete = concrete_scale[:
                                                          interval['diatonic_index'] + 1]
                     resolution_concrete.append(
                         self.chroma_concrete[interval['index']])
                 else:
-                    # hotfix
+                    # hotfix FIXME
                     resolution_concrete = concrete_scale[:
                                                          interval['diatonic_index'] + 1]
 
@@ -283,7 +294,38 @@ class QuestionBase:
         self.resolution_concrete = resolution_concrete
         return self.resolution_concrete
 
-    def get_chromatic_scale(self, tonic='C', octave=None, descending=None):
+    def append_octave_to_scale(self, scale, starting_octave, descending=None):
+        """Inserts scientific octave number to the notes on a the given scale.
+        """
+
+        next_octave = 1 if not descending else -1
+
+        scale_with_octave = []
+        changing_note = None
+
+        cur_octave = starting_octave
+
+        if not descending:
+            for closest in ['C','C#','Db']:
+                if closest in scale:
+                    changing_note = closest
+                    break
+        else:
+            for closest in ['B','Bb','A#']:
+                if closest in scale:
+                    changing_note = closest
+                    break
+
+        for idx, note in enumerate(scale):
+            if idx > 0 and note == changing_note:
+                cur_octave += next_octave
+
+            scale_with_octave.append("{}{}".format(note, cur_octave))
+
+        return scale_with_octave
+
+
+    def get_chromatic_scale(self, tonic, octave=None, descending=None):
         """Returns a chromatic scale from tonic"""
 
         notes = self.notes
@@ -299,44 +341,27 @@ class QuestionBase:
                      for y in range(tonic_index, last_note_index)]
                             # FIXME: REMEBER TO CHECK range()
 
-        if octave:
-            cur_octave = octave
-            for idx, note in enumerate(chromatic):
-                if idx > 0 and chromatic[idx] == 'C':
-                    cur_octave += 1
-
-                chromatic[idx] = "{}{}".format(note, cur_octave)
-
         if descending:
             chromatic.reverse()
+
+        if octave:
+            chromatic = self.append_octave_to_scale(chromatic, octave, descending)
 
         return chromatic
 
     def get_diatonic_scale(self, tonic, mode, octave=None, descending=None, repeat_tonic=True):
         """Returns a diatonic scale from tonic and mode"""
 
-        diatonic_index = self.diatonic_indices[mode]
+        diatonic_index = self.diatonic_modes[mode]
 
         chroma = self.get_chromatic_scale(tonic)
         diatonic = [chroma[step] for step in diatonic_index]
 
-        #if repeat_tonic:
-        #    diatonic.append(chroma[0])
-
-        if octave:
-            changing_note = None
-            cur_octave = octave
-            for idx, note in enumerate(diatonic):
-                if idx > 0 and not changing_note and 'C' in diatonic[idx]:
-                    changing_note = diatonic[idx]
-                    cur_octave += 1
-                elif changing_note in diatonic[idx:]:
-                    cur_octave += 1
-
-                diatonic[idx] = "{}{}".format(note, cur_octave)
-
         if descending:
             diatonic.reverse()
+
+        if octave:
+            diatonic = self.append_octave_to_scale(diatonic, octave, descending)
 
         return diatonic
 
@@ -451,7 +476,7 @@ Concrete Scale: {} | Chroma Concrete: {}
 """.format(
         padd,
         question.concrete_tonic,
-        question.interval['note_octave'],
+        question.interval['note_and_octave'],
         "─".join(question.intervals[question.interval['semitones']][1:]),
         question.interval['semitones'],
         question.interval['is_chromatic'],
@@ -473,8 +498,8 @@ if __name__ == "__main__":
         if new_question_bit is True:
 
             new_question_bit = False
-            #question = Question(kind='major', mode='chromatic')
-            question = Question(mode='major', scale_type='diatonic')
+            question = Question(mode='major', scale_type='chromatic')
+            #question = Question(mode='major', scale_type='diatonic')
 
             # debug
             print_stuff(question)
