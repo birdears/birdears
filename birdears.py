@@ -2,7 +2,7 @@
 
 import subprocess
 import time
-from random import randrange
+from random import randrange, choice
 
 #from pprint import pprint
 
@@ -28,6 +28,8 @@ class QuestionBase:
 
     notes2 = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
     notes3 = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B']
+    notes4 = ['C', 'C#', 'Db', 'D', 'D#', 'Eb', 'E', 'F',
+             'F#', 'Gb', 'G', 'G#', 'Ab', 'A', 'A#', 'Bb', 'B']
 
              # from birdears import *
              # import iterools as it
@@ -92,7 +94,7 @@ class QuestionBase:
     # and [6 7 8 9 10 11] resolves above (octave)
     max_semitones_resolve_below = 5
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
 
         self.question_duration = 2
         self.question_delay = 1.5
@@ -105,7 +107,7 @@ class QuestionBase:
     def _wait(self, seconds):
         time.sleep(seconds)
 
-    def _play_note(self, note='C', duration=4, delay=0):
+    def _play_note(self, note, duration, delay):
         # requires sox to be installed
         command = (
             "play -qn synth {duration} pluck {note}"
@@ -168,7 +170,7 @@ class QuestionBase:
 
         interval = dict()
 
-        diatonic_index = self.diatonic_indices[self.kind]
+        diatonic_index = self.diatonic_indices[self.mode]
 
         index = randrange(self.scale_size) - 1
 
@@ -200,7 +202,7 @@ class QuestionBase:
 
         interval = dict()
 
-        diatonic_index = self.diatonic_indices[self.kind]
+        diatonic_index = self.diatonic_indices[self.mode]
 
         index = randrange(len(self.tone_chroma))
 
@@ -235,14 +237,14 @@ class QuestionBase:
 
         return interval
 
-    def make_resolution(self, mode,  interval=None):
+    def make_resolution(self, scale_type, interval=None):
 
         resolution_concrete = []
         interval = self.interval
         concrete_scale = self.concrete_scale
         # FIXME: we have this in octave; Resolution: Db3─Db3,
 
-        if mode is 'diatonic':
+        if scale_type is 'diatonic':
             # if self.ival_semitones <= 6:
             if interval['semitones'] <= self.max_semitones_resolve_below:
                 # hotfix
@@ -251,7 +253,7 @@ class QuestionBase:
             else:
                 resolution_concrete = concrete_scale[interval['index']:]
 
-        elif mode is 'chromatic':
+        elif scale_type is 'chromatic':
 
             if interval['semitones'] <= self.max_semitones_resolve_below5:
                 if interval['is_chromatic']:
@@ -310,7 +312,7 @@ class QuestionBase:
 
         return chromatic
 
-    def get_diatonic_scale(self, tonic='C', mode='major', octave=None, descending=None, repeat_tonic=True):
+    def get_diatonic_scale(self, tonic, mode, octave=None, descending=None, repeat_tonic=True):
         """Returns a diatonic scale from tonic and mode"""
 
         diatonic_index = self.diatonic_indices[mode]
@@ -322,12 +324,14 @@ class QuestionBase:
         #    diatonic.append(chroma[0])
 
         if octave:
+            changing_note = None
             cur_octave = octave
             for idx, note in enumerate(diatonic):
-                if idx > 0 and 'C' in diatonic[idx]:
+                if idx > 0 and not changing_note and 'C' in diatonic[idx]:
+                    changing_note = diatonic[idx]
                     cur_octave += 1
-                # FIXME: Concrete Scale: G#5─A#5─C6─C#7─D#7─F7─G7─G#7 | Chroma Concrete: G#5─A5─A#5─B5─C6─C#6─D6─D#6─E6─F6─F#6─G6
-                # this doesn't happens on chromatic at least when only one octave
+                elif changing_note in diatonic[idx:]:
+                    cur_octave += 1
 
                 diatonic[idx] = "{}{}".format(note, cur_octave)
 
@@ -338,30 +342,32 @@ class QuestionBase:
 
 class Question(QuestionBase):
 
-    def __init__(self, kind='major', mode='diatonic', octave=[2, 6]):
+    def __init__(self, mode='major', scale_type='diatonic', octave=[2, 6]):
 
-        super(Question, self).__init__()  # runs base class init
+        super(Question, self).__init__(*args, **kwargs)  # runs base class init
 
-        self.kind = kind
         self.mode = mode
+        self.scale_type = scale_type
 
         if type(octave) == int:
             self.octave = octave
         elif type(octave) == list and len(octave) == 2:
             self.octave = randrange(octave[0], octave[1])
 
-        self.keyboard_index = self.keyboard_indices[self.mode][self.kind]
+        self.keyboard_index = self.keyboard_indices[self.scale_type][self.mode]
 
-        sort_tonic = self.notes[randrange(len(self.notes))]
+        #sort_tonic = self.notes[randrange(len(self.notes))]
+        #if not tonic:
+        tonic = choice(self.notes4)
 
-        if type(sort_tonic) == tuple:
-            self.tonic = tonic = sort_tonic[randrange(2)]
-        else:
-            self.tonic = tonic = sort_tonic
+        #if type(sort_tonic) == tuple:
+        #    self.tonic = tonic = sort_tonic[randrange(2)]
+        #else:
+        #    self.tonic = tonic = sort_tonic
 
         if mode == 'diatonic':
             self.scale = self.get_diatonic_scale(
-                tonic=tonic, mode=kind, octave=None, descending=None)
+                tonic=tonic, mode=mode, octave=None, descending=None)
         elif mode == 'chromatic':
             self.scale = self.get_chromatic_scale(
                 tonic=tonic, octave=None, descending=None)
@@ -372,19 +378,19 @@ class Question(QuestionBase):
         self.scale_size = len(self.scale)
 
         self.concrete_scale = self.get_diatonic_scale(
-            tonic=tonic, mode=kind, octave=self.octave, descending=None)
+            tonic=tonic, mode=mode, octave=self.octave, descending=None)
         self.chroma_concrete = self.get_chromatic_scale(
             tonic=tonic, octave=self.octave, descending=None)
         self.concrete_tonic = self.concrete_scale[0]
 
-        if mode == 'chromatic':
+        if scale_type == 'chromatic':
             self.make_chromatic_interval(
                 chromatic_concrete=self.chroma_concrete)
-        elif mode == 'diatonic':
+        elif scale_type == 'diatonic':
             self.make_diatonic_interval(
                 chromatic_concrete=self.chroma_concrete)
 
-        self.make_resolution(mode=mode)
+        self.make_resolution(scale_type=scale_type)
 
 # http://code.activestate.com/recipes/134892/
 class _Getch:
@@ -468,7 +474,7 @@ if __name__ == "__main__":
 
             new_question_bit = False
             #question = Question(kind='major', mode='chromatic')
-            question = Question(kind='major', mode='diatonic')
+            question = Question(mode='major', scale_type='diatonic')
 
             # debug
             print_stuff(question)
