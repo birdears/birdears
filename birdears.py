@@ -7,6 +7,7 @@ from collections import deque
 
 #from pprint import pprint
 
+DEBUG = True
 
 class QuestionBase:
     """
@@ -39,8 +40,8 @@ class QuestionBase:
     # for i in it.cycle(a.notes):
     #  print(i)
     intervals = [
-        (0, 'P1', 'Perfect Unison'),
-        (1, 'A1', 'Augmented Unison'),
+        (0, 'P1', 'Perfect Unison'), # tonic
+        (1, 'm2', 'Minor Second'),
         (2, 'M2', 'Major Second'),
         (3, 'm3', 'Minor Third'),
         (4, 'M3', 'Major Third'),
@@ -51,8 +52,8 @@ class QuestionBase:
         (9, 'M6', 'Major Sixth'),
         (10, 'm7', 'Minor Seventh'),
         (11, 'M7', 'Major Seventh'),
-        (12, 'P8', 'Perfect Octave'),
-        (13, 'A8', 'Augmented Octave'),
+        (12, 'P8', 'Perfect Octave'), # 1st octave
+        (13, 'A8', 'Minor Ninth'),
         (14, 'M9', 'Major Ninth'),
         (15, 'm10', 'Minor Tenth'),
         (16, 'M10', 'Major Tenth'),
@@ -63,8 +64,8 @@ class QuestionBase:
         (21, 'M13', 'Major Thirteenth'),
         (22, 'm14', 'Minor Fourteenth'),
         (23, 'M14', 'Major Fourteenth'),
-        (24, 'P15', 'Perfect Double-octave'),
-        (25, 'A15', 'Augmented Double-octave'),
+        (24, 'P15', 'Perfect Double-octave'), #2nd octave
+        (25, 'A15', 'Minor Sixteenth'),
         (26, 'M16', 'Major Sixteenth'),
         (27, 'm17', 'Minor Seventeenth'),
         (28, 'M17', 'Major Seventeenth'),
@@ -75,8 +76,8 @@ class QuestionBase:
         (33, 'M20', 'Major Twentieth'),
         (34, 'm21', 'Minor Twenty-first'),
         (35, 'M21', 'Major Twenty-first'),
-        (36, 'P22', 'Perfect Triple-octave'),   # the
-        (37, 'A22', 'Augmented Triple-octave'), # pattern ends here
+        (36, 'P22', 'Perfect Triple-octave'),   # 3rd octave; the
+        (37, 'A22', 'Minor 23'), # pattern ends here-lets compute hence forth
         (38, 'M23', 'Major 23'),
         (39, 'm24', 'Minor 24'),
         (40, 'M24', 'Major 24'),
@@ -87,8 +88,8 @@ class QuestionBase:
         (45, 'M27', 'Major 27'),
         (46, 'm28', 'Minor 28'),
         (47, 'M28', 'Major 28'),
-        (48, 'P29', 'Perfect 29'),
-        (49, 'A29', 'Augmented 29'),
+        (48, 'P29', 'Perfect 29'),  # 4th octave
+        (49, 'A29', 'Minor 30'),
         (50, 'M30', 'Major 30'),
         (51, 'm31', 'Minor 31'),
         (52, 'M31', 'Major 31'),
@@ -212,7 +213,7 @@ class QuestionBase:
 
         return response
 
-    def make_diatonic_interval(self, mode, scale, scale_pitch, chromatic_pitch):
+    def make_diatonic_interval(self, mode, scale, scale_pitch, chromatic, chromatic_pitch):
         """Chooses a diatonic interval for the question."""
 
         interval = dict()
@@ -223,8 +224,11 @@ class QuestionBase:
 
         interval_index = diatonic_mode.index(semitones)
 
-        note_and_octave = scale_pitch[interval_index]
-        note_name = scale[interval_index]
+        #note_and_octave = scale_pitch[interval_index]
+        #note_name = scale[interval_index]
+
+        note_and_octave = chromatic_pitch[semitones]
+        note_name = chromatic[semitones]
 
         interval.update({
             'index': interval_index,
@@ -235,7 +239,7 @@ class QuestionBase:
             'diatonic_index': interval_index,
         })
 
-        self.interval = interval
+        #self.interval = interval
 
         return interval
 
@@ -431,29 +435,27 @@ class Question(QuestionBase):
 
         tonic = choice(self.notes4)
 
-        if scale_type == 'diatonic':
-            self.scale = self.get_diatonic_scale(
-                tonic=tonic, mode=mode, octave=None, descending=None)
-        elif scale_type == 'chromatic':
-            self.scale = self.get_chromatic_scale(
-                tonic=tonic, octave=None, descending=None)
+        #if scale_type == 'diatonic':
+        #    self.scale = self.get_diatonic_scale(tonic=tonic, mode=mode, octave=None, descending=None)
+        #elif scale_type == 'chromatic':
+        #    self.scale = self.get_chromatic_scale(tonic=tonic, octave=None, descending=None)
 
-        self.chromatic = self.get_chromatic_scale(
-            tonic=tonic, octave=None, descending=None)
+        self.scale = self.get_diatonic_scale(tonic=tonic, mode=mode, octave=None, descending=None)
+        self.chromatic = self.get_chromatic_scale(tonic=tonic, octave=None, descending=None)
 
-        self.scale_size = len(self.scale)
+        self.scale_pitch = self.get_diatonic_scale(tonic=tonic, mode=mode, octave=self.octave, descending=descending, n_octaves=n_octaves)
+        self.chromatic_pitch = self.get_chromatic_scale(tonic=tonic, octave=self.octave, descending=descending, n_octaves=n_octaves)
 
-        self.scale_pitch = self.get_diatonic_scale(
-            tonic=tonic, mode=mode, octave=self.octave, descending=None)
-        self.chromatic_pitch = self.get_chromatic_scale(
-            tonic=tonic, octave=self.octave, descending=None)
         self.concrete_tonic = self.scale_pitch[0]
+        self.scale_size = len(self.scale)
 
         if scale_type == 'chromatic':
             self.interval = self.make_chromatic_interval(self.mode, self.chromatic, self.chromatic_pitch)
-        elif scale_type == 'diatonic':
+        #elif scale_type == 'diatonic':
+        else:
             self.interval = self.make_diatonic_interval(self.mode, self.scale,
                                                         self.scale_pitch,
+                                                        self.chromatic,
                                                         self.chromatic_pitch)
 
         self.resolution_pitch = self.make_resolution(self.scale_type, self.scale_pitch, self.interval)
@@ -541,11 +543,12 @@ if __name__ == "__main__":
         if new_question_bit is True:
 
             new_question_bit = False
-            question = Question(mode='major', scale_type='chromatic')
-            #question = Question(mode='major', scale_type='diatonic')
+            #question = Question(mode='major', scale_type='chromatic', descending=True)
+            question = Question(mode='major', scale_type='diatonic', descending=True)
 
             # debug
-            print_stuff(question)
+            if DEBUG:
+                print_stuff(question)
 
             question.play_question()
 
