@@ -206,41 +206,32 @@ class QuestionBase:
 
         if semitones == self.interval['semitones']:
             response.update({'is_correct': True})
-            return response
 
         else:
             response.update({'is_correct': False})
-            return response
 
-    def make_diatonic_interval(self,  chromatic_pitch):
+        return response
+
+    def make_diatonic_interval(self, mode, scale, scale_pitch, chromatic_pitch):
         """Chooses a diatonic interval for the question."""
 
         interval = dict()
 
-        diatonic_mode = self.diatonic_modes[self.mode]
+        diatonic_mode = self.diatonic_modes[mode]
 
         semitones = choice(diatonic_mode)
 
         interval_index = diatonic_mode.index(semitones)
-        degree = interval_index + 1  # I II III IV VI VII VIII
-        #index = randrange(self.scale_size) - 1
 
-        note_and_octave = self.scale_pitch[interval_index]
-        note_name = self.scale[interval_index]
-
-        #is_chromatic = True if not note_octave in [chromatic_pitch[intv] for intv in diatonic_index] else False
-        # FIXME: this is redundant now, lets stay there for debugging porpuses:
-        is_chromatic = True if not note_and_octave in self.scale_pitch else False
-
-        # FIXME: fix this.
-        interval_diatonic_index = diatonic_mode.index(semitones)
+        note_and_octave = scale_pitch[interval_index]
+        note_name = scale[interval_index]
 
         interval.update({
             'index': interval_index,
             'note_and_octave': note_and_octave,
             'note_name': note_name,
             'semitones': semitones,
-            'is_chromatic': is_chromatic,
+            'is_chromatic': False,
             'diatonic_index': interval_index,
         })
 
@@ -248,24 +239,23 @@ class QuestionBase:
 
         return interval
 
-    def make_chromatic_interval(self,  chromatic_pitch):
+    def make_chromatic_interval(self, mode, chromatic, chromatic_pitch):
         """Chooses a chromatic interval for the question."""
 
         interval = dict()
 
-        diatonic_mode = self.diatonic_modes[self.mode]
+        diatonic_mode = self.diatonic_modes[mode]
 
         semitones = choice(self.chromatic_type)
         interval_index = semitones
 
-        # FIXME : these should be passed to function instead
-        note_and_octave = self.chromatic_pitch[interval_index]
-        note_name = self.chromatic[interval_index]
+        note_and_octave = chromatic_pitch[interval_index]
+        note_name = chromatic[interval_index]
 
-        is_chromatic = True if not note_and_octave in [
-            chromatic_pitch[intv] for intv in diatonic_mode] else False
+        is_chromatic = True if not semitones in diatonic_mode else False
 
-        if is_chromatic:  # TODO: check if augmented forth is really correct in question resolution
+        if is_chromatic:
+            # here we are rounding it to the next ditonic degree:
             if semitones <= self.max_semitones_resolve_below:
                 interval_diatonic_index = diatonic_mode.index(semitones - 1)
             else:
@@ -282,21 +272,15 @@ class QuestionBase:
             'diatonic_index': interval_diatonic_index,
         })
 
-        self.interval = interval
-
         return interval
 
-    def make_resolution(self, scale_type, interval=None):
+    def make_resolution(self, scale_type, scale_pitch, interval):
 
         resolution_pitch = []
-        interval = self.interval
-        scale_pitch = self.scale_pitch
-        # FIXME: we have this in octave; Resolution: Db3─Db3,
 
         if scale_type is 'diatonic':
-            # if self.ival_semitones <= 6:
+
             if interval['semitones'] <= self.max_semitones_resolve_below:
-                # hotfix
                 resolution_pitch = scale_pitch[:interval['index'] + 1]
                 resolution_pitch.reverse()
             else:
@@ -307,14 +291,11 @@ class QuestionBase:
             if interval['semitones'] <= self.max_semitones_resolve_below:
                 if interval['is_chromatic']:
                     # hotfix #2 FIXME
-                    resolution_pitch = scale_pitch[:
-                                                         interval['diatonic_index'] + 1]
+                    resolution_pitch = scale_pitch[: interval['diatonic_index'] + 1]
                     resolution_pitch.append(
                         self.chromatic_pitch[interval['index']])
                 else:
-                    # hotfix FIXME
-                    resolution_pitch = scale_pitch[:
-                                                         interval['diatonic_index'] + 1]
+                    resolution_pitch = scale_pitch[: interval['diatonic_index'] + 1]
 
                 resolution_pitch.reverse()
 
@@ -325,12 +306,13 @@ class QuestionBase:
                 resolution_pitch.extend(
                     self.scale_pitch[interval['diatonic_index']:])
 
-        if len(resolution_pitch) == 1:
-            repeat_unison = resolution_pitch[0]
-            resolution_pitch.append(repeat_unison)
+        # unisson and octave
+        if interval['semitones'] == 0:
+            resolution_pitch.append(scale_pitch[0])
+        elif interval['semitones'] % 12 == 0:
+            resolution_pitch.append(scale_pitch[-1]) #FIXME: multipe octaves
 
-        self.resolution_pitch = resolution_pitch
-        return self.resolution_pitch
+        return resolution_pitch
 
     def append_octave_to_scale(self, scale, starting_octave, descending=None):
         """Inserts scientific octave number to the notes on a the given scale.
@@ -468,13 +450,13 @@ class Question(QuestionBase):
         self.concrete_tonic = self.scale_pitch[0]
 
         if scale_type == 'chromatic':
-            self.make_chromatic_interval(
-                chromatic_pitch=self.chromatic_pitch)
+            self.interval = self.make_chromatic_interval(self.mode, self.chromatic, self.chromatic_pitch)
         elif scale_type == 'diatonic':
-            self.make_diatonic_interval(
-                chromatic_pitch=self.chromatic_pitch)
+            self.interval = self.make_diatonic_interval(self.mode, self.scale,
+                                                        self.scale_pitch,
+                                                        self.chromatic_pitch)
 
-        self.make_resolution(scale_type=scale_type)
+        self.resolution_pitch = self.make_resolution(self.scale_type, self.scale_pitch, self.interval)
 
 # http://code.activestate.com/recipes/134892/
 
