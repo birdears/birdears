@@ -218,7 +218,7 @@ class QuestionBase:
 
         interval = dict()
 
-        diatonic_mode = self.diatonic_modes[mode][:]
+        diatonic_mode = list(self.diatonic_modes[mode])
 
         step_network = diatonic_mode
 
@@ -259,15 +259,41 @@ class QuestionBase:
 
         interval = dict()
 
-        diatonic_mode = self.diatonic_modes[mode]
+        diatonic_mode = list(self.diatonic_modes[mode])
+        chromatic_type = list(self.chromatic_type)
 
-        semitones = choice(self.chromatic_type)
+        step_network = diatonic_mode
+        chromatic_network = chromatic_type
+
+        if n_octaves:
+            for i in range(1, n_octaves):
+                step_network.extend([semitones + 12 * i for semitones in diatonic_mode[1:]])
+                chromatic_network.extend([semitones + 12 * i for semitones in chromatic_type[1:]])
+            #semitones = choice(step_network)
+            #interval_index = step_network.index(semitones)
+        else: n_octaves = 1
+        #else:
+        #semitones = choice(diatonic_mode)
+
+        semitones = choice(chromatic_network)
+        interval_index = chromatic_network.index(semitones)
+
+        #thiwwas copied from make_diatonic_interval ^ end.
+
+
+        #semitones = choice(self.chromatic_type)
         interval_index = semitones
 
         note_and_octave = chromatic_pitch[interval_index]
         note_name = chromatic[interval_index]
 
         is_chromatic = True if not semitones in diatonic_mode else False
+
+        #FIXME
+        if semitones < 8:
+            simple_index = semitones
+        else:
+            simple_index = semitones/7
 
         if is_chromatic:
             # here we are rounding it to the next ditonic degree:
@@ -291,63 +317,56 @@ class QuestionBase:
         return interval
 
     #def make_resolution(self, scale_type, mode, tonic_pitch, scale_pitch=None):
-    def make_resolution(self, scale_type, mode, scale_pitch, tonic, interval):
+    def make_resolution(self, scale_type, mode, tonic, interval):
 
         resolution_pitch = []
 
-        #if interval['semitones'] > 12:
         distance = int(interval['semitones']/12)
-
         res_octave = interval['tonic_octave'] + distance
-        scale_pitch = self.get_diatonic_scale(tonic=tonic,mode=mode,octave=res_octave)
 
-        #FIXME: this doenst works for chromatic notes
-        #
-        # do this:
-        # create a chromatic scale in the same manner; get semitones by it
-        # read the inddex from diatonic_modes, then do the rest
-        # have a good night.
-        #
-        local_idx = scale_pitch.index(interval['note_and_octave'])
-        print("FREAK:{}".format(scale_pitch))
-        print("FREAkkkK:{}".format(local_idx))
-        frea_semitones = self.diatonic_modes[mode][local_idx]
         if scale_type is 'diatonic':
 
-            #if interval['semitones'] <= self.max_semitones_resolve_below:
+            scale_pitch = self.get_diatonic_scale(tonic=tonic,mode=mode,octave=res_octave)
+            local_idx = scale_pitch.index(interval['note_and_octave'])
+            frea_semitones = self.diatonic_modes[mode][local_idx]
+
             if frea_semitones <= self.max_semitones_resolve_below:
-                #resolution_pitch = scale_pitch[:interval['index'] + 1]
                 resolution_pitch = scale_pitch[:local_idx + 1]
                 resolution_pitch.reverse()
             else:
-                #resolution_pitch = scale_pitch[interval['index']:]
                 resolution_pitch = scale_pitch[local_idx:]
 
         elif scale_type is 'chromatic':
 
-            #if interval['semitones'] <= self.max_semitones_resolve_below:
+            chromatic_pitch = self.get_chromatic_scale(tonic=tonic,octave=res_octave)
+            frea_semitones = chromatic_pitch.index(interval['note_and_octave'])
+            scale_pitch = self.get_diatonic_scale(tonic=tonic,mode=mode,octave=res_octave)
+
             if frea_semitones <= self.max_semitones_resolve_below:
                 if interval['is_chromatic']:
                     # hotfix #2 FIXME
-                    #resolution_pitch = scale_pitch[: interval['diatonic_index'] + 1]
-                    resolution_pitch = scale_pitch[: local_idx + 1]
-                    resolution_pitch.append(
-                        #self.chromatic_pitch[interval['index']])
-                        self.chromatic_pitch[local_idx])
+                    resolution_pitch = scale_pitch[: interval['diatonic_index'] + 1]
+                    resolution_pitch.append(scale_pitch[frea_semitones])
                 else:
-                    #resolution_pitch = scale_pitch[: interval['diatonic_index'] + 1]
-                    resolution_pitch = scale_pitch[: local_idx + 1]
+                    resolution_pitch = scale_pitch[: interval['diatonic_index'] + 1]
 
                 resolution_pitch.reverse()
 
             else:
                 if interval['is_chromatic']:
-                    resolution_pitch.append(
-                        #self.chromatic_pitch[interval['index']])
-                        self.chromatic_pitch[local_idx])
-                resolution_pitch.extend(
-                    #self.scale_pitch[interval['diatonic_index']:])
-                    self.scale_pitch[local_idx])
+                    resolution_pitch.append(chromatic_pitch[frea_semitones])
+
+                    fake_dia_idx=self.diatonic_modes[mode].index(frea_semitones+1)
+                else:
+                    fake_dia_idx=self.diatonic_modes[mode].index(frea_semitones)
+
+                resolution_pitch.extend(scale_pitch[fake_dia_idx or frea_semitones:])
+                    #self.scale_pitch[local_idx])
+
+        print("FREAK:{}".format(scale_pitch))
+        print("FREAkkkK:{}".format(frea_semitones))
+        print("FREAkksssdaaahkK:{}".format(interval))
+        print("FREaK: {} {}".format(res_octave, distance))
 
         # unisson and octave
         #if interval['semitones'] == 0:
@@ -433,7 +452,7 @@ class QuestionBase:
     def get_diatonic_scale(self, tonic, mode, octave=None, n_octaves=None, descending=None, dont_repeat_tonic=None):
         """Returns a diatonic scale from tonic and mode"""
 
-        diatonic_mode = self.diatonic_modes[mode]
+        diatonic_mode = list(self.diatonic_modes[mode])
 
         #chromatic = self.get_chromatic_scale(tonic, n_octaves=n_octaves)
         chromatic = self.get_chromatic_scale(tonic)
@@ -476,11 +495,6 @@ class Question(QuestionBase):
 
         tonic = choice(self.notes4)
 
-        #if scale_type == 'diatonic':
-        #    self.scale = self.get_diatonic_scale(tonic=tonic, mode=mode, octave=None, descending=None)
-        #elif scale_type == 'chromatic':
-        #    self.scale = self.get_chromatic_scale(tonic=tonic, octave=None, descending=None)
-
         self.scale = self.get_diatonic_scale(tonic=tonic, mode=mode, octave=None, descending=descending, n_octaves=n_octaves)
         self.chromatic = self.get_chromatic_scale(tonic=tonic, octave=None, descending=descending, n_octaves=n_octaves)
 
@@ -491,7 +505,7 @@ class Question(QuestionBase):
         self.scale_size = len(self.scale)
 
         if scale_type == 'chromatic':
-            self.interval = self.make_chromatic_interval(self.mode, self.chromatic, self.chromatic_pitch, self.octave)
+            self.interval = self.make_chromatic_interval(self.mode, self.chromatic, self.chromatic_pitch, self.octave, n_octaves=n_octaves)
         #elif scale_type == 'diatonic':
         else:
             self.interval = self.make_diatonic_interval(self.mode, self.scale,
@@ -502,7 +516,7 @@ class Question(QuestionBase):
                                                         n_octaves=n_octaves)
 
         #FIXME
-        self.resolution_pitch = self.make_resolution(self.scale_type, self.mode, self.scale_pitch, tonic, self.interval)
+        self.resolution_pitch = self.make_resolution(self.scale_type, self.mode, tonic, self.interval)
 
 # http://code.activestate.com/recipes/134892/
 
