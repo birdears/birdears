@@ -233,16 +233,29 @@ class QuestionBase:
         note_and_octave = chromatic_pitch[semitones]
         note_name = chromatic[semitones]
 
+        #interval.update({
+        #    'index': interval_index,
+        #    'tonic_octave': octave,
+        #    'note_and_octave': note_and_octave,
+        #    'note_name': note_name,
+        #    'semitones': semitones,
+        #    'is_chromatic': False,
+        #    'diatonic_index': interval_index,
+        #})
+        chromatic_offset = semitones if semitones < 12 else semitones % 12
+
+        interval_octave = octave + int(semitones / 12)
         interval.update({
             'index': interval_index,
             'tonic_octave': octave,
+            'interval_octave': interval_octave,
             'note_and_octave': note_and_octave,
+            'chromatic_offset':chromatic_offset,
             'note_name': note_name,
             'semitones': semitones,
             'is_chromatic': False,
             'diatonic_index': interval_index,
         })
-
         return interval
 
     def make_chromatic_interval(self, mode, chromatic, chromatic_pitch, octave, n_octaves=None):
@@ -569,7 +582,7 @@ if __name__ == "__main__":
             #question = Question(mode='major', scale_type='diatonic', descending=True)
             #question = Question(mode='major', scale_type='diatonic', octave=[3,5], n_octaves=2)
             #question = Question(mode='major', scale_type='chromatic', octave=[3,5], n_octaves=2)
-            question = Question(mode='major', scale_type='chromatic', octave=[3,5], n_octaves=2)
+            question = Question(mode='major', scale_type='diatonic', octave=[3,5], n_octaves=2)
 
             # debug
             if DEBUG:
