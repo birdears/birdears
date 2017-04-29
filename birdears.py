@@ -213,12 +213,15 @@ class QuestionBase:
 
         return response
 
-    def make_diatonic_interval(self, mode, scale, scale_pitch, chromatic, chromatic_pitch, octave, n_octaves=None):
+    def make_diatonic_interval(self, mode, scale, scale_pitch, chromatic, chromatic_pitch, octave, n_octaves=None, descending=None):
         """Chooses a diatonic interval for the question."""
 
         interval = dict()
 
         diatonic_mode = list(self.diatonic_modes[mode])
+        if descending:
+            diatonic_mode = [12-x for x in diatonic_mode]
+            diatonic_mode.reverse()
 
         step_network = diatonic_mode
 
@@ -233,18 +236,15 @@ class QuestionBase:
         note_and_octave = chromatic_pitch[semitones]
         note_name = chromatic[semitones]
 
-        #interval.update({
-        #    'index': interval_index,
-        #    'tonic_octave': octave,
-        #    'note_and_octave': note_and_octave,
-        #    'note_name': note_name,
-        #    'semitones': semitones,
-        #    'is_chromatic': False,
-        #    'diatonic_index': interval_index,
-        #})
         chromatic_offset = semitones if semitones < 12 else semitones % 12
 
-        interval_octave = octave + int(semitones / 12)
+        #interval_octave = octave + int(semitones / 12)
+        if not descending:
+            interval_octave = octave + int(semitones / 12)
+        else:
+            interval_octave = octave - int(semitones / 12)
+
+        interval_diatonic_index = diatonic_mode.index(chromatic_offset)
         interval.update({
             'index': interval_index,
             'tonic_octave': octave,
@@ -254,16 +254,23 @@ class QuestionBase:
             'note_name': note_name,
             'semitones': semitones,
             'is_chromatic': False,
-            'diatonic_index': interval_index,
+            'is_descending': False if not descending else True,
+            'diatonic_index' : interval_diatonic_index,
         })
         return interval
 
-    def make_chromatic_interval(self, mode, chromatic, chromatic_pitch, octave, n_octaves=None):
+    def make_chromatic_interval(self, mode, chromatic, chromatic_pitch, octave, n_octaves=None, descending=None):
         """Chooses a chromatic interval for the question."""
 
         interval = dict()
 
         diatonic_mode = list(self.diatonic_modes[mode])
+        if descending:
+            diatonic_mode = [12-x for x in diatonic_mode]
+            diatonic_mode.reverse()
+
+        print(diatonic_mode)
+
         chromatic_type = list(self.chromatic_type)
 
         step_network = diatonic_mode
@@ -283,9 +290,15 @@ class QuestionBase:
         note_and_octave = chromatic_pitch[interval_index]
         note_name = chromatic[interval_index]
 
-        is_chromatic = True if not semitones in diatonic_mode else False
-
         chromatic_offset = semitones if semitones < 12 else semitones % 12
+
+        # this bugs as descending intervals differ to our diatonic_modes;
+        # a solution would be to invert the diatonic_mode subtracting each
+        # of it's elements by 12
+        is_chromatic = True if not chromatic_offset in diatonic_mode else False
+        #FIXME pls
+        #is_chromatic = True if not note_name in self.get_diatonic_scale(tonic=note_name, mode=mode) else False
+
         if is_chromatic:
             # here we are rounding it to the next ditonic degree:
             if chromatic_offset <= self.max_semitones_resolve_below:
@@ -295,7 +308,11 @@ class QuestionBase:
         else:
             interval_diatonic_index = diatonic_mode.index(chromatic_offset)
 
-        interval_octave = octave + int(semitones / 12)
+        if not descending:
+            interval_octave = octave + int(semitones / 12)
+        else:
+            interval_octave = octave - int(semitones / 12)
+
         interval.update({
             'index': interval_index,
             'tonic_octave': octave,
@@ -305,6 +322,7 @@ class QuestionBase:
             'note_name': note_name,
             'semitones': semitones,
             'is_chromatic': is_chromatic,
+            'is_descending': False if not descending else True,
             'diatonic_index': interval_diatonic_index,
         })
 
@@ -316,33 +334,36 @@ class QuestionBase:
 
         diatonic_mode = list(self.diatonic_modes[mode])
 
-        scale_pitch = self.get_diatonic_scale(tonic,mode,interval['interval_octave'])
+        scale_pitch = self.get_diatonic_scale(tonic=tonic,mode=mode,octave=interval['interval_octave'],descending=descending)
         self.res_scale = scale_pitch
 
         if scale_type is 'diatonic':
 
-            local_idx = scale_pitch.index(interval['note_and_octave'])
+            #FIXME LOLZ
+            #local_idx = scale_pitch.index(interval['note_and_octave'])
 
             if interval['chromatic_offset'] <= self.max_semitones_resolve_below:
-                resolution_pitch = scale_pitch[:local_idx + 1]
+                resolution_pitch = scale_pitch[:interval['diatonic_index'] + 1]
                 resolution_pitch.reverse()
             else:
-                resolution_pitch = scale_pitch[local_idx:]
+                resolution_pitch = scale_pitch[interval['diatonic_index']:]
 
         elif scale_type is 'chromatic':
 
             if interval['chromatic_offset'] <= self.max_semitones_resolve_below:
                 if interval['is_chromatic']:
+                        #NOTE:working for descending minor 2nd
                     resolution_pitch.extend(scale_pitch[: interval['diatonic_index']+1])
                     resolution_pitch.append(interval['note_and_octave'])
                 else:
                     resolution_pitch.extend(scale_pitch[: interval['diatonic_index']+1])
-                resolution_pitch.reverse()
+                resolution_pitch.reverse() #NOTE:working for descending perfect 4th
 
             else:
                 if interval['is_chromatic']:
                     resolution_pitch.append(interval['note_and_octave'])
 
+                #the else(not chromatic) works well with perfect 5th
                 resolution_pitch.extend(scale_pitch[interval['diatonic_index']:])
 
         # unisson and octave
@@ -482,7 +503,7 @@ class Question(QuestionBase):
         self.scale_size = len(self.scale)
 
         if scale_type == 'chromatic':
-            self.interval = self.make_chromatic_interval(self.mode, self.chromatic, self.chromatic_pitch, self.octave, n_octaves=n_octaves)
+            self.interval = self.make_chromatic_interval(self.mode, self.chromatic, self.chromatic_pitch, self.octave, n_octaves=n_octaves, descending=descending)
         #elif scale_type == 'diatonic':
         else:
             self.interval = self.make_diatonic_interval(self.mode, self.scale,
@@ -490,10 +511,13 @@ class Question(QuestionBase):
                                                         self.chromatic,
                                                         self.chromatic_pitch,
                                                         self.octave,
-                                                        n_octaves=n_octaves)
+                                                        n_octaves=n_octaves, descending=descending)
 
         #FIXME
-        self.resolution_pitch = self.make_resolution(self.scale_type, self.mode, self.scale[0], self.interval)
+        self.resolution_pitch = \
+            self.make_resolution(scale_type=self.scale_type, mode=self.mode,
+                                 tonic=self.scale[0], interval=self.interval,
+                                 descending=descending)
 
 # http://code.activestate.com/recipes/134892/
 
@@ -581,8 +605,8 @@ if __name__ == "__main__":
             #question = Question(mode='major', scale_type='chromatic', descending=True)
             #question = Question(mode='major', scale_type='diatonic', descending=True)
             #question = Question(mode='major', scale_type='diatonic', octave=[3,5], n_octaves=2)
-            #question = Question(mode='major', scale_type='chromatic', octave=[3,5], n_octaves=2)
-            question = Question(mode='major', scale_type='diatonic', octave=[3,5], n_octaves=2)
+            question = Question(mode='major', scale_type='chromatic', octave=[4,6], n_octaves=2, descending=True)
+            #question = Question(mode='major', scale_type='diatonic', octave=[3,5], n_octaves=2)
 
             # debug
             if DEBUG:
