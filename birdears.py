@@ -302,6 +302,12 @@ class QuestionBase:
         scale_pitch = self.get_diatonic_scale(tonic=tonic,mode=mode,octave=res_octave)
 
         #FIXME: this doenst works for chromatic notes
+        #
+        # do this:
+        # create a chromatic scale in the same manner; get semitones by it
+        # read the inddex from diatonic_modes, then do the rest
+        # have a good night.
+        #
         local_idx = scale_pitch.index(interval['note_and_octave'])
         print("FREAK:{}".format(scale_pitch))
         print("FREAkkkK:{}".format(local_idx))
