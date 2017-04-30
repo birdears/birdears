@@ -5,9 +5,276 @@ import time
 from random import randrange, choice
 from collections import deque
 
-#from pprint import pprint
-
 DEBUG = True
+
+notes = ['C', ('C#', 'Db'), 'D', ('D#', 'Eb'), 'E', 'F',
+         ('F#', 'Gb'), 'G', ('G#', 'Ab'), 'A', ('A#', 'Bb'), 'B']
+
+notes2 = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
+notes3 = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B']
+
+notes4 = ['C', 'C#', 'Db', 'D', 'D#', 'Eb', 'E', 'F',
+          'F#', 'Gb', 'G', 'G#', 'Ab', 'A', 'A#', 'Bb', 'B']
+
+intervals = [
+    (0, 'P1', 'Perfect Unison'),  # tonic
+    (1, 'm2', 'Minor Second'),
+    (2, 'M2', 'Major Second'),
+    (3, 'm3', 'Minor Third'),
+    (4, 'M3', 'Major Third'),
+    (5, 'P4', 'Perfect Fourth'),
+    (6, 'A4', 'Augmented Fourth'),
+    (7, 'P5', 'Perfect Fifth'),
+    (8, 'm6', 'Minor Sixth'),
+    (9, 'M6', 'Major Sixth'),
+    (10, 'm7', 'Minor Seventh'),
+    (11, 'M7', 'Major Seventh'),
+    (12, 'P8', 'Perfect Octave'),  # 1st octave
+    (13, 'A8', 'Minor Ninth'),
+    (14, 'M9', 'Major Ninth'),
+    (15, 'm10', 'Minor Tenth'),
+    (16, 'M10', 'Major Tenth'),
+    (17, 'P11', 'Perfect Eleventh'),
+    (18, 'A11', 'Augmented Eleventh'),
+    (19, 'P12', 'Perfect Twelfth'),
+    (20, 'm13', 'Minor Thirteenth'),
+    (21, 'M13', 'Major Thirteenth'),
+    (22, 'm14', 'Minor Fourteenth'),
+    (23, 'M14', 'Major Fourteenth'),
+    (24, 'P15', 'Perfect Double-octave'),  #2nd octave
+    (25, 'A15', 'Minor Sixteenth'),
+    (26, 'M16', 'Major Sixteenth'),
+    (27, 'm17', 'Minor Seventeenth'),
+    (28, 'M17', 'Major Seventeenth'),
+    (29, 'P18', 'Perfect Eighteenth'),
+    (30, 'A18', 'Augmented Eighteenth'),
+    (31, 'P19', 'Perfect Nineteenth'),
+    (32, 'm20', 'Minor Twentieth'),
+    (33, 'M20', 'Major Twentieth'),
+    (34, 'm21', 'Minor Twenty-first'),
+    (35, 'M21', 'Major Twenty-first'),
+    (36, 'P22', 'Perfect Triple-octave'),   # 3rd octave; the
+    (37, 'A22', 'Minor 23'),  # pattern ends here-lets compute hence forth
+    (38, 'M23', 'Major 23'),
+    (39, 'm24', 'Minor 24'),
+    (40, 'M24', 'Major 24'),
+    (41, 'P25', 'Perfect 25'),
+    (42, 'A25', 'Augmented 25'),
+    (43, 'P26', 'Perfect 26'),
+    (44, 'm27', 'Minor 27'),
+    (45, 'M27', 'Major 27'),
+    (46, 'm28', 'Minor 28'),
+    (47, 'M28', 'Major 28'),
+    (48, 'P29', 'Perfect 29'),  # 4th octave
+    (49, 'A29', 'Minor 30'),
+    (50, 'M30', 'Major 30'),
+    (51, 'm31', 'Minor 31'),
+    (52, 'M31', 'Major 31'),
+    (53, 'P32', 'Perfect 32'),
+    (54, 'A32', 'Augmented 32'),
+    (55, 'P33', 'Perfect 33'),
+    (56, 'm34', 'Minor 34'),
+    (57, 'M34', 'Major 34'),
+    (58, 'm35', 'Minor 35'),
+    (59, 'M35', 'Major 35'),
+    (60, 'P36', 'Perfect 36')
+]
+
+chromatic_type = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
+diatonic_modes = {
+    'major': (0, 2, 4, 5, 7, 9, 11, 12),
+    'minor': (0, 2, 3, 5, 7, 8, 10, 12),
+}
+
+keyboard_indices = {
+    'diatonic': {
+        'minor': 'z xc v bn m Z XC V BN M',
+        'major': 'z x cv b n mZ X CV B NM'
+    },
+    'chromatic': {
+        'minor': "zsxcfvgbnjmkZSXCFVGBNJMK",
+        'major': "zsxdcvgbhnjmZSXDCVGBHNJM",
+    }
+}
+
+max_semitones_resolve_below = 5
+
+def _get_chromatic_idx(note):
+
+    global notes2, notes3
+
+    use_flat = -1 if (note == 'F' or 'b' in note) else 0
+
+    # FIXME
+    if note in notes2:
+        note_index = notes2.index(note)
+    elif note in notes3:
+        note_index = notes3.index(note)
+    else:
+        note_index = False
+
+    return note_index
+
+def get_chromatic_scale(tonic, octave=None, n_octaves=None, descending=None, dont_repeat_tonic=None):
+    """Returns a chromatic scale from tonic."""
+
+    global notes3, notes2
+
+    tonic_index = _get_chromatic_idx(tonic)
+
+    if tonic == 'F' or 'b' in tonic:
+        notes = deque(notes3)
+    else:
+        notes = deque(notes2)
+
+    notes.rotate(-(tonic_index))
+
+    if n_octaves:
+        chromatic = list(notes * n_octaves)
+    else:
+        chromatic = list(notes)
+
+    if not dont_repeat_tonic:
+        chromatic.append(chromatic[0])
+
+    if descending:
+        chromatic.reverse()
+
+    if octave:
+        chromatic = append_octave_to_scale(chromatic, octave, descending)
+
+    return chromatic
+
+def get_diatonic_scale(tonic, mode, octave=None, n_octaves=None, descending=None, dont_repeat_tonic=None):
+    """Returns a diatonic scale from tonic and mode"""
+
+    global diatonic_modes
+    diatonic_mode = list(diatonic_modes[mode])
+
+    chromatic = get_chromatic_scale(tonic)
+
+    diatonic = [chromatic[semitones] for semitones in diatonic_mode[:-1]]
+
+    if n_octaves:
+        diatonic = diatonic * n_octaves
+
+    if not dont_repeat_tonic:
+        diatonic.append(chromatic[diatonic_mode[-1]])
+
+    if descending:
+        diatonic.reverse()
+
+    if octave:
+        diatonic = append_octave_to_scale(diatonic, octave, descending)
+
+    return diatonic
+
+def append_octave_to_scale(scale, starting_octave, descending=None):
+    """Inserts scientific octave number to the notes on a the given scale.
+    """
+
+    next_octave = 1 if not descending else -1
+
+    scale_with_octave = []
+    changing_note = None
+
+    current_octave = starting_octave
+
+    if not descending:
+        for closest in ['C', 'C#', 'Db']:
+            if closest in scale:
+                changing_note = closest
+                break
+    else:
+        for closest in ['B', 'Bb', 'A#']:
+            if closest in scale:
+                changing_note = closest
+                break
+
+    for idx, note in enumerate(scale):
+        if idx > 0 and note == changing_note:
+            current_octave += next_octave
+
+        scale_with_octave.append("{}{}".format(note, current_octave))
+
+    return scale_with_octave
+
+class Interval:
+
+    def __init__(self, mode, tonic, octave, chromatic=None, n_octaves=None, descending=None):
+        """Chooses a chromatic interval for the question."""
+
+        global diatonic_modes, chromatic_type, max_semitones_resolve_below
+
+        diatonic_mode = list(diatonic_modes[mode])
+
+        if descending:
+            diatonic_mode = [12-x for x in diatonic_mode]
+            diatonic_mode.reverse()
+
+        chromatic_type = list(chromatic_type)
+
+        step_network = diatonic_mode
+        chromatic_network = chromatic_type
+
+        if n_octaves:
+            for i in range(1, n_octaves):
+                step_network.extend([semitones + 12 * i for semitones in diatonic_mode[1:]])
+                chromatic_network.extend([semitones + 12 * i for semitones in chromatic_type[1:]])
+        else:
+            n_octaves = 1
+
+        if not chromatic:
+            semitones = choice(step_network)
+        else:
+            semitones = choice(chromatic_network)
+
+        chromatic_scale = get_chromatic_scale(tonic=tonic, octave=None,
+                                                n_octaves=n_octaves,
+                                                descending=descending)
+
+        note_name = "{}".format(chromatic_scale[semitones])
+        note_and_octave = "{}{}".format(note_name, octave)
+
+        chromatic_offset = semitones if semitones < 12 else semitones % 12
+        distance = dict({
+            'octaves' : int(semitones / 12),
+            'semitones' : int(semitones % 12)
+        })
+
+        is_chromatic = True if not chromatic_offset in diatonic_mode else False
+
+        if is_chromatic:
+            # here we are rounding it to the next diatonic degree, to insert
+            # it after:
+            if chromatic_offset <= max_semitones_resolve_below:
+                interval_diatonic_index = diatonic_mode.index(chromatic_offset - 1)
+            else:
+                interval_diatonic_index = diatonic_mode.index(chromatic_offset + 1)
+        else:
+            interval_diatonic_index = diatonic_mode.index(chromatic_offset)
+
+        if not descending:
+            interval_octave = int(octave) + int(semitones / 12)
+        else:
+            interval_octave = int(octave) - int(semitones / 12)
+
+        self.interval_data = dict()
+
+        self.interval_data.update({
+            #'index': interval_index, #?
+            'tonic_octave': octave,
+            'interval_octave': interval_octave,
+            'chromatic_offset':chromatic_offset,
+            'note_and_octave': note_and_octave,
+            'note_name': note_name,
+            'semitones': semitones,
+            'is_chromatic': is_chromatic,
+            'is_descending': False if not descending else True,
+            'diatonic_index': interval_diatonic_index,
+        })
+
+        #return interval
 
 class QuestionBase:
     """
@@ -18,107 +285,101 @@ class QuestionBase:
 
     Attributes
     ----------
-
     notes : list
             list of notes and enharmonics to be used by the class
 
     """
 
     # maybe we'd better use circle of fifths here
-    notes = ['C', ('C#', 'Db'), 'D', ('D#', 'Eb'), 'E', 'F',
-             ('F#', 'Gb'), 'G', ('G#', 'Ab'), 'A', ('A#', 'Bb'), 'B']
-
-    notes2 = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
-    notes3 = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B']
-
-    notes4 = ['C', 'C#', 'Db', 'D', 'D#', 'Eb', 'E', 'F',
-              'F#', 'Gb', 'G', 'G#', 'Ab', 'A', 'A#', 'Bb', 'B']
-
-    # from birdears import *
-    # import iterools as it
-    # a = QuestionBase()
-    # for i in it.cycle(a.notes):
-    #  print(i)
-    intervals = [
-        (0, 'P1', 'Perfect Unison'), # tonic
-        (1, 'm2', 'Minor Second'),
-        (2, 'M2', 'Major Second'),
-        (3, 'm3', 'Minor Third'),
-        (4, 'M3', 'Major Third'),
-        (5, 'P4', 'Perfect Fourth'),
-        (6, 'A4', 'Augmented Fourth'),
-        (7, 'P5', 'Perfect Fifth'),
-        (8, 'm6', 'Minor Sixth'),
-        (9, 'M6', 'Major Sixth'),
-        (10, 'm7', 'Minor Seventh'),
-        (11, 'M7', 'Major Seventh'),
-        (12, 'P8', 'Perfect Octave'), # 1st octave
-        (13, 'A8', 'Minor Ninth'),
-        (14, 'M9', 'Major Ninth'),
-        (15, 'm10', 'Minor Tenth'),
-        (16, 'M10', 'Major Tenth'),
-        (17, 'P11', 'Perfect Eleventh'),
-        (18, 'A11', 'Augmented Eleventh'),
-        (19, 'P12', 'Perfect Twelfth'),
-        (20, 'm13', 'Minor Thirteenth'),
-        (21, 'M13', 'Major Thirteenth'),
-        (22, 'm14', 'Minor Fourteenth'),
-        (23, 'M14', 'Major Fourteenth'),
-        (24, 'P15', 'Perfect Double-octave'), #2nd octave
-        (25, 'A15', 'Minor Sixteenth'),
-        (26, 'M16', 'Major Sixteenth'),
-        (27, 'm17', 'Minor Seventeenth'),
-        (28, 'M17', 'Major Seventeenth'),
-        (29, 'P18', 'Perfect Eighteenth'),
-        (30, 'A18', 'Augmented Eighteenth'),
-        (31, 'P19', 'Perfect Nineteenth'),
-        (32, 'm20', 'Minor Twentieth'),
-        (33, 'M20', 'Major Twentieth'),
-        (34, 'm21', 'Minor Twenty-first'),
-        (35, 'M21', 'Major Twenty-first'),
-        (36, 'P22', 'Perfect Triple-octave'),   # 3rd octave; the
-        (37, 'A22', 'Minor 23'), # pattern ends here-lets compute hence forth
-        (38, 'M23', 'Major 23'),
-        (39, 'm24', 'Minor 24'),
-        (40, 'M24', 'Major 24'),
-        (41, 'P25', 'Perfect 25'),
-        (42, 'A25', 'Augmented 25'),
-        (43, 'P26', 'Perfect 26'),
-        (44, 'm27', 'Minor 27'),
-        (45, 'M27', 'Major 27'),
-        (46, 'm28', 'Minor 28'),
-        (47, 'M28', 'Major 28'),
-        (48, 'P29', 'Perfect 29'),  # 4th octave
-        (49, 'A29', 'Minor 30'),
-        (50, 'M30', 'Major 30'),
-        (51, 'm31', 'Minor 31'),
-        (52, 'M31', 'Major 31'),
-        (53, 'P32', 'Perfect 32'),
-        (54, 'A32', 'Augmented 32'),
-        (55, 'P33', 'Perfect 33'),
-        (56, 'm34', 'Minor 34'),
-        (57, 'M34', 'Major 34'),
-        (58, 'm35', 'Minor 35'),
-        (59, 'M35', 'Major 35'),
-        (60, 'P36', 'Perfect 36')
-    ]
-
-    chromatic_type = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-    diatonic_modes = {
-        'major': [0, 2, 4, 5, 7, 9, 11, 12],
-        'minor': [0, 2, 3, 5, 7, 8, 10, 12],
-    }
-
-    keyboard_indices = {
-        'diatonic': {
-            'minor': 'z xc v bn m Z XC V BN M',
-            'major': 'z x cv b n mZ X CV B NM'
-        },
-        'chromatic': {
-            'minor': "zsxcfvgbnjmkZSXCFVGBNJMK",
-            'major': "zsxdcvgbhnjmZSXDCVGBHNJM",
-        }
-    }
+    # notes = ['C', ('C#', 'Db'), 'D', ('D#', 'Eb'), 'E', 'F',
+    #          ('F#', 'Gb'), 'G', ('G#', 'Ab'), 'A', ('A#', 'Bb'), 'B']
+    #
+    # notes2 = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
+    # notes3 = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B']
+    #
+    # notes4 = ['C', 'C#', 'Db', 'D', 'D#', 'Eb', 'E', 'F',
+    #           'F#', 'Gb', 'G', 'G#', 'Ab', 'A', 'A#', 'Bb', 'B']
+    #
+    # intervals = [
+    #     (0, 'P1', 'Perfect Unison'), # tonic
+    #     (1, 'm2', 'Minor Second'),
+    #     (2, 'M2', 'Major Second'),
+    #     (3, 'm3', 'Minor Third'),
+    #     (4, 'M3', 'Major Third'),
+    #     (5, 'P4', 'Perfect Fourth'),
+    #     (6, 'A4', 'Augmented Fourth'),
+    #     (7, 'P5', 'Perfect Fifth'),
+    #     (8, 'm6', 'Minor Sixth'),
+    #     (9, 'M6', 'Major Sixth'),
+    #     (10, 'm7', 'Minor Seventh'),
+    #     (11, 'M7', 'Major Seventh'),
+    #     (12, 'P8', 'Perfect Octave'), # 1st octave
+    #     (13, 'A8', 'Minor Ninth'),
+    #     (14, 'M9', 'Major Ninth'),
+    #     (15, 'm10', 'Minor Tenth'),
+    #     (16, 'M10', 'Major Tenth'),
+    #     (17, 'P11', 'Perfect Eleventh'),
+    #     (18, 'A11', 'Augmented Eleventh'),
+    #     (19, 'P12', 'Perfect Twelfth'),
+    #     (20, 'm13', 'Minor Thirteenth'),
+    #     (21, 'M13', 'Major Thirteenth'),
+    #     (22, 'm14', 'Minor Fourteenth'),
+    #     (23, 'M14', 'Major Fourteenth'),
+    #     (24, 'P15', 'Perfect Double-octave'), #2nd octave
+    #     (25, 'A15', 'Minor Sixteenth'),
+    #     (26, 'M16', 'Major Sixteenth'),
+    #     (27, 'm17', 'Minor Seventeenth'),
+    #     (28, 'M17', 'Major Seventeenth'),
+    #     (29, 'P18', 'Perfect Eighteenth'),
+    #     (30, 'A18', 'Augmented Eighteenth'),
+    #     (31, 'P19', 'Perfect Nineteenth'),
+    #     (32, 'm20', 'Minor Twentieth'),
+    #     (33, 'M20', 'Major Twentieth'),
+    #     (34, 'm21', 'Minor Twenty-first'),
+    #     (35, 'M21', 'Major Twenty-first'),
+    #     (36, 'P22', 'Perfect Triple-octave'),   # 3rd octave; the
+    #     (37, 'A22', 'Minor 23'), # pattern ends here-lets compute hence forth
+    #     (38, 'M23', 'Major 23'),
+    #     (39, 'm24', 'Minor 24'),
+    #     (40, 'M24', 'Major 24'),
+    #     (41, 'P25', 'Perfect 25'),
+    #     (42, 'A25', 'Augmented 25'),
+    #     (43, 'P26', 'Perfect 26'),
+    #     (44, 'm27', 'Minor 27'),
+    #     (45, 'M27', 'Major 27'),
+    #     (46, 'm28', 'Minor 28'),
+    #     (47, 'M28', 'Major 28'),
+    #     (48, 'P29', 'Perfect 29'),  # 4th octave
+    #     (49, 'A29', 'Minor 30'),
+    #     (50, 'M30', 'Major 30'),
+    #     (51, 'm31', 'Minor 31'),
+    #     (52, 'M31', 'Major 31'),
+    #     (53, 'P32', 'Perfect 32'),
+    #     (54, 'A32', 'Augmented 32'),
+    #     (55, 'P33', 'Perfect 33'),
+    #     (56, 'm34', 'Minor 34'),
+    #     (57, 'M34', 'Major 34'),
+    #     (58, 'm35', 'Minor 35'),
+    #     (59, 'M35', 'Major 35'),
+    #     (60, 'P36', 'Perfect 36')
+    # ]
+    #
+    # chromatic_type = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    # diatonic_modes = {
+    #     'major': [0, 2, 4, 5, 7, 9, 11, 12],
+    #     'minor': [0, 2, 3, 5, 7, 8, 10, 12],
+    # }
+    #
+    # keyboard_indices = {
+    #     'diatonic': {
+    #         'minor': 'z xc v bn m Z XC V BN M',
+    #         'major': 'z x cv b n mZ X CV B NM'
+    #     },
+    #     'chromatic': {
+    #         'minor': "zsxcfvgbnjmkZSXCFVGBNJMK",
+    #         'major': "zsxdcvgbhnjmZSXDCVGBHNJM",
+    #     }
+    # }
 
     # MAJOR keyboard keys (with chromatics)
     # keyindex for major and chromatic major context
@@ -139,7 +400,7 @@ class QuestionBase:
     # 5 is tritone; then
     # [0 1 2 3 4 5] resolves below (tonic)
     # and [6 7 8 9 10 11] resolves above (octave)
-    max_semitones_resolve_below = 5
+    #max_semitones_resolve_below = 5
 
     def __init__(self, *args, **kwargs):
 
@@ -194,10 +455,12 @@ class QuestionBase:
     def check_question(self, user_input_char):
         """Checks whether the given answer is correct."""
 
+        global intervals
+
         semitones = self.keyboard_index.index(user_input_char)
 
-        user_interval = self.intervals[semitones][2]
-        correct_interval = self.intervals[self.interval['semitones']][2]
+        user_interval = intervals[semitones][2]
+        correct_interval = intervals[self.interval['semitones']][2]
 
         response = {
             'is_correct': False,
@@ -213,309 +476,304 @@ class QuestionBase:
 
         return response
 
-    def make_diatonic_interval(self, mode, scale, scale_pitch, chromatic, chromatic_pitch, octave, n_octaves=None, descending=None):
-        """Chooses a diatonic interval for the question."""
+    # def make_diatonic_interval(self, mode, chromatic, chromatic_pitch, octave, n_octaves=None, descending=None):
+    #     """Chooses a diatonic interval for the question."""
+    #
+    #     interval = dict()
+    #
+    #     diatonic_mode = list(self.diatonic_modes[mode])
+    #     if descending:
+    #         diatonic_mode = [12-x for x in diatonic_mode]
+    #         diatonic_mode.reverse()
+    #
+    #     step_network = diatonic_mode
+    #
+    #     if n_octaves:
+    #         for i in range(1, n_octaves):
+    #             step_network.extend([semitones + 12 * i for semitones in diatonic_mode[1:]])
+    #     else: n_octaves =1
+    #
+    #     semitones = choice(step_network)
+    #     interval_index = step_network.index(semitones)
+    #
+    #     note_and_octave = chromatic_pitch[semitones]
+    #     note_name = chromatic[semitones]
+    #
+    #     chromatic_offset = semitones if semitones < 12 else semitones % 12
+    #
+    #     if not descending:
+    #         interval_octave = octave + int(semitones / 12)
+    #     else:
+    #         interval_octave = octave - int(semitones / 12)
+    #
+    #     interval_diatonic_index = diatonic_mode.index(chromatic_offset)
+    #     interval.update({
+    #         'index': interval_index,
+    #         'tonic_octave': octave,
+    #         'interval_octave': interval_octave,
+    #         'note_and_octave': note_and_octave,
+    #         'chromatic_offset':chromatic_offset,
+    #         'note_name': note_name,
+    #         'semitones': semitones,
+    #         'is_chromatic': False,
+    #         'is_descending': False if not descending else True,
+    #         'diatonic_index' : interval_diatonic_index,
+    #     })
+    #     return interval
+    #
+    # def make_chromatic_interval(self, mode, chromatic, chromatic_pitch, octave, n_octaves=None, descending=None):
+    #     """Chooses a chromatic interval for the question."""
+    #
+    #     interval = dict()
+    #
+    #     diatonic_mode = list(self.diatonic_modes[mode])
+    #     if descending:
+    #         diatonic_mode = [12-x for x in diatonic_mode]
+    #         diatonic_mode.reverse()
+    #
+    #     chromatic_type = list(self.chromatic_type)
+    #
+    #     step_network = diatonic_mode
+    #     chromatic_network = chromatic_type
+    #
+    #     if n_octaves:
+    #         for i in range(1, n_octaves):
+    #             step_network.extend([semitones + 12 * i for semitones in diatonic_mode[1:]])
+    #             chromatic_network.extend([semitones + 12 * i for semitones in chromatic_type[1:]])
+    #     else: n_octaves = 1
+    #
+    #     semitones = choice(chromatic_network)
+    #     interval_index = chromatic_network.index(semitones)
+    #
+    #     interval_index = semitones
+    #
+    #     note_and_octave = chromatic_pitch[interval_index]
+    #     note_name = chromatic[interval_index]
+    #
+    #     chromatic_offset = semitones if semitones < 12 else semitones % 12
+    #
+    #     is_chromatic = True if not chromatic_offset in diatonic_mode else False
+    #
+    #     if is_chromatic:
+    #         # here we are rounding it to the next diatonic degree, to insert
+    #         # it after:
+    #         if chromatic_offset <= self.max_semitones_resolve_below:
+    #             interval_diatonic_index = diatonic_mode.index(chromatic_offset - 1)
+    #         else:
+    #             interval_diatonic_index = diatonic_mode.index(chromatic_offset + 1)
+    #     else:
+    #         interval_diatonic_index = diatonic_mode.index(chromatic_offset)
+    #
+    #     if not descending:
+    #         interval_octave = octave + int(semitones / 12)
+    #     else:
+    #         interval_octave = octave - int(semitones / 12)
+    #
+    #     interval.update({
+    #         'index': interval_index,
+    #         'tonic_octave': octave,
+    #         'interval_octave': interval_octave,
+    #         'note_and_octave': note_and_octave,
+    #         'chromatic_offset':chromatic_offset,
+    #         'note_name': note_name,
+    #         'semitones': semitones,
+    #         'is_chromatic': is_chromatic,
+    #         'is_descending': False if not descending else True,
+    #         'diatonic_index': interval_diatonic_index,
+    #     })
+    #
+    #     return interval
 
-        interval = dict()
+    def make_resolution(self, chromatic, mode, tonic, interval, descending=None):
 
-        diatonic_mode = list(self.diatonic_modes[mode])
-        if descending:
-            diatonic_mode = [12-x for x in diatonic_mode]
-            diatonic_mode.reverse()
-
-        step_network = diatonic_mode
-
-        if n_octaves:
-            for i in range(1, n_octaves):
-                step_network.extend([semitones + 12 * i for semitones in diatonic_mode[1:]])
-        else: n_octaves =1
-
-        semitones = choice(step_network)
-        interval_index = step_network.index(semitones)
-
-        note_and_octave = chromatic_pitch[semitones]
-        note_name = chromatic[semitones]
-
-        chromatic_offset = semitones if semitones < 12 else semitones % 12
-
-        #interval_octave = octave + int(semitones / 12)
-        if not descending:
-            interval_octave = octave + int(semitones / 12)
-        else:
-            interval_octave = octave - int(semitones / 12)
-
-        interval_diatonic_index = diatonic_mode.index(chromatic_offset)
-        interval.update({
-            'index': interval_index,
-            'tonic_octave': octave,
-            'interval_octave': interval_octave,
-            'note_and_octave': note_and_octave,
-            'chromatic_offset':chromatic_offset,
-            'note_name': note_name,
-            'semitones': semitones,
-            'is_chromatic': False,
-            'is_descending': False if not descending else True,
-            'diatonic_index' : interval_diatonic_index,
-        })
-        return interval
-
-    def make_chromatic_interval(self, mode, chromatic, chromatic_pitch, octave, n_octaves=None, descending=None):
-        """Chooses a chromatic interval for the question."""
-
-        interval = dict()
-
-        diatonic_mode = list(self.diatonic_modes[mode])
-        if descending:
-            diatonic_mode = [12-x for x in diatonic_mode]
-            diatonic_mode.reverse()
-
-        print(diatonic_mode)
-
-        chromatic_type = list(self.chromatic_type)
-
-        step_network = diatonic_mode
-        chromatic_network = chromatic_type
-
-        if n_octaves:
-            for i in range(1, n_octaves):
-                step_network.extend([semitones + 12 * i for semitones in diatonic_mode[1:]])
-                chromatic_network.extend([semitones + 12 * i for semitones in chromatic_type[1:]])
-        else: n_octaves = 1
-
-        semitones = choice(chromatic_network)
-        interval_index = chromatic_network.index(semitones)
-
-        interval_index = semitones
-
-        note_and_octave = chromatic_pitch[interval_index]
-        note_name = chromatic[interval_index]
-
-        chromatic_offset = semitones if semitones < 12 else semitones % 12
-
-        # this bugs as descending intervals differ to our diatonic_modes;
-        # a solution would be to invert the diatonic_mode subtracting each
-        # of it's elements by 12
-        is_chromatic = True if not chromatic_offset in diatonic_mode else False
-        #FIXME pls
-        #is_chromatic = True if not note_name in self.get_diatonic_scale(tonic=note_name, mode=mode) else False
-
-        if is_chromatic:
-            # here we are rounding it to the next ditonic degree:
-            if chromatic_offset <= self.max_semitones_resolve_below:
-                interval_diatonic_index = diatonic_mode.index(chromatic_offset - 1)
-            else:
-                interval_diatonic_index = diatonic_mode.index(chromatic_offset + 1)
-        else:
-            interval_diatonic_index = diatonic_mode.index(chromatic_offset)
-
-        if not descending:
-            interval_octave = octave + int(semitones / 12)
-        else:
-            interval_octave = octave - int(semitones / 12)
-
-        interval.update({
-            'index': interval_index,
-            'tonic_octave': octave,
-            'interval_octave': interval_octave,
-            'note_and_octave': note_and_octave,
-            'chromatic_offset':chromatic_offset,
-            'note_name': note_name,
-            'semitones': semitones,
-            'is_chromatic': is_chromatic,
-            'is_descending': False if not descending else True,
-            'diatonic_index': interval_diatonic_index,
-        })
-
-        return interval
-
-    def make_resolution(self, scale_type, mode, tonic, interval, descending=None):
+        global diatonic_modes, max_semitones_resolve_below
 
         resolution_pitch = []
 
-        diatonic_mode = list(self.diatonic_modes[mode])
+        diatonic_mode = list(diatonic_modes[mode])
 
-        scale_pitch = self.get_diatonic_scale(tonic=tonic,mode=mode,octave=interval['interval_octave'],descending=descending)
+        scale_pitch = get_diatonic_scale(tonic=tonic, mode=mode,
+                                            octave=interval['interval_octave'],
+                                            descending=descending)
         self.res_scale = scale_pitch
 
-        if scale_type is 'diatonic':
+        if not chromatic:
 
-            #FIXME LOLZ
-            #local_idx = scale_pitch.index(interval['note_and_octave'])
-
-            if interval['chromatic_offset'] <= self.max_semitones_resolve_below:
+            if interval['chromatic_offset'] <= max_semitones_resolve_below:
                 resolution_pitch = scale_pitch[:interval['diatonic_index'] + 1]
                 resolution_pitch.reverse()
             else:
                 resolution_pitch = scale_pitch[interval['diatonic_index']:]
 
-        elif scale_type is 'chromatic':
+        else:
 
             if interval['chromatic_offset'] <= self.max_semitones_resolve_below:
                 if interval['is_chromatic']:
-                        #NOTE:working for descending minor 2nd
                     resolution_pitch.extend(scale_pitch[: interval['diatonic_index']+1])
                     resolution_pitch.append(interval['note_and_octave'])
                 else:
                     resolution_pitch.extend(scale_pitch[: interval['diatonic_index']+1])
-                resolution_pitch.reverse() #NOTE:working for descending perfect 4th
+                resolution_pitch.reverse()
 
             else:
                 if interval['is_chromatic']:
                     resolution_pitch.append(interval['note_and_octave'])
 
-                #the else(not chromatic) works well with perfect 5th
                 resolution_pitch.extend(scale_pitch[interval['diatonic_index']:])
 
         # unisson and octave
         #if interval['semitones'] == 0:
         if interval['chromatic_offset'] == 0:
             resolution_pitch.append(scale_pitch[0])
-            #maybe we should use original tonic here, then maybe reverse()
         elif interval['chromatic_offset'] % 12 == 0:
             resolution_pitch.append(scale_pitch[-1]) #FIXME: multipe octaves
 
         return resolution_pitch
 
-    def append_octave_to_scale(self, scale, starting_octave, descending=None):
-        """Inserts scientific octave number to the notes on a the given scale.
-        """
-
-        next_octave = 1 if not descending else -1
-
-        scale_with_octave = []
-        changing_note = None
-
-        current_octave = starting_octave
-
-        if not descending:
-            for closest in ['C', 'C#', 'Db']:
-                if closest in scale:
-                    changing_note = closest
-                    break
-        else:
-            for closest in ['B', 'Bb', 'A#']:
-                if closest in scale:
-                    changing_note = closest
-                    break
-
-        for idx, note in enumerate(scale):
-            if idx > 0 and note == changing_note:
-                current_octave += next_octave
-
-            scale_with_octave.append("{}{}".format(note, current_octave))
-
-        return scale_with_octave
-
-    def _get_chromatic_idx(self, note):
-        use_flat = -1 if (note == 'F' or 'b' in note) else 0
-
-        # FIXME
-        if note in self.notes2:
-            note_index = self.notes2.index(note)
-        elif note in self.notes3:
-            note_index = self.notes3.index(note)
-        else:
-            note_index = False
-
-        return note_index
-
-    def get_chromatic_scale(self, tonic, octave=None, n_octaves=None, descending=None, dont_repeat_tonic=None):
-        """Returns a chromatic scale from tonic."""
-
-        tonic_index = self._get_chromatic_idx(tonic)
-
-        if tonic == 'F' or 'b' in tonic:
-            notes = deque(self.notes3)
-        else:
-            notes = deque(self.notes2)
-
-        notes.rotate(-(tonic_index))
-
-        if n_octaves:
-            chromatic = list(notes * n_octaves)
-        else:
-            chromatic = list(notes)
-
-        if not dont_repeat_tonic:
-            chromatic.append(chromatic[0])
-
-        if descending:
-            chromatic.reverse()
-
-        if octave:
-            chromatic = self.append_octave_to_scale(
-                chromatic, octave, descending)
-
-        return chromatic
-
-    def get_diatonic_scale(self, tonic, mode, octave=None, n_octaves=None, descending=None, dont_repeat_tonic=None):
-        """Returns a diatonic scale from tonic and mode"""
-
-        diatonic_mode = list(self.diatonic_modes[mode])
-
-        chromatic = self.get_chromatic_scale(tonic)
-
-        diatonic = [chromatic[semitones] for semitones in diatonic_mode[:-1]]
-
-        if n_octaves:
-            diatonic = diatonic * n_octaves
-
-        if not dont_repeat_tonic:
-            diatonic.append(chromatic[diatonic_mode[-1]])
-
-        if descending:
-            diatonic.reverse()
-
-        if octave:
-            diatonic = self.append_octave_to_scale(
-                diatonic, octave, descending)
-
-        return diatonic
+    # def append_octave_to_scale(self, scale, starting_octave, descending=None):
+    #     """Inserts scientific octave number to the notes on a the given scale.
+    #     """
+    #
+    #     next_octave = 1 if not descending else -1
+    #
+    #     scale_with_octave = []
+    #     changing_note = None
+    #
+    #     current_octave = starting_octave
+    #
+    #     if not descending:
+    #         for closest in ['C', 'C#', 'Db']:
+    #             if closest in scale:
+    #                 changing_note = closest
+    #                 break
+    #     else:
+    #         for closest in ['B', 'Bb', 'A#']:
+    #             if closest in scale:
+    #                 changing_note = closest
+    #                 break
+    #
+    #     for idx, note in enumerate(scale):
+    #         if idx > 0 and note == changing_note:
+    #             current_octave += next_octave
+    #
+    #         scale_with_octave.append("{}{}".format(note, current_octave))
+    #
+    #     return scale_with_octave
+    #
+    # def _get_chromatic_idx(self, note):
+    #     use_flat = -1 if (note == 'F' or 'b' in note) else 0
+    #
+    #     # FIXME
+    #     if note in self.notes2:
+    #         note_index = self.notes2.index(note)
+    #     elif note in self.notes3:
+    #         note_index = self.notes3.index(note)
+    #     else:
+    #         note_index = False
+    #
+    #     return note_index
+    #
+    # def get_chromatic_scale(self, tonic, octave=None, n_octaves=None, descending=None, dont_repeat_tonic=None):
+    #     """Returns a chromatic scale from tonic."""
+    #
+    #     tonic_index = self._get_chromatic_idx(tonic)
+    #
+    #     if tonic == 'F' or 'b' in tonic:
+    #         notes = deque(self.notes3)
+    #     else:
+    #         notes = deque(self.notes2)
+    #
+    #     notes.rotate(-(tonic_index))
+    #
+    #     if n_octaves:
+    #         chromatic = list(notes * n_octaves)
+    #     else:
+    #         chromatic = list(notes)
+    #
+    #     if not dont_repeat_tonic:
+    #         chromatic.append(chromatic[0])
+    #
+    #     if descending:
+    #         chromatic.reverse()
+    #
+    #     if octave:
+    #         chromatic = self.append_octave_to_scale(
+    #             chromatic, octave, descending)
+    #
+    #     return chromatic
+    #
+    # def get_diatonic_scale(self, tonic, mode, octave=None, n_octaves=None, descending=None, dont_repeat_tonic=None):
+    #     """Returns a diatonic scale from tonic and mode"""
+    #
+    #     diatonic_mode = list(self.diatonic_modes[mode])
+    #
+    #     chromatic = self.get_chromatic_scale(tonic)
+    #
+    #     diatonic = [chromatic[semitones] for semitones in diatonic_mode[:-1]]
+    #
+    #     if n_octaves:
+    #         diatonic = diatonic * n_octaves
+    #
+    #     if not dont_repeat_tonic:
+    #         diatonic.append(chromatic[diatonic_mode[-1]])
+    #
+    #     if descending:
+    #         diatonic.reverse()
+    #
+    #     if octave:
+    #         diatonic = self.append_octave_to_scale(
+    #             diatonic, octave, descending)
+    #
+    #     return diatonic
 
 
 class Question(QuestionBase):
 
-    def __init__(self, mode='major', scale_type='diatonic', octave=[2, 6], descending=None, n_octaves=None, *args, **kwargs):
+    def __init__(self, mode='major', tonic=None, octave=None, descending=None, chromatic=None, n_octaves=None, *args, **kwargs):
 
         super(Question, self).__init__(*args, **kwargs)  # runs base class init
 
+        global keyboard_indices, notes4
+
         self.mode = mode
         # FIXME: scale_type should be changed to something like interval_type
-        self.scale_type = scale_type
+        #self.scale_type = scale_type
 
-        if type(octave) == int:
-            self.octave = octave
-        elif type(octave) == list and len(octave) == 2:
-            self.octave = randrange(octave[0], octave[1])
+        self.octave = octave if octave else randrange(3,5)
 
         # FIXME: maybe this should go to __main__
-        self.keyboard_index = self.keyboard_indices[self.scale_type][self.mode]
+        self.keyboard_index = keyboard_indices['chromatic' if chromatic else 'diatonic'][self.mode]
 
-        tonic = choice(self.notes4)
+        #FIXME
+        self.tonic = tonic if tonic else choice(notes4)
+        tonic = self.tonic
 
-        self.scale = self.get_diatonic_scale(tonic=tonic, mode=mode, octave=None, descending=descending, n_octaves=n_octaves)
-        self.chromatic = self.get_chromatic_scale(tonic=tonic, octave=None, descending=descending, n_octaves=n_octaves)
+        self.scale = get_diatonic_scale(tonic=tonic, mode=mode, octave=None, descending=descending, n_octaves=n_octaves)
+        self.chromatic = get_chromatic_scale(tonic=tonic, octave=None, descending=descending, n_octaves=n_octaves)
 
-        self.scale_pitch = self.get_diatonic_scale(tonic=tonic, mode=mode, octave=self.octave, descending=descending, n_octaves=n_octaves)
-        self.chromatic_pitch = self.get_chromatic_scale(tonic=tonic, octave=self.octave, descending=descending, n_octaves=n_octaves)
+        self.scale_pitch = get_diatonic_scale(tonic=tonic, mode=mode, octave=self.octave, descending=descending, n_octaves=n_octaves)
+        self.chromatic_pitch = get_chromatic_scale(tonic=tonic, octave=self.octave, descending=descending, n_octaves=n_octaves)
 
         self.concrete_tonic = self.scale_pitch[0]
         self.scale_size = len(self.scale)
 
-        if scale_type == 'chromatic':
-            self.interval = self.make_chromatic_interval(self.mode, self.chromatic, self.chromatic_pitch, self.octave, n_octaves=n_octaves, descending=descending)
-        #elif scale_type == 'diatonic':
-        else:
-            self.interval = self.make_diatonic_interval(self.mode, self.scale,
-                                                        self.scale_pitch,
-                                                        self.chromatic,
-                                                        self.chromatic_pitch,
-                                                        self.octave,
-                                                        n_octaves=n_octaves, descending=descending)
+        # if scale_type == 'chromatic':
+        #     self.interval = self.make_chromatic_interval(mode=self.mode,
+        #                         chromatic=self.chromatic, chromatic_pitch=self.chromatic_pitch,
+        #                         octave=self.octave, n_octaves=n_octaves,
+        #                         descending=descending)
+        # else:
+        #     self.interval = self.make_diatonic_interval(mode=self.mode,
+        #                                                 chromatic=self.chromatic,
+        #                                                 chromatic_pitch=self.chromatic_pitch,
+        #                                                 octave=self.octave,
+        #                                                 n_octaves=n_octaves, descending=descending)
 
+        self.interval = Interval(mode=mode, tonic=tonic, octave=self.octave,
+                                 chromatic=chromatic).interval_data
         #FIXME
         self.resolution_pitch = \
-            self.make_resolution(scale_type=self.scale_type, mode=self.mode,
+            self.make_resolution(chromatic=chromatic, mode=self.mode,
                                  tonic=self.scale[0], interval=self.interval,
                                  descending=descending)
 
@@ -581,7 +839,7 @@ Concrete Scale: {} | Chroma Concrete: {}
         padd,
         question.concrete_tonic,
         question.interval['note_and_octave'],
-        "─".join(question.intervals[question.interval['semitones']][1:]),
+        "─".join(intervals[question.interval['semitones']][1:]),
         question.interval['semitones'],
         question.interval['is_chromatic'],
         "─".join(question.scale),
@@ -602,11 +860,9 @@ if __name__ == "__main__":
         if new_question_bit is True:
 
             new_question_bit = False
-            #question = Question(mode='major', scale_type='chromatic', descending=True)
-            #question = Question(mode='major', scale_type='diatonic', descending=True)
-            #question = Question(mode='major', scale_type='diatonic', octave=[3,5], n_octaves=2)
-            question = Question(mode='major', scale_type='chromatic', octave=[4,6], n_octaves=2, descending=True)
-            #question = Question(mode='major', scale_type='diatonic', octave=[3,5], n_octaves=2)
+
+            #question = Question(mode='major', chromatic=False, descending=True)
+            question = Question(mode='major', chromatic=False, descending=False)
 
             # debug
             if DEBUG:
