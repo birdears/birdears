@@ -4,7 +4,7 @@
 
 ### classes
 
-classes: interval, cadence and resolution(cadence), maybe scale
+classes: ~~interval~~ :tada:, cadence and resolution(cadence), maybe scale
 
 
 ### documentation
