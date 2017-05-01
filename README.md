@@ -95,7 +95,9 @@ sudo pacman -S python sox
 We are beginning to use [numpydoc](https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt)
 to document the library.
 
-Also see `pdoc --html`
+We are using `pdoc` to generate documentation from module's docstrings:
+
+`pdoc --html --template-dir docs/templates/ birdears.py`
 
 ### Writing Tests
 
@@ -109,12 +111,16 @@ We use [coveralls](https://coveralls.io/github/iacchus/birdears) and [Travis CI]
 
 Out tests are in repo's `tests/` directory.
 
-### Etc
+### End-user Documentation
 
 We aim to build a method / music theory together with this software, maybe in the
 GitHub repo's wiki.
 
-### Misc documentation
+### Feature requests :gift: and suggestions
+
+You are welcome to use [github issues](https://github.com/iacchus/birdears/issues) or [gitter.im](https://gitter.im/birdears/Lobby) to ask for, or give ideia for new features.
+
+## Misc documentation
 
 [PEP 8](https://pep8.org) — the Style Guide for Python Code
 
