@@ -106,7 +106,7 @@
     border: 1px solid #ddd;
     box-shadow: 2px 2px 0 #f3f3f3;
     margin: 0 30px;
-    padding: 15px 30px;
+    /*padding: 15px 30px;*/
   }
 
   .codehilite {
@@ -240,8 +240,8 @@
 
     .source {
       display: none;
-      max-height: 600px;
-      overflow-y: scroll;
+      /*max-height: 600px;
+      overflow-y: scroll;*/
       margin-bottom: 15px;
     }
 
