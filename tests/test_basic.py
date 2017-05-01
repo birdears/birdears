@@ -13,5 +13,5 @@ def test_intervalclass():
     assert(a)
 
 def test_scaleclass():
-    a = Scale(tonic='C')
+    a = Scale(tonic='C', mode='major')
     assert(a)
