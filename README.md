@@ -1,5 +1,7 @@
 # BirdEars
 
+[![Join the chat at https://gitter.im/birdears/Lobby](https://badges.gitter.im/birdears/Lobby.svg)](https://gitter.im/birdears/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Travis Build Status](https://img.shields.io/travis/iacchus/birdears.svg?label=build)](https://travis-ci.org/iacchus/birdears)
 [![Coveralls](https://img.shields.io/coveralls/iacchus/birdears.svg?label=Coveralls)](https://coveralls.io/github/iacchus/birdears)
 [![Codecov](https://img.shields.io/codecov/c/github/iacchus/birdears.svg?label=Codecov)](https://codecov.io/gh/iacchus/birdears)
