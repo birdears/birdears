@@ -8,7 +8,7 @@ from collections import deque
 DEBUG = True
 
 if DEBUG:
-    import sys
+    import os
 
 notes2 = ('C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B')
 notes3 = ('C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B')
@@ -597,7 +597,7 @@ def main():
 
             question.play_question()
 
-        if DEBUG and hasattr(sys,'sys._called_from_test'):
+        if DEBUG and os.environ['PYTEST']:
             user_input='v' # let's guess a perfect fifth
         else:
             user_input = getch()
@@ -628,7 +628,7 @@ def main():
             question.play_question()
 
 
-        if DEBUG and hasattr(sys,'sys._called_from_test'):
+        if DEBUG and os.environ['PYTEST']:
             break;
 
 if __name__ == "__main__":

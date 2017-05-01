@@ -5,13 +5,14 @@ python:
 # command to install dependencies
 before_install:
   - sudo apt-get -qq update
-  - sudo apt-get install sox
+  - sudo apt-get install -y sox
 install:
   - pip install coveralls codecov codeclimate-test-reporter
 # command to run tests
 script: coverage run --source=birdears --module pytest --capture=no --verbose tests/
 env:
   - PYTHONPATH=''
+  - PYTEST=true
 after_success:
   - coveralls
   - codecov
