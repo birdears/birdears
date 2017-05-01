@@ -6,7 +6,7 @@
     <title>birdears API documentation</title>
     <meta name="description" content="" />
 
-  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,300' rel='stylesheet' type='text/css'>
   
   <style type="text/css">
   
@@ -1044,6 +1044,7 @@ table {
       
   <ul>
     <li class="mono"><a href="#birdears.DEBUG">DEBUG</a></li>
+    <li class="mono"><a href="#birdears.KEYS">KEYS</a></li>
     <li class="mono"><a href="#birdears.chromatic_type">chromatic_type</a></li>
     <li class="mono"><a href="#birdears.diatonic_modes">diatonic_modes</a></li>
     <li class="mono"><a href="#birdears.intervals">intervals</a></li>
@@ -1051,7 +1052,6 @@ table {
     <li class="mono"><a href="#birdears.max_semitones_resolve_below">max_semitones_resolve_below</a></li>
     <li class="mono"><a href="#birdears.notes2">notes2</a></li>
     <li class="mono"><a href="#birdears.notes3">notes3</a></li>
-    <li class="mono"><a href="#birdears.notes4">notes4</a></li>
   </ul>
 
     </li>
@@ -1059,6 +1059,7 @@ table {
     <li class="set"><h3><a href="#header-functions">Functions</a></h3>
       
   <ul>
+    <li class="mono"><a href="#birdears.main">main</a></li>
     <li class="mono"><a href="#birdears.print_stuff">print_stuff</a></li>
   </ul>
 
@@ -1152,7 +1153,7 @@ table {
 <span class="n">notes2</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;C#&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;D#&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="s1">&#39;F#&#39;</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="s1">&#39;G#&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;A#&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">)</span>
 <span class="n">notes3</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;Db&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;Eb&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="s1">&#39;Gb&#39;</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="s1">&#39;Ab&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;Bb&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">)</span>
 
-<span class="n">notes4</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;C#&#39;</span><span class="p">,</span> <span class="s1">&#39;Db&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;D#&#39;</span><span class="p">,</span> <span class="s1">&#39;Eb&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">,</span>
+<span class="n">KEYS</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;C#&#39;</span><span class="p">,</span> <span class="s1">&#39;Db&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;D#&#39;</span><span class="p">,</span> <span class="s1">&#39;Eb&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">,</span>
           <span class="s1">&#39;F#&#39;</span><span class="p">,</span> <span class="s1">&#39;Gb&#39;</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="s1">&#39;G#&#39;</span><span class="p">,</span> <span class="s1">&#39;Ab&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;A#&#39;</span><span class="p">,</span> <span class="s1">&#39;Bb&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">)</span>
 
 <span class="n">intervals</span> <span class="o">=</span> <span class="p">(</span>
@@ -1375,7 +1376,7 @@ table {
         <span class="sd">&quot;&quot;&quot;Chooses a chromatic interval for the question.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">global</span> <span class="n">diatonic_modes</span><span class="p">,</span> <span class="n">chromatic_type</span><span class="p">,</span> <span class="n">max_semitones_resolve_below</span>
+        <span class="k">global</span> <span class="n">diatonic_modes</span><span class="p">,</span> <span class="n">chromatic_type</span><span class="p">,</span> <span class="n">max_semitones_resolve_below</span><span class="p">,</span> <span class="n">intervals</span>
 
         <span class="n">diatonic_mode</span> <span class="o">=</span> <span class="n">diatonic_modes</span><span class="p">[</span><span class="n">mode</span><span class="p">]</span>
 
@@ -1442,6 +1443,7 @@ table {
             <span class="s1">&#39;is_descending&#39;</span><span class="p">:</span> <span class="bp">False</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">descending</span> <span class="k">else</span> <span class="bp">True</span><span class="p">,</span>
             <span class="s1">&#39;diatonic_index&#39;</span><span class="p">:</span> <span class="n">diatonic_index</span><span class="p">,</span>
             <span class="s1">&#39;distance&#39;</span><span class="p">:</span> <span class="n">distance</span><span class="p">,</span>
+            <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="n">intervals</span><span class="p">[</span><span class="n">semitones</span><span class="p">],</span>
         <span class="p">})</span>
 
 <span class="k">class</span> <span class="nc">Cadence</span><span class="p">:</span>
@@ -1545,7 +1547,6 @@ table {
 
         <span class="n">diatonic_mode</span> <span class="o">=</span> <span class="n">diatonic_modes</span><span class="p">[</span><span class="n">mode</span><span class="p">]</span>
 
-        <span class="k">print</span><span class="p">(</span><span class="n">interval</span><span class="p">)</span>
         <span class="n">scale_pitch</span> <span class="o">=</span> <span class="n">Scale</span><span class="p">(</span><span class="n">tonic</span><span class="o">=</span><span class="n">tonic</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span>
                             <span class="n">octave</span><span class="o">=</span><span class="n">interval</span><span class="p">[</span><span class="s1">&#39;interval_octave&#39;</span><span class="p">],</span>
                             <span class="n">descending</span><span class="o">=</span><span class="n">descending</span><span class="p">)</span>
@@ -1598,7 +1599,7 @@ table {
 
         <span class="nb">super</span><span class="p">(</span><span class="n">Question</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># runs base class init</span>
 
-        <span class="k">global</span> <span class="n">keyboard_indices</span><span class="p">,</span> <span class="n">notes4</span>
+        <span class="k">global</span> <span class="n">keyboard_indices</span><span class="p">,</span> <span class="n">KEYS</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">mode</span>
 
@@ -1610,8 +1611,8 @@ table {
                                                <span class="k">else</span> <span class="s1">&#39;diatonic&#39;</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">]</span>
 
         <span class="c1"># FIXME</span>
-        <span class="c1"># self.tonic = tonic if tonic else choice(notes4)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tonic</span> <span class="o">=</span> <span class="n">tonic</span> <span class="ow">or</span> <span class="n">choice</span><span class="p">(</span><span class="n">notes4</span><span class="p">)</span>
+        <span class="c1"># self.tonic = tonic if tonic else choice(KEYS)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tonic</span> <span class="o">=</span> <span class="n">tonic</span> <span class="ow">or</span> <span class="n">choice</span><span class="p">(</span><span class="n">KEYS</span><span class="p">)</span>
         <span class="n">tonic</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tonic</span>
 
         <span class="n">diatonic</span> <span class="o">=</span> <span class="n">Scale</span><span class="p">(</span><span class="n">tonic</span><span class="o">=</span><span class="n">tonic</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
@@ -1719,7 +1720,7 @@ table {
     <span class="p">))</span>
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="n">getch</span> <span class="o">=</span> <span class="n">_Getch</span><span class="p">()</span>
 
     <span class="n">new_question_bit</span> <span class="o">=</span> <span class="bp">True</span>
@@ -1763,6 +1764,9 @@ table {
         <span class="c1"># r - repeat interval</span>
         <span class="k">elif</span> <span class="n">user_input</span> <span class="o">==</span> <span class="s1">&#39;r&#39;</span><span class="p">:</span>
             <span class="n">question</span><span class="o">.</span><span class="n">play_question</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
 </pre></div>
 
   </div>
@@ -1773,6 +1777,14 @@ table {
     <h2 class="section-title" id="header-variables">Module variables</h2>
       <div class="item">
       <p id="birdears.DEBUG" class="name">var <span class="ident">DEBUG</span></p>
+      
+  
+  <div class="source_cont">
+</div>
+
+      </div>
+      <div class="item">
+      <p id="birdears.KEYS" class="name">var <span class="ident">KEYS</span></p>
       
   
   <div class="source_cont">
@@ -1835,16 +1847,71 @@ table {
 </div>
 
       </div>
-      <div class="item">
-      <p id="birdears.notes4" class="name">var <span class="ident">notes4</span></p>
-      
-  
-  <div class="source_cont">
-</div>
-
-      </div>
 
     <h2 class="section-title" id="header-functions">Functions</h2>
+      
+  <div class="item">
+    <div class="name def" id="birdears.main">
+    <p>def <span class="ident">main</span>(</p><p>)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-birdears.main', this);">Show source &equiv;</a></p>
+  <div id="source-birdears.main" class="source">
+    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">getch</span> <span class="o">=</span> <span class="n">_Getch</span><span class="p">()</span>
+
+    <span class="n">new_question_bit</span> <span class="o">=</span> <span class="bp">True</span>
+
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">new_question_bit</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+
+            <span class="n">new_question_bit</span> <span class="o">=</span> <span class="bp">False</span>
+
+            <span class="n">question</span> <span class="o">=</span> <span class="n">Question</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span> <span class="n">chromatic</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+            <span class="c1"># debug</span>
+            <span class="k">if</span> <span class="n">DEBUG</span><span class="p">:</span>
+                <span class="n">print_stuff</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
+
+            <span class="n">question</span><span class="o">.</span><span class="n">play_question</span><span class="p">()</span>
+
+        <span class="n">user_input</span> <span class="o">=</span> <span class="n">getch</span><span class="p">()</span>
+
+        <span class="c1"># any response input interval from valid keys</span>
+        <span class="k">if</span> <span class="n">user_input</span> <span class="ow">in</span> <span class="n">question</span><span class="o">.</span><span class="n">keyboard_index</span> <span class="ow">and</span> <span class="n">user_input</span> <span class="o">!=</span> <span class="s1">&#39; &#39;</span><span class="p">:</span>  <span class="c1"># spc</span>
+
+            <span class="n">response</span> <span class="o">=</span> <span class="n">question</span><span class="o">.</span><span class="n">check_question</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;is_correct&#39;</span><span class="p">]:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Correct!.. it is “{}”&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">response</span><span class="p">[</span><span class="s1">&#39;user_interval&#39;</span><span class="p">]))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Incorrect.. the correct is “{}” ! You aswered “{}”..&quot;</span><span class="o">.</span>
+                      <span class="n">format</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;correct_interval&#39;</span><span class="p">],</span>
+                             <span class="n">response</span><span class="p">[</span><span class="s1">&#39;user_interval&#39;</span><span class="p">]))</span>
+
+            <span class="n">question</span><span class="o">.</span><span class="n">play_resolution</span><span class="p">()</span>
+
+            <span class="n">new_question_bit</span> <span class="o">=</span> <span class="bp">True</span>
+
+        <span class="c1"># q - quit</span>
+        <span class="k">elif</span> <span class="n">user_input</span> <span class="o">==</span> <span class="s1">&#39;q&#39;</span><span class="p">:</span>
+            <span class="nb">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="c1"># r - repeat interval</span>
+        <span class="k">elif</span> <span class="n">user_input</span> <span class="o">==</span> <span class="s1">&#39;r&#39;</span><span class="p">:</span>
+            <span class="n">question</span><span class="o">.</span><span class="n">play_question</span><span class="p">()</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
       
   <div class="item">
     <div class="name def" id="birdears.print_stuff">
@@ -1955,7 +2022,7 @@ table {
         <span class="sd">&quot;&quot;&quot;Chooses a chromatic interval for the question.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">global</span> <span class="n">diatonic_modes</span><span class="p">,</span> <span class="n">chromatic_type</span><span class="p">,</span> <span class="n">max_semitones_resolve_below</span>
+        <span class="k">global</span> <span class="n">diatonic_modes</span><span class="p">,</span> <span class="n">chromatic_type</span><span class="p">,</span> <span class="n">max_semitones_resolve_below</span><span class="p">,</span> <span class="n">intervals</span>
 
         <span class="n">diatonic_mode</span> <span class="o">=</span> <span class="n">diatonic_modes</span><span class="p">[</span><span class="n">mode</span><span class="p">]</span>
 
@@ -2022,6 +2089,7 @@ table {
             <span class="s1">&#39;is_descending&#39;</span><span class="p">:</span> <span class="bp">False</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">descending</span> <span class="k">else</span> <span class="bp">True</span><span class="p">,</span>
             <span class="s1">&#39;diatonic_index&#39;</span><span class="p">:</span> <span class="n">diatonic_index</span><span class="p">,</span>
             <span class="s1">&#39;distance&#39;</span><span class="p">:</span> <span class="n">distance</span><span class="p">,</span>
+            <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="n">intervals</span><span class="p">[</span><span class="n">semitones</span><span class="p">],</span>
         <span class="p">})</span>
 </pre></div>
 
@@ -2053,7 +2121,7 @@ table {
              <span class="n">descending</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Chooses a chromatic interval for the question.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">global</span> <span class="n">diatonic_modes</span><span class="p">,</span> <span class="n">chromatic_type</span><span class="p">,</span> <span class="n">max_semitones_resolve_below</span>
+    <span class="k">global</span> <span class="n">diatonic_modes</span><span class="p">,</span> <span class="n">chromatic_type</span><span class="p">,</span> <span class="n">max_semitones_resolve_below</span><span class="p">,</span> <span class="n">intervals</span>
     <span class="n">diatonic_mode</span> <span class="o">=</span> <span class="n">diatonic_modes</span><span class="p">[</span><span class="n">mode</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">descending</span><span class="p">:</span>
         <span class="n">diatonic_mode</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12</span> <span class="o">-</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">diatonic_mode</span><span class="p">]</span>
@@ -2108,6 +2176,7 @@ table {
         <span class="s1">&#39;is_descending&#39;</span><span class="p">:</span> <span class="bp">False</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">descending</span> <span class="k">else</span> <span class="bp">True</span><span class="p">,</span>
         <span class="s1">&#39;diatonic_index&#39;</span><span class="p">:</span> <span class="n">diatonic_index</span><span class="p">,</span>
         <span class="s1">&#39;distance&#39;</span><span class="p">:</span> <span class="n">distance</span><span class="p">,</span>
+        <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="n">intervals</span><span class="p">[</span><span class="n">semitones</span><span class="p">],</span>
     <span class="p">})</span>
 </pre></div>
 
@@ -2150,7 +2219,7 @@ subclasses.</p>
 
         <span class="nb">super</span><span class="p">(</span><span class="n">Question</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># runs base class init</span>
 
-        <span class="k">global</span> <span class="n">keyboard_indices</span><span class="p">,</span> <span class="n">notes4</span>
+        <span class="k">global</span> <span class="n">keyboard_indices</span><span class="p">,</span> <span class="n">KEYS</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">mode</span>
 
@@ -2162,8 +2231,8 @@ subclasses.</p>
                                                <span class="k">else</span> <span class="s1">&#39;diatonic&#39;</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">]</span>
 
         <span class="c1"># FIXME</span>
-        <span class="c1"># self.tonic = tonic if tonic else choice(notes4)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tonic</span> <span class="o">=</span> <span class="n">tonic</span> <span class="ow">or</span> <span class="n">choice</span><span class="p">(</span><span class="n">notes4</span><span class="p">)</span>
+        <span class="c1"># self.tonic = tonic if tonic else choice(KEYS)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tonic</span> <span class="o">=</span> <span class="n">tonic</span> <span class="ow">or</span> <span class="n">choice</span><span class="p">(</span><span class="n">KEYS</span><span class="p">)</span>
         <span class="n">tonic</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tonic</span>
 
         <span class="n">diatonic</span> <span class="o">=</span> <span class="n">Scale</span><span class="p">(</span><span class="n">tonic</span><span class="o">=</span><span class="n">tonic</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
@@ -2226,7 +2295,7 @@ subclasses.</p>
     <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span> <span class="n">tonic</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">descending</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
              <span class="n">chromatic</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">n_octaves</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="nb">super</span><span class="p">(</span><span class="n">Question</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># runs base class init</span>
-    <span class="k">global</span> <span class="n">keyboard_indices</span><span class="p">,</span> <span class="n">notes4</span>
+    <span class="k">global</span> <span class="n">keyboard_indices</span><span class="p">,</span> <span class="n">KEYS</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">mode</span>
     <span class="c1"># self.octave = octave if octave else randrange(3, 5)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">octave</span> <span class="o">=</span> <span class="n">octave</span> <span class="ow">or</span> <span class="n">randrange</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
@@ -2234,8 +2303,8 @@ subclasses.</p>
     <span class="bp">self</span><span class="o">.</span><span class="n">keyboard_index</span> <span class="o">=</span> <span class="n">keyboard_indices</span><span class="p">[</span><span class="s1">&#39;chromatic&#39;</span> <span class="k">if</span> <span class="n">chromatic</span>
                                            <span class="k">else</span> <span class="s1">&#39;diatonic&#39;</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">]</span>
     <span class="c1"># FIXME</span>
-    <span class="c1"># self.tonic = tonic if tonic else choice(notes4)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">tonic</span> <span class="o">=</span> <span class="n">tonic</span> <span class="ow">or</span> <span class="n">choice</span><span class="p">(</span><span class="n">notes4</span><span class="p">)</span>
+    <span class="c1"># self.tonic = tonic if tonic else choice(KEYS)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">tonic</span> <span class="o">=</span> <span class="n">tonic</span> <span class="ow">or</span> <span class="n">choice</span><span class="p">(</span><span class="n">KEYS</span><span class="p">)</span>
     <span class="n">tonic</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tonic</span>
     <span class="n">diatonic</span> <span class="o">=</span> <span class="n">Scale</span><span class="p">(</span><span class="n">tonic</span><span class="o">=</span><span class="n">tonic</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
                      <span class="n">descending</span><span class="o">=</span><span class="n">descending</span><span class="p">,</span> <span class="n">n_octaves</span><span class="o">=</span><span class="n">n_octaves</span><span class="p">)</span>
@@ -2323,7 +2392,6 @@ subclasses.</p>
     <span class="k">global</span> <span class="n">diatonic_modes</span><span class="p">,</span> <span class="n">max_semitones_resolve_below</span>
     <span class="n">resolution_pitch</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">diatonic_mode</span> <span class="o">=</span> <span class="n">diatonic_modes</span><span class="p">[</span><span class="n">mode</span><span class="p">]</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">interval</span><span class="p">)</span>
     <span class="n">scale_pitch</span> <span class="o">=</span> <span class="n">Scale</span><span class="p">(</span><span class="n">tonic</span><span class="o">=</span><span class="n">tonic</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span>
                         <span class="n">octave</span><span class="o">=</span><span class="n">interval</span><span class="p">[</span><span class="s1">&#39;interval_octave&#39;</span><span class="p">],</span>
                         <span class="n">descending</span><span class="o">=</span><span class="n">descending</span><span class="p">)</span>
@@ -2624,7 +2692,6 @@ subclasses.</p>
 
         <span class="n">diatonic_mode</span> <span class="o">=</span> <span class="n">diatonic_modes</span><span class="p">[</span><span class="n">mode</span><span class="p">]</span>
 
-        <span class="k">print</span><span class="p">(</span><span class="n">interval</span><span class="p">)</span>
         <span class="n">scale_pitch</span> <span class="o">=</span> <span class="n">Scale</span><span class="p">(</span><span class="n">tonic</span><span class="o">=</span><span class="n">tonic</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span>
                             <span class="n">octave</span><span class="o">=</span><span class="n">interval</span><span class="p">[</span><span class="s1">&#39;interval_octave&#39;</span><span class="p">],</span>
                             <span class="n">descending</span><span class="o">=</span><span class="n">descending</span><span class="p">)</span>
@@ -2761,7 +2828,6 @@ subclasses.</p>
     <span class="k">global</span> <span class="n">diatonic_modes</span><span class="p">,</span> <span class="n">max_semitones_resolve_below</span>
     <span class="n">resolution_pitch</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">diatonic_mode</span> <span class="o">=</span> <span class="n">diatonic_modes</span><span class="p">[</span><span class="n">mode</span><span class="p">]</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">interval</span><span class="p">)</span>
     <span class="n">scale_pitch</span> <span class="o">=</span> <span class="n">Scale</span><span class="p">(</span><span class="n">tonic</span><span class="o">=</span><span class="n">tonic</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span>
                         <span class="n">octave</span><span class="o">=</span><span class="n">interval</span><span class="p">[</span><span class="s1">&#39;interval_octave&#39;</span><span class="p">],</span>
                         <span class="n">descending</span><span class="o">=</span><span class="n">descending</span><span class="p">)</span>
