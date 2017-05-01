@@ -59,7 +59,7 @@ ${cls.docstring | indent}
 
 % endif
 % if len(class_vars) > 0:
-    Class variables
+    Class properties
     ---------------
     % for v in class_vars:
 ${capture(variable, v) | indent}
@@ -67,7 +67,7 @@ ${capture(variable, v) | indent}
     % endfor
 % endif
 % if len(static_methods) > 0:
-    Static methods
+    Methods
     --------------
     % for f in static_methods:
 ${capture(function, f) | indent}
@@ -75,8 +75,8 @@ ${capture(function, f) | indent}
     % endfor
 % endif
 % if len(inst_vars) > 0:
-    Instance variables
-    ------------------
+    Subclass properties
+    -------------------
     % for v in inst_vars:
 ${capture(variable, v) | indent}
 
@@ -109,8 +109,8 @@ ${module.docstring}
 
 
 % if len(variables) > 0:
-Variables
----------
+Globals
+-------
     % for v in variables:
 ${variable(v)}
 

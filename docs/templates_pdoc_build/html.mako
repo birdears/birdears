@@ -11,6 +11,9 @@
   except ImportError:
     use_pygments = False
 
+  ## mercvrivs: we are going to use our own via js,maybe hljs
+  use_pygments = False
+
   import pdoc
 
   # From language reference, but adds '.' to allow fully qualified names.
@@ -264,10 +267,10 @@
 
   <section id="section-items">
     % if len(variables) > 0:
-    <h2 class="section-title" id="header-variables">Module variables</h2>
+    <h2 class="section-title" id="header-variables">Module globals</h2>
     % for v in variables:
       <div class="item">
-      <p id="${v.refname}" class="name">var ${ident(v.name)}</p>
+      <p id="${v.refname}" class="name">global ${ident(v.name)}</p>
       ${show_desc(v)}
       </div>
     % endfor
@@ -304,7 +307,7 @@
           </ul>
         % endif
         % if len(class_vars) > 0:
-          <h3>Class variables</h3>
+          <h3>Class properties</h3>
           % for v in class_vars:
             <div class="item">
             <p id="${v.refname}" class="name">var ${ident(v.name)}</p>
@@ -314,13 +317,13 @@
           % endfor
         % endif
         % if len(smethods) > 0:
-          <h3>Static methods</h3>
+          <h3>Methods</h3>
           % for f in smethods:
             ${show_func(f)}
           % endfor
         % endif
         % if len(inst_vars) > 0:
-          <h3>Instance variables</h3>
+          <h3>Instance properties</h3>
           % for v in inst_vars:
             <div class="item">
             <p id="${v.refname}" class="name">var ${ident(v.name)}</p>
@@ -363,7 +366,7 @@
     <h1>Index</h1>
     <ul id="index">
     % if len(variables) > 0:
-    <li class="set"><h3><a href="#header-variables">Module variables</a></h3>
+    <li class="set"><h3><a href="#header-variables">Module globals</a></h3>
       ${show_column_list(map(lambda v: link(v.refname), variables))}
     </li>
     % endif
@@ -418,7 +421,7 @@
     <meta name="description" content="${module.docstring | glimpse, trim}" />
   % endif
 
-  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Inconsolata:400,700|Old+Standard+TT:400,400i,700|Open+Sans+Condensed:300,300i,700|Oswald:200,300,400,500,600,700|Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&subset=greek,latin-ext' rel='stylesheet' type='text/css'>
   <%namespace name="css" file="css.mako" />
   <style type="text/css">
   ${css.pre()}

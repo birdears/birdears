@@ -6,9 +6,9 @@
   }
   body {
     background: #fff;
-    font-family: "Inconsolata", "Helvetica Neueue", Helvetica, sans;
+    font-family: 'Roboto', "Inconsolata", "Helvetica Neueue", Helvetica, sans;
     font-weight: 300;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.6em;
   }
   #content {
@@ -84,7 +84,7 @@
   }
 
   pre, code, .mono, .name {
-    font-family: "Ubuntu Mono", "Cousine", "DejaVu Sans Mono", monospace;
+    font-family: 'Inconsolata', "Ubuntu Mono", "Cousine", "DejaVu Sans Mono", monospace;
   }
 
   .title .name {

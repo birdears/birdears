@@ -655,8 +655,9 @@ def main():
 
             new_question_bit = False
 
-            #question = MelodicIntervalQuestion(mode='major',n_octaves=2)
-            question = MelodicIntervalQuestion(mode='major',octave=5,descending=True)
+            question = MelodicIntervalQuestion(mode='major',descendent=True)
+            #question = HarmonicIntervalQuestion(mode='major')
+            #question = HarmonicIntervalQuestion(mode='major')
 
             # debug
             if DEBUG:
