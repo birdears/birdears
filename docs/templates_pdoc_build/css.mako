@@ -103,7 +103,7 @@
 
   pre {
     background: #fefefe;
-    border: 1px solid #ddd;
+    /*border: 1px solid #ddd;*/
     box-shadow: 2px 2px 0 #f3f3f3;
     margin: 0 30px;
     /*padding: 15px 30px;*/
