@@ -455,6 +455,9 @@
     }
   }
   </script>
+<link rel="stylesheet" href="css/hljs-styles/monokai.css">
+<script src="js//highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 </head>
 <body>
 <a href="#" id="top">Top</a>
