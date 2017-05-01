@@ -7,14 +7,15 @@ from collections import deque
 
 DEBUG = True
 
+# FIXME
 notes2 = ('C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B')
 notes3 = ('C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B')
 
-KEYS = ('C', 'C#', 'Db', 'D', 'D#', 'Eb', 'E', 'F',
-          'F#', 'Gb', 'G', 'G#', 'Ab', 'A', 'A#', 'Bb', 'B')
+KEYS = ('C', 'C#', 'Db', 'D', 'D#', 'Eb', 'E', 'F', 'F#', 'Gb', 'G', 'G#',
+        'Ab', 'A', 'A#', 'Bb', 'B')
 
-intervals = (
-    (0, 'P1', 'Perfect Unison'),  # tonic
+INTERVALS = (
+    (0, 'P1', 'Perfect Unison'),
     (1, 'm2', 'Minor Second'),
     (2, 'M2', 'Major Second'),
     (3, 'm3', 'Minor Third'),
@@ -26,7 +27,7 @@ intervals = (
     (9, 'M6', 'Major Sixth'),
     (10, 'm7', 'Minor Seventh'),
     (11, 'M7', 'Major Seventh'),
-    (12, 'P8', 'Perfect Octave'),  # 1st octave
+    (12, 'P8', 'Perfect Octave'),
     (13, 'A8', 'Minor Ninth'),
     (14, 'M9', 'Major Ninth'),
     (15, 'm10', 'Minor Tenth'),
@@ -38,7 +39,7 @@ intervals = (
     (21, 'M13', 'Major Thirteenth'),
     (22, 'm14', 'Minor Fourteenth'),
     (23, 'M14', 'Major Fourteenth'),
-    (24, 'P15', 'Perfect Double-octave'),  # 2nd octave
+    (24, 'P15', 'Perfect Double-octave'),
     (25, 'A15', 'Minor Sixteenth'),
     (26, 'M16', 'Major Sixteenth'),
     (27, 'm17', 'Minor Seventeenth'),
@@ -50,11 +51,11 @@ intervals = (
     (33, 'M20', 'Major Twentieth'),
     (34, 'm21', 'Minor Twenty-first'),
     (35, 'M21', 'Major Twenty-first'),
-    (36, 'P22', 'Perfect Triple-octave')   # 3rd octave; the
+    (36, 'P22', 'Perfect Triple-octave')
 )
 
-chromatic_type = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
-diatonic_modes = {
+CHROMATIC_TYPE = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
+DIATONIC_MODES = {
     'major': (0, 2, 4, 5, 7, 9, 11, 12),
     'minor': (0, 2, 3, 5, 7, 8, 10, 12),
 }
@@ -72,7 +73,7 @@ diatonic_modes = {
 #  s   f g   j k   eg.:      a#   c# d#    f# g#
 # z x c v b n m    -------  a  b c  d  e  f  g
 
-keyboard_indices = {
+KEYBOARD_INDICES = {
     'diatonic': {
         'minor': 'z xc v bn m Z XC V BN M',
         'major': 'z x cv b n mZ X CV B NM'
@@ -90,7 +91,7 @@ keyboard_indices = {
 # [0 1 2 3 4 5] resolves below (tonic)
 # and [6 7 8 9 10 11] resolves above (octave)
 
-max_semitones_resolve_below = 5
+MAX_SEMITONES_RESOLVE_BELOW = 5
 
 
 class Scale:
@@ -152,8 +153,8 @@ class Scale:
         """Returns a diatonic scale from tonic and mode.
         """
 
-        global diatonic_modes
-        diatonic_mode = diatonic_modes[mode]
+        global DIATONIC_MODES
+        diatonic_mode = DIATONIC_MODES[mode]
 
         chromatic = self.get_chromatic(tonic)
 
@@ -233,16 +234,17 @@ class Interval:
         """Chooses a chromatic interval for the question.
         """
 
-        global diatonic_modes, chromatic_type, max_semitones_resolve_below, intervals
+        global DIATONIC_MODES, CHROMATIC_TYPE, MAX_SEMITONES_RESOLVE_BELOW
+        global INTERVALS
 
-        diatonic_mode = diatonic_modes[mode]
+        diatonic_mode = DIATONIC_MODES[mode]
 
         if descending:
             diatonic_mode = [12 - x for x in diatonic_mode]
             diatonic_mode.reverse()
 
         step_network = diatonic_mode
-        chromatic_network = chromatic_type
+        chromatic_network = CHROMATIC_TYPE
 
         # FIXME: please refactore this with method signature n_octaves=1:
         if n_octaves:
@@ -250,7 +252,7 @@ class Interval:
                 step_network.extend([semitones + 12 * i for semitones in
                                      diatonic_mode[1:]])
                 chromatic_network.extend([semitones + 12 * i for semitones in
-                                          chromatic_type[1:]])
+                                          CHROMATIC_TYPE[1:]])
         else:
             n_octaves = 1
 
@@ -277,7 +279,7 @@ class Interval:
         if is_chromatic:
             # here we are rounding it to the next diatonic degree, to insert
             # it after:
-            if chromatic_offset <= max_semitones_resolve_below:
+            if chromatic_offset <= MAX_SEMITONES_RESOLVE_BELOW:
                 diatonic_index = diatonic_mode.index(chromatic_offset - 1)
             else:
                 diatonic_index = diatonic_mode.index(chromatic_offset + 1)
@@ -300,12 +302,14 @@ class Interval:
             'is_descending': False if not descending else True,
             'diatonic_index': diatonic_index,
             'distance': distance,
-            'data': intervals[semitones],
+            'data': INTERVALS[semitones],
         })
+
 
 class Cadence:
     def __init__(self):
         pass
+
 
 class QuestionBase:
     """
@@ -383,12 +387,12 @@ class QuestionBase:
     def check_question(self, user_input_char):
         """Checks whether the given answer is correct."""
 
-        global intervals
+        global INTERVALS
 
         semitones = self.keyboard_index.index(user_input_char)
 
-        user_interval = intervals[semitones][2]
-        correct_interval = intervals[self.interval['semitones']][2]
+        user_interval = INTERVALS[semitones][2]
+        correct_interval = INTERVALS[self.interval['semitones']][2]
 
         response = {
             'is_correct': False,
@@ -407,11 +411,11 @@ class QuestionBase:
     def make_resolution(self, chromatic, mode, tonic, interval,
                         descending=None):
 
-        global diatonic_modes, max_semitones_resolve_below
+        global DIATONIC_MODES, MAX_SEMITONES_RESOLVE_BELOW
 
         resolution_pitch = []
 
-        diatonic_mode = diatonic_modes[mode]
+        diatonic_mode = DIATONIC_MODES[mode]
 
         scale_pitch = Scale(tonic=tonic, mode=mode,
                             octave=interval['interval_octave'],
@@ -420,7 +424,7 @@ class QuestionBase:
 
         if not chromatic:
 
-            if interval['chromatic_offset'] <= max_semitones_resolve_below:
+            if interval['chromatic_offset'] <= MAX_SEMITONES_RESOLVE_BELOW:
                 resolution_pitch = \
                     scale_pitch.scale[:interval['diatonic_index'] + 1]
                 resolution_pitch.reverse()
@@ -430,7 +434,7 @@ class QuestionBase:
 
         else:
 
-            if interval['chromatic_offset'] <= max_semitones_resolve_below:
+            if interval['chromatic_offset'] <= MAX_SEMITONES_RESOLVE_BELOW:
                 if interval['is_chromatic']:
                     resolution_pitch.extend(
                         scale_pitch.scale[: interval['diatonic_index'] + 1])
@@ -463,9 +467,9 @@ class MelodicQuestion(QuestionBase):
     def __init__(self, mode='major', tonic=None, octave=None, descending=None,
                  chromatic=None, n_octaves=None, *args, **kwargs):
 
-        super(MeodicQuestion, self).__init__(*args, **kwargs)  # runs base class init
+        super(MeodicQuestion, self).__init__(*args, **kwargs)
 
-        global keyboard_indices, KEYS
+        global KEYBOARD_INDICES, KEYS
 
         self.mode = mode
 
@@ -473,7 +477,7 @@ class MelodicQuestion(QuestionBase):
         self.octave = octave or randrange(3, 5)
 
         # FIXME: maybe this should go to __main__
-        self.keyboard_index = keyboard_indices['chromatic' if chromatic
+        self.keyboard_index = KEYBOARD_INDICES['chromatic' if chromatic
                                                else 'diatonic'][self.mode]
 
         # FIXME
@@ -520,9 +524,9 @@ class HarmonicQuestion(QuestionBase):
     def __init__(self, mode='major', tonic=None, octave=None, descending=None,
                  chromatic=None, n_octaves=None, *args, **kwargs):
 
-        super(HarmonicQuestion, self).__init__(*args, **kwargs)  # runs base class init
+        super(HarmonicQuestion, self).__init__(*args, **kwargs)
 
-        global keyboard_indices, KEYS
+        global KEYBOARD_INDICES, KEYS
 
         self.mode = mode
 
@@ -530,7 +534,7 @@ class HarmonicQuestion(QuestionBase):
         self.octave = octave or randrange(3, 5)
 
         # FIXME: maybe this should go to __main__
-        self.keyboard_index = keyboard_indices['chromatic' if chromatic
+        self.keyboard_index = KEYBOARD_INDICES['chromatic' if chromatic
                                                else 'diatonic'][self.mode]
 
         # FIXME
@@ -574,29 +578,27 @@ class HarmonicQuestion(QuestionBase):
         tonic = self.concrete_tonic
         interval = self.interval['note_and_octave']
 
-        question_chords = [(tonic,tonic) , (tonic,interval)]
+        question_chords = [(tonic, tonic), (tonic, interval)]
 
         for item in question_chords:
             self._play_chord(chord=item, duration=self.question_duration,
                              delay=self.question_delay)
-        #play_note(note=interval, duration=self.question_duration, delay=0)
 
         if self.question_pos_delay:
             self._wait(self.resolution_pos_delay)
 
     def play_resolution(self):
 
-        #play_note = self._play_note
-
         tonic = self.concrete_tonic
 
         for tone in self.resolution_pitch:
             self._play_chord(chord=[tonic, tone],
-                            duration=self.resolution_duration,
-                            delay=self.resolution_delay)
+                             duration=self.resolution_duration,
+                             delay=self.resolution_delay)
 
         if self.resolution_pos_delay:
             self._wait(self.resolution_pos_delay)
+
 
 # http://code.activestate.com/recipes/134892/
 class _Getch:
@@ -658,7 +660,7 @@ Concrete Scale: {} | Chroma Concrete: {}
         padd,
         question.concrete_tonic,
         question.interval['note_and_octave'],
-        "─".join(intervals[question.interval['semitones']][1:]),
+        "─".join(INTERVALS[question.interval['semitones']][1:]),
         question.interval['semitones'],
         question.interval['is_chromatic'],
         "─".join(question.scales['diatonic'].scale),
@@ -680,7 +682,8 @@ def main():
 
             new_question_bit = False
 
-            question = HarmonicQuestion(mode='major', chromatic=True)
+            #question = HarmonicQuestion(mode='major', chromatic=True)
+            question = HarmonicQuestion(mode='major')
 
             # debug
             if DEBUG:
