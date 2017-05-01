@@ -11,8 +11,7 @@ install:
 # command to run tests
 script: coverage run --source=birdears --module pytest --capture=no --verbose tests/
 env:
-  - PYTHONPATH=''
-  - PYTEST=true
+  - PYTHONPATH='' PYTEST=true
 after_success:
   - coveralls
   - codecov
