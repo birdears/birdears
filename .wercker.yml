@@ -43,7 +43,7 @@ build:
     # A step that executes `pip install` command.
     - pip-install:
         requirements_file: ""
-        packages_list: "coveralls virtualenv"
+        packages_list: "coveralls pytest"
 
     # # This pip-install clears the local wheel cache
     # - pip-install:
