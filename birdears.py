@@ -403,7 +403,6 @@ class QuestionBase:
 
         diatonic_mode = diatonic_modes[mode]
 
-        print(interval)
         scale_pitch = Scale(tonic=tonic, mode=mode,
                             octave=interval['interval_octave'],
                             descending=descending)
