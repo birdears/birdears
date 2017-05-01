@@ -73,9 +73,10 @@ z x c v b n m    -------  a  b c  d  e  f  g
 
 ### Other keys
 
-**q** to quit.
-
-**r** to repeat the tonic/interval.
+| Key          | What it Does                  |
+|         ---: | :---                          |
+| <kbd>q</kbd> | quit.                         |
+| <kbd>r</kbd> | to repeat the tonic/interval. |
 
 ## Installing  Dependencies
 
