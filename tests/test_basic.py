@@ -18,7 +18,7 @@ def test_questionclass():
     global KEYS
 
     for tonic in KEYS:
-        a = Question()
+        a = MelodicIntervalQuestion()
         assert(a)
 
 
@@ -26,7 +26,7 @@ def test_questionclass_chromatic():
     global KEYS
 
     for tonic in KEYS:
-        a = Question(tonic=tonic, chromatic=True)
+        a = MelodicIntervalQuestion(tonic=tonic, chromatic=True)
         assert(a)
 
 
@@ -34,7 +34,7 @@ def test_questionclass_descending():
     global KEYS
 
     for tonic in KEYS:
-        a = Question(tonic=tonic, descending=True)
+        a = MelodicIntervalQuestion(tonic=tonic, descending=True)
         assert(a)
 
 
@@ -42,7 +42,7 @@ def test_questionclass_chromatic_descending():
     global KEYS
 
     for tonic in KEYS:
-        a = Question(tonic=tonic, chromatic=True, descending=True)
+        a = MelodicIntervalQuestion(tonic=tonic, chromatic=True, descending=True)
         assert(a)
 
 
@@ -50,7 +50,7 @@ def test_questionclass_minor_chromatic_descending():
     global KEYS
 
     for tonic in KEYS:
-        a = Question(tonic=tonic, mode='minor', chromatic=True,
+        a = MelodicIntervalQuestion(tonic=tonic, mode='minor', chromatic=True,
                      descending=True)
         assert(a)
 
@@ -59,7 +59,7 @@ def test_questionclass_n_octaves():
     global KEYS
 
     for tonic in KEYS:
-        a = Question(tonic=tonic, n_octaves=2)
+        a = MelodicIntervalQuestion(tonic=tonic, n_octaves=2)
         assert(a)
 
 

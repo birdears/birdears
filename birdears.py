@@ -462,12 +462,12 @@ class QuestionBase:
         return resolution_pitch
 
 
-class MelodicQuestion(QuestionBase):
+class MelodicIntervalQuestion(QuestionBase):
 
     def __init__(self, mode='major', tonic=None, octave=None, descending=None,
                  chromatic=None, n_octaves=None, *args, **kwargs):
 
-        super(MeodicQuestion, self).__init__(*args, **kwargs)
+        super(MeodicIntervalQuestion, self).__init__(*args, **kwargs)
 
         global KEYBOARD_INDICES, KEYS
 
@@ -519,7 +519,7 @@ class MelodicQuestion(QuestionBase):
 # http://code.activestate.com/recipes/134892/
 
 
-class HarmonicQuestion(QuestionBase):
+class HarmonicIntervalQuestion(QuestionBase):
 
     def __init__(self, mode='major', tonic=None, octave=None, descending=None,
                  chromatic=None, n_octaves=None, *args, **kwargs):
@@ -683,7 +683,8 @@ def main():
             new_question_bit = False
 
             #question = HarmonicQuestion(mode='major', chromatic=True)
-            question = HarmonicQuestion(mode='major')
+            #question = HarmonicQuestion(mode='major')
+            question = MelodicIntervalQuestion(mode='major')
 
             # debug
             if DEBUG:

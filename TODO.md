@@ -15,11 +15,13 @@ write documentation in docstrings usiing [numydoc](https://github.com/numpy/nump
 
 different cadences
 
-implement harmonic intervals
+~~implement harmonic intervals~~ ✓
 
 melodic dictation, online and automatic (time based) to be played with
 instrument
 
+bindings with argparse
+
 # refactoring
 
-change global names
+~~change global names~~ ✓
