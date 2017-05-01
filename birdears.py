@@ -236,7 +236,7 @@ class Interval:
         """Chooses a chromatic interval for the question.
         """
 
-        global diatonic_modes, chromatic_type, max_semitones_resolve_below
+        global diatonic_modes, chromatic_type, max_semitones_resolve_below, intervals
 
         diatonic_mode = diatonic_modes[mode]
 
@@ -303,6 +303,7 @@ class Interval:
             'is_descending': False if not descending else True,
             'diatonic_index': diatonic_index,
             'distance': distance,
+            'data': intervals[semitones],
         })
 
 class Cadence:
