@@ -1,4 +1,7 @@
 <%def name="pdoc()">
+  .hljs {
+    border-radius: 3px;
+  }
   html, body {
     margin: 0;
     padding: 0;

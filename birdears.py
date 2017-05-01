@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 
+"""
+BirdEars provides facilities to development of musical ear training
+exercises.
+"""
+
 import subprocess
 import time
 from random import randrange, choice
@@ -96,10 +101,16 @@ MAX_SEMITONES_RESOLVE_BELOW = 5
 
 
 class Scale:
+    """Builds a musical scale.
+
+    Attributes
+    ----------
+    scale : array_type
+        the array of notes representing the scale.
+    """
 
     def __init__(self, tonic, mode=None, octave=None, n_octaves=None,
                  chromatic=None, descending=None, dont_repeat_tonic=None):
-
         if not chromatic:
             scale = self.get_diatonic(tonic=tonic, mode=mode, octave=octave,
                                       n_octaves=n_octaves,
@@ -117,6 +128,19 @@ class Scale:
     def get_chromatic(self, tonic, octave=None, n_octaves=None,
                       descending=None, dont_repeat_tonic=None):
         """Returns a chromatic scale from tonic.
+
+        Parameters
+        ----------
+        tonic : str
+            The note which the scale will be built upon.
+        octave : int
+            The scientific octave the scale will be built upon.
+        n_octaves : int
+            The number of octaves the scale will contain.
+        descending : bool
+            Whether the scale is descending.
+        dont_repeat_tonic : bool
+            Whethe to skip appending the last note (octave) to the scale.
         """
 
         global notes3, notes2
@@ -152,6 +176,21 @@ class Scale:
     def get_diatonic(self, tonic, mode, octave=None, n_octaves=None,
                      descending=None, dont_repeat_tonic=None):
         """Returns a diatonic scale from tonic and mode.
+
+        Parameters
+        ----------
+        tonic : str
+            The note which the scale will be built upon.
+        mode : str
+            The mode the scale will be built upon. ('major' or 'minor')
+        octave : int
+            The scientific octave the scale will be built upon.
+        n_octaves : int
+            The number of octaves the scale will contain.
+        descending : bool
+            Whether the scale is descending.
+        dont_repeat_tonic : bool
+            Whether to skip appending the last note (octave) to the scale.
         """
 
         global DIATONIC_MODES
