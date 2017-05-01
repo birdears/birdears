@@ -4,6 +4,7 @@ import subprocess
 import time
 from random import randrange, choice
 from collections import deque
+from math import floor
 
 DEBUG = True
 
@@ -264,15 +265,21 @@ class Interval:
         chromatic_scale = Scale(tonic=tonic, octave=None, chromatic=True,
                                 n_octaves=n_octaves, descending=descending)
 
-        note_name = "{}".format(chromatic_scale.scale[semitones])
-        note_and_octave = "{}{}".format(note_name, octave)
+        chromatic_scale_pitch = Scale(tonic=tonic, octave=octave,
+                                      chromatic=True, n_octaves=n_octaves,
+                                      descending=descending)
+
 
         distance = dict({
-            'octaves': 0 if semitones < 12 else int(semitones / 12),
-            'semitones': semitones if semitones < 12 else int(semitones % 12)
+            'octaves': 0 if (semitones < 12) else int(semitones / 12),
+            'semitones': semitones if (semitones < 12) else int(semitones % 12)
         })
         # chromatic_offset = semitones if semitones < 12 else semitones % 12
         chromatic_offset = distance['semitones']
+
+        note_name = "{}".format(chromatic_scale.scale[semitones])
+        note_and_octave = "{}".format(chromatic_scale_pitch.scale[semitones])
+
 
         is_chromatic = True if chromatic_offset not in diatonic_mode else False
 
@@ -415,12 +422,16 @@ class QuestionBase:
 
         resolution_pitch = []
 
-        diatonic_mode = DIATONIC_MODES[mode]
+        #diatonic_mode = DIATONIC_MODES[mode]
 
         scale_pitch = Scale(tonic=tonic, mode=mode,
                             octave=interval['interval_octave'],
+                            #octave=interval['tonic_octave'],
                             descending=descending)
         self.res_scale = scale_pitch
+
+        print(scale_pitch.scale)
+        print(interval)
 
         if not chromatic:
 
@@ -453,11 +464,13 @@ class QuestionBase:
 
         # unisson and octave
         # if interval['semitones'] == 0:
-        if interval['chromatic_offset'] == 0:
+        if interval['semitones'] == 0:
             resolution_pitch.append(scale_pitch.scale[0])
-        elif interval['chromatic_offset'] % 12 == 0:
+        elif interval['semitones'] % 12 == 0:
             # FIXME: multipe octaves
-            resolution_pitch.append(scale_pitch.scale[-1])
+            #resolution_pitch.append(scale_pitch.scale[-1])
+            #resolution_pitch.append(scale_pitch.scale[0])
+            resolution_pitch.append("{}{}".format(tonic, interval['tonic_octave']))
 
         return resolution_pitch
 
@@ -467,7 +480,7 @@ class MelodicIntervalQuestion(QuestionBase):
     def __init__(self, mode='major', tonic=None, octave=None, descending=None,
                  chromatic=None, n_octaves=None, *args, **kwargs):
 
-        super(MeodicIntervalQuestion, self).__init__(*args, **kwargs)
+        super(MelodicIntervalQuestion, self).__init__(*args, **kwargs)
 
         global KEYBOARD_INDICES, KEYS
 
@@ -485,22 +498,22 @@ class MelodicIntervalQuestion(QuestionBase):
         self.tonic = tonic or choice(KEYS)
         tonic = self.tonic
 
-        diatonic = Scale(tonic=tonic, mode=mode, octave=None,
+        diatonic_scale = Scale(tonic=tonic, mode=mode, octave=None,
                          descending=descending, n_octaves=n_octaves)
-        chromatic = Scale(tonic=tonic, octave=None, chromatic=True,
+        chromatic_scale = Scale(tonic=tonic, octave=None, chromatic=True,
                           descending=descending, n_octaves=n_octaves)
 
-        diatonic_pitch = Scale(tonic=tonic, mode=mode, octave=self.octave,
+        diatonic_scale_pitch = Scale(tonic=tonic, mode=mode, octave=self.octave,
                                descending=descending, n_octaves=n_octaves)
-        chromatic_pitch = Scale(tonic=tonic, octave=self.octave,
+        chromatic_scale_pitch = Scale(tonic=tonic, octave=self.octave,
                                 chromatic=True, descending=descending,
                                 n_octaves=n_octaves)
 
         scales = dict({
-            'diatonic': diatonic,
-            'chromatic': chromatic,
-            'diatonic_pitch': diatonic_pitch,
-            'chromatic_pitch': chromatic_pitch,
+            'diatonic': diatonic_scale,
+            'chromatic': chromatic_scale,
+            'diatonic_pitch': diatonic_scale_pitch,
+            'chromatic_pitch': chromatic_scale_pitch,
         })
         self.scales = scales
 
@@ -542,22 +555,22 @@ class HarmonicIntervalQuestion(QuestionBase):
         self.tonic = tonic or choice(KEYS)
         tonic = self.tonic
 
-        diatonic = Scale(tonic=tonic, mode=mode, octave=None,
+        diatonic_scale = Scale(tonic=tonic, mode=mode, octave=None,
                          descending=descending, n_octaves=n_octaves)
-        chromatic = Scale(tonic=tonic, octave=None, chromatic=True,
+        chromatic_scale = Scale(tonic=tonic, octave=None, chromatic=True,
                           descending=descending, n_octaves=n_octaves)
 
-        diatonic_pitch = Scale(tonic=tonic, mode=mode, octave=self.octave,
+        diatonic_scale_pitch = Scale(tonic=tonic, mode=mode, octave=self.octave,
                                descending=descending, n_octaves=n_octaves)
-        chromatic_pitch = Scale(tonic=tonic, octave=self.octave,
+        chromatic_scale_pitch = Scale(tonic=tonic, octave=self.octave,
                                 chromatic=True, descending=descending,
                                 n_octaves=n_octaves)
 
         scales = dict({
-            'diatonic': diatonic,
-            'chromatic': chromatic,
-            'diatonic_pitch': diatonic_pitch,
-            'chromatic_pitch': chromatic_pitch,
+            'diatonic': diatonic_scale,
+            'chromatic': chromatic_scale,
+            'diatonic_pitch': diatonic_scale_pitch,
+            'chromatic_pitch': chromatic_scale_pitch,
         })
         self.scales = scales
 
@@ -655,7 +668,7 @@ Scale: {}, Octave: {}
 Resolution: {},
 Chromatic: {}
 Concrete Scale: {} | Chroma Concrete: {}
-
+{}
 """.format(
         padd,
         question.concrete_tonic,
@@ -668,7 +681,8 @@ Concrete Scale: {} | Chroma Concrete: {}
         "─".join(question.resolution_pitch),
         "─".join(question.scales['chromatic'].scale),
         "─".join(question.scales['diatonic_pitch'].scale),
-        "─".join(question.scales['chromatic_pitch'].scale)
+        "─".join(question.scales['chromatic_pitch'].scale),
+        padd,
     ))
 
 
@@ -682,8 +696,6 @@ def main():
 
             new_question_bit = False
 
-            #question = HarmonicQuestion(mode='major', chromatic=True)
-            #question = HarmonicQuestion(mode='major')
             question = MelodicIntervalQuestion(mode='major')
 
             # debug
