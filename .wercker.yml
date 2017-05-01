@@ -28,7 +28,7 @@ build:
     # A step that sets up the python virtual environment
     - virtualenv:
         name: setup virtual environment
-        install_wheel: false # Enable wheel to speed up builds (experimental)
+        # install_wheel: false # Enable wheel to speed up builds (experimental)
 
     # # Use this virtualenv step for python 3.2
     # - virtualenv
@@ -37,7 +37,7 @@ build:
 
     # A step that executes `pip install` command.
     - pip-install:
-      packages_list: "coveralls"
+      packages_list: "coveralls virtualenv"
 
     # # This pip-install clears the local wheel cache
     # - pip-install:
