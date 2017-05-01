@@ -7,6 +7,9 @@ from collections import deque
 
 DEBUG = True
 
+if DEBUG:
+    import sys
+
 notes2 = ('C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B')
 notes3 = ('C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B')
 
@@ -576,7 +579,7 @@ Concrete Scale: {} | Chroma Concrete: {}
     ))
 
 
-if __name__ == "__main__":
+def main():
     getch = _Getch()
 
     new_question_bit = True
@@ -594,7 +597,10 @@ if __name__ == "__main__":
 
             question.play_question()
 
-        user_input = getch()
+        if DEBUG and hasattr(sys,'sys._called_from_test'):
+            user_input='v' # let's guess a perfect fifth
+        else:
+            user_input = getch()
 
         # any response input interval from valid keys
         if user_input in question.keyboard_index and user_input != ' ':  # spc
@@ -620,3 +626,10 @@ if __name__ == "__main__":
         # r - repeat interval
         elif user_input == 'r':
             question.play_question()
+
+
+        if DEBUG and hasattr(sys,'sys._called_from_test'):
+            break;
+
+if __name__ == "__main__":
+    main()
