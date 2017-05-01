@@ -9,7 +9,7 @@
 
 ## Functional Ear Training for Musicians
 
-In current development though functional
+In current development though functional. Uses python 3 and [sox](http://sox.sourceforge.net/).
 
 ## Usage
 
@@ -18,7 +18,6 @@ In current development though functional
 Install `sox` and `python3` (see [below](https://github.com/iacchus/birdears#installing--dependencies)) and,
 
 ### 2. clone the repository
-
 ```
 git clone https://github.com/iacchus/birdears.git
 ```

@@ -238,14 +238,14 @@ class Interval:
         global DIATONIC_MODES, CHROMATIC_TYPE, MAX_SEMITONES_RESOLVE_BELOW
         global INTERVALS
 
-        diatonic_mode = DIATONIC_MODES[mode]
+        diatonic_mode = list(DIATONIC_MODES[mode])
 
         if descending:
             diatonic_mode = [12 - x for x in diatonic_mode]
             diatonic_mode.reverse()
 
         step_network = diatonic_mode
-        chromatic_network = CHROMATIC_TYPE
+        chromatic_network = list(CHROMATIC_TYPE)
 
         # FIXME: please refactore this with method signature n_octaves=1:
         if n_octaves:
@@ -332,7 +332,10 @@ class QuestionBase:
 
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, mode='major', tonic=None, octave=None, descending=None,
+                 chromatic=None, n_octaves=None, *args, **kwargs):
+
+        global KEYBOARD_INDICES, KEYS
 
         self.question_duration = 2
         self.question_delay = 1.5
@@ -341,6 +344,51 @@ class QuestionBase:
         self.resolution_duration = 2.5
         self.resolution_delay = 0.5
         self.resolution_pos_delay = 1
+
+        self.mode = mode
+
+        # self.octave = octave if octave else randrange(3, 5)
+        self.octave = octave or randrange(3, 5)
+
+        # FIXME: maybe this should go to __main__
+        self.keyboard_index = KEYBOARD_INDICES['chromatic' if chromatic
+                                               else 'diatonic'][self.mode]
+
+        # FIXME
+        # self.tonic = tonic if tonic else choice(KEYS)
+        self.tonic = tonic or choice(KEYS)
+        tonic = self.tonic
+
+        diatonic_scale = Scale(tonic=tonic, mode=mode, octave=None,
+                         descending=descending, n_octaves=n_octaves)
+        chromatic_scale = Scale(tonic=tonic, octave=None, chromatic=True,
+                          descending=descending, n_octaves=n_octaves)
+
+        diatonic_scale_pitch = Scale(tonic=tonic, mode=mode, octave=self.octave,
+                               descending=descending, n_octaves=n_octaves)
+        chromatic_scale_pitch = Scale(tonic=tonic, octave=self.octave,
+                                chromatic=True, descending=descending,
+                                n_octaves=n_octaves)
+
+        scales = dict({
+            'diatonic': diatonic_scale,
+            'chromatic': chromatic_scale,
+            'diatonic_pitch': diatonic_scale_pitch,
+            'chromatic_pitch': chromatic_scale_pitch,
+        })
+        self.scales = scales
+
+        self.concrete_tonic = scales['diatonic_pitch'].scale[0]
+        self.scale_size = len(scales['diatonic'].scale)
+
+        self.interval = Interval(mode=mode, tonic=tonic, octave=self.octave,
+                                 chromatic=chromatic, n_octaves=n_octaves,
+                                 descending=descending).interval_data
+        # FIXME
+        self.resolution_pitch = \
+            self.make_resolution(chromatic=chromatic, mode=self.mode,
+                                 tonic=tonic, interval=self.interval,
+                                 descending=descending)
 
     def _wait(self, seconds):
         time.sleep(seconds)
@@ -480,56 +528,10 @@ class MelodicIntervalQuestion(QuestionBase):
     def __init__(self, mode='major', tonic=None, octave=None, descending=None,
                  chromatic=None, n_octaves=None, *args, **kwargs):
 
-        super(MelodicIntervalQuestion, self).__init__(*args, **kwargs)
-
-        global KEYBOARD_INDICES, KEYS
-
-        self.mode = mode
-
-        # self.octave = octave if octave else randrange(3, 5)
-        self.octave = octave or randrange(3, 5)
-
-        # FIXME: maybe this should go to __main__
-        self.keyboard_index = KEYBOARD_INDICES['chromatic' if chromatic
-                                               else 'diatonic'][self.mode]
-
-        # FIXME
-        # self.tonic = tonic if tonic else choice(KEYS)
-        self.tonic = tonic or choice(KEYS)
-        tonic = self.tonic
-
-        diatonic_scale = Scale(tonic=tonic, mode=mode, octave=None,
-                         descending=descending, n_octaves=n_octaves)
-        chromatic_scale = Scale(tonic=tonic, octave=None, chromatic=True,
-                          descending=descending, n_octaves=n_octaves)
-
-        diatonic_scale_pitch = Scale(tonic=tonic, mode=mode, octave=self.octave,
-                               descending=descending, n_octaves=n_octaves)
-        chromatic_scale_pitch = Scale(tonic=tonic, octave=self.octave,
-                                chromatic=True, descending=descending,
-                                n_octaves=n_octaves)
-
-        scales = dict({
-            'diatonic': diatonic_scale,
-            'chromatic': chromatic_scale,
-            'diatonic_pitch': diatonic_scale_pitch,
-            'chromatic_pitch': chromatic_scale_pitch,
-        })
-        self.scales = scales
-
-        self.concrete_tonic = scales['diatonic_pitch'].scale[0]
-        self.scale_size = len(scales['diatonic'].scale)
-
-        self.interval = Interval(mode=mode, tonic=tonic, octave=self.octave,
-                                 chromatic=chromatic, n_octaves=None,
-                                 descending=descending).interval_data
-        # FIXME
-        self.resolution_pitch = \
-            self.make_resolution(chromatic=chromatic, mode=self.mode,
-                                 tonic=tonic,
-                                 interval=self.interval, descending=descending)
-
-# http://code.activestate.com/recipes/134892/
+        super(MelodicIntervalQuestion, self).\
+                __init__(mode=mode, tonic=tonic, octave=octave,
+                         descending=descending, chromatic=chromatic,
+                         n_octaves=n_octaves, *args, **kwargs)
 
 
 class HarmonicIntervalQuestion(QuestionBase):
@@ -537,54 +539,11 @@ class HarmonicIntervalQuestion(QuestionBase):
     def __init__(self, mode='major', tonic=None, octave=None, descending=None,
                  chromatic=None, n_octaves=None, *args, **kwargs):
 
-        super(HarmonicQuestion, self).__init__(*args, **kwargs)
+        super(HarmonicIntervalQuestion, self).\
+                __init__(mode=mode, tonic=tonic, octave=octave,
+                         descending=descending, chromatic=chromatic,
+                         n_octaves=n_octaves, *args, **kwargs)
 
-        global KEYBOARD_INDICES, KEYS
-
-        self.mode = mode
-
-        # self.octave = octave if octave else randrange(3, 5)
-        self.octave = octave or randrange(3, 5)
-
-        # FIXME: maybe this should go to __main__
-        self.keyboard_index = KEYBOARD_INDICES['chromatic' if chromatic
-                                               else 'diatonic'][self.mode]
-
-        # FIXME
-        # self.tonic = tonic if tonic else choice(KEYS)
-        self.tonic = tonic or choice(KEYS)
-        tonic = self.tonic
-
-        diatonic_scale = Scale(tonic=tonic, mode=mode, octave=None,
-                         descending=descending, n_octaves=n_octaves)
-        chromatic_scale = Scale(tonic=tonic, octave=None, chromatic=True,
-                          descending=descending, n_octaves=n_octaves)
-
-        diatonic_scale_pitch = Scale(tonic=tonic, mode=mode, octave=self.octave,
-                               descending=descending, n_octaves=n_octaves)
-        chromatic_scale_pitch = Scale(tonic=tonic, octave=self.octave,
-                                chromatic=True, descending=descending,
-                                n_octaves=n_octaves)
-
-        scales = dict({
-            'diatonic': diatonic_scale,
-            'chromatic': chromatic_scale,
-            'diatonic_pitch': diatonic_scale_pitch,
-            'chromatic_pitch': chromatic_scale_pitch,
-        })
-        self.scales = scales
-
-        self.concrete_tonic = scales['diatonic_pitch'].scale[0]
-        self.scale_size = len(scales['diatonic'].scale)
-
-        self.interval = Interval(mode=mode, tonic=tonic, octave=self.octave,
-                                 chromatic=chromatic, n_octaves=None,
-                                 descending=descending).interval_data
-        # FIXME
-        self.resolution_pitch = \
-            self.make_resolution(chromatic=chromatic, mode=self.mode,
-                                 tonic=tonic,
-                                 interval=self.interval, descending=descending)
 
     def play_question(self):
 
@@ -696,7 +655,8 @@ def main():
 
             new_question_bit = False
 
-            question = MelodicIntervalQuestion(mode='major')
+            #question = MelodicIntervalQuestion(mode='major',n_octaves=2)
+            question = MelodicIntervalQuestion(mode='major',octave=5,descending=True)
 
             # debug
             if DEBUG:
