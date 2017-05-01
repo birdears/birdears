@@ -19,3 +19,7 @@ implement harmonic intervals
 
 melodic dictation, online and automatic (time based) to be played with
 instrument
+
+# refactoring
+
+change global names

@@ -336,12 +336,21 @@ class QuestionBase:
 
     def _play_note(self, note, duration, delay):
         # requires sox to be installed
+
         command = (
             "play -qn synth {duration} pluck {note}"
             " fade l 0 {duration} 2 reverb"
         ).format(note=note, duration=duration)
 
         subprocess.Popen(command.split())
+
+        if delay:
+            self._wait(delay)
+
+    def _play_chord(self, chord, duration, delay):
+
+        for note in chord:
+            self._play_note(note, duration=duration, delay=0)
 
         if delay:
             self._wait(delay)
@@ -449,12 +458,12 @@ class QuestionBase:
         return resolution_pitch
 
 
-class Question(QuestionBase):
+class MelodicQuestion(QuestionBase):
 
     def __init__(self, mode='major', tonic=None, octave=None, descending=None,
                  chromatic=None, n_octaves=None, *args, **kwargs):
 
-        super(Question, self).__init__(*args, **kwargs)  # runs base class init
+        super(MeodicQuestion, self).__init__(*args, **kwargs)  # runs base class init
 
         global keyboard_indices, KEYS
 
@@ -506,6 +515,90 @@ class Question(QuestionBase):
 # http://code.activestate.com/recipes/134892/
 
 
+class HarmonicQuestion(QuestionBase):
+
+    def __init__(self, mode='major', tonic=None, octave=None, descending=None,
+                 chromatic=None, n_octaves=None, *args, **kwargs):
+
+        super(HarmonicQuestion, self).__init__(*args, **kwargs)  # runs base class init
+
+        global keyboard_indices, KEYS
+
+        self.mode = mode
+
+        # self.octave = octave if octave else randrange(3, 5)
+        self.octave = octave or randrange(3, 5)
+
+        # FIXME: maybe this should go to __main__
+        self.keyboard_index = keyboard_indices['chromatic' if chromatic
+                                               else 'diatonic'][self.mode]
+
+        # FIXME
+        # self.tonic = tonic if tonic else choice(KEYS)
+        self.tonic = tonic or choice(KEYS)
+        tonic = self.tonic
+
+        diatonic = Scale(tonic=tonic, mode=mode, octave=None,
+                         descending=descending, n_octaves=n_octaves)
+        chromatic = Scale(tonic=tonic, octave=None, chromatic=True,
+                          descending=descending, n_octaves=n_octaves)
+
+        diatonic_pitch = Scale(tonic=tonic, mode=mode, octave=self.octave,
+                               descending=descending, n_octaves=n_octaves)
+        chromatic_pitch = Scale(tonic=tonic, octave=self.octave,
+                                chromatic=True, descending=descending,
+                                n_octaves=n_octaves)
+
+        scales = dict({
+            'diatonic': diatonic,
+            'chromatic': chromatic,
+            'diatonic_pitch': diatonic_pitch,
+            'chromatic_pitch': chromatic_pitch,
+        })
+        self.scales = scales
+
+        self.concrete_tonic = scales['diatonic_pitch'].scale[0]
+        self.scale_size = len(scales['diatonic'].scale)
+
+        self.interval = Interval(mode=mode, tonic=tonic, octave=self.octave,
+                                 chromatic=chromatic, n_octaves=None,
+                                 descending=descending).interval_data
+        # FIXME
+        self.resolution_pitch = \
+            self.make_resolution(chromatic=chromatic, mode=self.mode,
+                                 tonic=tonic,
+                                 interval=self.interval, descending=descending)
+
+    def play_question(self):
+
+        tonic = self.concrete_tonic
+        interval = self.interval['note_and_octave']
+
+        question_chords = [(tonic,tonic) , (tonic,interval)]
+
+        for item in question_chords:
+            self._play_chord(chord=item, duration=self.question_duration,
+                             delay=self.question_delay)
+        #play_note(note=interval, duration=self.question_duration, delay=0)
+
+        if self.question_pos_delay:
+            self._wait(self.resolution_pos_delay)
+
+    def play_resolution(self):
+
+        #play_note = self._play_note
+
+        tonic = self.concrete_tonic
+
+        for tone in self.resolution_pitch:
+            self._play_chord(chord=[tonic, tone],
+                            duration=self.resolution_duration,
+                            delay=self.resolution_delay)
+
+        if self.resolution_pos_delay:
+            self._wait(self.resolution_pos_delay)
+
+# http://code.activestate.com/recipes/134892/
 class _Getch:
     """Gets a single character from standard input.  Does not echo to the
 screen."""
@@ -587,7 +680,7 @@ def main():
 
             new_question_bit = False
 
-            question = Question(mode='major', chromatic=True)
+            question = HarmonicQuestion(mode='major', chromatic=True)
 
             # debug
             if DEBUG:
