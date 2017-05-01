@@ -598,7 +598,7 @@ def main():
 
             question.play_question()
 
-        if DEBUG and os.environ['PYTEST']:
+        if DEBUG and 'PYTEST' in os.environ:
             user_input='v' # let's guess a perfect fifth
         else:
             user_input = getch()
@@ -629,7 +629,7 @@ def main():
             question.play_question()
 
 
-        if DEBUG and os.environ['PYTEST']:
+        if DEBUG and 'PYTEST' in os.environ:
             break;
 
 if __name__ == "__main__":
