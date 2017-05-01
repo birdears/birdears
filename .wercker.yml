@@ -36,7 +36,8 @@ build:
     #     python_location: /usr/bin/python3.2
 
     # A step that executes `pip install` command.
-    - pip-install coveralls
+    - pip-install:
+      packages_list: "coveralls"
 
     # # This pip-install clears the local wheel cache
     # - pip-install:
