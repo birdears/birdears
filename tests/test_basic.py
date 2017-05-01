@@ -1,16 +1,13 @@
 from birdears import *
 
 
-def pytest_configure():
-    import sys
-    sys._called_from_test = True
+#def pytest_configure():
+#    import sys
+#    sys._called_from_test = True
 
 
-def pytest_unconfigure():
-    del sys._called_from_test
-
-def test_main():
-    main()
+#def pytest_unconfigure():
+#    del sys._called_from_test
 
 def test_questionbase():
     a = QuestionBase()

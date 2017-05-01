@@ -7,9 +7,6 @@ from collections import deque
 
 DEBUG = True
 
-if DEBUG:
-    import os
-
 notes2 = ('C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B')
 notes3 = ('C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B')
 
@@ -598,10 +595,7 @@ def main():
 
             question.play_question()
 
-        if DEBUG and 'PYTEST' in os.environ:
-            user_input='v' # let's guess a perfect fifth
-        else:
-            user_input = getch()
+        user_input = getch()
 
         # any response input interval from valid keys
         if user_input in question.keyboard_index and user_input != ' ':  # spc
@@ -627,10 +621,6 @@ def main():
         # r - repeat interval
         elif user_input == 'r':
             question.play_question()
-
-
-        if DEBUG and 'PYTEST' in os.environ:
-            break;
 
 if __name__ == "__main__":
     main()
