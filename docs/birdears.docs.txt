@@ -1,0 +1,208 @@
+Module birdears
+---------------
+
+Variables
+---------
+CHROMATIC_TYPE
+
+DEBUG
+
+DIATONIC_MODES
+
+INTERVALS
+
+KEYBOARD_INDICES
+
+KEYS
+
+MAX_SEMITONES_RESOLVE_BELOW
+
+notes2
+
+notes3
+
+Functions
+---------
+main()
+
+print_stuff(question)
+
+Classes
+-------
+Cadence 
+    Ancestors (in MRO)
+    ------------------
+    birdears.Cadence
+    builtins.object
+
+    Static methods
+    --------------
+    __init__(self)
+        Initialize self.  See help(type(self)) for accurate signature.
+
+HarmonicIntervalQuestion 
+    Base Class to be subclassed for Question classes.
+
+    This class implements attributes and routines to be used in Question
+    subclasses.
+
+    Attributes
+    ----------
+    notes : list
+            list of notes and enharmonics to be used by the class
+
+    Ancestors (in MRO)
+    ------------------
+    birdears.HarmonicIntervalQuestion
+    birdears.QuestionBase
+    builtins.object
+
+    Static methods
+    --------------
+    __init__(self, mode='major', tonic=None, octave=None, descending=None, chromatic=None, n_octaves=None, *args, **kwargs)
+        Initialize self.  See help(type(self)) for accurate signature.
+
+    check_question(self, user_input_char)
+        Checks whether the given answer is correct.
+
+    make_resolution(self, chromatic, mode, tonic, interval, descending=None)
+
+    play_question(self)
+
+    play_resolution(self)
+
+Interval 
+    Ancestors (in MRO)
+    ------------------
+    birdears.Interval
+    builtins.object
+
+    Static methods
+    --------------
+    __init__(self, mode, tonic, octave, chromatic=None, n_octaves=None, descending=None)
+        Chooses a chromatic interval for the question.
+
+    Instance variables
+    ------------------
+    interval_data
+
+MelodicIntervalQuestion 
+    Base Class to be subclassed for Question classes.
+
+    This class implements attributes and routines to be used in Question
+    subclasses.
+
+    Attributes
+    ----------
+    notes : list
+            list of notes and enharmonics to be used by the class
+
+    Ancestors (in MRO)
+    ------------------
+    birdears.MelodicIntervalQuestion
+    birdears.QuestionBase
+    builtins.object
+
+    Static methods
+    --------------
+    __init__(self, mode='major', tonic=None, octave=None, descending=None, chromatic=None, n_octaves=None, *args, **kwargs)
+        Initialize self.  See help(type(self)) for accurate signature.
+
+    check_question(self, user_input_char)
+        Checks whether the given answer is correct.
+
+    make_resolution(self, chromatic, mode, tonic, interval, descending=None)
+
+    play_question(self)
+
+    play_resolution(self)
+
+QuestionBase 
+    Base Class to be subclassed for Question classes.
+
+    This class implements attributes and routines to be used in Question
+    subclasses.
+
+    Attributes
+    ----------
+    notes : list
+            list of notes and enharmonics to be used by the class
+
+    Ancestors (in MRO)
+    ------------------
+    birdears.QuestionBase
+    builtins.object
+
+    Descendents
+    -----------
+    birdears.MelodicIntervalQuestion
+    birdears.HarmonicIntervalQuestion
+
+    Static methods
+    --------------
+    __init__(self, mode='major', tonic=None, octave=None, descending=None, chromatic=None, n_octaves=None, *args, **kwargs)
+        Initialize self.  See help(type(self)) for accurate signature.
+
+    check_question(self, user_input_char)
+        Checks whether the given answer is correct.
+
+    make_resolution(self, chromatic, mode, tonic, interval, descending=None)
+
+    play_question(self)
+
+    play_resolution(self)
+
+    Instance variables
+    ------------------
+    concrete_tonic
+
+    interval
+
+    keyboard_index
+
+    mode
+
+    octave
+
+    question_delay
+
+    question_duration
+
+    question_pos_delay
+
+    resolution_delay
+
+    resolution_duration
+
+    resolution_pitch
+
+    resolution_pos_delay
+
+    scale_size
+
+    scales
+
+    tonic
+
+Scale 
+    Ancestors (in MRO)
+    ------------------
+    birdears.Scale
+    builtins.object
+
+    Static methods
+    --------------
+    __init__(self, tonic, mode=None, octave=None, n_octaves=None, chromatic=None, descending=None, dont_repeat_tonic=None)
+        Initialize self.  See help(type(self)) for accurate signature.
+
+    get_chromatic(self, tonic, octave=None, n_octaves=None, descending=None, dont_repeat_tonic=None)
+        Returns a chromatic scale from tonic.
+
+    get_diatonic(self, tonic, mode, octave=None, n_octaves=None, descending=None, dont_repeat_tonic=None)
+        Returns a diatonic scale from tonic and mode.
+
+    Instance variables
+    ------------------
+    chromatic
+
+    scale
