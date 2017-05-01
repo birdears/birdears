@@ -10,7 +10,7 @@ DEBUG = True
 notes2 = ('C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B')
 notes3 = ('C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B')
 
-notes4 = ('C', 'C#', 'Db', 'D', 'D#', 'Eb', 'E', 'F',
+KEYS = ('C', 'C#', 'Db', 'D', 'D#', 'Eb', 'E', 'F',
           'F#', 'Gb', 'G', 'G#', 'Ab', 'A', 'A#', 'Bb', 'B')
 
 intervals = (
@@ -455,7 +455,7 @@ class Question(QuestionBase):
 
         super(Question, self).__init__(*args, **kwargs)  # runs base class init
 
-        global keyboard_indices, notes4
+        global keyboard_indices, KEYS
 
         self.mode = mode
 
@@ -467,8 +467,8 @@ class Question(QuestionBase):
                                                else 'diatonic'][self.mode]
 
         # FIXME
-        # self.tonic = tonic if tonic else choice(notes4)
-        self.tonic = tonic or choice(notes4)
+        # self.tonic = tonic if tonic else choice(KEYS)
+        self.tonic = tonic or choice(KEYS)
         tonic = self.tonic
 
         diatonic = Scale(tonic=tonic, mode=mode, octave=None,
