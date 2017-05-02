@@ -648,22 +648,13 @@ class MelodicDictateQuestion(QuestionBase):
                               descending=descending).interval_data for n in range(max_intervals)]
         self.question_phrase_intervals = [choice(question_intervals) for n in range(n_notes-1)]
 
-        self.question_phrase = [ ival['semitones'] for ival in self.question_phrase_intervals ]
-        #self.resolution_pitch = \
-        #    self.make_resolution(chromatic=chromatic, mode=self.mode,
-        #                         tonic=tonic, interval=self.interval,
-        #                         descending=descending)
+        self.question_phrase = [0]
 
-    #def play_question(self, melodic_phrase=None):
+        self.question_phrase.extend([ ival['semitones'] for ival in self.question_phrase_intervals ])
+
     def play_question(self, melodic_phrase=None):
 
         tonic = self.concrete_tonic
-        #interval = self.interval['note_and_octave']
-
-        #question_chords = [(tonic, tonic), (tonic, interval)]
-
-        self._play_note(note=tonic, duration=self.question_duration,
-                         delay=self.question_delay)
 
         for item in self.question_phrase_intervals:
             self._play_note(note=item['note_and_octave'], duration=self.question_duration,
@@ -676,7 +667,7 @@ class MelodicDictateQuestion(QuestionBase):
 
         tonic = self.concrete_tonic
 
-        for tone in self.question_phrase:
+        for tone in [self.scales['chromatic_pitch'].scale[note] for note in self.question_phrase]:
             self._play_note(tone,
                              duration=self.resolution_duration,
                              delay=self.resolution_delay)
@@ -689,23 +680,16 @@ class MelodicDictateQuestion(QuestionBase):
 
         global INTERVALS
 
-        #input_semitones = [self.keyboard_index.index(user_input_keys[n] for n in user_input_keys)]
-
-        #user_interval = INTERVALS[semitones][2]
-        #correct_interval = INTERVALS[self.interval['semitones']][2]
-
         response = {
             'is_correct': False,
             'user_input': user_input_keys,
             #'correct_interval': correct_interval,
         }
 
-        for idx,interval in enumerate(user_input_keys):
-            if self.question_phrase[idx] != self.keyboard_index.index(interval):
-                response.update({'is_correct': False})
-                break
-            else:
-                response.update({'is_correct': True})
+        if [self.keyboard_index.index(s) for s in user_input_keys] == self.question_phrase:
+            response.update({'is_correct': True})
+        else:
+            response.update({'is_correct': False})
 
         return response
 
@@ -843,10 +827,11 @@ def main():
                 response = question.check_question(input_keys)
 
                 if response['is_correct']:
-                    print("Correct!.. it is “{}”".format(
-                        response['user_interval']))
+                    #print("Correct!.. it is “{}”".format( response['user_interval']))
+                    print("Correct! It was semitones {}".format("-".join(str(question.question_phrase))))
                 else:
                     print("It is incorrect...")
+                    print("You replied semitones {} but the correct is semitones {}".format("-".join(str(input_keys)), "-".join(str(question.question_phrase))))
                 #else:
                 #    print("Incorrect.. the correct is “{}” ! You aswered “{}”..".
                 #          format(response['correct_interval'],
