@@ -79,6 +79,7 @@ DIATONIC_MODES = {
 #  s   f g   j k   eg.:      a#   c# d#    f# g#
 # z x c v b n m    -------  a  b c  d  e  f  g
 
+# FIXME: these should be inverted/reverted for descending scales: 
 KEYBOARD_INDICES = {
     'diatonic': {
         'minor': 'z xc v bn m Z XC V BN M',
@@ -378,12 +379,6 @@ class QuestionBase:
 
     This class implements attributes and routines to be used in Question
     subclasses.
-
-    Attributes
-    ----------
-    notes : list
-            list of notes and enharmonics to be used by the class
-
     """
 
     def __init__(self, mode='major', tonic=None, octave=None, descending=None,
@@ -626,6 +621,8 @@ class HarmonicIntervalQuestion(QuestionBase):
 
 
 class MelodicDictateQuestion(QuestionBase):
+    """Implements a melodic dictate test.
+    """
 
     def __init__(self, mode='major', max_intervals=3, n_notes=4, tonic=None,
                  octave=None, descending=None, chromatic=None, n_octaves=None,
