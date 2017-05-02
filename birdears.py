@@ -648,7 +648,7 @@ class MelodicDictateQuestion(QuestionBase):
                               descending=descending).interval_data for n in range(max_intervals)]
         self.question_phrase_intervals = [choice(question_intervals) for n in range(n_notes-1)]
 
-        self.question_phrase = [0]
+        self.question_phrase= list([0])
 
         self.question_phrase.extend([ ival['semitones'] for ival in self.question_phrase_intervals ])
 
@@ -656,8 +656,8 @@ class MelodicDictateQuestion(QuestionBase):
 
         tonic = self.concrete_tonic
 
-        for item in self.question_phrase_intervals:
-            self._play_note(note=item['note_and_octave'], duration=self.question_duration,
+        for item in self.question_phrase:
+            self._play_note(note=self.scales['chromatic_pitch'].scale[item], duration=self.question_duration,
                              delay=self.question_delay)
 
         if self.question_pos_delay:
@@ -780,7 +780,7 @@ Concrete Scale: {} | Chroma Concrete: {}
         question.concrete_tonic,
         "─".join(str(question.question_phrase)),
         "─".join([ "/".join(INTERVALS[n][1:]) for n in question.question_phrase]),
-        "─".join([str(n['semitones']) for n in question.question_phrase_intervals]),
+        "─".join([str(n) for n in question.question_phrase]),
         #question.interval['is_chromatic'],
         "─".join(question.scales['diatonic'].scale),
         "{}-{}".format(question.octave, question.octave + 1),
