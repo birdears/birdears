@@ -573,13 +573,13 @@ class MelodicIntervalQuestion(QuestionBase):
                          descending=descending, chromatic=chromatic,
                          n_octaves=n_octaves, *args, **kwargs)
 
-        self.interval = Interval(mode=mode, tonic=tonic, octave=self.octave,
+        self.interval = Interval(mode=mode, tonic=self.tonic, octave=self.octave,
                                  chromatic=chromatic, n_octaves=n_octaves,
                                  descending=descending).interval_data
         # FIXME
         self.resolution_pitch = \
             self.make_resolution(chromatic=chromatic, mode=self.mode,
-                                 tonic=tonic, interval=self.interval,
+                                 tonic=self.tonic, interval=self.interval,
                                  descending=descending)
 
 class HarmonicIntervalQuestion(QuestionBase):
@@ -593,13 +593,14 @@ class HarmonicIntervalQuestion(QuestionBase):
                          descending=descending, chromatic=chromatic,
                          n_octaves=n_octaves, *args, **kwargs)
 
-        self.interval = Interval(mode=mode, tonic=tonic, octave=self.octave,
+        tonic = self.tonic
+        self.interval = Interval(mode=mode, tonic=self.tonic, octave=self.octave,
                                  chromatic=chromatic, n_octaves=n_octaves,
                                  descending=descending).interval_data
         # FIXME
         self.resolution_pitch = \
             self.make_resolution(chromatic=chromatic, mode=self.mode,
-                                 tonic=tonic, interval=self.interval,
+                                 tonic=self.tonic, interval=self.interval,
                                  descending=descending)
 
     def play_question(self):
