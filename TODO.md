@@ -17,8 +17,7 @@ different cadences
 
 ~~implement harmonic intervals~~ ✓
 
-melodic dictation, online and automatic (time based) to be played with
-instrument
+melodic dictation, computer and instrumental (time based, to be played on instrument)
 
 bindings with argparse
 
