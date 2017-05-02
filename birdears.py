@@ -194,6 +194,7 @@ class Scale:
         """
 
         global DIATONIC_MODES
+
         diatonic_mode = DIATONIC_MODES[mode]
 
         chromatic = self.get_chromatic(tonic)
@@ -278,13 +279,17 @@ class Interval:
         global INTERVALS
 
         diatonic_mode = list(DIATONIC_MODES[mode])
+        chromatic_network = list(CHROMATIC_TYPE)
 
         if descending:
             diatonic_mode = [12 - x for x in diatonic_mode]
+            print(diatonic_mode)
             diatonic_mode.reverse()
+            print(diatonic_mode)
+
+            #chromatic_
 
         step_network = diatonic_mode
-        chromatic_network = list(CHROMATIC_TYPE)
 
         # FIXME: please refactore this with method signature n_octaves=1:
         if n_octaves:
@@ -293,8 +298,8 @@ class Interval:
                                      diatonic_mode[1:]])
                 chromatic_network.extend([semitones + 12 * i for semitones in
                                           CHROMATIC_TYPE[1:]])
-        else:
-            n_octaves = 1
+        #else:
+        #    n_octaves = 1
 
         if not chromatic:
             semitones = choice(step_network)
@@ -390,8 +395,10 @@ class QuestionBase:
         self.octave = octave or randrange(3, 5)
 
         # FIXME: maybe this should go to __main__
-        self.keyboard_index = KEYBOARD_INDICES['chromatic' if chromatic
-                                               else 'diatonic'][self.mode]
+        self.keyboard_index = KEYBOARD_INDICES['chromatic'][self.mode]
+
+        #if descending:
+        #    self.keyboard_index = self.keyboard_index[::-1].swapcase()
 
         # FIXME
         # self.tonic = tonic if tonic else choice(KEYS)
@@ -694,7 +701,7 @@ def main():
 
             new_question_bit = False
 
-            question = MelodicIntervalQuestion(mode='major',descendent=True)
+            question = MelodicIntervalQuestion(mode='major',descending=True)
             #question = HarmonicIntervalQuestion(mode='major')
             #question = HarmonicIntervalQuestion(mode='major')
 
