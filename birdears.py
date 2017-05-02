@@ -273,6 +273,16 @@ class Interval:
     def __init__(self, mode, tonic, octave, chromatic=None, n_octaves=None,
                  descending=None):
         """Chooses a chromatic interval for the question.
+
+        Parameters
+        ----------
+        mode : str
+        tonic : str
+        octave : str
+        interval : str
+        chromatic: bool
+        n_octaves : int
+        descending : bool
         """
 
         global DIATONIC_MODES, CHROMATIC_TYPE, MAX_SEMITONES_RESOLVE_BELOW
@@ -520,7 +530,6 @@ class QuestionBase:
 
         scale_pitch = Scale(tonic=tonic, mode=mode,
                             octave=interval['interval_octave'],
-                            #octave=interval['tonic_octave'],
                             descending=descending)
         self.res_scale = scale_pitch
 
@@ -557,19 +566,17 @@ class QuestionBase:
                     scale_pitch.scale[interval['diatonic_index']:])
 
         # unisson and octave
-        # if interval['semitones'] == 0:
         if interval['semitones'] == 0:
             resolution_pitch.append(scale_pitch.scale[0])
         elif interval['semitones'] % 12 == 0:
             # FIXME: multipe octaves
-            #resolution_pitch.append(scale_pitch.scale[-1])
-            #resolution_pitch.append(scale_pitch.scale[0])
             resolution_pitch.append("{}{}".format(tonic, interval['tonic_octave']))
 
         return resolution_pitch
 
 
 class MelodicIntervalQuestion(QuestionBase):
+    "Implements a Melodic Interval test."
 
     def __init__(self, mode='major', tonic=None, octave=None, descending=None,
                  chromatic=None, n_octaves=None, *args, **kwargs):
@@ -581,6 +588,7 @@ class MelodicIntervalQuestion(QuestionBase):
 
 
 class HarmonicIntervalQuestion(QuestionBase):
+    "Implements a Harmonic Interval test."
 
     def __init__(self, mode='major', tonic=None, octave=None, descending=None,
                  chromatic=None, n_octaves=None, *args, **kwargs):
@@ -589,7 +597,6 @@ class HarmonicIntervalQuestion(QuestionBase):
                 __init__(mode=mode, tonic=tonic, octave=octave,
                          descending=descending, chromatic=chromatic,
                          n_octaves=n_octaves, *args, **kwargs)
-
 
     def play_question(self):
 
@@ -616,6 +623,31 @@ class HarmonicIntervalQuestion(QuestionBase):
 
         if self.resolution_pos_delay:
             self._wait(self.resolution_pos_delay)
+
+
+class MelodicDictateQuestion(QuestionBase):
+
+    def __init__(self, mode='major', max_intervals=3, n_notes=4, tonic=None,
+                 octave=None, descending=None, chromatic=None, n_octaves=None,
+                 *args, **kwargs):
+
+        super(MelodicDictateQuestion, self).\
+                __init__(mode=mode, tonic=tonic, octave=octave,
+                         descending=descending, chromatic=chromatic,
+                         n_octaves=n_octaves, *args, **kwargs)
+
+        question_intervals = [Interval(mode=mode, tonic=tonic,
+                              octave=self.octave, chromatic=chromatic,
+                              n_octaves=n_octaves,
+                              descending=descending).interval_data
+                              for item in max_intervals]
+        question_phrase = [choice(question_intervals) for n in n_notes]
+
+        # FIXME
+        self.resolution_pitch = \
+            self.make_resolution(chromatic=chromatic, mode=self.mode,
+                                 tonic=tonic, interval=self.interval,
+                                 descending=descending)
 
 
 # http://code.activestate.com/recipes/134892/
