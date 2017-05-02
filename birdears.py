@@ -640,15 +640,31 @@ class MelodicDictateQuestion(QuestionBase):
                               octave=self.octave, chromatic=chromatic,
                               n_octaves=n_octaves,
                               descending=descending).interval_data
-                              for item in max_intervals]
-        question_phrase = [choice(question_intervals) for n in n_notes]
+                              for item in range(max_intervals)]
+        self.question_phrase = [choice(question_intervals)
+                                for n in range(n_notes-1)]
 
-        # FIXME
-        self.resolution_pitch = \
-            self.make_resolution(chromatic=chromatic, mode=self.mode,
-                                 tonic=tonic, interval=self.interval,
-                                 descending=descending)
+        #self.resolution_pitch = \
+        #    self.make_resolution(chromatic=chromatic, mode=self.mode,
+        #                         tonic=tonic, interval=self.interval,
+        #                         descending=descending)
 
+    def play_question(self, melodic_phrase=None):
+
+        tonic = self.concrete_tonic
+        #interval = self.interval['note_and_octave']
+
+        #question_chords = [(tonic, tonic), (tonic, interval)]
+
+        self._play_note(note=tonic, duration=self.question_duration,
+                         delay=self.question_delay)
+
+        for item in self.question_phrase:
+            self._play_note(note=item, duration=self.question_duration,
+                             delay=self.question_delay)
+
+        if self.question_pos_delay:
+            self._wait(self.resolution_pos_delay)
 
 # http://code.activestate.com/recipes/134892/
 class _Getch:
@@ -733,7 +749,7 @@ def main():
 
             new_question_bit = False
 
-            question = MelodicIntervalQuestion(mode='major',descending=True)
+            question = MelodicDictateQuestion(mode='major',descending=True)
             #question = HarmonicIntervalQuestion(mode='major')
             #question = HarmonicIntervalQuestion(mode='major')
 

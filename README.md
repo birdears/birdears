@@ -6,6 +6,7 @@
 [![Code Climate coverage](https://img.shields.io/codeclimate/coverage/github/iacchus/birdears.svg?label=Codeclimate)](https://codeclimate.com/github/iacchus/birdears)
 [![Code Climate issues](https://img.shields.io/codeclimate/issues/github/iacchus/birdears.svg?label=issues)](https://codeclimate.com/github/iacchus/birdears/issues)
 [![Code Climate gpa](https://img.shields.io/codeclimate/github/iacchus/birdears.svg?label=GPA)]()
+[![Gitter](https://img.shields.io/gitter/room/birdears/Lobby.svg)](https://gitter.im/birdears/Lobby)
 
 ## Functional Ear Training for Musicians
 
@@ -18,6 +19,7 @@ In current development though functional. Uses python 3 and [sox](http://sox.sou
 Install `sox` and `python3` (see [below](https://github.com/iacchus/birdears#installing--dependencies)) and,
 
 ### 2. clone the repository
+
 ```
 git clone https://github.com/iacchus/birdears.git
 ```
