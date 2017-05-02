@@ -79,7 +79,7 @@ DIATONIC_MODES = {
 #  s   f g   j k   eg.:      a#   c# d#    f# g#
 # z x c v b n m    -------  a  b c  d  e  f  g
 
-# FIXME: these should be inverted/reverted for descending scales: 
+# FIXME: these should be inverted/reverted for descending scales:
 KEYBOARD_INDICES = {
     'diatonic': {
         'minor': 'z xc v bn m Z XC V BN M',
@@ -256,7 +256,7 @@ class Scale:
 
         global notes2, notes3
 
-        use_flat = -1 if (note == 'F' or 'b' in note) else 0
+        #use_flat = -1 if (note == 'F' or 'b' in note) else 0
 
         # FIXME
         if note in notes2:
@@ -619,6 +619,30 @@ class HarmonicIntervalQuestion(QuestionBase):
         if self.resolution_pos_delay:
             self._wait(self.resolution_pos_delay)
 
+    def check_question(self, user_input_keys):
+        """Checks whether the given answer is correct."""
+
+        global INTERVALS
+
+        #input_semitones = [self.keyboard_index.index(user_input_keys[n] for n in user_input_keys)]
+
+        #user_interval = INTERVALS[semitones][2]
+        #correct_interval = INTERVALS[self.interval['semitones']][2]
+
+        response = {
+            'is_correct': False,
+            'user_interval': user_interval,
+            'correct_interval': correct_interval,
+        }
+
+        for idx,interval in enumerate(user_input_keys):
+            if self.question_phrase[idx] != keyboard_index.index(interval):
+                response.update({'is_correct': False})
+                break
+            else:
+                response.update({'is_correct': True})
+
+        return response
 
 class MelodicDictateQuestion(QuestionBase):
     """Implements a melodic dictate test.
@@ -633,19 +657,19 @@ class MelodicDictateQuestion(QuestionBase):
                          descending=descending, chromatic=chromatic,
                          n_octaves=n_octaves, *args, **kwargs)
 
-        question_intervals = [Interval(mode=mode, tonic=tonic,
+        question_intervals = [Interval(mode=mode, tonic=self.tonic,
                               octave=self.octave, chromatic=chromatic,
                               n_octaves=n_octaves,
-                              descending=descending).interval_data
-                              for item in range(max_intervals)]
-        self.question_phrase = [choice(question_intervals)
-                                for n in range(n_notes-1)]
+                              descending=descending).interval_data for n in range(max_intervals)]
+        self.question_phrase_intervals = [choice(question_intervals) for n in range(n_notes-1)]
 
+        self.question_phrase = [ ival['semitones'] for ival in self.question_phrase_intervals ]
         #self.resolution_pitch = \
         #    self.make_resolution(chromatic=chromatic, mode=self.mode,
         #                         tonic=tonic, interval=self.interval,
         #                         descending=descending)
 
+    #def play_question(self, melodic_phrase=None):
     def play_question(self, melodic_phrase=None):
 
         tonic = self.concrete_tonic
@@ -656,11 +680,23 @@ class MelodicDictateQuestion(QuestionBase):
         self._play_note(note=tonic, duration=self.question_duration,
                          delay=self.question_delay)
 
-        for item in self.question_phrase:
-            self._play_note(note=item, duration=self.question_duration,
+        for item in self.question_phrase_intervals:
+            self._play_note(note=item['note_and_octave'], duration=self.question_duration,
                              delay=self.question_delay)
 
         if self.question_pos_delay:
+            self._wait(self.resolution_pos_delay)
+
+    def play_resolution(self):
+
+        tonic = self.concrete_tonic
+
+        for tone in self.question_phrase_intervals['note_and_octave']:
+            self._play_note(tone,
+                             duration=self.resolution_duration,
+                             delay=self.resolution_delay)
+
+        if self.resolution_pos_delay:
             self._wait(self.resolution_pos_delay)
 
 # http://code.activestate.com/recipes/134892/
@@ -735,6 +771,7 @@ Concrete Scale: {} | Chroma Concrete: {}
         padd,
     ))
 
+dictate_notes = 4
 
 def main():
     getch = _Getch()
@@ -746,7 +783,9 @@ def main():
 
             new_question_bit = False
 
-            question = MelodicDictateQuestion(mode='major',descending=True)
+            input_keys = []
+            #question = MelodicDictateQuestion(mode='major',descending=True)
+            question = MelodicDictateQuestion(mode='major')
             #question = HarmonicIntervalQuestion(mode='major')
             #question = HarmonicIntervalQuestion(mode='major')
 
@@ -761,19 +800,27 @@ def main():
         # any response input interval from valid keys
         if user_input in question.keyboard_index and user_input != ' ':  # spc
 
-            response = question.check_question(user_input)
+            input_keys.append(user_input)
+            print(user_input,)
 
-            if response['is_correct']:
-                print("Correct!.. it is “{}”".format(
-                    response['user_interval']))
-            else:
-                print("Incorrect.. the correct is “{}” ! You aswered “{}”..".
-                      format(response['correct_interval'],
-                             response['user_interval']))
+            if len(input_keys) == dictate_notes:
+                #response = question.check_question(user_input)
+                response = question.check_question(input_keys)
 
-            question.play_resolution()
+                if response['is_correct']:
+                    print("Correct!.. it is “{}”".format(
+                        response['user_interval']))
+                else:
+                    print("Incorrect.. the correct is “{}” ! You aswered “{}”..".
+                          format(response['correct_interval'],
+                                 response['user_interval']))
 
-            new_question_bit = True
+                question.play_resolution()
+
+                new_question_bit = True
+            #else:
+            #    input_keys.append(user_input)
+            #    print(user_input,)
 
         # q - quit
         elif user_input == 'q':
