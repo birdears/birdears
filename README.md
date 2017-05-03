@@ -112,6 +112,11 @@ We use [coveralls](https://coveralls.io/github/iacchus/birdears) and [Travis CI]
 
 Out tests are in repo's `tests/` directory.
 
+### Module Documentation
+
+We are using Sphinx to generate documenttion for this module. The sphinx resource
+files are in the `docs/sphinx/` directory.
+ 
 ### End-user Documentation
 
 We aim to build a method / music theory together with this software, maybe in the

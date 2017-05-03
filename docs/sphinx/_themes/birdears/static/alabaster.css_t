@@ -52,6 +52,8 @@
 
 @import url("basic.css");
 
+@import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700|Old+Standard+TT:400,400i,700|Open+Sans+Condensed:300,300i,700|Oswald:200,300,400,500,600,700|Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&subset=greek,latin-ext');
+
 /* -- page layout ----------------------------------------------------------- */
 
 body {
@@ -80,7 +82,7 @@ div.bodywrapper {
 
 div.sphinxsidebar {
     width: {{ theme_sidebar_width }};
-    font-size: 14px;
+    //font-size: 14px;
     line-height: 1.5;
 }
 
@@ -101,7 +103,7 @@ div.body > .section {
 div.footer {
     width: {{ theme_page_width }};
     margin: 20px auto 30px auto;
-    font-size: 14px;
+    //font-size: 14px;
     color: {{ theme_footer_text }};
     text-align: right;
 }
@@ -112,7 +114,7 @@ div.footer a {
 
 p.caption {
     font-family: {{ theme_caption_font_family }};
-    font-size: {{ theme_caption_font_size }};
+    //font-size: {{ theme_caption_font_size }};
 }
 
 {% if theme_show_related|lower == 'false' %}
@@ -161,7 +163,7 @@ div.sphinxsidebar h3,
 div.sphinxsidebar h4 {
     font-family: {{ theme_head_font_family }};
     color: {{ theme_sidebar_header }};
-    font-size: 24px;
+    //font-size: 24px;
     font-weight: normal;
     margin: 0 0 5px 0;
     padding: 0;
@@ -194,7 +196,7 @@ div.sphinxsidebar ul {
 }
 
 div.sphinxsidebar ul li.toctree-l1 > a {
-    font-size: 120%;
+    //font-size: 120%;
 }
 
 div.sphinxsidebar ul li.toctree-l2 > a {
@@ -381,7 +383,8 @@ img.screenshot {
 }
 
 tt.descname, tt.descclassname, code.descname, code.descclassname {
-    font-size: 0.95em;
+    //font-size: 0.95em;
+    font-size: inherit;
 }
 
 tt.descname, code.descname {
@@ -418,7 +421,7 @@ table.footnote {
     width: 100%;
     border: 1px solid {{ theme_footnote_border }};
     background: {{ theme_footnote_bg }};
-    font-size: 0.9em;
+    //font-size: 0.9em;
 }
 
 table.footnote + table.footnote {
@@ -520,7 +523,7 @@ a.reference:hover {
 
 a.footnote-reference {
     text-decoration: none;
-    font-size: 0.7em;
+    //font-size: 0.7em;
     vertical-align: top;
     border-bottom: 1px dotted {{ theme_link }};
 }

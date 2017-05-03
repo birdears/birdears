@@ -22,8 +22,8 @@ import sys
 # as this is at 'docs/sphinx/'
 sys.path.insert(0, os.path.abspath('../..'))
 
-
 highlight_language = 'none' 
+
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
@@ -43,7 +43,6 @@ extensions = ['sphinx.ext.autodoc',
     'numpydoc',
     ]
 
-#highlight = 'text'
 html_theme = 'birdears'
 html_theme_path = ['_themes']
 
