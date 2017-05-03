@@ -28,6 +28,15 @@
     <link rel="search" title="Search" href="search.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/hljs_styles/monokai.css" type="text/css" />
+  <script type="text/javascript" src="_static/js/highlight.pack.js"></script>
+  <script>
+  $(document).ready(function() {
+  $('div.viewcode-block,pre').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+</script>
   
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />

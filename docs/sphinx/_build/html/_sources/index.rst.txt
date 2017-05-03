@@ -14,7 +14,6 @@ Welcome to BirdEars's documentation!
 .. automodule:: birdears
         :members:
 
-
 Indices and tables
 ==================
 

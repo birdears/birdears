@@ -3,6 +3,15 @@
 {%- block extrahead %}
   {{ super() }}
   <link rel="stylesheet" href="{{ pathto('_static/custom.css', 1) }}" type="text/css" />
+  <link rel="stylesheet" href="{{ pathto('_static/css/hljs_styles/monokai.css', 1) }}" type="text/css" />
+  <script type="text/javascript" src="{{ pathto('_static/js/highlight.pack.js', 1) }}"></script>
+  <script>
+  $(document).ready(function() {
+  $('div.viewcode-block,pre').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+</script>
   {% if theme_touch_icon %}
     <link rel="apple-touch-icon" href="{{ pathto('_static/' ~ theme_touch_icon, 1) }}" />
   {% endif %}
