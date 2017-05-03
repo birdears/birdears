@@ -9,7 +9,7 @@ import subprocess
 import time
 from random import randrange, choice
 from collections import deque
-from math import floor
+# from math import floor
 
 DEBUG = True
 
@@ -256,7 +256,7 @@ class Scale:
 
         global notes2, notes3
 
-        #use_flat = -1 if (note == 'F' or 'b' in note) else 0
+        # use_flat = -1 if (note == 'F' or 'b' in note) else 0
 
         # FIXME
         if note in notes2:
@@ -294,11 +294,7 @@ class Interval:
 
         if descending:
             diatonic_mode = [12 - x for x in diatonic_mode]
-            print(diatonic_mode)
             diatonic_mode.reverse()
-            print(diatonic_mode)
-
-            #chromatic_
 
         step_network = diatonic_mode
 
@@ -309,8 +305,6 @@ class Interval:
                                      diatonic_mode[1:]])
                 chromatic_network.extend([semitones + 12 * i for semitones in
                                           CHROMATIC_TYPE[1:]])
-        #else:
-        #    n_octaves = 1
 
         if not chromatic:
             semitones = choice(step_network)
@@ -324,7 +318,6 @@ class Interval:
                                       chromatic=True, n_octaves=n_octaves,
                                       descending=descending)
 
-
         distance = dict({
             'octaves': 0 if (semitones < 12) else int(semitones / 12),
             'semitones': semitones if (semitones < 12) else int(semitones % 12)
@@ -334,7 +327,6 @@ class Interval:
 
         note_name = "{}".format(chromatic_scale.scale[semitones])
         note_and_octave = "{}".format(chromatic_scale_pitch.scale[semitones])
-
 
         is_chromatic = True if chromatic_offset not in diatonic_mode else False
 
@@ -402,7 +394,7 @@ class QuestionBase:
         # FIXME: maybe this should go to __main__
         self.keyboard_index = KEYBOARD_INDICES['chromatic'][self.mode]
 
-        #if descending:
+        # if descending:
         #    self.keyboard_index = self.keyboard_index[::-1].swapcase()
 
         # FIXME
@@ -411,15 +403,18 @@ class QuestionBase:
         tonic = self.tonic
 
         diatonic_scale = Scale(tonic=tonic, mode=mode, octave=None,
-                         descending=descending, n_octaves=n_octaves)
-        chromatic_scale = Scale(tonic=tonic, octave=None, chromatic=True,
-                          descending=descending, n_octaves=n_octaves)
-
-        diatonic_scale_pitch = Scale(tonic=tonic, mode=mode, octave=self.octave,
                                descending=descending, n_octaves=n_octaves)
+
+        chromatic_scale = Scale(tonic=tonic, octave=None, chromatic=True,
+                                descending=descending, n_octaves=n_octaves)
+
+        diatonic_scale_pitch = Scale(tonic=tonic, mode=mode,
+                                     octave=self.octave, descending=descending,
+                                     n_octaves=n_octaves)
+
         chromatic_scale_pitch = Scale(tonic=tonic, octave=self.octave,
-                                chromatic=True, descending=descending,
-                                n_octaves=n_octaves)
+                                      chromatic=True, descending=descending,
+                                      n_octaves=n_octaves)
 
         scales = dict({
             'diatonic': diatonic_scale,
@@ -431,7 +426,6 @@ class QuestionBase:
 
         self.concrete_tonic = scales['diatonic_pitch'].scale[0]
         self.scale_size = len(scales['diatonic'].scale)
-
 
     def _wait(self, seconds):
         time.sleep(seconds)
@@ -513,24 +507,21 @@ class QuestionBase:
 
         resolution_pitch = []
 
-        #diatonic_mode = DIATONIC_MODES[mode]
+        # diatonic_mode = DIATONIC_MODES[mode]
 
         scale_pitch = Scale(tonic=tonic, mode=mode,
                             octave=interval['interval_octave'],
                             descending=descending)
         self.res_scale = scale_pitch
 
-        print(scale_pitch.scale)
-        print(interval)
-
         if not chromatic:
 
             if interval['chromatic_offset'] <= MAX_SEMITONES_RESOLVE_BELOW:
-                resolution_pitch = \
+                resolution_pitch =\
                     scale_pitch.scale[:interval['diatonic_index'] + 1]
                 resolution_pitch.reverse()
             else:
-                resolution_pitch = \
+                resolution_pitch =\
                     scale_pitch.scale[interval['diatonic_index']:]
 
         else:
@@ -557,7 +548,8 @@ class QuestionBase:
             resolution_pitch.append(scale_pitch.scale[0])
         elif interval['semitones'] % 12 == 0:
             # FIXME: multipe octaves
-            resolution_pitch.append("{}{}".format(tonic, interval['tonic_octave']))
+            resolution_pitch.append("{}{}".format(tonic,
+                                                  interval['tonic_octave']))
 
         return resolution_pitch
 
@@ -573,14 +565,16 @@ class MelodicIntervalQuestion(QuestionBase):
                          descending=descending, chromatic=chromatic,
                          n_octaves=n_octaves, *args, **kwargs)
 
-        self.interval = Interval(mode=mode, tonic=self.tonic, octave=self.octave,
-                                 chromatic=chromatic, n_octaves=n_octaves,
+        self.interval = Interval(mode=mode, tonic=self.tonic,
+                                 octave=self.octave, chromatic=chromatic,
+                                 n_octaves=n_octaves,
                                  descending=descending).interval_data
         # FIXME
         self.resolution_pitch = \
             self.make_resolution(chromatic=chromatic, mode=self.mode,
                                  tonic=self.tonic, interval=self.interval,
                                  descending=descending)
+
 
 class HarmonicIntervalQuestion(QuestionBase):
     "Implements a Harmonic Interval test."
@@ -594,9 +588,11 @@ class HarmonicIntervalQuestion(QuestionBase):
                          n_octaves=n_octaves, *args, **kwargs)
 
         tonic = self.tonic
-        self.interval = Interval(mode=mode, tonic=self.tonic, octave=self.octave,
-                                 chromatic=chromatic, n_octaves=n_octaves,
+        self.interval = Interval(mode=mode, tonic=self.tonic,
+                                 octave=self.octave, chromatic=chromatic,
+                                 n_octaves=n_octaves,
                                  descending=descending).interval_data
+
         # FIXME
         self.resolution_pitch = \
             self.make_resolution(chromatic=chromatic, mode=self.mode,
@@ -643,23 +639,36 @@ class MelodicDictateQuestion(QuestionBase):
                          descending=descending, chromatic=chromatic,
                          n_octaves=n_octaves, *args, **kwargs)
 
+        self.question_duration = 2
+        self.question_delay = 0.5
+        self.question_pos_delay = 0
+
+        self.resolution_duration = 2.5
+        self.resolution_delay = 0.5
+        self.resolution_pos_delay = 1
+
         question_intervals = [Interval(mode=mode, tonic=self.tonic,
                               octave=self.octave, chromatic=chromatic,
-                              n_octaves=n_octaves,
-                              descending=descending).interval_data for n in range(max_intervals)]
-        self.question_phrase_intervals = [choice(question_intervals) for n in range(n_notes-1)]
+                              n_octaves=n_octaves, descending=descending)
+                              for _ in range(max_intervals)]
 
-        self.question_phrase= list([0])
+        self.question_phrase_intervals = [choice(question_intervals)
+                                          for _ in range(n_notes-1)]
 
-        self.question_phrase.extend([ ival['semitones'] for ival in self.question_phrase_intervals ])
+        self.question_phrase = list([0])
+
+        self.question_phrase.extend([interval.interval_data['semitones']
+                                     for interval
+                                     in self.question_phrase_intervals])
 
     def play_question(self, melodic_phrase=None):
 
         tonic = self.concrete_tonic
 
         for item in self.question_phrase:
-            self._play_note(note=self.scales['chromatic_pitch'].scale[item], duration=self.question_duration,
-                             delay=self.question_delay)
+            self._play_note(note=self.scales['chromatic_pitch'].scale[item],
+                            duration=self.question_duration,
+                            delay=self.question_delay)
 
         if self.question_pos_delay:
             self._wait(self.resolution_pos_delay)
@@ -668,10 +677,11 @@ class MelodicDictateQuestion(QuestionBase):
 
         tonic = self.concrete_tonic
 
-        for tone in [self.scales['chromatic_pitch'].scale[note] for note in self.question_phrase]:
+        for tone in [self.scales['chromatic_pitch'].scale[note]
+                     for note in self.question_phrase]:
             self._play_note(tone,
-                             duration=self.resolution_duration,
-                             delay=self.resolution_delay)
+                            duration=self.resolution_duration,
+                            delay=self.resolution_delay)
 
         if self.resolution_pos_delay:
             self._wait(self.resolution_pos_delay)
@@ -681,18 +691,23 @@ class MelodicDictateQuestion(QuestionBase):
 
         global INTERVALS
 
+        user_input_semitones = [self.keyboard_index.index(s)
+                                for s in user_input_keys]
+
         response = {
             'is_correct': False,
             'user_input': user_input_keys,
-            #'correct_interval': correct_interval,
+            'user_semitones': user_input_semitones,
+            'correct_semitones': self.question_phrase,
         }
 
-        if [self.keyboard_index.index(s) for s in user_input_keys] == self.question_phrase:
+        if user_input_semitones == self.question_phrase:
             response.update({'is_correct': True})
         else:
             response.update({'is_correct': False})
 
         return response
+
 
 # http://code.activestate.com/recipes/134892/
 class _Getch:
@@ -779,19 +794,19 @@ Concrete Scale: {} | Chroma Concrete: {}
 """.format(
         padd,
         question.concrete_tonic,
-        "─".join(str(question.question_phrase)),
-        "─".join([ "/".join(INTERVALS[n][1:]) for n in question.question_phrase]),
+        "─".join(map(str, question.question_phrase)),
+        "─".join([INTERVALS[n][1] for n in question.question_phrase]),
         "─".join([str(n) for n in question.question_phrase]),
-        #question.interval['is_chromatic'],
         "─".join(question.scales['diatonic'].scale),
         "{}-{}".format(question.octave, question.octave + 1),
-        #"─".join(question.resolution_pitch),
         "─".join(question.scales['chromatic'].scale),
         "─".join(question.scales['diatonic_pitch'].scale),
         "─".join(question.scales['chromatic_pitch'].scale),
         padd,
     ))
+
 dictate_notes = 4
+
 
 def main():
     getch = _Getch()
@@ -804,10 +819,10 @@ def main():
             new_question_bit = False
 
             input_keys = []
-            #question = MelodicDictateQuestion(mode='major',descending=True)
+            # question = MelodicDictateQuestion(mode='major',descending=True)
             question = MelodicDictateQuestion(mode='major')
-            #question = HarmonicIntervalQuestion(mode='major')
-            #question = HarmonicIntervalQuestion(mode='major')
+            # question = HarmonicIntervalQuestion(mode='major')
+            # question = HarmonicIntervalQuestion(mode='major')
 
             # debug
             if DEBUG:
@@ -821,27 +836,27 @@ def main():
         if user_input in question.keyboard_index and user_input != ' ':  # spc
 
             input_keys.append(user_input)
-            print(user_input,)
+            print(user_input, end='')
 
             if len(input_keys) == dictate_notes:
-                #response = question.check_question(user_input)
+                # response = question.check_question(user_input)
                 response = question.check_question(input_keys)
 
                 if response['is_correct']:
-                    #print("Correct!.. it is “{}”".format( response['user_interval']))
-                    print("Correct! It was semitones {}".format("-".join(str(question.question_phrase))))
+                    # print("Correct!.. it is “{}”".\
+                    # format( response['user_interval']))
+                    print("Correct! It was semitones {}".
+                          format("-".join(map(str, question.question_phrase))))
                 else:
                     print("It is incorrect...")
-                    print("You replied semitones {} but the correct is semitones {}".format("-".join(str(input_keys)), "-".join(str(question.question_phrase))))
-                #else:
-                #    print("Incorrect.. the correct is “{}” ! You aswered “{}”..".
-                #          format(response['correct_interval'],
-                #                 response['user_interval']))
+                    print("You replied semitones {} but the correct is "
+                          "semitones {}".format(response['user_semitones'],
+                                                question.question_phrase))
 
                 question.play_resolution()
 
                 new_question_bit = True
-            #else:
+            # else:
             #    input_keys.append(user_input)
             #    print(user_input,)
 

@@ -18,7 +18,7 @@ def test_questionclass():
     global KEYS
 
     for tonic in KEYS:
-        a = MelodicIntervalQuestion()
+        a = MelodicIntervalQuestion(tonic=tonic)
         assert(a)
 
 

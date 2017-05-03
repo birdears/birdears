@@ -4,12 +4,12 @@
 
 ### classes
 
-classes: ~~interval~~ :tada:, cadence and resolution(cadence), maybe ~~scale~~ (done :tada:.)
-
+classes: ~~interval~~ :tada:, cadence and resolution(cadence), maybe ~~scale~~
+(done :tada:.)
 
 ### documentation
 
-write documentation in docstrings usiing [numydoc](https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt#documenting-classes)
+write documentation in docstrings using [numydoc](https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt#documenting-classes)
 
 ### features
 
@@ -17,10 +17,17 @@ different cadences
 
 ~~implement harmonic intervals~~ ✓
 
-melodic dictation, computer and instrumental (time based, to be played on instrument)
+~~melodic dictation~~ ✓ :tada:, ~~computer and~~ instrumental (time based,
+to be played on instrument)
 
 bindings with argparse
+
+plugins/extensions, easy way of users extending the software by using the api,
+maybe providing frontend tools
 
 # refactoring
 
 ~~change global names~~ ✓
+we should think in a better algo for melodic dictation; currently always begins
+with tonic; maybe playing a cadence with I-V-IV-I triads then choosing random
+intervals w/ or w/out tonic.
