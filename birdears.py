@@ -293,6 +293,7 @@ class Interval:
         chromatic_network = list(CHROMATIC_TYPE)
 
         if descending:
+            # TODO: use list( map(lambda x: 12-x, diatonic_mode) ) here
             diatonic_mode = [12 - x for x in diatonic_mode]
             diatonic_mode.reverse()
 
