@@ -272,6 +272,9 @@ MAX_SEMITONES_RESOLVE_BELOW = 5
 
         return diatonic</div>
 
+    def get_triad(self, degree):
+        pass
+
     def _append_octave_to_scale(self, scale, starting_octave, descending=None):
         &quot;&quot;&quot;Inserts scientific octave number to the notes on a the given scale.
         &quot;&quot;&quot;
@@ -331,12 +334,19 @@ class Interval:
         Parameters
         ----------
         mode : str
+            Diatonic mode for the interval. (eg.: &#39;major&#39; or &#39;minor&#39;)
         tonic : str
+            Tonic of the scale. (eg.: &#39;Bb&#39;)
         octave : str
+            Scientific octave of the scale (eg.: 4)
         interval : str
+            Not implemented. The interval.
         chromatic: bool
+            Can have chromatic notes? (eg.: F# in a key of C; default: false)
         n_octaves : int
+            Maximum number os octaves (eg. 2)
         descending : bool
+            Is the interval dewcending? (default: false)
         &quot;&quot;&quot;
 
         global DIATONIC_MODES, CHROMATIC_TYPE, MAX_SEMITONES_RESOLVE_BELOW
@@ -414,9 +424,79 @@ class Interval:
         })
 
 
-class Cadence:
-    def __init__(self):
-        pass
+class Sequence:
+    def __init__(self, elements, duration=2, delay=1.5, pos_delay=1):
+        &quot;&quot;&quot;Sequence of notes or chords.
+
+		Parameters
+		----------
+		elements : array_type
+			List of elements in this sequence. (notes or chords)
+		duration : float
+			Default duratin playing time for each element in the sequence.
+		delay : float
+			Default waiting time to play the next element in the sequence.
+		pos_delay : float
+			Waiting time after playing the last element in the sequence.
+		&quot;&quot;&quot;
+
+        self.duration = duration
+        self.delay = delay
+        self.pos_delay = pos_delay
+
+        #self.resolution_duration = 2.5
+        #self.resolution_delay = 0.5
+        #self.resolution_pos_delay = 1
+
+        self.elements = list(elements)
+
+    def append(self, elements):
+        self.elements.append(elements)
+
+    def extend(self, elements):
+        self.elements.extend(elements)
+
+    def play(self):
+
+        for element in self.elements:
+            if type(element) == str:
+                self._play_note(element)
+            elif type(element) == list:
+                self._play_chord(element)
+
+
+        #tonic = self.concrete_tonic
+        #interval = self.interval[&#39;note_and_octave&#39;]
+		#
+        #play_note = self._play_note
+		#
+        #play_note(note=tonic, duration=self.question_duration,
+        #          delay=self.question_delay)
+        #play_note(note=interval, duration=self.question_duration, delay=0)
+
+        if self.pos_delay:
+            self._wait(self.pos_delay)
+
+    def _play_note(self, note, duration, delay):
+        # requires sox to be installed
+
+        command = (
+            &quot;play -qn synth {duration} pluck {note}&quot;
+            &quot; fade l 0 {duration} 2 reverb&quot;
+        ).format(note=note, duration=duration)
+
+        subprocess.Popen(command.split())
+
+        if delay:
+            self._wait(delay)
+
+    def _play_chord(self, chord, duration, delay):
+
+        for note in chord:
+            self._play_note(note, duration=duration, delay=0)
+
+        if delay:
+            self._wait(delay)
 
 
 <div class="viewcode-block" id="QuestionBase"><a class="viewcode-back" href="../index.html#birdears.QuestionBase">[docs]</a>class QuestionBase:
@@ -658,7 +738,8 @@ class Cadence:
         tonic = self.concrete_tonic
         interval = self.interval[&#39;note_and_octave&#39;]
 
-        question_chords = [(tonic, tonic), (tonic, interval)]
+        #question_chords = [(tonic, tonic), (tonic, interval)]
+        question_chords = [(tonic, interval)]
 
         for item in question_chords:
             self._play_chord(chord=item, duration=self.question_duration,
@@ -709,6 +790,7 @@ class Cadence:
         self.question_phrase_intervals = [choice(question_intervals)
                                           for _ in range(n_notes-1)]
 
+        #question_phrase = Sequence()
         self.question_phrase = list([0])
 
         self.question_phrase.extend([interval.interval_data[&#39;semitones&#39;]
@@ -807,35 +889,35 @@ class _GetchWindows:
 # this is for debugging
 
 
-# def print_stuff(question):
-#     padd = &quot;─&quot; * 30  # vim: insert mode, ^vu2500
-#     print(&quot;&quot;&quot;
-# {}
-#
-# Tonic: {} | Note(Int): {} |  Interval: {} | Semitones(Int): {} |
-# Is Note Chromatic: {} |
-# Scale: {}, Octave: {}
-# Resolution: {},
-# Chromatic: {}
-# Concrete Scale: {} | Chroma Concrete: {}
-# {}
-# &quot;&quot;&quot;.format(
-#         padd,
-#         question.concrete_tonic,
-#         question.interval[&#39;note_and_octave&#39;],
-#         &quot;─&quot;.join(INTERVALS[question.interval[&#39;semitones&#39;]][1:]),
-#         question.interval[&#39;semitones&#39;],
-#         question.interval[&#39;is_chromatic&#39;],
-#         &quot;─&quot;.join(question.scales[&#39;diatonic&#39;].scale),
-#         &quot;{}-{}&quot;.format(question.octave, question.octave + 1),
-#         &quot;─&quot;.join(question.resolution_pitch),
-#         &quot;─&quot;.join(question.scales[&#39;chromatic&#39;].scale),
-#         &quot;─&quot;.join(question.scales[&#39;diatonic_pitch&#39;].scale),
-#         &quot;─&quot;.join(question.scales[&#39;chromatic_pitch&#39;].scale),
-#         padd,
-#     ))
-
 def print_stuff(question):
+    padd = &quot;─&quot; * 30  # vim: insert mode, ^vu2500
+    print(&quot;&quot;&quot;
+{}
+
+Tonic: {} | Note(Int): {} |  Interval: {} | Semitones(Int): {} |
+Is Note Chromatic: {} |
+Scale: {}, Octave: {}
+Resolution: {},
+Chromatic: {}
+Concrete Scale: {} | Chroma Concrete: {}
+{}
+&quot;&quot;&quot;.format(
+        padd,
+        question.concrete_tonic,
+        question.interval[&#39;note_and_octave&#39;],
+        &quot;─&quot;.join(INTERVALS[question.interval[&#39;semitones&#39;]][1:]),
+        question.interval[&#39;semitones&#39;],
+        question.interval[&#39;is_chromatic&#39;],
+        &quot;─&quot;.join(question.scales[&#39;diatonic&#39;].scale),
+        &quot;{}-{}&quot;.format(question.octave, question.octave + 1),
+        &quot;─&quot;.join(question.resolution_pitch),
+        &quot;─&quot;.join(question.scales[&#39;chromatic&#39;].scale),
+        &quot;─&quot;.join(question.scales[&#39;diatonic_pitch&#39;].scale),
+        &quot;─&quot;.join(question.scales[&#39;chromatic_pitch&#39;].scale),
+        padd,
+    ))
+
+def print_stuff_dictation(question):
     padd = &quot;─&quot; * 30  # vim: insert mode, ^vu2500
     print(&quot;&quot;&quot;
 {}
@@ -862,6 +944,67 @@ Concrete Scale: {} | Chroma Concrete: {}
 dictate_notes = 4
 
 
+# def main():
+#     getch = _Getch()
+#
+#     new_question_bit = True
+#
+#     while True:
+#         if new_question_bit is True:
+#
+#             new_question_bit = False
+#
+#             input_keys = []
+#             # question = MelodicDictateQuestion(mode=&#39;major&#39;,descending=True)
+#             question = MelodicDictateQuestion(mode=&#39;major&#39;)
+#             # question = HarmonicIntervalQuestion(mode=&#39;major&#39;)
+#             # question = HarmonicIntervalQuestion(mode=&#39;major&#39;)
+#
+#             # debug
+#             if DEBUG:
+#                 print_stuff(question)
+#
+#             question.play_question()
+#
+#         user_input = getch()
+#
+#         # any response input interval from valid keys
+#         if user_input in question.keyboard_index and user_input != &#39; &#39;:  # spc
+#
+#             input_keys.append(user_input)
+#             print(user_input, end=&#39;&#39;)
+#
+#             if len(input_keys) == dictate_notes:
+#                 # response = question.check_question(user_input)
+#                 response = question.check_question(input_keys)
+#
+#                 if response[&#39;is_correct&#39;]:
+#                     # print(&quot;Correct!.. it is “{}”&quot;.\
+#                     # format( response[&#39;user_interval&#39;]))
+#                     print(&quot;Correct! It was semitones {}&quot;.
+#                           format(&quot;-&quot;.join(map(str, question.question_phrase))))
+#                 else:
+#                     print(&quot;It is incorrect...&quot;)
+#                     print(&quot;You replied semitones {} but the correct is &quot;
+#                           &quot;semitones {}&quot;.format(response[&#39;user_semitones&#39;],
+#                                                 question.question_phrase))
+#
+#                 question.play_resolution()
+#
+#                 new_question_bit = True
+#             # else:
+#             #    input_keys.append(user_input)
+#             #    print(user_input,)
+#
+#         # q - quit
+#         elif user_input == &#39;q&#39;:
+#             exit(0)
+#
+#         # r - repeat interval
+#         elif user_input == &#39;r&#39;:
+#             question.play_question()
+
+wait_keys = 1
 def main():
     getch = _Getch()
 
@@ -873,10 +1016,8 @@ def main():
             new_question_bit = False
 
             input_keys = []
-            # question = MelodicDictateQuestion(mode=&#39;major&#39;,descending=True)
-            question = MelodicDictateQuestion(mode=&#39;major&#39;)
-            # question = HarmonicIntervalQuestion(mode=&#39;major&#39;)
-            # question = HarmonicIntervalQuestion(mode=&#39;major&#39;)
+            question = HarmonicIntervalQuestion(mode=&#39;major&#39;)
+            #question = MelodicIntervalQuestion(mode=&#39;major&#39;,descending=True)
 
             # debug
             if DEBUG:
@@ -886,33 +1027,18 @@ def main():
 
         user_input = getch()
 
-        # any response input interval from valid keys
-        if user_input in question.keyboard_index and user_input != &#39; &#39;:  # spc
+        if user_input in question.keyboard_index:
+            response = question.check_question(user_input)
 
-            input_keys.append(user_input)
-            print(user_input, end=&#39;&#39;)
+            if response[&#39;is_correct&#39;]:
+                print(&quot;Correct!.. it is “{}”&quot;.\
+                format( response[&#39;user_interval&#39;]))
+            else:
+                print(&quot;It is incorrect... correct is {}.. you said {}&quot;.format(question.interval[&#39;data&#39;],response[&#39;user_interval&#39;]))
 
-            if len(input_keys) == dictate_notes:
-                # response = question.check_question(user_input)
-                response = question.check_question(input_keys)
+            question.play_resolution()
 
-                if response[&#39;is_correct&#39;]:
-                    # print(&quot;Correct!.. it is “{}”&quot;.\
-                    # format( response[&#39;user_interval&#39;]))
-                    print(&quot;Correct! It was semitones {}&quot;.
-                          format(&quot;-&quot;.join(map(str, question.question_phrase))))
-                else:
-                    print(&quot;It is incorrect...&quot;)
-                    print(&quot;You replied semitones {} but the correct is &quot;
-                          &quot;semitones {}&quot;.format(response[&#39;user_semitones&#39;],
-                                                question.question_phrase))
-
-                question.play_resolution()
-
-                new_question_bit = True
-            # else:
-            #    input_keys.append(user_input)
-            #    print(user_input,)
+            new_question_bit = True
 
         # q - quit
         elif user_input == &#39;q&#39;:

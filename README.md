@@ -91,6 +91,10 @@ sudo pacman -S python sox
 
 ## Contributing
 
+### Coding
+
+We ask for people who wants to contribute for the code to look to the musical side first, 
+
 ### Documentation
 
 We are beginning to use [numpydoc](https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt)

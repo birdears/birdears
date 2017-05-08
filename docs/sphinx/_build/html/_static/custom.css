@@ -32,4 +32,10 @@ p.rubric + table.docutils {
 
 p.rubric + table.docutils td {
     border: 1px solid #ddd;
+    color: #333;
+}
+
+p.rubric + table.docutils td:first-of-type {
+    font-family: 'Inconsolata', monospace;
+    font-weight: bold;
 }
