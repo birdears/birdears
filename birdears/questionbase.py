@@ -9,7 +9,9 @@ from . import KEYS
 from . import MAX_SEMITONES_RESOLVE_BELOW
 from . import INTERVALS
 
-from .scale import Scale
+#from .scale import Scale
+from .scale import DiatonicScale
+from .scale import ChromaticScale
 
 class QuestionBase:
     """
@@ -48,18 +50,19 @@ class QuestionBase:
         self.tonic = tonic or choice(KEYS)
         tonic = self.tonic
 
-        diatonic_scale = Scale(tonic=tonic, mode=mode, octave=None,
+        diatonic_scale = DiatonicScale(tonic=tonic, mode=mode, octave=None,
                                descending=descending, n_octaves=n_octaves)
 
-        chromatic_scale = Scale(tonic=tonic, octave=None, chromatic=True,
-                                descending=descending, n_octaves=n_octaves)
+        chromatic_scale = ChromaticScale(tonic=tonic, octave=None,
+                                         descending=descending,
+                                         n_octaves=n_octaves)
 
-        diatonic_scale_pitch = Scale(tonic=tonic, mode=mode,
+        diatonic_scale_pitch = DiatonicScale(tonic=tonic, mode=mode,
                                      octave=self.octave, descending=descending,
                                      n_octaves=n_octaves)
 
-        chromatic_scale_pitch = Scale(tonic=tonic, octave=self.octave,
-                                      chromatic=True, descending=descending,
+        chromatic_scale_pitch = ChromaticScale(tonic=tonic, octave=self.octave,
+                                      descending=descending,
                                       n_octaves=n_octaves)
 
         scales = dict({
@@ -155,7 +158,7 @@ class QuestionBase:
 
         # diatonic_mode = DIATONIC_MODES[mode]
 
-        scale_pitch = Scale(tonic=tonic, mode=mode,
+        scale_pitch = DiatonicScale(tonic=tonic, mode=mode,
                             octave=interval['interval_octave'],
                             descending=descending)
         self.res_scale = scale_pitch

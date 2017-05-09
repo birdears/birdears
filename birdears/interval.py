@@ -6,7 +6,8 @@ from . import CHROMATIC_TYPE
 from . import INTERVALS
 from . import MAX_SEMITONES_RESOLVE_BELOW
 
-from .scale import Scale
+from .scale import DiatonicScale
+from .scale import ChromaticScale
 
 class Interval:
 
@@ -58,12 +59,13 @@ class Interval:
         else:
             semitones = choice(chromatic_network)
 
-        chromatic_scale = Scale(tonic=tonic, octave=None, chromatic=True,
-                                n_octaves=n_octaves, descending=descending)
+        chromatic_scale = ChromaticScale(tonic=tonic, octave=None,
+                                         n_octaves=n_octaves,
+                                         descending=descending)
 
-        chromatic_scale_pitch = Scale(tonic=tonic, octave=octave,
-                                      chromatic=True, n_octaves=n_octaves,
-                                      descending=descending)
+        chromatic_scale_pitch = ChromaticScale(tonic=tonic, octave=octave,
+                                               n_octaves=n_octaves,
+                                               descending=descending)
 
         distance = dict({
             'octaves': 0 if (semitones < 12) else int(semitones / 12),
