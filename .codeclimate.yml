@@ -1,4 +1,4 @@
-Python: true
+#Python: true
 
 exclude_paths:
 - docs/**
