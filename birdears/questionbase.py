@@ -12,6 +12,8 @@ from . import INTERVALS
 from .scale import DiatonicScale
 from .scale import ChromaticScale
 
+from .sequence import Sequence
+
 class QuestionBase:
     """
     Base Class to be subclassed for Question classes.
@@ -76,54 +78,15 @@ class QuestionBase:
         self.concrete_tonic = scales['diatonic_pitch'].scale[0]
         self.scale_size = len(scales['diatonic'].scale)
 
-    def _wait(self, seconds):
-        time.sleep(seconds)
-
-    def _play_note(self, note, duration, delay):
-        # requires sox to be installed
-
-        command = (
-            "play -qn synth {duration} pluck {note}"
-            " fade l 0 {duration} 2 reverb"
-        ).format(note=note, duration=duration)
-
-        subprocess.Popen(command.split())
-
-        if delay:
-            self._wait(delay)
-
-    def _play_chord(self, chord, duration, delay):
-
-        for note in chord:
-            self._play_note(note, duration=duration, delay=0)
-
-        if delay:
-            self._wait(delay)
-
-    def play_question(self):
+    def make_question(self):
 
         tonic = self.concrete_tonic
         interval = self.interval['note_and_octave']
 
-        play_note = self._play_note
+        question = Sequence([tonic, interval], self.question_duration,
+                            self.question_delay, self.question_pos_delay)
 
-        play_note(note=tonic, duration=self.question_duration,
-                  delay=self.question_delay)
-        play_note(note=interval, duration=self.question_duration, delay=0)
-
-        if self.question_pos_delay:
-            self._wait(self.resolution_pos_delay)
-
-    def play_resolution(self):
-
-        play_note = self._play_note
-
-        for tone in self.resolution_pitch:
-            play_note(note=tone, duration=self.resolution_duration,
-                      delay=self.resolution_delay)
-
-        if self.resolution_pos_delay:
-            self._wait(self.resolution_pos_delay)
+        return question
 
     def check_question(self, user_input_char):
         """Checks whether the given answer is correct."""
@@ -200,4 +163,8 @@ class QuestionBase:
             resolution_pitch.append("{}{}".format(tonic,
                                                   interval['tonic_octave']))
 
-        return resolution_pitch
+        resolution = Sequence(resolution_pitch, self.resolution_duration,
+                              self.resolution_duration,
+                              self.resolution_pos_delay)
+        #return resolution_pitch
+        return resolution

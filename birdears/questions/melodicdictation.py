@@ -3,7 +3,15 @@ from random import choice
 from ..questionbase import QuestionBase
 
 from ..interval import Interval
+
 from .. import DIATONIC_MODES
+from .. import MAX_SEMITONES_RESOLVE_BELOW
+from .. import INTERVALS
+
+from ..scale import DiatonicScale
+from ..scale import ChromaticScale
+
+from ..sequence import Sequence
 
 class MelodicDictationQuestion(QuestionBase):
     """Implements a melodic dictation test.
@@ -34,37 +42,25 @@ class MelodicDictationQuestion(QuestionBase):
         self.question_phrase_intervals = [choice(question_intervals)
                                           for _ in range(n_notes-1)]
 
-        #question_phrase = Sequence()
-        self.question_phrase = list([0])
+        self.question_phrase = [0]
 
         self.question_phrase.extend([interval.interval_data['semitones']
                                      for interval
                                      in self.question_phrase_intervals])
 
-    def play_question(self, melodic_phrase=None):
+        self.question = self.make_question(self.question_phrase)
 
-        tonic = self.concrete_tonic
+        self.resolution = Sequence(self.question.elements,
+                                   duration=self.resolution_duration,
+                                   delay=self.resolution_delay,
+                                   pos_delay=self.resolution_pos_delay)
 
-        for item in self.question_phrase:
-            self._play_note(note=self.scales['chromatic_pitch'].scale[item],
-                            duration=self.question_duration,
-                            delay=self.question_delay)
-
-        if self.question_pos_delay:
-            self._wait(self.resolution_pos_delay)
-
-    def play_resolution(self):
-
-        tonic = self.concrete_tonic
-
-        for tone in [self.scales['chromatic_pitch'].scale[note]
-                     for note in self.question_phrase]:
-            self._play_note(tone,
-                            duration=self.resolution_duration,
-                            delay=self.resolution_delay)
-
-        if self.resolution_pos_delay:
-            self._wait(self.resolution_pos_delay)
+    def make_question(self,phrase_semitones):
+        return Sequence([self.scales['chromatic_pitch'].scale[n]
+                        for n in phrase_semitones],
+                        duration=self.question_duration,
+                        delay=self.question_delay,
+                        pos_delay=self.question_pos_delay)
 
     def check_question(self, user_input_keys):
         """Checks whether the given answer is correct."""
