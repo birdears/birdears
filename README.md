@@ -8,9 +8,9 @@
 [![Code Climate gpa](https://img.shields.io/codeclimate/github/iacchus/birdears.svg?label=GPA)]()
 [![Gitter](https://img.shields.io/gitter/room/birdears/Lobby.svg)](https://gitter.im/birdears/Lobby)
 
+[![PyPI Python Versions](https://img.shields.io/pypi/pyversions/birdears.svg)](https://pypi.python.org/pypi/birdears)
 [![PyPI Version](https://img.shields.io/pypi/v/birdears.svg)](https://pypi.python.org/pypi/birdears)
 [![PyPI Status](https://img.shields.io/pypi/status/birdears.svg?label=PyPI+Status)](https://pypi.python.org/pypi/birdears)
-[![PyPI Python Versions](https://img.shields.io/pypi/pyversions/birdears.svg)](https://pypi.python.org/pypi/birdears)
 
 ## Functional Ear Training for Musicians
 
@@ -99,14 +99,18 @@ sudo pacman -S python sox
 
 We ask for people who wants to contribute for the code to look to the musical side first,
 
-### Documentation
+### Module Documentation
+
+We are using Sphinx to generate documenttion for this module. The sphinx resource
+files are in the `docs/sphinx/` directory.
 
 We are beginning to use [numpydoc](https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt)
 to document the library.
 
-We are using `pdoc` to generate documentation from module's docstrings:
+### End-user Documentation
 
-`pdoc --html --template-dir docs/templates/ birdears.py`
+We aim to build a method / music theory together with this software, maybe in the
+GitHub repo's wiki.
 
 ### Writing Tests
 
@@ -119,16 +123,6 @@ coverage run --source=birdears --module pytest --verbose tests/
 We use [coveralls](https://coveralls.io/github/iacchus/birdears) and [Travis CI](https://travis-ci.org/iacchus/birdears).
 
 Out tests are in repo's `tests/` directory.
-
-### Module Documentation
-
-We are using Sphinx to generate documenttion for this module. The sphinx resource
-files are in the `docs/sphinx/` directory.
-
-### End-user Documentation
-
-We aim to build a method / music theory together with this software, maybe in the
-GitHub repo's wiki.
 
 ### Feature requests :gift: and suggestions
 
