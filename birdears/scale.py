@@ -4,6 +4,7 @@ from . import notes3
 
 from collections import deque
 
+
 class ScaleBase:
     def __init__(self):
         pass
@@ -60,6 +61,7 @@ class ScaleBase:
 
         return note_index
 
+
 class DiatonicScale(ScaleBase):
     """Builds a musical diatonic scale.
 
@@ -113,6 +115,7 @@ class DiatonicScale(ScaleBase):
                                                     descending=descending)
 
         self.scale = diatonic
+
 
 class ChromaticScale(ScaleBase):
     def __init__(self, tonic, octave=None, n_octaves=None, descending=None,

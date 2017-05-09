@@ -11,6 +11,7 @@ from ..scale import ChromaticScale
 
 from ..sequence import Sequence
 
+
 class MelodicIntervalQuestion(QuestionBase):
     """Implements a Melodic Interval test.
     """
@@ -31,7 +32,7 @@ class MelodicIntervalQuestion(QuestionBase):
         self.question = self.make_question()
 
         # FIXME
-        #self.resolution_pitch = \
+        # self.resolution_pitch = \
         self.resolution = \
             self.make_resolution(chromatic=chromatic, mode=self.mode,
                                  tonic=self.tonic, interval=self.interval,
@@ -81,8 +82,8 @@ class MelodicIntervalQuestion(QuestionBase):
         # diatonic_mode = DIATONIC_MODES[mode]
 
         scale_pitch = DiatonicScale(tonic=tonic, mode=mode,
-                            octave=interval['interval_octave'],
-                            descending=descending)
+                                    octave=interval['interval_octave'],
+                                    descending=descending)
         self.res_scale = scale_pitch
 
         if not chromatic:
@@ -124,5 +125,5 @@ class MelodicIntervalQuestion(QuestionBase):
 
         resolution = Sequence(resolution_pitch, self.resolution_duration,
                               self.resolution_delay, self.resolution_pos_delay)
-                              
+
         return resolution

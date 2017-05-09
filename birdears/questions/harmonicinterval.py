@@ -10,6 +10,7 @@ from ..scale import ChromaticScale
 
 from ..sequence import Sequence
 
+
 class HarmonicIntervalQuestion(QuestionBase):
     """Implements a Harmonic Interval test.
     """
@@ -80,8 +81,8 @@ class HarmonicIntervalQuestion(QuestionBase):
         # diatonic_mode = DIATONIC_MODES[mode]
 
         scale_pitch = DiatonicScale(tonic=tonic, mode=mode,
-                            octave=interval['interval_octave'],
-                            descending=descending)
+                                    octave=interval['interval_octave'],
+                                    descending=descending)
         self.res_scale = scale_pitch
 
         if not chromatic:
@@ -121,7 +122,7 @@ class HarmonicIntervalQuestion(QuestionBase):
             resolution_pitch.append("{}{}".format(tonic,
                                                   interval['tonic_octave']))
 
-        resolution = Sequence([[tonic,item] for item in resolution_pitch],
+        resolution = Sequence([[tonic, item] for item in resolution_pitch],
                               duration=self.resolution_duration,
                               delay=self.resolution_delay,
                               pos_delay=self.resolution_pos_delay)

@@ -101,6 +101,7 @@ KEYBOARD_INDICES = {
 
 MAX_SEMITONES_RESOLVE_BELOW = 5
 
+
 # http://code.activestate.com/recipes/134892/
 class _Getch:
     """Gets a single character from standard input.  Does not echo to the

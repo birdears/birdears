@@ -25,12 +25,13 @@ Concrete Scale: {} | Chroma Concrete: {}
         question.interval['is_chromatic'],
         "─".join(question.scales['diatonic'].scale),
         "{}-{}".format(question.octave, question.octave + 1),
-        #"─".join(question.resolution_pitch),
+        # "─".join(question.resolution_pitch),
         "─".join(question.scales['chromatic'].scale),
         "─".join(question.scales['diatonic_pitch'].scale),
         "─".join(question.scales['chromatic_pitch'].scale),
         padd,
     ))
+
 
 def print_stuff_dictation(question):
     padd = "─" * 30  # vim: insert mode, ^vu2500
@@ -154,7 +155,9 @@ def main():
 #                 print("Correct!.. it is “{}”".\
 #                 format( response['user_interval']))
 #             else:
-#                 print("It is incorrect... correct is {}.. you said {}".format(question.interval['data'],response['user_interval']))
+#                 print("It is incorrect... correct is {}.. you said {}".\
+#                        format(question.interval['data'],
+#                               response['user_interval']))
 #
 #             question.resolution.play()
 #

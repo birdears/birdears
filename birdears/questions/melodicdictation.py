@@ -13,6 +13,7 @@ from ..scale import ChromaticScale
 
 from ..sequence import Sequence
 
+
 class MelodicDictationQuestion(QuestionBase):
     """Implements a melodic dictation test.
     """
@@ -55,7 +56,7 @@ class MelodicDictationQuestion(QuestionBase):
                                    delay=self.resolution_delay,
                                    pos_delay=self.resolution_pos_delay)
 
-    def make_question(self,phrase_semitones):
+    def make_question(self, phrase_semitones):
         return Sequence([self.scales['chromatic_pitch'].scale[n]
                         for n in phrase_semitones],
                         duration=self.question_duration,

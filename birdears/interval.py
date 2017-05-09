@@ -9,6 +9,7 @@ from . import MAX_SEMITONES_RESOLVE_BELOW
 from .scale import DiatonicScale
 from .scale import ChromaticScale
 
+
 class Interval:
 
     def __init__(self, mode, tonic, octave, chromatic=None, n_octaves=None,
