@@ -1,4 +1,8 @@
-from birdears import *
+from birdears import KEYS
+from birdears.questionbase import QuestionBase
+from birdears.melodicintervalquestion import MelodicIntervalQuestion
+from birdears.interval import Interval
+from birdears.scale import Scale
 
 
 #def pytest_configure():
