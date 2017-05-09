@@ -1,71 +1,15 @@
 from birdears import KEYS
+
 from birdears.questionbase import QuestionBase
-#from birdears.melodicintervalquestion import MelodicIntervalQuestion
-from birdears.questions.melodicinterval import MelodicIntervalQuestion
+
 from birdears.interval import Interval
+
 from birdears.scale import Scale
 
-
-#def pytest_configure():
-#    import sys
-#    sys._called_from_test = True
-
-
-#def pytest_unconfigure():
-#    del sys._called_from_test
 
 def test_questionbase():
     a = QuestionBase()
     assert(a)
-
-
-def test_questionclass():
-    global KEYS
-
-    for tonic in KEYS:
-        a = MelodicIntervalQuestion(tonic=tonic)
-        assert(a)
-
-
-def test_questionclass_chromatic():
-    global KEYS
-
-    for tonic in KEYS:
-        a = MelodicIntervalQuestion(tonic=tonic, chromatic=True)
-        assert(a)
-
-
-def test_questionclass_descending():
-    global KEYS
-
-    for tonic in KEYS:
-        a = MelodicIntervalQuestion(tonic=tonic, descending=True)
-        assert(a)
-
-
-def test_questionclass_chromatic_descending():
-    global KEYS
-
-    for tonic in KEYS:
-        a = MelodicIntervalQuestion(tonic=tonic, chromatic=True, descending=True)
-        assert(a)
-
-
-def test_questionclass_minor_chromatic_descending():
-    global KEYS
-
-    for tonic in KEYS:
-        a = MelodicIntervalQuestion(tonic=tonic, mode='minor', chromatic=True,
-                     descending=True)
-        assert(a)
-
-
-def test_questionclass_n_octaves():
-    global KEYS
-
-    for tonic in KEYS:
-        a = MelodicIntervalQuestion(tonic=tonic, n_octaves=2)
-        assert(a)
 
 
 def test_intervalclass():
