@@ -44,8 +44,8 @@ class Sequence:
     def _play_note(self, note, duration=None, delay=None):
         # requires sox to be installed
 
-        duration = self.duration if duration is None else duration
-        delay = self.delay if delay is None else delay
+        duration = self.duration
+        delay = self.delay
 
         command = (
             "play -qn synth {duration} pluck {note}"
@@ -57,10 +57,10 @@ class Sequence:
         if delay:
             self._wait(delay)
 
-    def _play_chord(self, chord, duration=None, delay=None):
+    def _play_chord(self, chord):
 
-        duration = self.duration if duration is None else duration
-        delay = self.delay if delay is None else delay
+        duration = self.duration
+        delay = self.delay
 
         for note in chord:
             self._play_note(note, duration=duration, delay=0)

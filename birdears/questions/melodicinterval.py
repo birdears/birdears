@@ -1,6 +1,7 @@
 from ..questionbase import QuestionBase
 
-from ..interval import Interval
+#from ..interval import Interval, DiatonicInterval, ChromaticInterval
+from ..interval import DiatonicInterval, ChromaticInterval
 
 from .. import DIATONIC_MODES
 from .. import MAX_SEMITONES_RESOLVE_BELOW
@@ -24,10 +25,18 @@ class MelodicIntervalQuestion(QuestionBase):
                          descending=descending, chromatic=chromatic,
                          n_octaves=n_octaves, *args, **kwargs)
 
-        self.interval = Interval(mode=mode, tonic=self.tonic,
-                                 octave=self.octave, chromatic=chromatic,
-                                 n_octaves=n_octaves,
-                                 descending=descending).interval_data
+        if not chromatic:
+            self.interval = DiatonicInterval(mode=mode, tonic=self.tonic,
+                                             octave=self.octave,
+                                             n_octaves=n_octaves,
+                                             descending=descending)\
+                                                .interval_data
+        else:
+            self.interval = ChromaticInterval(mode=mode, tonic=self.tonic,
+                                              octave=self.octave,
+                                              n_octaves=n_octaves,
+                                              descending=descending)\
+                                                .interval_data
 
         self.question = self.make_question()
 
@@ -43,8 +52,9 @@ class MelodicIntervalQuestion(QuestionBase):
         tonic = self.concrete_tonic
         interval = self.interval['note_and_octave']
 
-        question = Sequence([tonic, interval], self.question_duration,
-                            self.question_delay, self.question_pos_delay)
+        question = Sequence([tonic, interval], duration=self.question_duration,
+                            delay=self.question_delay,
+                            pos_delay=self.question_pos_delay)
 
         return question
 
@@ -123,7 +133,9 @@ class MelodicIntervalQuestion(QuestionBase):
             resolution_pitch.append("{}{}".format(tonic,
                                                   interval['tonic_octave']))
 
-        resolution = Sequence(resolution_pitch, self.resolution_duration,
-                              self.resolution_delay, self.resolution_pos_delay)
+        resolution = Sequence(resolution_pitch,
+                              duration=self.resolution_duration,
+                              delay=self.resolution_delay,
+                              pos_delay=self.resolution_pos_delay)
 
         return resolution

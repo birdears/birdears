@@ -1,6 +1,8 @@
 from ..questionbase import QuestionBase
 
-from ..interval import Interval
+# from ..interval import Interval
+from ..interval import DiatonicInterval, ChromaticInterval
+
 from .. import DIATONIC_MODES
 from .. import MAX_SEMITONES_RESOLVE_BELOW
 from .. import INTERVALS
@@ -24,10 +26,19 @@ class HarmonicIntervalQuestion(QuestionBase):
                          n_octaves=n_octaves, *args, **kwargs)
 
         tonic = self.tonic
-        self.interval = Interval(mode=mode, tonic=self.tonic,
-                                 octave=self.octave, chromatic=chromatic,
-                                 n_octaves=n_octaves,
-                                 descending=descending).interval_data
+        
+        if not chromatic:
+            self.interval = DiatonicInterval(mode=mode, tonic=self.tonic,
+                                             octave=self.octave,
+                                             n_octaves=n_octaves,
+                                             descending=descending)\
+                                                .interval_data
+        else:
+            self.interval = ChromaticInterval(mode=mode, tonic=self.tonic,
+                                              octave=self.octave,
+                                              n_octaves=n_octaves,
+                                              descending=descending)\
+                                                .interval_data
 
         self.question = self.make_question()
 

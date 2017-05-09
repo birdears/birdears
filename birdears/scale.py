@@ -91,6 +91,8 @@ class DiatonicScale(ScaleBase):
             Whether to skip appending the last note (octave) to the scale.
         """
 
+        super(DiatonicScale, self).__init__()
+
         global DIATONIC_MODES
 
         diatonic_mode = DIATONIC_MODES[mode]
@@ -135,6 +137,8 @@ class ChromaticScale(ScaleBase):
         dont_repeat_tonic : bool
             Whethe to skip appending the last note (octave) to the scale.
         """
+
+        super(ChromaticScale, self).__init__()
 
         global notes3, notes2
 
