@@ -1,4 +1,13 @@
 #Python: true
+engines:
+ - radon: 
+   enabled: true
+ - pep8:
+   enabled: true
+ratings:
+  paths:
+   - "birdears/**"
+   - "**.py"
 
 exclude_paths:
 - docs/**
