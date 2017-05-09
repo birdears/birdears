@@ -1,3 +1,5 @@
+import subprocess
+import time
 
 class Sequence:
     def __init__(self, elements, duration=2, delay=1.5, pos_delay=1):
@@ -19,10 +21,6 @@ class Sequence:
         self.delay = delay
         self.pos_delay = pos_delay
 
-        #self.resolution_duration = 2.5
-        #self.resolution_delay = 0.5
-        #self.resolution_pos_delay = 1
-
         self.elements = list(elements)
 
     def append(self, elements):
@@ -39,21 +37,14 @@ class Sequence:
             elif type(element) == list:
                 self._play_chord(element)
 
-
-        #tonic = self.concrete_tonic
-        #interval = self.interval['note_and_octave']
-		#
-        #play_note = self._play_note
-		#
-        #play_note(note=tonic, duration=self.question_duration,
-        #          delay=self.question_delay)
-        #play_note(note=interval, duration=self.question_duration, delay=0)
-
         if self.pos_delay:
             self._wait(self.pos_delay)
 
-    def _play_note(self, note, duration, delay):
+    def _play_note(self, note, duration=None, delay=None):
         # requires sox to be installed
+
+        duration = self.duration if duration==None else duration
+        delay = self.delay if delay==None else delay
 
         command = (
             "play -qn synth {duration} pluck {note}"
@@ -65,10 +56,16 @@ class Sequence:
         if delay:
             self._wait(delay)
 
-    def _play_chord(self, chord, duration, delay):
+    def _play_chord(self, chord, duration=None, delay=None):
+
+        duration = self.duration if duration==None else duration
+        delay = self.delay if delay==None else delay
 
         for note in chord:
             self._play_note(note, duration=duration, delay=0)
 
         if delay:
             self._wait(delay)
+
+    def _wait(self, seconds):
+        time.sleep(seconds)
