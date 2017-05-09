@@ -1,4 +1,4 @@
-from .questionbase import QuestionBase
+from ..questionbase import QuestionBase
 
 from .interval import Interval
 from . import DIATONIC_MODES

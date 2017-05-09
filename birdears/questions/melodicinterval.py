@@ -1,7 +1,7 @@
-from .questionbase import QuestionBase
+from ..questionbase import QuestionBase
 
-from .interval import Interval
-from . import DIATONIC_MODES
+from ..interval import Interval
+from .. import DIATONIC_MODES
 
 class MelodicIntervalQuestion(QuestionBase):
     "Implements a Melodic Interval test."

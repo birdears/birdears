@@ -1,13 +1,19 @@
+from random import choice
 
-class MelodicDictateQuestion(QuestionBase):
-    """Implements a melodic dictate test.
+from ..questionbase import QuestionBase
+
+from ..interval import Interval
+#from .. import DIATONIC_MODES
+
+class MelodicDictationQuestion(QuestionBase):
+    """Implements a melodic dictation test.
     """
 
     def __init__(self, mode='major', max_intervals=3, n_notes=4, tonic=None,
                  octave=None, descending=None, chromatic=None, n_octaves=None,
                  *args, **kwargs):
 
-        super(MelodicDictateQuestion, self).\
+        super(MelodicDictationQuestion, self).\
                 __init__(mode=mode, tonic=tonic, octave=octave,
                          descending=descending, chromatic=chromatic,
                          n_octaves=n_octaves, *args, **kwargs)
