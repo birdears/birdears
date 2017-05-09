@@ -8,6 +8,10 @@
 [![Code Climate gpa](https://img.shields.io/codeclimate/github/iacchus/birdears.svg?label=GPA)]()
 [![Gitter](https://img.shields.io/gitter/room/birdears/Lobby.svg)](https://gitter.im/birdears/Lobby)
 
+[![PyPI Version](https://img.shields.io/pypi/v/birdears.svg)](https://pypi.python.org/pypi/birdears)
+[![PyPI Status](https://img.shields.io/pypi/status/birdears.svg?label=PyPI+Status)](https://pypi.python.org/pypi/birdears)
+[![PyPI Python Versions](https://img.shields.io/pypi/pyversions/birdears.svg)](https://pypi.python.org/pypi/birdears)
+
 ## Functional Ear Training for Musicians
 
 In current development though functional. Uses python 3 and [sox](http://sox.sourceforge.net/).
@@ -93,7 +97,7 @@ sudo pacman -S python sox
 
 ### Coding
 
-We ask for people who wants to contribute for the code to look to the musical side first, 
+We ask for people who wants to contribute for the code to look to the musical side first,
 
 ### Documentation
 
@@ -120,7 +124,7 @@ Out tests are in repo's `tests/` directory.
 
 We are using Sphinx to generate documenttion for this module. The sphinx resource
 files are in the `docs/sphinx/` directory.
- 
+
 ### End-user Documentation
 
 We aim to build a method / music theory together with this software, maybe in the
