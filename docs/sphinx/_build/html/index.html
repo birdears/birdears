@@ -56,132 +56,32 @@
 </div>
 <span class="target" id="module-birdears"></span><p>BirdEars provides facilities to development of musical ear training
 exercises.</p>
-<dl class="class">
-<dt id="birdears.HarmonicIntervalQuestion">
-<em class="property">class </em><code class="descclassname">birdears.</code><code class="descname">HarmonicIntervalQuestion</code><span class="sig-paren">(</span><em>mode='major'</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears.html#HarmonicIntervalQuestion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.HarmonicIntervalQuestion" title="Permalink to this definition">¶</a></dt>
-<dd><p>Implements a Harmonic Interval test.</p>
-<p class="rubric">Methods</p>
-<table border="1" class="longtable docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">check_question</span></code>(user_input_char)</td>
-<td>Checks whether the given answer is correct.</td>
-</tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">make_resolution</span></code>(chromatic,&nbsp;mode,&nbsp;tonic,&nbsp;interval)</td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">play_question</span></code>()</td>
-<td></td>
-</tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">play_resolution</span></code>()</td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<dl class="function">
+<dt id="birdears.main">
+<code class="descclassname">birdears.</code><code class="descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="birdears.print_stuff">
+<code class="descclassname">birdears.</code><code class="descname">print_stuff</code><span class="sig-paren">(</span><em>question</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears.html#print_stuff"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.print_stuff" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="birdears.print_stuff_dictation">
+<code class="descclassname">birdears.</code><code class="descname">print_stuff_dictation</code><span class="sig-paren">(</span><em>question</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears.html#print_stuff_dictation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.print_stuff_dictation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<span class="target" id="module-birdears.interval"></span><dl class="class">
+<dt id="birdears.interval.Interval">
+<em class="property">class </em><code class="descclassname">birdears.interval.</code><code class="descname">Interval</code><span class="sig-paren">(</span><em>mode</em>, <em>tonic</em>, <em>octave</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>descending=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/interval.html#Interval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.interval.Interval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 </dd></dl>
 
 <dl class="class">
-<dt id="birdears.MelodicDictateQuestion">
-<em class="property">class </em><code class="descclassname">birdears.</code><code class="descname">MelodicDictateQuestion</code><span class="sig-paren">(</span><em>mode='major'</em>, <em>max_intervals=3</em>, <em>n_notes=4</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears.html#MelodicDictateQuestion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.MelodicDictateQuestion" title="Permalink to this definition">¶</a></dt>
-<dd><p>Implements a melodic dictate test.</p>
-<p class="rubric">Methods</p>
-<table border="1" class="longtable docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#birdears.MelodicDictateQuestion.check_question" title="birdears.MelodicDictateQuestion.check_question"><code class="xref py py-obj docutils literal"><span class="pre">check_question</span></code></a>(user_input_keys)</td>
-<td>Checks whether the given answer is correct.</td>
-</tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">make_resolution</span></code>(chromatic,&nbsp;mode,&nbsp;tonic,&nbsp;interval)</td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">play_question</span></code>([melodic_phrase])</td>
-<td></td>
-</tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">play_resolution</span></code>()</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<dl class="method">
-<dt id="birdears.MelodicDictateQuestion.check_question">
-<code class="descname">check_question</code><span class="sig-paren">(</span><em>user_input_keys</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears.html#MelodicDictateQuestion.check_question"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.MelodicDictateQuestion.check_question" title="Permalink to this definition">¶</a></dt>
-<dd><p>Checks whether the given answer is correct.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="birdears.MelodicIntervalQuestion">
-<em class="property">class </em><code class="descclassname">birdears.</code><code class="descname">MelodicIntervalQuestion</code><span class="sig-paren">(</span><em>mode='major'</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears.html#MelodicIntervalQuestion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.MelodicIntervalQuestion" title="Permalink to this definition">¶</a></dt>
-<dd><p>Implements a Melodic Interval test.</p>
-<p class="rubric">Methods</p>
-<table border="1" class="longtable docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">check_question</span></code>(user_input_char)</td>
-<td>Checks whether the given answer is correct.</td>
-</tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">make_resolution</span></code>(chromatic,&nbsp;mode,&nbsp;tonic,&nbsp;interval)</td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">play_question</span></code>()</td>
-<td></td>
-</tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">play_resolution</span></code>()</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="class">
-<dt id="birdears.QuestionBase">
-<em class="property">class </em><code class="descclassname">birdears.</code><code class="descname">QuestionBase</code><span class="sig-paren">(</span><em>mode='major'</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears.html#QuestionBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.QuestionBase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Base Class to be subclassed for Question classes.</p>
-<p>This class implements attributes and routines to be used in Question
-subclasses.</p>
-<p class="rubric">Methods</p>
-<table border="1" class="longtable docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#birdears.QuestionBase.check_question" title="birdears.QuestionBase.check_question"><code class="xref py py-obj docutils literal"><span class="pre">check_question</span></code></a>(user_input_char)</td>
-<td>Checks whether the given answer is correct.</td>
-</tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">make_resolution</span></code>(chromatic,&nbsp;mode,&nbsp;tonic,&nbsp;interval)</td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">play_question</span></code>()</td>
-<td></td>
-</tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">play_resolution</span></code>()</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<dl class="method">
-<dt id="birdears.QuestionBase.check_question">
-<code class="descname">check_question</code><span class="sig-paren">(</span><em>user_input_char</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears.html#QuestionBase.check_question"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.QuestionBase.check_question" title="Permalink to this definition">¶</a></dt>
-<dd><p>Checks whether the given answer is correct.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="birdears.Scale">
-<em class="property">class </em><code class="descclassname">birdears.</code><code class="descname">Scale</code><span class="sig-paren">(</span><em>tonic</em>, <em>mode=None</em>, <em>octave=None</em>, <em>n_octaves=None</em>, <em>chromatic=None</em>, <em>descending=None</em>, <em>dont_repeat_tonic=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears.html#Scale"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.Scale" title="Permalink to this definition">¶</a></dt>
-<dd><p>Builds a musical scale.</p>
+<dt id="birdears.scale.Scale">
+<em class="property">class </em><code class="descclassname">birdears.scale.</code><code class="descname">Scale</code><span class="sig-paren">(</span><em>tonic</em>, <em>mode=None</em>, <em>octave=None</em>, <em>n_octaves=None</em>, <em>chromatic=None</em>, <em>descending=None</em>, <em>dont_repeat_tonic=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/scale.html#Scale"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.scale.Scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Builds a musical scale.</p>
 <p class="rubric">Attributes</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -201,10 +101,10 @@ subclasses.</p>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#birdears.Scale.get_chromatic" title="birdears.Scale.get_chromatic"><code class="xref py py-obj docutils literal"><span class="pre">get_chromatic</span></code></a>(tonic[,&nbsp;octave,&nbsp;n_octaves,&nbsp;...])</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_chromatic</span></code>(tonic[,&nbsp;octave,&nbsp;n_octaves,&nbsp;...])</td>
 <td>Returns a chromatic scale from tonic.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#birdears.Scale.get_diatonic" title="birdears.Scale.get_diatonic"><code class="xref py py-obj docutils literal"><span class="pre">get_diatonic</span></code></a>(tonic,&nbsp;mode[,&nbsp;octave,&nbsp;...])</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">get_diatonic</span></code>(tonic,&nbsp;mode[,&nbsp;octave,&nbsp;...])</td>
 <td>Returns a diatonic scale from tonic and mode.</td>
 </tr>
 <tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_triad</span></code>(degree)</td>
@@ -213,8 +113,8 @@ subclasses.</p>
 </tbody>
 </table>
 <dl class="method">
-<dt id="birdears.Scale.get_chromatic">
-<code class="descname">get_chromatic</code><span class="sig-paren">(</span><em>tonic</em>, <em>octave=None</em>, <em>n_octaves=None</em>, <em>descending=None</em>, <em>dont_repeat_tonic=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears.html#Scale.get_chromatic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.Scale.get_chromatic" title="Permalink to this definition">¶</a></dt>
+<dt id="birdears.scale.Scale.get_chromatic">
+<code class="descname">get_chromatic</code><span class="sig-paren">(</span><em>tonic</em>, <em>octave=None</em>, <em>n_octaves=None</em>, <em>descending=None</em>, <em>dont_repeat_tonic=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/scale.html#Scale.get_chromatic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.scale.Scale.get_chromatic" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a chromatic scale from tonic.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -247,8 +147,8 @@ subclasses.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="birdears.Scale.get_diatonic">
-<code class="descname">get_diatonic</code><span class="sig-paren">(</span><em>tonic</em>, <em>mode</em>, <em>octave=None</em>, <em>n_octaves=None</em>, <em>descending=None</em>, <em>dont_repeat_tonic=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears.html#Scale.get_diatonic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.Scale.get_diatonic" title="Permalink to this definition">¶</a></dt>
+<dt id="birdears.scale.Scale.get_diatonic">
+<code class="descname">get_diatonic</code><span class="sig-paren">(</span><em>tonic</em>, <em>mode</em>, <em>octave=None</em>, <em>n_octaves=None</em>, <em>descending=None</em>, <em>dont_repeat_tonic=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/scale.html#Scale.get_diatonic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.scale.Scale.get_diatonic" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a diatonic scale from tonic and mode.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -283,6 +183,11 @@ subclasses.</p>
 </tbody>
 </table>
 </dd></dl>
+
+<dl class="method">
+<dt id="birdears.scale.Scale.get_triad">
+<code class="descname">get_triad</code><span class="sig-paren">(</span><em>degree</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/scale.html#Scale.get_triad"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.scale.Scale.get_triad" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 

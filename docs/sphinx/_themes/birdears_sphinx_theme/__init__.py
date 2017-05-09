@@ -1,6 +1,7 @@
 import os
 
-from alabaster import _version as version
+#from alabaster import _version as version
+from . import _version as version
 
 
 def get_path():

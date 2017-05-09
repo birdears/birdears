@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>birdears.interval &#8212; BirdEars 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/hljs_styles/monokai.css" type="text/css" />
+  <script type="text/javascript" src="../../_static/js/highlight.pack.js"></script>
+  <script>
+  $(document).ready(function() {
+  $('div.viewcode-block,pre').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for birdears.interval</h1><div class="highlight"><pre>
+<span></span>from random import choice
+
+from . import DIATONIC_MODES
+
+from . import CHROMATIC_TYPE
+from . import INTERVALS
+from . import MAX_SEMITONES_RESOLVE_BELOW
+
+from .scale import Scale
+
+<div class="viewcode-block" id="Interval"><a class="viewcode-back" href="../../index.html#birdears.interval.Interval">[docs]</a>class Interval:
+
+    def __init__(self, mode, tonic, octave, chromatic=None, n_octaves=None,
+                 descending=None):
+        &quot;&quot;&quot;Chooses a chromatic interval for the question.
+
+        Parameters
+        ----------
+        mode : str
+            Diatonic mode for the interval. (eg.: &#39;major&#39; or &#39;minor&#39;)
+        tonic : str
+            Tonic of the scale. (eg.: &#39;Bb&#39;)
+        octave : str
+            Scientific octave of the scale (eg.: 4)
+        interval : str
+            Not implemented. The interval.
+        chromatic: bool
+            Can have chromatic notes? (eg.: F# in a key of C; default: false)
+        n_octaves : int
+            Maximum number os octaves (eg. 2)
+        descending : bool
+            Is the interval dewcending? (default: false)
+        &quot;&quot;&quot;
+
+        global DIATONIC_MODES, CHROMATIC_TYPE, MAX_SEMITONES_RESOLVE_BELOW
+        global INTERVALS
+
+        diatonic_mode = list(DIATONIC_MODES[mode])
+        chromatic_network = list(CHROMATIC_TYPE)
+
+        if descending:
+            # TODO: use list( map(lambda x: 12-x, diatonic_mode) ) here
+            diatonic_mode = [12 - x for x in diatonic_mode]
+            diatonic_mode.reverse()
+
+        step_network = diatonic_mode
+
+        # FIXME: please refactore this with method signature n_octaves=1:
+        if n_octaves:
+            for i in range(1, n_octaves):
+                step_network.extend([semitones + 12 * i for semitones in
+                                     diatonic_mode[1:]])
+                chromatic_network.extend([semitones + 12 * i for semitones in
+                                          CHROMATIC_TYPE[1:]])
+
+        if not chromatic:
+            semitones = choice(step_network)
+        else:
+            semitones = choice(chromatic_network)
+
+        chromatic_scale = Scale(tonic=tonic, octave=None, chromatic=True,
+                                n_octaves=n_octaves, descending=descending)
+
+        chromatic_scale_pitch = Scale(tonic=tonic, octave=octave,
+                                      chromatic=True, n_octaves=n_octaves,
+                                      descending=descending)
+
+        distance = dict({
+            &#39;octaves&#39;: 0 if (semitones &lt; 12) else int(semitones / 12),
+            &#39;semitones&#39;: semitones if (semitones &lt; 12) else int(semitones % 12)
+        })
+        # chromatic_offset = semitones if semitones &lt; 12 else semitones % 12
+        chromatic_offset = distance[&#39;semitones&#39;]
+
+        note_name = &quot;{}&quot;.format(chromatic_scale.scale[semitones])
+        note_and_octave = &quot;{}&quot;.format(chromatic_scale_pitch.scale[semitones])
+
+        is_chromatic = True if chromatic_offset not in diatonic_mode else False
+
+        if is_chromatic:
+            # here we are rounding it to the next diatonic degree, to insert
+            # it after:
+            if chromatic_offset &lt;= MAX_SEMITONES_RESOLVE_BELOW:
+                diatonic_index = diatonic_mode.index(chromatic_offset - 1)
+            else:
+                diatonic_index = diatonic_mode.index(chromatic_offset + 1)
+        else:
+            diatonic_index = diatonic_mode.index(chromatic_offset)
+
+        if not descending:
+            interval_octave = int(octave) + distance[&#39;octaves&#39;]
+        else:
+            interval_octave = int(octave) - distance[&#39;octaves&#39;]
+
+        self.interval_data = dict({
+            &#39;tonic_octave&#39;: octave,
+            &#39;interval_octave&#39;: interval_octave,
+            &#39;chromatic_offset&#39;: chromatic_offset,
+            &#39;note_and_octave&#39;: note_and_octave,
+            &#39;note_name&#39;: note_name,
+            &#39;semitones&#39;: semitones,
+            &#39;is_chromatic&#39;: is_chromatic,
+            &#39;is_descending&#39;: False if not descending else True,
+            &#39;diatonic_index&#39;: diatonic_index,
+            &#39;distance&#39;: distance,
+            &#39;data&#39;: INTERVALS[semitones],
+        })</div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  <li><a href="../birdears.html">birdears</a><ul>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Iacchus Mercurius.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

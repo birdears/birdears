@@ -11,8 +11,21 @@ Welcome to BirdEars's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+
 .. automodule:: birdears
         :members:
+        :undoc-members:
+        :show-inheritance:
+
+.. automodule:: birdears.interval
+        :members:
+        :undoc-members:
+        :show-inheritance:
+
+.. autoclass:: birdears.scale.Scale
+        :members:
+        :undoc-members:
+        :show-inheritance:
 
 Indices and tables
 ==================

@@ -153,698 +153,6 @@ KEYBOARD_INDICES = {
 
 MAX_SEMITONES_RESOLVE_BELOW = 5
 
-
-<div class="viewcode-block" id="Scale"><a class="viewcode-back" href="../index.html#birdears.Scale">[docs]</a>class Scale:
-    &quot;&quot;&quot;Builds a musical scale.
-
-    Attributes
-    ----------
-    scale : array_type
-        the array of notes representing the scale.
-    &quot;&quot;&quot;
-
-    def __init__(self, tonic, mode=None, octave=None, n_octaves=None,
-                 chromatic=None, descending=None, dont_repeat_tonic=None):
-        if not chromatic:
-            scale = self.get_diatonic(tonic=tonic, mode=mode, octave=octave,
-                                      n_octaves=n_octaves,
-                                      descending=descending,
-                                      dont_repeat_tonic=dont_repeat_tonic)
-        else:
-            scale = self.get_chromatic(tonic=tonic, octave=octave,
-                                       n_octaves=n_octaves,
-                                       descending=descending,
-                                       dont_repeat_tonic=dont_repeat_tonic)
-
-        self.scale = scale
-        self.chromatic = chromatic
-
-<div class="viewcode-block" id="Scale.get_chromatic"><a class="viewcode-back" href="../index.html#birdears.Scale.get_chromatic">[docs]</a>    def get_chromatic(self, tonic, octave=None, n_octaves=None,
-                      descending=None, dont_repeat_tonic=None):
-        &quot;&quot;&quot;Returns a chromatic scale from tonic.
-
-        Parameters
-        ----------
-        tonic : str
-            The note which the scale will be built upon.
-        octave : int
-            The scientific octave the scale will be built upon.
-        n_octaves : int
-            The number of octaves the scale will contain.
-        descending : bool
-            Whether the scale is descending.
-        dont_repeat_tonic : bool
-            Whethe to skip appending the last note (octave) to the scale.
-        &quot;&quot;&quot;
-
-        global notes3, notes2
-
-        tonic_index = self._get_chromatic_idx(tonic)
-
-        if tonic == &#39;F&#39; or &#39;b&#39; in tonic:
-            notes = deque(notes3)
-        else:
-            notes = deque(notes2)
-
-        notes.rotate(-(tonic_index))
-
-        if n_octaves:
-            chromatic = notes * n_octaves
-        else:
-            chromatic = notes
-
-        # FIXME: check if this works on descending
-        if not dont_repeat_tonic:
-            chromatic.append(chromatic[0])
-
-        if descending:
-            chromatic.reverse()
-
-        if octave:
-            chromatic = self._append_octave_to_scale(scale=chromatic,
-                                                     starting_octave=octave,
-                                                     descending=descending)
-
-        return chromatic</div>
-
-<div class="viewcode-block" id="Scale.get_diatonic"><a class="viewcode-back" href="../index.html#birdears.Scale.get_diatonic">[docs]</a>    def get_diatonic(self, tonic, mode, octave=None, n_octaves=None,
-                     descending=None, dont_repeat_tonic=None):
-        &quot;&quot;&quot;Returns a diatonic scale from tonic and mode.
-
-        Parameters
-        ----------
-        tonic : str
-            The note which the scale will be built upon.
-        mode : str
-            The mode the scale will be built upon. (&#39;major&#39; or &#39;minor&#39;)
-        octave : int
-            The scientific octave the scale will be built upon.
-        n_octaves : int
-            The number of octaves the scale will contain.
-        descending : bool
-            Whether the scale is descending.
-        dont_repeat_tonic : bool
-            Whether to skip appending the last note (octave) to the scale.
-        &quot;&quot;&quot;
-
-        global DIATONIC_MODES
-
-        diatonic_mode = DIATONIC_MODES[mode]
-
-        chromatic = self.get_chromatic(tonic)
-
-        diatonic = [chromatic[semitones] for semitones in diatonic_mode[:-1]]
-
-        if n_octaves:
-            diatonic = diatonic * n_octaves
-
-        # FIXME: check if this works on descending
-        if not dont_repeat_tonic:
-            diatonic.append(chromatic[diatonic_mode[-1]])
-
-        if descending:
-            diatonic.reverse()
-
-        if octave:
-            diatonic = self._append_octave_to_scale(scale=diatonic,
-                                                    starting_octave=octave,
-                                                    descending=descending)
-
-        return diatonic</div>
-
-    def get_triad(self, degree):
-        pass
-
-    def _append_octave_to_scale(self, scale, starting_octave, descending=None):
-        &quot;&quot;&quot;Inserts scientific octave number to the notes on a the given scale.
-        &quot;&quot;&quot;
-
-        next_octave = 1 if not descending else -1
-
-        scale_with_octave = []
-        changing_note = None
-
-        current_octave = starting_octave
-
-        if not descending:
-            for closest in [&#39;C&#39;, &#39;C#&#39;, &#39;Db&#39;]:
-                if closest in scale:
-                    changing_note = closest
-                    break
-        else:
-            for closest in [&#39;B&#39;, &#39;Bb&#39;, &#39;A#&#39;]:
-                if closest in scale:
-                    changing_note = closest
-                    break
-
-        for idx, note in enumerate(scale):
-            if idx &gt; 0 and note == changing_note:
-                current_octave += next_octave
-
-            scale_with_octave.append(&quot;{}{}&quot;.format(note, current_octave))
-
-        return scale_with_octave
-
-    def _get_chromatic_idx(self, note):
-        &quot;&quot;&quot;Gets the chromatic index, ie., the distance in semitones of a given
-        note from C.
-        &quot;&quot;&quot;
-
-        global notes2, notes3
-
-        # use_flat = -1 if (note == &#39;F&#39; or &#39;b&#39; in note) else 0
-
-        # FIXME
-        if note in notes2:
-            note_index = notes2.index(note)
-        elif note in notes3:
-            note_index = notes3.index(note)
-        else:
-            note_index = False
-
-        return note_index</div>
-
-
-class Interval:
-
-    def __init__(self, mode, tonic, octave, chromatic=None, n_octaves=None,
-                 descending=None):
-        &quot;&quot;&quot;Chooses a chromatic interval for the question.
-
-        Parameters
-        ----------
-        mode : str
-            Diatonic mode for the interval. (eg.: &#39;major&#39; or &#39;minor&#39;)
-        tonic : str
-            Tonic of the scale. (eg.: &#39;Bb&#39;)
-        octave : str
-            Scientific octave of the scale (eg.: 4)
-        interval : str
-            Not implemented. The interval.
-        chromatic: bool
-            Can have chromatic notes? (eg.: F# in a key of C; default: false)
-        n_octaves : int
-            Maximum number os octaves (eg. 2)
-        descending : bool
-            Is the interval dewcending? (default: false)
-        &quot;&quot;&quot;
-
-        global DIATONIC_MODES, CHROMATIC_TYPE, MAX_SEMITONES_RESOLVE_BELOW
-        global INTERVALS
-
-        diatonic_mode = list(DIATONIC_MODES[mode])
-        chromatic_network = list(CHROMATIC_TYPE)
-
-        if descending:
-            # TODO: use list( map(lambda x: 12-x, diatonic_mode) ) here
-            diatonic_mode = [12 - x for x in diatonic_mode]
-            diatonic_mode.reverse()
-
-        step_network = diatonic_mode
-
-        # FIXME: please refactore this with method signature n_octaves=1:
-        if n_octaves:
-            for i in range(1, n_octaves):
-                step_network.extend([semitones + 12 * i for semitones in
-                                     diatonic_mode[1:]])
-                chromatic_network.extend([semitones + 12 * i for semitones in
-                                          CHROMATIC_TYPE[1:]])
-
-        if not chromatic:
-            semitones = choice(step_network)
-        else:
-            semitones = choice(chromatic_network)
-
-        chromatic_scale = Scale(tonic=tonic, octave=None, chromatic=True,
-                                n_octaves=n_octaves, descending=descending)
-
-        chromatic_scale_pitch = Scale(tonic=tonic, octave=octave,
-                                      chromatic=True, n_octaves=n_octaves,
-                                      descending=descending)
-
-        distance = dict({
-            &#39;octaves&#39;: 0 if (semitones &lt; 12) else int(semitones / 12),
-            &#39;semitones&#39;: semitones if (semitones &lt; 12) else int(semitones % 12)
-        })
-        # chromatic_offset = semitones if semitones &lt; 12 else semitones % 12
-        chromatic_offset = distance[&#39;semitones&#39;]
-
-        note_name = &quot;{}&quot;.format(chromatic_scale.scale[semitones])
-        note_and_octave = &quot;{}&quot;.format(chromatic_scale_pitch.scale[semitones])
-
-        is_chromatic = True if chromatic_offset not in diatonic_mode else False
-
-        if is_chromatic:
-            # here we are rounding it to the next diatonic degree, to insert
-            # it after:
-            if chromatic_offset &lt;= MAX_SEMITONES_RESOLVE_BELOW:
-                diatonic_index = diatonic_mode.index(chromatic_offset - 1)
-            else:
-                diatonic_index = diatonic_mode.index(chromatic_offset + 1)
-        else:
-            diatonic_index = diatonic_mode.index(chromatic_offset)
-
-        if not descending:
-            interval_octave = int(octave) + distance[&#39;octaves&#39;]
-        else:
-            interval_octave = int(octave) - distance[&#39;octaves&#39;]
-
-        self.interval_data = dict({
-            &#39;tonic_octave&#39;: octave,
-            &#39;interval_octave&#39;: interval_octave,
-            &#39;chromatic_offset&#39;: chromatic_offset,
-            &#39;note_and_octave&#39;: note_and_octave,
-            &#39;note_name&#39;: note_name,
-            &#39;semitones&#39;: semitones,
-            &#39;is_chromatic&#39;: is_chromatic,
-            &#39;is_descending&#39;: False if not descending else True,
-            &#39;diatonic_index&#39;: diatonic_index,
-            &#39;distance&#39;: distance,
-            &#39;data&#39;: INTERVALS[semitones],
-        })
-
-
-class Sequence:
-    def __init__(self, elements, duration=2, delay=1.5, pos_delay=1):
-        &quot;&quot;&quot;Sequence of notes or chords.
-
-		Parameters
-		----------
-		elements : array_type
-			List of elements in this sequence. (notes or chords)
-		duration : float
-			Default duratin playing time for each element in the sequence.
-		delay : float
-			Default waiting time to play the next element in the sequence.
-		pos_delay : float
-			Waiting time after playing the last element in the sequence.
-		&quot;&quot;&quot;
-
-        self.duration = duration
-        self.delay = delay
-        self.pos_delay = pos_delay
-
-        #self.resolution_duration = 2.5
-        #self.resolution_delay = 0.5
-        #self.resolution_pos_delay = 1
-
-        self.elements = list(elements)
-
-    def append(self, elements):
-        self.elements.append(elements)
-
-    def extend(self, elements):
-        self.elements.extend(elements)
-
-    def play(self):
-
-        for element in self.elements:
-            if type(element) == str:
-                self._play_note(element)
-            elif type(element) == list:
-                self._play_chord(element)
-
-
-        #tonic = self.concrete_tonic
-        #interval = self.interval[&#39;note_and_octave&#39;]
-		#
-        #play_note = self._play_note
-		#
-        #play_note(note=tonic, duration=self.question_duration,
-        #          delay=self.question_delay)
-        #play_note(note=interval, duration=self.question_duration, delay=0)
-
-        if self.pos_delay:
-            self._wait(self.pos_delay)
-
-    def _play_note(self, note, duration, delay):
-        # requires sox to be installed
-
-        command = (
-            &quot;play -qn synth {duration} pluck {note}&quot;
-            &quot; fade l 0 {duration} 2 reverb&quot;
-        ).format(note=note, duration=duration)
-
-        subprocess.Popen(command.split())
-
-        if delay:
-            self._wait(delay)
-
-    def _play_chord(self, chord, duration, delay):
-
-        for note in chord:
-            self._play_note(note, duration=duration, delay=0)
-
-        if delay:
-            self._wait(delay)
-
-
-<div class="viewcode-block" id="QuestionBase"><a class="viewcode-back" href="../index.html#birdears.QuestionBase">[docs]</a>class QuestionBase:
-    &quot;&quot;&quot;
-    Base Class to be subclassed for Question classes.
-
-    This class implements attributes and routines to be used in Question
-    subclasses.
-    &quot;&quot;&quot;
-
-    def __init__(self, mode=&#39;major&#39;, tonic=None, octave=None, descending=None,
-                 chromatic=None, n_octaves=None, *args, **kwargs):
-
-        global KEYBOARD_INDICES, KEYS
-
-        self.question_duration = 2
-        self.question_delay = 1.5
-        self.question_pos_delay = 0
-
-        self.resolution_duration = 2.5
-        self.resolution_delay = 0.5
-        self.resolution_pos_delay = 1
-
-        self.mode = mode
-
-        # self.octave = octave if octave else randrange(3, 5)
-        self.octave = octave or randrange(3, 5)
-
-        # FIXME: maybe this should go to __main__
-        self.keyboard_index = KEYBOARD_INDICES[&#39;chromatic&#39;][self.mode]
-
-        # if descending:
-        #    self.keyboard_index = self.keyboard_index[::-1].swapcase()
-
-        # FIXME
-        # self.tonic = tonic if tonic else choice(KEYS)
-        self.tonic = tonic or choice(KEYS)
-        tonic = self.tonic
-
-        diatonic_scale = Scale(tonic=tonic, mode=mode, octave=None,
-                               descending=descending, n_octaves=n_octaves)
-
-        chromatic_scale = Scale(tonic=tonic, octave=None, chromatic=True,
-                                descending=descending, n_octaves=n_octaves)
-
-        diatonic_scale_pitch = Scale(tonic=tonic, mode=mode,
-                                     octave=self.octave, descending=descending,
-                                     n_octaves=n_octaves)
-
-        chromatic_scale_pitch = Scale(tonic=tonic, octave=self.octave,
-                                      chromatic=True, descending=descending,
-                                      n_octaves=n_octaves)
-
-        scales = dict({
-            &#39;diatonic&#39;: diatonic_scale,
-            &#39;chromatic&#39;: chromatic_scale,
-            &#39;diatonic_pitch&#39;: diatonic_scale_pitch,
-            &#39;chromatic_pitch&#39;: chromatic_scale_pitch,
-        })
-        self.scales = scales
-
-        self.concrete_tonic = scales[&#39;diatonic_pitch&#39;].scale[0]
-        self.scale_size = len(scales[&#39;diatonic&#39;].scale)
-
-    def _wait(self, seconds):
-        time.sleep(seconds)
-
-    def _play_note(self, note, duration, delay):
-        # requires sox to be installed
-
-        command = (
-            &quot;play -qn synth {duration} pluck {note}&quot;
-            &quot; fade l 0 {duration} 2 reverb&quot;
-        ).format(note=note, duration=duration)
-
-        subprocess.Popen(command.split())
-
-        if delay:
-            self._wait(delay)
-
-    def _play_chord(self, chord, duration, delay):
-
-        for note in chord:
-            self._play_note(note, duration=duration, delay=0)
-
-        if delay:
-            self._wait(delay)
-
-    def play_question(self):
-
-        tonic = self.concrete_tonic
-        interval = self.interval[&#39;note_and_octave&#39;]
-
-        play_note = self._play_note
-
-        play_note(note=tonic, duration=self.question_duration,
-                  delay=self.question_delay)
-        play_note(note=interval, duration=self.question_duration, delay=0)
-
-        if self.question_pos_delay:
-            self._wait(self.resolution_pos_delay)
-
-    def play_resolution(self):
-
-        play_note = self._play_note
-
-        for tone in self.resolution_pitch:
-            play_note(note=tone, duration=self.resolution_duration,
-                      delay=self.resolution_delay)
-
-        if self.resolution_pos_delay:
-            self._wait(self.resolution_pos_delay)
-
-<div class="viewcode-block" id="QuestionBase.check_question"><a class="viewcode-back" href="../index.html#birdears.QuestionBase.check_question">[docs]</a>    def check_question(self, user_input_char):
-        &quot;&quot;&quot;Checks whether the given answer is correct.&quot;&quot;&quot;
-
-        global INTERVALS
-
-        semitones = self.keyboard_index.index(user_input_char)
-
-        user_interval = INTERVALS[semitones][2]
-        correct_interval = INTERVALS[self.interval[&#39;semitones&#39;]][2]
-
-        response = {
-            &#39;is_correct&#39;: False,
-            &#39;user_interval&#39;: user_interval,
-            &#39;correct_interval&#39;: correct_interval,
-        }
-
-        if semitones == self.interval[&#39;semitones&#39;]:
-            response.update({&#39;is_correct&#39;: True})
-
-        else:
-            response.update({&#39;is_correct&#39;: False})
-
-        return response</div>
-
-    def make_resolution(self, chromatic, mode, tonic, interval,
-                        descending=None):
-
-        global DIATONIC_MODES, MAX_SEMITONES_RESOLVE_BELOW
-
-        resolution_pitch = []
-
-        # diatonic_mode = DIATONIC_MODES[mode]
-
-        scale_pitch = Scale(tonic=tonic, mode=mode,
-                            octave=interval[&#39;interval_octave&#39;],
-                            descending=descending)
-        self.res_scale = scale_pitch
-
-        if not chromatic:
-
-            if interval[&#39;chromatic_offset&#39;] &lt;= MAX_SEMITONES_RESOLVE_BELOW:
-                resolution_pitch =\
-                    scale_pitch.scale[:interval[&#39;diatonic_index&#39;] + 1]
-                resolution_pitch.reverse()
-            else:
-                resolution_pitch =\
-                    scale_pitch.scale[interval[&#39;diatonic_index&#39;]:]
-
-        else:
-
-            if interval[&#39;chromatic_offset&#39;] &lt;= MAX_SEMITONES_RESOLVE_BELOW:
-                if interval[&#39;is_chromatic&#39;]:
-                    resolution_pitch.extend(
-                        scale_pitch.scale[: interval[&#39;diatonic_index&#39;] + 1])
-                    resolution_pitch.append(interval[&#39;note_and_octave&#39;])
-                else:
-                    resolution_pitch.extend(
-                        scale_pitch.scale[: interval[&#39;diatonic_index&#39;] + 1])
-                resolution_pitch.reverse()
-
-            else:
-                if interval[&#39;is_chromatic&#39;]:
-                    resolution_pitch.append(interval[&#39;note_and_octave&#39;])
-
-                resolution_pitch.extend(
-                    scale_pitch.scale[interval[&#39;diatonic_index&#39;]:])
-
-        # unisson and octave
-        if interval[&#39;semitones&#39;] == 0:
-            resolution_pitch.append(scale_pitch.scale[0])
-        elif interval[&#39;semitones&#39;] % 12 == 0:
-            # FIXME: multipe octaves
-            resolution_pitch.append(&quot;{}{}&quot;.format(tonic,
-                                                  interval[&#39;tonic_octave&#39;]))
-
-        return resolution_pitch</div>
-
-
-<div class="viewcode-block" id="MelodicIntervalQuestion"><a class="viewcode-back" href="../index.html#birdears.MelodicIntervalQuestion">[docs]</a>class MelodicIntervalQuestion(QuestionBase):
-    &quot;Implements a Melodic Interval test.&quot;
-
-    def __init__(self, mode=&#39;major&#39;, tonic=None, octave=None, descending=None,
-                 chromatic=None, n_octaves=None, *args, **kwargs):
-
-        super(MelodicIntervalQuestion, self).\
-                __init__(mode=mode, tonic=tonic, octave=octave,
-                         descending=descending, chromatic=chromatic,
-                         n_octaves=n_octaves, *args, **kwargs)
-
-        self.interval = Interval(mode=mode, tonic=self.tonic,
-                                 octave=self.octave, chromatic=chromatic,
-                                 n_octaves=n_octaves,
-                                 descending=descending).interval_data
-        # FIXME
-        self.resolution_pitch = \
-            self.make_resolution(chromatic=chromatic, mode=self.mode,
-                                 tonic=self.tonic, interval=self.interval,
-                                 descending=descending)</div>
-
-
-<div class="viewcode-block" id="HarmonicIntervalQuestion"><a class="viewcode-back" href="../index.html#birdears.HarmonicIntervalQuestion">[docs]</a>class HarmonicIntervalQuestion(QuestionBase):
-    &quot;Implements a Harmonic Interval test.&quot;
-
-    def __init__(self, mode=&#39;major&#39;, tonic=None, octave=None, descending=None,
-                 chromatic=None, n_octaves=None, *args, **kwargs):
-
-        super(HarmonicIntervalQuestion, self).\
-                __init__(mode=mode, tonic=tonic, octave=octave,
-                         descending=descending, chromatic=chromatic,
-                         n_octaves=n_octaves, *args, **kwargs)
-
-        tonic = self.tonic
-        self.interval = Interval(mode=mode, tonic=self.tonic,
-                                 octave=self.octave, chromatic=chromatic,
-                                 n_octaves=n_octaves,
-                                 descending=descending).interval_data
-
-        # FIXME
-        self.resolution_pitch = \
-            self.make_resolution(chromatic=chromatic, mode=self.mode,
-                                 tonic=self.tonic, interval=self.interval,
-                                 descending=descending)
-
-    def play_question(self):
-
-        tonic = self.concrete_tonic
-        interval = self.interval[&#39;note_and_octave&#39;]
-
-        #question_chords = [(tonic, tonic), (tonic, interval)]
-        question_chords = [(tonic, interval)]
-
-        for item in question_chords:
-            self._play_chord(chord=item, duration=self.question_duration,
-                             delay=self.question_delay)
-
-        if self.question_pos_delay:
-            self._wait(self.resolution_pos_delay)
-
-    def play_resolution(self):
-
-        tonic = self.concrete_tonic
-
-        for tone in self.resolution_pitch:
-            self._play_chord(chord=[tonic, tone],
-                             duration=self.resolution_duration,
-                             delay=self.resolution_delay)
-
-        if self.resolution_pos_delay:
-            self._wait(self.resolution_pos_delay)</div>
-
-
-<div class="viewcode-block" id="MelodicDictateQuestion"><a class="viewcode-back" href="../index.html#birdears.MelodicDictateQuestion">[docs]</a>class MelodicDictateQuestion(QuestionBase):
-    &quot;&quot;&quot;Implements a melodic dictate test.
-    &quot;&quot;&quot;
-
-    def __init__(self, mode=&#39;major&#39;, max_intervals=3, n_notes=4, tonic=None,
-                 octave=None, descending=None, chromatic=None, n_octaves=None,
-                 *args, **kwargs):
-
-        super(MelodicDictateQuestion, self).\
-                __init__(mode=mode, tonic=tonic, octave=octave,
-                         descending=descending, chromatic=chromatic,
-                         n_octaves=n_octaves, *args, **kwargs)
-
-        self.question_duration = 2
-        self.question_delay = 0.5
-        self.question_pos_delay = 0
-
-        self.resolution_duration = 2.5
-        self.resolution_delay = 0.5
-        self.resolution_pos_delay = 1
-
-        question_intervals = [Interval(mode=mode, tonic=self.tonic,
-                              octave=self.octave, chromatic=chromatic,
-                              n_octaves=n_octaves, descending=descending)
-                              for _ in range(max_intervals)]
-
-        self.question_phrase_intervals = [choice(question_intervals)
-                                          for _ in range(n_notes-1)]
-
-        #question_phrase = Sequence()
-        self.question_phrase = list([0])
-
-        self.question_phrase.extend([interval.interval_data[&#39;semitones&#39;]
-                                     for interval
-                                     in self.question_phrase_intervals])
-
-    def play_question(self, melodic_phrase=None):
-
-        tonic = self.concrete_tonic
-
-        for item in self.question_phrase:
-            self._play_note(note=self.scales[&#39;chromatic_pitch&#39;].scale[item],
-                            duration=self.question_duration,
-                            delay=self.question_delay)
-
-        if self.question_pos_delay:
-            self._wait(self.resolution_pos_delay)
-
-    def play_resolution(self):
-
-        tonic = self.concrete_tonic
-
-        for tone in [self.scales[&#39;chromatic_pitch&#39;].scale[note]
-                     for note in self.question_phrase]:
-            self._play_note(tone,
-                            duration=self.resolution_duration,
-                            delay=self.resolution_delay)
-
-        if self.resolution_pos_delay:
-            self._wait(self.resolution_pos_delay)
-
-<div class="viewcode-block" id="MelodicDictateQuestion.check_question"><a class="viewcode-back" href="../index.html#birdears.MelodicDictateQuestion.check_question">[docs]</a>    def check_question(self, user_input_keys):
-        &quot;&quot;&quot;Checks whether the given answer is correct.&quot;&quot;&quot;
-
-        global INTERVALS
-
-        user_input_semitones = [self.keyboard_index.index(s)
-                                for s in user_input_keys]
-
-        response = {
-            &#39;is_correct&#39;: False,
-            &#39;user_input&#39;: user_input_keys,
-            &#39;user_semitones&#39;: user_input_semitones,
-            &#39;correct_semitones&#39;: self.question_phrase,
-        }
-
-        if user_input_semitones == self.question_phrase:
-            response.update({&#39;is_correct&#39;: True})
-        else:
-            response.update({&#39;is_correct&#39;: False})
-
-        return response</div></div>
-
-
 # http://code.activestate.com/recipes/134892/
 class _Getch:
     &quot;&quot;&quot;Gets a single character from standard input.  Does not echo to the
@@ -889,7 +197,7 @@ class _GetchWindows:
 # this is for debugging
 
 
-def print_stuff(question):
+<div class="viewcode-block" id="print_stuff"><a class="viewcode-back" href="../index.html#birdears.print_stuff">[docs]</a>def print_stuff(question):
     padd = &quot;─&quot; * 30  # vim: insert mode, ^vu2500
     print(&quot;&quot;&quot;
 {}
@@ -915,9 +223,9 @@ Concrete Scale: {} | Chroma Concrete: {}
         &quot;─&quot;.join(question.scales[&#39;diatonic_pitch&#39;].scale),
         &quot;─&quot;.join(question.scales[&#39;chromatic_pitch&#39;].scale),
         padd,
-    ))
+    ))</div>
 
-def print_stuff_dictation(question):
+<div class="viewcode-block" id="print_stuff_dictation"><a class="viewcode-back" href="../index.html#birdears.print_stuff_dictation">[docs]</a>def print_stuff_dictation(question):
     padd = &quot;─&quot; * 30  # vim: insert mode, ^vu2500
     print(&quot;&quot;&quot;
 {}
@@ -939,73 +247,13 @@ Concrete Scale: {} | Chroma Concrete: {}
         &quot;─&quot;.join(question.scales[&#39;diatonic_pitch&#39;].scale),
         &quot;─&quot;.join(question.scales[&#39;chromatic_pitch&#39;].scale),
         padd,
-    ))
+    ))</div>
 
 dictate_notes = 4
 
 
-# def main():
-#     getch = _Getch()
-#
-#     new_question_bit = True
-#
-#     while True:
-#         if new_question_bit is True:
-#
-#             new_question_bit = False
-#
-#             input_keys = []
-#             # question = MelodicDictateQuestion(mode=&#39;major&#39;,descending=True)
-#             question = MelodicDictateQuestion(mode=&#39;major&#39;)
-#             # question = HarmonicIntervalQuestion(mode=&#39;major&#39;)
-#             # question = HarmonicIntervalQuestion(mode=&#39;major&#39;)
-#
-#             # debug
-#             if DEBUG:
-#                 print_stuff(question)
-#
-#             question.play_question()
-#
-#         user_input = getch()
-#
-#         # any response input interval from valid keys
-#         if user_input in question.keyboard_index and user_input != &#39; &#39;:  # spc
-#
-#             input_keys.append(user_input)
-#             print(user_input, end=&#39;&#39;)
-#
-#             if len(input_keys) == dictate_notes:
-#                 # response = question.check_question(user_input)
-#                 response = question.check_question(input_keys)
-#
-#                 if response[&#39;is_correct&#39;]:
-#                     # print(&quot;Correct!.. it is “{}”&quot;.\
-#                     # format( response[&#39;user_interval&#39;]))
-#                     print(&quot;Correct! It was semitones {}&quot;.
-#                           format(&quot;-&quot;.join(map(str, question.question_phrase))))
-#                 else:
-#                     print(&quot;It is incorrect...&quot;)
-#                     print(&quot;You replied semitones {} but the correct is &quot;
-#                           &quot;semitones {}&quot;.format(response[&#39;user_semitones&#39;],
-#                                                 question.question_phrase))
-#
-#                 question.play_resolution()
-#
-#                 new_question_bit = True
-#             # else:
-#             #    input_keys.append(user_input)
-#             #    print(user_input,)
-#
-#         # q - quit
-#         elif user_input == &#39;q&#39;:
-#             exit(0)
-#
-#         # r - repeat interval
-#         elif user_input == &#39;r&#39;:
-#             question.play_question()
-
-wait_keys = 1
-def main():
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../index.html#birdears.main">[docs]</a>def main():
+    from .questions.melodicdictation import MelodicDictationQuestion
     getch = _Getch()
 
     new_question_bit = True
@@ -1016,29 +264,46 @@ def main():
             new_question_bit = False
 
             input_keys = []
-            question = HarmonicIntervalQuestion(mode=&#39;major&#39;)
-            #question = MelodicIntervalQuestion(mode=&#39;major&#39;,descending=True)
+            # question = MelodicDictateQuestion(mode=&#39;major&#39;,descending=True)
+            question = MelodicDictationQuestion(mode=&#39;major&#39;)
+            # question = HarmonicIntervalQuestion(mode=&#39;major&#39;)
+            # question = HarmonicIntervalQuestion(mode=&#39;major&#39;)
 
             # debug
             if DEBUG:
-                print_stuff(question)
+                print_stuff_dictation(question)
 
             question.play_question()
 
         user_input = getch()
 
-        if user_input in question.keyboard_index:
-            response = question.check_question(user_input)
+        # any response input interval from valid keys
+        if user_input in question.keyboard_index and user_input != &#39; &#39;:  # spc
 
-            if response[&#39;is_correct&#39;]:
-                print(&quot;Correct!.. it is “{}”&quot;.\
-                format( response[&#39;user_interval&#39;]))
-            else:
-                print(&quot;It is incorrect... correct is {}.. you said {}&quot;.format(question.interval[&#39;data&#39;],response[&#39;user_interval&#39;]))
+            input_keys.append(user_input)
+            print(user_input, end=&#39;&#39;)
 
-            question.play_resolution()
+            if len(input_keys) == dictate_notes:
+                # response = question.check_question(user_input)
+                response = question.check_question(input_keys)
 
-            new_question_bit = True
+                if response[&#39;is_correct&#39;]:
+                    # print(&quot;Correct!.. it is “{}”&quot;.\
+                    # format( response[&#39;user_interval&#39;]))
+                    print(&quot;Correct! It was semitones {}&quot;.
+                          format(&quot;-&quot;.join(map(str, question.question_phrase))))
+                else:
+                    print(&quot;It is incorrect...&quot;)
+                    print(&quot;You replied semitones {} but the correct is &quot;
+                          &quot;semitones {}&quot;.format(response[&#39;user_semitones&#39;],
+                                                question.question_phrase))
+
+                question.play_resolution()
+
+                new_question_bit = True
+            # else:
+            #    input_keys.append(user_input)
+            #    print(user_input,)
 
         # q - quit
         elif user_input == &#39;q&#39;:
@@ -1046,10 +311,53 @@ def main():
 
         # r - repeat interval
         elif user_input == &#39;r&#39;:
-            question.play_question()
+            question.play_question()</div>
 
-if __name__ == &quot;__main__&quot;:
-    main()
+# wait_keys = 1
+# def main():
+#     from .harmonicintervalquestion import HarmonicIntervalQuestion
+#     from .melodicintervalquestion import MelodicIntervalQuestion
+#     getch = _Getch()
+#
+#     new_question_bit = True
+#
+#     while True:
+#         if new_question_bit is True:
+#
+#             new_question_bit = False
+#
+#             input_keys = []
+#             #question = HarmonicIntervalQuestion(mode=&#39;major&#39;)
+#             question = MelodicIntervalQuestion(mode=&#39;major&#39;,descending=True)
+#
+#             # debug
+#             if DEBUG:
+#                 print_stuff(question)
+#
+#             question.play_question()
+#
+#         user_input = getch()
+#
+#         if user_input in question.keyboard_index:
+#             response = question.check_question(user_input)
+#
+#             if response[&#39;is_correct&#39;]:
+#                 print(&quot;Correct!.. it is “{}”&quot;.\
+#                 format( response[&#39;user_interval&#39;]))
+#             else:
+#                 print(&quot;It is incorrect... correct is {}.. you said {}&quot;.format(question.interval[&#39;data&#39;],response[&#39;user_interval&#39;]))
+#
+#             question.play_resolution()
+#
+#             new_question_bit = True
+#
+#         # q - quit
+#         elif user_input == &#39;q&#39;:
+#             exit(0)
+#
+#         # r - repeat interval
+#         elif user_input == &#39;r&#39;:
+#             question.play_question()
 </pre></div>
 
           </div>

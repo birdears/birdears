@@ -25,6 +25,9 @@ bindings with argparse
 plugins/extensions, easy way of users extending the software by using the api,
 maybe providing frontend tools
 
+configure it with a toml file, which will send parameters by the question class
+with a dict/config file.
+
 # refactoring
 
 ~~change global names~~ ✓
