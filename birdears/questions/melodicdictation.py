@@ -3,7 +3,7 @@ from random import choice
 from ..questionbase import QuestionBase
 
 from ..interval import Interval
-#from .. import DIATONIC_MODES
+from .. import DIATONIC_MODES
 
 class MelodicDictationQuestion(QuestionBase):
     """Implements a melodic dictation test.

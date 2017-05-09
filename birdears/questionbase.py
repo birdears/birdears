@@ -9,7 +9,6 @@ from . import KEYS
 from . import MAX_SEMITONES_RESOLVE_BELOW
 from . import INTERVALS
 
-#from .scale import Scale
 from .scale import DiatonicScale
 from .scale import ChromaticScale
 
@@ -51,7 +50,8 @@ class QuestionBase:
         tonic = self.tonic
 
         diatonic_scale = DiatonicScale(tonic=tonic, mode=mode, octave=None,
-                               descending=descending, n_octaves=n_octaves)
+                                       descending=descending,
+                                       n_octaves=n_octaves)
 
         chromatic_scale = ChromaticScale(tonic=tonic, octave=None,
                                          descending=descending,
