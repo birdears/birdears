@@ -4,7 +4,8 @@ from birdears import KEYS
 
 from birdears.questionbase import QuestionBase
 
-from birdears.interval import Interval
+from birdears.interval import DiatonicInterval
+from birdears.interval import ChromaticInterval
 
 from birdears.scale import DiatonicScale
 from birdears.scale import ChromaticScale
@@ -41,11 +42,16 @@ def test_questionbase_params():
 #    def __init__(self, mode, tonic, octave, chromatic=None, n_octaves=None,
 #                 descending=None):
 
-def test_intervalclass():
+def test_diatonicintervalclass():
 
-    a = Interval(mode='major', tonic='C', octave=4)
+    a = DiatonicInterval(mode='major', tonic='C', octave=4)
     assert(a)
 
+def test_chromaticintervalclass():
+
+    a = ChromaticInterval(mode='major', tonic='C', octave=4)
+    assert(a)
+    
 def test_intervalclass_params():
     global KEYS
 
