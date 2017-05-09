@@ -1,8 +1,8 @@
 #Python: true
 engines:
- - radon: 
+  radon: 
    enabled: true
- - pep8:
+  pep8:
    enabled: true
 ratings:
   paths:
