@@ -28,17 +28,10 @@ Install `sox` and `python3` (see [below](https://github.com/iacchus/birdears#ins
 git clone https://github.com/iacchus/birdears.git
 ```
 
-### 3. and just run the script:
+### 3. and just run the package's __main__:
 
 ```
-python3 birdears.py
-```
-
-#### or
-
-```
-chmod +x birdears.py
-./birdears.py
+python3 -m birdears
 ```
 
 ## Keybindings for intervals
