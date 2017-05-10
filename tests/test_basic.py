@@ -62,14 +62,13 @@ def test_diatonicintervalclass_params():
     c_n_octaves = [1, 2]
 
     param_combinations = list(itertools.product(c_modes, c_tonics, c_octaves,
-                              c_descending, c_chromatic, c_n_octaves))
+                              c_descending, c_n_octaves))
 
     for mode, tonic, octave, descending, n_octaves \
         in param_combinations:
 
         a = DiatonicInterval(mode=mode, tonic=tonic, octave=octave,
-                             n_octaves=n_octaves,
-                             descending=descending)
+                             n_octaves=n_octaves, descending=descending)
 
         assert(a)
 
