@@ -52,25 +52,44 @@ def test_chromaticintervalclass():
     a = ChromaticInterval(mode='major', tonic='C', octave=4)
     assert(a)
     
-def test_intervalclass_params():
+def test_diatonicintervalclass_params():
     global KEYS
 
     c_modes = ['major','minor']
     c_tonics = KEYS
     c_octaves = [3, 4, 5]
     c_descending = [False, True]
-    c_chromatic = [False, True]
     c_n_octaves = [1, 2]
 
     param_combinations = list(itertools.product(c_modes, c_tonics, c_octaves,
                               c_descending, c_chromatic, c_n_octaves))
 
-    for mode, tonic, octave, descending, chromatic, n_octaves \
+    for mode, tonic, octave, descending, n_octaves \
         in param_combinations:
 
-        a = Interval(mode=mode, tonic=tonic, octave=octave,
-                     chromatic=chromatic, n_octaves=n_octaves,
-                     descending=descending,)
+        a = DiatonicInterval(mode=mode, tonic=tonic, octave=octave,
+                             n_octaves=n_octaves,
+                             descending=descending)
+
+        assert(a)
+
+def test_chromaticintervalclass_params():
+    global KEYS
+
+    c_modes = ['major','minor']
+    c_tonics = KEYS
+    c_octaves = [3, 4, 5]
+    c_descending = [False, True]
+    c_n_octaves = [1, 2]
+
+    param_combinations = list(itertools.product(c_modes, c_tonics, c_octaves,
+                              c_descending, c_n_octaves))
+
+    for mode, tonic, octave, descending, n_octaves \
+        in param_combinations:
+
+        a = ChromaticInterval(mode=mode, tonic=tonic, octave=octave,
+                              n_octaves=n_octaves, descending=descending)
 
         assert(a)
 
