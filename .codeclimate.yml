@@ -1,9 +1,11 @@
 #Python: true
 engines:
-  radon: 
-   enabled: true
+  fixme:
+    enabled: true
   pep8:
-   enabled: true
+    enabled: true
+  radon:
+    enabled: true
 ratings:
   paths:
    - "birdears/**"
@@ -11,3 +13,4 @@ ratings:
 
 exclude_paths:
 - docs/**
+- birdears/click/**
