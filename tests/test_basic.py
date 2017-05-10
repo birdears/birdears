@@ -29,10 +29,10 @@ def test_questionbase_placeholders():
 
     assert(a)
 
-def test_scalebase_placehlders():
-    a = ScaleBase(degree='something something')
+def test_scalebase_placeholders():
+    a = ScaleBase()
 
-    a.get_triad()
+    a.get_triad(degree='something something')
 
     assert(a)
 

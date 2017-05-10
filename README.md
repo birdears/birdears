@@ -5,13 +5,13 @@
 [![Codecov](https://img.shields.io/codecov/c/github/iacchus/birdears.svg?label=Codecov)](https://codecov.io/gh/iacchus/birdears)
 [![Code Climate coverage](https://img.shields.io/codeclimate/coverage/github/iacchus/birdears.svg?label=Codeclimate)](https://codeclimate.com/github/iacchus/birdears)
 [![Code Climate issues](https://img.shields.io/codeclimate/issues/github/iacchus/birdears.svg?label=issues)](https://codeclimate.com/github/iacchus/birdears/issues)
-[![Code Climate gpa](https://img.shields.io/codeclimate/github/iacchus/birdears.svg?label=GPA)]()
+[![Code Climate gpa](https://img.shields.io/codeclimate/github/iacchus/birdears.svg?label=GPA)](https://codeclimate.com/github/iacchus/birdears)
 [![Gitter](https://img.shields.io/gitter/room/birdears/Lobby.svg)](https://gitter.im/birdears/Lobby)
 
 [![PyPI Status](https://img.shields.io/pypi/status/birdears.svg?label=PyPI+Status)](https://pypi.python.org/pypi/birdears)
 [![PyPI Version](https://img.shields.io/pypi/v/birdears.svg)](https://pypi.python.org/pypi/birdears)
 [![PyPI Python Versions](https://img.shields.io/pypi/pyversions/birdears.svg)](https://pypi.python.org/pypi/birdears)
-[![Waffle.io](https://img.shields.io/waffle/label/iacchus/birdears/in%20progress.svg)]()
+[![Waffle.io](https://img.shields.io/waffle/label/iacchus/birdears/in%20progress.svg)](https://waffle.io/iacchus/birdears)
 
 ## Functional Ear Training for Musicians
 
