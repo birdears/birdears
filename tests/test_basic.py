@@ -10,37 +10,42 @@ from birdears.interval import ChromaticInterval
 from birdears.scale import DiatonicScale
 from birdears.scale import ChromaticScale
 
+from birdears.sequence import Sequence
+
 #    def __init__(self, mode='major', tonic=None, octave=None, descending=None,
 #                 chromatic=None, n_octaves=None, *args, **kwargs):
 
-def test_questionbase():
-    a = QuestionBase()
-    assert(a)
-
-def test_questionbase_params():
-    global KEYS
-
-    c_modes = ['major','minor']
-    c_tonics = KEYS
-    c_octaves = [3, 4, 5]
-    c_descending = [False, True]
-    c_chromatic = [False, True]
-    c_n_octaves = [1, 2]
-
-    param_combinations = list(itertools.product(c_modes, c_tonics, c_octaves,
-                              c_descending, c_chromatic, c_n_octaves))
-
-    for mode, tonic, octave, descending, chromatic, n_octaves \
-        in param_combinations:
-
-        a = QuestionBase(mode=mode, tonic=tonic, octave=octave,
-                                    descending=descending, chromatic=chromatic,
-                                    n_octaves=n_octaves)
-
-        assert(a)
 
 #    def __init__(self, mode, tonic, octave, chromatic=None, n_octaves=None,
 #                 descending=None):
+
+def test_sequenceclass_notes():
+
+    sequence = Sequence(['C4','D4','E4'])
+    sequence.play()
+
+    assert(sequence)
+
+def test_sequenceclass_chords():
+
+    sequence = Sequence([['C4', 'E4', 'G4'], ['G4', 'B4', 'D5'],
+                        ['C4','E4','G4']])
+    sequence.play()
+
+    assert(sequence)
+
+def test_sequenceclass_append():
+
+    sequence = Sequence(['C3'])
+    sequence.append(['C4', 'D4', 'E4'])
+
+    assert(sequence.elements)
+
+def test_sequenceclass_extend():
+    sequence = Sequence(['C3'])
+    sequence.extend(['C4', 'D4', 'E4'])
+
+    assert(sequence.elements)
 
 def test_diatonicintervalclass():
 
@@ -51,7 +56,7 @@ def test_chromaticintervalclass():
 
     a = ChromaticInterval(mode='major', tonic='C', octave=4)
     assert(a)
-    
+
 def test_diatonicintervalclass_params():
     global KEYS
 
