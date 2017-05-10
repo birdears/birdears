@@ -1,6 +1,7 @@
 import itertools
 
 from birdears import KEYS
+
 from birdears.questions.harmonicinterval import HarmonicIntervalQuestion
 
 # def __init__(self, mode='major', tonic=None, octave=None, descending=None,
@@ -25,5 +26,9 @@ def test_harmonicintervalclass():
         a = HarmonicIntervalQuestion(mode=mode, tonic=tonic, octave=octave,
                                     descending=descending, chromatic=chromatic,
                                     n_octaves=n_octaves)
+
+
+        # why not guess some interval
+        a.check_question('x')
 
         assert(a)

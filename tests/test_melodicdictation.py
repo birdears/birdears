@@ -32,4 +32,7 @@ def test_melodicintervalclass():
                                      octave=octave, descending=descending,
                                      chromatic=chromatic, n_octaves=n_octaves)
 
+        # why not guess some interval
+        a.check_question(['z', 'x', 'x', 'Z'])
+
         assert(a)
