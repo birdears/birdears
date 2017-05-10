@@ -3,9 +3,9 @@ python:
   - "3.5"
   - "3.6"
 # command to install dependencies
-#before_install:
-#  - sudo apt-get -qq update
-#  - sudo apt-get install -y sox
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -y sox
 install:
   - pip install coveralls codecov codeclimate-test-reporter
 # command to run tests
@@ -23,4 +23,3 @@ notifications:
     on_success: always  # options: [always|never|change] default: always
     on_failure: always  # options: [always|never|change] default: always
     on_start: never     # options: [always|never|change] default: always
-
