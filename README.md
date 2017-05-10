@@ -8,9 +8,10 @@
 [![Code Climate gpa](https://img.shields.io/codeclimate/github/iacchus/birdears.svg?label=GPA)]()
 [![Gitter](https://img.shields.io/gitter/room/birdears/Lobby.svg)](https://gitter.im/birdears/Lobby)
 
-[![PyPI Python Versions](https://img.shields.io/pypi/pyversions/birdears.svg)](https://pypi.python.org/pypi/birdears)
-[![PyPI Version](https://img.shields.io/pypi/v/birdears.svg)](https://pypi.python.org/pypi/birdears)
 [![PyPI Status](https://img.shields.io/pypi/status/birdears.svg?label=PyPI+Status)](https://pypi.python.org/pypi/birdears)
+[![PyPI Version](https://img.shields.io/pypi/v/birdears.svg)](https://pypi.python.org/pypi/birdears)
+[![PyPI Python Versions](https://img.shields.io/pypi/pyversions/birdears.svg)](https://pypi.python.org/pypi/birdears)
+[![Waffle.io](https://img.shields.io/waffle/label/iacchus/birdears/in%20progress.svg)]()
 
 ## Functional Ear Training for Musicians
 
