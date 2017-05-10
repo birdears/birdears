@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 
 """
-BirdEars provides facilities to development of musical ear training
-exercises.
+BirdEars provides facilities to musical ear training exercises.
 """
 
-import subprocess
-import time
-from random import randrange, choice
-from collections import deque
+# import subprocess
+# import time
+# from random import randrange, choice
+# from collections import deque
 # from math import floor
 
 

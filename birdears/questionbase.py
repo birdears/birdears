@@ -6,13 +6,13 @@ from random import choice
 
 from . import KEYBOARD_INDICES
 from . import KEYS
-from . import MAX_SEMITONES_RESOLVE_BELOW
-from . import INTERVALS
+# from . import MAX_SEMITONES_RESOLVE_BELOW
+# from . import INTERVALS
 
 from .scale import DiatonicScale
 from .scale import ChromaticScale
 
-from .sequence import Sequence
+# from .sequence import Sequence
 
 
 class QuestionBase:

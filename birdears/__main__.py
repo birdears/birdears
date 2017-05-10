@@ -135,7 +135,7 @@ def main():
 
             new_question_bit = False
 
-            input_keys = []
+            #input_keys = []
             #question = HarmonicIntervalQuestion(mode='major')
             #question = MelodicIntervalQuestion(mode='major',descending=True)
             #question = MelodicIntervalQuestion(mode='major',chromatic=True,n_octaves=2,descending=True)
