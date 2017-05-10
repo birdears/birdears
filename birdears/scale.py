@@ -135,7 +135,7 @@ class ChromaticScale(ScaleBase):
         descending : bool
             Whether the scale is descending.
         dont_repeat_tonic : bool
-            Whethe to skip appending the last note (octave) to the scale.
+            Whether to skip appending the last note (octave) to the scale.
         """
 
         super(ChromaticScale, self).__init__()
