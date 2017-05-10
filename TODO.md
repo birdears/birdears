@@ -34,3 +34,6 @@ with a dict/config file.
 we should think in a better algo for melodic dictation; currently always begins
 with tonic; maybe playing a cadence with I-V-IV-I triads then choosing random
 intervals w/ or w/out tonic.
+
+we should use some kind of config object to configure exercises, as they have an
+extensive number of parameters and there are more to come.

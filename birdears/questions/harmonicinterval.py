@@ -26,7 +26,7 @@ class HarmonicIntervalQuestion(QuestionBase):
                          n_octaves=n_octaves, *args, **kwargs)
 
         tonic = self.tonic
-        
+
         if not chromatic:
             self.interval = DiatonicInterval(mode=mode, tonic=self.tonic,
                                              octave=self.octave,
@@ -96,38 +96,22 @@ class HarmonicIntervalQuestion(QuestionBase):
                                     descending=descending)
         self.res_scale = scale_pitch
 
-        if not chromatic:
-
-            if interval['chromatic_offset'] <= MAX_SEMITONES_RESOLVE_BELOW:
-                resolution_pitch =\
-                    scale_pitch.scale[:interval['diatonic_index'] + 1]
-                resolution_pitch.reverse()
-            else:
-                resolution_pitch =\
-                    scale_pitch.scale[interval['diatonic_index']:]
-
+        if interval['chromatic_offset'] <= MAX_SEMITONES_RESOLVE_BELOW:
+            begin_to_diatonic = slice(None, interval['diatonic_index'] + 1)
+            resolution_pitch = scale_pitch.scale[begin_to_diatonic]
+            if interval['is_chromatic']:
+                resolution_pitch.append(interval['note_and_octave'])
+            resolution_pitch.reverse()
         else:
-
-            if interval['chromatic_offset'] <= MAX_SEMITONES_RESOLVE_BELOW:
-                if interval['is_chromatic']:
-                    resolution_pitch.extend(
-                        scale_pitch.scale[: interval['diatonic_index'] + 1])
-                    resolution_pitch.append(interval['note_and_octave'])
-                else:
-                    resolution_pitch.extend(
-                        scale_pitch.scale[: interval['diatonic_index'] + 1])
-                resolution_pitch.reverse()
-
-            else:
-                if interval['is_chromatic']:
-                    resolution_pitch.append(interval['note_and_octave'])
-
-                resolution_pitch.extend(
-                    scale_pitch.scale[interval['diatonic_index']:])
+            diatonic_to_end = slice(interval['diatonic_index'], None)
+            if interval['is_chromatic']:
+                resolution_pitch.append(interval['note_and_octave'])
+            resolution_pitch.extend(scale_pitch.scale[diatonic_to_end])
 
         # unisson and octave
         if interval['semitones'] == 0:
             resolution_pitch.append(scale_pitch.scale[0])
+
         elif interval['semitones'] % 12 == 0:
             # FIXME: multipe octaves
             resolution_pitch.append("{}{}".format(tonic,
@@ -137,4 +121,5 @@ class HarmonicIntervalQuestion(QuestionBase):
                               duration=self.resolution_duration,
                               delay=self.resolution_delay,
                               pos_delay=self.resolution_pos_delay)
+
         return resolution

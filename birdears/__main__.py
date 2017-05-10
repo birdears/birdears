@@ -138,7 +138,8 @@ def main():
             input_keys = []
             #question = HarmonicIntervalQuestion(mode='major')
             #question = MelodicIntervalQuestion(mode='major',descending=True)
-            question = MelodicIntervalQuestion(mode='major')
+            #question = MelodicIntervalQuestion(mode='major',chromatic=True,n_octaves=2,descending=True)
+            question = HarmonicIntervalQuestion(mode='major',chromatic=True)
 
             # debug
             if DEBUG:
