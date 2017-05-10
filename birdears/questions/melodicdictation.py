@@ -46,7 +46,7 @@ class MelodicDictationQuestion(QuestionBase):
 
         self.question_phrase = [0]
 
-        self.question_phrase.extend([interval.interval_data['semitones']
+        self.question_phrase.extend([interval.semitones
                                      for interval
                                      in self.question_phrase_intervals])
 

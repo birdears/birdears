@@ -17,6 +17,15 @@ class IntervalBase:
 
         pass
 
+    def return_simple(self, keys):
+        """This method returns a dict with only the values passed to `keys`
+        """
+
+        simple_dict = dict()
+
+        for key in keys:
+            simple_dict.update({ key : getattr(self, key) })
+
 
 class DiatonicInterval(IntervalBase):
 
@@ -86,7 +95,7 @@ class DiatonicInterval(IntervalBase):
         else:
             interval_octave = int(octave) - distance['octaves']
 
-        self.interval_data = dict({
+        interval_data = dict({
             'tonic_octave': octave,
             'interval_octave': interval_octave,
             'chromatic_offset': chromatic_offset,
@@ -99,6 +108,23 @@ class DiatonicInterval(IntervalBase):
             'distance': distance,
             'data': INTERVALS[semitones],
         })
+
+        for item, value in interval_data.items():
+            setattr(self, item, value)
+
+        # self.interval_data = dict({
+        #     'tonic_octave': octave,
+        #     'interval_octave': interval_octave,
+        #     'chromatic_offset': chromatic_offset,
+        #     'note_and_octave': note_and_octave,
+        #     'note_name': note_name,
+        #     'semitones': semitones,
+        #     'is_chromatic': False,
+        #     'is_descending': False if not descending else True,
+        #     'diatonic_index': diatonic_index,
+        #     'distance': distance,
+        #     'data': INTERVALS[semitones],
+        # })
 
 class ChromaticInterval:
 
@@ -177,7 +203,7 @@ class ChromaticInterval:
         else:
             interval_octave = int(octave) - distance['octaves']
 
-        self.interval_data = dict({
+        interval_data = dict({
             'tonic_octave': octave,
             'interval_octave': interval_octave,
             'chromatic_offset': chromatic_offset,
@@ -190,3 +216,20 @@ class ChromaticInterval:
             'distance': distance,
             'data': INTERVALS[semitones],
         })
+
+        for item, value in interval_data.items():
+            setattr(self, item, value)
+
+        # self.interval_data = dict({
+        #     'tonic_octave': octave,
+        #     'interval_octave': interval_octave,
+        #     'chromatic_offset': chromatic_offset,
+        #     'note_and_octave': note_and_octave,
+        #     'note_name': note_name,
+        #     'semitones': semitones,
+        #     'is_chromatic': is_chromatic,
+        #     'is_descending': False if not descending else True,
+        #     'diatonic_index': diatonic_index,
+        #     'distance': distance,
+        #     'data': INTERVALS[semitones],
+        # })
