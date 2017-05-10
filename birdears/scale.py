@@ -54,10 +54,9 @@ class ScaleBase:
         # FIXME
         if note in notes2:
             note_index = notes2.index(note)
-        elif note in notes3:
-            note_index = notes3.index(note)
+        # elif note in notes3:
         else:
-            note_index = False
+            note_index = notes3.index(note)
 
         return note_index
 

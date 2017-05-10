@@ -115,7 +115,7 @@ class DiatonicInterval(IntervalBase):
             setattr(self, item, value)
 
 
-class ChromaticInterval:
+class ChromaticInterval(IntervalBase):
 
     def __init__(self, mode, tonic, octave, n_octaves=None, descending=None):
         """Chooses a chromatic interval for the question.

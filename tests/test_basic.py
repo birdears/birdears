@@ -7,6 +7,7 @@ from birdears.questionbase import QuestionBase
 from birdears.interval import DiatonicInterval
 from birdears.interval import ChromaticInterval
 
+from birdears.scale import ScaleBase
 from birdears.scale import DiatonicScale
 from birdears.scale import ChromaticScale
 
@@ -18,6 +19,22 @@ from birdears.sequence import Sequence
 
 #    def __init__(self, mode, tonic, octave, chromatic=None, n_octaves=None,
 #                 descending=None):
+
+def test_questionbase_placeholders():
+    a = QuestionBase()
+
+    a.make_question()
+    a.make_resolution()
+    a.check_question()
+
+    assert(a)
+
+def test_scalebase_placehlders():
+    a = ScaleBase()
+
+    a.get_triad()
+
+    assert(a)
 
 def test_sequenceclass_notes():
 
@@ -56,6 +73,20 @@ def test_chromaticintervalclass():
 
     a = ChromaticInterval(mode='major', tonic='C', octave=4)
     assert(a)
+
+def test_diatonicintervalclass_returnsimple():
+
+    a = DiatonicInterval(mode='major', tonic='C', octave=4)
+    b = a.return_simple(['tonic_octave'])
+
+    assert(type(b) == dict)
+
+def test_chromaticintervalclass_returnsimple():
+
+    a = ChromaticInterval(mode='major', tonic='C', octave=4)
+    b = a.return_simple(['tonic_octave'])
+
+    assert(type(b) == dict)
 
 def test_diatonicintervalclass_params():
     global KEYS

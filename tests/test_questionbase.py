@@ -1,12 +1,14 @@
 import itertools
 
 from birdears import KEYS
-from birdears.questions.melodicinterval import MelodicIntervalQuestion
 
-# def __init__(self, mode='major', tonic=None, octave=None, descending=None,
-#                chromatic=None, n_octaves=None, *args, **kwargs):
+from birdears.questionbase import QuestionBase
 
-def test_melodicintervalclass():
+def test_questionbase():
+    a = QuestionBase()
+    assert(a)
+
+def test_questionbase_params():
     global KEYS
 
     c_modes = ['major','minor']
@@ -22,11 +24,8 @@ def test_melodicintervalclass():
     for mode, tonic, octave, descending, chromatic, n_octaves \
         in param_combinations:
 
-        a = MelodicIntervalQuestion(mode=mode, tonic=tonic, octave=octave,
+        a = QuestionBase(mode=mode, tonic=tonic, octave=octave,
                                     descending=descending, chromatic=chromatic,
                                     n_octaves=n_octaves)
-
-        # why not guess some interval
-        a.check_question('x')
 
         assert(a)
