@@ -12,6 +12,7 @@
 [![PyPI Version](https://img.shields.io/pypi/v/birdears.svg)](https://pypi.python.org/pypi/birdears)
 [![PyPI Python Versions](https://img.shields.io/pypi/pyversions/birdears.svg)](https://pypi.python.org/pypi/birdears)
 [![Waffle.io](https://img.shields.io/waffle/label/iacchus/birdears/in%20progress.svg)](https://waffle.io/iacchus/birdears)
+[![Documentation Status](https://readthedocs.org/projects/birdears/badge/?version=latest)](http://birdears.readthedocs.io/en/latest/?badge=latest)
 
 ## Functional Ear Training for Musicians
 
