@@ -6,8 +6,8 @@ from . import CHROMATIC_TYPE
 from . import INTERVALS
 from . import MAX_SEMITONES_RESOLVE_BELOW
 
-#from .scale import DiatonicScale
 from .scale import ChromaticScale
+
 
 class IntervalBase:
 
@@ -24,7 +24,7 @@ class IntervalBase:
         simple_dict = dict()
 
         for key in keys:
-            simple_dict.update({ key : getattr(self, key) })
+            simple_dict.update({key: getattr(self, key)})
 
         return simple_dict
 

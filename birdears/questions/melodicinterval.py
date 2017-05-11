@@ -1,6 +1,5 @@
 from ..questionbase import QuestionBase
 
-#from ..interval import Interval, DiatonicInterval, ChromaticInterval
 from ..interval import DiatonicInterval, ChromaticInterval
 
 from .. import DIATONIC_MODES
@@ -8,7 +7,6 @@ from .. import MAX_SEMITONES_RESOLVE_BELOW
 from .. import INTERVALS
 
 from ..scale import DiatonicScale
-# from ..scale import ChromaticScale
 
 from ..sequence import Sequence
 

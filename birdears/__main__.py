@@ -59,21 +59,26 @@ Concrete Scale: {} | Chroma Concrete: {}
         padd,
     ))
 
+
 @click.group()
 def cli():
     pass
+
 
 @cli.command()
 def melodic():
     ear(exercise='melodic')
 
+
 @cli.command()
 def harmonic():
     ear(exercise='harmonic')
 
+
 @cli.command()
 def dictation():
     ear(exercise='dictation')
+
 
 def ear(exercise):
     print(exercise)
