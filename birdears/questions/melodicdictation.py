@@ -73,7 +73,7 @@ class MelodicDictationQuestion(QuestionBase):
                                 for s in user_input_keys]
 
         user_response_str = "-".join([INTERVALS[s][1]
-                                     for s in user_input_keys])
+                                     for s in user_input_semitones])
         correct_response_str = "-".join([INTERVALS[s][1]
                                         for s in self.question_phrase])
 
