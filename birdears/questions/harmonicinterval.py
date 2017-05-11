@@ -62,7 +62,7 @@ class HarmonicIntervalQuestion(QuestionBase):
 
         global INTERVALS
 
-        semitones = self.keyboard_index.index(user_input_char)
+        semitones = self.keyboard_index.index(user_input_char[0])
 
         user_interval = INTERVALS[semitones][2]
         correct_interval = INTERVALS[self.interval.semitones][2]
