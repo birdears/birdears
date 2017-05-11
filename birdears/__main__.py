@@ -64,7 +64,17 @@ def cli():
     pass
 
 @cli.command()
-@click.argument('exercise', default='dictation')
+def melodic():
+    ear(exercise='melodic')
+
+@cli.command()
+def harmonic():
+    ear(exercise='harmonic')
+
+@cli.command()
+def dictation():
+    ear(exercise='dictation')
+
 def ear(exercise):
     print(exercise)
 
@@ -116,26 +126,21 @@ def ear(exercise):
             print(user_input, end='')
 
             if len(input_keys) == dictate_notes:
-                # response = question.check_question(user_input)
                 response = question.check_question(input_keys)
 
                 if response['is_correct']:
                     print("Correct!..")
-                    # format( response['user_interval']))
-                    #print("Correct! It was semitones {}".
-                    #      format("-".join(map(str, question.question_phrase))))
+                    print("Correct! It is {}".
+                          format(response['correct_response_str']))
                 else:
-                    print("It is incorrect...")
-                    #print("You replied semitones {} but the correct is "
-                    #      "semitones {}".format(response['user_semitones'],
-                    #                            question.question_phrase))
+                    print("It is incorrect..."
+                          "You replied {} but the correct is {}"
+                          .format(response['user_response_str'],
+                                  response['correct_response_str']))
 
                 question.resolution.play()
 
                 new_question_bit = True
-            # else:
-            #    input_keys.append(user_input)
-            #    print(user_input,)
 
         # q - quit
         elif user_input == 'q':
@@ -144,124 +149,6 @@ def ear(exercise):
         # r - repeat interval
         elif user_input == 'r':
             question.question.play()
-
-# @cli.command()
-# def melodic_dictation(ctx):
-#     print(mode)
-#     from .questions.melodicdictation import MelodicDictationQuestion
-#     dictate_notes = 4
-#     getch = _Getch()
-#
-#     new_question_bit = True
-#
-#     while True:
-#         if new_question_bit is True:
-#
-#             new_question_bit = False
-#
-#             input_keys = []
-#             # question = MelodicDictateQuestion(mode='major',descending=True)
-#             question = MelodicDictationQuestion(mode='major')
-#             # question = HarmonicIntervalQuestion(mode='major')
-#             # question = HarmonicIntervalQuestion(mode='major')
-#
-#             # debug
-#             if DEBUG:
-#                 print_stuff_dictation(question)
-#
-#             question.question.play()
-#
-#         user_input = getch()
-#
-#         # any response input interval from valid keys
-#         if user_input in question.keyboard_index and user_input != ' ':  # spc
-#
-#             input_keys.append(user_input)
-#             print(user_input, end='')
-#
-#             if len(input_keys) == dictate_notes:
-#                 # response = question.check_question(user_input)
-#                 response = question.check_question(input_keys)
-#
-#                 if response['is_correct']:
-#                     # print("Correct!.. it is “{}”".\
-#                     # format( response['user_interval']))
-#                     print("Correct! It was semitones {}".
-#                           format("-".join(map(str, question.question_phrase))))
-#                 else:
-#                     print("It is incorrect...")
-#                     print("You replied semitones {} but the correct is "
-#                           "semitones {}".format(response['user_semitones'],
-#                                                 question.question_phrase))
-#
-#                 question.resolution.play()
-#
-#                 new_question_bit = True
-#             # else:
-#             #    input_keys.append(user_input)
-#             #    print(user_input,)
-#
-#         # q - quit
-#         elif user_input == 'q':
-#             exit(0)
-#
-#         # r - repeat interval
-#         elif user_input == 'r':
-#             question.question.play()
-#
-# @cli.command()
-# def melodic_interval():
-#
-#     wait_keys = 1
-#     from .questions.harmonicinterval import HarmonicIntervalQuestion
-#     from .questions.melodicinterval import MelodicIntervalQuestion
-#     getch = _Getch()
-#
-#     new_question_bit = True
-#
-#     while True:
-#         if new_question_bit is True:
-#
-#             new_question_bit = False
-#
-#             #input_keys = []
-#             #question = HarmonicIntervalQuestion(mode='major')
-#             #question = MelodicIntervalQuestion(mode='major',descending=True)
-#             #question = MelodicIntervalQuestion(mode='major',chromatic=True,n_octaves=2,descending=True)
-#             #question = HarmonicIntervalQuestion(mode='major',chromatic=True)
-#             question = HarmonicIntervalQuestion(mode='major', n_octaves=1)
-#
-#
-#             # debug
-#             if DEBUG:
-#                 print_stuff(question)
-#
-#             question.question.play()
-#
-#         user_input = getch()
-#
-#         if user_input in question.keyboard_index:
-#             response = question.check_question(user_input)
-#
-#             if response['is_correct']:
-#                 print("Correct!.. it is “{}”".\
-#                 format( response['user_interval']))
-#             else:
-#                 print("It is incorrect... correct is {}.. you said {}".\
-#                        format(question.interval.data,
-#                               response['user_interval']))
-#
-#             question.resolution.play()
-#
-#             new_question_bit = True
-#
-#         # q - quit
-#         elif user_input == 'q':
-#             exit(0)
-#
-#         # r - repeat interval
-#         elif user_input == 'r':
-#             question.question.play()
 
 if __name__ == "__main__":
     #    main()

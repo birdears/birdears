@@ -72,11 +72,18 @@ class MelodicDictationQuestion(QuestionBase):
         user_input_semitones = [self.keyboard_index.index(s)
                                 for s in user_input_keys]
 
+        user_response_str = "-".join([INTERVALS[s][1]
+                                     for s in user_input_keys])
+        correct_response_str = "-".join([INTERVALS[s][1]
+                                        for s in self.question_phrase])
+
         response = {
             'is_correct': False,
             'user_input': user_input_keys,
             'user_semitones': user_input_semitones,
             'correct_semitones': self.question_phrase,
+            'user_response_str': user_response_str,
+            'correct_response_str': correct_response_str
         }
 
         if user_input_semitones == self.question_phrase:

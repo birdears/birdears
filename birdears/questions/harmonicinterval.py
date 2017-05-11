@@ -71,6 +71,8 @@ class HarmonicIntervalQuestion(QuestionBase):
             'is_correct': False,
             'user_interval': user_interval,
             'correct_interval': correct_interval,
+            'user_response_str': user_interval,
+            'correct_response_str': correct_interval,
         }
 
         if semitones == self.interval.semitones:
