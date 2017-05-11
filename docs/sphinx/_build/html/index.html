@@ -54,13 +54,20 @@
 <h1>Welcome to BirdEars&#8217;s documentation!<a class="headerlink" href="#welcome-to-birdears-s-documentation" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<span class="target" id="module-birdears"></span><p>BirdEars provides facilities to musical ear training exercises.</p>
+</div>
+<div class="section" id="birdears-package">
+<h1>birdears package<a class="headerlink" href="#birdears-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="module-birdears.interval">
+<span id="birdears-interval-module"></span><h2>birdears.interval module<a class="headerlink" href="#module-birdears.interval" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="birdears._Getch">
-<em class="property">class </em><code class="descclassname">birdears.</code><code class="descname">_Getch</code><a class="reference internal" href="_modules/birdears.html#_Getch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears._Getch" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
-<p>Gets a single character from standard input.  Does not echo to the
-screen.</p>
+<dt id="birdears.interval.ChromaticInterval">
+<em class="property">class </em><code class="descclassname">birdears.interval.</code><code class="descname">ChromaticInterval</code><span class="sig-paren">(</span><em>mode</em>, <em>tonic</em>, <em>octave</em>, <em>n_octaves=None</em>, <em>descending=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/interval.html#ChromaticInterval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.interval.ChromaticInterval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#birdears.interval.IntervalBase" title="birdears.interval.IntervalBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.interval.IntervalBase</span></code></a></p>
 <p class="rubric">Methods</p>
 <table border="1" class="longtable docutils">
 <colgroup>
@@ -68,174 +75,34 @@ screen.</p>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#birdears._Getch.__call__" title="birdears._Getch.__call__"><code class="xref py py-obj docutils literal"><span class="pre">__call__</span></code></a>()</td>
-<td></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">return_simple</span></code>(keys)</td>
+<td>This method returns a dict with only the values passed to <cite>keys</cite>.</td>
 </tr>
 </tbody>
 </table>
-<dl class="method">
-<dt id="birdears._Getch.__call__">
-<code class="descname">__call__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears.html#_Getch.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears._Getch.__call__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._Getch.__class__">
-<code class="descname">__class__</code><a class="headerlink" href="#birdears._Getch.__class__" title="Permalink to this definition">¶</a></dt>
-<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">type</span></code></p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._Getch.__delattr__">
-<code class="descname">__delattr__</code><a class="headerlink" href="#birdears._Getch.__delattr__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Implement delattr(self, name).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._Getch.__dict__">
-<code class="descname">__dict__</code><em class="property"> = mappingproxy({'__module__': 'birdears', '__doc__': 'Gets a single character from standard input.  Does not echo to the\nscreen.', '__init__': &lt;function _Getch.__init__&gt;, '__call__': &lt;function _Getch.__call__&gt;, '__dict__': &lt;attribute '__dict__' of '_Getch' objects&gt;, '__weakref__': &lt;attribute '__weakref__' of '_Getch' objects&gt;})</em><a class="headerlink" href="#birdears._Getch.__dict__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="birdears._Getch.__dir__">
-<code class="descname">__dir__</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; list<a class="headerlink" href="#birdears._Getch.__dir__" title="Permalink to this definition">¶</a></dt>
-<dd><p>default dir() implementation</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._Getch.__eq__">
-<code class="descname">__eq__</code><a class="headerlink" href="#birdears._Getch.__eq__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self==value.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears._Getch.__format__">
-<code class="descname">__format__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears._Getch.__format__" title="Permalink to this definition">¶</a></dt>
-<dd><p>default object formatter</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._Getch.__ge__">
-<code class="descname">__ge__</code><a class="headerlink" href="#birdears._Getch.__ge__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self&gt;=value.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._Getch.__getattribute__">
-<code class="descname">__getattribute__</code><a class="headerlink" href="#birdears._Getch.__getattribute__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return getattr(self, name).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._Getch.__gt__">
-<code class="descname">__gt__</code><a class="headerlink" href="#birdears._Getch.__gt__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self&gt;value.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._Getch.__hash__">
-<code class="descname">__hash__</code><a class="headerlink" href="#birdears._Getch.__hash__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return hash(self).</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears._Getch.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears.html#_Getch.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears._Getch.__init__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="birdears._Getch.__init_subclass__">
-<code class="descname">__init_subclass__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears._Getch.__init_subclass__" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method is called when a class is subclassed.</p>
-<p>The default implementation does nothing. It may be
-overridden to extend subclasses.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._Getch.__le__">
-<code class="descname">__le__</code><a class="headerlink" href="#birdears._Getch.__le__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self&lt;=value.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._Getch.__lt__">
-<code class="descname">__lt__</code><a class="headerlink" href="#birdears._Getch.__lt__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self&lt;value.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._Getch.__module__">
-<code class="descname">__module__</code><em class="property"> = 'birdears'</em><a class="headerlink" href="#birdears._Getch.__module__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._Getch.__ne__">
-<code class="descname">__ne__</code><a class="headerlink" href="#birdears._Getch.__ne__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self!=value.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears._Getch.__new__">
-<code class="descname">__new__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears._Getch.__new__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create and return a new object.  See help(type) for accurate signature.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears._Getch.__reduce__">
-<code class="descname">__reduce__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears._Getch.__reduce__" title="Permalink to this definition">¶</a></dt>
-<dd><p>helper for pickle</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears._Getch.__reduce_ex__">
-<code class="descname">__reduce_ex__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears._Getch.__reduce_ex__" title="Permalink to this definition">¶</a></dt>
-<dd><p>helper for pickle</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._Getch.__repr__">
-<code class="descname">__repr__</code><a class="headerlink" href="#birdears._Getch.__repr__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return repr(self).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._Getch.__setattr__">
-<code class="descname">__setattr__</code><a class="headerlink" href="#birdears._Getch.__setattr__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Implement setattr(self, name, value).</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears._Getch.__sizeof__">
-<code class="descname">__sizeof__</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#birdears._Getch.__sizeof__" title="Permalink to this definition">¶</a></dt>
-<dd><p>size of object in memory, in bytes</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._Getch.__str__">
-<code class="descname">__str__</code><a class="headerlink" href="#birdears._Getch.__str__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return str(self).</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears._Getch.__subclasshook__">
-<code class="descname">__subclasshook__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears._Getch.__subclasshook__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Abstract classes can override this to customize issubclass().</p>
-<p>This is invoked early on by abc.ABCMeta.__subclasscheck__().
-It should return True, False or NotImplemented.  If it returns
-NotImplemented, the normal algorithm is used.  Otherwise, it
-overrides the normal algorithm (and the outcome is cached).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._Getch.__weakref__">
-<code class="descname">__weakref__</code><a class="headerlink" href="#birdears._Getch.__weakref__" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of weak references to the object (if defined)</p>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="class">
-<dt id="birdears._GetchUnix">
-<em class="property">class </em><code class="descclassname">birdears.</code><code class="descname">_GetchUnix</code><a class="reference internal" href="_modules/birdears.html#_GetchUnix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears._GetchUnix" title="Permalink to this definition">¶</a></dt>
+<dt id="birdears.interval.DiatonicInterval">
+<em class="property">class </em><code class="descclassname">birdears.interval.</code><code class="descname">DiatonicInterval</code><span class="sig-paren">(</span><em>mode</em>, <em>tonic</em>, <em>octave</em>, <em>n_octaves=None</em>, <em>descending=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/interval.html#DiatonicInterval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.interval.DiatonicInterval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#birdears.interval.IntervalBase" title="birdears.interval.IntervalBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.interval.IntervalBase</span></code></a></p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">return_simple</span></code>(keys)</td>
+<td>This method returns a dict with only the values passed to <cite>keys</cite>.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="birdears.interval.IntervalBase">
+<em class="property">class </em><code class="descclassname">birdears.interval.</code><code class="descname">IntervalBase</code><a class="reference internal" href="_modules/birdears/interval.html#IntervalBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.interval.IntervalBase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 <p class="rubric">Methods</p>
 <table border="1" class="longtable docutils">
@@ -244,175 +111,29 @@ overrides the normal algorithm (and the outcome is cached).</p>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#birdears._GetchUnix.__call__" title="birdears._GetchUnix.__call__"><code class="xref py py-obj docutils literal"><span class="pre">__call__</span></code></a>()</td>
-<td></td>
+<tr class="row-odd"><td><a class="reference internal" href="#birdears.interval.IntervalBase.return_simple" title="birdears.interval.IntervalBase.return_simple"><code class="xref py py-obj docutils literal"><span class="pre">return_simple</span></code></a>(keys)</td>
+<td>This method returns a dict with only the values passed to <cite>keys</cite>.</td>
 </tr>
 </tbody>
 </table>
 <dl class="method">
-<dt id="birdears._GetchUnix.__call__">
-<code class="descname">__call__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears.html#_GetchUnix.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears._GetchUnix.__call__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._GetchUnix.__class__">
-<code class="descname">__class__</code><a class="headerlink" href="#birdears._GetchUnix.__class__" title="Permalink to this definition">¶</a></dt>
-<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">type</span></code></p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._GetchUnix.__delattr__">
-<code class="descname">__delattr__</code><a class="headerlink" href="#birdears._GetchUnix.__delattr__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Implement delattr(self, name).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._GetchUnix.__dict__">
-<code class="descname">__dict__</code><em class="property"> = mappingproxy({'__module__': 'birdears', '__init__': &lt;function _GetchUnix.__init__&gt;, '__call__': &lt;function _GetchUnix.__call__&gt;, '__dict__': &lt;attribute '__dict__' of '_GetchUnix' objects&gt;, '__weakref__': &lt;attribute '__weakref__' of '_GetchUnix' objects&gt;, '__doc__': None})</em><a class="headerlink" href="#birdears._GetchUnix.__dict__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="birdears._GetchUnix.__dir__">
-<code class="descname">__dir__</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; list<a class="headerlink" href="#birdears._GetchUnix.__dir__" title="Permalink to this definition">¶</a></dt>
-<dd><p>default dir() implementation</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._GetchUnix.__eq__">
-<code class="descname">__eq__</code><a class="headerlink" href="#birdears._GetchUnix.__eq__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self==value.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears._GetchUnix.__format__">
-<code class="descname">__format__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears._GetchUnix.__format__" title="Permalink to this definition">¶</a></dt>
-<dd><p>default object formatter</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._GetchUnix.__ge__">
-<code class="descname">__ge__</code><a class="headerlink" href="#birdears._GetchUnix.__ge__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self&gt;=value.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._GetchUnix.__getattribute__">
-<code class="descname">__getattribute__</code><a class="headerlink" href="#birdears._GetchUnix.__getattribute__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return getattr(self, name).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._GetchUnix.__gt__">
-<code class="descname">__gt__</code><a class="headerlink" href="#birdears._GetchUnix.__gt__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self&gt;value.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._GetchUnix.__hash__">
-<code class="descname">__hash__</code><a class="headerlink" href="#birdears._GetchUnix.__hash__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return hash(self).</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears._GetchUnix.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears.html#_GetchUnix.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears._GetchUnix.__init__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="birdears._GetchUnix.__init_subclass__">
-<code class="descname">__init_subclass__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears._GetchUnix.__init_subclass__" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method is called when a class is subclassed.</p>
-<p>The default implementation does nothing. It may be
-overridden to extend subclasses.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._GetchUnix.__le__">
-<code class="descname">__le__</code><a class="headerlink" href="#birdears._GetchUnix.__le__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self&lt;=value.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._GetchUnix.__lt__">
-<code class="descname">__lt__</code><a class="headerlink" href="#birdears._GetchUnix.__lt__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self&lt;value.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._GetchUnix.__module__">
-<code class="descname">__module__</code><em class="property"> = 'birdears'</em><a class="headerlink" href="#birdears._GetchUnix.__module__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._GetchUnix.__ne__">
-<code class="descname">__ne__</code><a class="headerlink" href="#birdears._GetchUnix.__ne__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self!=value.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears._GetchUnix.__new__">
-<code class="descname">__new__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears._GetchUnix.__new__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create and return a new object.  See help(type) for accurate signature.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears._GetchUnix.__reduce__">
-<code class="descname">__reduce__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears._GetchUnix.__reduce__" title="Permalink to this definition">¶</a></dt>
-<dd><p>helper for pickle</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears._GetchUnix.__reduce_ex__">
-<code class="descname">__reduce_ex__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears._GetchUnix.__reduce_ex__" title="Permalink to this definition">¶</a></dt>
-<dd><p>helper for pickle</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._GetchUnix.__repr__">
-<code class="descname">__repr__</code><a class="headerlink" href="#birdears._GetchUnix.__repr__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return repr(self).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._GetchUnix.__setattr__">
-<code class="descname">__setattr__</code><a class="headerlink" href="#birdears._GetchUnix.__setattr__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Implement setattr(self, name, value).</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears._GetchUnix.__sizeof__">
-<code class="descname">__sizeof__</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#birdears._GetchUnix.__sizeof__" title="Permalink to this definition">¶</a></dt>
-<dd><p>size of object in memory, in bytes</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._GetchUnix.__str__">
-<code class="descname">__str__</code><a class="headerlink" href="#birdears._GetchUnix.__str__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return str(self).</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears._GetchUnix.__subclasshook__">
-<code class="descname">__subclasshook__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears._GetchUnix.__subclasshook__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Abstract classes can override this to customize issubclass().</p>
-<p>This is invoked early on by abc.ABCMeta.__subclasscheck__().
-It should return True, False or NotImplemented.  If it returns
-NotImplemented, the normal algorithm is used.  Otherwise, it
-overrides the normal algorithm (and the outcome is cached).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._GetchUnix.__weakref__">
-<code class="descname">__weakref__</code><a class="headerlink" href="#birdears._GetchUnix.__weakref__" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of weak references to the object (if defined)</p>
+<dt id="birdears.interval.IntervalBase.return_simple">
+<code class="descname">return_simple</code><span class="sig-paren">(</span><em>keys</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/interval.html#IntervalBase.return_simple"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.interval.IntervalBase.return_simple" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method returns a dict with only the values passed to <cite>keys</cite>.</p>
 </dd></dl>
 
 </dd></dl>
 
+</div>
+<div class="section" id="module-birdears.questionbase">
+<span id="birdears-questionbase-module"></span><h2>birdears.questionbase module<a class="headerlink" href="#module-birdears.questionbase" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="birdears._GetchWindows">
-<em class="property">class </em><code class="descclassname">birdears.</code><code class="descname">_GetchWindows</code><a class="reference internal" href="_modules/birdears.html#_GetchWindows"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears._GetchWindows" title="Permalink to this definition">¶</a></dt>
+<dt id="birdears.questionbase.QuestionBase">
+<em class="property">class </em><code class="descclassname">birdears.questionbase.</code><code class="descname">QuestionBase</code><span class="sig-paren">(</span><em>mode='major'</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questionbase.html#QuestionBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questionbase.QuestionBase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Base Class to be subclassed for Question classes.</p>
+<p>This class implements attributes and routines to be used in Question
+subclasses.</p>
 <p class="rubric">Methods</p>
 <table border="1" class="longtable docutils">
 <colgroup>
@@ -420,172 +141,41 @@ overrides the normal algorithm (and the outcome is cached).</p>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#birdears._GetchWindows.__call__" title="birdears._GetchWindows.__call__"><code class="xref py py-obj docutils literal"><span class="pre">__call__</span></code></a>()</td>
-<td></td>
+<tr class="row-odd"><td><a class="reference internal" href="#birdears.questionbase.QuestionBase.check_question" title="birdears.questionbase.QuestionBase.check_question"><code class="xref py py-obj docutils literal"><span class="pre">check_question</span></code></a>()</td>
+<td>This method should be overwritten by the question subclasses.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#birdears.questionbase.QuestionBase.make_question" title="birdears.questionbase.QuestionBase.make_question"><code class="xref py py-obj docutils literal"><span class="pre">make_question</span></code></a>()</td>
+<td>This method should be overwritten by the question subclasses.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#birdears.questionbase.QuestionBase.make_resolution" title="birdears.questionbase.QuestionBase.make_resolution"><code class="xref py py-obj docutils literal"><span class="pre">make_resolution</span></code></a>()</td>
+<td>This method should be overwritten by the question subclasses.</td>
 </tr>
 </tbody>
 </table>
 <dl class="method">
-<dt id="birdears._GetchWindows.__call__">
-<code class="descname">__call__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears.html#_GetchWindows.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears._GetchWindows.__call__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._GetchWindows.__class__">
-<code class="descname">__class__</code><a class="headerlink" href="#birdears._GetchWindows.__class__" title="Permalink to this definition">¶</a></dt>
-<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">type</span></code></p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._GetchWindows.__delattr__">
-<code class="descname">__delattr__</code><a class="headerlink" href="#birdears._GetchWindows.__delattr__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Implement delattr(self, name).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._GetchWindows.__dict__">
-<code class="descname">__dict__</code><em class="property"> = mappingproxy({'__module__': 'birdears', '__init__': &lt;function _GetchWindows.__init__&gt;, '__call__': &lt;function _GetchWindows.__call__&gt;, '__dict__': &lt;attribute '__dict__' of '_GetchWindows' objects&gt;, '__weakref__': &lt;attribute '__weakref__' of '_GetchWindows' objects&gt;, '__doc__': None})</em><a class="headerlink" href="#birdears._GetchWindows.__dict__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="birdears._GetchWindows.__dir__">
-<code class="descname">__dir__</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; list<a class="headerlink" href="#birdears._GetchWindows.__dir__" title="Permalink to this definition">¶</a></dt>
-<dd><p>default dir() implementation</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._GetchWindows.__eq__">
-<code class="descname">__eq__</code><a class="headerlink" href="#birdears._GetchWindows.__eq__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self==value.</p>
+<dt id="birdears.questionbase.QuestionBase.check_question">
+<code class="descname">check_question</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questionbase.html#QuestionBase.check_question"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questionbase.QuestionBase.check_question" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method should be overwritten by the question subclasses.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="birdears._GetchWindows.__format__">
-<code class="descname">__format__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears._GetchWindows.__format__" title="Permalink to this definition">¶</a></dt>
-<dd><p>default object formatter</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._GetchWindows.__ge__">
-<code class="descname">__ge__</code><a class="headerlink" href="#birdears._GetchWindows.__ge__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self&gt;=value.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._GetchWindows.__getattribute__">
-<code class="descname">__getattribute__</code><a class="headerlink" href="#birdears._GetchWindows.__getattribute__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return getattr(self, name).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._GetchWindows.__gt__">
-<code class="descname">__gt__</code><a class="headerlink" href="#birdears._GetchWindows.__gt__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self&gt;value.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._GetchWindows.__hash__">
-<code class="descname">__hash__</code><a class="headerlink" href="#birdears._GetchWindows.__hash__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return hash(self).</p>
+<dt id="birdears.questionbase.QuestionBase.make_question">
+<code class="descname">make_question</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questionbase.html#QuestionBase.make_question"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questionbase.QuestionBase.make_question" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method should be overwritten by the question subclasses.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="birdears._GetchWindows.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears.html#_GetchWindows.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears._GetchWindows.__init__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="birdears._GetchWindows.__init_subclass__">
-<code class="descname">__init_subclass__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears._GetchWindows.__init_subclass__" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method is called when a class is subclassed.</p>
-<p>The default implementation does nothing. It may be
-overridden to extend subclasses.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._GetchWindows.__le__">
-<code class="descname">__le__</code><a class="headerlink" href="#birdears._GetchWindows.__le__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self&lt;=value.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._GetchWindows.__lt__">
-<code class="descname">__lt__</code><a class="headerlink" href="#birdears._GetchWindows.__lt__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self&lt;value.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._GetchWindows.__module__">
-<code class="descname">__module__</code><em class="property"> = 'birdears'</em><a class="headerlink" href="#birdears._GetchWindows.__module__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._GetchWindows.__ne__">
-<code class="descname">__ne__</code><a class="headerlink" href="#birdears._GetchWindows.__ne__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self!=value.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears._GetchWindows.__new__">
-<code class="descname">__new__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears._GetchWindows.__new__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create and return a new object.  See help(type) for accurate signature.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears._GetchWindows.__reduce__">
-<code class="descname">__reduce__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears._GetchWindows.__reduce__" title="Permalink to this definition">¶</a></dt>
-<dd><p>helper for pickle</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears._GetchWindows.__reduce_ex__">
-<code class="descname">__reduce_ex__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears._GetchWindows.__reduce_ex__" title="Permalink to this definition">¶</a></dt>
-<dd><p>helper for pickle</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._GetchWindows.__repr__">
-<code class="descname">__repr__</code><a class="headerlink" href="#birdears._GetchWindows.__repr__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return repr(self).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._GetchWindows.__setattr__">
-<code class="descname">__setattr__</code><a class="headerlink" href="#birdears._GetchWindows.__setattr__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Implement setattr(self, name, value).</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears._GetchWindows.__sizeof__">
-<code class="descname">__sizeof__</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#birdears._GetchWindows.__sizeof__" title="Permalink to this definition">¶</a></dt>
-<dd><p>size of object in memory, in bytes</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._GetchWindows.__str__">
-<code class="descname">__str__</code><a class="headerlink" href="#birdears._GetchWindows.__str__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return str(self).</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears._GetchWindows.__subclasshook__">
-<code class="descname">__subclasshook__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears._GetchWindows.__subclasshook__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Abstract classes can override this to customize issubclass().</p>
-<p>This is invoked early on by abc.ABCMeta.__subclasscheck__().
-It should return True, False or NotImplemented.  If it returns
-NotImplemented, the normal algorithm is used.  Otherwise, it
-overrides the normal algorithm (and the outcome is cached).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears._GetchWindows.__weakref__">
-<code class="descname">__weakref__</code><a class="headerlink" href="#birdears._GetchWindows.__weakref__" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of weak references to the object (if defined)</p>
+<dt id="birdears.questionbase.QuestionBase.make_resolution">
+<code class="descname">make_resolution</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questionbase.html#QuestionBase.make_resolution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questionbase.QuestionBase.make_resolution" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method should be overwritten by the question subclasses.</p>
 </dd></dl>
 
 </dd></dl>
 
-<span class="target" id="module-birdears.scale"></span><dl class="class">
+</div>
+<div class="section" id="module-birdears.scale">
+<span id="birdears-scale-module"></span><h2>birdears.scale module<a class="headerlink" href="#module-birdears.scale" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
 <dt id="birdears.scale.ChromaticScale">
 <em class="property">class </em><code class="descclassname">birdears.scale.</code><code class="descname">ChromaticScale</code><span class="sig-paren">(</span><em>tonic</em>, <em>octave=None</em>, <em>n_octaves=None</em>, <em>descending=None</em>, <em>dont_repeat_tonic=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/scale.html#ChromaticScale"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.scale.ChromaticScale" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#birdears.scale.ScaleBase" title="birdears.scale.ScaleBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.scale.ScaleBase</span></code></a></p>
@@ -596,211 +186,11 @@ overrides the normal algorithm (and the outcome is cached).</p>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#birdears.scale.ChromaticScale.get_triad" title="birdears.scale.ChromaticScale.get_triad"><code class="xref py py-obj docutils literal"><span class="pre">get_triad</span></code></a>(degree)</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_triad</span></code>(degree)</td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<dl class="attribute">
-<dt id="birdears.scale.ChromaticScale.__class__">
-<code class="descname">__class__</code><a class="headerlink" href="#birdears.scale.ChromaticScale.__class__" title="Permalink to this definition">¶</a></dt>
-<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">type</span></code></p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.ChromaticScale.__delattr__">
-<code class="descname">__delattr__</code><a class="headerlink" href="#birdears.scale.ChromaticScale.__delattr__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Implement delattr(self, name).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.ChromaticScale.__dict__">
-<code class="descname">__dict__</code><em class="property"> = mappingproxy({'__module__': 'birdears.scale', '__init__': &lt;function ChromaticScale.__init__&gt;, '__doc__': None})</em><a class="headerlink" href="#birdears.scale.ChromaticScale.__dict__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="birdears.scale.ChromaticScale.__dir__">
-<code class="descname">__dir__</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; list<a class="headerlink" href="#birdears.scale.ChromaticScale.__dir__" title="Permalink to this definition">¶</a></dt>
-<dd><p>default dir() implementation</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.ChromaticScale.__eq__">
-<code class="descname">__eq__</code><a class="headerlink" href="#birdears.scale.ChromaticScale.__eq__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self==value.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.scale.ChromaticScale.__format__">
-<code class="descname">__format__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.scale.ChromaticScale.__format__" title="Permalink to this definition">¶</a></dt>
-<dd><p>default object formatter</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.ChromaticScale.__ge__">
-<code class="descname">__ge__</code><a class="headerlink" href="#birdears.scale.ChromaticScale.__ge__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self&gt;=value.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.ChromaticScale.__getattribute__">
-<code class="descname">__getattribute__</code><a class="headerlink" href="#birdears.scale.ChromaticScale.__getattribute__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return getattr(self, name).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.ChromaticScale.__gt__">
-<code class="descname">__gt__</code><a class="headerlink" href="#birdears.scale.ChromaticScale.__gt__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self&gt;value.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.ChromaticScale.__hash__">
-<code class="descname">__hash__</code><a class="headerlink" href="#birdears.scale.ChromaticScale.__hash__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return hash(self).</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.scale.ChromaticScale.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>tonic</em>, <em>octave=None</em>, <em>n_octaves=None</em>, <em>descending=None</em>, <em>dont_repeat_tonic=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/scale.html#ChromaticScale.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.scale.ChromaticScale.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a chromatic scale from tonic.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>tonic</strong> : str</p>
-<blockquote>
-<div><p>The note which the scale will be built upon.</p>
-</div></blockquote>
-<p><strong>octave</strong> : int</p>
-<blockquote>
-<div><p>The scientific octave the scale will be built upon.</p>
-</div></blockquote>
-<p><strong>n_octaves</strong> : int</p>
-<blockquote>
-<div><p>The number of octaves the scale will contain.</p>
-</div></blockquote>
-<p><strong>descending</strong> : bool</p>
-<blockquote>
-<div><p>Whether the scale is descending.</p>
-</div></blockquote>
-<p><strong>dont_repeat_tonic</strong> : bool</p>
-<blockquote class="last">
-<div><p>Whether to skip appending the last note (octave) to the scale.</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.scale.ChromaticScale.__init_subclass__">
-<code class="descname">__init_subclass__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.scale.ChromaticScale.__init_subclass__" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method is called when a class is subclassed.</p>
-<p>The default implementation does nothing. It may be
-overridden to extend subclasses.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.ChromaticScale.__le__">
-<code class="descname">__le__</code><a class="headerlink" href="#birdears.scale.ChromaticScale.__le__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self&lt;=value.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.ChromaticScale.__lt__">
-<code class="descname">__lt__</code><a class="headerlink" href="#birdears.scale.ChromaticScale.__lt__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self&lt;value.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.ChromaticScale.__module__">
-<code class="descname">__module__</code><em class="property"> = 'birdears.scale'</em><a class="headerlink" href="#birdears.scale.ChromaticScale.__module__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.ChromaticScale.__ne__">
-<code class="descname">__ne__</code><a class="headerlink" href="#birdears.scale.ChromaticScale.__ne__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self!=value.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.scale.ChromaticScale.__new__">
-<code class="descname">__new__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.scale.ChromaticScale.__new__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create and return a new object.  See help(type) for accurate signature.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.scale.ChromaticScale.__reduce__">
-<code class="descname">__reduce__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.scale.ChromaticScale.__reduce__" title="Permalink to this definition">¶</a></dt>
-<dd><p>helper for pickle</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.scale.ChromaticScale.__reduce_ex__">
-<code class="descname">__reduce_ex__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.scale.ChromaticScale.__reduce_ex__" title="Permalink to this definition">¶</a></dt>
-<dd><p>helper for pickle</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.ChromaticScale.__repr__">
-<code class="descname">__repr__</code><a class="headerlink" href="#birdears.scale.ChromaticScale.__repr__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return repr(self).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.ChromaticScale.__setattr__">
-<code class="descname">__setattr__</code><a class="headerlink" href="#birdears.scale.ChromaticScale.__setattr__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Implement setattr(self, name, value).</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.scale.ChromaticScale.__sizeof__">
-<code class="descname">__sizeof__</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#birdears.scale.ChromaticScale.__sizeof__" title="Permalink to this definition">¶</a></dt>
-<dd><p>size of object in memory, in bytes</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.ChromaticScale.__str__">
-<code class="descname">__str__</code><a class="headerlink" href="#birdears.scale.ChromaticScale.__str__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return str(self).</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.scale.ChromaticScale.__subclasshook__">
-<code class="descname">__subclasshook__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.scale.ChromaticScale.__subclasshook__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Abstract classes can override this to customize issubclass().</p>
-<p>This is invoked early on by abc.ABCMeta.__subclasscheck__().
-It should return True, False or NotImplemented.  If it returns
-NotImplemented, the normal algorithm is used.  Otherwise, it
-overrides the normal algorithm (and the outcome is cached).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.ChromaticScale.__weakref__">
-<code class="descname">__weakref__</code><a class="headerlink" href="#birdears.scale.ChromaticScale.__weakref__" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of weak references to the object (if defined)</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.scale.ChromaticScale._append_octave_to_scale">
-<code class="descname">_append_octave_to_scale</code><span class="sig-paren">(</span><em>scale</em>, <em>starting_octave</em>, <em>descending=None</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.scale.ChromaticScale._append_octave_to_scale" title="Permalink to this definition">¶</a></dt>
-<dd><p>Inserts scientific octave number to the notes on a the given scale.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.scale.ChromaticScale._get_chromatic_idx">
-<code class="descname">_get_chromatic_idx</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.scale.ChromaticScale._get_chromatic_idx" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the chromatic index, ie., the distance in semitones of a given
-note from C.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.scale.ChromaticScale.get_triad">
-<code class="descname">get_triad</code><span class="sig-paren">(</span><em>degree</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.scale.ChromaticScale.get_triad" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
 <dl class="class">
@@ -827,215 +217,11 @@ note from C.</p>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#birdears.scale.DiatonicScale.get_triad" title="birdears.scale.DiatonicScale.get_triad"><code class="xref py py-obj docutils literal"><span class="pre">get_triad</span></code></a>(degree)</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_triad</span></code>(degree)</td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<dl class="attribute">
-<dt id="birdears.scale.DiatonicScale.__class__">
-<code class="descname">__class__</code><a class="headerlink" href="#birdears.scale.DiatonicScale.__class__" title="Permalink to this definition">¶</a></dt>
-<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">type</span></code></p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.DiatonicScale.__delattr__">
-<code class="descname">__delattr__</code><a class="headerlink" href="#birdears.scale.DiatonicScale.__delattr__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Implement delattr(self, name).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.DiatonicScale.__dict__">
-<code class="descname">__dict__</code><em class="property"> = mappingproxy({'__module__': 'birdears.scale', '__doc__': 'Builds a musical diatonic scale.\n\n    Attributes\n    ----------\n    scale : array_type\n        the array of notes representing the scale.\n    ', '__init__': &lt;function DiatonicScale.__init__&gt;})</em><a class="headerlink" href="#birdears.scale.DiatonicScale.__dict__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="birdears.scale.DiatonicScale.__dir__">
-<code class="descname">__dir__</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; list<a class="headerlink" href="#birdears.scale.DiatonicScale.__dir__" title="Permalink to this definition">¶</a></dt>
-<dd><p>default dir() implementation</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.DiatonicScale.__eq__">
-<code class="descname">__eq__</code><a class="headerlink" href="#birdears.scale.DiatonicScale.__eq__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self==value.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.scale.DiatonicScale.__format__">
-<code class="descname">__format__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.scale.DiatonicScale.__format__" title="Permalink to this definition">¶</a></dt>
-<dd><p>default object formatter</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.DiatonicScale.__ge__">
-<code class="descname">__ge__</code><a class="headerlink" href="#birdears.scale.DiatonicScale.__ge__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self&gt;=value.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.DiatonicScale.__getattribute__">
-<code class="descname">__getattribute__</code><a class="headerlink" href="#birdears.scale.DiatonicScale.__getattribute__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return getattr(self, name).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.DiatonicScale.__gt__">
-<code class="descname">__gt__</code><a class="headerlink" href="#birdears.scale.DiatonicScale.__gt__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self&gt;value.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.DiatonicScale.__hash__">
-<code class="descname">__hash__</code><a class="headerlink" href="#birdears.scale.DiatonicScale.__hash__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return hash(self).</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.scale.DiatonicScale.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>tonic</em>, <em>mode=None</em>, <em>octave=None</em>, <em>n_octaves=None</em>, <em>descending=None</em>, <em>dont_repeat_tonic=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/scale.html#DiatonicScale.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.scale.DiatonicScale.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a diatonic scale from tonic and mode.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>tonic</strong> : str</p>
-<blockquote>
-<div><p>The note which the scale will be built upon.</p>
-</div></blockquote>
-<p><strong>mode</strong> : str</p>
-<blockquote>
-<div><p>The mode the scale will be built upon. (&#8216;major&#8217; or &#8216;minor&#8217;)</p>
-</div></blockquote>
-<p><strong>octave</strong> : int</p>
-<blockquote>
-<div><p>The scientific octave the scale will be built upon.</p>
-</div></blockquote>
-<p><strong>n_octaves</strong> : int</p>
-<blockquote>
-<div><p>The number of octaves the scale will contain.</p>
-</div></blockquote>
-<p><strong>descending</strong> : bool</p>
-<blockquote>
-<div><p>Whether the scale is descending.</p>
-</div></blockquote>
-<p><strong>dont_repeat_tonic</strong> : bool</p>
-<blockquote class="last">
-<div><p>Whether to skip appending the last note (octave) to the scale.</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.scale.DiatonicScale.__init_subclass__">
-<code class="descname">__init_subclass__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.scale.DiatonicScale.__init_subclass__" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method is called when a class is subclassed.</p>
-<p>The default implementation does nothing. It may be
-overridden to extend subclasses.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.DiatonicScale.__le__">
-<code class="descname">__le__</code><a class="headerlink" href="#birdears.scale.DiatonicScale.__le__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self&lt;=value.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.DiatonicScale.__lt__">
-<code class="descname">__lt__</code><a class="headerlink" href="#birdears.scale.DiatonicScale.__lt__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self&lt;value.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.DiatonicScale.__module__">
-<code class="descname">__module__</code><em class="property"> = 'birdears.scale'</em><a class="headerlink" href="#birdears.scale.DiatonicScale.__module__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.DiatonicScale.__ne__">
-<code class="descname">__ne__</code><a class="headerlink" href="#birdears.scale.DiatonicScale.__ne__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self!=value.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.scale.DiatonicScale.__new__">
-<code class="descname">__new__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.scale.DiatonicScale.__new__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create and return a new object.  See help(type) for accurate signature.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.scale.DiatonicScale.__reduce__">
-<code class="descname">__reduce__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.scale.DiatonicScale.__reduce__" title="Permalink to this definition">¶</a></dt>
-<dd><p>helper for pickle</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.scale.DiatonicScale.__reduce_ex__">
-<code class="descname">__reduce_ex__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.scale.DiatonicScale.__reduce_ex__" title="Permalink to this definition">¶</a></dt>
-<dd><p>helper for pickle</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.DiatonicScale.__repr__">
-<code class="descname">__repr__</code><a class="headerlink" href="#birdears.scale.DiatonicScale.__repr__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return repr(self).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.DiatonicScale.__setattr__">
-<code class="descname">__setattr__</code><a class="headerlink" href="#birdears.scale.DiatonicScale.__setattr__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Implement setattr(self, name, value).</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.scale.DiatonicScale.__sizeof__">
-<code class="descname">__sizeof__</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#birdears.scale.DiatonicScale.__sizeof__" title="Permalink to this definition">¶</a></dt>
-<dd><p>size of object in memory, in bytes</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.DiatonicScale.__str__">
-<code class="descname">__str__</code><a class="headerlink" href="#birdears.scale.DiatonicScale.__str__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return str(self).</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.scale.DiatonicScale.__subclasshook__">
-<code class="descname">__subclasshook__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.scale.DiatonicScale.__subclasshook__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Abstract classes can override this to customize issubclass().</p>
-<p>This is invoked early on by abc.ABCMeta.__subclasscheck__().
-It should return True, False or NotImplemented.  If it returns
-NotImplemented, the normal algorithm is used.  Otherwise, it
-overrides the normal algorithm (and the outcome is cached).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.DiatonicScale.__weakref__">
-<code class="descname">__weakref__</code><a class="headerlink" href="#birdears.scale.DiatonicScale.__weakref__" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of weak references to the object (if defined)</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.scale.DiatonicScale._append_octave_to_scale">
-<code class="descname">_append_octave_to_scale</code><span class="sig-paren">(</span><em>scale</em>, <em>starting_octave</em>, <em>descending=None</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.scale.DiatonicScale._append_octave_to_scale" title="Permalink to this definition">¶</a></dt>
-<dd><p>Inserts scientific octave number to the notes on a the given scale.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.scale.DiatonicScale._get_chromatic_idx">
-<code class="descname">_get_chromatic_idx</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.scale.DiatonicScale._get_chromatic_idx" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the chromatic index, ie., the distance in semitones of a given
-note from C.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.scale.DiatonicScale.get_triad">
-<code class="descname">get_triad</code><span class="sig-paren">(</span><em>degree</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.scale.DiatonicScale.get_triad" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
 <dl class="class">
@@ -1054,172 +240,6 @@ note from C.</p>
 </tr>
 </tbody>
 </table>
-<dl class="attribute">
-<dt id="birdears.scale.ScaleBase.__class__">
-<code class="descname">__class__</code><a class="headerlink" href="#birdears.scale.ScaleBase.__class__" title="Permalink to this definition">¶</a></dt>
-<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">type</span></code></p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.ScaleBase.__delattr__">
-<code class="descname">__delattr__</code><a class="headerlink" href="#birdears.scale.ScaleBase.__delattr__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Implement delattr(self, name).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.ScaleBase.__dict__">
-<code class="descname">__dict__</code><em class="property"> = mappingproxy({'__module__': 'birdears.scale', '__init__': &lt;function ScaleBase.__init__&gt;, 'get_triad': &lt;function ScaleBase.get_triad&gt;, '_append_octave_to_scale': &lt;function ScaleBase._append_octave_to_scale&gt;, '_get_chromatic_idx': &lt;function ScaleBase._get_chromatic_idx&gt;, '__dict__': &lt;attribute '__dict__' of 'ScaleBase' objects&gt;, '__weakref__': &lt;attribute '__weakref__' of 'ScaleBase' objects&gt;, '__doc__': None})</em><a class="headerlink" href="#birdears.scale.ScaleBase.__dict__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="birdears.scale.ScaleBase.__dir__">
-<code class="descname">__dir__</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; list<a class="headerlink" href="#birdears.scale.ScaleBase.__dir__" title="Permalink to this definition">¶</a></dt>
-<dd><p>default dir() implementation</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.ScaleBase.__eq__">
-<code class="descname">__eq__</code><a class="headerlink" href="#birdears.scale.ScaleBase.__eq__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self==value.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.scale.ScaleBase.__format__">
-<code class="descname">__format__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.scale.ScaleBase.__format__" title="Permalink to this definition">¶</a></dt>
-<dd><p>default object formatter</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.ScaleBase.__ge__">
-<code class="descname">__ge__</code><a class="headerlink" href="#birdears.scale.ScaleBase.__ge__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self&gt;=value.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.ScaleBase.__getattribute__">
-<code class="descname">__getattribute__</code><a class="headerlink" href="#birdears.scale.ScaleBase.__getattribute__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return getattr(self, name).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.ScaleBase.__gt__">
-<code class="descname">__gt__</code><a class="headerlink" href="#birdears.scale.ScaleBase.__gt__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self&gt;value.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.ScaleBase.__hash__">
-<code class="descname">__hash__</code><a class="headerlink" href="#birdears.scale.ScaleBase.__hash__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return hash(self).</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.scale.ScaleBase.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/scale.html#ScaleBase.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.scale.ScaleBase.__init__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="birdears.scale.ScaleBase.__init_subclass__">
-<code class="descname">__init_subclass__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.scale.ScaleBase.__init_subclass__" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method is called when a class is subclassed.</p>
-<p>The default implementation does nothing. It may be
-overridden to extend subclasses.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.ScaleBase.__le__">
-<code class="descname">__le__</code><a class="headerlink" href="#birdears.scale.ScaleBase.__le__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self&lt;=value.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.ScaleBase.__lt__">
-<code class="descname">__lt__</code><a class="headerlink" href="#birdears.scale.ScaleBase.__lt__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self&lt;value.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.ScaleBase.__module__">
-<code class="descname">__module__</code><em class="property"> = 'birdears.scale'</em><a class="headerlink" href="#birdears.scale.ScaleBase.__module__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.ScaleBase.__ne__">
-<code class="descname">__ne__</code><a class="headerlink" href="#birdears.scale.ScaleBase.__ne__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self!=value.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.scale.ScaleBase.__new__">
-<code class="descname">__new__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.scale.ScaleBase.__new__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create and return a new object.  See help(type) for accurate signature.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.scale.ScaleBase.__reduce__">
-<code class="descname">__reduce__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.scale.ScaleBase.__reduce__" title="Permalink to this definition">¶</a></dt>
-<dd><p>helper for pickle</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.scale.ScaleBase.__reduce_ex__">
-<code class="descname">__reduce_ex__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.scale.ScaleBase.__reduce_ex__" title="Permalink to this definition">¶</a></dt>
-<dd><p>helper for pickle</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.ScaleBase.__repr__">
-<code class="descname">__repr__</code><a class="headerlink" href="#birdears.scale.ScaleBase.__repr__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return repr(self).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.ScaleBase.__setattr__">
-<code class="descname">__setattr__</code><a class="headerlink" href="#birdears.scale.ScaleBase.__setattr__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Implement setattr(self, name, value).</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.scale.ScaleBase.__sizeof__">
-<code class="descname">__sizeof__</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#birdears.scale.ScaleBase.__sizeof__" title="Permalink to this definition">¶</a></dt>
-<dd><p>size of object in memory, in bytes</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.ScaleBase.__str__">
-<code class="descname">__str__</code><a class="headerlink" href="#birdears.scale.ScaleBase.__str__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return str(self).</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.scale.ScaleBase.__subclasshook__">
-<code class="descname">__subclasshook__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.scale.ScaleBase.__subclasshook__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Abstract classes can override this to customize issubclass().</p>
-<p>This is invoked early on by abc.ABCMeta.__subclasscheck__().
-It should return True, False or NotImplemented.  If it returns
-NotImplemented, the normal algorithm is used.  Otherwise, it
-overrides the normal algorithm (and the outcome is cached).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.ScaleBase.__weakref__">
-<code class="descname">__weakref__</code><a class="headerlink" href="#birdears.scale.ScaleBase.__weakref__" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of weak references to the object (if defined)</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.scale.ScaleBase._append_octave_to_scale">
-<code class="descname">_append_octave_to_scale</code><span class="sig-paren">(</span><em>scale</em>, <em>starting_octave</em>, <em>descending=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/scale.html#ScaleBase._append_octave_to_scale"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.scale.ScaleBase._append_octave_to_scale" title="Permalink to this definition">¶</a></dt>
-<dd><p>Inserts scientific octave number to the notes on a the given scale.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.scale.ScaleBase._get_chromatic_idx">
-<code class="descname">_get_chromatic_idx</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/scale.html#ScaleBase._get_chromatic_idx"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.scale.ScaleBase._get_chromatic_idx" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the chromatic index, ie., the distance in semitones of a given
-note from C.</p>
-</dd></dl>
-
 <dl class="method">
 <dt id="birdears.scale.ScaleBase.get_triad">
 <code class="descname">get_triad</code><span class="sig-paren">(</span><em>degree</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/scale.html#ScaleBase.get_triad"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.scale.ScaleBase.get_triad" title="Permalink to this definition">¶</a></dt>
@@ -1227,433 +247,12 @@ note from C.</p>
 
 </dd></dl>
 
-<span class="target" id="module-birdears.interval"></span><dl class="class">
-<dt id="birdears.interval.ChromaticInterval">
-<em class="property">class </em><code class="descclassname">birdears.interval.</code><code class="descname">ChromaticInterval</code><span class="sig-paren">(</span><em>mode</em>, <em>tonic</em>, <em>octave</em>, <em>n_octaves=None</em>, <em>descending=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/interval.html#ChromaticInterval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.interval.ChromaticInterval" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#birdears.interval.IntervalBase" title="birdears.interval.IntervalBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.interval.IntervalBase</span></code></a></p>
-<p class="rubric">Methods</p>
-<table border="1" class="longtable docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#birdears.interval.ChromaticInterval.return_simple" title="birdears.interval.ChromaticInterval.return_simple"><code class="xref py py-obj docutils literal"><span class="pre">return_simple</span></code></a>(keys)</td>
-<td>This method returns a dict with only the values passed to <cite>keys</cite>.</td>
-</tr>
-</tbody>
-</table>
-<dl class="attribute">
-<dt id="birdears.interval.ChromaticInterval.__class__">
-<code class="descname">__class__</code><a class="headerlink" href="#birdears.interval.ChromaticInterval.__class__" title="Permalink to this definition">¶</a></dt>
-<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">type</span></code></p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.ChromaticInterval.__delattr__">
-<code class="descname">__delattr__</code><a class="headerlink" href="#birdears.interval.ChromaticInterval.__delattr__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Implement delattr(self, name).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.ChromaticInterval.__dict__">
-<code class="descname">__dict__</code><em class="property"> = mappingproxy({'__module__': 'birdears.interval', '__init__': &lt;function ChromaticInterval.__init__&gt;, '__doc__': None})</em><a class="headerlink" href="#birdears.interval.ChromaticInterval.__dict__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="birdears.interval.ChromaticInterval.__dir__">
-<code class="descname">__dir__</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; list<a class="headerlink" href="#birdears.interval.ChromaticInterval.__dir__" title="Permalink to this definition">¶</a></dt>
-<dd><p>default dir() implementation</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.ChromaticInterval.__eq__">
-<code class="descname">__eq__</code><a class="headerlink" href="#birdears.interval.ChromaticInterval.__eq__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self==value.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.interval.ChromaticInterval.__format__">
-<code class="descname">__format__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.interval.ChromaticInterval.__format__" title="Permalink to this definition">¶</a></dt>
-<dd><p>default object formatter</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.ChromaticInterval.__ge__">
-<code class="descname">__ge__</code><a class="headerlink" href="#birdears.interval.ChromaticInterval.__ge__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self&gt;=value.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.ChromaticInterval.__getattribute__">
-<code class="descname">__getattribute__</code><a class="headerlink" href="#birdears.interval.ChromaticInterval.__getattribute__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return getattr(self, name).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.ChromaticInterval.__gt__">
-<code class="descname">__gt__</code><a class="headerlink" href="#birdears.interval.ChromaticInterval.__gt__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self&gt;value.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.ChromaticInterval.__hash__">
-<code class="descname">__hash__</code><a class="headerlink" href="#birdears.interval.ChromaticInterval.__hash__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return hash(self).</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.interval.ChromaticInterval.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>mode</em>, <em>tonic</em>, <em>octave</em>, <em>n_octaves=None</em>, <em>descending=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/interval.html#ChromaticInterval.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.interval.ChromaticInterval.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Chooses a chromatic interval for the question.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>mode</strong> : str</p>
-<blockquote>
-<div><p>Diatonic mode for the interval. (eg.: &#8216;major&#8217; or &#8216;minor&#8217;)</p>
-</div></blockquote>
-<p><strong>tonic</strong> : str</p>
-<blockquote>
-<div><p>Tonic of the scale. (eg.: &#8216;Bb&#8217;)</p>
-</div></blockquote>
-<p><strong>octave</strong> : str</p>
-<blockquote>
-<div><p>Scientific octave of the scale (eg.: 4)</p>
-</div></blockquote>
-<p><strong>interval</strong> : str</p>
-<blockquote>
-<div><p>Not implemented. The interval.</p>
-</div></blockquote>
-<p><strong>chromatic: bool</strong></p>
-<blockquote>
-<div><p>Can have chromatic notes? (eg.: F# in a key of C; default: false)</p>
-</div></blockquote>
-<p><strong>n_octaves</strong> : int</p>
-<blockquote>
-<div><p>Maximum number os octaves (eg. 2)</p>
-</div></blockquote>
-<p><strong>descending</strong> : bool</p>
-<blockquote class="last">
-<div><p>Is the interval descending? (default: false)</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.interval.ChromaticInterval.__init_subclass__">
-<code class="descname">__init_subclass__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.interval.ChromaticInterval.__init_subclass__" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method is called when a class is subclassed.</p>
-<p>The default implementation does nothing. It may be
-overridden to extend subclasses.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.ChromaticInterval.__le__">
-<code class="descname">__le__</code><a class="headerlink" href="#birdears.interval.ChromaticInterval.__le__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self&lt;=value.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.ChromaticInterval.__lt__">
-<code class="descname">__lt__</code><a class="headerlink" href="#birdears.interval.ChromaticInterval.__lt__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self&lt;value.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.ChromaticInterval.__module__">
-<code class="descname">__module__</code><em class="property"> = 'birdears.interval'</em><a class="headerlink" href="#birdears.interval.ChromaticInterval.__module__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.ChromaticInterval.__ne__">
-<code class="descname">__ne__</code><a class="headerlink" href="#birdears.interval.ChromaticInterval.__ne__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self!=value.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.interval.ChromaticInterval.__new__">
-<code class="descname">__new__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.interval.ChromaticInterval.__new__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create and return a new object.  See help(type) for accurate signature.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.interval.ChromaticInterval.__reduce__">
-<code class="descname">__reduce__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.interval.ChromaticInterval.__reduce__" title="Permalink to this definition">¶</a></dt>
-<dd><p>helper for pickle</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.interval.ChromaticInterval.__reduce_ex__">
-<code class="descname">__reduce_ex__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.interval.ChromaticInterval.__reduce_ex__" title="Permalink to this definition">¶</a></dt>
-<dd><p>helper for pickle</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.ChromaticInterval.__repr__">
-<code class="descname">__repr__</code><a class="headerlink" href="#birdears.interval.ChromaticInterval.__repr__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return repr(self).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.ChromaticInterval.__setattr__">
-<code class="descname">__setattr__</code><a class="headerlink" href="#birdears.interval.ChromaticInterval.__setattr__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Implement setattr(self, name, value).</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.interval.ChromaticInterval.__sizeof__">
-<code class="descname">__sizeof__</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#birdears.interval.ChromaticInterval.__sizeof__" title="Permalink to this definition">¶</a></dt>
-<dd><p>size of object in memory, in bytes</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.ChromaticInterval.__str__">
-<code class="descname">__str__</code><a class="headerlink" href="#birdears.interval.ChromaticInterval.__str__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return str(self).</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.interval.ChromaticInterval.__subclasshook__">
-<code class="descname">__subclasshook__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.interval.ChromaticInterval.__subclasshook__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Abstract classes can override this to customize issubclass().</p>
-<p>This is invoked early on by abc.ABCMeta.__subclasscheck__().
-It should return True, False or NotImplemented.  If it returns
-NotImplemented, the normal algorithm is used.  Otherwise, it
-overrides the normal algorithm (and the outcome is cached).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.ChromaticInterval.__weakref__">
-<code class="descname">__weakref__</code><a class="headerlink" href="#birdears.interval.ChromaticInterval.__weakref__" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of weak references to the object (if defined)</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.interval.ChromaticInterval.return_simple">
-<code class="descname">return_simple</code><span class="sig-paren">(</span><em>keys</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.interval.ChromaticInterval.return_simple" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method returns a dict with only the values passed to <cite>keys</cite>.</p>
-</dd></dl>
-
-</dd></dl>
-
+</div>
+<div class="section" id="module-birdears.sequence">
+<span id="birdears-sequence-module"></span><h2>birdears.sequence module<a class="headerlink" href="#module-birdears.sequence" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="birdears.interval.DiatonicInterval">
-<em class="property">class </em><code class="descclassname">birdears.interval.</code><code class="descname">DiatonicInterval</code><span class="sig-paren">(</span><em>mode</em>, <em>tonic</em>, <em>octave</em>, <em>n_octaves=None</em>, <em>descending=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/interval.html#DiatonicInterval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.interval.DiatonicInterval" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#birdears.interval.IntervalBase" title="birdears.interval.IntervalBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.interval.IntervalBase</span></code></a></p>
-<p class="rubric">Methods</p>
-<table border="1" class="longtable docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#birdears.interval.DiatonicInterval.return_simple" title="birdears.interval.DiatonicInterval.return_simple"><code class="xref py py-obj docutils literal"><span class="pre">return_simple</span></code></a>(keys)</td>
-<td>This method returns a dict with only the values passed to <cite>keys</cite>.</td>
-</tr>
-</tbody>
-</table>
-<dl class="attribute">
-<dt id="birdears.interval.DiatonicInterval.__class__">
-<code class="descname">__class__</code><a class="headerlink" href="#birdears.interval.DiatonicInterval.__class__" title="Permalink to this definition">¶</a></dt>
-<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">type</span></code></p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.DiatonicInterval.__delattr__">
-<code class="descname">__delattr__</code><a class="headerlink" href="#birdears.interval.DiatonicInterval.__delattr__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Implement delattr(self, name).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.DiatonicInterval.__dict__">
-<code class="descname">__dict__</code><em class="property"> = mappingproxy({'__module__': 'birdears.interval', '__init__': &lt;function DiatonicInterval.__init__&gt;, '__doc__': None})</em><a class="headerlink" href="#birdears.interval.DiatonicInterval.__dict__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="birdears.interval.DiatonicInterval.__dir__">
-<code class="descname">__dir__</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; list<a class="headerlink" href="#birdears.interval.DiatonicInterval.__dir__" title="Permalink to this definition">¶</a></dt>
-<dd><p>default dir() implementation</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.DiatonicInterval.__eq__">
-<code class="descname">__eq__</code><a class="headerlink" href="#birdears.interval.DiatonicInterval.__eq__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self==value.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.interval.DiatonicInterval.__format__">
-<code class="descname">__format__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.interval.DiatonicInterval.__format__" title="Permalink to this definition">¶</a></dt>
-<dd><p>default object formatter</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.DiatonicInterval.__ge__">
-<code class="descname">__ge__</code><a class="headerlink" href="#birdears.interval.DiatonicInterval.__ge__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self&gt;=value.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.DiatonicInterval.__getattribute__">
-<code class="descname">__getattribute__</code><a class="headerlink" href="#birdears.interval.DiatonicInterval.__getattribute__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return getattr(self, name).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.DiatonicInterval.__gt__">
-<code class="descname">__gt__</code><a class="headerlink" href="#birdears.interval.DiatonicInterval.__gt__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self&gt;value.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.DiatonicInterval.__hash__">
-<code class="descname">__hash__</code><a class="headerlink" href="#birdears.interval.DiatonicInterval.__hash__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return hash(self).</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.interval.DiatonicInterval.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>mode</em>, <em>tonic</em>, <em>octave</em>, <em>n_octaves=None</em>, <em>descending=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/interval.html#DiatonicInterval.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.interval.DiatonicInterval.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Chooses a diatonic interval for the question.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>mode</strong> : str</p>
-<blockquote>
-<div><p>Diatonic mode for the interval. (eg.: &#8216;major&#8217; or &#8216;minor&#8217;)</p>
-</div></blockquote>
-<p><strong>tonic</strong> : str</p>
-<blockquote>
-<div><p>Tonic of the scale. (eg.: &#8216;Bb&#8217;)</p>
-</div></blockquote>
-<p><strong>octave</strong> : str</p>
-<blockquote>
-<div><p>Scientific octave of the scale (eg.: 4)</p>
-</div></blockquote>
-<p><strong>interval</strong> : str</p>
-<blockquote>
-<div><p>Not implemented. The interval.</p>
-</div></blockquote>
-<p><strong>n_octaves</strong> : int</p>
-<blockquote>
-<div><p>Maximum number os octaves (eg. 2)</p>
-</div></blockquote>
-<p><strong>descending</strong> : bool</p>
-<blockquote class="last">
-<div><p>Is the interval descending? (default: false)</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.interval.DiatonicInterval.__init_subclass__">
-<code class="descname">__init_subclass__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.interval.DiatonicInterval.__init_subclass__" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method is called when a class is subclassed.</p>
-<p>The default implementation does nothing. It may be
-overridden to extend subclasses.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.DiatonicInterval.__le__">
-<code class="descname">__le__</code><a class="headerlink" href="#birdears.interval.DiatonicInterval.__le__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self&lt;=value.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.DiatonicInterval.__lt__">
-<code class="descname">__lt__</code><a class="headerlink" href="#birdears.interval.DiatonicInterval.__lt__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self&lt;value.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.DiatonicInterval.__module__">
-<code class="descname">__module__</code><em class="property"> = 'birdears.interval'</em><a class="headerlink" href="#birdears.interval.DiatonicInterval.__module__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.DiatonicInterval.__ne__">
-<code class="descname">__ne__</code><a class="headerlink" href="#birdears.interval.DiatonicInterval.__ne__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self!=value.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.interval.DiatonicInterval.__new__">
-<code class="descname">__new__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.interval.DiatonicInterval.__new__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create and return a new object.  See help(type) for accurate signature.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.interval.DiatonicInterval.__reduce__">
-<code class="descname">__reduce__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.interval.DiatonicInterval.__reduce__" title="Permalink to this definition">¶</a></dt>
-<dd><p>helper for pickle</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.interval.DiatonicInterval.__reduce_ex__">
-<code class="descname">__reduce_ex__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.interval.DiatonicInterval.__reduce_ex__" title="Permalink to this definition">¶</a></dt>
-<dd><p>helper for pickle</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.DiatonicInterval.__repr__">
-<code class="descname">__repr__</code><a class="headerlink" href="#birdears.interval.DiatonicInterval.__repr__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return repr(self).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.DiatonicInterval.__setattr__">
-<code class="descname">__setattr__</code><a class="headerlink" href="#birdears.interval.DiatonicInterval.__setattr__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Implement setattr(self, name, value).</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.interval.DiatonicInterval.__sizeof__">
-<code class="descname">__sizeof__</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#birdears.interval.DiatonicInterval.__sizeof__" title="Permalink to this definition">¶</a></dt>
-<dd><p>size of object in memory, in bytes</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.DiatonicInterval.__str__">
-<code class="descname">__str__</code><a class="headerlink" href="#birdears.interval.DiatonicInterval.__str__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return str(self).</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.interval.DiatonicInterval.__subclasshook__">
-<code class="descname">__subclasshook__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.interval.DiatonicInterval.__subclasshook__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Abstract classes can override this to customize issubclass().</p>
-<p>This is invoked early on by abc.ABCMeta.__subclasscheck__().
-It should return True, False or NotImplemented.  If it returns
-NotImplemented, the normal algorithm is used.  Otherwise, it
-overrides the normal algorithm (and the outcome is cached).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.DiatonicInterval.__weakref__">
-<code class="descname">__weakref__</code><a class="headerlink" href="#birdears.interval.DiatonicInterval.__weakref__" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of weak references to the object (if defined)</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.interval.DiatonicInterval.return_simple">
-<code class="descname">return_simple</code><span class="sig-paren">(</span><em>keys</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.interval.DiatonicInterval.return_simple" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method returns a dict with only the values passed to <cite>keys</cite>.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="birdears.interval.IntervalBase">
-<em class="property">class </em><code class="descclassname">birdears.interval.</code><code class="descname">IntervalBase</code><a class="reference internal" href="_modules/birdears/interval.html#IntervalBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.interval.IntervalBase" title="Permalink to this definition">¶</a></dt>
+<dt id="birdears.sequence.Sequence">
+<em class="property">class </em><code class="descclassname">birdears.sequence.</code><code class="descname">Sequence</code><span class="sig-paren">(</span><em>elements</em>, <em>duration=2</em>, <em>delay=1.5</em>, <em>pos_delay=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/sequence.html#Sequence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.sequence.Sequence" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 <p class="rubric">Methods</p>
 <table border="1" class="longtable docutils">
@@ -1662,173 +261,39 @@ overrides the normal algorithm (and the outcome is cached).</p>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#birdears.interval.IntervalBase.return_simple" title="birdears.interval.IntervalBase.return_simple"><code class="xref py py-obj docutils literal"><span class="pre">return_simple</span></code></a>(keys)</td>
-<td>This method returns a dict with only the values passed to <cite>keys</cite>.</td>
+<tr class="row-odd"><td><a class="reference internal" href="#birdears.sequence.Sequence.append" title="birdears.sequence.Sequence.append"><code class="xref py py-obj docutils literal"><span class="pre">append</span></code></a>(elements)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#birdears.sequence.Sequence.extend" title="birdears.sequence.Sequence.extend"><code class="xref py py-obj docutils literal"><span class="pre">extend</span></code></a>(elements)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#birdears.sequence.Sequence.play" title="birdears.sequence.Sequence.play"><code class="xref py py-obj docutils literal"><span class="pre">play</span></code></a>()</td>
+<td></td>
 </tr>
 </tbody>
 </table>
-<dl class="attribute">
-<dt id="birdears.interval.IntervalBase.__class__">
-<code class="descname">__class__</code><a class="headerlink" href="#birdears.interval.IntervalBase.__class__" title="Permalink to this definition">¶</a></dt>
-<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">type</span></code></p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.IntervalBase.__delattr__">
-<code class="descname">__delattr__</code><a class="headerlink" href="#birdears.interval.IntervalBase.__delattr__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Implement delattr(self, name).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.IntervalBase.__dict__">
-<code class="descname">__dict__</code><em class="property"> = mappingproxy({'__module__': 'birdears.interval', '__init__': &lt;function IntervalBase.__init__&gt;, 'return_simple': &lt;function IntervalBase.return_simple&gt;, '__dict__': &lt;attribute '__dict__' of 'IntervalBase' objects&gt;, '__weakref__': &lt;attribute '__weakref__' of 'IntervalBase' objects&gt;, '__doc__': None})</em><a class="headerlink" href="#birdears.interval.IntervalBase.__dict__" title="Permalink to this definition">¶</a></dt>
+<dl class="method">
+<dt id="birdears.sequence.Sequence.append">
+<code class="descname">append</code><span class="sig-paren">(</span><em>elements</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/sequence.html#Sequence.append"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.sequence.Sequence.append" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="birdears.interval.IntervalBase.__dir__">
-<code class="descname">__dir__</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; list<a class="headerlink" href="#birdears.interval.IntervalBase.__dir__" title="Permalink to this definition">¶</a></dt>
-<dd><p>default dir() implementation</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.IntervalBase.__eq__">
-<code class="descname">__eq__</code><a class="headerlink" href="#birdears.interval.IntervalBase.__eq__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self==value.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.interval.IntervalBase.__format__">
-<code class="descname">__format__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.interval.IntervalBase.__format__" title="Permalink to this definition">¶</a></dt>
-<dd><p>default object formatter</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.IntervalBase.__ge__">
-<code class="descname">__ge__</code><a class="headerlink" href="#birdears.interval.IntervalBase.__ge__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self&gt;=value.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.IntervalBase.__getattribute__">
-<code class="descname">__getattribute__</code><a class="headerlink" href="#birdears.interval.IntervalBase.__getattribute__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return getattr(self, name).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.IntervalBase.__gt__">
-<code class="descname">__gt__</code><a class="headerlink" href="#birdears.interval.IntervalBase.__gt__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self&gt;value.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.IntervalBase.__hash__">
-<code class="descname">__hash__</code><a class="headerlink" href="#birdears.interval.IntervalBase.__hash__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return hash(self).</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.interval.IntervalBase.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/interval.html#IntervalBase.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.interval.IntervalBase.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Base class for interval classes.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.interval.IntervalBase.__init_subclass__">
-<code class="descname">__init_subclass__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.interval.IntervalBase.__init_subclass__" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method is called when a class is subclassed.</p>
-<p>The default implementation does nothing. It may be
-overridden to extend subclasses.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.IntervalBase.__le__">
-<code class="descname">__le__</code><a class="headerlink" href="#birdears.interval.IntervalBase.__le__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self&lt;=value.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.IntervalBase.__lt__">
-<code class="descname">__lt__</code><a class="headerlink" href="#birdears.interval.IntervalBase.__lt__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self&lt;value.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.IntervalBase.__module__">
-<code class="descname">__module__</code><em class="property"> = 'birdears.interval'</em><a class="headerlink" href="#birdears.interval.IntervalBase.__module__" title="Permalink to this definition">¶</a></dt>
+<dt id="birdears.sequence.Sequence.extend">
+<code class="descname">extend</code><span class="sig-paren">(</span><em>elements</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/sequence.html#Sequence.extend"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.sequence.Sequence.extend" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="birdears.interval.IntervalBase.__ne__">
-<code class="descname">__ne__</code><a class="headerlink" href="#birdears.interval.IntervalBase.__ne__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return self!=value.</p>
-</dd></dl>
-
 <dl class="method">
-<dt id="birdears.interval.IntervalBase.__new__">
-<code class="descname">__new__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.interval.IntervalBase.__new__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create and return a new object.  See help(type) for accurate signature.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.interval.IntervalBase.__reduce__">
-<code class="descname">__reduce__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.interval.IntervalBase.__reduce__" title="Permalink to this definition">¶</a></dt>
-<dd><p>helper for pickle</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.interval.IntervalBase.__reduce_ex__">
-<code class="descname">__reduce_ex__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.interval.IntervalBase.__reduce_ex__" title="Permalink to this definition">¶</a></dt>
-<dd><p>helper for pickle</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.IntervalBase.__repr__">
-<code class="descname">__repr__</code><a class="headerlink" href="#birdears.interval.IntervalBase.__repr__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return repr(self).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.IntervalBase.__setattr__">
-<code class="descname">__setattr__</code><a class="headerlink" href="#birdears.interval.IntervalBase.__setattr__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Implement setattr(self, name, value).</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.interval.IntervalBase.__sizeof__">
-<code class="descname">__sizeof__</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#birdears.interval.IntervalBase.__sizeof__" title="Permalink to this definition">¶</a></dt>
-<dd><p>size of object in memory, in bytes</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.IntervalBase.__str__">
-<code class="descname">__str__</code><a class="headerlink" href="#birdears.interval.IntervalBase.__str__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return str(self).</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.interval.IntervalBase.__subclasshook__">
-<code class="descname">__subclasshook__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.interval.IntervalBase.__subclasshook__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Abstract classes can override this to customize issubclass().</p>
-<p>This is invoked early on by abc.ABCMeta.__subclasscheck__().
-It should return True, False or NotImplemented.  If it returns
-NotImplemented, the normal algorithm is used.  Otherwise, it
-overrides the normal algorithm (and the outcome is cached).</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.IntervalBase.__weakref__">
-<code class="descname">__weakref__</code><a class="headerlink" href="#birdears.interval.IntervalBase.__weakref__" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of weak references to the object (if defined)</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.interval.IntervalBase.return_simple">
-<code class="descname">return_simple</code><span class="sig-paren">(</span><em>keys</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/interval.html#IntervalBase.return_simple"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.interval.IntervalBase.return_simple" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method returns a dict with only the values passed to <cite>keys</cite>.</p>
-</dd></dl>
+<dt id="birdears.sequence.Sequence.play">
+<code class="descname">play</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/sequence.html#Sequence.play"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.sequence.Sequence.play" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
+</div>
+<div class="section" id="module-birdears">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-birdears" title="Permalink to this headline">¶</a></h2>
+<p>BirdEars provides facilities to musical ear training exercises.</p>
+</div>
 </div>
 <div class="section" id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
@@ -1847,7 +312,18 @@ overrides the normal algorithm (and the outcome is cached).</p>
         <div class="sphinxsidebarwrapper">
   <h3><a href="#">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Welcome to BirdEars&#8217;s documentation!</a><ul>
+<li><a class="reference internal" href="#">Welcome to BirdEars&#8217;s documentation!</a></li>
+<li><a class="reference internal" href="#birdears-package">birdears package</a><ul>
+<li><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li><a class="reference internal" href="#module-birdears.interval">birdears.interval module</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-birdears.questionbase">birdears.questionbase module</a></li>
+<li><a class="reference internal" href="#module-birdears.scale">birdears.scale module</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-birdears.sequence">birdears.sequence module</a></li>
+<li><a class="reference internal" href="#module-birdears">Module contents</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>

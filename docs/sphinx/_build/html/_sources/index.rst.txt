@@ -11,29 +11,58 @@ Welcome to BirdEars's documentation!
    :maxdepth: 4
    :caption: Contents:
 
-.. automodule:: birdears
-        :members:
-        :undoc-members:
-        :show-inheritance:
-        :inherited-members:
-        :private-members:
-        :special-members:
 
-.. automodule:: birdears.scale
-        :members:
-        :undoc-members:
-        :show-inheritance:
-        :inherited-members:
-        :private-members:
-        :special-members:
+birdears package
+================
+
+Subpackages
+-----------
+
+.. toctree::
+
+    birdears.questions
+
+
+birdears\.interval module
+-------------------------
 
 .. automodule:: birdears.interval
-        :members:
-        :undoc-members:
-        :show-inheritance:
-        :inherited-members:
-        :private-members:
-        :special-members:
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+birdears\.questionbase module
+-----------------------------
+
+.. automodule:: birdears.questionbase
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+birdears\.scale module
+----------------------
+
+.. automodule:: birdears.scale
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+birdears\.sequence module
+-------------------------
+
+.. automodule:: birdears.sequence
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: birdears
+    :members:
+    :undoc-members:
+    :show-inheritance:
 
 
 

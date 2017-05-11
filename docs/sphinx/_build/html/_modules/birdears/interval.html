@@ -64,11 +64,11 @@ from .scale import ChromaticScale
 
 <div class="viewcode-block" id="IntervalBase"><a class="viewcode-back" href="../../index.html#birdears.interval.IntervalBase">[docs]</a>class IntervalBase:
 
-<div class="viewcode-block" id="IntervalBase.__init__"><a class="viewcode-back" href="../../index.html#birdears.interval.IntervalBase.__init__">[docs]</a>    def __init__(self):
+    def __init__(self):
         &quot;&quot;&quot;Base class for interval classes.
         &quot;&quot;&quot;
 
-        pass</div>
+        pass
 
 <div class="viewcode-block" id="IntervalBase.return_simple"><a class="viewcode-back" href="../../index.html#birdears.interval.IntervalBase.return_simple">[docs]</a>    def return_simple(self, keys):
         &quot;&quot;&quot;This method returns a dict with only the values passed to `keys`.
@@ -84,7 +84,7 @@ from .scale import ChromaticScale
 
 <div class="viewcode-block" id="DiatonicInterval"><a class="viewcode-back" href="../../index.html#birdears.interval.DiatonicInterval">[docs]</a>class DiatonicInterval(IntervalBase):
 
-<div class="viewcode-block" id="DiatonicInterval.__init__"><a class="viewcode-back" href="../../index.html#birdears.interval.DiatonicInterval.__init__">[docs]</a>    def __init__(self, mode, tonic, octave, n_octaves=None, descending=None):
+    def __init__(self, mode, tonic, octave, n_octaves=None, descending=None):
         &quot;&quot;&quot;Chooses a diatonic interval for the question.
 
         Parameters
@@ -165,12 +165,12 @@ from .scale import ChromaticScale
         })
 
         for item, value in interval_data.items():
-            setattr(self, item, value)</div></div>
+            setattr(self, item, value)</div>
 
 
 <div class="viewcode-block" id="ChromaticInterval"><a class="viewcode-back" href="../../index.html#birdears.interval.ChromaticInterval">[docs]</a>class ChromaticInterval(IntervalBase):
 
-<div class="viewcode-block" id="ChromaticInterval.__init__"><a class="viewcode-back" href="../../index.html#birdears.interval.ChromaticInterval.__init__">[docs]</a>    def __init__(self, mode, tonic, octave, n_octaves=None, descending=None):
+    def __init__(self, mode, tonic, octave, n_octaves=None, descending=None):
         &quot;&quot;&quot;Chooses a chromatic interval for the question.
 
         Parameters
@@ -260,7 +260,7 @@ from .scale import ChromaticScale
         })
 
         for item, value in interval_data.items():
-            setattr(self, item, value)</div></div>
+            setattr(self, item, value)</div>
 </pre></div>
 
           </div>
@@ -272,8 +272,6 @@ from .scale import ChromaticScale
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
   <li><a href="../index.html">Module code</a><ul>
-  <li><a href="../birdears.html">birdears</a><ul>
-  </ul></li>
   </ul></li>
   </ul></li>
 </ul>

@@ -59,13 +59,13 @@ from collections import deque
 
 
 <div class="viewcode-block" id="ScaleBase"><a class="viewcode-back" href="../../index.html#birdears.scale.ScaleBase">[docs]</a>class ScaleBase:
-<div class="viewcode-block" id="ScaleBase.__init__"><a class="viewcode-back" href="../../index.html#birdears.scale.ScaleBase.__init__">[docs]</a>    def __init__(self):
-        pass</div>
+    def __init__(self):
+        pass
 
 <div class="viewcode-block" id="ScaleBase.get_triad"><a class="viewcode-back" href="../../index.html#birdears.scale.ScaleBase.get_triad">[docs]</a>    def get_triad(self, degree):
         pass</div>
 
-<div class="viewcode-block" id="ScaleBase._append_octave_to_scale"><a class="viewcode-back" href="../../index.html#birdears.scale.ScaleBase._append_octave_to_scale">[docs]</a>    def _append_octave_to_scale(self, scale, starting_octave, descending=None):
+    def _append_octave_to_scale(self, scale, starting_octave, descending=None):
         &quot;&quot;&quot;Inserts scientific octave number to the notes on a the given scale.
         &quot;&quot;&quot;
 
@@ -93,9 +93,9 @@ from collections import deque
 
             scale_with_octave.append(&quot;{}{}&quot;.format(note, current_octave))
 
-        return scale_with_octave</div>
+        return scale_with_octave
 
-<div class="viewcode-block" id="ScaleBase._get_chromatic_idx"><a class="viewcode-back" href="../../index.html#birdears.scale.ScaleBase._get_chromatic_idx">[docs]</a>    def _get_chromatic_idx(self, note):
+    def _get_chromatic_idx(self, note):
         &quot;&quot;&quot;Gets the chromatic index, ie., the distance in semitones of a given
         note from C.
         &quot;&quot;&quot;
@@ -111,7 +111,7 @@ from collections import deque
         else:
             note_index = notes3.index(note)
 
-        return note_index</div></div>
+        return note_index</div>
 
 
 <div class="viewcode-block" id="DiatonicScale"><a class="viewcode-back" href="../../index.html#birdears.scale.DiatonicScale">[docs]</a>class DiatonicScale(ScaleBase):
@@ -123,7 +123,7 @@ from collections import deque
         the array of notes representing the scale.
     &quot;&quot;&quot;
 
-<div class="viewcode-block" id="DiatonicScale.__init__"><a class="viewcode-back" href="../../index.html#birdears.scale.DiatonicScale.__init__">[docs]</a>    def __init__(self, tonic, mode=None, octave=None, n_octaves=None,
+    def __init__(self, tonic, mode=None, octave=None, n_octaves=None,
                  descending=None, dont_repeat_tonic=None):
         &quot;&quot;&quot;Returns a diatonic scale from tonic and mode.
 
@@ -168,11 +168,11 @@ from collections import deque
                                                     starting_octave=octave,
                                                     descending=descending)
 
-        self.scale = diatonic</div></div>
+        self.scale = diatonic</div>
 
 
 <div class="viewcode-block" id="ChromaticScale"><a class="viewcode-back" href="../../index.html#birdears.scale.ChromaticScale">[docs]</a>class ChromaticScale(ScaleBase):
-<div class="viewcode-block" id="ChromaticScale.__init__"><a class="viewcode-back" href="../../index.html#birdears.scale.ChromaticScale.__init__">[docs]</a>    def __init__(self, tonic, octave=None, n_octaves=None, descending=None,
+    def __init__(self, tonic, octave=None, n_octaves=None, descending=None,
                  dont_repeat_tonic=None):
         &quot;&quot;&quot;Returns a chromatic scale from tonic.
 
@@ -220,7 +220,7 @@ from collections import deque
                                                      starting_octave=octave,
                                                      descending=descending)
 
-        self.scale = chromatic</div></div>
+        self.scale = chromatic</div>
 </pre></div>
 
           </div>
@@ -232,8 +232,6 @@ from collections import deque
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
   <li><a href="../index.html">Module code</a><ul>
-  <li><a href="../birdears.html">birdears</a><ul>
-  </ul></li>
   </ul></li>
   </ul></li>
 </ul>

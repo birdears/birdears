@@ -161,7 +161,7 @@ div.sphinxsidebarwrapper p.blurb {
 
 div.sphinxsidebar h3,
 div.sphinxsidebar h4 {
-    font-family: 'Old Standard TT', 'Roboto Condensed', 'Garamond', 'Georgia', serif;
+    font-family: 'Roboto Condensed', 'Garamond', 'Georgia', serif;
     color: #444;
     //font-size: 24px;
     font-weight: normal;
@@ -238,8 +238,8 @@ div.body h3,
 div.body h4,
 div.body h5,
 div.body h6 {
-    font-family: 'Old Standard TT', 'Roboto Condensed', 'Garamond', 'Georgia', serif;
-    font-weight: normal;
+    font-family: 'Roboto Condensed', 'Garamond', 'Georgia', serif;
+    font-weight: bold;
     margin: 30px 0px 10px 0px;
     padding: 0;
 }
@@ -279,7 +279,7 @@ div.admonition tt.xref, div.admonition code.xref, div.admonition a tt {
 }
 
 div.admonition p.admonition-title {
-    font-family: 'Old Standard TT', 'Roboto Condensed', 'Garamond', 'Georgia', serif;
+    font-family: 'Roboto Condensed', 'Garamond', 'Georgia', serif;
     font-weight: normal;
     font-size: 24px;
     margin: 0 0 10px 0;
@@ -389,6 +389,7 @@ tt.descname, tt.descclassname, code.descname, code.descclassname {
 
 tt.descname, code.descname {
     padding-right: 0.08em;
+    font-size: 120%;
 }
 
 img.screenshot {
@@ -461,7 +462,7 @@ table.footnote td {
 }
 
 dl {
-    margin: 0;
+    margin: 20px 0 0 0;
     padding: 0;
 }
 

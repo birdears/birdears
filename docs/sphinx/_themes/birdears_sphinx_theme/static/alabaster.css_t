@@ -239,7 +239,7 @@ div.body h4,
 div.body h5,
 div.body h6 {
     font-family: {{ theme_head_font_family }};
-    font-weight: normal;
+    font-weight: bold;
     margin: 30px 0px 10px 0px;
     padding: 0;
 }
@@ -389,6 +389,7 @@ tt.descname, tt.descclassname, code.descname, code.descclassname {
 
 tt.descname, code.descname {
     padding-right: 0.08em;
+    font-size: 120%;
 }
 
 img.screenshot {
@@ -461,7 +462,7 @@ table.footnote td {
 }
 
 dl {
-    margin: 0;
+    margin: 20px 0 0 0;
     padding: 0;
 }
 
