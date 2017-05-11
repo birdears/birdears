@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>birdears &#8212; BirdEars 0.1.0 documentation</title>
+    <title>birdears &#8212; birdears 0.1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -54,15 +54,15 @@
 <span></span>#!/usr/bin/env python3
 
 &quot;&quot;&quot;
-BirdEars provides facilities to development of musical ear training
-exercises.
+BirdEars provides facilities to musical ear training exercises.
 &quot;&quot;&quot;
 
-import subprocess
-import time
-from random import randrange, choice
-from collections import deque
+# import subprocess
+# import time
+# from random import randrange, choice
+# from collections import deque
 # from math import floor
+
 
 DEBUG = True
 
@@ -153,26 +153,27 @@ KEYBOARD_INDICES = {
 
 MAX_SEMITONES_RESOLVE_BELOW = 5
 
+
 # http://code.activestate.com/recipes/134892/
-class _Getch:
+<div class="viewcode-block" id="_Getch"><a class="viewcode-back" href="../index.html#birdears._Getch">[docs]</a>class _Getch:
     &quot;&quot;&quot;Gets a single character from standard input.  Does not echo to the
 screen.&quot;&quot;&quot;
 
-    def __init__(self):
+<div class="viewcode-block" id="_Getch.__init__"><a class="viewcode-back" href="../index.html#birdears._Getch.__init__">[docs]</a>    def __init__(self):
         try:
             self.impl = _GetchWindows()
         except ImportError:
-            self.impl = _GetchUnix()
+            self.impl = _GetchUnix()</div>
 
-    def __call__(self): return self.impl()
+<div class="viewcode-block" id="_Getch.__call__"><a class="viewcode-back" href="../index.html#birdears._Getch.__call__">[docs]</a>    def __call__(self): return self.impl()</div></div>
 
 
-class _GetchUnix:
-    def __init__(self):
+<div class="viewcode-block" id="_GetchUnix"><a class="viewcode-back" href="../index.html#birdears._GetchUnix">[docs]</a>class _GetchUnix:
+<div class="viewcode-block" id="_GetchUnix.__init__"><a class="viewcode-back" href="../index.html#birdears._GetchUnix.__init__">[docs]</a>    def __init__(self):
         import tty
-        import sys
+        import sys</div>
 
-    def __call__(self):
+<div class="viewcode-block" id="_GetchUnix.__call__"><a class="viewcode-back" href="../index.html#birdears._GetchUnix.__call__">[docs]</a>    def __call__(self):
         import sys
         import tty
         import termios
@@ -183,181 +184,16 @@ class _GetchUnix:
             ch = sys.stdin.read(1)
         finally:
             termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
-        return ch
+        return ch</div></div>
 
 
-class _GetchWindows:
-    def __init__(self):
+<div class="viewcode-block" id="_GetchWindows"><a class="viewcode-back" href="../index.html#birdears._GetchWindows">[docs]</a>class _GetchWindows:
+<div class="viewcode-block" id="_GetchWindows.__init__"><a class="viewcode-back" href="../index.html#birdears._GetchWindows.__init__">[docs]</a>    def __init__(self):
+        import msvcrt</div>
+
+<div class="viewcode-block" id="_GetchWindows.__call__"><a class="viewcode-back" href="../index.html#birdears._GetchWindows.__call__">[docs]</a>    def __call__(self):
         import msvcrt
-
-    def __call__(self):
-        import msvcrt
-        return msvcrt.getch()
-
-# this is for debugging
-
-
-<div class="viewcode-block" id="print_stuff"><a class="viewcode-back" href="../index.html#birdears.print_stuff">[docs]</a>def print_stuff(question):
-    padd = &quot;─&quot; * 30  # vim: insert mode, ^vu2500
-    print(&quot;&quot;&quot;
-{}
-
-Tonic: {} | Note(Int): {} |  Interval: {} | Semitones(Int): {} |
-Is Note Chromatic: {} |
-Scale: {}, Octave: {}
-Resolution: {},
-Chromatic: {}
-Concrete Scale: {} | Chroma Concrete: {}
-{}
-&quot;&quot;&quot;.format(
-        padd,
-        question.concrete_tonic,
-        question.interval[&#39;note_and_octave&#39;],
-        &quot;─&quot;.join(INTERVALS[question.interval[&#39;semitones&#39;]][1:]),
-        question.interval[&#39;semitones&#39;],
-        question.interval[&#39;is_chromatic&#39;],
-        &quot;─&quot;.join(question.scales[&#39;diatonic&#39;].scale),
-        &quot;{}-{}&quot;.format(question.octave, question.octave + 1),
-        &quot;─&quot;.join(question.resolution_pitch),
-        &quot;─&quot;.join(question.scales[&#39;chromatic&#39;].scale),
-        &quot;─&quot;.join(question.scales[&#39;diatonic_pitch&#39;].scale),
-        &quot;─&quot;.join(question.scales[&#39;chromatic_pitch&#39;].scale),
-        padd,
-    ))</div>
-
-<div class="viewcode-block" id="print_stuff_dictation"><a class="viewcode-back" href="../index.html#birdears.print_stuff_dictation">[docs]</a>def print_stuff_dictation(question):
-    padd = &quot;─&quot; * 30  # vim: insert mode, ^vu2500
-    print(&quot;&quot;&quot;
-{}
-
-Tonic: {} | Note(Int): {} |  Interval: {} | Semitones(Int): {} |
-Scale: {}, Octave: {}
-Chromatic: {}
-Concrete Scale: {} | Chroma Concrete: {}
-{}
-&quot;&quot;&quot;.format(
-        padd,
-        question.concrete_tonic,
-        &quot;─&quot;.join(map(str, question.question_phrase)),
-        &quot;─&quot;.join([INTERVALS[n][1] for n in question.question_phrase]),
-        &quot;─&quot;.join([str(n) for n in question.question_phrase]),
-        &quot;─&quot;.join(question.scales[&#39;diatonic&#39;].scale),
-        &quot;{}-{}&quot;.format(question.octave, question.octave + 1),
-        &quot;─&quot;.join(question.scales[&#39;chromatic&#39;].scale),
-        &quot;─&quot;.join(question.scales[&#39;diatonic_pitch&#39;].scale),
-        &quot;─&quot;.join(question.scales[&#39;chromatic_pitch&#39;].scale),
-        padd,
-    ))</div>
-
-dictate_notes = 4
-
-
-<div class="viewcode-block" id="main"><a class="viewcode-back" href="../index.html#birdears.main">[docs]</a>def main():
-    from .questions.melodicdictation import MelodicDictationQuestion
-    getch = _Getch()
-
-    new_question_bit = True
-
-    while True:
-        if new_question_bit is True:
-
-            new_question_bit = False
-
-            input_keys = []
-            # question = MelodicDictateQuestion(mode=&#39;major&#39;,descending=True)
-            question = MelodicDictationQuestion(mode=&#39;major&#39;)
-            # question = HarmonicIntervalQuestion(mode=&#39;major&#39;)
-            # question = HarmonicIntervalQuestion(mode=&#39;major&#39;)
-
-            # debug
-            if DEBUG:
-                print_stuff_dictation(question)
-
-            question.play_question()
-
-        user_input = getch()
-
-        # any response input interval from valid keys
-        if user_input in question.keyboard_index and user_input != &#39; &#39;:  # spc
-
-            input_keys.append(user_input)
-            print(user_input, end=&#39;&#39;)
-
-            if len(input_keys) == dictate_notes:
-                # response = question.check_question(user_input)
-                response = question.check_question(input_keys)
-
-                if response[&#39;is_correct&#39;]:
-                    # print(&quot;Correct!.. it is “{}”&quot;.\
-                    # format( response[&#39;user_interval&#39;]))
-                    print(&quot;Correct! It was semitones {}&quot;.
-                          format(&quot;-&quot;.join(map(str, question.question_phrase))))
-                else:
-                    print(&quot;It is incorrect...&quot;)
-                    print(&quot;You replied semitones {} but the correct is &quot;
-                          &quot;semitones {}&quot;.format(response[&#39;user_semitones&#39;],
-                                                question.question_phrase))
-
-                question.play_resolution()
-
-                new_question_bit = True
-            # else:
-            #    input_keys.append(user_input)
-            #    print(user_input,)
-
-        # q - quit
-        elif user_input == &#39;q&#39;:
-            exit(0)
-
-        # r - repeat interval
-        elif user_input == &#39;r&#39;:
-            question.play_question()</div>
-
-# wait_keys = 1
-# def main():
-#     from .harmonicintervalquestion import HarmonicIntervalQuestion
-#     from .melodicintervalquestion import MelodicIntervalQuestion
-#     getch = _Getch()
-#
-#     new_question_bit = True
-#
-#     while True:
-#         if new_question_bit is True:
-#
-#             new_question_bit = False
-#
-#             input_keys = []
-#             #question = HarmonicIntervalQuestion(mode=&#39;major&#39;)
-#             question = MelodicIntervalQuestion(mode=&#39;major&#39;,descending=True)
-#
-#             # debug
-#             if DEBUG:
-#                 print_stuff(question)
-#
-#             question.play_question()
-#
-#         user_input = getch()
-#
-#         if user_input in question.keyboard_index:
-#             response = question.check_question(user_input)
-#
-#             if response[&#39;is_correct&#39;]:
-#                 print(&quot;Correct!.. it is “{}”&quot;.\
-#                 format( response[&#39;user_interval&#39;]))
-#             else:
-#                 print(&quot;It is incorrect... correct is {}.. you said {}&quot;.format(question.interval[&#39;data&#39;],response[&#39;user_interval&#39;]))
-#
-#             question.play_resolution()
-#
-#             new_question_bit = True
-#
-#         # q - quit
-#         elif user_input == &#39;q&#39;:
-#             exit(0)
-#
-#         # r - repeat interval
-#         elif user_input == &#39;r&#39;:
-#             question.play_question()
+        return msvcrt.getch()</div></div>
 </pre></div>
 
           </div>

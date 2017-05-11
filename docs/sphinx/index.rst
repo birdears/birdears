@@ -8,24 +8,34 @@ Welcome to BirdEars's documentation!
 ====================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
    :caption: Contents:
-
 
 .. automodule:: birdears
         :members:
         :undoc-members:
         :show-inheritance:
+        :inherited-members:
+        :private-members:
+        :special-members:
+
+.. automodule:: birdears.scale
+        :members:
+        :undoc-members:
+        :show-inheritance:
+        :inherited-members:
+        :private-members:
+        :special-members:
 
 .. automodule:: birdears.interval
         :members:
         :undoc-members:
         :show-inheritance:
+        :inherited-members:
+        :private-members:
+        :special-members:
 
-.. autoclass:: birdears.scale.Scale
-        :members:
-        :undoc-members:
-        :show-inheritance:
+
 
 Indices and tables
 ==================

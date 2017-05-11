@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>birdears.interval &#8212; BirdEars 0.1.0 documentation</title>
+    <title>birdears.interval &#8212; birdears 0.1.0 documentation</title>
     
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -59,13 +59,33 @@ from . import CHROMATIC_TYPE
 from . import INTERVALS
 from . import MAX_SEMITONES_RESOLVE_BELOW
 
-from .scale import Scale
+from .scale import ChromaticScale
 
-<div class="viewcode-block" id="Interval"><a class="viewcode-back" href="../../index.html#birdears.interval.Interval">[docs]</a>class Interval:
 
-    def __init__(self, mode, tonic, octave, chromatic=None, n_octaves=None,
-                 descending=None):
-        &quot;&quot;&quot;Chooses a chromatic interval for the question.
+<div class="viewcode-block" id="IntervalBase"><a class="viewcode-back" href="../../index.html#birdears.interval.IntervalBase">[docs]</a>class IntervalBase:
+
+<div class="viewcode-block" id="IntervalBase.__init__"><a class="viewcode-back" href="../../index.html#birdears.interval.IntervalBase.__init__">[docs]</a>    def __init__(self):
+        &quot;&quot;&quot;Base class for interval classes.
+        &quot;&quot;&quot;
+
+        pass</div>
+
+<div class="viewcode-block" id="IntervalBase.return_simple"><a class="viewcode-back" href="../../index.html#birdears.interval.IntervalBase.return_simple">[docs]</a>    def return_simple(self, keys):
+        &quot;&quot;&quot;This method returns a dict with only the values passed to `keys`.
+        &quot;&quot;&quot;
+
+        simple_dict = dict()
+
+        for key in keys:
+            simple_dict.update({key: getattr(self, key)})
+
+        return simple_dict</div></div>
+
+
+<div class="viewcode-block" id="DiatonicInterval"><a class="viewcode-back" href="../../index.html#birdears.interval.DiatonicInterval">[docs]</a>class DiatonicInterval(IntervalBase):
+
+<div class="viewcode-block" id="DiatonicInterval.__init__"><a class="viewcode-back" href="../../index.html#birdears.interval.DiatonicInterval.__init__">[docs]</a>    def __init__(self, mode, tonic, octave, n_octaves=None, descending=None):
+        &quot;&quot;&quot;Chooses a diatonic interval for the question.
 
         Parameters
         ----------
@@ -77,13 +97,13 @@ from .scale import Scale
             Scientific octave of the scale (eg.: 4)
         interval : str
             Not implemented. The interval.
-        chromatic: bool
-            Can have chromatic notes? (eg.: F# in a key of C; default: false)
         n_octaves : int
             Maximum number os octaves (eg. 2)
         descending : bool
-            Is the interval dewcending? (default: false)
+            Is the interval descending? (default: false)
         &quot;&quot;&quot;
+
+        super(DiatonicInterval, self).__init__()
 
         global DIATONIC_MODES, CHROMATIC_TYPE, MAX_SEMITONES_RESOLVE_BELOW
         global INTERVALS
@@ -106,37 +126,116 @@ from .scale import Scale
                 chromatic_network.extend([semitones + 12 * i for semitones in
                                           CHROMATIC_TYPE[1:]])
 
-        if not chromatic:
-            semitones = choice(step_network)
+        semitones = choice(step_network)
+
+        chromatic_scale = ChromaticScale(tonic=tonic, octave=None,
+                                         n_octaves=n_octaves,
+                                         descending=descending)
+
+        chromatic_scale_pitch = ChromaticScale(tonic=tonic, octave=octave,
+                                               n_octaves=n_octaves,
+                                               descending=descending)
+
+        octaves, chromatic_offset = divmod(semitones, 12)
+        distance = dict(octaves=octaves, semitones=chromatic_offset)
+
+        note_name = &quot;{}&quot;.format(chromatic_scale.scale[semitones])
+        note_and_octave = &quot;{}&quot;.format(chromatic_scale_pitch.scale[semitones])
+
+        diatonic_index = diatonic_mode.index(chromatic_offset)
+
+        if not descending:
+            interval_octave = int(octave) + distance[&#39;octaves&#39;]
         else:
-            semitones = choice(chromatic_network)
+            interval_octave = int(octave) - distance[&#39;octaves&#39;]
 
-        chromatic_scale = Scale(tonic=tonic, octave=None, chromatic=True,
-                                n_octaves=n_octaves, descending=descending)
-
-        chromatic_scale_pitch = Scale(tonic=tonic, octave=octave,
-                                      chromatic=True, n_octaves=n_octaves,
-                                      descending=descending)
-
-        distance = dict({
-            &#39;octaves&#39;: 0 if (semitones &lt; 12) else int(semitones / 12),
-            &#39;semitones&#39;: semitones if (semitones &lt; 12) else int(semitones % 12)
+        # these will be written to self
+        interval_data = dict({
+            &#39;tonic_octave&#39;: octave,
+            &#39;interval_octave&#39;: interval_octave,
+            &#39;chromatic_offset&#39;: chromatic_offset,
+            &#39;note_and_octave&#39;: note_and_octave,
+            &#39;note_name&#39;: note_name,
+            &#39;semitones&#39;: semitones,
+            &#39;is_chromatic&#39;: False,
+            &#39;is_descending&#39;: False if not descending else True,
+            &#39;diatonic_index&#39;: diatonic_index,
+            &#39;distance&#39;: distance,
+            &#39;data&#39;: INTERVALS[semitones],
         })
-        # chromatic_offset = semitones if semitones &lt; 12 else semitones % 12
-        chromatic_offset = distance[&#39;semitones&#39;]
+
+        for item, value in interval_data.items():
+            setattr(self, item, value)</div></div>
+
+
+<div class="viewcode-block" id="ChromaticInterval"><a class="viewcode-back" href="../../index.html#birdears.interval.ChromaticInterval">[docs]</a>class ChromaticInterval(IntervalBase):
+
+<div class="viewcode-block" id="ChromaticInterval.__init__"><a class="viewcode-back" href="../../index.html#birdears.interval.ChromaticInterval.__init__">[docs]</a>    def __init__(self, mode, tonic, octave, n_octaves=None, descending=None):
+        &quot;&quot;&quot;Chooses a chromatic interval for the question.
+
+        Parameters
+        ----------
+        mode : str
+            Diatonic mode for the interval. (eg.: &#39;major&#39; or &#39;minor&#39;)
+        tonic : str
+            Tonic of the scale. (eg.: &#39;Bb&#39;)
+        octave : str
+            Scientific octave of the scale (eg.: 4)
+        interval : str
+            Not implemented. The interval.
+        chromatic: bool
+            Can have chromatic notes? (eg.: F# in a key of C; default: false)
+        n_octaves : int
+            Maximum number os octaves (eg. 2)
+        descending : bool
+            Is the interval descending? (default: false)
+        &quot;&quot;&quot;
+
+        super(ChromaticInterval, self).__init__()
+
+        global DIATONIC_MODES, CHROMATIC_TYPE, MAX_SEMITONES_RESOLVE_BELOW
+        global INTERVALS
+
+        diatonic_mode = list(DIATONIC_MODES[mode])
+        chromatic_network = list(CHROMATIC_TYPE)
+
+        if descending:
+            # TODO: use list( map(lambda x: 12-x, diatonic_mode) ) here
+            diatonic_mode = [12 - x for x in diatonic_mode]
+            diatonic_mode.reverse()
+
+        step_network = diatonic_mode
+
+        # FIXME: please refactore this with method signature n_octaves=1:
+        if n_octaves:
+            for i in range(1, n_octaves):
+                step_network.extend([semitones + 12 * i for semitones in
+                                     diatonic_mode[1:]])
+                chromatic_network.extend([semitones + 12 * i for semitones in
+                                          CHROMATIC_TYPE[1:]])
+
+        semitones = choice(chromatic_network)
+
+        chromatic_scale = ChromaticScale(tonic=tonic, octave=None,
+                                         n_octaves=n_octaves,
+                                         descending=descending)
+
+        chromatic_scale_pitch = ChromaticScale(tonic=tonic, octave=octave,
+                                               n_octaves=n_octaves,
+                                               descending=descending)
+
+        octaves, chromatic_offset = divmod(semitones, 12)
+        distance = dict(octaves=octaves, semitones=chromatic_offset)
 
         note_name = &quot;{}&quot;.format(chromatic_scale.scale[semitones])
         note_and_octave = &quot;{}&quot;.format(chromatic_scale_pitch.scale[semitones])
 
         is_chromatic = True if chromatic_offset not in diatonic_mode else False
 
-        if is_chromatic:
-            # here we are rounding it to the next diatonic degree, to insert
-            # it after:
-            if chromatic_offset &lt;= MAX_SEMITONES_RESOLVE_BELOW:
-                diatonic_index = diatonic_mode.index(chromatic_offset - 1)
-            else:
-                diatonic_index = diatonic_mode.index(chromatic_offset + 1)
+        if is_chromatic and chromatic_offset &lt;= MAX_SEMITONES_RESOLVE_BELOW:
+            diatonic_index = diatonic_mode.index(chromatic_offset - 1)
+        elif is_chromatic and chromatic_offset &gt; MAX_SEMITONES_RESOLVE_BELOW:
+            diatonic_index = diatonic_mode.index(chromatic_offset + 1)
         else:
             diatonic_index = diatonic_mode.index(chromatic_offset)
 
@@ -145,7 +244,8 @@ from .scale import Scale
         else:
             interval_octave = int(octave) - distance[&#39;octaves&#39;]
 
-        self.interval_data = dict({
+        # these will be written to self
+        interval_data = dict({
             &#39;tonic_octave&#39;: octave,
             &#39;interval_octave&#39;: interval_octave,
             &#39;chromatic_offset&#39;: chromatic_offset,
@@ -157,7 +257,10 @@ from .scale import Scale
             &#39;diatonic_index&#39;: diatonic_index,
             &#39;distance&#39;: distance,
             &#39;data&#39;: INTERVALS[semitones],
-        })</div>
+        })
+
+        for item, value in interval_data.items():
+            setattr(self, item, value)</div></div>
 </pre></div>
 
           </div>

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>birdears.scale &#8212; BirdEars 0.1.0 documentation</title>
+    <title>birdears.scale &#8212; birdears 0.1.0 documentation</title>
     
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -57,8 +57,65 @@ from . import notes3
 
 from collections import deque
 
-<div class="viewcode-block" id="Scale"><a class="viewcode-back" href="../../index.html#birdears.scale.Scale">[docs]</a>class Scale:
-    &quot;&quot;&quot;Builds a musical scale.
+
+<div class="viewcode-block" id="ScaleBase"><a class="viewcode-back" href="../../index.html#birdears.scale.ScaleBase">[docs]</a>class ScaleBase:
+<div class="viewcode-block" id="ScaleBase.__init__"><a class="viewcode-back" href="../../index.html#birdears.scale.ScaleBase.__init__">[docs]</a>    def __init__(self):
+        pass</div>
+
+<div class="viewcode-block" id="ScaleBase.get_triad"><a class="viewcode-back" href="../../index.html#birdears.scale.ScaleBase.get_triad">[docs]</a>    def get_triad(self, degree):
+        pass</div>
+
+<div class="viewcode-block" id="ScaleBase._append_octave_to_scale"><a class="viewcode-back" href="../../index.html#birdears.scale.ScaleBase._append_octave_to_scale">[docs]</a>    def _append_octave_to_scale(self, scale, starting_octave, descending=None):
+        &quot;&quot;&quot;Inserts scientific octave number to the notes on a the given scale.
+        &quot;&quot;&quot;
+
+        next_octave = 1 if not descending else -1
+
+        scale_with_octave = []
+        changing_note = None
+
+        current_octave = starting_octave
+
+        if not descending:
+            for closest in [&#39;C&#39;, &#39;C#&#39;, &#39;Db&#39;]:
+                if closest in scale:
+                    changing_note = closest
+                    break
+        else:
+            for closest in [&#39;B&#39;, &#39;Bb&#39;, &#39;A#&#39;]:
+                if closest in scale:
+                    changing_note = closest
+                    break
+
+        for idx, note in enumerate(scale):
+            if idx &gt; 0 and note == changing_note:
+                current_octave += next_octave
+
+            scale_with_octave.append(&quot;{}{}&quot;.format(note, current_octave))
+
+        return scale_with_octave</div>
+
+<div class="viewcode-block" id="ScaleBase._get_chromatic_idx"><a class="viewcode-back" href="../../index.html#birdears.scale.ScaleBase._get_chromatic_idx">[docs]</a>    def _get_chromatic_idx(self, note):
+        &quot;&quot;&quot;Gets the chromatic index, ie., the distance in semitones of a given
+        note from C.
+        &quot;&quot;&quot;
+
+        global notes2, notes3
+
+        # use_flat = -1 if (note == &#39;F&#39; or &#39;b&#39; in note) else 0
+
+        # FIXME
+        if note in notes2:
+            note_index = notes2.index(note)
+        # elif note in notes3:
+        else:
+            note_index = notes3.index(note)
+
+        return note_index</div></div>
+
+
+<div class="viewcode-block" id="DiatonicScale"><a class="viewcode-back" href="../../index.html#birdears.scale.DiatonicScale">[docs]</a>class DiatonicScale(ScaleBase):
+    &quot;&quot;&quot;Builds a musical diatonic scale.
 
     Attributes
     ----------
@@ -66,24 +123,57 @@ from collections import deque
         the array of notes representing the scale.
     &quot;&quot;&quot;
 
-    def __init__(self, tonic, mode=None, octave=None, n_octaves=None,
-                 chromatic=None, descending=None, dont_repeat_tonic=None):
-        if not chromatic:
-            scale = self.get_diatonic(tonic=tonic, mode=mode, octave=octave,
-                                      n_octaves=n_octaves,
-                                      descending=descending,
-                                      dont_repeat_tonic=dont_repeat_tonic)
-        else:
-            scale = self.get_chromatic(tonic=tonic, octave=octave,
-                                       n_octaves=n_octaves,
-                                       descending=descending,
-                                       dont_repeat_tonic=dont_repeat_tonic)
+<div class="viewcode-block" id="DiatonicScale.__init__"><a class="viewcode-back" href="../../index.html#birdears.scale.DiatonicScale.__init__">[docs]</a>    def __init__(self, tonic, mode=None, octave=None, n_octaves=None,
+                 descending=None, dont_repeat_tonic=None):
+        &quot;&quot;&quot;Returns a diatonic scale from tonic and mode.
 
-        self.scale = scale
-        self.chromatic = chromatic
+        Parameters
+        ----------
+        tonic : str
+            The note which the scale will be built upon.
+        mode : str
+            The mode the scale will be built upon. (&#39;major&#39; or &#39;minor&#39;)
+        octave : int
+            The scientific octave the scale will be built upon.
+        n_octaves : int
+            The number of octaves the scale will contain.
+        descending : bool
+            Whether the scale is descending.
+        dont_repeat_tonic : bool
+            Whether to skip appending the last note (octave) to the scale.
+        &quot;&quot;&quot;
 
-<div class="viewcode-block" id="Scale.get_chromatic"><a class="viewcode-back" href="../../index.html#birdears.scale.Scale.get_chromatic">[docs]</a>    def get_chromatic(self, tonic, octave=None, n_octaves=None,
-                      descending=None, dont_repeat_tonic=None):
+        super(DiatonicScale, self).__init__()
+
+        global DIATONIC_MODES
+
+        diatonic_mode = DIATONIC_MODES[mode]
+
+        chromatic = ChromaticScale(tonic).scale
+
+        diatonic = [chromatic[semitones] for semitones in diatonic_mode[:-1]]
+
+        if n_octaves:
+            diatonic = diatonic * n_octaves
+
+        # FIXME: check if this works on descending
+        if not dont_repeat_tonic:
+            diatonic.append(chromatic[diatonic_mode[-1]])
+
+        if descending:
+            diatonic.reverse()
+
+        if octave:
+            diatonic = self._append_octave_to_scale(scale=diatonic,
+                                                    starting_octave=octave,
+                                                    descending=descending)
+
+        self.scale = diatonic</div></div>
+
+
+<div class="viewcode-block" id="ChromaticScale"><a class="viewcode-back" href="../../index.html#birdears.scale.ChromaticScale">[docs]</a>class ChromaticScale(ScaleBase):
+<div class="viewcode-block" id="ChromaticScale.__init__"><a class="viewcode-back" href="../../index.html#birdears.scale.ChromaticScale.__init__">[docs]</a>    def __init__(self, tonic, octave=None, n_octaves=None, descending=None,
+                 dont_repeat_tonic=None):
         &quot;&quot;&quot;Returns a chromatic scale from tonic.
 
         Parameters
@@ -97,8 +187,10 @@ from collections import deque
         descending : bool
             Whether the scale is descending.
         dont_repeat_tonic : bool
-            Whethe to skip appending the last note (octave) to the scale.
+            Whether to skip appending the last note (octave) to the scale.
         &quot;&quot;&quot;
+
+        super(ChromaticScale, self).__init__()
 
         global notes3, notes2
 
@@ -128,104 +220,7 @@ from collections import deque
                                                      starting_octave=octave,
                                                      descending=descending)
 
-        return chromatic</div>
-
-<div class="viewcode-block" id="Scale.get_diatonic"><a class="viewcode-back" href="../../index.html#birdears.scale.Scale.get_diatonic">[docs]</a>    def get_diatonic(self, tonic, mode, octave=None, n_octaves=None,
-                     descending=None, dont_repeat_tonic=None):
-        &quot;&quot;&quot;Returns a diatonic scale from tonic and mode.
-
-        Parameters
-        ----------
-        tonic : str
-            The note which the scale will be built upon.
-        mode : str
-            The mode the scale will be built upon. (&#39;major&#39; or &#39;minor&#39;)
-        octave : int
-            The scientific octave the scale will be built upon.
-        n_octaves : int
-            The number of octaves the scale will contain.
-        descending : bool
-            Whether the scale is descending.
-        dont_repeat_tonic : bool
-            Whether to skip appending the last note (octave) to the scale.
-        &quot;&quot;&quot;
-
-        global DIATONIC_MODES
-
-        diatonic_mode = DIATONIC_MODES[mode]
-
-        chromatic = self.get_chromatic(tonic)
-
-        diatonic = [chromatic[semitones] for semitones in diatonic_mode[:-1]]
-
-        if n_octaves:
-            diatonic = diatonic * n_octaves
-
-        # FIXME: check if this works on descending
-        if not dont_repeat_tonic:
-            diatonic.append(chromatic[diatonic_mode[-1]])
-
-        if descending:
-            diatonic.reverse()
-
-        if octave:
-            diatonic = self._append_octave_to_scale(scale=diatonic,
-                                                    starting_octave=octave,
-                                                    descending=descending)
-
-        return diatonic</div>
-
-<div class="viewcode-block" id="Scale.get_triad"><a class="viewcode-back" href="../../index.html#birdears.scale.Scale.get_triad">[docs]</a>    def get_triad(self, degree):
-        pass</div>
-
-    def _append_octave_to_scale(self, scale, starting_octave, descending=None):
-        &quot;&quot;&quot;Inserts scientific octave number to the notes on a the given scale.
-        &quot;&quot;&quot;
-
-        next_octave = 1 if not descending else -1
-
-        scale_with_octave = []
-        changing_note = None
-
-        current_octave = starting_octave
-
-        if not descending:
-            for closest in [&#39;C&#39;, &#39;C#&#39;, &#39;Db&#39;]:
-                if closest in scale:
-                    changing_note = closest
-                    break
-        else:
-            for closest in [&#39;B&#39;, &#39;Bb&#39;, &#39;A#&#39;]:
-                if closest in scale:
-                    changing_note = closest
-                    break
-
-        for idx, note in enumerate(scale):
-            if idx &gt; 0 and note == changing_note:
-                current_octave += next_octave
-
-            scale_with_octave.append(&quot;{}{}&quot;.format(note, current_octave))
-
-        return scale_with_octave
-
-    def _get_chromatic_idx(self, note):
-        &quot;&quot;&quot;Gets the chromatic index, ie., the distance in semitones of a given
-        note from C.
-        &quot;&quot;&quot;
-
-        global notes2, notes3
-
-        # use_flat = -1 if (note == &#39;F&#39; or &#39;b&#39; in note) else 0
-
-        # FIXME
-        if note in notes2:
-            note_index = notes2.index(note)
-        elif note in notes3:
-            note_index = notes3.index(note)
-        else:
-            note_index = False
-
-        return note_index</div>
+        self.scale = chromatic</div></div>
 </pre></div>
 
           </div>
