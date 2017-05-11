@@ -1,3 +1,5 @@
+"__Main__ docs are here."
+
 from . import click
 
 from . import _Getch
@@ -27,7 +29,6 @@ Concrete Scale: {} | Chroma Concrete: {}
         question.interval.is_chromatic,
         "─".join(question.scales['diatonic'].scale),
         "{}-{}".format(question.octave, question.octave + 1),
-        # "─".join(question.resolution_pitch),
         "─".join(question.scales['chromatic'].scale),
         "─".join(question.scales['diatonic_pitch'].scale),
         "─".join(question.scales['chromatic_pitch'].scale),
@@ -73,10 +74,9 @@ def cli():
 @click.option('-c', '--chromatic', is_flag=True)
 @click.option('-n', '--n_octaves', type=click.IntRange(1, 2), default=None)
 def melodic(*args, **kwargs):
-    #print(args)
-    #print(kwargs)
     kwargs.update({'exercise': 'melodic'})
     ear(**kwargs)
+
 
 @cli.command()
 @click.option('-m', '--mode', type=click.Choice(['major', 'minor']), default='major')
@@ -86,10 +86,9 @@ def melodic(*args, **kwargs):
 @click.option('-c', '--chromatic', is_flag=True)
 @click.option('-n', '--n_octaves', type=click.IntRange(1, 2), default=None)
 def harmonic(*args, **kwargs):
-    #print(args)
-    #print(kwargs)
     kwargs.update({'exercise': 'harmonic'})
     ear(**kwargs)
+
 
 @cli.command()
 @click.option('-m', '--mode', type=click.Choice(['major', 'minor']), default='major')
@@ -101,25 +100,14 @@ def harmonic(*args, **kwargs):
 @click.option('-c', '--chromatic', is_flag=True)
 @click.option('-n', '--n_octaves', type=click.IntRange(1, 2), default=None)
 def dictation(*args, **kwargs):
-    #print(args)
-    #print(kwargs)
     kwargs.update({'exercise': 'dictation'})
     ear(**kwargs)
-
-# @cli.command()
-# def harmonic():
-#     ear(exercise='harmonic')
-#
-#
-# @cli.command()
-# def dictation():
-#     ear(exercise='dictation')
 
 
 #def ear(exercise,mode,tonic,octave,descending,chromatic,n_octaves):
 def ear(exercise, **kwargs):
-    print(exercise)
-    print(kwargs)
+    #print(exercise)
+    #print(kwargs)
 
     if exercise == 'dictation':
         from .questions.melodicdictation import MelodicDictationQuestion
@@ -173,7 +161,6 @@ def ear(exercise, **kwargs):
                 response = question.check_question(input_keys)
 
                 if response['is_correct']:
-                    print("Correct!..")
                     print("Correct! It is {}".
                           format(response['correct_response_str']))
                 else:

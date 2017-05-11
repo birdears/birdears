@@ -94,13 +94,29 @@ sudo pacman -S python sox
 
 We ask for people who wants to contribute for the code to look to the musical side first,
 
+#### Checking code style
+
+We use [pep8](https://pypi.python.org/pypi/pep8) to check code formatting:
+
+```
+pep8 birdears --exclude=click
+```
+
 ### Module Documentation
 
-We are using Sphinx to generate documenttion for this module. The sphinx resource
+We are using Sphinx to generate documentation for this module. The sphinx resource
 files are in the `docs/sphinx/` directory.
 
 We are beginning to use [numpydoc](https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt)
 to document the library.
+
+#### Runing apidoc
+
+We want to exclude third-party module `click` when generating automatic documentation for the package:
+
+```
+sphinx-apidoc -o docs/sphinx/_apidoc birdears/ birdears/click/
+```
 
 ### End-user Documentation
 
@@ -123,7 +139,26 @@ Out tests are in repo's `tests/` directory.
 
 You are welcome to use [github issues](https://github.com/iacchus/birdears/issues) or [gitter.im](https://gitter.im/birdears/Lobby) to ask for, or give ideia for new features.
 
-## Misc documentation
+## Other stuff
+
+We are using pandoc to convert README from .md to .rst:
+
+```
+pandoc --from=markdown --to=rst README.md -o README.rst
+```
+
+To generate package for PyPI:
+
+```
+python setup.py sdist
+python setup.py bdist_wheel
+```
+
+To publish to PyPI:
+
+```
+twine upload dist/*
+```
 
 [PEP 8](https://pep8.org) — the Style Guide for Python Code
 

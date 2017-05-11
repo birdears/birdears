@@ -29,7 +29,7 @@ class MelodicDictationQuestion(QuestionBase):
                          n_octaves=n_octaves, *args, **kwargs)
 
         self.question_duration = 2
-        self.question_delay = 0.5
+        self.question_delay = 1
         self.question_pos_delay = 0
 
         self.resolution_duration = 2.5
