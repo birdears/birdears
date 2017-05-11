@@ -66,26 +66,65 @@ def cli():
 
 
 @cli.command()
-def melodic():
-    ear(exercise='melodic')
-
+@click.option('-m', '--mode', type=click.Choice(['major', 'minor']), default='major')
+@click.option('-t', '--tonic', type=str, default=None)
+@click.option('-o', '--octave', type=click.IntRange(2, 5), default=None)
+@click.option('-d', '--descending', is_flag=True)
+@click.option('-c', '--chromatic', is_flag=True)
+@click.option('-n', '--n_octaves', type=click.IntRange(1, 2), default=None)
+def melodic(*args, **kwargs):
+    #print(args)
+    #print(kwargs)
+    kwargs.update({'exercise': 'melodic'})
+    ear(**kwargs)
 
 @cli.command()
-def harmonic():
-    ear(exercise='harmonic')
-
+@click.option('-m', '--mode', type=click.Choice(['major', 'minor']), default='major')
+@click.option('-t', '--tonic', type=str, default=None)
+@click.option('-o', '--octave', type=click.IntRange(2, 5), default=None)
+@click.option('-d', '--descending', is_flag=True)
+@click.option('-c', '--chromatic', is_flag=True)
+@click.option('-n', '--n_octaves', type=click.IntRange(1, 2), default=None)
+def harmonic(*args, **kwargs):
+    #print(args)
+    #print(kwargs)
+    kwargs.update({'exercise': 'harmonic'})
+    ear(**kwargs)
 
 @cli.command()
-def dictation():
-    ear(exercise='dictation')
+@click.option('-m', '--mode', type=click.Choice(['major', 'minor']), default='major')
+@click.option('-i', '--max_intervals', type=click.IntRange(2, 12), default=3)
+@click.option('-x', '--n_notes', type=click.IntRange(3, 10), default=4)
+@click.option('-t', '--tonic', type=str, default=None)
+@click.option('-o', '--octave', type=click.IntRange(2, 5), default=None)
+@click.option('-d', '--descending', is_flag=True)
+@click.option('-c', '--chromatic', is_flag=True)
+@click.option('-n', '--n_octaves', type=click.IntRange(1, 2), default=None)
+def dictation(*args, **kwargs):
+    #print(args)
+    #print(kwargs)
+    kwargs.update({'exercise': 'dictation'})
+    ear(**kwargs)
+
+# @cli.command()
+# def harmonic():
+#     ear(exercise='harmonic')
+#
+#
+# @cli.command()
+# def dictation():
+#     ear(exercise='dictation')
 
 
-def ear(exercise):
+#def ear(exercise,mode,tonic,octave,descending,chromatic,n_octaves):
+def ear(exercise, **kwargs):
     print(exercise)
+    print(kwargs)
 
     if exercise == 'dictation':
         from .questions.melodicdictation import MelodicDictationQuestion
-        dictate_notes = 4
+        #dictate_notes = 4
+        dictate_notes = kwargs['n_notes']
         MYCLASS = MelodicDictationQuestion
         MYPRINT = print_stuff_dictation
 
@@ -112,7 +151,7 @@ def ear(exercise):
 
             input_keys = []
             # question = MelodicDictateQuestion(mode='major',descending=True)
-            question = MYCLASS(mode='major')
+            question = MYCLASS(**kwargs)
             # question = HarmonicIntervalQuestion(mode='major')
             # question = HarmonicIntervalQuestion(mode='major')
 

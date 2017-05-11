@@ -68,54 +68,69 @@
 <dt id="birdears.interval.ChromaticInterval">
 <em class="property">class </em><code class="descclassname">birdears.interval.</code><code class="descname">ChromaticInterval</code><span class="sig-paren">(</span><em>mode</em>, <em>tonic</em>, <em>octave</em>, <em>n_octaves=None</em>, <em>descending=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/interval.html#ChromaticInterval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.interval.ChromaticInterval" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#birdears.interval.IntervalBase" title="birdears.interval.IntervalBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.interval.IntervalBase</span></code></a></p>
-<p class="rubric">Methods</p>
-<table border="1" class="longtable docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
+<dl class="method">
+<dt id="birdears.interval.ChromaticInterval.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>mode</em>, <em>tonic</em>, <em>octave</em>, <em>n_octaves=None</em>, <em>descending=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/interval.html#ChromaticInterval.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.interval.ChromaticInterval.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Chooses a chromatic interval for the question.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">return_simple</span></code>(keys)</td>
-<td>This method returns a dict with only the values passed to <cite>keys</cite>.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>mode</strong> (<em>str</em>) &#8211; Diatonic mode for the interval. (eg.: &#8216;major&#8217; or &#8216;minor&#8217;)</li>
+<li><strong>tonic</strong> (<em>str</em>) &#8211; Tonic of the scale. (eg.: &#8216;Bb&#8217;)</li>
+<li><strong>octave</strong> (<em>str</em>) &#8211; Scientific octave of the scale (eg.: 4)</li>
+<li><strong>interval</strong> (<em>str</em>) &#8211; Not implemented. The interval.</li>
+<li><strong>chromatic</strong> (<em>bool</em>) &#8211; Can have chromatic notes? (eg.: F# in a key of C; default: false)</li>
+<li><strong>n_octaves</strong> (<em>int</em>) &#8211; Maximum number os octaves (eg. 2)</li>
+<li><strong>descending</strong> (<em>bool</em>) &#8211; Is the interval descending? (default: false)</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
 <dt id="birdears.interval.DiatonicInterval">
 <em class="property">class </em><code class="descclassname">birdears.interval.</code><code class="descname">DiatonicInterval</code><span class="sig-paren">(</span><em>mode</em>, <em>tonic</em>, <em>octave</em>, <em>n_octaves=None</em>, <em>descending=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/interval.html#DiatonicInterval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.interval.DiatonicInterval" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#birdears.interval.IntervalBase" title="birdears.interval.IntervalBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.interval.IntervalBase</span></code></a></p>
-<p class="rubric">Methods</p>
-<table border="1" class="longtable docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
+<dl class="method">
+<dt id="birdears.interval.DiatonicInterval.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>mode</em>, <em>tonic</em>, <em>octave</em>, <em>n_octaves=None</em>, <em>descending=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/interval.html#DiatonicInterval.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.interval.DiatonicInterval.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Chooses a diatonic interval for the question.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">return_simple</span></code>(keys)</td>
-<td>This method returns a dict with only the values passed to <cite>keys</cite>.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>mode</strong> (<em>str</em>) &#8211; Diatonic mode for the interval. (eg.: &#8216;major&#8217; or &#8216;minor&#8217;)</li>
+<li><strong>tonic</strong> (<em>str</em>) &#8211; Tonic of the scale. (eg.: &#8216;Bb&#8217;)</li>
+<li><strong>octave</strong> (<em>str</em>) &#8211; Scientific octave of the scale (eg.: 4)</li>
+<li><strong>interval</strong> (<em>str</em>) &#8211; Not implemented. The interval.</li>
+<li><strong>n_octaves</strong> (<em>int</em>) &#8211; Maximum number os octaves (eg. 2)</li>
+<li><strong>descending</strong> (<em>bool</em>) &#8211; Is the interval descending? (default: false)</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
 <dt id="birdears.interval.IntervalBase">
 <em class="property">class </em><code class="descclassname">birdears.interval.</code><code class="descname">IntervalBase</code><a class="reference internal" href="_modules/birdears/interval.html#IntervalBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.interval.IntervalBase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
-<p class="rubric">Methods</p>
-<table border="1" class="longtable docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#birdears.interval.IntervalBase.return_simple" title="birdears.interval.IntervalBase.return_simple"><code class="xref py py-obj docutils literal"><span class="pre">return_simple</span></code></a>(keys)</td>
-<td>This method returns a dict with only the values passed to <cite>keys</cite>.</td>
-</tr>
-</tbody>
-</table>
+<dl class="method">
+<dt id="birdears.interval.IntervalBase.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/interval.html#IntervalBase.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.interval.IntervalBase.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for interval classes.</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="birdears.interval.IntervalBase.return_simple">
 <code class="descname">return_simple</code><span class="sig-paren">(</span><em>keys</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/interval.html#IntervalBase.return_simple"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.interval.IntervalBase.return_simple" title="Permalink to this definition">¶</a></dt>
@@ -134,24 +149,6 @@
 <p>Base Class to be subclassed for Question classes.</p>
 <p>This class implements attributes and routines to be used in Question
 subclasses.</p>
-<p class="rubric">Methods</p>
-<table border="1" class="longtable docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#birdears.questionbase.QuestionBase.check_question" title="birdears.questionbase.QuestionBase.check_question"><code class="xref py py-obj docutils literal"><span class="pre">check_question</span></code></a>()</td>
-<td>This method should be overwritten by the question subclasses.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#birdears.questionbase.QuestionBase.make_question" title="birdears.questionbase.QuestionBase.make_question"><code class="xref py py-obj docutils literal"><span class="pre">make_question</span></code></a>()</td>
-<td>This method should be overwritten by the question subclasses.</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#birdears.questionbase.QuestionBase.make_resolution" title="birdears.questionbase.QuestionBase.make_resolution"><code class="xref py py-obj docutils literal"><span class="pre">make_resolution</span></code></a>()</td>
-<td>This method should be overwritten by the question subclasses.</td>
-</tr>
-</tbody>
-</table>
 <dl class="method">
 <dt id="birdears.questionbase.QuestionBase.check_question">
 <code class="descname">check_question</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questionbase.html#QuestionBase.check_question"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questionbase.QuestionBase.check_question" title="Permalink to this definition">¶</a></dt>
@@ -179,18 +176,27 @@ subclasses.</p>
 <dt id="birdears.scale.ChromaticScale">
 <em class="property">class </em><code class="descclassname">birdears.scale.</code><code class="descname">ChromaticScale</code><span class="sig-paren">(</span><em>tonic</em>, <em>octave=None</em>, <em>n_octaves=None</em>, <em>descending=None</em>, <em>dont_repeat_tonic=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/scale.html#ChromaticScale"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.scale.ChromaticScale" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#birdears.scale.ScaleBase" title="birdears.scale.ScaleBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.scale.ScaleBase</span></code></a></p>
-<p class="rubric">Methods</p>
-<table border="1" class="longtable docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
+<dl class="method">
+<dt id="birdears.scale.ChromaticScale.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>tonic</em>, <em>octave=None</em>, <em>n_octaves=None</em>, <em>descending=None</em>, <em>dont_repeat_tonic=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/scale.html#ChromaticScale.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.scale.ChromaticScale.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a chromatic scale from tonic.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_triad</span></code>(degree)</td>
-<td></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>tonic</strong> (<em>str</em>) &#8211; The note which the scale will be built upon.</li>
+<li><strong>octave</strong> (<em>int</em>) &#8211; The scientific octave the scale will be built upon.</li>
+<li><strong>n_octaves</strong> (<em>int</em>) &#8211; The number of octaves the scale will contain.</li>
+<li><strong>descending</strong> (<em>bool</em>) &#8211; Whether the scale is descending.</li>
+<li><strong>dont_repeat_tonic</strong> (<em>bool</em>) &#8211; Whether to skip appending the last note (octave) to the scale.</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -198,48 +204,42 @@ subclasses.</p>
 <em class="property">class </em><code class="descclassname">birdears.scale.</code><code class="descname">DiatonicScale</code><span class="sig-paren">(</span><em>tonic</em>, <em>mode=None</em>, <em>octave=None</em>, <em>n_octaves=None</em>, <em>descending=None</em>, <em>dont_repeat_tonic=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/scale.html#DiatonicScale"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.scale.DiatonicScale" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#birdears.scale.ScaleBase" title="birdears.scale.ScaleBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.scale.ScaleBase</span></code></a></p>
 <p>Builds a musical diatonic scale.</p>
-<p class="rubric">Attributes</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-odd"><td>scale</td>
-<td>(array_type) the array of notes representing the scale.</td>
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><a class="reference internal" href="#module-birdears.scale" title="birdears.scale"><strong>scale</strong></a> (<em>array_type</em>) &#8211; the array of notes representing the scale.</td>
 </tr>
 </tbody>
 </table>
-<p class="rubric">Methods</p>
-<table border="1" class="longtable docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
+<dl class="method">
+<dt id="birdears.scale.DiatonicScale.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>tonic</em>, <em>mode=None</em>, <em>octave=None</em>, <em>n_octaves=None</em>, <em>descending=None</em>, <em>dont_repeat_tonic=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/scale.html#DiatonicScale.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.scale.DiatonicScale.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a diatonic scale from tonic and mode.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_triad</span></code>(degree)</td>
-<td></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>tonic</strong> (<em>str</em>) &#8211; The note which the scale will be built upon.</li>
+<li><strong>mode</strong> (<em>str</em>) &#8211; The mode the scale will be built upon. (&#8216;major&#8217; or &#8216;minor&#8217;)</li>
+<li><strong>octave</strong> (<em>int</em>) &#8211; The scientific octave the scale will be built upon.</li>
+<li><strong>n_octaves</strong> (<em>int</em>) &#8211; The number of octaves the scale will contain.</li>
+<li><strong>descending</strong> (<em>bool</em>) &#8211; Whether the scale is descending.</li>
+<li><strong>dont_repeat_tonic</strong> (<em>bool</em>) &#8211; Whether to skip appending the last note (octave) to the scale.</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
 <dt id="birdears.scale.ScaleBase">
 <em class="property">class </em><code class="descclassname">birdears.scale.</code><code class="descname">ScaleBase</code><a class="reference internal" href="_modules/birdears/scale.html#ScaleBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.scale.ScaleBase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
-<p class="rubric">Methods</p>
-<table border="1" class="longtable docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#birdears.scale.ScaleBase.get_triad" title="birdears.scale.ScaleBase.get_triad"><code class="xref py py-obj docutils literal"><span class="pre">get_triad</span></code></a>(degree)</td>
-<td></td>
-</tr>
-</tbody>
-</table>
 <dl class="method">
 <dt id="birdears.scale.ScaleBase.get_triad">
 <code class="descname">get_triad</code><span class="sig-paren">(</span><em>degree</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/scale.html#ScaleBase.get_triad"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.scale.ScaleBase.get_triad" title="Permalink to this definition">¶</a></dt>
@@ -254,24 +254,26 @@ subclasses.</p>
 <dt id="birdears.sequence.Sequence">
 <em class="property">class </em><code class="descclassname">birdears.sequence.</code><code class="descname">Sequence</code><span class="sig-paren">(</span><em>elements</em>, <em>duration=2</em>, <em>delay=1.5</em>, <em>pos_delay=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/sequence.html#Sequence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.sequence.Sequence" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
-<p class="rubric">Methods</p>
-<table border="1" class="longtable docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
+<dl class="method">
+<dt id="birdears.sequence.Sequence.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>elements</em>, <em>duration=2</em>, <em>delay=1.5</em>, <em>pos_delay=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/sequence.html#Sequence.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.sequence.Sequence.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sequence of notes or chords.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#birdears.sequence.Sequence.append" title="birdears.sequence.Sequence.append"><code class="xref py py-obj docutils literal"><span class="pre">append</span></code></a>(elements)</td>
-<td></td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#birdears.sequence.Sequence.extend" title="birdears.sequence.Sequence.extend"><code class="xref py py-obj docutils literal"><span class="pre">extend</span></code></a>(elements)</td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#birdears.sequence.Sequence.play" title="birdears.sequence.Sequence.play"><code class="xref py py-obj docutils literal"><span class="pre">play</span></code></a>()</td>
-<td></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>elements</strong> (<em>array_type</em>) &#8211; List of elements in this sequence. (notes or chords)</li>
+<li><strong>duration</strong> (<em>float</em>) &#8211; Default duratin playing time for each element in the sequence.</li>
+<li><strong>delay</strong> (<em>float</em>) &#8211; Default waiting time to play the next element in the sequence.</li>
+<li><strong>pos_delay</strong> (<em>float</em>) &#8211; Waiting time after playing the last element in the sequence.</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
 <dl class="method">
 <dt id="birdears.sequence.Sequence.append">
 <code class="descname">append</code><span class="sig-paren">(</span><em>elements</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/sequence.html#Sequence.append"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.sequence.Sequence.append" title="Permalink to this definition">¶</a></dt>
@@ -315,13 +317,9 @@ subclasses.</p>
 <li><a class="reference internal" href="#">Welcome to BirdEars&#8217;s documentation!</a></li>
 <li><a class="reference internal" href="#birdears-package">birdears package</a><ul>
 <li><a class="reference internal" href="#subpackages">Subpackages</a></li>
-<li><a class="reference internal" href="#module-birdears.interval">birdears.interval module</a><ul>
-</ul>
-</li>
+<li><a class="reference internal" href="#module-birdears.interval">birdears.interval module</a></li>
 <li><a class="reference internal" href="#module-birdears.questionbase">birdears.questionbase module</a></li>
-<li><a class="reference internal" href="#module-birdears.scale">birdears.scale module</a><ul>
-</ul>
-</li>
+<li><a class="reference internal" href="#module-birdears.scale">birdears.scale module</a></li>
 <li><a class="reference internal" href="#module-birdears.sequence">birdears.sequence module</a></li>
 <li><a class="reference internal" href="#module-birdears">Module contents</a></li>
 </ul>
