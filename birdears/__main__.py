@@ -1,4 +1,4 @@
-import click
+import birdears.click
 
 from . import _Getch
 from . import INTERVALS
