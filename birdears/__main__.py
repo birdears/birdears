@@ -150,6 +150,8 @@ def ear(exercise):
         elif user_input == 'r':
             question.question.play()
 
+
 if __name__ == "__main__":
-    #    main()
+    # well it is..
+
     cli()
