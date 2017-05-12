@@ -13,7 +13,7 @@ from . import DEBUG
 from os import popen
 COLS = int(popen('tput cols', 'r').read())
 
-def center_text(text, sep=True):
+def center_text(text, sep=True, nl=0):
     linelist = list(text.splitlines())
 
     # gets the biggest line
@@ -35,6 +35,8 @@ def center_text(text, sep=True):
 
     divider = spacing + ('─' * int(biggest_line_size)) # unicode 0x2500
     text += divider
+
+    text += nl * '\n'
 
     return text
 
@@ -137,17 +139,20 @@ def dictation(*args, **kwargs):
 
 def print_response(response):
 
+    text_kwargs = dict(
+        user_resp = response['user_response_str'],
+        correct_resp = response['correct_response_str']
+    )
+
     # TODO: make a class for response
     if response['is_correct']:
-        print("Correct! It is {}".format(response['correct_response_str']))
+        response_text = "Correct! It is {correct_resp}".format(**text_kwargs)
 
     else:
-        print("It is incorrect..."
-              "You replied {} but the correct is {}"
-              .format(response['user_response_str'],
-                      response['correct_response_str']))
+        response_text = "It is incorrect...You replied {user_resp} but the"\
+                        " correct is {correct_resp}".format(**text_kwargs)
 
-    return response['is_correct']
+    print(center_text(response_text,nl=2))
 
 def print_question(question):
 
@@ -158,7 +163,7 @@ def print_question(question):
     if question.is_descending:
         diatonic_index = [12 - x for x in diatonic_index]
         #diatonic_index.reverse()
-        #scale.reverse
+        scale.reverse()
 
     intervals = [INTERVALS[i][1] for i in diatonic_index]
 
@@ -183,7 +188,7 @@ Intervals {intervals}
 Scale     {scale}
 """.format(**text_kwargs)
 
-    print(center_text(question_text))
+    print(center_text(question_text,nl=1))
     #print(question_text)
 
 def ear(exercise, **kwargs):

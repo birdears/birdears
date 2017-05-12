@@ -80,7 +80,8 @@ DIATONIC_MODES = {
 #  s   f g   j k   eg.:      a#   c# d#    f# g#
 # z x c v b n m    -------  a  b c  d  e  f  g
 
-# FIXME: these should be inverted/reverted for descending scales:
+# TODO: these should be inverted/reverted for descending scales:
+
 KEYBOARD_INDICES = {
     'diatonic': {
         'minor': 'z xc v bn m Z XC V BN M',

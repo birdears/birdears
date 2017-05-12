@@ -40,7 +40,7 @@ class QuestionBase:
 
         self.is_descending = descending
         self.is_chromatic = chromatic
-        
+
         # self.octave = octave if octave else randrange(3, 5)
         self.octave = octave or randrange(3, 5)
 

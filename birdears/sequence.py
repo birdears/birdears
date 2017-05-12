@@ -32,11 +32,17 @@ class Sequence:
 
     def play(self):
 
-        for element in self.elements:
+        last_idx = len(self.elements) - 1
+
+        for cur_idx,element in enumerate(self.elements):
+
+            # lets leave the last element's delay for pos_delay:
+            delay = self.delay if cur_idx != last_idx else 0
+
             if type(element) == str:
-                self._play_note(element)
+                self._play_note(element,delay=delay)
             elif type(element) == list:
-                self._play_chord(element)
+                self._play_chord(element, delay=delay)
 
         if self.pos_delay:
             self._wait(self.pos_delay)
@@ -57,10 +63,10 @@ class Sequence:
         if delay:
             self._wait(delay)
 
-    def _play_chord(self, chord):
+    def _play_chord(self, chord, duration=None, delay=None):
 
-        duration = self.duration
-        delay = self.delay
+        duration = self.duration if duration is None else duration
+        delay = self.delay if delay is None else delay
 
         for note in chord:
             self._play_note(note, duration=duration, delay=0)
