@@ -161,17 +161,25 @@ def print_question(question):
     scale = list(question.scales['diatonic'].scale)
 
     mode = list(DIATONIC_MODES[question.mode])
-    #diatonic_index = list().extend([map(lambda x: (o*12)+x, mode) for o in range(question.n_octaves)])
-    diatonic_index = list()
+    #diatonic_index = list(mode[:-1])
+    diatonic_index = list(mode[:-1])
 
-    for o in range(question.n_octaves):
-        diatonic_index.extend([(o*12) + s for s in mode[:-1]])
+    for o in range(1,question.n_octaves):
+        #print(o)
+        #diatonic_index = [((o*12) + s) for s in diatonic_index[:-1]]
+        diatonic_index.extend([x + (12*o) for x in mode])
+
+    #print(diatonic_index)
+    #print(max(diatonic_index))
 
     # FIXME: bug with descending n_octaves=2
     if question.is_descending:
-        diatonic_index = [12 - x for x in diatonic_index]
+        highest = max(diatonic_index)
+        diatonic_index = [highest - x for x in diatonic_index]
         #diatonic_index.reverse()
-        scale.reverse()
+        #scale.reverse()
+
+    # print(diatonic_index)
 
     intervals = [INTERVALS[i][1] for i in diatonic_index]
     keys = [keyboard[i] for i in diatonic_index]

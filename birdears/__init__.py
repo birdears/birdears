@@ -84,12 +84,12 @@ DIATONIC_MODES = {
 
 KEYBOARD_INDICES = {
     'diatonic': {
-        'minor': 'z xc v bn m Z XC V BN M',
-        'major': 'z x cv b n mZ X CV B NM'
+        'minor': 'z xc v bn m Z XC V BN M,',
+        'major': 'z x cv b n mZ X CV B NM,'
     },
     'chromatic': {
-        'minor': "zsxcfvgbnjmkZSXCFVGBNJMK",
-        'major': "zsxdcvgbhnjmZSXDCVGBHNJM",
+        'minor': "zsxcfvgbnjmkZSXCFVGBNJMK,",
+        'major': "zsxdcvgbhnjmZSXDCVGBHNJM,",
     }
 }
 
