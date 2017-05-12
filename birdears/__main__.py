@@ -160,8 +160,14 @@ def print_question(question):
 
     scale = list(question.scales['diatonic'].scale)
 
-    diatonic_index = list(DIATONIC_MODES[question.mode])
+    mode = list(DIATONIC_MODES[question.mode])
+    #diatonic_index = list().extend([map(lambda x: (o*12)+x, mode) for o in range(question.n_octaves)])
+    diatonic_index = list()
 
+    for o in range(question.n_octaves):
+        diatonic_index.extend([(o*12) + s for s in mode[:-1]])
+
+    # FIXME: bug with descending n_octaves=2
     if question.is_descending:
         diatonic_index = [12 - x for x in diatonic_index]
         #diatonic_index.reverse()

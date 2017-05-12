@@ -43,6 +43,7 @@ class QuestionBase:
 
         # self.octave = octave if octave else randrange(3, 5)
         self.octave = octave or randrange(3, 5)
+        self.n_octaves = n_octaves or 1
 
         # FIXME: maybe this should go to __main__
         self.keyboard_index = KEYBOARD_INDICES['chromatic'][self.mode]
