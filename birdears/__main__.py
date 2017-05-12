@@ -156,6 +156,8 @@ def print_response(response):
 
 def print_question(question):
 
+    keyboard = question.keyboard_index
+
     scale = list(question.scales['diatonic'].scale)
 
     diatonic_index = list(DIATONIC_MODES[question.mode])
@@ -166,9 +168,11 @@ def print_question(question):
         scale.reverse()
 
     intervals = [INTERVALS[i][1] for i in diatonic_index]
+    keys = [keyboard[i] for i in diatonic_index]
 
     scale_str = " ".join(map(lambda x: x.ljust(3), scale))
     intervals_str = " ".join(map(lambda x: x.ljust(3), intervals))
+    keys_str = " ".join(map(lambda x: x.ljust(3), keys))
 
     text_kwargs = dict(
         tonic = question.tonic,
@@ -177,15 +181,19 @@ def print_question(question):
         desc = question.is_descending,
         scale = scale_str,
         intervals = intervals_str,
+        keyboard = keys_str,
 
     )
 
     question_text = """\
+
 KEY: {tonic} {mode}
 (chromatic: {chroma}; descending: {desc})
 
 Intervals {intervals}
 Scale     {scale}
+Keyboard  {keyboard}
+
 """.format(**text_kwargs)
 
     print(center_text(question_text,nl=1))
@@ -233,7 +241,7 @@ def ear(exercise, **kwargs):
 
         user_input = getch()
 
-        print(user_input, end='')
+        #print(user_input, end='')
         if user_input in question.keyboard_index and user_input != ' ':  # spc
 
             input_keys.append(user_input)
