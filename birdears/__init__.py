@@ -11,7 +11,8 @@ BirdEars provides facilities to musical ear training exercises.
 # from math import floor
 
 
-DEBUG = True
+#DEBUG = True
+DEBUG = False
 
 # FIXME
 notes2 = ('C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B')

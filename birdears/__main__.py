@@ -3,11 +3,43 @@
 from . import click
 
 from . import _Getch
+
 from . import INTERVALS
+from . import DIATONIC_MODES
+
 from . import DEBUG
+
+
+from os import popen
+COLS = int(popen('tput cols', 'r').read())
+
+def center_text(text, sep=True):
+    linelist = list(text.splitlines())
+
+    # gets the biggest line
+    biggest_line_size = 0
+    for line in linelist:
+        line_lenght = len(line.expandtabs())
+        if line_lenght > biggest_line_size:
+            biggest_line_size = line_lenght
+
+    columns = COLS
+    offset = biggest_line_size / 2
+    perfect_center = columns / 2
+    padsize =  int(perfect_center - offset)
+    spacing = ' ' * padsize # space char
+
+    text = str()
+    for line in linelist:
+        text += (spacing + line + '\n')
+
+    divider = spacing + ('─' * int(biggest_line_size)) # unicode 0x2500
+    text += divider
+
+    return text
+
+
 # this is for debugging
-
-
 def print_stuff(question):
     padd = "─" * 30  # vim: insert mode, ^vu2500
     print("""
@@ -103,11 +135,58 @@ def dictation(*args, **kwargs):
     kwargs.update({'exercise': 'dictation'})
     ear(**kwargs)
 
+def print_response(response):
 
-#def ear(exercise,mode,tonic,octave,descending,chromatic,n_octaves):
+    # TODO: make a class for response
+    if response['is_correct']:
+        print("Correct! It is {}".format(response['correct_response_str']))
+
+    else:
+        print("It is incorrect..."
+              "You replied {} but the correct is {}"
+              .format(response['user_response_str'],
+                      response['correct_response_str']))
+
+    return response['is_correct']
+
+def print_question(question):
+
+    scale = list(question.scales['diatonic'].scale)
+
+    diatonic_index = list(DIATONIC_MODES[question.mode])
+
+    if question.is_descending:
+        diatonic_index = [12 - x for x in diatonic_index]
+        #diatonic_index.reverse()
+        #scale.reverse
+
+    intervals = [INTERVALS[i][1] for i in diatonic_index]
+
+    scale_str = " ".join(map(lambda x: x.ljust(3), scale))
+    intervals_str = " ".join(map(lambda x: x.ljust(3), intervals))
+
+    text_kwargs = dict(
+        tonic = question.tonic,
+        mode = question.mode,
+        chroma = question.is_chromatic,
+        desc = question.is_descending,
+        scale = scale_str,
+        intervals = intervals_str,
+
+    )
+
+    question_text = """\
+KEY: {tonic} {mode}
+(chromatic: {chroma}; descending: {desc})
+
+Intervals {intervals}
+Scale     {scale}
+""".format(**text_kwargs)
+
+    print(center_text(question_text))
+    #print(question_text)
+
 def ear(exercise, **kwargs):
-    #print(exercise)
-    #print(kwargs)
 
     if exercise == 'dictation':
         from .questions.melodicdictation import MelodicDictationQuestion
@@ -138,36 +217,26 @@ def ear(exercise, **kwargs):
             new_question_bit = False
 
             input_keys = []
-            # question = MelodicDictateQuestion(mode='major',descending=True)
             question = MYCLASS(**kwargs)
-            # question = HarmonicIntervalQuestion(mode='major')
-            # question = HarmonicIntervalQuestion(mode='major')
 
             # debug
             if DEBUG:
                 MYPRINT(question)
 
+            print_question(question)
             question.question.play()
 
         user_input = getch()
 
-        # any response input interval from valid keys
+        print(user_input, end='')
         if user_input in question.keyboard_index and user_input != ' ':  # spc
 
             input_keys.append(user_input)
-            print(user_input, end='')
 
             if len(input_keys) == dictate_notes:
-                response = question.check_question(input_keys)
 
-                if response['is_correct']:
-                    print("Correct! It is {}".
-                          format(response['correct_response_str']))
-                else:
-                    print("It is incorrect..."
-                          "You replied {} but the correct is {}"
-                          .format(response['user_response_str'],
-                                  response['correct_response_str']))
+                response = question.check_question(input_keys)
+                print_response(response)
 
                 question.resolution.play()
 
@@ -183,6 +252,5 @@ def ear(exercise, **kwargs):
 
 
 if __name__ == "__main__":
-    # well it is..
 
     cli()

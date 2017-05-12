@@ -36,6 +36,7 @@ class MelodicDictationQuestion(QuestionBase):
         self.resolution_delay = 0.5
         self.resolution_pos_delay = 1
 
+        # FIXME: for chromatics 
         question_intervals = [DiatonicInterval(mode=mode, tonic=self.tonic,
                               octave=self.octave, n_octaves=n_octaves,
                               descending=descending)

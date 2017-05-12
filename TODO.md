@@ -7,6 +7,8 @@
 classes: ~~interval~~ :tada:, cadence and resolution(cadence), maybe ~~scale~~
 (done :tada:.)
 
+make a class for response (by check_question)
+
 ### documentation
 
 write documentation in docstrings using [numydoc](https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt#documenting-classes)
