@@ -94,9 +94,16 @@ Concrete Scale: {} | Chroma Concrete: {}
         padd,
     ))
 
-
+# CONTEXT_SETTINGS = dict(
+#     default_map = {
+#         'info_name': 'teest',
+#         },
+#     help_option_names = ['-h', '--help'],
+# )
+#@click.group(context_settings=CONTEXT_SETTINGS)
 @click.group()
 def cli():
+    """birdears ─ Functional Ear Training for Musicians!"""
     pass
 
 
@@ -108,6 +115,8 @@ def cli():
 @click.option('-c', '--chromatic', is_flag=True)
 @click.option('-n', '--n_octaves', type=click.IntRange(1, 2), default=None)
 def melodic(*args, **kwargs):
+    """Melodic interval recognition."""
+
     kwargs.update({'exercise': 'melodic'})
     ear(**kwargs)
 
@@ -120,6 +129,8 @@ def melodic(*args, **kwargs):
 @click.option('-c', '--chromatic', is_flag=True)
 @click.option('-n', '--n_octaves', type=click.IntRange(1, 2), default=None)
 def harmonic(*args, **kwargs):
+    """Harmonic interval recognition."""
+
     kwargs.update({'exercise': 'harmonic'})
     ear(**kwargs)
 
@@ -134,9 +145,11 @@ def harmonic(*args, **kwargs):
 @click.option('-c', '--chromatic', is_flag=True)
 @click.option('-n', '--n_octaves', type=click.IntRange(1, 2), default=None)
 def dictation(*args, **kwargs):
+    """Melodic dictation."""
     kwargs.update({'exercise': 'dictation'})
     ear(**kwargs)
 
+#@cli.command(context_settings=CONTEXT_SETTINGS)
 @cli.command()
 @click.option('-m', '--mode', type=click.Choice(['major', 'minor']), default='major')
 @click.option('-w', '--wait_time', type=click.IntRange(1, 60), default=7)
@@ -149,6 +162,8 @@ def dictation(*args, **kwargs):
 @click.option('-c', '--chromatic', is_flag=True)
 @click.option('-n', '--n_octaves', type=click.IntRange(1, 2), default=None)
 def instrumental(*args, **kwargs):
+    """Instrumental melodic time-based dictation."""
+
     kwargs.update({'exercise': 'instrumental'})
     ear(**kwargs)
 

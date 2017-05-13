@@ -18,10 +18,11 @@ class MelodicIntervalQuestion(QuestionBase):
     def __init__(self, mode='major', tonic=None, octave=None, descending=None,
                  chromatic=None, n_octaves=None, *args, **kwargs):
 
+        #super(MelodicIntervalQuestion, self).__init__(*args, **kwargs)
         super(MelodicIntervalQuestion, self).\
-                __init__(mode=mode, tonic=tonic, octave=octave,
-                         descending=descending, chromatic=chromatic,
-                         n_octaves=n_octaves, *args, **kwargs)
+             __init__(mode=mode, tonic=tonic, octave=octave,
+                      descending=descending, chromatic=chromatic,
+                      n_octaves=n_octaves, *args, **kwargs)
 
         self.question_duration = 2
         self.question_delay = 0.5
