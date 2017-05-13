@@ -2,8 +2,8 @@ from random import choice
 
 from ..questionbase import QuestionBase
 
-# from ..interval import Interval
-from ..interval import DiatonicInterval, ChromaticInterval
+from ..interval import DiatonicInterval
+from ..interval import ChromaticInterval
 
 from .. import DIATONIC_MODES
 from .. import MAX_SEMITONES_RESOLVE_BELOW
@@ -36,8 +36,12 @@ class MelodicDictationQuestion(QuestionBase):
         self.resolution_delay = 0.5
         self.resolution_pos_delay = 1
 
-        # FIXME: for chromatics
-        question_intervals = [DiatonicInterval(mode=mode, tonic=self.tonic,
+        if not chromatic:
+            INTERVAL_CLASS = DiatonicInterval
+        else:
+            INTERVAL_CLASS = ChromaticInterval
+
+        question_intervals = [INTERVAL_CLASS(mode=mode, tonic=self.tonic,
                               octave=self.octave, n_octaves=n_octaves,
                               descending=descending)
                               for _ in range(max_intervals)]
