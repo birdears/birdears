@@ -36,7 +36,7 @@ class MelodicDictationQuestion(QuestionBase):
         self.resolution_delay = 0.5
         self.resolution_pos_delay = 1
 
-        # FIXME: for chromatics 
+        # FIXME: for chromatics
         question_intervals = [DiatonicInterval(mode=mode, tonic=self.tonic,
                               octave=self.octave, n_octaves=n_octaves,
                               descending=descending)
@@ -64,6 +64,9 @@ class MelodicDictationQuestion(QuestionBase):
                         duration=self.question_duration,
                         delay=self.question_delay,
                         pos_delay=self.question_pos_delay)
+
+    def play_question(self):
+        self.question.play()
 
     def check_question(self, user_input_keys):
         """Checks whether the given answer is correct."""

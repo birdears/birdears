@@ -96,6 +96,12 @@ class QuestionBase:
 
         pass
 
+    def play_question(self):
+        """This method should be overwritten by the question subclasses.
+        """
+
+        pass
+
     def check_question(self):
         """This method should be overwritten by the question subclasses.
         """

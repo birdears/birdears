@@ -37,6 +37,9 @@ logging
 
 improve live debugging options
 
+we need to allow less than one octave / only certain interval,
+eg.: I to IV, V to VIII etc
+
 # refactoring
 
 ~~change global names~~ ✓

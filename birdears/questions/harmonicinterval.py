@@ -65,32 +65,6 @@ class HarmonicIntervalQuestion(QuestionBase):
 
         return question
 
-    def check_question(self, user_input_char):
-        """Checks whether the given answer is correct."""
-
-        global INTERVALS
-
-        semitones = self.keyboard_index.index(user_input_char[0])
-
-        user_interval = INTERVALS[semitones][2]
-        correct_interval = INTERVALS[self.interval.semitones][2]
-
-        response = {
-            'is_correct': False,
-            'user_interval': user_interval,
-            'correct_interval': correct_interval,
-            'user_response_str': user_interval,
-            'correct_response_str': correct_interval,
-        }
-
-        if semitones == self.interval.semitones:
-            response.update({'is_correct': True})
-
-        else:
-            response.update({'is_correct': False})
-
-        return response
-
     def make_resolution(self, chromatic, mode, tonic, interval,
                         descending=None):
 
@@ -132,3 +106,32 @@ class HarmonicIntervalQuestion(QuestionBase):
                               pos_delay=self.resolution_pos_delay)
 
         return resolution
+
+    def play_question(self):
+        self.question.play()
+
+    def check_question(self, user_input_char):
+        """Checks whether the given answer is correct."""
+
+        global INTERVALS
+
+        semitones = self.keyboard_index.index(user_input_char[0])
+
+        user_interval = INTERVALS[semitones][2]
+        correct_interval = INTERVALS[self.interval.semitones][2]
+
+        response = {
+            'is_correct': False,
+            'user_interval': user_interval,
+            'correct_interval': correct_interval,
+            'user_response_str': user_interval,
+            'correct_response_str': correct_interval,
+        }
+
+        if semitones == self.interval.semitones:
+            response.update({'is_correct': True})
+
+        else:
+            response.update({'is_correct': False})
+
+        return response

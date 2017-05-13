@@ -34,7 +34,7 @@ def center_text(text, sep=True, nl=0):
         text += (spacing + line + '\n')
 
     divider = spacing + ('─' * int(biggest_line_size)) # unicode 0x2500
-    text += divider
+    text += divider if sep else ''
 
     text += nl * '\n'
 
@@ -137,6 +137,21 @@ def dictation(*args, **kwargs):
     kwargs.update({'exercise': 'dictation'})
     ear(**kwargs)
 
+@cli.command()
+@click.option('-m', '--mode', type=click.Choice(['major', 'minor']), default='major')
+@click.option('-w', '--wait_time', type=click.IntRange(1, 60), default=11)
+@click.option('-u', '--n_repeats', type=click.IntRange(1, 10), default=1)
+@click.option('-i', '--max_intervals', type=click.IntRange(2, 12), default=3)
+@click.option('-x', '--n_notes', type=click.IntRange(3, 10), default=4)
+@click.option('-t', '--tonic', type=str, default=None)
+@click.option('-o', '--octave', type=click.IntRange(2, 5), default=None)
+@click.option('-d', '--descending', is_flag=True)
+@click.option('-c', '--chromatic', is_flag=True)
+@click.option('-n', '--n_octaves', type=click.IntRange(1, 2), default=None)
+def instrumental(*args, **kwargs):
+    kwargs.update({'exercise': 'instrumental'})
+    ear(**kwargs)
+
 def print_response(response):
 
     text_kwargs = dict(
@@ -149,7 +164,7 @@ def print_response(response):
         response_text = "Correct! It is {correct_resp}".format(**text_kwargs)
 
     else:
-        response_text = "It is incorrect...You replied {user_resp} but the"\
+        response_text = "It is incorrect...You replied {user_resp} but the" \
                         " correct is {correct_resp}".format(**text_kwargs)
 
     print(center_text(response_text,nl=2))
@@ -162,12 +177,12 @@ def print_question(question):
 
     mode = list(DIATONIC_MODES[question.mode])
     #diatonic_index = list(mode[:-1])
-    diatonic_index = list(mode[:-1])
+    diatonic_index = list(mode)
 
     for o in range(1,question.n_octaves):
         #print(o)
         #diatonic_index = [((o*12) + s) for s in diatonic_index[:-1]]
-        diatonic_index.extend([x + (12*o) for x in mode])
+        diatonic_index.extend([x + (12*o) for x in mode[1:]])
 
     #print(diatonic_index)
     #print(max(diatonic_index))
@@ -222,6 +237,15 @@ def ear(exercise, **kwargs):
         MYCLASS = MelodicDictationQuestion
         MYPRINT = print_stuff_dictation
 
+    elif exercise == 'instrumental':
+        from .questions.instrumentaldictation \
+            import InstrumentalDictationQuestion
+
+        #dictate_notes = 4
+        dictate_notes = kwargs['n_notes']
+        MYCLASS = InstrumentalDictationQuestion
+        MYPRINT = print_stuff_dictation
+
     elif exercise == 'melodic':
         from .questions.melodicinterval import MelodicIntervalQuestion
         MYCLASS = MelodicIntervalQuestion
@@ -251,7 +275,11 @@ def ear(exercise, **kwargs):
                 MYPRINT(question)
 
             print_question(question)
-            question.question.play()
+            question.play_question()
+
+        if exercise == 'instrumental':
+            new_question_bit = True
+            continue
 
         user_input = getch()
 
