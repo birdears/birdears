@@ -139,7 +139,7 @@ def dictation(*args, **kwargs):
 
 @cli.command()
 @click.option('-m', '--mode', type=click.Choice(['major', 'minor']), default='major')
-@click.option('-w', '--wait_time', type=click.IntRange(1, 60), default=11)
+@click.option('-w', '--wait_time', type=click.IntRange(1, 60), default=7)
 @click.option('-u', '--n_repeats', type=click.IntRange(1, 10), default=1)
 @click.option('-i', '--max_intervals', type=click.IntRange(2, 12), default=3)
 @click.option('-x', '--n_notes', type=click.IntRange(3, 10), default=4)

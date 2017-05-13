@@ -23,18 +23,18 @@ class QuestionBase:
     subclasses.
     """
 
+    # question_duration = 2
+    # question_delay = 1.5
+    # question_pos_delay = 0
+    #
+    # resolution_duration = 2.5
+    # resolution_delay = 0.5
+    # resolution_pos_delay = 1
+
     def __init__(self, mode='major', tonic=None, octave=None, descending=None,
                  chromatic=None, n_octaves=None, *args, **kwargs):
 
         global KEYBOARD_INDICES, KEYS
-
-        self.question_duration = 2
-        self.question_delay = 1.5
-        self.question_pos_delay = 0
-
-        self.resolution_duration = 2.5
-        self.resolution_delay = 0.5
-        self.resolution_pos_delay = 1
 
         self.mode = mode
 
