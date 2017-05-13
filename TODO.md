@@ -40,6 +40,9 @@ improve live debugging options
 we need to allow less than one octave / only certain interval,
 eg.: I to IV, V to VIII etc
 
+tract correct/wrong answers by type, mode, tonic, date etc, aybe using sqlite3 db
+so that the user can track it's progress
+
 # refactoring
 
 ~~change global names~~ ✓
