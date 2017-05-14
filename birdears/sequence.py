@@ -77,8 +77,17 @@ class Sequence:
         duration = self.duration if duration is None else duration
         delay = self.delay if delay is None else delay
 
+        chord_plucks = str()
         for note in chord:
-            self._play_note(note, duration=duration, delay=0)
+            chord_plucks += " pluck {} ".format(note)
+
+        command = (
+            "play -qn synth {duration} {chord}"
+            " fade l 0 {duration} 2 reverb"
+        ).format(note=note, duration=duration, chord=chord_plucks)
+
+        print(command)
+        subprocess.Popen(command.split())
 
         if delay:
             self._wait(delay)
