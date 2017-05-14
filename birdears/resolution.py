@@ -24,11 +24,12 @@ class Resolution:
 
         global DIATONIC_MODES, MAX_SEMITONES_RESOLVE_BELOW
 
-        resolution_pitch = []
+        sequence_list = []
 
         # diatonic_mode = DIATONIC_MODES[mode]
 
         for interval in intervals:
+            resolution_pitch = []
             scale_pitch = DiatonicScale(tonic=tonic, mode=mode,
                                         octave=interval.interval_octave,
                                         descending=descending)
@@ -55,10 +56,15 @@ class Resolution:
                 resolution_pitch.append("{}{}".format(tonic,
                                         interval.tonic_octave))
             print(resolution_pitch)
-
-        resolution = Sequence(resolution_pitch,
+            sequence_list.append(Sequence(resolution_pitch,
                               duration=self.resolution_duration,
                               delay=self.resolution_delay,
-                              pos_delay=self.resolution_pos_delay)
+                              pos_delay=self.resolution_pos_delay))
 
-        return resolution
+
+        # resolution = Sequence(resolution_pitch,
+        #                       duration=self.resolution_duration,
+        #                       delay=self.resolution_delay,
+        #                       pos_delay=self.resolution_pos_delay)
+
+        return sequence_list

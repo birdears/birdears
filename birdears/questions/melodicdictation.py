@@ -57,18 +57,18 @@ class MelodicDictationQuestion(QuestionBase):
 
         self.question = self.make_question(self.question_phrase)
 
-        self.resolution = Sequence(self.question.elements,
-                                  duration=self.resolution_duration,
-                                  delay=self.resolution_delay,
-                                  pos_delay=self.resolution_pos_delay)
+        # self.resolution = Sequence(self.question.elements,
+        #                           duration=self.resolution_duration,
+        #                           delay=self.resolution_delay,
+        #                           pos_delay=self.resolution_pos_delay)
 
-        # resolve = Resolution (duration=self.resolution_duration,
-        #                       delay=self.resolution_delay,
-        #                        pos_delay=self.resolution_pos_delay)
-        #
-        # self.resolution = resolve.resolve_to_nearest_tonic(chromatic, self.mode,
-        #                                                    self.tonic, self.question_phrase_intervals,
-        #                                                    descending=descending)
+        resolve = Resolution (duration=self.resolution_duration,
+                              delay=self.resolution_delay,
+                               pos_delay=self.resolution_pos_delay)
+
+        self.resolution = resolve.resolve_to_nearest_tonic(chromatic, self.mode,
+                                                           self.tonic, self.question_phrase_intervals,
+                                                           descending=descending)
 
     def make_question(self, phrase_semitones):
         return Sequence([self.scales['chromatic_pitch'].scale[n]
@@ -79,6 +79,11 @@ class MelodicDictationQuestion(QuestionBase):
 
     def play_question(self):
         self.question.play()
+
+    def play_resolution(self):
+
+        for sequence in self.resolution:
+            sequence.play()
 
     def check_question(self, user_input_keys):
         """Checks whether the given answer is correct."""

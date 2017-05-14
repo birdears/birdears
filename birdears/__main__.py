@@ -308,7 +308,8 @@ def ear(exercise, **kwargs):
                 response = question.check_question(input_keys)
                 print_response(response)
 
-                question.resolution.play()
+                #question.resolution.play()
+                question.play_resolution()
 
                 new_question_bit = True
 

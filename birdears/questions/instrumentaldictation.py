@@ -87,7 +87,10 @@ class InstrumentalDictationQuestion(QuestionBase):
                 text = '{} seconds remaining...'.format(time_left)
                 print(center_text(text, sep=False), end='')
                 self.question._wait(1)
-                
+
+    def play_resolution(self):
+        pass
+
     def check_question(self, user_input_keys):
 
         """Checks whether the given answer is correct."""

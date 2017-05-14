@@ -110,6 +110,9 @@ class HarmonicIntervalQuestion(QuestionBase):
     def play_question(self):
         self.question.play()
 
+    def play_resolution(self):
+        self.resolution.play()
+
     def check_question(self, user_input_char):
         """Checks whether the given answer is correct."""
 
