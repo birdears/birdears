@@ -13,7 +13,7 @@ from ..scale import DiatonicScale
 from ..scale import ChromaticScale
 
 from ..sequence import Sequence
-
+from ..resolution import Resolution
 
 class MelodicDictationQuestion(QuestionBase):
     """Implements a melodic dictation test.
@@ -58,9 +58,17 @@ class MelodicDictationQuestion(QuestionBase):
         self.question = self.make_question(self.question_phrase)
 
         self.resolution = Sequence(self.question.elements,
-                                   duration=self.resolution_duration,
-                                   delay=self.resolution_delay,
-                                   pos_delay=self.resolution_pos_delay)
+                                  duration=self.resolution_duration,
+                                  delay=self.resolution_delay,
+                                  pos_delay=self.resolution_pos_delay)
+
+        # resolve = Resolution (duration=self.resolution_duration,
+        #                       delay=self.resolution_delay,
+        #                        pos_delay=self.resolution_pos_delay)
+        #
+        # self.resolution = resolve.resolve_to_nearest_tonic(chromatic, self.mode,
+        #                                                    self.tonic, self.question_phrase_intervals,
+        #                                                    descending=descending)
 
     def make_question(self, phrase_semitones):
         return Sequence([self.scales['chromatic_pitch'].scale[n]

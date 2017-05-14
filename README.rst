@@ -168,8 +168,27 @@ issues <https://github.com/iacchus/birdears/issues>`__ or
 `gitter.im <https://gitter.im/birdears/Lobby>`__ to ask for, or give
 ideia for new features.
 
-Misc documentation
-------------------
+Other stuff
+-----------
+
+We are using pandoc to convert README from .md to .rst:
+
+::
+
+    pandoc --from=markdown --to=rst README.md -o README.rst
+
+To generate package for PyPI:
+
+::
+
+    python setup.py sdist
+    python setup.py bdist_wheel
+
+To publish to PyPI:
+
+::
+
+    twine upload dist/*
 
 `PEP 8 <https://pep8.org>`__ — the Style Guide for Python Code
 
