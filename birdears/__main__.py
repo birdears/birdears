@@ -250,7 +250,7 @@ def ear(exercise, **kwargs):
         #dictate_notes = 4
         dictate_notes = kwargs['n_notes']
         MYCLASS = MelodicDictationQuestion
-        MYPRINT = print_stuff_dictation
+        #MYPRINT = print_stuff_dictation
 
     elif exercise == 'instrumental':
         from .questions.instrumentaldictation \
@@ -259,19 +259,19 @@ def ear(exercise, **kwargs):
         #dictate_notes = 4
         dictate_notes = kwargs['n_notes']
         MYCLASS = InstrumentalDictationQuestion
-        MYPRINT = print_stuff_dictation
+        #MYPRINT = print_stuff_dictation
 
     elif exercise == 'melodic':
         from .questions.melodicinterval import MelodicIntervalQuestion
         MYCLASS = MelodicIntervalQuestion
         dictate_notes = 1
-        MYPRINT = print_stuff
+        #MYPRINT = print_stuff
 
     elif exercise == 'harmonic':
         from .questions.harmonicinterval import HarmonicIntervalQuestion
         MYCLASS = HarmonicIntervalQuestion
         dictate_notes = 1
-        MYPRINT = print_stuff
+        #MYPRINT = print_stuff
 
     getch = _Getch()
 
@@ -286,8 +286,8 @@ def ear(exercise, **kwargs):
             question = MYCLASS(**kwargs)
 
             # debug
-            if DEBUG:
-                MYPRINT(question)
+            #if DEBUG:
+            #    MYPRINT(question)
 
             print_question(question)
             question.play_question()
