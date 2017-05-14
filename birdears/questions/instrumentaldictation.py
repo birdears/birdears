@@ -13,6 +13,7 @@ from ..scale import DiatonicScale
 from ..scale import ChromaticScale
 
 from ..sequence import Sequence
+from ..resolution import Resolution
 
 from ..__main__ import COLS
 from ..__main__ import center_text
@@ -39,9 +40,9 @@ class InstrumentalDictationQuestion(QuestionBase):
         self.question_delay = 0.5
         self.question_pos_delay = 0
 
-        # self.resolution_duration = 2.5
-        # self.resolution_delay = 0.5
-        # self.resolution_pos_delay = 1
+        self.resolution_duration = 2.5
+        self.resolution_delay = 0.5
+        self.resolution_pos_delay = 1
 
         # FIXME: for chromatics
         if not chromatic:
@@ -70,6 +71,16 @@ class InstrumentalDictationQuestion(QuestionBase):
         #                           delay=self.resolution_delay,
         #                           pos_delay=self.resolution_pos_delay)
 
+        resolve = Resolution (method='resolve_to_nearest_tonic',
+                              duration=self.resolution_duration,
+                              delay=self.resolution_delay,
+                              pos_delay=self.resolution_pos_delay)
+
+        #self.resolution = resolve.resolve_to_nearest_tonic(chromatic, self.mode,
+        self.resolution = resolve.resolve(chromatic=chromatic, mode=self.mode,
+                                                           tonic=self.tonic, intervals=self.question_phrase_intervals,
+                                                           descending=descending)
+
     def make_question(self, phrase_semitones):
         return Sequence([self.scales['chromatic_pitch'].scale[n]
                         for n in phrase_semitones],
@@ -89,7 +100,9 @@ class InstrumentalDictationQuestion(QuestionBase):
                 self.question._wait(1)
 
     def play_resolution(self):
-        pass
+
+        for sequence in self.resolution:
+            sequence.play()
 
     def check_question(self, user_input_keys):
 

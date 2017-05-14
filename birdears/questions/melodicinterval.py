@@ -9,6 +9,7 @@ from .. import INTERVALS
 from ..scale import DiatonicScale
 
 from ..sequence import Sequence
+from ..resolution import Resolution
 
 
 class MelodicIntervalQuestion(QuestionBase):
@@ -47,11 +48,18 @@ class MelodicIntervalQuestion(QuestionBase):
 
         # FIXME
         # self.resolution_pitch = \
-        self.resolution = \
-            self.make_resolution(chromatic=chromatic, mode=self.mode,
-                                 tonic=self.tonic, interval=self.interval,
-                                 descending=descending)
+        #self.resolution = \
+        #    self.make_resolution(chromatic=chromatic, mode=self.mode,
+        #                         tonic=self.tonic, interval=self.interval,
+        #                         descending=descending)
+        resolve = Resolution(method='resolve_to_nearest_tonic',
+                             duration=self.resolution_duration,
+                             delay=self.resolution_delay,
+                             pos_delay=self.resolution_pos_delay)
 
+        self.resolution =  resolve.resolve(chromatic=chromatic, mode=self.mode,
+                                   tonic=self.tonic, intervals=self.interval,
+                                   descending=descending)
     def make_question(self):
 
         tonic = self.concrete_tonic
@@ -109,7 +117,8 @@ class MelodicIntervalQuestion(QuestionBase):
         self.question.play()
 
     def play_resolution(self):
-        self.resolution.play()
+        for sequence in self.resolution:
+            sequence.play()
 
     def check_question(self, user_input_char):
         """Checks whether the given answer is correct."""
