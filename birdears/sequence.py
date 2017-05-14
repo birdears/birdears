@@ -1,6 +1,7 @@
 import subprocess
 import time
 
+from .scale import ChromaticScale
 
 class Sequence:
     def __init__(self, elements, duration=2, delay=1.5, pos_delay=1):
@@ -46,6 +47,14 @@ class Sequence:
 
         if self.pos_delay:
             self._wait(self.pos_delay)
+
+    # FIXME: implement octave here:
+    def make_chord_progression(self, tonic, mode, degrees):
+        scale = ChromaticScale(tonic=tonic)
+
+        for degree in degrees:
+            triad = scale.get_triad(mode=mode, degree=degree)
+            self.elements.append(triad)
 
     def _play_note(self, note, duration=None, delay=None):
         # requires sox to be installed
