@@ -63,7 +63,7 @@ class Resolution:
                 # FIXME: multipe octaves
                 resolution_pitch.append("{}{}".format(tonic,
                                         interval.tonic_octave))
-            print(resolution_pitch)
+
             sequence_list.append(Sequence(resolution_pitch,
                               duration=self.resolution_duration,
                               delay=self.resolution_delay,
@@ -116,7 +116,6 @@ class Resolution:
                 # FIXME: multipe octaves
                 resolution_pitch.append("{}{}".format(tonic,
                                         interval.tonic_octave))
-            print(resolution_pitch)
 
             #for item in resolution_pitch:
             harmonic_seq = [[tonic,x] for x in resolution_pitch]

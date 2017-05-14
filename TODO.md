@@ -4,7 +4,7 @@
 
 ### classes
 
-classes: ~~interval~~ :tada:, cadence and resolution(cadence), maybe ~~scale~~
+classes: ~~interval~~ :tada:, cadence and ~~resolution~~ ✓, maybe ~~scale~~
 (done :tada:.)
 
 make a class for response (by check_question)
