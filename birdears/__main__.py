@@ -157,7 +157,7 @@ def dictation(*args, **kwargs):
 @click.option('-i', '--max_intervals', type=click.IntRange(2, 12), default=3)
 @click.option('-x', '--n_notes', type=click.IntRange(3, 10), default=4)
 @click.option('-t', '--tonic', type=str, default=None)
-@click.option('-o', '--octave', type=click.IntRange(2, 5), default=None)
+@click.option('-o', '--octave', type=click.IntRange(2, 7), default=None)
 @click.option('-d', '--descending', is_flag=True)
 @click.option('-c', '--chromatic', is_flag=True)
 @click.option('-n', '--n_octaves', type=click.IntRange(1, 2), default=None)

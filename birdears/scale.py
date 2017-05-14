@@ -94,6 +94,10 @@ class DiatonicScale(ScaleBase):
 
         global DIATONIC_MODES
 
+        self.tonic = tonic
+        self.mode = mode
+        self.octave = octave
+
         diatonic_mode = DIATONIC_MODES[mode]
 
         chromatic = ChromaticScale(tonic).scale
@@ -116,6 +120,46 @@ class DiatonicScale(ScaleBase):
                                                     descending=descending)
 
         self.scale = diatonic
+
+    def get_triad(self, index=0, degree=None):
+
+        global DIATONIC_MODES
+
+        tonic = self.tonic
+        mode = self.mode
+        octave = self.octave
+
+        diatonic_mode = DIATONIC_MODES[mode]
+
+        chromatic = ChromaticScale(tonic).scale
+
+        diatonic = [chromatic[semitones] for semitones in diatonic_mode[:-1]]
+
+        #if n_octaves:
+        #diatonic = diatonic * n_octaves
+        diatonic = diatonic * 2
+
+        # FIXME: check if this works on descending
+        diatonic.append(chromatic[diatonic_mode[-1]])
+
+        #if descending:
+        #    diatonic.reverse()
+
+        #if octave:
+        octave = self.octave or 4
+        diatonic = self._append_octave_to_scale(scale=diatonic,
+                                                starting_octave=octave,
+                                                descending=False)
+
+        self.scale = diatonic
+        if degree:
+            index = degree - 1
+
+        form = [0, 2, 4]
+
+        triad = [diatonic[index+note] for note in form]
+
+        return triad
 
 
 class ChromaticScale(ScaleBase):

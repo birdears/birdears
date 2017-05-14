@@ -6,13 +6,9 @@ from random import choice
 
 from . import KEYBOARD_INDICES
 from . import KEYS
-# from . import MAX_SEMITONES_RESOLVE_BELOW
-# from . import INTERVALS
 
 from .scale import DiatonicScale
 from .scale import ChromaticScale
-
-# from .sequence import Sequence
 
 
 class QuestionBase:
@@ -42,7 +38,7 @@ class QuestionBase:
         self.is_chromatic = chromatic
 
         # self.octave = octave if octave else randrange(3, 5)
-        self.octave = octave or randrange(3, 5)
+        self.octave = octave or randrange(2, 7)
         self.n_octaves = n_octaves or 1
 
         # FIXME: maybe this should go to __main__
