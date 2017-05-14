@@ -62,12 +62,14 @@ class MelodicDictationQuestion(QuestionBase):
         #                           delay=self.resolution_delay,
         #                           pos_delay=self.resolution_pos_delay)
 
-        resolve = Resolution (duration=self.resolution_duration,
+        resolve = Resolution (method='resolve_to_nearest_tonic',
+                              duration=self.resolution_duration,
                               delay=self.resolution_delay,
-                               pos_delay=self.resolution_pos_delay)
+                              pos_delay=self.resolution_pos_delay)
 
-        self.resolution = resolve.resolve_to_nearest_tonic(chromatic, self.mode,
-                                                           self.tonic, self.question_phrase_intervals,
+        #self.resolution = resolve.resolve_to_nearest_tonic(chromatic, self.mode,
+        self.resolution = resolve.resolve(chromatic=chromatic, mode=self.mode,
+                                                           tonic=self.tonic, intervals=self.question_phrase_intervals,
                                                            descending=descending)
 
     def make_question(self, phrase_semitones):

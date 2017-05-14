@@ -7,10 +7,12 @@ from .sequence import Sequence
 
 class Resolution:
 
-    def __init__(self, duration, delay, pos_delay):
+    def __init__(self, method, duration, delay, pos_delay):
         """This class implements methods for different types of question
         resolutions.
         """
+
+        self.METHOD = getattr(self, method)
 
         self.resolution_duration = duration
         self.resolution_delay = delay
@@ -18,6 +20,9 @@ class Resolution:
 
     def _get_semitones_from_note(self, tonic, note):
         pass
+
+    def resolve(self, *args, **kwargs):
+        return self.METHOD(*args, **kwargs)
 
     def resolve_to_nearest_tonic(self, chromatic, mode, tonic, intervals,
                                  descending=None):
