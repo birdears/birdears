@@ -42,57 +42,57 @@ def center_text(text, sep=True, nl=0):
 
 
 # this is for debugging
-def print_stuff(question):
-    padd = "─" * 30  # vim: insert mode, ^vu2500
-    print("""
-{}
-
-Tonic: {} | Note(Int): {} |  Interval: {} | Semitones(Int): {} |
-Is Note Chromatic: {} |
-Scale: {}, Octave: {}
-Resolution: ,
-Chromatic: {}
-Concrete Scale: {} | Chroma Concrete: {}
-{}
-""".format(
-        padd,
-        question.concrete_tonic,
-        question.interval.note_and_octave,
-        "─".join(INTERVALS[question.interval.semitones][1:]),
-        question.interval.semitones,
-        question.interval.is_chromatic,
-        "─".join(question.scales['diatonic'].scale),
-        "{}-{}".format(question.octave, question.octave + 1),
-        "─".join(question.scales['chromatic'].scale),
-        "─".join(question.scales['diatonic_pitch'].scale),
-        "─".join(question.scales['chromatic_pitch'].scale),
-        padd,
-    ))
-
-
-def print_stuff_dictation(question):
-    padd = "─" * 30  # vim: insert mode, ^vu2500
-    print("""
-{}
-
-Tonic: {} | Note(Int): {} |  Interval: {} | Semitones(Int): {} |
-Scale: {}, Octave: {}
-Chromatic: {}
-Concrete Scale: {} | Chroma Concrete: {}
-{}
-""".format(
-        padd,
-        question.concrete_tonic,
-        "─".join(map(str, question.question_phrase)),
-        "─".join([INTERVALS[n][1] for n in question.question_phrase]),
-        "─".join([str(n) for n in question.question_phrase]),
-        "─".join(question.scales['diatonic'].scale),
-        "{}-{}".format(question.octave, question.octave + 1),
-        "─".join(question.scales['chromatic'].scale),
-        "─".join(question.scales['diatonic_pitch'].scale),
-        "─".join(question.scales['chromatic_pitch'].scale),
-        padd,
-    ))
+# def print_stuff(question):
+#     padd = "─" * 30  # vim: insert mode, ^vu2500
+#     print("""
+# {}
+#
+# Tonic: {} | Note(Int): {} |  Interval: {} | Semitones(Int): {} |
+# Is Note Chromatic: {} |
+# Scale: {}, Octave: {}
+# Resolution: ,
+# Chromatic: {}
+# Concrete Scale: {} | Chroma Concrete: {}
+# {}
+# """.format(
+#         padd,
+#         question.concrete_tonic,
+#         question.interval.note_and_octave,
+#         "─".join(INTERVALS[question.interval.semitones][1:]),
+#         question.interval.semitones,
+#         question.interval.is_chromatic,
+#         "─".join(question.scales['diatonic'].scale),
+#         "{}-{}".format(question.octave, question.octave + 1),
+#         "─".join(question.scales['chromatic'].scale),
+#         "─".join(question.scales['diatonic_pitch'].scale),
+#         "─".join(question.scales['chromatic_pitch'].scale),
+#         padd,
+#     ))
+#
+#
+# def print_stuff_dictation(question):
+#     padd = "─" * 30  # vim: insert mode, ^vu2500
+#     print("""
+# {}
+#
+# Tonic: {} | Note(Int): {} |  Interval: {} | Semitones(Int): {} |
+# Scale: {}, Octave: {}
+# Chromatic: {}
+# Concrete Scale: {} | Chroma Concrete: {}
+# {}
+# """.format(
+#         padd,
+#         question.concrete_tonic,
+#         "─".join(map(str, question.question_phrase)),
+#         "─".join([INTERVALS[n][1] for n in question.question_phrase]),
+#         "─".join([str(n) for n in question.question_phrase]),
+#         "─".join(question.scales['diatonic'].scale),
+#         "{}-{}".format(question.octave, question.octave + 1),
+#         "─".join(question.scales['chromatic'].scale),
+#         "─".join(question.scales['diatonic_pitch'].scale),
+#         "─".join(question.scales['chromatic_pitch'].scale),
+#         padd,
+#     ))
 
 # CONTEXT_SETTINGS = dict(
 #     default_map = {
