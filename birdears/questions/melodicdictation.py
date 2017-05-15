@@ -39,7 +39,7 @@ class MelodicDictationQuestion(QuestionBase):
             chromatic (bool): If the question can have (True) or not (False)
                 chromatic intervals, ie., intervals not in the diatonic scale
                 of tonic/mode.
-            n_octaves (int): Maximum numbr of octaves of the question.
+            n_octaves (int): Maximum number of octaves of the question.
         """
 
         super(MelodicDictationQuestion, self).\
@@ -48,7 +48,7 @@ class MelodicDictationQuestion(QuestionBase):
                          n_octaves=n_octaves, *args, **kwargs)
 
         self.question_duration = 2
-        self.question_delay = 1
+        self.question_delay = 0.8
         self.question_pos_delay = 0
 
         self.resolution_duration = 2.5
@@ -81,7 +81,7 @@ class MelodicDictationQuestion(QuestionBase):
                                   delay=self.resolution_delay,
                                   pos_delay=self.resolution_pos_delay)
 
-        #T TODO: implement after
+        # TODO: implement after
         #resolve = Resolution (method='resolve_to_nearest_tonic',
         #                      duration=self.resolution_duration,
         #                      delay=self.resolution_delay,
@@ -104,7 +104,8 @@ class MelodicDictationQuestion(QuestionBase):
 
     def play_resolution(self):
 
-        self.question.play()
+        self.resolution.play()
+
         # for sequence in self.resolution:
         #    sequence.play()
 
@@ -138,15 +139,6 @@ class MelodicDictationQuestion(QuestionBase):
             user_response_str = user_response_str,
             correct_response_str = correct_response_str
         )
-
-        # response = {
-        #     'is_correct': False,
-        #     'user_input': user_input_keys,
-        #     'user_semitones': user_input_semitones,
-        #     'correct_semitones': self.question_phrase,
-        #     'user_response_str': user_response_str,
-        #     'correct_response_str': correct_response_str
-        # }
 
         if user_input_semitones == self.question_phrase:
             response.update({'is_correct': True})

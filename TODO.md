@@ -11,7 +11,7 @@ make a class for response (by check_question)
 
 ### documentation
 
-write documentation in docstrings using [numydoc](https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt#documenting-classes)
+write documentation in docstrings using Google style docstrings
 
 ### features
 
@@ -40,8 +40,8 @@ improve live debugging options
 we need to allow less than one octave / only certain interval,
 eg.: I to IV, V to VIII etc
 
-tract correct/wrong answers by type, mode, tonic, date etc, aybe using sqlite3 db
-so that the user can track it's progress
+track correct/wrong answers by type, mode, tonic, date etc, aybe using sqlite3
+db so that the user can track it's progress
 
 # refactoring
 
@@ -51,7 +51,9 @@ we should think in a better algo for melodic dictation; currently always begins
 with tonic; maybe playing a cadence with I-V-IV-I triads then choosing random
 intervals w/ or w/out tonic.
 
-we should use some kind of config object to configure exercises, as they have an
-extensive number of parameters and there are more to come.
+we should use some kind of config object to configure exercises, as they have
+an extensive number of parameters and there are more to come.
 
 note: maybe you find this useful https://gist.github.com/rxaviers/7360908
+
+refactore keys so that they dnn't give double sharps or double flats

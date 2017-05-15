@@ -47,7 +47,7 @@ class InstrumentalDictationQuestion(QuestionBase):
             chromatic (bool): If the question can have (True) or not (False)
                 chromatic intervals, ie., intervals not in the diatonic scale
                 of tonic/mode.
-            n_octaves (int): Maximum numbr of octaves of the question.
+            n_octaves (int): Maximum number of octaves of the question.
         """
 
         super(InstrumentalDictationQuestion, self).\
@@ -127,37 +127,40 @@ class InstrumentalDictationQuestion(QuestionBase):
         for sequence in self.resolution:
             sequence.play()
 
-    def check_question(self, user_input_keys):
+    #def check_question(self, user_input_keys):
+    def check_question(self):
         """Checks whether the given answer is correct.
 
         This currently doesn't applies to instrumental dictation questions.
 
         """
 
-        # global INTERVALS
-        #
-        # user_input_semitones = [self.keyboard_index.index(s)
-        #                         for s in user_input_keys]
-        #
-        # user_response_str = "-".join([INTERVALS[s][1]
-        #                              for s in user_input_semitones])
-        # correct_response_str = "-".join([INTERVALS[s][1]
-        #                                 for s in self.question_phrase])
-        #
-        # response = {
-        #     'is_correct': False,
-        #     'user_input': user_input_keys,
-        #     'user_semitones': user_input_semitones,
-        #     'correct_semitones': self.question_phrase,
-        #     'user_response_str': user_response_str,
-        #     'correct_response_str': correct_response_str
-        # }
-        #
-        # if user_input_semitones == self.question_phrase:
-        #     response.update({'is_correct': True})
-        # else:
-        #     response.update({'is_correct': False})
-        #
-        # return response
+        global INTERVALS
+       
+        #user_input_semitones = [self.keyboard_index.index(s)
+        #                        for s in user_input_keys]
+       
+        #user_response_str = "-".join([INTERVALS[s][1]
+        #                             for s in user_input_semitones])
+        intervals_str = "".join([INTERVALS[s][1].center(7)
+                                        for s in self.question_phrase])
+        notes_str = "".join([self.scales['chromatic_pitch'].scale[s].center(7)
+                                        for s in self.question_phrase])
+       
+        correct_response_str = """\
+The intervals and notes of this question:
 
-        pass
+{intervals}
+{notes}
+""".format(**dict(intervals=intervals_str,notes=notes_str))
+        response = {
+            #'is_correct': False,
+            #'user_input': user_input_keys,
+            #'user_semitones': user_input_semitones,
+            'correct_semitones': self.question_phrase,
+            #'user_response_str': user_response_str,
+            'correct_response_str': correct_response_str
+        }
+       
+       
+        return response

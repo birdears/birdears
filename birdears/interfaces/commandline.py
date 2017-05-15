@@ -57,6 +57,28 @@ def print_response(response):
 
     print(center_text(response_text,nl=2))
 
+def print_instrumental(response):
+
+    text_kwargs = dict(
+        #user_resp = response['user_response_str'],
+        correct_resp = response['correct_response_str']
+    )
+
+    # TODO: make a class for response
+    #if response['is_correct']:
+    #    response_text = "Correct! It is {correct_resp}".format(**text_kwargs)
+    #
+    #else:
+    #    response_text = "It is incorrect...You replied {user_resp} but the" \
+    #                    " correct is {correct_resp}".format(**text_kwargs)
+
+    response_text = """
+{correct_resp}
+""".format(**text_kwargs)
+
+    print(center_text(response_text,nl=2))
+
+
 
 def print_question(question):
 
@@ -146,6 +168,9 @@ def CommandLine(exercise, **kwargs):
             question.play_question()
 
         if exercise == 'instrumental':
+            response = question.check_question()
+            print_instrumental(response)
+
             new_question_bit = True
             continue
 

@@ -33,7 +33,7 @@ class HarmonicIntervalQuestion(QuestionBase):
             chromatic (bool): If the question can have (True) or not (False)
                 chromatic intervals, ie., intervals not in the diatonic scale
                 of tonic/mode.
-            n_octaves (int): Maximum numbr of octaves of the question.
+            n_octaves (int): Maximum number of octaves of the question.
         """
 
         super(HarmonicIntervalQuestion, self).\
@@ -118,13 +118,6 @@ class HarmonicIntervalQuestion(QuestionBase):
             user_response_str = user_interval,
             correct_response_str = correct_interval,
         )
-        # response = {
-        #     'is_correct': False,
-        #     'user_interval': user_interval,
-        #     'correct_interval': correct_interval,
-        #     'user_response_str': user_interval,
-        #     'correct_response_str': correct_interval,
-        # }
 
         if semitones == self.interval.semitones:
             response.update({'is_correct': True})
