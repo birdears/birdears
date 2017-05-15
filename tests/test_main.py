@@ -23,7 +23,7 @@ def test_cli_melodic(monkeypatch):
 
     sys_argv = ['PYTEST_ARGV0', 'melodic']
 
-    monkeypatch.setattr('birdears.__main__._Getch', mockreturn)
+    monkeypatch.setattr('birdears.interfaces.commandline._Getch', mockreturn)
     monkeypatch.setattr('sys.argv', sys_argv)
 
     try:
@@ -42,7 +42,7 @@ def test_cli_harmonic(monkeypatch):
     sys_argv = ['PYTEST_ARGV0', 'harmonic']
 
     monkeypatch.setattr('sys.argv', sys_argv)
-    monkeypatch.setattr('birdears.__main__._Getch', mockreturn)
+    monkeypatch.setattr('birdears.interfaces.commandline._Getch', mockreturn)
 
     try:
         a = __main__.cli()
@@ -59,7 +59,7 @@ def test_cli_dictation(monkeypatch):
     sys_argv = ['PYTEST_ARGV0', 'dictation']
 
     monkeypatch.setattr('sys.argv', sys_argv)
-    monkeypatch.setattr('birdears.__main__._Getch', mockreturn)
+    monkeypatch.setattr('birdears.interfaces.commandline._Getch', mockreturn)
 
     try:
         a = __main__.cli()
