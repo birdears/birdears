@@ -30,16 +30,49 @@ class IntervalBase:
 
 
 class DiatonicInterval(IntervalBase):
+    """Chooses a diatonic interval for the question.
+
+    Attributes:
+        tonic_octave (int): Scientific octave for the tonic. For example, if
+            the tonic is a 'C4' then `tonic_octave` is 4.
+        interval octave (int): Scientific octave for the interval. For example,
+            if the interval is a 'G5' then `tonic_octave` is 5.
+        chromatic_offset (int): The offset in semitones inside one octave;
+            maybe it will be deprecated in favour of `distance['semitones']``
+            which is the same.
+        note_and_octave (str): Note and octave of the interval, for example, if
+            the interval is G5 the note name is 'G5'.
+        note_name (str): The note name of the interval, for example, if the
+            interval is G5 then the name is 'G'.
+        semitones (int): Semitones from tonic to octave. If tonic is C4 and
+            interval is G5 the number of semitones is 19.
+        is_chromatic (bool): If the current interval is chromatic (True) or if
+            it exists in the diatonic scale which key is tonic.
+        is_descending (bool): If the interval has a descending direction, ie.,
+            has a lower pitch than the tonic.
+        diatonic_index (int): If the interval is chromatic, this will be the
+            nearest diatonic interval in the direction of the resolution
+            (closest tonic.) From II to IV degrees, it is the ditonic interval
+            before; from V to VII it is the diatonic interval after.
+        distance (dict): A dictionary which the distance from tonic to
+            interval, for example, if tonic is C4 and interval is G5::
+                {
+                    'octaves': 1,
+                    'semitones': 7
+                }
+        data (tuple): A tuple representing the interval data in the form of
+            (semitones, short_name, long_name), for example::
+                (19, 'P12', 'Perfect Twelfth'),
+    """
 
     def __init__(self, mode, tonic, octave, n_octaves=None, descending=None):
-        """Chooses a diatonic interval for the question.
+        """Inits the class.
 
         Args:
             mode (str): Diatonic mode for the interval.
                 (eg.: 'major' or 'minor')
             tonic (str): Tonic of the scale. (eg.: 'Bb')
             octave (str): Scientific octave of the scale (eg.: 4)
-            interval (str): Not implemented. The interval.
             n_octaves (int): Maximum number os octaves (eg. 2)
             descending (bool): Is the interval descending? (default: false)
         """
@@ -91,28 +124,75 @@ class DiatonicInterval(IntervalBase):
             interval_octave = int(octave) - distance['octaves']
 
         # these will be written to self
-        interval_data = dict({
-            'tonic_octave': octave,
-            'interval_octave': interval_octave,
-            'chromatic_offset': chromatic_offset,
-            'note_and_octave': note_and_octave,
-            'note_name': note_name,
-            'semitones': semitones,
-            'is_chromatic': False,
-            'is_descending': False if not descending else True,
-            'diatonic_index': diatonic_index,
-            'distance': distance,
-            'data': INTERVALS[semitones],
-        })
+        # interval_data = dict({
+        #     'tonic_octave': octave,
+        #     'interval_octave': interval_octave,
+        #     'chromatic_offset': chromatic_offset,
+        #     'note_and_octave': note_and_octave,
+        #     'note_name': note_name,
+        #     'semitones': semitones,
+        #     'is_chromatic': False,
+        #     'is_descending': False if not descending else True,
+        #     'diatonic_index': diatonic_index,
+        #     'distance': distance,
+        #     'data': INTERVALS[semitones],
+        # })
+        interval_data = dict(
+            tonic_octave=octave,
+            interval_octave=interval_octave,
+            chromatic_offset=chromatic_offset,
+            note_and_octave=note_and_octave,
+            note_name=note_name,
+            semitones=semitones,
+            is_chromatic=False,
+            is_descending=False if not descending else True,
+            diatonic_index=diatonic_index,
+            distance=distance,
+            data=INTERVALS[semitones],
+        )
 
         for item, value in interval_data.items():
             setattr(self, item, value)
 
 
 class ChromaticInterval(IntervalBase):
+    """Chooses a diatonic interval for the question.
+
+    Attributes:
+        tonic_octave (int): Scientific octave for the tonic. For example, if
+            the tonic is a 'C4' then `tonic_octave` is 4.
+        interval octave (int): Scientific octave for the interval. For example,
+            if the interval is a 'G5' then `tonic_octave` is 5.
+        chromatic_offset (int): The offset in semitones inside one octave;
+            maybe it will be deprecated in favour of `distance['semitones']``
+            which is the same.
+        note_and_octave (str): Note and octave of the interval, for example, if
+            the interval is G5 the note name is 'G5'.
+        note_name (str): The note name of the interval, for example, if the
+            interval is G5 then the name is 'G'.
+        semitones (int): Semitones from tonic to octave. If tonic is C4 and
+            interval is G5 the number of semitones is 19.
+        is_chromatic (bool): If the current interval is chromatic (True) or if
+            it exists in the diatonic scale which key is tonic.
+        is_descending (bool): If the interval has a descending direction, ie.,
+            has a lower pitch than the tonic.
+        diatonic_index (int): If the interval is chromatic, this will be the
+            nearest diatonic interval in the direction of the resolution
+            (closest tonic.) From II to IV degrees, it is the ditonic interval
+            before; from V to VII it is the diatonic interval after.
+        distance (dict): A dictionary which the distance from tonic to
+            interval, for example, if tonic is C4 and interval is G5::
+                {
+                    'octaves': 1,
+                    'semitones': 7
+                }
+        data (tuple): A tuple representing the interval data in the form of
+            (semitones, short_name, long_name), for example::
+                (19, 'P12', 'Perfect Twelfth'),
+    """
 
     def __init__(self, mode, tonic, octave, n_octaves=None, descending=None):
-        """Chooses a chromatic interval for the question.
+        """Inits the class.
 
         Args:
             mode (str): Diatonic mode for the interval.
@@ -180,19 +260,32 @@ class ChromaticInterval(IntervalBase):
             interval_octave = int(octave) - distance['octaves']
 
         # these will be written to self
-        interval_data = dict({
-            'tonic_octave': octave,
-            'interval_octave': interval_octave,
-            'chromatic_offset': chromatic_offset,
-            'note_and_octave': note_and_octave,
-            'note_name': note_name,
-            'semitones': semitones,
-            'is_chromatic': is_chromatic,
-            'is_descending': False if not descending else True,
-            'diatonic_index': diatonic_index,
-            'distance': distance,
-            'data': INTERVALS[semitones],
-        })
+        # interval_data = dict({
+        #     'tonic_octave': octave,
+        #     'interval_octave': interval_octave,
+        #     'chromatic_offset': chromatic_offset,
+        #     'note_and_octave': note_and_octave,
+        #     'note_name': note_name,
+        #     'semitones': semitones,
+        #     'is_chromatic': is_chromatic,
+        #     'is_descending': False if not descending else True,
+        #     'diatonic_index': diatonic_index,
+        #     'distance': distance,
+        #     'data': INTERVALS[semitones],
+        # })
+        interval_data = dict(
+            tonic_octave=octave,
+            interval_octave=interval_octave,
+            chromatic_offset=chromatic_offset,
+            note_and_octave=note_and_octave,
+            note_name=note_name,
+            semitones=semitones,
+            is_chromatic=is_chromatic,
+            is_descending=False if not descending else True,
+            diatonic_index=diatonic_index,
+            distance=distance,
+            data=INTERVALS[semitones],
+        )
 
         for item, value in interval_data.items():
             setattr(self, item, value)

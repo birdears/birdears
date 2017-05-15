@@ -15,9 +15,10 @@ from ..scale import ChromaticScale
 from ..sequence import Sequence
 from ..resolution import Resolution
 
-from ..__main__ import COLS
-from ..__main__ import center_text
-
+# from ..__main__ import COLS
+# from ..__main__ import center_text
+from ..interfaces.commandline import COLS
+from ..interfaces.commandline import center_text
 
 class InstrumentalDictationQuestion(QuestionBase):
     """Implements an instrumental dictation test.
@@ -27,6 +28,29 @@ class InstrumentalDictationQuestion(QuestionBase):
                  max_intervals=3, n_notes=4, tonic=None, octave=None,
                  descending=None, chromatic=None, n_octaves=None,
                  *args, **kwargs):
+        """Inits the class.
+
+        Args:
+            mode (str): A string representing the mode of the question.
+                Eg., 'major' or 'minor'.
+            wait_time (float): Wait time in seconds for the next question or
+                repeat.
+            n_repeats (int): Number of times the same dictation will be
+                repeated before the end of the exercise.
+            max_intervals (int): The maximum number of random intervals the
+                question will have.
+            n_notes (int): The number of notes the melodic dictation will have.
+            tonic (str): A string representing the tonic of the question,
+                eg.: 'C'; if omitted, it will be selected randomly.
+            octave (int): A scienfic octave notation, for example, 4 for 'C4';
+                if not present, it will be randomly chosen.
+            descending (bool): Is the question direction in descending, ie.,
+                intervals have lower pitch than the tonic.
+            chromatic (bool): If the question can have (True) or not (False)
+                chromatic intervals, ie., intervals not in the diatonic scale
+                of tonic/mode.
+            n_octaves (int): Maximum numbr of octaves of the question.
+        """
 
         super(InstrumentalDictationQuestion, self).\
                 __init__(mode=mode, tonic=tonic, octave=octave,
@@ -78,8 +102,9 @@ class InstrumentalDictationQuestion(QuestionBase):
 
         #self.resolution = resolve.resolve_to_nearest_tonic(chromatic, self.mode,
         self.resolution = resolve.resolve(chromatic=chromatic, mode=self.mode,
-                                                           tonic=self.tonic, intervals=self.question_phrase_intervals,
-                                                           descending=descending)
+                                          tonic=self.tonic,
+                                          intervals=self.question_phrase_intervals,
+                                          descending=descending)
 
     def make_question(self, phrase_semitones):
         return Sequence([self.scales['chromatic_pitch'].scale[n]
@@ -105,8 +130,11 @@ class InstrumentalDictationQuestion(QuestionBase):
             sequence.play()
 
     def check_question(self, user_input_keys):
+        """Checks whether the given answer is correct.
 
-        """Checks whether the given answer is correct."""
+        This currently doesn't applies to instrumental dictation questions.
+
+        """
 
         # global INTERVALS
         #

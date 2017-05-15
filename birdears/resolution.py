@@ -10,6 +10,18 @@ class Resolution:
     def __init__(self, method, duration, delay, pos_delay):
         """This class implements methods for different types of question
         resolutions.
+
+        Args:
+            method (str): The method used in the resolution.
+            duration (float): Default playing time for each element in the
+                resolution.
+            delay (float): Default waiting time to play the next element
+                in the resolution.
+            pos_delay (float): Waiting time after playing the last element
+                in the resolution.
+
+        Todo:
+            * Maybe refactor the resolve `method`s with a prefix.
         """
 
         self.METHOD = getattr(self, method)
@@ -18,14 +30,25 @@ class Resolution:
         self.resolution_delay = delay
         self.resolution_pos_delay = pos_delay
 
-    def _get_semitones_from_note(self, tonic, note):
-        pass
-
     def resolve(self, *args, **kwargs):
+        """Calls the resolution method and pass arguments to it.
+        """
         return self.METHOD(*args, **kwargs)
 
     def resolve_to_nearest_tonic(self, chromatic, mode, tonic, intervals,
                                  descending=None):
+        """Resolve the intervals to their nearest tonics.
+
+        Args:
+            chromatic (bool): x
+            mode (str): x
+            tonic (str): x
+            intervals (str or array_type): x
+            descending (bool): x
+
+        Todo:
+            * chromatic doesn't seem to be used.
+        """
 
         global DIATONIC_MODES, MAX_SEMITONES_RESOLVE_BELOW
 
@@ -70,15 +93,22 @@ class Resolution:
                               pos_delay=self.resolution_pos_delay))
 
 
-        # resolution = Sequence(resolution_pitch,
-        #                       duration=self.resolution_duration,
-        #                       delay=self.resolution_delay,
-        #                       pos_delay=self.resolution_pos_delay)
-
         return sequence_list
 
     def resolve_to_nearest_tonic_harmonically(self, chromatic, mode, tonic,
                                               intervals, descending=None):
+        """Resolve the intervals to their nearest tonics harmonically.
+
+        Args:
+            chromatic (bool): x
+            mode (str): x
+            tonic (str): x
+            intervals (str or array_type): x
+            descending (bool): x
+
+        Todo:
+            * chromatic doesn't seem to be used.
+        """
 
         global DIATONIC_MODES, MAX_SEMITONES_RESOLVE_BELOW
 
@@ -124,11 +154,5 @@ class Resolution:
                               duration=self.resolution_duration,
                               delay=self.resolution_delay,
                               pos_delay=self.resolution_pos_delay))
-
-
-        # resolution = Sequence(resolution_pitch,
-        #                       duration=self.resolution_duration,
-        #                       delay=self.resolution_delay,
-        #                       pos_delay=self.resolution_pos_delay)
 
         return sequence_list

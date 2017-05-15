@@ -22,6 +22,25 @@ class MelodicDictationQuestion(QuestionBase):
     def __init__(self, mode='major', max_intervals=3, n_notes=4, tonic=None,
                  octave=None, descending=None, chromatic=None, n_octaves=None,
                  *args, **kwargs):
+        """Inits the class.
+
+        Args:
+            mode (str): A string representing the mode of the question.
+                Eg., 'major' or 'minor'.
+            max_intervals (int): The maximum number of random intervals
+                the question will have.
+            n_notes (int): The number of notes the melodic dictation will have.
+            tonic (str): A string representing the tonic of the question,
+                eg.: 'C'; if omitted, it will be selected randomly.
+            octave (int): A scienfic octave notation, for example, 4 for 'C4';
+                if not present, it will be randomly chosen.
+            descending (bool): Is the question direction in descending, ie.,
+                intervals have lower pitch than the tonic.
+            chromatic (bool): If the question can have (True) or not (False)
+                chromatic intervals, ie., intervals not in the diatonic scale
+                of tonic/mode.
+            n_octaves (int): Maximum numbr of octaves of the question.
+        """
 
         super(MelodicDictationQuestion, self).\
                 __init__(mode=mode, tonic=tonic, octave=octave,
@@ -57,20 +76,21 @@ class MelodicDictationQuestion(QuestionBase):
 
         self.question = self.make_question(self.question_phrase)
 
-        # self.resolution = Sequence(self.question.elements,
-        #                           duration=self.resolution_duration,
-        #                           delay=self.resolution_delay,
-        #                           pos_delay=self.resolution_pos_delay)
+        self.resolution = Sequence(self.question.elements,
+                                  duration=self.resolution_duration,
+                                  delay=self.resolution_delay,
+                                  pos_delay=self.resolution_pos_delay)
 
-        resolve = Resolution (method='resolve_to_nearest_tonic',
-                              duration=self.resolution_duration,
-                              delay=self.resolution_delay,
-                              pos_delay=self.resolution_pos_delay)
+        #T TODO: implement after
+        #resolve = Resolution (method='resolve_to_nearest_tonic',
+        #                      duration=self.resolution_duration,
+        #                      delay=self.resolution_delay,
+        #                      pos_delay=self.resolution_pos_delay)
 
         #self.resolution = resolve.resolve_to_nearest_tonic(chromatic, self.mode,
-        self.resolution = resolve.resolve(chromatic=chromatic, mode=self.mode,
-                                                           tonic=self.tonic, intervals=self.question_phrase_intervals,
-                                                           descending=descending)
+        #self.resolution = resolve.resolve(chromatic=chromatic, mode=self.mode,
+        #                                                   tonic=self.tonic, intervals=self.question_phrase_intervals,
+        #                                                   descending=descending)
 
     def make_question(self, phrase_semitones):
         return Sequence([self.scales['chromatic_pitch'].scale[n]
@@ -84,11 +104,21 @@ class MelodicDictationQuestion(QuestionBase):
 
     def play_resolution(self):
 
-        for sequence in self.resolution:
-            sequence.play()
+        self.question.play()
+        # for sequence in self.resolution:
+        #    sequence.play()
 
     def check_question(self, user_input_keys):
         """Checks whether the given answer is correct."""
+
+
+        # TODO:
+        # this should show:
+        #
+        # No way!
+        # you replied         P1 P7 P4 P7
+        #                     ✓  x  ✓  x
+        # but the correct is  P1 P5 P4 P5
 
         global INTERVALS
 
@@ -100,14 +130,23 @@ class MelodicDictationQuestion(QuestionBase):
         correct_response_str = "-".join([INTERVALS[s][1]
                                         for s in self.question_phrase])
 
-        response = {
-            'is_correct': False,
-            'user_input': user_input_keys,
-            'user_semitones': user_input_semitones,
-            'correct_semitones': self.question_phrase,
-            'user_response_str': user_response_str,
-            'correct_response_str': correct_response_str
-        }
+        response = dict(
+            is_correct = False,
+            user_input = user_input_keys,
+            user_semitones = user_input_semitones,
+            correct_semitones = self.question_phrase,
+            user_response_str = user_response_str,
+            correct_response_str = correct_response_str
+        )
+
+        # response = {
+        #     'is_correct': False,
+        #     'user_input': user_input_keys,
+        #     'user_semitones': user_input_semitones,
+        #     'correct_semitones': self.question_phrase,
+        #     'user_response_str': user_response_str,
+        #     'correct_response_str': correct_response_str
+        # }
 
         if user_input_semitones == self.question_phrase:
             response.update({'is_correct': True})

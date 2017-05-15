@@ -19,6 +19,22 @@ class MelodicIntervalQuestion(QuestionBase):
 
     def __init__(self, mode='major', tonic=None, octave=None, descending=None,
                  chromatic=None, n_octaves=None, *args, **kwargs):
+        """Inits the class.
+
+        Args:
+            mode (str): A string representing the mode of the question.
+                Eg., 'major' or 'minor'
+            tonic (str): A string representing the tonic of the question,
+                eg.: 'C'; if omitted, it will be selected randomly.
+            octave (int): A scienfic octave notation, for example, 4 for 'C4';
+                if not present, it will be randomly chosen.
+            descending (bool): Is the question direction in descending, ie.,
+                intervals have lower pitch than the tonic.
+            chromatic (bool): If the question can have (True) or not (False)
+                chromatic intervals, ie., intervals not in the diatonic scale
+                of tonic/mode.
+            n_octaves (int): Maximum numbr of octaves of the question.
+        """
 
         super(MelodicIntervalQuestion, self).\
              __init__(mode=mode, tonic=tonic, octave=octave,
@@ -47,12 +63,6 @@ class MelodicIntervalQuestion(QuestionBase):
         # self.pre_question = self.make_pre_question()
         self.question = self.make_question()
 
-        # FIXME
-        # self.resolution_pitch = \
-        #self.resolution = \
-        #    self.make_resolution(chromatic=chromatic, mode=self.mode,
-        #                         tonic=self.tonic, interval=self.interval,
-        #                         descending=descending)
         resolve = Resolution(method='resolve_to_nearest_tonic',
                              duration=self.resolution_duration,
                              delay=self.resolution_delay,
@@ -75,10 +85,6 @@ class MelodicIntervalQuestion(QuestionBase):
 
         tonic = self.concrete_tonic
         interval = self.interval.note_and_octave
-
-        #question = Sequence([tonic, interval], duration=self.question_duration,
-        #                    delay=self.question_delay,
-        #                    pos_delay=self.question_pos_delay)
 
         question = Sequence([tonic, interval], duration=self.question_duration,
                             delay=self.question_delay,
@@ -147,13 +153,20 @@ class MelodicIntervalQuestion(QuestionBase):
         user_interval = INTERVALS[semitones][2]
         correct_interval = INTERVALS[self.interval.semitones][2]
 
-        response = {
-            'is_correct': False,
-            'user_interval': user_interval,
-            'correct_interval': correct_interval,
-            'user_response_str': user_interval,
-            'correct_response_str': correct_interval,
-        }
+        response = dict(
+            is_correct = False,
+            user_interval = user_interval,
+            correct_interval = correct_interval,
+            user_response_str = user_interval,
+            correct_response_str = correct_interval,
+        )
+        # response = {
+        #     'is_correct': False,
+        #     'user_interval': user_interval,
+        #     'correct_interval': correct_interval,
+        #     'user_response_str': user_interval,
+        #     'correct_response_str': correct_interval,
+        # }
 
         if semitones == self.interval.semitones:
             response.update({'is_correct': True})

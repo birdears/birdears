@@ -10,6 +10,7 @@ class Sequence:
         elements (array_type): List of notes (strings) ou chords (list of
             strings) in this Sequence.
     """
+
     def __init__(self, elements, duration=2, delay=1.5, pos_delay=1):
         """Inits the Sequence with an array and sets the default times for
             playing / pausing the elements.
@@ -32,13 +33,24 @@ class Sequence:
         self.elements = list(elements)
 
     def append(self, elements):
+        """Appends `elements` to Sequence.elements
+
+        Args:
+            elements (array_type): elements to be appended to the class.
+        """
         self.elements.append(elements)
 
     def extend(self, elements):
+        """Extends Sequence.elements with `elements`.
+
+        Args:
+            elements (array_type): elements extend the class with.
+        """
         self.elements.extend(elements)
 
     def play(self):
-        """Plays the Sequence of notes and/or chords.
+        """Plays the Sequence elements of notes and/or chords and wait for
+        `Sequence.pos_delay` seconds.
         """
 
         last_idx = len(self.elements) - 1
@@ -73,6 +85,13 @@ class Sequence:
             self.elements.append(triad)
 
     def _play_note(self, note, duration=None, delay=None):
+        """Plays a note.
+
+        Args:
+            note (str): The note and octave to be played. Eg.: 'C4'
+            duration (float): Duration of the note in seconds.
+            delay (float): Delay after the note in seconds.
+        """
         # requires sox to be installed
 
         duration = self.duration if duration is None else duration
@@ -89,6 +108,14 @@ class Sequence:
             self._wait(delay)
 
     def _play_chord(self, chord, duration=None, delay=None):
+        """Plays a chord.
+
+        Args:
+            chord (array_type): An array of pitches (notes and octaves)
+                to be played, representing a chord. Eg.: ['C4', 'Eb4', 'G5']
+            duration (float): Duration of the chord in seconds.
+            delay (float): Delay after the chord in seconds.
+        """
 
         duration = self.duration if duration is None else duration
         delay = self.delay if delay is None else delay
@@ -108,4 +135,10 @@ class Sequence:
             self._wait(delay)
 
     def _wait(self, seconds):
+        """Waits, ie., stops execution for some time.
+
+        Args:
+            seconds (float): Seconds to wait.
+        """
+
         time.sleep(seconds)
