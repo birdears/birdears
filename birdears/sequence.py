@@ -102,10 +102,7 @@ class Sequence:
             " fade l 0 {duration} 2 reverb"
         ).format(note=note, duration=duration)
 
-        try:
-            subprocess.Popen(command.split())
-        except:
-            pass
+        subprocess.Popen(command.split())
 
         if delay:
             self._wait(delay)
@@ -132,10 +129,7 @@ class Sequence:
             " fade l 0 {duration} 2 reverb"
         ).format(note=note, duration=duration, chord=chord_plucks)
 
-        try:
-            subprocess.Popen(command.split())
-        except:
-            pass
+        subprocess.Popen(command.split())
 
         if delay:
             self._wait(delay)
