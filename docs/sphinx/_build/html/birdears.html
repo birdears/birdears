@@ -90,7 +90,7 @@ the tonic is a &#8216;C4&#8217; then <cite>tonic_octave</cite> is 4.</li>
 <li><strong>octave</strong> (<a class="reference internal" href="index.html#module-birdears.interval" title="birdears.interval"><em>interval</em></a>) &#8211; Scientific octave for the interval. For example,
 if the interval is a &#8216;G5&#8217; then <cite>tonic_octave</cite> is 5.</li>
 <li><strong>chromatic_offset</strong> (<em>int</em>) &#8211; The offset in semitones inside one octave;
-maybe it will be deprecated in favour of <cite>distance[&#8216;semitones&#8217;]`</cite>
+maybe it will be deprecated in favour of <cite>distance[&#8216;semitones&#8217;]</cite>
 which is the same.</li>
 <li><strong>note_and_octave</strong> (<em>str</em>) &#8211; Note and octave of the interval, for example, if
 the interval is G5 the note name is &#8216;G5&#8217;.</li>
@@ -117,7 +117,7 @@ interval, for example, if tonic is C4 and interval is G5:</p>
 </li>
 <li><strong>data</strong> (<em>tuple</em>) &#8211; <p>A tuple representing the interval data in the form of
 (semitones, short_name, long_name), for example:</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>(19, &#39;P12&#39;, &#39;Perfect Twelfth&#39;),
+<div class="highlight-none"><div class="highlight"><pre><span></span>(19, &#39;P12&#39;, &#39;Perfect Twelfth&#39;)
 </pre></div>
 </div>
 </li>
@@ -126,10 +126,21 @@ interval, for example, if tonic is C4 and interval is G5:</p>
 </tr>
 </tbody>
 </table>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<ul class="last simple">
+<li><dl class="first docutils">
+<dt>Maybe we should refactor some of the attributes with a tuple</dt>
+<dd>(note, octave)</dd>
+</dl>
+</li>
+<li>Maybe remove <cite>chromatic_offset</cite> in favor of <cite>distance[&#8216;semitones&#8217;]`</cite></li>
+</ul>
+</div>
 <dl class="method">
 <dt id="birdears.interval.ChromaticInterval.__init__">
 <code class="descname">__init__</code><span class="sig-paren">(</span><em>mode</em>, <em>tonic</em>, <em>octave</em>, <em>n_octaves=None</em>, <em>descending=None</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.interval.ChromaticInterval.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Inits the class.</p>
+<dd><p>Inits the class and choses a random interval with the given args.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -167,9 +178,8 @@ of C; default: false)</li>
 the tonic is a &#8216;C4&#8217; then <cite>tonic_octave</cite> is 4.</li>
 <li><strong>octave</strong> (<a class="reference internal" href="index.html#module-birdears.interval" title="birdears.interval"><em>interval</em></a>) &#8211; Scientific octave for the interval. For example,
 if the interval is a &#8216;G5&#8217; then <cite>tonic_octave</cite> is 5.</li>
-<li><strong>chromatic_offset</strong> (<em>int</em>) &#8211; The offset in semitones inside one octave;
-maybe it will be deprecated in favour of <cite>distance[&#8216;semitones&#8217;]`</cite>
-which is the same.</li>
+<li><strong>chromatic_offset</strong> (<em>int</em>) &#8211; The offset in semitones inside one octave.
+Relative semitones to tonic.</li>
 <li><strong>note_and_octave</strong> (<em>str</em>) &#8211; Note and octave of the interval, for example, if
 the interval is G5 the note name is &#8216;G5&#8217;.</li>
 <li><strong>note_name</strong> (<em>str</em>) &#8211; The note name of the interval, for example, if the
@@ -195,7 +205,7 @@ interval, for example, if tonic is C4 and interval is G5:</p>
 </li>
 <li><strong>data</strong> (<em>tuple</em>) &#8211; <p>A tuple representing the interval data in the form of
 (semitones, short_name, long_name), for example:</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>(19, &#39;P12&#39;, &#39;Perfect Twelfth&#39;),
+<div class="highlight-none"><div class="highlight"><pre><span></span>(19, &#39;P12&#39;, &#39;Perfect Twelfth&#39;)
 </pre></div>
 </div>
 </li>
@@ -204,10 +214,21 @@ interval, for example, if tonic is C4 and interval is G5:</p>
 </tr>
 </tbody>
 </table>
+<div class="admonition-todo admonition" id="index-1">
+<p class="first admonition-title">Todo</p>
+<ul class="last simple">
+<li><dl class="first docutils">
+<dt>Maybe we should refactor some of the attributes with a tuple</dt>
+<dd>(note, octave)</dd>
+</dl>
+</li>
+<li>Maybe remove <cite>chromatic_offset</cite> in favor of <cite>distance[&#8216;semitones&#8217;]`</cite></li>
+</ul>
+</div>
 <dl class="method">
 <dt id="birdears.interval.DiatonicInterval.__init__">
 <code class="descname">__init__</code><span class="sig-paren">(</span><em>mode</em>, <em>tonic</em>, <em>octave</em>, <em>n_octaves=None</em>, <em>descending=None</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.interval.DiatonicInterval.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Inits the class.</p>
+<dd><p>Inits the class and choses a random interval with the given args.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -217,7 +238,6 @@ interval, for example, if tonic is C4 and interval is G5:</p>
 (eg.: &#8216;major&#8217; or &#8216;minor&#8217;)</li>
 <li><strong>tonic</strong> (<em>str</em>) &#8211; Tonic of the scale. (eg.: &#8216;Bb&#8217;)</li>
 <li><strong>octave</strong> (<em>str</em>) &#8211; Scientific octave of the scale (eg.: 4)</li>
-<li><strong>interval</strong> (<em>str</em>) &#8211; Not implemented. The interval.</li>
 <li><strong>n_octaves</strong> (<em>int</em>) &#8211; Maximum number os octaves (eg. 2)</li>
 <li><strong>descending</strong> (<em>bool</em>) &#8211; Is the interval descending? (default: false)</li>
 </ul>
@@ -341,7 +361,7 @@ in the resolution.</li>
 </tr>
 </tbody>
 </table>
-<div class="admonition-todo admonition" id="index-0">
+<div class="admonition-todo admonition" id="index-2">
 <p class="first admonition-title">Todo</p>
 <ul class="last simple">
 <li>Maybe refactor the resolve <a href="#id1"><span class="problematic" id="id2">`</span></a>method`s with a prefix.</li>
@@ -374,7 +394,7 @@ in the resolution.</li>
 </tr>
 </tbody>
 </table>
-<div class="admonition-todo admonition" id="index-1">
+<div class="admonition-todo admonition" id="index-3">
 <p class="first admonition-title">Todo</p>
 <ul class="last simple">
 <li>chromatic doesn&#8217;t seem to be used.</li>
@@ -401,7 +421,7 @@ in the resolution.</li>
 </tr>
 </tbody>
 </table>
-<div class="admonition-todo admonition" id="index-2">
+<div class="admonition-todo admonition" id="index-4">
 <p class="first admonition-title">Todo</p>
 <ul class="last simple">
 <li>chromatic doesn&#8217;t seem to be used.</li>
