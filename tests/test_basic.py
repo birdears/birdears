@@ -32,7 +32,7 @@ def test_questionbase_placeholders():
 def test_scalebase_placeholders():
     a = ScaleBase()
 
-    a.get_triad(degree='something something')
+    #a.get_triad(degree='something something')
 
     assert(a)
 
