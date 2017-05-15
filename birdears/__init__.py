@@ -4,12 +4,6 @@
 BirdEars provides facilities to musical ear training exercises.
 """
 
-# import subprocess
-# import time
-# from random import randrange, choice
-# from collections import deque
-# from math import floor
-
 
 #DEBUG = True
 DEBUG = False

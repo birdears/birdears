@@ -63,7 +63,7 @@ class Sequence:
         delay = self.delay if delay is None else delay
 
         command = (
-            "play -qn synth {duration} pluck {note}"
+            "play -V1 -qn synth {duration} pluck {note}"
             " fade l 0 {duration} 2 reverb"
         ).format(note=note, duration=duration)
 
@@ -82,11 +82,10 @@ class Sequence:
             chord_plucks += " pluck {} ".format(note)
 
         command = (
-            "play -qn synth {duration} {chord}"
+            "play -V1 -qn synth {duration} {chord}"
             " fade l 0 {duration} 2 reverb"
         ).format(note=note, duration=duration, chord=chord_plucks)
 
-        print(command)
         subprocess.Popen(command.split())
 
         if delay:

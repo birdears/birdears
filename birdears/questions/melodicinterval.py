@@ -44,6 +44,7 @@ class MelodicIntervalQuestion(QuestionBase):
                                               n_octaves=n_octaves,
                                               descending=descending)
 
+        # self.pre_question = self.make_pre_question()
         self.question = self.make_question()
 
         # FIXME
@@ -60,10 +61,24 @@ class MelodicIntervalQuestion(QuestionBase):
         self.resolution =  resolve.resolve(chromatic=chromatic, mode=self.mode,
                                    tonic=self.tonic, intervals=self.interval,
                                    descending=descending)
+
+    # def make_pre_question(self):
+    #     self.pre_question = Sequence([], duration=self.question_duration,
+    #                         delay=self.question_delay,
+    #                         pos_delay=1)
+    #     self.pre_question.make_chord_progression(self.tonic, self.mode,
+    #                                              [1, 4, 5, 1])
+    #
+    #     return self.pre_question
+
     def make_question(self):
 
         tonic = self.concrete_tonic
         interval = self.interval.note_and_octave
+
+        #question = Sequence([tonic, interval], duration=self.question_duration,
+        #                    delay=self.question_delay,
+        #                    pos_delay=self.question_pos_delay)
 
         question = Sequence([tonic, interval], duration=self.question_duration,
                             delay=self.question_delay,
@@ -115,6 +130,7 @@ class MelodicIntervalQuestion(QuestionBase):
         pass
 
     def play_question(self):
+        # self.pre_question.play()
         self.question.play()
 
     def play_resolution(self):
