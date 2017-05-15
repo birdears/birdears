@@ -15,8 +15,6 @@ from ..scale import ChromaticScale
 from ..sequence import Sequence
 from ..resolution import Resolution
 
-# from ..__main__ import COLS
-# from ..__main__ import center_text
 from ..interfaces.commandline import COLS
 from ..interfaces.commandline import center_text
 
