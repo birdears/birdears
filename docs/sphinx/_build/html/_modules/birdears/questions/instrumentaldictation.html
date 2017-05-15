@@ -72,7 +72,7 @@ from ..__main__ import COLS
 from ..__main__ import center_text
 
 
-<div class="viewcode-block" id="InstrumentalDictationQuestion"><a class="viewcode-back" href="../../../_apidoc/birdears.questions.html#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion">[docs]</a>class InstrumentalDictationQuestion(QuestionBase):
+<div class="viewcode-block" id="InstrumentalDictationQuestion"><a class="viewcode-back" href="../../../birdears.questions.html#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion">[docs]</a>class InstrumentalDictationQuestion(QuestionBase):
     &quot;&quot;&quot;Implements an instrumental dictation test.
     &quot;&quot;&quot;
 
@@ -134,14 +134,14 @@ from ..__main__ import center_text
                                                            tonic=self.tonic, intervals=self.question_phrase_intervals,
                                                            descending=descending)
 
-<div class="viewcode-block" id="InstrumentalDictationQuestion.make_question"><a class="viewcode-back" href="../../../_apidoc/birdears.questions.html#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.make_question">[docs]</a>    def make_question(self, phrase_semitones):
+<div class="viewcode-block" id="InstrumentalDictationQuestion.make_question"><a class="viewcode-back" href="../../../birdears.questions.html#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.make_question">[docs]</a>    def make_question(self, phrase_semitones):
         return Sequence([self.scales[&#39;chromatic_pitch&#39;].scale[n]
                         for n in phrase_semitones],
                         duration=self.question_duration,
                         delay=self.question_delay,
                         pos_delay=self.question_pos_delay)</div>
 
-<div class="viewcode-block" id="InstrumentalDictationQuestion.play_question"><a class="viewcode-back" href="../../../_apidoc/birdears.questions.html#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.play_question">[docs]</a>    def play_question(self):
+<div class="viewcode-block" id="InstrumentalDictationQuestion.play_question"><a class="viewcode-back" href="../../../birdears.questions.html#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.play_question">[docs]</a>    def play_question(self):
 
         for r in range(self.n_repeats):
             self.question.play()
@@ -152,12 +152,12 @@ from ..__main__ import center_text
                 print(center_text(text, sep=False), end=&#39;&#39;)
                 self.question._wait(1)</div>
 
-<div class="viewcode-block" id="InstrumentalDictationQuestion.play_resolution"><a class="viewcode-back" href="../../../_apidoc/birdears.questions.html#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.play_resolution">[docs]</a>    def play_resolution(self):
+<div class="viewcode-block" id="InstrumentalDictationQuestion.play_resolution"><a class="viewcode-back" href="../../../birdears.questions.html#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.play_resolution">[docs]</a>    def play_resolution(self):
 
         for sequence in self.resolution:
             sequence.play()</div>
 
-<div class="viewcode-block" id="InstrumentalDictationQuestion.check_question"><a class="viewcode-back" href="../../../_apidoc/birdears.questions.html#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.check_question">[docs]</a>    def check_question(self, user_input_keys):
+<div class="viewcode-block" id="InstrumentalDictationQuestion.check_question"><a class="viewcode-back" href="../../../birdears.questions.html#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.check_question">[docs]</a>    def check_question(self, user_input_keys):
 
         &quot;&quot;&quot;Checks whether the given answer is correct.&quot;&quot;&quot;
 

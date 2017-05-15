@@ -67,7 +67,7 @@ from ..sequence import Sequence
 from ..resolution import Resolution
 
 
-<div class="viewcode-block" id="HarmonicIntervalQuestion"><a class="viewcode-back" href="../../../_apidoc/birdears.questions.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion">[docs]</a>class HarmonicIntervalQuestion(QuestionBase):
+<div class="viewcode-block" id="HarmonicIntervalQuestion"><a class="viewcode-back" href="../../../birdears.questions.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion">[docs]</a>class HarmonicIntervalQuestion(QuestionBase):
     &quot;&quot;&quot;Implements a Harmonic Interval test.
     &quot;&quot;&quot;
 
@@ -118,7 +118,7 @@ from ..resolution import Resolution
                                    tonic=self.tonic, intervals=self.interval,
                                    descending=descending)
 
-<div class="viewcode-block" id="HarmonicIntervalQuestion.make_question"><a class="viewcode-back" href="../../../_apidoc/birdears.questions.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.make_question">[docs]</a>    def make_question(self):
+<div class="viewcode-block" id="HarmonicIntervalQuestion.make_question"><a class="viewcode-back" href="../../../birdears.questions.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.make_question">[docs]</a>    def make_question(self):
 
         tonic = self.concrete_tonic
         interval = self.interval.note_and_octave
@@ -128,18 +128,18 @@ from ..resolution import Resolution
 
         return question</div>
 
-<div class="viewcode-block" id="HarmonicIntervalQuestion.make_resolution"><a class="viewcode-back" href="../../../_apidoc/birdears.questions.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.make_resolution">[docs]</a>    def make_resolution(self, chromatic, mode, tonic, interval,
+<div class="viewcode-block" id="HarmonicIntervalQuestion.make_resolution"><a class="viewcode-back" href="../../../birdears.questions.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.make_resolution">[docs]</a>    def make_resolution(self, chromatic, mode, tonic, interval,
                         descending=None):
         pass</div>
 
-<div class="viewcode-block" id="HarmonicIntervalQuestion.play_question"><a class="viewcode-back" href="../../../_apidoc/birdears.questions.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.play_question">[docs]</a>    def play_question(self):
+<div class="viewcode-block" id="HarmonicIntervalQuestion.play_question"><a class="viewcode-back" href="../../../birdears.questions.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.play_question">[docs]</a>    def play_question(self):
         self.question.play()</div>
 
-<div class="viewcode-block" id="HarmonicIntervalQuestion.play_resolution"><a class="viewcode-back" href="../../../_apidoc/birdears.questions.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.play_resolution">[docs]</a>    def play_resolution(self):
+<div class="viewcode-block" id="HarmonicIntervalQuestion.play_resolution"><a class="viewcode-back" href="../../../birdears.questions.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.play_resolution">[docs]</a>    def play_resolution(self):
         for sequence in self.resolution:
             sequence.play()</div>
 
-<div class="viewcode-block" id="HarmonicIntervalQuestion.check_question"><a class="viewcode-back" href="../../../_apidoc/birdears.questions.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.check_question">[docs]</a>    def check_question(self, user_input_char):
+<div class="viewcode-block" id="HarmonicIntervalQuestion.check_question"><a class="viewcode-back" href="../../../birdears.questions.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.check_question">[docs]</a>    def check_question(self, user_input_char):
         &quot;&quot;&quot;Checks whether the given answer is correct.&quot;&quot;&quot;
 
         global INTERVALS
