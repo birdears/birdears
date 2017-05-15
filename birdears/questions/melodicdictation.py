@@ -123,21 +123,42 @@ class MelodicDictationQuestion(QuestionBase):
 
         global INTERVALS
 
+        STR_OFFSET = 5
+
         user_input_semitones = [self.keyboard_index.index(s)
                                 for s in user_input_keys]
 
-        user_response_str = "-".join([INTERVALS[s][1]
+        user_response_str = "".join([INTERVALS[s][1].center(STR_OFFSET)
                                      for s in user_input_semitones])
-        correct_response_str = "-".join([INTERVALS[s][1]
+        correct_response_str = "".join([INTERVALS[s][1].center(STR_OFFSET)
                                         for s in self.question_phrase])
+
+        correct_semitones = list()
+        correct_wrong_str = str()
+
+        for i,s in enumerate(self.question_phrase):
+            if self.question_phrase[i] == user_input_semitones[i]:
+                correct_semitones.append(True)
+                correct_wrong_str += "✓".center(STR_OFFSET) # u2713
+            else:
+                correct_semitones.append(False)
+                correct_wrong_str += "x".center(STR_OFFSET)
+
+        extra_response_str = """
+{}
+{}
+{}
+""".format(correct_response_str, correct_wrong_str, user_response_str)
 
         response = dict(
             is_correct = False,
             user_input = user_input_keys,
             user_semitones = user_input_semitones,
-            correct_semitones = self.question_phrase,
+            question_semitones = self.question_phrase,
+            correct_semitones = correct_semitones,
             user_response_str = user_response_str,
-            correct_response_str = correct_response_str
+            correct_response_str = correct_response_str,
+            extra_response_str = extra_response_str,
         )
 
         if user_input_semitones == self.question_phrase:

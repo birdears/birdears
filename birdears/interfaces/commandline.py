@@ -49,11 +49,17 @@ def print_response(response):
 
     # TODO: make a class for response
     if response['is_correct']:
-        response_text = "Correct! It is {correct_resp}".format(**text_kwargs)
+        #response_text = "Correct! It is {correct_resp}".format(**text_kwargs)
+        response_text = "Correct!"
 
     else:
-        response_text = "It is incorrect...You replied {user_resp} but the" \
-                        " correct is {correct_resp}".format(**text_kwargs)
+        response_text = "Wrong.."
+        #response_text = "It is incorrect...\n"\
+                        #"        You replied {user_resp}\n" \
+                        #"but the  correct is {correct_resp}".format(**text_kwargs)
+
+    if 'extra_response_str' in response.keys():
+        print(center_text(response['extra_response_str']))
 
     print(center_text(response_text,nl=2))
 
