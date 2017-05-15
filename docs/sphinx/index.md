@@ -1,10 +1,11 @@
-# testing docs
+# birdears documentation
 
 ## Contents
 
 * [Index](index.md)
 * [API](birdears.rst)
 
+## And there we go
 
 oks
 

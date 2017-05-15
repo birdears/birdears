@@ -121,6 +121,8 @@ class DiatonicScale(ScaleBase):
             index (int): triad index (eg.: 0 for 1st degree triad.)
             degree (int): Degree of the scale. If provided, overrides the
                 `index` argument. (eg.: `1` for the 1st degree triad.)
+        Returns:
+            An array with three pitches, one for each note of the triad.
         """
 
         global DIATONIC_MODES
@@ -219,6 +221,8 @@ class ChromaticScale(ScaleBase):
             index (int): Triad index (eg.: 0 for 1st degree triad.)
             degree (int): Degree of the scale. If provided, overrides the
                 `index` argument. (eg.: `1` for the 1st degree triad.)
+        Returns:
+            An array with three pitches, one for each note of the triad.
         """
 
         global DIATONIC_MODES

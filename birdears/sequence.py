@@ -4,14 +4,21 @@ import time
 from .scale import ChromaticScale
 
 class Sequence:
+    """Register a Sequence of notes and/or chords.
+
+    Attributes:
+        elements (array_type): List of notes (strings) ou chords (list of
+            strings) in this Sequence.
+    """
     def __init__(self, elements, duration=2, delay=1.5, pos_delay=1):
-        """Sequence of notes or chords.
+        """Inits the Sequence with an array and sets the default times for
+            playing / pausing the elements.
 
         Args:
             elements (array_type): List of elements in this sequence.
                 (notes or chords)
-            duration (float): Default duratin playing time for each element
-                in the sequence.
+            duration (float): Default playing time for each element in the
+                sequence.
             delay (float): Default waiting time to play the next element
                 in the sequence.
             pos_delay (float): Waiting time after playing the last element
@@ -31,6 +38,8 @@ class Sequence:
         self.elements.extend(elements)
 
     def play(self):
+        """Plays the Sequence of notes and/or chords.
+        """
 
         last_idx = len(self.elements) - 1
 
@@ -49,6 +58,14 @@ class Sequence:
 
     # FIXME: implement octave here:
     def make_chord_progression(self, tonic, mode, degrees):
+        """Appends triad chord(s) to the Sequence.
+
+        Args:
+            tonic(str): Tonic note of the scale.
+            mode (str): Mode of the scale from which build the triads upon.
+            degrees (array_type): List with integers represending the degrees
+                of each triad.
+        """
         scale = ChromaticScale(tonic=tonic)
 
         for degree in degrees:
