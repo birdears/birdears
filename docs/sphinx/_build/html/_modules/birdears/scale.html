@@ -62,8 +62,8 @@ from collections import deque
     def __init__(self):
         pass
 
-<div class="viewcode-block" id="ScaleBase.get_triad"><a class="viewcode-back" href="../../index.html#birdears.scale.ScaleBase.get_triad">[docs]</a>    def get_triad(self, degree):
-        pass</div>
+    #def get_triad(self, degree):
+    #    pass
 
     def _append_octave_to_scale(self, scale, starting_octave, descending=None):
         &quot;&quot;&quot;Inserts scientific octave number to the notes on a the given scale.
@@ -168,6 +168,13 @@ from collections import deque
         self.scale = diatonic</div>
 
 <div class="viewcode-block" id="DiatonicScale.get_triad"><a class="viewcode-back" href="../../index.html#birdears.scale.DiatonicScale.get_triad">[docs]</a>    def get_triad(self, index=0, degree=None):
+        &quot;&quot;&quot;Returns an array with notes from a scale&#39;s triad.
+
+        Args:
+            index (int): triad index (eg.: 0 for 1st degree triad.)
+            degree (int): Degree of the scale. If provided, overrides the
+                `index` argument. (eg.: `1` for the 1st degree triad.)
+        &quot;&quot;&quot;
 
         global DIATONIC_MODES
 
@@ -258,6 +265,14 @@ from collections import deque
         self.scale = chromatic</div>
 
 <div class="viewcode-block" id="ChromaticScale.get_triad"><a class="viewcode-back" href="../../index.html#birdears.scale.ChromaticScale.get_triad">[docs]</a>    def get_triad(self, mode, index=0, degree=None):
+        &quot;&quot;&quot;Returns an array with notes from a scale&#39;s triad.
+
+        Args:
+            mode (str): Mode of the scale (eg. &#39;major&#39; or &#39;minor&#39;)
+            index (int): Triad index (eg.: 0 for 1st degree triad.)
+            degree (int): Degree of the scale. If provided, overrides the
+                `index` argument. (eg.: `1` for the 1st degree triad.)
+        &quot;&quot;&quot;
 
         global DIATONIC_MODES
 

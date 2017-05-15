@@ -26,6 +26,8 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="birdears.questions package" href="birdears.questions.html" />
+    <link rel="prev" title="testing docs" href="index.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/hljs_styles/monokai.css" type="text/css" />
@@ -250,7 +252,22 @@ note (octave) to the scale.</li>
 <dl class="method">
 <dt id="birdears.scale.ChromaticScale.get_triad">
 <code class="descname">get_triad</code><span class="sig-paren">(</span><em>mode</em>, <em>index=0</em>, <em>degree=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/scale.html#ChromaticScale.get_triad"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.scale.ChromaticScale.get_triad" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Returns an array with notes from a scale&#8217;s triad.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>mode</strong> (<em>str</em>) &#8211; Mode of the scale (eg. &#8216;major&#8217; or &#8216;minor&#8217;)</li>
+<li><strong>index</strong> (<em>int</em>) &#8211; Triad index (eg.: 0 for 1st degree triad.)</li>
+<li><strong>degree</strong> (<em>int</em>) &#8211; Degree of the scale. If provided, overrides the
+<cite>index</cite> argument. (eg.: <cite>1</cite> for the 1st degree triad.)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </dd></dl>
 
@@ -294,7 +311,21 @@ note (octave) to the scale.</li>
 <dl class="method">
 <dt id="birdears.scale.DiatonicScale.get_triad">
 <code class="descname">get_triad</code><span class="sig-paren">(</span><em>index=0</em>, <em>degree=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/scale.html#DiatonicScale.get_triad"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.scale.DiatonicScale.get_triad" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Returns an array with notes from a scale&#8217;s triad.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>index</strong> (<em>int</em>) &#8211; triad index (eg.: 0 for 1st degree triad.)</li>
+<li><strong>degree</strong> (<em>int</em>) &#8211; Degree of the scale. If provided, overrides the
+<cite>index</cite> argument. (eg.: <cite>1</cite> for the 1st degree triad.)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </dd></dl>
 
@@ -302,11 +333,6 @@ note (octave) to the scale.</li>
 <dt id="birdears.scale.ScaleBase">
 <em class="property">class </em><code class="descclassname">birdears.scale.</code><code class="descname">ScaleBase</code><a class="reference internal" href="_modules/birdears/scale.html#ScaleBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.scale.ScaleBase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
-<dl class="method">
-<dt id="birdears.scale.ScaleBase.get_triad">
-<code class="descname">get_triad</code><span class="sig-paren">(</span><em>degree</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/scale.html#ScaleBase.get_triad"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.scale.ScaleBase.get_triad" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
 </div>
@@ -393,6 +419,8 @@ in the sequence.</li>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">testing docs</a></li>
+      <li>Next: <a href="birdears.questions.html" title="next chapter">birdears.questions package</a></li>
   </ul></li>
 </ul>
 </div>

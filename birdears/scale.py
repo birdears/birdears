@@ -9,8 +9,8 @@ class ScaleBase:
     def __init__(self):
         pass
 
-    def get_triad(self, degree):
-        pass
+    #def get_triad(self, degree):
+    #    pass
 
     def _append_octave_to_scale(self, scale, starting_octave, descending=None):
         """Inserts scientific octave number to the notes on a the given scale.
@@ -115,6 +115,13 @@ class DiatonicScale(ScaleBase):
         self.scale = diatonic
 
     def get_triad(self, index=0, degree=None):
+        """Returns an array with notes from a scale's triad.
+
+        Args:
+            index (int): triad index (eg.: 0 for 1st degree triad.)
+            degree (int): Degree of the scale. If provided, overrides the
+                `index` argument. (eg.: `1` for the 1st degree triad.)
+        """
 
         global DIATONIC_MODES
 
@@ -205,6 +212,14 @@ class ChromaticScale(ScaleBase):
         self.scale = chromatic
 
     def get_triad(self, mode, index=0, degree=None):
+        """Returns an array with notes from a scale's triad.
+
+        Args:
+            mode (str): Mode of the scale (eg. 'major' or 'minor')
+            index (int): Triad index (eg.: 0 for 1st degree triad.)
+            degree (int): Degree of the scale. If provided, overrides the
+                `index` argument. (eg.: `1` for the 1st degree triad.)
+        """
 
         global DIATONIC_MODES
 
