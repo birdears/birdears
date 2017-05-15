@@ -34,20 +34,14 @@ class DiatonicInterval(IntervalBase):
     def __init__(self, mode, tonic, octave, n_octaves=None, descending=None):
         """Chooses a diatonic interval for the question.
 
-        Parameters
-        ----------
-        mode : str
-            Diatonic mode for the interval. (eg.: 'major' or 'minor')
-        tonic : str
-            Tonic of the scale. (eg.: 'Bb')
-        octave : str
-            Scientific octave of the scale (eg.: 4)
-        interval : str
-            Not implemented. The interval.
-        n_octaves : int
-            Maximum number os octaves (eg. 2)
-        descending : bool
-            Is the interval descending? (default: false)
+        Args:
+            mode (str): Diatonic mode for the interval.
+                (eg.: 'major' or 'minor')
+            tonic (str): Tonic of the scale. (eg.: 'Bb')
+            octave (str): Scientific octave of the scale (eg.: 4)
+            interval (str): Not implemented. The interval.
+            n_octaves (int): Maximum number os octaves (eg. 2)
+            descending (bool): Is the interval descending? (default: false)
         """
 
         super(DiatonicInterval, self).__init__()
@@ -120,22 +114,16 @@ class ChromaticInterval(IntervalBase):
     def __init__(self, mode, tonic, octave, n_octaves=None, descending=None):
         """Chooses a chromatic interval for the question.
 
-        Parameters
-        ----------
-        mode : str
-            Diatonic mode for the interval. (eg.: 'major' or 'minor')
-        tonic : str
-            Tonic of the scale. (eg.: 'Bb')
-        octave : str
-            Scientific octave of the scale (eg.: 4)
-        interval : str
-            Not implemented. The interval.
-        chromatic: bool
-            Can have chromatic notes? (eg.: F# in a key of C; default: false)
-        n_octaves : int
-            Maximum number os octaves (eg. 2)
-        descending : bool
-            Is the interval descending? (default: false)
+        Args:
+            mode (str): Diatonic mode for the interval.
+                (eg.: 'major' or 'minor')
+            tonic (str): Tonic of the scale. (eg.: 'Bb')
+            octave (str): Scientific octave of the scale (eg.: 4)
+            interval (str): Not implemented. The interval.
+            chromatic (bool): Can have chromatic notes? (eg.: F# in a key
+                of C; default: false)
+            n_octaves (int): Maximum number os octaves (eg. 2)
+            descending (bool): Is the interval descending? (default: false)
         """
 
         super(ChromaticInterval, self).__init__()

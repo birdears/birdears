@@ -7,16 +7,15 @@ class Sequence:
     def __init__(self, elements, duration=2, delay=1.5, pos_delay=1):
         """Sequence of notes or chords.
 
-        Parameters
-        ----------
-        elements : array_type
-            List of elements in this sequence. (notes or chords)
-        duration : float
-            Default duratin playing time for each element in the sequence.
-        delay : float
-            Default waiting time to play the next element in the sequence.
-        pos_delay : float
-            Waiting time after playing the last element in the sequence.
+        Args:
+            elements (array_type): List of elements in this sequence.
+                (notes or chords)
+            duration (float): Default duratin playing time for each element
+                in the sequence.
+            delay (float): Default waiting time to play the next element
+                in the sequence.
+            pos_delay (float): Waiting time after playing the last element
+                in the sequence.
         """
 
         self.duration = duration

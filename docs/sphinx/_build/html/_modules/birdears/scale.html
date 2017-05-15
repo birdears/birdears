@@ -117,35 +117,32 @@ from collections import deque
 <div class="viewcode-block" id="DiatonicScale"><a class="viewcode-back" href="../../index.html#birdears.scale.DiatonicScale">[docs]</a>class DiatonicScale(ScaleBase):
     &quot;&quot;&quot;Builds a musical diatonic scale.
 
-    Attributes
-    ----------
-    scale : array_type
-        the array of notes representing the scale.
+    Attributes:
+        scale (array_type): The array of notes representing the scale.
     &quot;&quot;&quot;
 
 <div class="viewcode-block" id="DiatonicScale.__init__"><a class="viewcode-back" href="../../index.html#birdears.scale.DiatonicScale.__init__">[docs]</a>    def __init__(self, tonic, mode=None, octave=None, n_octaves=None,
                  descending=None, dont_repeat_tonic=None):
         &quot;&quot;&quot;Returns a diatonic scale from tonic and mode.
 
-        Parameters
-        ----------
-        tonic : str
-            The note which the scale will be built upon.
-        mode : str
-            The mode the scale will be built upon. (&#39;major&#39; or &#39;minor&#39;)
-        octave : int
-            The scientific octave the scale will be built upon.
-        n_octaves : int
-            The number of octaves the scale will contain.
-        descending : bool
-            Whether the scale is descending.
-        dont_repeat_tonic : bool
-            Whether to skip appending the last note (octave) to the scale.
+        Args:
+            tonic (str): The note which the scale will be built upon.
+            mode (str): The mode the scale will be built upon.
+                (&#39;major&#39; or &#39;minor&#39;)
+            octave (int): The scientific octave the scale will be built upon.
+            n_octaves (int): The number of octaves the scale will contain.
+            descending (bool): Whether the scale is descending.
+            dont_repeat_tonic (bool): Whether to skip appending the last
+                note (octave) to the scale.
         &quot;&quot;&quot;
 
         super(DiatonicScale, self).__init__()
 
         global DIATONIC_MODES
+
+        self.tonic = tonic
+        self.mode = mode
+        self.octave = octave
 
         diatonic_mode = DIATONIC_MODES[mode]
 
@@ -168,7 +165,47 @@ from collections import deque
                                                     starting_octave=octave,
                                                     descending=descending)
 
-        self.scale = diatonic</div></div>
+        self.scale = diatonic</div>
+
+<div class="viewcode-block" id="DiatonicScale.get_triad"><a class="viewcode-back" href="../../index.html#birdears.scale.DiatonicScale.get_triad">[docs]</a>    def get_triad(self, index=0, degree=None):
+
+        global DIATONIC_MODES
+
+        tonic = self.tonic
+        mode = self.mode
+        octave = self.octave
+
+        diatonic_mode = DIATONIC_MODES[mode]
+
+        chromatic = ChromaticScale(tonic).scale
+
+        diatonic = [chromatic[semitones] for semitones in diatonic_mode[:-1]]
+
+        #if n_octaves:
+        #diatonic = diatonic * n_octaves
+        diatonic = diatonic * 2
+
+        # FIXME: check if this works on descending
+        diatonic.append(chromatic[diatonic_mode[-1]])
+
+        #if descending:
+        #    diatonic.reverse()
+
+        #if octave:
+        octave = self.octave or 4
+        diatonic = self._append_octave_to_scale(scale=diatonic,
+                                                starting_octave=octave,
+                                                descending=False)
+
+        self.scale = diatonic
+        if degree:
+            index = degree - 1
+
+        form = [0, 2, 4]
+
+        triad = [diatonic[index+note] for note in form]
+
+        return triad</div></div>
 
 
 <div class="viewcode-block" id="ChromaticScale"><a class="viewcode-back" href="../../index.html#birdears.scale.ChromaticScale">[docs]</a>class ChromaticScale(ScaleBase):
@@ -176,23 +213,21 @@ from collections import deque
                  dont_repeat_tonic=None):
         &quot;&quot;&quot;Returns a chromatic scale from tonic.
 
-        Parameters
-        ----------
-        tonic : str
-            The note which the scale will be built upon.
-        octave : int
-            The scientific octave the scale will be built upon.
-        n_octaves : int
-            The number of octaves the scale will contain.
-        descending : bool
-            Whether the scale is descending.
-        dont_repeat_tonic : bool
-            Whether to skip appending the last note (octave) to the scale.
+        Args:
+            tonic (str): The note which the scale will be built upon.
+            octave (int): The scientific octave the scale will be built upon.
+            n_octaves (int): The number of octaves the scale will contain.
+            descending (bool): Whether the scale is descending.
+            dont_repeat_tonic (bool): Whether to skip appending the last
+                note (octave) to the scale.
         &quot;&quot;&quot;
 
         super(ChromaticScale, self).__init__()
 
         global notes3, notes2
+
+        self.tonic = tonic
+        self.octave = octave
 
         tonic_index = self._get_chromatic_idx(tonic)
 
@@ -220,7 +255,46 @@ from collections import deque
                                                      starting_octave=octave,
                                                      descending=descending)
 
-        self.scale = chromatic</div></div>
+        self.scale = chromatic</div>
+
+<div class="viewcode-block" id="ChromaticScale.get_triad"><a class="viewcode-back" href="../../index.html#birdears.scale.ChromaticScale.get_triad">[docs]</a>    def get_triad(self, mode, index=0, degree=None):
+
+        global DIATONIC_MODES
+
+        tonic = self.tonic
+        octave = self.octave
+
+        diatonic_mode = DIATONIC_MODES[mode]
+
+        chromatic = ChromaticScale(tonic).scale
+
+        diatonic = [chromatic[semitones] for semitones in diatonic_mode[:-1]]
+
+        #if n_octaves:
+        #diatonic = diatonic * n_octaves
+        diatonic = diatonic * 2
+
+        # FIXME: check if this works on descending
+        diatonic.append(chromatic[diatonic_mode[-1]])
+
+        #if descending:
+        #    diatonic.reverse()
+
+        #if octave:
+        octave = self.octave or 4
+        diatonic = self._append_octave_to_scale(scale=diatonic,
+                                                starting_octave=octave,
+                                                descending=False)
+
+        self.scale = diatonic
+        if degree:
+            index = degree - 1
+
+        form = [0, 2, 4]
+
+        triad = [diatonic[index+note] for note in form]
+
+        return triad</div></div>
 </pre></div>
 
           </div>

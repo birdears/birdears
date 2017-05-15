@@ -54,21 +54,21 @@
 <span></span>import subprocess
 import time
 
+from .scale import ChromaticScale
 
 <div class="viewcode-block" id="Sequence"><a class="viewcode-back" href="../../index.html#birdears.sequence.Sequence">[docs]</a>class Sequence:
 <div class="viewcode-block" id="Sequence.__init__"><a class="viewcode-back" href="../../index.html#birdears.sequence.Sequence.__init__">[docs]</a>    def __init__(self, elements, duration=2, delay=1.5, pos_delay=1):
         &quot;&quot;&quot;Sequence of notes or chords.
 
-        Parameters
-        ----------
-        elements : array_type
-            List of elements in this sequence. (notes or chords)
-        duration : float
-            Default duratin playing time for each element in the sequence.
-        delay : float
-            Default waiting time to play the next element in the sequence.
-        pos_delay : float
-            Waiting time after playing the last element in the sequence.
+        Args:
+            elements (array_type): List of elements in this sequence.
+                (notes or chords)
+            duration (float): Default duratin playing time for each element
+                in the sequence.
+            delay (float): Default waiting time to play the next element
+                in the sequence.
+            pos_delay (float): Waiting time after playing the last element
+                in the sequence.
         &quot;&quot;&quot;
 
         self.duration = duration
@@ -85,14 +85,28 @@ import time
 
 <div class="viewcode-block" id="Sequence.play"><a class="viewcode-back" href="../../index.html#birdears.sequence.Sequence.play">[docs]</a>    def play(self):
 
-        for element in self.elements:
+        last_idx = len(self.elements) - 1
+
+        for cur_idx,element in enumerate(self.elements):
+
+            # lets leave the last element&#39;s delay for pos_delay:
+            delay = self.delay if cur_idx != last_idx else 0
+
             if type(element) == str:
-                self._play_note(element)
+                self._play_note(element,delay=delay)
             elif type(element) == list:
-                self._play_chord(element)
+                self._play_chord(element, delay=delay)
 
         if self.pos_delay:
             self._wait(self.pos_delay)</div>
+
+    # FIXME: implement octave here:
+<div class="viewcode-block" id="Sequence.make_chord_progression"><a class="viewcode-back" href="../../index.html#birdears.sequence.Sequence.make_chord_progression">[docs]</a>    def make_chord_progression(self, tonic, mode, degrees):
+        scale = ChromaticScale(tonic=tonic)
+
+        for degree in degrees:
+            triad = scale.get_triad(mode=mode, degree=degree)
+            self.elements.append(triad)</div>
 
     def _play_note(self, note, duration=None, delay=None):
         # requires sox to be installed
@@ -101,7 +115,7 @@ import time
         delay = self.delay if delay is None else delay
 
         command = (
-            &quot;play -qn synth {duration} pluck {note}&quot;
+            &quot;play -V1 -qn synth {duration} pluck {note}&quot;
             &quot; fade l 0 {duration} 2 reverb&quot;
         ).format(note=note, duration=duration)
 
@@ -110,13 +124,21 @@ import time
         if delay:
             self._wait(delay)
 
-    def _play_chord(self, chord):
+    def _play_chord(self, chord, duration=None, delay=None):
 
-        duration = self.duration
-        delay = self.delay
+        duration = self.duration if duration is None else duration
+        delay = self.delay if delay is None else delay
 
+        chord_plucks = str()
         for note in chord:
-            self._play_note(note, duration=duration, delay=0)
+            chord_plucks += &quot; pluck {} &quot;.format(note)
+
+        command = (
+            &quot;play -V1 -qn synth {duration} {chord}&quot;
+            &quot; fade l 0 {duration} 2 reverb&quot;
+        ).format(note=note, duration=duration, chord=chord_plucks)
+
+        subprocess.Popen(command.split())
 
         if delay:
             self._wait(delay)

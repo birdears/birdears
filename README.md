@@ -107,8 +107,12 @@ pep8 birdears --exclude=click
 We are using Sphinx to generate documentation for this module. The sphinx resource
 files are in the `docs/sphinx/` directory.
 
-We are beginning to use [numpydoc](https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt)
-to document the library.
+We use Google Style Docstrings to write documentation for the API. Here is
+Google's online [Python Style Guide](https://google.github.io/styleguide/pyguide.html)
+which has some of the specification or Sphinx Napoleon documentation [online](http://www.sphinx-doc.org/en/stable/ext/napoleon.html)
+or in [PDF](https://readthedocs.org/projects/sphinxcontrib-napoleon/downloads/pdf/latest/).
+Napoleon is the extension used by Sphinx to render Google Docstrings in the
+documentation.
 
 #### Runing apidoc
 
