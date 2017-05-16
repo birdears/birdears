@@ -4,6 +4,7 @@ from .. import _Getch
 
 from .. import INTERVALS
 from .. import DIATONIC_MODES
+from .. import CHROMATIC_TYPE
 
 from .. import DEBUG
 
@@ -76,21 +77,27 @@ def print_question(question):
 
     keyboard = question.keyboard_index
 
-    scale = list(question.scales['diatonic'].scale)
+    if not question.is_chromatic:
+        scale = list(question.scales['diatonic'].scale)
 
-    mode = list(DIATONIC_MODES[question.mode])
-    diatonic_index = list(mode)
+        mode = list(DIATONIC_MODES[question.mode])
+        scale_index = list(mode)
+    else:
+        scale = list(question.scales['chromatic'].scale)
+
+        mode = list(CHROMATIC_TYPE)
+        scale_index = list(mode)
 
     for o in range(1, question.n_octaves):
-        diatonic_index.extend([x + (12*o) for x in mode[1:]])
+        scale_index.extend([x + (12*o) for x in mode[1:]])
 
     # FIXME: bug with descending n_octaves=2
     if question.is_descending:
-        highest = max(diatonic_index)
-        diatonic_index = [highest - x for x in diatonic_index]
+        highest = max(scale_index)
+        scale_index = [highest - x for x in scale_index]
 
-    intervals = [INTERVALS[i][1] for i in diatonic_index]
-    keys = [keyboard[i] for i in diatonic_index]
+    intervals = [INTERVALS[i][1] for i in scale_index]
+    keys = [keyboard[i] for i in scale_index]
 
     scale_str = " ".join(map(lambda x: x.ljust(3), scale))
     intervals_str = " ".join(map(lambda x: x.ljust(3), intervals))
@@ -199,11 +206,12 @@ def CommandLine(exercise, **kwargs):
 
                 new_question_bit = True
 
-        elif user_input == '\x7f' and exercise == 'dictation':
+        elif user_input == '\x7f':
             #print('backspace!')
-            del(input_keys[-1])
-            input_str = make_input_str(input_keys, question.keyboard_index)
-            print(input_str, end='')
+            if(len(input_keys) > 0) and exercise == 'dictation':
+                del(input_keys[-1])
+                input_str = make_input_str(input_keys, question.keyboard_index)
+                print(input_str, end='')
 
         # q - quit
         elif user_input == 'q':
