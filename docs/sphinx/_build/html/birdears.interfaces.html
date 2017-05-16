@@ -34,11 +34,10 @@
   <script type="text/javascript" src="_static/js/highlight.pack.js"></script>
   <script>
   $(document).ready(function() {
-  //$('div.viewcode-block,pre:not(.abc)').each(function(i, block) {
-	  $('div.highlight-none pre').each(function(i, block) {
-    hljs.highlightBlock(block);
+    $('.highlight-none pre').each(function(i, block) {
+      hljs.highlightBlock(block);
+    });
   });
-});
 </script>
 <script src="https://cdn.rawgit.com/iacchus/abcjs/master/bin/abcjs_plugin_3.1.2-hotfix-min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
