@@ -32,7 +32,7 @@ distance between the two.
 """
 
 
-@cli.command(options_metavar='<command> [options]', epilog=melodic_epilog)
+@cli.command(options_metavar='[options]', epilog=melodic_epilog)
 @click.option('-m', '--mode', type=click.Choice(['major', 'minor']),
               default='major', help="Mode of the question.")
 @click.option('-t', '--tonic', type=str, default=None, metavar='<note>',
@@ -60,7 +60,7 @@ correct distance between the two.
 """
 
 
-@cli.command(options_metavar='<command> [options]', epilog=harmonic_epilog)
+@cli.command(options_metavar='[options]', epilog=harmonic_epilog)
 @click.option('-m', '--mode', type=click.Choice(['major', 'minor']),
               default='major', help="Mode of the question.")
 @click.option('-t', '--tonic', type=str, default=None, metavar='<note>',
@@ -89,7 +89,7 @@ melodic dictation.
 """
 
 
-@cli.command(options_metavar='<command> [options]', epilog=dictation_epilog)
+@cli.command(options_metavar='[options]', epilog=dictation_epilog)
 @click.option('-m', '--mode', type=click.Choice(['major', 'minor']),
               default='major', help="Mode of the question.")
 @click.option('-i', '--max_intervals', type=click.IntRange(2, 12), default=3,
@@ -124,7 +124,7 @@ instrument.
 """
 
 
-@cli.command(options_metavar='<command> [options]', epilog=instrumental_epilog)
+@cli.command(options_metavar='[options]', epilog=instrumental_epilog)
 @click.option('-m', '--mode', type=click.Choice(['major', 'minor']),
               default='major', help="Mode of the question.")
 @click.option('-w', '--wait_time', type=click.IntRange(1, 60), default=7,

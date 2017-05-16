@@ -26,7 +26,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="birdears.questions package" href="birdears.questions.html" />
+    <link rel="next" title="birdears.interfaces package" href="birdears.interfaces.html" />
     <link rel="prev" title="birdears documentation" href="index.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -58,6 +58,12 @@
 <h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="birdears.interfaces.html">birdears.interfaces package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="birdears.interfaces.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="birdears.interfaces.html#module-birdears.interfaces.commandline">birdears.interfaces.commandline module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="birdears.interfaces.html#module-birdears.interfaces">Module contents</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="birdears.questions.html">birdears.questions package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="birdears.questions.html#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="birdears.questions.html#module-birdears.questions.harmonicinterval">birdears.questions.harmonicinterval module</a></li>
@@ -78,35 +84,78 @@
 <dl class="class">
 <dt id="birdears.interval.ChromaticInterval">
 <em class="property">class </em><code class="descclassname">birdears.interval.</code><code class="descname">ChromaticInterval</code><span class="sig-paren">(</span><em>mode</em>, <em>tonic</em>, <em>octave</em>, <em>n_octaves=None</em>, <em>descending=None</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.interval.ChromaticInterval" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="index.html#birdears.interval.IntervalBase" title="birdears.interval.IntervalBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.interval.IntervalBase</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#birdears.interval.IntervalBase" title="birdears.interval.IntervalBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.interval.IntervalBase</span></code></a></p>
 <p>Chooses a diatonic interval for the question.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><strong>tonic_octave</strong> (<em>int</em>) &#8211; Scientific octave for the tonic. For example, if
-the tonic is a &#8216;C4&#8217; then <cite>tonic_octave</cite> is 4.</li>
-<li><strong>octave</strong> (<a class="reference internal" href="index.html#module-birdears.interval" title="birdears.interval"><em>interval</em></a>) &#8211; Scientific octave for the interval. For example,
-if the interval is a &#8216;G5&#8217; then <cite>tonic_octave</cite> is 5.</li>
-<li><strong>chromatic_offset</strong> (<em>int</em>) &#8211; The offset in semitones inside one octave;
+<dl class="attribute">
+<dt id="birdears.interval.ChromaticInterval.tonic_octave">
+<code class="descname">tonic_octave</code><a class="headerlink" href="#birdears.interval.ChromaticInterval.tonic_octave" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>int</em> &#8211; Scientific octave for the tonic. For example, if
+the tonic is a &#8216;C4&#8217; then <cite>tonic_octave</cite> is 4.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">interval octave</code></dt>
+<dd><p><em>int</em> &#8211; Scientific octave for the interval. For example,
+if the interval is a &#8216;G5&#8217; then <cite>tonic_octave</cite> is 5.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="birdears.interval.ChromaticInterval.chromatic_offset">
+<code class="descname">chromatic_offset</code><a class="headerlink" href="#birdears.interval.ChromaticInterval.chromatic_offset" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>int</em> &#8211; The offset in semitones inside one octave;
 maybe it will be deprecated in favour of <cite>distance[&#8216;semitones&#8217;]</cite>
-which is the same.</li>
-<li><strong>note_and_octave</strong> (<em>str</em>) &#8211; Note and octave of the interval, for example, if
-the interval is G5 the note name is &#8216;G5&#8217;.</li>
-<li><strong>note_name</strong> (<em>str</em>) &#8211; The note name of the interval, for example, if the
-interval is G5 then the name is &#8216;G&#8217;.</li>
-<li><strong>semitones</strong> (<em>int</em>) &#8211; Semitones from tonic to octave. If tonic is C4 and
-interval is G5 the number of semitones is 19.</li>
-<li><strong>is_chromatic</strong> (<em>bool</em>) &#8211; If the current interval is chromatic (True) or if
-it exists in the diatonic scale which key is tonic.</li>
-<li><strong>is_descending</strong> (<em>bool</em>) &#8211; If the interval has a descending direction, ie.,
-has a lower pitch than the tonic.</li>
-<li><strong>diatonic_index</strong> (<em>int</em>) &#8211; If the interval is chromatic, this will be the
+which is the same.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="birdears.interval.ChromaticInterval.note_and_octave">
+<code class="descname">note_and_octave</code><a class="headerlink" href="#birdears.interval.ChromaticInterval.note_and_octave" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> &#8211; Note and octave of the interval, for example, if
+the interval is G5 the note name is &#8216;G5&#8217;.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="birdears.interval.ChromaticInterval.note_name">
+<code class="descname">note_name</code><a class="headerlink" href="#birdears.interval.ChromaticInterval.note_name" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> &#8211; The note name of the interval, for example, if the
+interval is G5 then the name is &#8216;G&#8217;.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="birdears.interval.ChromaticInterval.semitones">
+<code class="descname">semitones</code><a class="headerlink" href="#birdears.interval.ChromaticInterval.semitones" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>int</em> &#8211; Semitones from tonic to octave. If tonic is C4 and
+interval is G5 the number of semitones is 19.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="birdears.interval.ChromaticInterval.is_chromatic">
+<code class="descname">is_chromatic</code><a class="headerlink" href="#birdears.interval.ChromaticInterval.is_chromatic" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>bool</em> &#8211; If the current interval is chromatic (True) or if
+it exists in the diatonic scale which key is tonic.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="birdears.interval.ChromaticInterval.is_descending">
+<code class="descname">is_descending</code><a class="headerlink" href="#birdears.interval.ChromaticInterval.is_descending" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>bool</em> &#8211; If the interval has a descending direction, ie.,
+has a lower pitch than the tonic.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="birdears.interval.ChromaticInterval.diatonic_index">
+<code class="descname">diatonic_index</code><a class="headerlink" href="#birdears.interval.ChromaticInterval.diatonic_index" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>int</em> &#8211; If the interval is chromatic, this will be the
 nearest diatonic interval in the direction of the resolution
 (closest tonic.) From II to IV degrees, it is the ditonic interval
-before; from V to VII it is the diatonic interval after.</li>
-<li><strong>distance</strong> (<em>dict</em>) &#8211; <p>A dictionary which the distance from tonic to
+before; from V to VII it is the diatonic interval after.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="birdears.interval.ChromaticInterval.distance">
+<code class="descname">distance</code><a class="headerlink" href="#birdears.interval.ChromaticInterval.distance" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dict</em> &#8211; A dictionary which the distance from tonic to
 interval, for example, if tonic is C4 and interval is G5:</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>{
     &#39;octaves&#39;: 1,
@@ -114,18 +163,18 @@ interval, for example, if tonic is C4 and interval is G5:</p>
 }
 </pre></div>
 </div>
-</li>
-<li><strong>data</strong> (<em>tuple</em>) &#8211; <p>A tuple representing the interval data in the form of
+</dd></dl>
+
+<dl class="attribute">
+<dt id="birdears.interval.ChromaticInterval.data">
+<code class="descname">data</code><a class="headerlink" href="#birdears.interval.ChromaticInterval.data" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>tuple</em> &#8211; A tuple representing the interval data in the form of
 (semitones, short_name, long_name), for example:</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>(19, &#39;P12&#39;, &#39;Perfect Twelfth&#39;)
 </pre></div>
 </div>
-</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd></dl>
+
 <div class="admonition-todo admonition" id="index-0">
 <p class="first admonition-title">Todo</p>
 <ul class="last simple">
@@ -167,34 +216,77 @@ of C; default: false)</li>
 <dl class="class">
 <dt id="birdears.interval.DiatonicInterval">
 <em class="property">class </em><code class="descclassname">birdears.interval.</code><code class="descname">DiatonicInterval</code><span class="sig-paren">(</span><em>mode</em>, <em>tonic</em>, <em>octave</em>, <em>n_octaves=None</em>, <em>descending=None</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.interval.DiatonicInterval" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="index.html#birdears.interval.IntervalBase" title="birdears.interval.IntervalBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.interval.IntervalBase</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#birdears.interval.IntervalBase" title="birdears.interval.IntervalBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.interval.IntervalBase</span></code></a></p>
 <p>Chooses a diatonic interval for the question.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><strong>tonic_octave</strong> (<em>int</em>) &#8211; Scientific octave for the tonic. For example, if
-the tonic is a &#8216;C4&#8217; then <cite>tonic_octave</cite> is 4.</li>
-<li><strong>octave</strong> (<a class="reference internal" href="index.html#module-birdears.interval" title="birdears.interval"><em>interval</em></a>) &#8211; Scientific octave for the interval. For example,
-if the interval is a &#8216;G5&#8217; then <cite>tonic_octave</cite> is 5.</li>
-<li><strong>chromatic_offset</strong> (<em>int</em>) &#8211; The offset in semitones inside one octave.
-Relative semitones to tonic.</li>
-<li><strong>note_and_octave</strong> (<em>str</em>) &#8211; Note and octave of the interval, for example, if
-the interval is G5 the note name is &#8216;G5&#8217;.</li>
-<li><strong>note_name</strong> (<em>str</em>) &#8211; The note name of the interval, for example, if the
-interval is G5 then the name is &#8216;G&#8217;.</li>
-<li><strong>semitones</strong> (<em>int</em>) &#8211; Semitones from tonic to octave. If tonic is C4 and
-interval is G5 the number of semitones is 19.</li>
-<li><strong>is_chromatic</strong> (<em>bool</em>) &#8211; If the current interval is chromatic (True) or if
-it exists in the diatonic scale which key is tonic.</li>
-<li><strong>is_descending</strong> (<em>bool</em>) &#8211; If the interval has a descending direction, ie.,
-has a lower pitch than the tonic.</li>
-<li><strong>diatonic_index</strong> (<em>int</em>) &#8211; If the interval is chromatic, this will be the
+<dl class="attribute">
+<dt id="birdears.interval.DiatonicInterval.tonic_octave">
+<code class="descname">tonic_octave</code><a class="headerlink" href="#birdears.interval.DiatonicInterval.tonic_octave" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>int</em> &#8211; Scientific octave for the tonic. For example, if
+the tonic is a &#8216;C4&#8217; then <cite>tonic_octave</cite> is 4.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">interval octave</code></dt>
+<dd><p><em>int</em> &#8211; Scientific octave for the interval. For example,
+if the interval is a &#8216;G5&#8217; then <cite>tonic_octave</cite> is 5.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="birdears.interval.DiatonicInterval.chromatic_offset">
+<code class="descname">chromatic_offset</code><a class="headerlink" href="#birdears.interval.DiatonicInterval.chromatic_offset" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>int</em> &#8211; The offset in semitones inside one octave.
+Relative semitones to tonic.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="birdears.interval.DiatonicInterval.note_and_octave">
+<code class="descname">note_and_octave</code><a class="headerlink" href="#birdears.interval.DiatonicInterval.note_and_octave" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> &#8211; Note and octave of the interval, for example, if
+the interval is G5 the note name is &#8216;G5&#8217;.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="birdears.interval.DiatonicInterval.note_name">
+<code class="descname">note_name</code><a class="headerlink" href="#birdears.interval.DiatonicInterval.note_name" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> &#8211; The note name of the interval, for example, if the
+interval is G5 then the name is &#8216;G&#8217;.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="birdears.interval.DiatonicInterval.semitones">
+<code class="descname">semitones</code><a class="headerlink" href="#birdears.interval.DiatonicInterval.semitones" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>int</em> &#8211; Semitones from tonic to octave. If tonic is C4 and
+interval is G5 the number of semitones is 19.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="birdears.interval.DiatonicInterval.is_chromatic">
+<code class="descname">is_chromatic</code><a class="headerlink" href="#birdears.interval.DiatonicInterval.is_chromatic" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>bool</em> &#8211; If the current interval is chromatic (True) or if
+it exists in the diatonic scale which key is tonic.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="birdears.interval.DiatonicInterval.is_descending">
+<code class="descname">is_descending</code><a class="headerlink" href="#birdears.interval.DiatonicInterval.is_descending" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>bool</em> &#8211; If the interval has a descending direction, ie.,
+has a lower pitch than the tonic.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="birdears.interval.DiatonicInterval.diatonic_index">
+<code class="descname">diatonic_index</code><a class="headerlink" href="#birdears.interval.DiatonicInterval.diatonic_index" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>int</em> &#8211; If the interval is chromatic, this will be the
 nearest diatonic interval in the direction of the resolution
 (closest tonic.) From II to IV degrees, it is the ditonic interval
-before; from V to VII it is the diatonic interval after.</li>
-<li><strong>distance</strong> (<em>dict</em>) &#8211; <p>A dictionary which the distance from tonic to
+before; from V to VII it is the diatonic interval after.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="birdears.interval.DiatonicInterval.distance">
+<code class="descname">distance</code><a class="headerlink" href="#birdears.interval.DiatonicInterval.distance" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dict</em> &#8211; A dictionary which the distance from tonic to
 interval, for example, if tonic is C4 and interval is G5:</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>{
     &#39;octaves&#39;: 1,
@@ -202,18 +294,18 @@ interval, for example, if tonic is C4 and interval is G5:</p>
 }
 </pre></div>
 </div>
-</li>
-<li><strong>data</strong> (<em>tuple</em>) &#8211; <p>A tuple representing the interval data in the form of
+</dd></dl>
+
+<dl class="attribute">
+<dt id="birdears.interval.DiatonicInterval.data">
+<code class="descname">data</code><a class="headerlink" href="#birdears.interval.DiatonicInterval.data" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>tuple</em> &#8211; A tuple representing the interval data in the form of
 (semitones, short_name, long_name), for example:</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>(19, &#39;P12&#39;, &#39;Perfect Twelfth&#39;)
 </pre></div>
 </div>
-</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd></dl>
+
 <div class="admonition-todo admonition" id="index-1">
 <p class="first admonition-title">Todo</p>
 <ul class="last simple">
@@ -437,7 +529,7 @@ in the resolution.</li>
 <dl class="class">
 <dt id="birdears.scale.ChromaticScale">
 <em class="property">class </em><code class="descclassname">birdears.scale.</code><code class="descname">ChromaticScale</code><span class="sig-paren">(</span><em>tonic</em>, <em>octave=None</em>, <em>n_octaves=None</em>, <em>descending=None</em>, <em>dont_repeat_tonic=None</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.scale.ChromaticScale" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="index.html#birdears.scale.ScaleBase" title="birdears.scale.ScaleBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.scale.ScaleBase</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#birdears.scale.ScaleBase" title="birdears.scale.ScaleBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.scale.ScaleBase</span></code></a></p>
 <dl class="method">
 <dt id="birdears.scale.ChromaticScale.__init__">
 <code class="descname">__init__</code><span class="sig-paren">(</span><em>tonic</em>, <em>octave=None</em>, <em>n_octaves=None</em>, <em>descending=None</em>, <em>dont_repeat_tonic=None</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.scale.ChromaticScale.__init__" title="Permalink to this definition">¶</a></dt>
@@ -488,16 +580,14 @@ note (octave) to the scale.</li>
 <dl class="class">
 <dt id="birdears.scale.DiatonicScale">
 <em class="property">class </em><code class="descclassname">birdears.scale.</code><code class="descname">DiatonicScale</code><span class="sig-paren">(</span><em>tonic</em>, <em>mode=None</em>, <em>octave=None</em>, <em>n_octaves=None</em>, <em>descending=None</em>, <em>dont_repeat_tonic=None</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.scale.DiatonicScale" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="index.html#birdears.scale.ScaleBase" title="birdears.scale.ScaleBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.scale.ScaleBase</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#birdears.scale.ScaleBase" title="birdears.scale.ScaleBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.scale.ScaleBase</span></code></a></p>
 <p>Builds a musical diatonic scale.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><a class="reference internal" href="index.html#module-birdears.scale" title="birdears.scale"><strong>scale</strong></a> (<em>array_type</em>) &#8211; The array of notes representing the scale.</td>
-</tr>
-</tbody>
-</table>
+<dl class="attribute">
+<dt id="birdears.scale.DiatonicScale.scale">
+<code class="descname">scale</code><a class="headerlink" href="#birdears.scale.DiatonicScale.scale" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>array_type</em> &#8211; The array of notes representing the scale.</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="birdears.scale.DiatonicScale.__init__">
 <code class="descname">__init__</code><span class="sig-paren">(</span><em>tonic</em>, <em>mode=None</em>, <em>octave=None</em>, <em>n_octaves=None</em>, <em>descending=None</em>, <em>dont_repeat_tonic=None</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.scale.DiatonicScale.__init__" title="Permalink to this definition">¶</a></dt>
@@ -560,15 +650,13 @@ note (octave) to the scale.</li>
 <em class="property">class </em><code class="descclassname">birdears.sequence.</code><code class="descname">Sequence</code><span class="sig-paren">(</span><em>elements</em>, <em>duration=2</em>, <em>delay=1.5</em>, <em>pos_delay=1</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.sequence.Sequence" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 <p>Register a Sequence of notes and/or chords.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><strong>elements</strong> (<em>array_type</em>) &#8211; List of notes (strings) ou chords (list of
-strings) in this Sequence.</td>
-</tr>
-</tbody>
-</table>
+<dl class="attribute">
+<dt id="birdears.sequence.Sequence.elements">
+<code class="descname">elements</code><a class="headerlink" href="#birdears.sequence.Sequence.elements" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>array_type</em> &#8211; List of notes (strings) ou chords (list of
+strings) in this Sequence.</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="birdears.sequence.Sequence.__init__">
 <code class="descname">__init__</code><span class="sig-paren">(</span><em>elements</em>, <em>duration=2</em>, <em>delay=1.5</em>, <em>pos_delay=1</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.sequence.Sequence.__init__" title="Permalink to this definition">¶</a></dt>
@@ -654,9 +742,9 @@ of each triad.</li>
 </dd></dl>
 
 </div>
-<div class="section" id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
-<span class="target" id="module-birdears"></span><p>BirdEars provides facilities to musical ear training exercises.</p>
+<div class="section" id="module-birdears">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-birdears" title="Permalink to this headline">¶</a></h2>
+<p>BirdEars provides facilities to musical ear training exercises.</p>
 </div>
 </div>
 
@@ -676,7 +764,7 @@ of each triad.</li>
 <li><a class="reference internal" href="#module-birdears.resolution">birdears.resolution module</a></li>
 <li><a class="reference internal" href="#module-birdears.scale">birdears.scale module</a></li>
 <li><a class="reference internal" href="#module-birdears.sequence">birdears.sequence module</a></li>
-<li><a class="reference internal" href="#module-contents">Module contents</a></li>
+<li><a class="reference internal" href="#module-birdears">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -685,7 +773,7 @@ of each triad.</li>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
       <li>Previous: <a href="index.html" title="previous chapter">birdears documentation</a></li>
-      <li>Next: <a href="birdears.questions.html" title="next chapter">birdears.questions package</a></li>
+      <li>Next: <a href="birdears.interfaces.html" title="next chapter">birdears.interfaces package</a></li>
   </ul></li>
 </ul>
 </div>

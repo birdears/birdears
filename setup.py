@@ -106,4 +106,9 @@ setup(
     #        'sample=sample:main',
     #    ],
     #},
+    #entry_points={
+    #    'console_scripts': [
+    #        'birdears=birdears.__main__:cli',
+    #    ],
+    #},
 )

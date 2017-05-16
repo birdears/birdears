@@ -6,6 +6,7 @@ Subpackages
 
 .. toctree::
 
+    birdears.interfaces
     birdears.questions
 
 Submodules

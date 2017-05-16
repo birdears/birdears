@@ -56,595 +56,176 @@
 <div class="section" id="contents">
 <span id="contents"></span><h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Index</a></li>
-<li class="toctree-l1"><a class="reference internal" href="birdears.html">API</a></li>
-</ul>
-</div>
-</div>
-<div class="section" id="and-there-we-go">
-<span id="and-there-we-go"></span><h2>And there we go<a class="headerlink" href="#and-there-we-go" title="Permalink to this headline">¶</a></h2>
-<p>oks</p>
-<div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="birdears.questions.html">birdears.questions package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="birdears.questions.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="birdears.questions.html#module-birdears.questions.harmonicinterval">birdears.questions.harmonicinterval module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="birdears.questions.html#module-birdears.questions.instrumentaldictation">birdears.questions.instrumentaldictation module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="birdears.questions.html#module-birdears.questions.melodicdictation">birdears.questions.melodicdictation module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="birdears.questions.html#module-birdears.questions.melodicinterval">birdears.questions.melodicinterval module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="birdears.questions.html#module-birdears.questions">Module contents</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="birdears.html">birdears API</a></li>
 </ul>
 </div>
-<span class="target" id="module-birdears.interval"></span><dl class="class">
-<dt id="birdears.interval.ChromaticInterval">
-<em class="property">class </em><code class="descclassname">birdears.interval.</code><code class="descname">ChromaticInterval</code><span class="sig-paren">(</span><em>mode</em>, <em>tonic</em>, <em>octave</em>, <em>n_octaves=None</em>, <em>descending=None</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.interval.ChromaticInterval" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#birdears.interval.IntervalBase" title="birdears.interval.IntervalBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.interval.IntervalBase</span></code></a></p>
-<p>Chooses a diatonic interval for the question.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><strong>tonic_octave</strong> (<em>int</em>) &#8211; Scientific octave for the tonic. For example, if
-the tonic is a &#8216;C4&#8217; then <cite>tonic_octave</cite> is 4.</li>
-<li><strong>octave</strong> (<a class="reference internal" href="#module-birdears.interval" title="birdears.interval"><em>interval</em></a>) &#8211; Scientific octave for the interval. For example,
-if the interval is a &#8216;G5&#8217; then <cite>tonic_octave</cite> is 5.</li>
-<li><strong>chromatic_offset</strong> (<em>int</em>) &#8211; The offset in semitones inside one octave;
-maybe it will be deprecated in favour of <cite>distance[&#8216;semitones&#8217;]</cite>
-which is the same.</li>
-<li><strong>note_and_octave</strong> (<em>str</em>) &#8211; Note and octave of the interval, for example, if
-the interval is G5 the note name is &#8216;G5&#8217;.</li>
-<li><strong>note_name</strong> (<em>str</em>) &#8211; The note name of the interval, for example, if the
-interval is G5 then the name is &#8216;G&#8217;.</li>
-<li><strong>semitones</strong> (<em>int</em>) &#8211; Semitones from tonic to octave. If tonic is C4 and
-interval is G5 the number of semitones is 19.</li>
-<li><strong>is_chromatic</strong> (<em>bool</em>) &#8211; If the current interval is chromatic (True) or if
-it exists in the diatonic scale which key is tonic.</li>
-<li><strong>is_descending</strong> (<em>bool</em>) &#8211; If the interval has a descending direction, ie.,
-has a lower pitch than the tonic.</li>
-<li><strong>diatonic_index</strong> (<em>int</em>) &#8211; If the interval is chromatic, this will be the
-nearest diatonic interval in the direction of the resolution
-(closest tonic.) From II to IV degrees, it is the ditonic interval
-before; from V to VII it is the diatonic interval after.</li>
-<li><strong>distance</strong> (<em>dict</em>) &#8211; <p>A dictionary which the distance from tonic to
-interval, for example, if tonic is C4 and interval is G5:</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>{
-    &#39;octaves&#39;: 1,
-    &#39;semitones&#39;: 7
-}
+</div>
+<div class="section" id="what-is-functional-ear-training">
+<span id="what-is-functional-ear-training"></span><h2>What is Functional Ear Training<a class="headerlink" href="#what-is-functional-ear-training" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="the-method">
+<span id="the-method"></span><h3>The method<a class="headerlink" href="#the-method" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="birdears-modes">
+<span id="birdears-modes"></span><h2>birdears modes<a class="headerlink" href="#birdears-modes" title="Permalink to this headline">¶</a></h2>
+<p>birdears actually has four modes:</p>
+<ul class="simple">
+<li>melodic interval question</li>
+<li>harmonic interval question</li>
+<li>melodic dictation question</li>
+<li>instrumental dictation question</li>
+</ul>
+<div class="section" id="basic-usage">
+<span id="basic-usage"></span><h3>basic usage<a class="headerlink" href="#basic-usage" title="Permalink to this headline">¶</a></h3>
+<p>To see the commands avaliable just invoke the command without any arguments:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>birdears
 </pre></div>
 </div>
-</li>
-<li><strong>data</strong> (<em>tuple</em>) &#8211; <p>A tuple representing the interval data in the form of
-(semitones, short_name, long_name), for example:</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>(19, &#39;P12&#39;, &#39;Perfect Twelfth&#39;)
+<div class="highlight-none"><div class="highlight"><pre><span></span>$ birdears
+Usage: birdears  &lt;command&gt; [options]
+
+  birdears ─ Functional Ear Training for Musicians!
+
+Options:
+  -h, --help  Show this message and exit.
+
+Commands:
+  dictation     Melodic dictation
+  harmonic      Harmonic interval recognition
+  instrumental  Instrumental melodic time-based dictation
+  melodic       Melodic interval recognition
+
+  You can use &#39;&lt;command&gt; --help&#39; to show options for a specific command.
 </pre></div>
 </div>
-</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition-todo admonition" id="index-0">
-<p class="first admonition-title">Todo</p>
-<ul class="last simple">
-<li><dl class="first docutils">
-<dt>Maybe we should refactor some of the attributes with a tuple</dt>
-<dd>(note, octave)</dd>
-</dl>
-</li>
-<li>Maybe remove <cite>chromatic_offset</cite> in favor of <cite>distance[&#8216;semitones&#8217;]`</cite></li>
-</ul>
-</div>
-<dl class="method">
-<dt id="birdears.interval.ChromaticInterval.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>mode</em>, <em>tonic</em>, <em>octave</em>, <em>n_octaves=None</em>, <em>descending=None</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.interval.ChromaticInterval.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Inits the class and choses a random interval with the given args.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>mode</strong> (<em>str</em>) &#8211; Diatonic mode for the interval.
-(eg.: &#8216;major&#8217; or &#8216;minor&#8217;)</li>
-<li><strong>tonic</strong> (<em>str</em>) &#8211; Tonic of the scale. (eg.: &#8216;Bb&#8217;)</li>
-<li><strong>octave</strong> (<em>str</em>) &#8211; Scientific octave of the scale (eg.: 4)</li>
-<li><strong>interval</strong> (<em>str</em>) &#8211; Not implemented. The interval.</li>
-<li><strong>chromatic</strong> (<em>bool</em>) &#8211; Can have chromatic notes? (eg.: F# in a key
-of C; default: false)</li>
-<li><strong>n_octaves</strong> (<em>int</em>) &#8211; Maximum number os octaves (eg. 2)</li>
-<li><strong>descending</strong> (<em>bool</em>) &#8211; Is the interval descending? (default: false)</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="birdears.interval.DiatonicInterval">
-<em class="property">class </em><code class="descclassname">birdears.interval.</code><code class="descname">DiatonicInterval</code><span class="sig-paren">(</span><em>mode</em>, <em>tonic</em>, <em>octave</em>, <em>n_octaves=None</em>, <em>descending=None</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.interval.DiatonicInterval" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#birdears.interval.IntervalBase" title="birdears.interval.IntervalBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.interval.IntervalBase</span></code></a></p>
-<p>Chooses a diatonic interval for the question.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><strong>tonic_octave</strong> (<em>int</em>) &#8211; Scientific octave for the tonic. For example, if
-the tonic is a &#8216;C4&#8217; then <cite>tonic_octave</cite> is 4.</li>
-<li><strong>octave</strong> (<a class="reference internal" href="#module-birdears.interval" title="birdears.interval"><em>interval</em></a>) &#8211; Scientific octave for the interval. For example,
-if the interval is a &#8216;G5&#8217; then <cite>tonic_octave</cite> is 5.</li>
-<li><strong>chromatic_offset</strong> (<em>int</em>) &#8211; The offset in semitones inside one octave.
-Relative semitones to tonic.</li>
-<li><strong>note_and_octave</strong> (<em>str</em>) &#8211; Note and octave of the interval, for example, if
-the interval is G5 the note name is &#8216;G5&#8217;.</li>
-<li><strong>note_name</strong> (<em>str</em>) &#8211; The note name of the interval, for example, if the
-interval is G5 then the name is &#8216;G&#8217;.</li>
-<li><strong>semitones</strong> (<em>int</em>) &#8211; Semitones from tonic to octave. If tonic is C4 and
-interval is G5 the number of semitones is 19.</li>
-<li><strong>is_chromatic</strong> (<em>bool</em>) &#8211; If the current interval is chromatic (True) or if
-it exists in the diatonic scale which key is tonic.</li>
-<li><strong>is_descending</strong> (<em>bool</em>) &#8211; If the interval has a descending direction, ie.,
-has a lower pitch than the tonic.</li>
-<li><strong>diatonic_index</strong> (<em>int</em>) &#8211; If the interval is chromatic, this will be the
-nearest diatonic interval in the direction of the resolution
-(closest tonic.) From II to IV degrees, it is the ditonic interval
-before; from V to VII it is the diatonic interval after.</li>
-<li><strong>distance</strong> (<em>dict</em>) &#8211; <p>A dictionary which the distance from tonic to
-interval, for example, if tonic is C4 and interval is G5:</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>{
-    &#39;octaves&#39;: 1,
-    &#39;semitones&#39;: 7
-}
+<p>There are four commands, which are <code class="docutils literal"><span class="pre">dictation</span></code>, <code class="docutils literal"><span class="pre">harmonic</span></code>, <code class="docutils literal"><span class="pre">instrumental</span></code> and
+<code class="docutils literal"><span class="pre">melodic</span></code>.</p>
+<p>You can play the default question for these by starting birdears with one of
+these commands, or you can check the <code class="docutils literal"><span class="pre">--help</span></code> for additional options for each
+of the commands, invoking this way:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>birdears &lt;command&gt; --help
 </pre></div>
 </div>
-</li>
-<li><strong>data</strong> (<em>tuple</em>) &#8211; <p>A tuple representing the interval data in the form of
-(semitones, short_name, long_name), for example:</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>(19, &#39;P12&#39;, &#39;Perfect Twelfth&#39;)
+</div>
+<div class="section" id="melodic">
+<span id="melodic"></span><h3>melodic<a class="headerlink" href="#melodic" title="Permalink to this headline">¶</a></h3>
+<p>In this exercise birdears will play two notes, the tonic and the interval
+melodically, ie., one after the other and you should reply which is the
+correct distance between the two.</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>birdears melodic --help
 </pre></div>
 </div>
-</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition-todo admonition" id="index-1">
-<p class="first admonition-title">Todo</p>
-<ul class="last simple">
-<li><dl class="first docutils">
-<dt>Maybe we should refactor some of the attributes with a tuple</dt>
-<dd>(note, octave)</dd>
-</dl>
-</li>
-<li>Maybe remove <cite>chromatic_offset</cite> in favor of <cite>distance[&#8216;semitones&#8217;]`</cite></li>
-</ul>
+<div class="highlight-none"><div class="highlight"><pre><span></span>$ birdears melodic --help
+Usage: birdears melodic [options]
+
+  Melodic interval recognition
+
+Options:
+  -m, --mode [major|minor]  Mode of the question.
+  -t, --tonic &lt;note&gt;        Tonic of the question.
+  -o, --octave &lt;octave&gt;     Octave of the question.
+  -d, --descending          Whether the question interval is descending.
+  -c, --chromatic           If chosen, question has chromatic notes.
+  -n, --n_octaves &lt;n max&gt;   Maximum number of octaves.
+  -h, --help                Show this message and exit.
+
+  In this exercise birdears will play two notes, the tonic and the interval
+  melodically, ie., one after the other and you should reply which is the
+  correct distance between the two.
+</pre></div>
 </div>
-<dl class="method">
-<dt id="birdears.interval.DiatonicInterval.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>mode</em>, <em>tonic</em>, <em>octave</em>, <em>n_octaves=None</em>, <em>descending=None</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.interval.DiatonicInterval.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Inits the class and choses a random interval with the given args.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>mode</strong> (<em>str</em>) &#8211; Diatonic mode for the interval.
-(eg.: &#8216;major&#8217; or &#8216;minor&#8217;)</li>
-<li><strong>tonic</strong> (<em>str</em>) &#8211; Tonic of the scale. (eg.: &#8216;Bb&#8217;)</li>
-<li><strong>octave</strong> (<em>str</em>) &#8211; Scientific octave of the scale (eg.: 4)</li>
-<li><strong>n_octaves</strong> (<em>int</em>) &#8211; Maximum number os octaves (eg. 2)</li>
-<li><strong>descending</strong> (<em>bool</em>) &#8211; Is the interval descending? (default: false)</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="birdears.interval.IntervalBase">
-<em class="property">class </em><code class="descclassname">birdears.interval.</code><code class="descname">IntervalBase</code><a class="headerlink" href="#birdears.interval.IntervalBase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
-<dl class="method">
-<dt id="birdears.interval.IntervalBase.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.interval.IntervalBase.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Base class for interval classes.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.interval.IntervalBase.return_simple">
-<code class="descname">return_simple</code><span class="sig-paren">(</span><em>keys</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.interval.IntervalBase.return_simple" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method returns a dict with only the values passed to <cite>keys</cite>.</p>
-</dd></dl>
-
-</dd></dl>
-
-<span class="target" id="module-birdears.questionbase"></span><dl class="class">
-<dt id="birdears.questionbase.QuestionBase">
-<em class="property">class </em><code class="descclassname">birdears.questionbase.</code><code class="descname">QuestionBase</code><span class="sig-paren">(</span><em>mode='major'</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.questionbase.QuestionBase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
-<p>Base Class to be subclassed for Question classes.</p>
-<p>This class implements attributes and routines to be used in Question
-subclasses.</p>
-<dl class="method">
-<dt id="birdears.questionbase.QuestionBase.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>mode='major'</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.questionbase.QuestionBase.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Inits the class.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>mode</strong> (<em>str</em>) &#8211; A string represnting the mode of the question.
-Eg., &#8216;major&#8217; or &#8216;minor&#8217;</li>
-<li><strong>tonic</strong> (<em>str</em>) &#8211; A string representing the tonic of the
-question, eg.: &#8216;C&#8217;; if omitted, it will be selected
-randomly.</li>
-<li><strong>octave</strong> (<em>int</em>) &#8211; A scienfic octave notation, for example,
-4 for &#8216;C4&#8217;; if not present, it will be randomly chosen.</li>
-<li><strong>descending</strong> (<em>bool</em>) &#8211; Is the question direction in descending,
-ie., intervals have lower pitch than the tonic.</li>
-<li><strong>chromatic</strong> (<em>bool</em>) &#8211; If the question can have (True) or not
-(False) chromatic intervals, ie., intervals not in the
-diatonic scale of tonic/mode.</li>
-<li><strong>n_octaves</strong> (<em>int</em>) &#8211; Maximum numbr of octaves of the question.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.questionbase.QuestionBase.check_question">
-<code class="descname">check_question</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.questionbase.QuestionBase.check_question" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method should be overwritten by the question subclasses.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.questionbase.QuestionBase.make_question">
-<code class="descname">make_question</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.questionbase.QuestionBase.make_question" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method should be overwritten by the question subclasses.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.questionbase.QuestionBase.make_resolution">
-<code class="descname">make_resolution</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.questionbase.QuestionBase.make_resolution" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method should be overwritten by the question subclasses.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.questionbase.QuestionBase.play_question">
-<code class="descname">play_question</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.questionbase.QuestionBase.play_question" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method should be overwritten by the question subclasses.</p>
-</dd></dl>
-
-</dd></dl>
-
-<span class="target" id="module-birdears.resolution"></span><dl class="class">
-<dt id="birdears.resolution.Resolution">
-<em class="property">class </em><code class="descclassname">birdears.resolution.</code><code class="descname">Resolution</code><span class="sig-paren">(</span><em>method</em>, <em>duration</em>, <em>delay</em>, <em>pos_delay</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.resolution.Resolution" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
-<dl class="method">
-<dt id="birdears.resolution.Resolution.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>method</em>, <em>duration</em>, <em>delay</em>, <em>pos_delay</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.resolution.Resolution.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>This class implements methods for different types of question
-resolutions.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>method</strong> (<em>str</em>) &#8211; The method used in the resolution.</li>
-<li><strong>duration</strong> (<em>float</em>) &#8211; Default playing time for each element in the
-resolution.</li>
-<li><strong>delay</strong> (<em>float</em>) &#8211; Default waiting time to play the next element
-in the resolution.</li>
-<li><strong>pos_delay</strong> (<em>float</em>) &#8211; Waiting time after playing the last element
-in the resolution.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition-todo admonition" id="index-2">
-<p class="first admonition-title">Todo</p>
-<ul class="last simple">
-<li>Maybe refactor the resolve <a href="#id1"><span class="problematic" id="id2">`</span></a>method`s with a prefix.</li>
-</ul>
 </div>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.resolution.Resolution.resolve">
-<code class="descname">resolve</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.resolution.Resolution.resolve" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calls the resolution method and pass arguments to it.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.resolution.Resolution.resolve_to_nearest_tonic">
-<code class="descname">resolve_to_nearest_tonic</code><span class="sig-paren">(</span><em>chromatic</em>, <em>mode</em>, <em>tonic</em>, <em>intervals</em>, <em>descending=None</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.resolution.Resolution.resolve_to_nearest_tonic" title="Permalink to this definition">¶</a></dt>
-<dd><p>Resolve the intervals to their nearest tonics.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>chromatic</strong> (<em>bool</em>) &#8211; x</li>
-<li><strong>mode</strong> (<em>str</em>) &#8211; x</li>
-<li><strong>tonic</strong> (<em>str</em>) &#8211; x</li>
-<li><strong>intervals</strong> (<em>str</em><em> or </em><em>array_type</em>) &#8211; x</li>
-<li><strong>descending</strong> (<em>bool</em>) &#8211; x</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition-todo admonition" id="index-3">
-<p class="first admonition-title">Todo</p>
-<ul class="last simple">
-<li>chromatic doesn&#8217;t seem to be used.</li>
-</ul>
+<div class="section" id="harmonic">
+<span id="harmonic"></span><h3>harmonic<a class="headerlink" href="#harmonic" title="Permalink to this headline">¶</a></h3>
+<p>In this exercise birdears will play two notes, the tonic and the interval
+harmonically, ie., both on the same time and you should reply which is the
+correct distance between the two.</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>birdears harmonic --help
+</pre></div>
 </div>
-</dd></dl>
+<div class="highlight-none"><div class="highlight"><pre><span></span>$ birdears harmonic --help
+Usage: birdears harmonic [options]
 
-<dl class="method">
-<dt id="birdears.resolution.Resolution.resolve_to_nearest_tonic_harmonically">
-<code class="descname">resolve_to_nearest_tonic_harmonically</code><span class="sig-paren">(</span><em>chromatic</em>, <em>mode</em>, <em>tonic</em>, <em>intervals</em>, <em>descending=None</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.resolution.Resolution.resolve_to_nearest_tonic_harmonically" title="Permalink to this definition">¶</a></dt>
-<dd><p>Resolve the intervals to their nearest tonics harmonically.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>chromatic</strong> (<em>bool</em>) &#8211; x</li>
-<li><strong>mode</strong> (<em>str</em>) &#8211; x</li>
-<li><strong>tonic</strong> (<em>str</em>) &#8211; x</li>
-<li><strong>intervals</strong> (<em>str</em><em> or </em><em>array_type</em>) &#8211; x</li>
-<li><strong>descending</strong> (<em>bool</em>) &#8211; x</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition-todo admonition" id="index-4">
-<p class="first admonition-title">Todo</p>
-<ul class="last simple">
-<li>chromatic doesn&#8217;t seem to be used.</li>
-</ul>
+  Harmonic interval recognition
+
+Options:
+  -m, --mode [major|minor]  Mode of the question.
+  -t, --tonic &lt;note&gt;        Tonic of the question.
+  -o, --octave &lt;octave&gt;     Octave of the question.
+  -d, --descending          Whether the question interval is descending.
+  -c, --chromatic           If chosen, question has chromatic notes.
+  -n, --n_octaves &lt;n max&gt;   Maximum number of octaves.
+  -h, --help                Show this message and exit.
+
+  In this exercise birdears will play two notes, the tonic and the interval
+  harmonically, ie., both on the same time and you should reply which is the
+  correct distance between the two.
+</pre></div>
 </div>
-</dd></dl>
+</div>
+<div class="section" id="dictation">
+<span id="dictation"></span><h3>dictation<a class="headerlink" href="#dictation" title="Permalink to this headline">¶</a></h3>
+<p>In this exercise birdears will choose some random intervals and create a
+melodic dictation with them. You should reply the correct intervals of the
+melodic dictation.</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>birdears dictation --help
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre><span></span>$ birdears dictation --help
+Usage: birdears dictation [options]
 
-</dd></dl>
+  Melodic dictation
 
-<span class="target" id="module-birdears.scale"></span><dl class="class">
-<dt id="birdears.scale.ChromaticScale">
-<em class="property">class </em><code class="descclassname">birdears.scale.</code><code class="descname">ChromaticScale</code><span class="sig-paren">(</span><em>tonic</em>, <em>octave=None</em>, <em>n_octaves=None</em>, <em>descending=None</em>, <em>dont_repeat_tonic=None</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.scale.ChromaticScale" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#birdears.scale.ScaleBase" title="birdears.scale.ScaleBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.scale.ScaleBase</span></code></a></p>
-<dl class="method">
-<dt id="birdears.scale.ChromaticScale.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>tonic</em>, <em>octave=None</em>, <em>n_octaves=None</em>, <em>descending=None</em>, <em>dont_repeat_tonic=None</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.scale.ChromaticScale.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a chromatic scale from tonic.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>tonic</strong> (<em>str</em>) &#8211; The note which the scale will be built upon.</li>
-<li><strong>octave</strong> (<em>int</em>) &#8211; The scientific octave the scale will be built upon.</li>
-<li><strong>n_octaves</strong> (<em>int</em>) &#8211; The number of octaves the scale will contain.</li>
-<li><strong>descending</strong> (<em>bool</em>) &#8211; Whether the scale is descending.</li>
-<li><strong>dont_repeat_tonic</strong> (<em>bool</em>) &#8211; Whether to skip appending the last
-note (octave) to the scale.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
+Options:
+  -m, --mode [major|minor]     Mode of the question.
+  -i, --max_intervals &lt;n max&gt;  Max random intervals for the dictation.
+  -x, --n_notes &lt;n notes&gt;      Number of notes for the dictation.
+  -t, --tonic &lt;note&gt;           Tonic of the question.
+  -o, --octave &lt;octave&gt;        Octave of the question.
+  -d, --descending             Wether the question interval is descending.
+  -c, --chromatic              If chosen, question has chromatic notes.
+  -n, --n_octaves &lt;n max&gt;      Maximum number of octaves.
+  -h, --help                   Show this message and exit.
 
-<dl class="method">
-<dt id="birdears.scale.ChromaticScale.get_triad">
-<code class="descname">get_triad</code><span class="sig-paren">(</span><em>mode</em>, <em>index=0</em>, <em>degree=None</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.scale.ChromaticScale.get_triad" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns an array with notes from a scale&#8217;s triad.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>mode</strong> (<em>str</em>) &#8211; Mode of the scale (eg. &#8216;major&#8217; or &#8216;minor&#8217;)</li>
-<li><strong>index</strong> (<em>int</em>) &#8211; Triad index (eg.: 0 for 1st degree triad.)</li>
-<li><strong>degree</strong> (<em>int</em>) &#8211; Degree of the scale. If provided, overrides the
-<cite>index</cite> argument. (eg.: <cite>1</cite> for the 1st degree triad.)</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">An array with three pitches, one for each note of the triad.</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
+  In this exercise birdears will choose some random intervals and create a
+  melodic dictation with them. You should reply the correct intervals of the
+  melodic dictation.
+</pre></div>
+</div>
+</div>
+<div class="section" id="instrumental">
+<span id="instrumental"></span><h3>instrumental<a class="headerlink" href="#instrumental" title="Permalink to this headline">¶</a></h3>
+<p>In this exercise birdears will choose some random intervals and create a
+melodic dictation with them. You should play the correct melody in you
+musical instrument.</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>birdears instrumental --help
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre><span></span>$ birdears instrumental --help
+Usage: birdears instrumental [options]
 
-</dd></dl>
+  Instrumental melodic time-based dictation
 
-<dl class="class">
-<dt id="birdears.scale.DiatonicScale">
-<em class="property">class </em><code class="descclassname">birdears.scale.</code><code class="descname">DiatonicScale</code><span class="sig-paren">(</span><em>tonic</em>, <em>mode=None</em>, <em>octave=None</em>, <em>n_octaves=None</em>, <em>descending=None</em>, <em>dont_repeat_tonic=None</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.scale.DiatonicScale" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#birdears.scale.ScaleBase" title="birdears.scale.ScaleBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.scale.ScaleBase</span></code></a></p>
-<p>Builds a musical diatonic scale.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><a class="reference internal" href="#module-birdears.scale" title="birdears.scale"><strong>scale</strong></a> (<em>array_type</em>) &#8211; The array of notes representing the scale.</td>
-</tr>
-</tbody>
-</table>
-<dl class="method">
-<dt id="birdears.scale.DiatonicScale.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>tonic</em>, <em>mode=None</em>, <em>octave=None</em>, <em>n_octaves=None</em>, <em>descending=None</em>, <em>dont_repeat_tonic=None</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.scale.DiatonicScale.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a diatonic scale from tonic and mode.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>tonic</strong> (<em>str</em>) &#8211; The note which the scale will be built upon.</li>
-<li><strong>mode</strong> (<em>str</em>) &#8211; The mode the scale will be built upon.
-(&#8216;major&#8217; or &#8216;minor&#8217;)</li>
-<li><strong>octave</strong> (<em>int</em>) &#8211; The scientific octave the scale will be built upon.</li>
-<li><strong>n_octaves</strong> (<em>int</em>) &#8211; The number of octaves the scale will contain.</li>
-<li><strong>descending</strong> (<em>bool</em>) &#8211; Whether the scale is descending.</li>
-<li><strong>dont_repeat_tonic</strong> (<em>bool</em>) &#8211; Whether to skip appending the last
-note (octave) to the scale.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
+Options:
+  -m, --mode [major|minor]     Mode of the question.
+  -w, --wait_time &lt;seconds&gt;    Time in seconds for next question/repeat.
+  -u, --n_repeats &lt;times&gt;      Times to repeat question.
+  -i, --max_intervals &lt;n max&gt;  Max random intervals for the dictation.
+  -x, --n_notes &lt;n notes&gt;      Number of notes for the dictation.
+  -t, --tonic &lt;note&gt;           Tonic of the question.
+  -o, --octave &lt;octave&gt;        Octave of the question.
+  -d, --descending             Wether the question interval is descending.
+  -c, --chromatic              If chosen, question has chromatic notes.
+  -n, --n_octaves &lt;n max&gt;      Maximum number of octaves.
+  -h, --help                   Show this message and exit.
 
-<dl class="method">
-<dt id="birdears.scale.DiatonicScale.get_triad">
-<code class="descname">get_triad</code><span class="sig-paren">(</span><em>index=0</em>, <em>degree=None</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.scale.DiatonicScale.get_triad" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns an array with notes from a scale&#8217;s triad.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>index</strong> (<em>int</em>) &#8211; triad index (eg.: 0 for 1st degree triad.)</li>
-<li><strong>degree</strong> (<em>int</em>) &#8211; Degree of the scale. If provided, overrides the
-<cite>index</cite> argument. (eg.: <cite>1</cite> for the 1st degree triad.)</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">An array with three pitches, one for each note of the triad.</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="birdears.scale.ScaleBase">
-<em class="property">class </em><code class="descclassname">birdears.scale.</code><code class="descname">ScaleBase</code><a class="headerlink" href="#birdears.scale.ScaleBase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
-</dd></dl>
-
-<span class="target" id="module-birdears.sequence"></span><dl class="class">
-<dt id="birdears.sequence.Sequence">
-<em class="property">class </em><code class="descclassname">birdears.sequence.</code><code class="descname">Sequence</code><span class="sig-paren">(</span><em>elements</em>, <em>duration=2</em>, <em>delay=1.5</em>, <em>pos_delay=1</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.sequence.Sequence" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
-<p>Register a Sequence of notes and/or chords.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><strong>elements</strong> (<em>array_type</em>) &#8211; List of notes (strings) ou chords (list of
-strings) in this Sequence.</td>
-</tr>
-</tbody>
-</table>
-<dl class="method">
-<dt id="birdears.sequence.Sequence.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>elements</em>, <em>duration=2</em>, <em>delay=1.5</em>, <em>pos_delay=1</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.sequence.Sequence.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt>Inits the Sequence with an array and sets the default times for</dt>
-<dd>playing / pausing the elements.</dd>
-</dl>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>elements</strong> (<em>array_type</em>) &#8211; List of elements in this sequence.
-(notes or chords)</li>
-<li><strong>duration</strong> (<em>float</em>) &#8211; Default playing time for each element in the
-sequence.</li>
-<li><strong>delay</strong> (<em>float</em>) &#8211; Default waiting time to play the next element
-in the sequence.</li>
-<li><strong>pos_delay</strong> (<em>float</em>) &#8211; Waiting time after playing the last element
-in the sequence.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.sequence.Sequence.append">
-<code class="descname">append</code><span class="sig-paren">(</span><em>elements</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.sequence.Sequence.append" title="Permalink to this definition">¶</a></dt>
-<dd><p>Appends <cite>elements</cite> to Sequence.elements</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>elements</strong> (<em>array_type</em>) &#8211; elements to be appended to the class.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.sequence.Sequence.extend">
-<code class="descname">extend</code><span class="sig-paren">(</span><em>elements</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.sequence.Sequence.extend" title="Permalink to this definition">¶</a></dt>
-<dd><p>Extends Sequence.elements with <cite>elements</cite>.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>elements</strong> (<em>array_type</em>) &#8211; elements extend the class with.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.sequence.Sequence.make_chord_progression">
-<code class="descname">make_chord_progression</code><span class="sig-paren">(</span><em>tonic</em>, <em>mode</em>, <em>degrees</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.sequence.Sequence.make_chord_progression" title="Permalink to this definition">¶</a></dt>
-<dd><p>Appends triad chord(s) to the Sequence.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>tonic</strong> (<em>str</em>) &#8211; Tonic note of the scale.</li>
-<li><strong>mode</strong> (<em>str</em>) &#8211; Mode of the scale from which build the triads upon.</li>
-<li><strong>degrees</strong> (<em>array_type</em>) &#8211; List with integers represending the degrees
-of each triad.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.sequence.Sequence.play">
-<code class="descname">play</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.sequence.Sequence.play" title="Permalink to this definition">¶</a></dt>
-<dd><p>Plays the Sequence elements of notes and/or chords and wait for
-<cite>Sequence.pos_delay</cite> seconds.</p>
-</dd></dl>
-
-</dd></dl>
-
-<span class="target" id="module-birdears"></span><p>BirdEars provides facilities to musical ear training exercises.</p>
+  In this exercise birdears will choose some random intervals and create a
+  melodic dictation with them. You should play the correct melody in you
+  musical instrument.
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 
@@ -658,7 +239,18 @@ of each triad.</li>
   <ul>
 <li><a class="reference internal" href="#">birdears documentation</a><ul>
 <li><a class="reference internal" href="#contents">Contents</a></li>
-<li><a class="reference internal" href="#and-there-we-go">And there we go</a></li>
+<li><a class="reference internal" href="#what-is-functional-ear-training">What is Functional Ear Training</a><ul>
+<li><a class="reference internal" href="#the-method">The method</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#birdears-modes">birdears modes</a><ul>
+<li><a class="reference internal" href="#basic-usage">basic usage</a></li>
+<li><a class="reference internal" href="#melodic">melodic</a></li>
+<li><a class="reference internal" href="#harmonic">harmonic</a></li>
+<li><a class="reference internal" href="#dictation">dictation</a></li>
+<li><a class="reference internal" href="#instrumental">instrumental</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

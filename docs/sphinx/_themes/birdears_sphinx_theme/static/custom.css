@@ -2,7 +2,7 @@
 
 td.field-body strong
 {
-    font-family: 'Inconsolata', monospace;
+    font-family: 'Roboto', 'Inconsolata' monospace;
 }
 
 code.descclassname {
@@ -38,4 +38,12 @@ p.rubric + table.docutils td {
 p.rubric + table.docutils td:first-of-type {
     font-family: 'Inconsolata', monospace;
     font-weight: bold;
+}
+
+pre {
+  font-family: 'Inconsolata', monospace;
+}
+
+code.docutils.literal {
+  font-family: 'Inconsolata', monospace;
 }

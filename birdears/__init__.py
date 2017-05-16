@@ -1,10 +1,16 @@
-#!/usr/bin/env python3
-
 """
 BirdEars provides facilities to musical ear training exercises.
 """
 
-__all__ = ['questions']
+#__all__ = ['scale', 'interval', 'sequence', 'questionbase', 'resolution', 'questionbase', 'questions', 'interfaces']
+
+#import scale
+#import interval
+#import sequence
+#import resolution
+#import questionbase
+#import questions
+#import interfaces
 
 DEBUG = False
 

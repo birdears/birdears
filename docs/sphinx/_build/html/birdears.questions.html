@@ -26,7 +26,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="birdears package" href="birdears.html" />
+    <link rel="prev" title="birdears.interfaces package" href="birdears.interfaces.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/hljs_styles/monokai.css" type="text/css" />
@@ -61,7 +61,7 @@
 <dl class="class">
 <dt id="birdears.questions.harmonicinterval.HarmonicIntervalQuestion">
 <em class="property">class </em><code class="descclassname">birdears.questions.harmonicinterval.</code><code class="descname">HarmonicIntervalQuestion</code><span class="sig-paren">(</span><em>mode='major'</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.questions.harmonicinterval.HarmonicIntervalQuestion" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="index.html#birdears.questionbase.QuestionBase" title="birdears.questionbase.QuestionBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.questionbase.QuestionBase</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="birdears.html#birdears.questionbase.QuestionBase" title="birdears.questionbase.QuestionBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.questionbase.QuestionBase</span></code></a></p>
 <p>Implements a Harmonic Interval test.</p>
 <dl class="method">
 <dt id="birdears.questions.harmonicinterval.HarmonicIntervalQuestion.__init__">
@@ -83,7 +83,7 @@ intervals have lower pitch than the tonic.</li>
 <li><strong>chromatic</strong> (<em>bool</em>) &#8211; If the question can have (True) or not (False)
 chromatic intervals, ie., intervals not in the diatonic scale
 of tonic/mode.</li>
-<li><strong>n_octaves</strong> (<em>int</em>) &#8211; Maximum numbr of octaves of the question.</li>
+<li><strong>n_octaves</strong> (<em>int</em>) &#8211; Maximum number of octaves of the question.</li>
 </ul>
 </td>
 </tr>
@@ -125,7 +125,7 @@ of tonic/mode.</li>
 <dl class="class">
 <dt id="birdears.questions.instrumentaldictation.InstrumentalDictationQuestion">
 <em class="property">class </em><code class="descclassname">birdears.questions.instrumentaldictation.</code><code class="descname">InstrumentalDictationQuestion</code><span class="sig-paren">(</span><em>mode='major'</em>, <em>wait_time=11</em>, <em>n_repeats=1</em>, <em>max_intervals=3</em>, <em>n_notes=4</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="index.html#birdears.questionbase.QuestionBase" title="birdears.questionbase.QuestionBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.questionbase.QuestionBase</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="birdears.html#birdears.questionbase.QuestionBase" title="birdears.questionbase.QuestionBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.questionbase.QuestionBase</span></code></a></p>
 <p>Implements an instrumental dictation test.</p>
 <dl class="method">
 <dt id="birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.__init__">
@@ -154,7 +154,7 @@ intervals have lower pitch than the tonic.</li>
 <li><strong>chromatic</strong> (<em>bool</em>) &#8211; If the question can have (True) or not (False)
 chromatic intervals, ie., intervals not in the diatonic scale
 of tonic/mode.</li>
-<li><strong>n_octaves</strong> (<em>int</em>) &#8211; Maximum numbr of octaves of the question.</li>
+<li><strong>n_octaves</strong> (<em>int</em>) &#8211; Maximum number of octaves of the question.</li>
 </ul>
 </td>
 </tr>
@@ -164,7 +164,7 @@ of tonic/mode.</li>
 
 <dl class="method">
 <dt id="birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.check_question">
-<code class="descname">check_question</code><span class="sig-paren">(</span><em>user_input_keys</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.check_question" title="Permalink to this definition">¶</a></dt>
+<code class="descname">check_question</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.check_question" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks whether the given answer is correct.</p>
 <p>This currently doesn&#8217;t applies to instrumental dictation questions.</p>
 </dd></dl>
@@ -192,7 +192,7 @@ of tonic/mode.</li>
 <dl class="class">
 <dt id="birdears.questions.melodicdictation.MelodicDictationQuestion">
 <em class="property">class </em><code class="descclassname">birdears.questions.melodicdictation.</code><code class="descname">MelodicDictationQuestion</code><span class="sig-paren">(</span><em>mode='major'</em>, <em>max_intervals=3</em>, <em>n_notes=4</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.questions.melodicdictation.MelodicDictationQuestion" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="index.html#birdears.questionbase.QuestionBase" title="birdears.questionbase.QuestionBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.questionbase.QuestionBase</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="birdears.html#birdears.questionbase.QuestionBase" title="birdears.questionbase.QuestionBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.questionbase.QuestionBase</span></code></a></p>
 <p>Implements a melodic dictation test.</p>
 <dl class="method">
 <dt id="birdears.questions.melodicdictation.MelodicDictationQuestion.__init__">
@@ -217,7 +217,7 @@ intervals have lower pitch than the tonic.</li>
 <li><strong>chromatic</strong> (<em>bool</em>) &#8211; If the question can have (True) or not (False)
 chromatic intervals, ie., intervals not in the diatonic scale
 of tonic/mode.</li>
-<li><strong>n_octaves</strong> (<em>int</em>) &#8211; Maximum numbr of octaves of the question.</li>
+<li><strong>n_octaves</strong> (<em>int</em>) &#8211; Maximum number of octaves of the question.</li>
 </ul>
 </td>
 </tr>
@@ -254,7 +254,7 @@ of tonic/mode.</li>
 <dl class="class">
 <dt id="birdears.questions.melodicinterval.MelodicIntervalQuestion">
 <em class="property">class </em><code class="descclassname">birdears.questions.melodicinterval.</code><code class="descname">MelodicIntervalQuestion</code><span class="sig-paren">(</span><em>mode='major'</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.questions.melodicinterval.MelodicIntervalQuestion" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="index.html#birdears.questionbase.QuestionBase" title="birdears.questionbase.QuestionBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.questionbase.QuestionBase</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="birdears.html#birdears.questionbase.QuestionBase" title="birdears.questionbase.QuestionBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.questionbase.QuestionBase</span></code></a></p>
 <p>Implements a Melodic Interval test.</p>
 <dl class="method">
 <dt id="birdears.questions.melodicinterval.MelodicIntervalQuestion.__init__">
@@ -276,7 +276,7 @@ intervals have lower pitch than the tonic.</li>
 <li><strong>chromatic</strong> (<em>bool</em>) &#8211; If the question can have (True) or not (False)
 chromatic intervals, ie., intervals not in the diatonic scale
 of tonic/mode.</li>
-<li><strong>n_octaves</strong> (<em>int</em>) &#8211; Maximum numbr of octaves of the question.</li>
+<li><strong>n_octaves</strong> (<em>int</em>) &#8211; Maximum number of octaves of the question.</li>
 </ul>
 </td>
 </tr>
@@ -341,7 +341,7 @@ of tonic/mode.</li>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
   <li><a href="birdears.html">birdears package</a><ul>
-      <li>Previous: <a href="birdears.html" title="previous chapter">birdears package</a></li>
+      <li>Previous: <a href="birdears.interfaces.html" title="previous chapter">birdears.interfaces package</a></li>
   </ul></li>
   </ul></li>
 </ul>
