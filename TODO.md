@@ -1,37 +1,37 @@
 # birdears
 
-## todo
+## TODO
 
-### classes
+### Classes
 
-classes: ~~interval~~ :tada:, cadence and ~~resolution~~ ✓, maybe ~~scale~~
-(done :tada:.)
+Classes: ~~interval~~ :tada:, ~~cadence~~(Sequence can generate
+Progressions ✓) and ~~resolution~~ ✓, maybe ~~scale~~ (done :tada:.)
 
-make a class for response (by check_question)
+Make a class for response (to be used by question.check_question)
 
-### documentation
+### Documentation
 
-write documentation in docstrings using Google style docstrings
+Write documentation in docstrings using Google style docstrings.
 
-### features
+Improve `click` CLI help documentation
 
-different cadences
+### Features
+
+Different cadences.
 
 ~~implement harmonic intervals~~ ✓
 
-~~melodic dictation~~ ✓ :tada:, ~~computer and~~ instrumental (time based,
-to be played on instrument)
+~~melodic dictation~~ ✓ :tada:, ~~computer~~ and ~~instrumental (time based, to be played on instrument)~~ ✓
 
-~~bindings with argparse~ click ✓
+~~bindings with argparse~~ click ✓
 
 plugins/extensions, easy way of users extending the software by using the api,
 maybe providing frontend tools
 
-configure it with a toml file, which will send parameters by the question class
-with a dict/config file.
+configure it with a toml file, which will send parameters by the question class with a dict/config file.
 
 think on an interface, or a well written api that allows many interfaces:
-cli (maybe centering things); tui (urwid); gui (kivy)
+cli (maybe centering things) ✓; tui (urwid); gui (kivy)
 
 logging
 
@@ -40,10 +40,10 @@ improve live debugging options
 we need to allow less than one octave / only certain interval,
 eg.: I to IV, V to VIII etc
 
-track correct/wrong answers by type, mode, tonic, date etc, aybe using sqlite3
-db so that the user can track it's progress
+track correct/wrong answers by type, mode, tonic, date etc, maybe using sqlite3
+db so that the user can track it's progress.
 
-# refactoring
+### Refactoring
 
 ~~change global names~~ ✓
 
@@ -51,9 +51,20 @@ we should think in a better algo for melodic dictation; currently always begins
 with tonic; maybe playing a cadence with I-V-IV-I triads then choosing random
 intervals w/ or w/out tonic.
 
-we should use some kind of config object to configure exercises, as they have
+We should use some kind of config object to configure exercises, as they have
 an extensive number of parameters and there are more to come.
 
-note: maybe you find this useful https://gist.github.com/rxaviers/7360908
+note: maybe you'd find this useful https://gist.github.com/rxaviers/7360908
 
-refactore keys so that they dnn't give double sharps or double flats
+~~Refactor keys so that they didn't give double sharps or double flats.~~ ✓
+:tada: CIRCLE_OF_FIFTHS !
+
+Maybe refactor make_resoltion/sequence as generator so that we can interact
+with the UI, (eg., every note played in resolution is highlighted in user
+interface.)
+
+### Etc
+
+Lets reserve options to `-r` to `--resolution` method  (FET-like, Repeat-only,
+Inverted-question) ans `-p` to`--pre-question` (I-IV-V-I, Tonic-Interval, etc,
+ie., tonic affirmation before question.)

@@ -5,7 +5,8 @@ from random import randrange
 from random import choice
 
 from . import KEYBOARD_INDICES
-from . import KEYS
+# from . import KEYS
+from . import CIRCLE_OF_FIFTHS
 
 from .scale import DiatonicScale
 from .scale import ChromaticScale
@@ -47,7 +48,7 @@ class QuestionBase:
             n_octaves (int): Maximum numbr of octaves of the question.
         """
 
-        global KEYBOARD_INDICES, KEYS
+        global KEYBOARD_INDICES, CIRCLE_OF_FIFTHS
 
         self.mode = mode
 
@@ -66,8 +67,11 @@ class QuestionBase:
 
         # FIXME
         # self.tonic = tonic if tonic else choice(KEYS)
-        self.tonic = tonic or choice(KEYS)
-        tonic = self.tonic
+        if not tonic:
+            x = randrange(2)
+            tonic = choice(CIRCLE_OF_FIFTHS[randrange(2)])
+
+        self.tonic = tonic
 
         diatonic_scale = DiatonicScale(tonic=tonic, mode=mode, octave=None,
                                        descending=descending,

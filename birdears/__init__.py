@@ -21,6 +21,11 @@ notes3 = ('C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B')
 KEYS = ('C', 'C#', 'Db', 'D', 'D#', 'Eb', 'E', 'F', 'F#', 'Gb', 'G', 'G#',
         'Ab', 'A', 'A#', 'Bb', 'B')
 
+CIRCLE_OF_FIFTHS = [
+        ('C', 'G', 'D', 'A', 'E', 'B', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F'),
+        ('C', 'F', 'Bb', 'Eb', 'Ab', 'C#', 'F#', 'Cb', 'E', 'A', 'D', 'G') 
+    ]
+
 INTERVALS = (
     (0, 'P1', 'Perfect Unison'),
     (1, 'm2', 'Minor Second'),
