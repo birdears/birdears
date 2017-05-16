@@ -104,6 +104,8 @@ pep8 birdears --exclude=click
 
 ### Module Documentation
 
+Our documentation is online at ~~[readthedocs]~~ link needed;
+
 We are using Sphinx to generate documentation for this module. The sphinx resource
 files are in the `docs/sphinx/` directory.
 
