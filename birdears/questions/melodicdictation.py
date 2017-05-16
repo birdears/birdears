@@ -138,11 +138,16 @@ class MelodicDictationQuestion(QuestionBase):
                 correct_semitones.append(False)
                 correct_wrong_str += "x".center(STR_OFFSET)
 
-        extra_response_str = """
+#         extra_response_str = """\
+# {}
+# {}
+# {}
+# """.format(correct_response_str, correct_wrong_str, user_response_str)
+
+        extra_response_str = """\
 {}
 {}
-{}
-""".format(correct_response_str, correct_wrong_str, user_response_str)
+""".format(correct_wrong_str, correct_response_str)
 
         response = dict(
             is_correct=False,

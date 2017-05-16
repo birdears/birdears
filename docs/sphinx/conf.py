@@ -146,6 +146,7 @@ html_theme_path = ['_themes']
 html_static_path = ['_static']
 
 #html_use_modindex = False
+html_use_modindex = True
 
 # -- Options for HTMLHelp output ------------------------------------------
 

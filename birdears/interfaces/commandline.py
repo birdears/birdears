@@ -119,6 +119,17 @@ Keyboard  {keyboard}
 
     print(center_text(question_text, nl=1))
 
+def make_input_str(user_input, keyboard_index):
+    input_str=str()
+
+    user_input_semitones = [keyboard_index.index(s)
+                            for s in user_input]
+
+    user_str = "".join([INTERVALS[s][1].center(5)
+                                 for s in user_input_semitones]).center(COLS)
+    input_str=("\r{}".format(user_str))
+
+    return input_str
 
 def CommandLine(exercise, **kwargs):
 
@@ -167,11 +178,17 @@ def CommandLine(exercise, **kwargs):
 
             continue
 
+
         user_input = getch()
+
 
         if user_input in question.keyboard_index and user_input != ' ':  # spc
 
             input_keys.append(user_input)
+
+            if exercise == 'dictation':
+                input_str = make_input_str(input_keys, question.keyboard_index)
+                print(input_str, end='')
 
             if len(input_keys) == dictate_notes:
 
@@ -181,6 +198,12 @@ def CommandLine(exercise, **kwargs):
                 question.play_resolution()
 
                 new_question_bit = True
+
+        elif user_input == '\x7f' and exercise == 'dictation':
+            #print('backspace!')
+            del(input_keys[-1])
+            input_str = make_input_str(input_keys, question.keyboard_index)
+            print(input_str, end='')
 
         # q - quit
         elif user_input == 'q':

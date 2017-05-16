@@ -65,6 +65,8 @@ Maybe refactor make_resoltion/sequence as generator so that we can interact
 with the UI, (eg., every note played in resolution is highlighted in user
 interface.)
 
+Encapsulate birdears.interfaces.commandline in a class.
+
 ### Etc
 
 Lets reserve options to `-r` to `--resolution` method  (FET-like, Repeat-only,

@@ -44,7 +44,7 @@ setup(
         #   3 - Alpha
         #   4 - Beta
         #   5 - Production/Stable
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 3 - Alpha',
 
         # Indicate who your project is intended for
         'Intended Audience :: Developers',
@@ -106,9 +106,9 @@ setup(
     #        'sample=sample:main',
     #    ],
     #},
-    #entry_points={
-    #    'console_scripts': [
-    #        'birdears=birdears.__main__:cli',
-    #    ],
-    #},
+    entry_points={
+        'console_scripts': [
+            'birdears=birdears.__main__:cli',
+        ],
+    },
 )

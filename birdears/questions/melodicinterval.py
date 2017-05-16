@@ -162,7 +162,7 @@ class MelodicIntervalQuestion(QuestionBase):
 
         signal = '✓' if semitones == self.interval.semitones else 'x'  # u2713
 
-        extra_response_str = """
+        extra_response_str = """\
        “{}” ({}─{})
 user {} “{}” ({}─{})
 {} semitones
