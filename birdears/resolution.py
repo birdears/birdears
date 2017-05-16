@@ -5,6 +5,7 @@ from .scale import ChromaticScale
 
 from .sequence import Sequence
 
+
 class Resolution:
 
     def __init__(self, method, duration, delay, pos_delay):
@@ -88,10 +89,9 @@ class Resolution:
                                         interval.tonic_octave))
 
             sequence_list.append(Sequence(resolution_pitch,
-                              duration=self.resolution_duration,
-                              delay=self.resolution_delay,
-                              pos_delay=self.resolution_pos_delay))
-
+                                 duration=self.resolution_duration,
+                                 delay=self.resolution_delay,
+                                 pos_delay=self.resolution_pos_delay))
 
         return sequence_list
 
@@ -147,12 +147,12 @@ class Resolution:
                 resolution_pitch.append("{}{}".format(tonic,
                                         interval.tonic_octave))
 
-            #for item in resolution_pitch:
-            harmonic_seq = [[tonic,x] for x in resolution_pitch]
+            # for item in resolution_pitch:
+            harmonic_seq = [[tonic, x] for x in resolution_pitch]
 
             sequence_list.append(Sequence(harmonic_seq,
-                              duration=self.resolution_duration,
-                              delay=self.resolution_delay,
-                              pos_delay=self.resolution_pos_delay))
+                                 duration=self.resolution_duration,
+                                 delay=self.resolution_delay,
+                                 pos_delay=self.resolution_pos_delay))
 
         return sequence_list

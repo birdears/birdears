@@ -3,6 +3,7 @@ import time
 
 from .scale import ChromaticScale
 
+
 class Sequence:
     """Register a Sequence of notes and/or chords.
 
@@ -55,13 +56,13 @@ class Sequence:
 
         last_idx = len(self.elements) - 1
 
-        for cur_idx,element in enumerate(self.elements):
+        for cur_idx, element in enumerate(self.elements):
 
             # lets leave the last element's delay for pos_delay:
             delay = self.delay if cur_idx != last_idx else 0
 
             if type(element) == str:
-                self._play_note(element,delay=delay)
+                self._play_note(element, delay=delay)
             elif type(element) == list:
                 self._play_chord(element, delay=delay)
 

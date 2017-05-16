@@ -18,6 +18,7 @@ from ..resolution import Resolution
 from ..interfaces.commandline import COLS
 from ..interfaces.commandline import center_text
 
+
 class InstrumentalDictationQuestion(QuestionBase):
     """Implements an instrumental dictation test.
     """
@@ -51,9 +52,9 @@ class InstrumentalDictationQuestion(QuestionBase):
         """
 
         super(InstrumentalDictationQuestion, self).\
-                __init__(mode=mode, tonic=tonic, octave=octave,
-                         descending=descending, chromatic=chromatic,
-                         n_octaves=n_octaves, *args, **kwargs)
+            __init__(mode=mode, tonic=tonic, octave=octave,
+                     descending=descending, chromatic=chromatic,
+                     n_octaves=n_octaves, *args, **kwargs)
 
         self.wait_time = wait_time
         self.n_repeats = n_repeats
@@ -93,16 +94,18 @@ class InstrumentalDictationQuestion(QuestionBase):
         #                           delay=self.resolution_delay,
         #                           pos_delay=self.resolution_pos_delay)
 
-        resolve = Resolution (method='resolve_to_nearest_tonic',
-                              duration=self.resolution_duration,
-                              delay=self.resolution_delay,
-                              pos_delay=self.resolution_pos_delay)
+        resolve = Resolution(method='resolve_to_nearest_tonic',
+                             duration=self.resolution_duration,
+                             delay=self.resolution_delay,
+                             pos_delay=self.resolution_pos_delay)
 
-        #self.resolution = resolve.resolve_to_nearest_tonic(chromatic, self.mode,
-        self.resolution = resolve.resolve(chromatic=chromatic, mode=self.mode,
-                                          tonic=self.tonic,
-                                          intervals=self.question_phrase_intervals,
-                                          descending=descending)
+        # self.resolution = resolve.resolve_to_nearest_tonic(chromatic,
+        # self.mode,
+        self.resolution =\
+            resolve.resolve(chromatic=chromatic, mode=self.mode,
+                            tonic=self.tonic,
+                            intervals=self.question_phrase_intervals,
+                            descending=descending)
 
     def make_question(self, phrase_semitones):
         return Sequence([self.scales['chromatic_pitch'].scale[n]
@@ -127,7 +130,6 @@ class InstrumentalDictationQuestion(QuestionBase):
         for sequence in self.resolution:
             sequence.play()
 
-    #def check_question(self, user_input_keys):
     def check_question(self):
         """Checks whether the given answer is correct.
 
@@ -136,31 +138,21 @@ class InstrumentalDictationQuestion(QuestionBase):
         """
 
         global INTERVALS
-       
-        #user_input_semitones = [self.keyboard_index.index(s)
-        #                        for s in user_input_keys]
-       
-        #user_response_str = "-".join([INTERVALS[s][1]
-        #                             for s in user_input_semitones])
+
         intervals_str = "".join([INTERVALS[s][1].center(7)
-                                        for s in self.question_phrase])
+                                for s in self.question_phrase])
         notes_str = "".join([self.scales['chromatic_pitch'].scale[s].center(7)
-                                        for s in self.question_phrase])
-       
+                            for s in self.question_phrase])
+
         correct_response_str = """\
 The intervals and notes of this question:
 
 {intervals}
 {notes}
-""".format(**dict(intervals=intervals_str,notes=notes_str))
+""".format(**dict(intervals=intervals_str, notes=notes_str))
         response = {
-            #'is_correct': False,
-            #'user_input': user_input_keys,
-            #'user_semitones': user_input_semitones,
             'correct_semitones': self.question_phrase,
-            #'user_response_str': user_response_str,
             'correct_response_str': correct_response_str
         }
-       
-       
+
         return response

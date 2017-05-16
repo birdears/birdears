@@ -12,23 +12,26 @@ from . import DEBUG
 from .interfaces.commandline import CommandLine
 
 CTX_SETTINGS = dict(
-    help_option_names = ['-h', '--help'],
+    help_option_names=['-h', '--help'],
 )
 
+
 @click.group(options_metavar='', subcommand_metavar='<command> [options]',
-             epilog = 'You can use \'<command> --help\' to show options for a'\
-                      ' specific command.',
+             epilog="You can use '<command> --help' to show options for a"
+                    " specific command.",
              context_settings=CTX_SETTINGS)
 def cli():
     """birdears ─ Functional Ear Training for Musicians!"""
 
     pass
 
-melodic_epilog="""
+melodic_epilog = """
 In this exercise birdears will play two notes, the tonic and the interval
 melodically, ie., one after the other and you should reply which is the correct
 distance between the two.
 """
+
+
 @cli.command(options_metavar='<command> [options]', epilog=melodic_epilog)
 @click.option('-m', '--mode', type=click.Choice(['major', 'minor']),
               default='major', help="Mode of the question.")
@@ -50,11 +53,13 @@ def melodic(*args, **kwargs):
     kwargs.update({'exercise': 'melodic'})
     CommandLine(**kwargs)
 
-harmonic_epilog="""
+harmonic_epilog = """
 In this exercise birdears will play two notes, the tonic and the interval
 harmonically, ie., both on the same time and you should reply which is the
 correct distance between the two.
 """
+
+
 @cli.command(options_metavar='<command> [options]', epilog=harmonic_epilog)
 @click.option('-m', '--mode', type=click.Choice(['major', 'minor']),
               default='major', help="Mode of the question.")
@@ -77,11 +82,13 @@ def harmonic(*args, **kwargs):
     CommandLine(**kwargs)
 
 
-dictation_epilog="""
+dictation_epilog = """
 In this exercise birdears will choose some random intervals and create a
 melodic dictation with them. You should reply the correct intervals of the
 melodic dictation.
 """
+
+
 @cli.command(options_metavar='<command> [options]', epilog=dictation_epilog)
 @click.option('-m', '--mode', type=click.Choice(['major', 'minor']),
               default='major', help="Mode of the question.")
@@ -110,11 +117,13 @@ def dictation(*args, **kwargs):
     CommandLine(**kwargs)
 
 
-instrumental_epilog="""
+instrumental_epilog = """
 In this exercise birdears will choose some random intervals and create a
 melodic dictation with them. You should play the correct melody in you musical
 instrument.
 """
+
+
 @cli.command(options_metavar='<command> [options]', epilog=instrumental_epilog)
 @click.option('-m', '--mode', type=click.Choice(['major', 'minor']),
               default='major', help="Mode of the question.")

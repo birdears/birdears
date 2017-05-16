@@ -9,9 +9,6 @@ class ScaleBase:
     def __init__(self):
         pass
 
-    #def get_triad(self, degree):
-    #    pass
-
     def _append_octave_to_scale(self, scale, starting_octave, descending=None):
         """Inserts scientific octave number to the notes on a the given scale.
         """
@@ -137,17 +134,11 @@ class DiatonicScale(ScaleBase):
 
         diatonic = [chromatic[semitones] for semitones in diatonic_mode[:-1]]
 
-        #if n_octaves:
-        #diatonic = diatonic * n_octaves
         diatonic = diatonic * 2
 
         # FIXME: check if this works on descending
         diatonic.append(chromatic[diatonic_mode[-1]])
 
-        #if descending:
-        #    diatonic.reverse()
-
-        #if octave:
         octave = self.octave or 4
         diatonic = self._append_octave_to_scale(scale=diatonic,
                                                 starting_octave=octave,
@@ -236,17 +227,11 @@ class ChromaticScale(ScaleBase):
 
         diatonic = [chromatic[semitones] for semitones in diatonic_mode[:-1]]
 
-        #if n_octaves:
-        #diatonic = diatonic * n_octaves
         diatonic = diatonic * 2
 
         # FIXME: check if this works on descending
         diatonic.append(chromatic[diatonic_mode[-1]])
 
-        #if descending:
-        #    diatonic.reverse()
-
-        #if octave:
         octave = self.octave or 4
         diatonic = self._append_octave_to_scale(scale=diatonic,
                                                 starting_octave=octave,

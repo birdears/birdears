@@ -36,10 +36,12 @@ class HarmonicIntervalQuestion(QuestionBase):
             n_octaves (int): Maximum number of octaves of the question.
         """
 
-        super(HarmonicIntervalQuestion, self).\
-                __init__(mode=mode, tonic=tonic, octave=octave,
-                         descending=descending, chromatic=chromatic,
-                         n_octaves=n_octaves, *args, **kwargs)
+        super(HarmonicIntervalQuestion, self).__init__(mode=mode, tonic=tonic,
+                                                       octave=octave,
+                                                       descending=descending,
+                                                       chromatic=chromatic,
+                                                       n_octaves=n_octaves,
+                                                       *args, **kwargs)
 
         self.question_duration = 3
         self.question_delay = 0.5
@@ -66,7 +68,7 @@ class HarmonicIntervalQuestion(QuestionBase):
         self.question = self.make_question()
 
         # FIXME
-        #self.resolution = \
+        # self.resolution = \
         #    self.make_resolution(chromatic=chromatic, mode=self.mode,
         #                         tonic=self.tonic, interval=self.interval,
         #                         descending=descending)
@@ -76,9 +78,10 @@ class HarmonicIntervalQuestion(QuestionBase):
                              delay=self.resolution_delay,
                              pos_delay=self.resolution_pos_delay)
 
-        self.resolution =  resolve.resolve(chromatic=chromatic, mode=self.mode,
-                                   tonic=self.tonic, intervals=self.interval,
-                                   descending=descending)
+        self.resolution = resolve.resolve(chromatic=chromatic, mode=self.mode,
+                                          tonic=self.tonic,
+                                          intervals=self.interval,
+                                          descending=descending)
 
     def make_question(self):
 
@@ -108,15 +111,31 @@ class HarmonicIntervalQuestion(QuestionBase):
 
         semitones = self.keyboard_index.index(user_input_char[0])
 
+        tonic = self.scales['chromatic_pitch'].scale[0]
+
         user_interval = INTERVALS[semitones][2]
         correct_interval = INTERVALS[self.interval.semitones][2]
 
+        user_note = self.scales['chromatic_pitch'].scale[semitones]
+        correct_note = self.scales['chromatic_pitch']\
+            .scale[self.interval.semitones]
+
+        signal = '✓' if semitones == self.interval.semitones else 'x'  # u2713
+
+        extra_response_str = """
+       “{}” ({}─{})
+user {} “{}” ({}─{})
+{} semitones
+""".format(correct_interval, tonic, correct_note,
+           signal, user_interval, tonic, user_note, self.interval.semitones)
+
         response = dict(
-            is_correct = False,
-            user_interval = user_interval,
-            correct_interval = correct_interval,
-            user_response_str = user_interval,
-            correct_response_str = correct_interval,
+            is_correct=False,
+            user_interval=user_interval,
+            correct_interval=correct_interval,
+            user_response_str=user_interval,
+            correct_response_str=correct_interval,
+            extra_response_str=extra_response_str,
         )
 
         if semitones == self.interval.semitones:

@@ -25,14 +25,14 @@ def center_text(text, sep=True, nl=0):
     columns = COLS
     offset = biggest_line_size / 2
     perfect_center = columns / 2
-    padsize =  int(perfect_center - offset)
-    spacing = ' ' * padsize # space char
+    padsize = int(perfect_center - offset)
+    spacing = ' ' * padsize  # space char
 
     text = str()
     for line in linelist:
         text += (spacing + line + '\n')
 
-    divider = spacing + ('─' * int(biggest_line_size)) # unicode 0x2500
+    divider = spacing + ('─' * int(biggest_line_size))  # unicode 0x2500
     text += divider if sep else ''
 
     text += nl * '\n'
@@ -43,47 +43,33 @@ def center_text(text, sep=True, nl=0):
 def print_response(response):
 
     text_kwargs = dict(
-        user_resp = response['user_response_str'],
-        correct_resp = response['correct_response_str']
+        user_resp=response['user_response_str'],
+        correct_resp=response['correct_response_str']
     )
 
     # TODO: make a class for response
     if response['is_correct']:
-        #response_text = "Correct! It is {correct_resp}".format(**text_kwargs)
         response_text = "Correct!"
-
     else:
         response_text = "Wrong.."
-        #response_text = "It is incorrect...\n"\
-                        #"        You replied {user_resp}\n" \
-                        #"but the  correct is {correct_resp}".format(**text_kwargs)
 
     if 'extra_response_str' in response.keys():
         print(center_text(response['extra_response_str']))
 
-    print(center_text(response_text,nl=2))
+    print(center_text(response_text, nl=2))
+
 
 def print_instrumental(response):
 
     text_kwargs = dict(
-        #user_resp = response['user_response_str'],
-        correct_resp = response['correct_response_str']
+        correct_resp=response['correct_response_str']
     )
-
-    # TODO: make a class for response
-    #if response['is_correct']:
-    #    response_text = "Correct! It is {correct_resp}".format(**text_kwargs)
-    #
-    #else:
-    #    response_text = "It is incorrect...You replied {user_resp} but the" \
-    #                    " correct is {correct_resp}".format(**text_kwargs)
 
     response_text = """
 {correct_resp}
 """.format(**text_kwargs)
 
-    print(center_text(response_text,nl=2))
-
+    print(center_text(response_text, nl=2))
 
 
 def print_question(question):
@@ -95,7 +81,7 @@ def print_question(question):
     mode = list(DIATONIC_MODES[question.mode])
     diatonic_index = list(mode)
 
-    for o in range(1,question.n_octaves):
+    for o in range(1, question.n_octaves):
         diatonic_index.extend([x + (12*o) for x in mode[1:]])
 
     # FIXME: bug with descending n_octaves=2
@@ -111,13 +97,13 @@ def print_question(question):
     keys_str = " ".join(map(lambda x: x.ljust(3), keys))
 
     text_kwargs = dict(
-        tonic = question.tonic,
-        mode = question.mode,
-        chroma = question.is_chromatic,
-        desc = question.is_descending,
-        scale = scale_str,
-        intervals = intervals_str,
-        keyboard = keys_str,
+        tonic=question.tonic,
+        mode=question.mode,
+        chroma=question.is_chromatic,
+        desc=question.is_descending,
+        scale=scale_str,
+        intervals=intervals_str,
+        keyboard=keys_str,
     )
 
     question_text = """\
@@ -131,7 +117,7 @@ Keyboard  {keyboard}
 
 """.format(**text_kwargs)
 
-    print(center_text(question_text,nl=1))
+    print(center_text(question_text, nl=1))
 
 
 def CommandLine(exercise, **kwargs):
@@ -178,6 +164,7 @@ def CommandLine(exercise, **kwargs):
             print_instrumental(response)
 
             new_question_bit = True
+
             continue
 
         user_input = getch()
@@ -202,7 +189,7 @@ def CommandLine(exercise, **kwargs):
         # r - repeat interval
         elif user_input == 'r':
             question.play_question()
-            #question.question.play()
+            # question.question.play()
 
 
 if __name__ == "__main__":

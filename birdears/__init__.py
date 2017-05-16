@@ -6,7 +6,6 @@ BirdEars provides facilities to musical ear training exercises.
 
 __all__ = ['questions']
 
-#DEBUG = True
 DEBUG = False
 
 # FIXME

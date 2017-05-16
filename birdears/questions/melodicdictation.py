@@ -15,13 +15,14 @@ from ..scale import ChromaticScale
 from ..sequence import Sequence
 from ..resolution import Resolution
 
+
 class MelodicDictationQuestion(QuestionBase):
     """Implements a melodic dictation test.
     """
 
     def __init__(self, mode='major', max_intervals=3, n_notes=4, tonic=None,
-                 octave=None, descending=None, chromatic=None, n_octaves=None,
-                 *args, **kwargs):
+                 octave=None, descending=None, chromatic=None,
+                 n_octaves=None, *args, **kwargs):
         """Inits the class.
 
         Args:
@@ -43,9 +44,9 @@ class MelodicDictationQuestion(QuestionBase):
         """
 
         super(MelodicDictationQuestion, self).\
-                __init__(mode=mode, tonic=tonic, octave=octave,
-                         descending=descending, chromatic=chromatic,
-                         n_octaves=n_octaves, *args, **kwargs)
+            __init__(mode=mode, tonic=tonic, octave=octave,
+                     descending=descending, chromatic=chromatic,
+                     n_octaves=n_octaves, *args, **kwargs)
 
         self.question_duration = 2
         self.question_delay = 0.8
@@ -77,20 +78,22 @@ class MelodicDictationQuestion(QuestionBase):
         self.question = self.make_question(self.question_phrase)
 
         self.resolution = Sequence(self.question.elements,
-                                  duration=self.resolution_duration,
-                                  delay=self.resolution_delay,
-                                  pos_delay=self.resolution_pos_delay)
+                                   duration=self.resolution_duration,
+                                   delay=self.resolution_delay,
+                                   pos_delay=self.resolution_pos_delay)
 
         # TODO: implement after
-        #resolve = Resolution (method='resolve_to_nearest_tonic',
+        # resolve = Resolution (method='resolve_to_nearest_tonic',
         #                      duration=self.resolution_duration,
         #                      delay=self.resolution_delay,
         #                      pos_delay=self.resolution_pos_delay)
 
-        #self.resolution = resolve.resolve_to_nearest_tonic(chromatic, self.mode,
-        #self.resolution = resolve.resolve(chromatic=chromatic, mode=self.mode,
-        #                                                   tonic=self.tonic, intervals=self.question_phrase_intervals,
-        #                                                   descending=descending)
+        # self.resolution = \
+        #    resolve.resolve_to_nearest_tonic(chromatic, self.mode,
+        # self.resolution = resolve.resolve(chromatic=chromatic,
+        #                                   mode=self.mode,
+        #         tonic=self.tonic, intervals=self.question_phrase_intervals,
+        #                                            descending=descending)
 
     def make_question(self, phrase_semitones):
         return Sequence([self.scales['chromatic_pitch'].scale[n]
@@ -112,15 +115,6 @@ class MelodicDictationQuestion(QuestionBase):
     def check_question(self, user_input_keys):
         """Checks whether the given answer is correct."""
 
-
-        # TODO:
-        # this should show:
-        #
-        # No way!
-        # you replied         P1 P7 P4 P7
-        #                     ✓  x  ✓  x
-        # but the correct is  P1 P5 P4 P5
-
         global INTERVALS
 
         STR_OFFSET = 5
@@ -136,10 +130,10 @@ class MelodicDictationQuestion(QuestionBase):
         correct_semitones = list()
         correct_wrong_str = str()
 
-        for i,s in enumerate(self.question_phrase):
+        for i, s in enumerate(self.question_phrase):
             if self.question_phrase[i] == user_input_semitones[i]:
                 correct_semitones.append(True)
-                correct_wrong_str += "✓".center(STR_OFFSET) # u2713
+                correct_wrong_str += "✓".center(STR_OFFSET)  # u2713
             else:
                 correct_semitones.append(False)
                 correct_wrong_str += "x".center(STR_OFFSET)
@@ -151,14 +145,14 @@ class MelodicDictationQuestion(QuestionBase):
 """.format(correct_response_str, correct_wrong_str, user_response_str)
 
         response = dict(
-            is_correct = False,
-            user_input = user_input_keys,
-            user_semitones = user_input_semitones,
-            question_semitones = self.question_phrase,
-            correct_semitones = correct_semitones,
-            user_response_str = user_response_str,
-            correct_response_str = correct_response_str,
-            extra_response_str = extra_response_str,
+            is_correct=False,
+            user_input=user_input_keys,
+            user_semitones=user_input_semitones,
+            question_semitones=self.question_phrase,
+            correct_semitones=correct_semitones,
+            user_response_str=user_response_str,
+            correct_response_str=correct_response_str,
+            extra_response_str=extra_response_str,
         )
 
         if user_input_semitones == self.question_phrase:
