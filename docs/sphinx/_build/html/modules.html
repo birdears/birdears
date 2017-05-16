@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>birdears &#8212; birdears 0.1.0 documentation</title>
+    <title>birdears &#8212; birdears 0.0.0-alpha.4 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.1.0',
+        VERSION:     '0.0.0-alpha.4',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -32,10 +32,96 @@
   <script type="text/javascript" src="_static/js/highlight.pack.js"></script>
   <script>
   $(document).ready(function() {
-  $('div.viewcode-block,pre').each(function(i, block) {
+  //$('div.viewcode-block,pre:not(.abc)').each(function(i, block) {
+	  $('div.highlight-none pre').each(function(i, block) {
     hljs.highlightBlock(block);
   });
 });
+</script>
+<script src="https://cdn.rawgit.com/iacchus/abcjs/master/bin/abcjs_plugin_3.1.2-hotfix-min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+  abcjs_plugin_autostart = false;
+  window.ABCJS.plugin.auto_render = false;
+
+$(document).ready(function(){
+  function is_it_abc(elem) {
+    if(window.ABCJS.plugin.getABCContainingElements(elem).length) return true;
+    else return false;
+  }
+
+  if($(".highlight-abc pre").length)
+  {
+    var tunes_code = $(".highlight-abc pre");
+			
+    for(var $i=0; tunes_code[$i]; $i++)
+    {               
+      if(! is_it_abc($(tunes_code[$i]))) continue;
+
+      var ws_strip="";
+      var mystr="";
+
+      ws_strip = $(tunes_code[$i]).text().split('\n');
+      for(var aaa=0; ws_strip[aaa]; aaa++) { mystr+=ws_strip[aaa].trim() + "\n"; }
+
+      $(tunes_code[$i]).text(mystr); //abctune
+
+      $('<div id="abctune-' + $i + '" class="abctune-rendered"></div>').insertBefore($(tunes_code[$i]).parent());
+      ABCJS.renderAbc(
+        "abctune-"+$i, //container
+        "%%staffsep 27pt\n" + $(tunes_code[$i]).text(), //abctune
+        { }, //parserParams
+        {
+          scale: 1,
+          staffwidth:600,
+          paddingtop: 0,
+          paddingbottom: 0,
+          paddingright: 0,
+          paddingleft: 0,
+        }, //engraverParams
+        { viewportHorizontal: true } //renderParams
+      );
+      $(tunes_code[$i]).parent().hide();
+    }
+  }
+
+  if($("code.abckeep").length)
+  {
+    var tunes_code = $("code.abckeep");
+			
+    for(var $i=0; tunes_code[$i]; $i++)
+    {               
+      if(! is_it_abc($(tunes_code[$i]))) continue;
+
+      var ws_strip="";
+      var mystr="";
+
+      ws_strip = $(tunes_code[$i]).text().split('\n');
+      for(var aaa=0; ws_strip[aaa]; aaa++) { mystr+=ws_strip[aaa].trim() + "\n"; }
+
+      $(tunes_code[$i]).text(mystr); //abctune
+
+      $('<div id="abctunekeep-' + $i + '" class="abctune-rendered"></div>').insertBefore($(tunes_code[$i]).parent());
+      ABCJS.renderAbc(
+        "abctunekeep-"+$i, //container
+        "%%staffsep 27pt\n"+$(tunes_code[$i]).text(), //abctune
+        { }, //parserParams
+        {
+          scale: 1,
+          staffwidth:700,
+          paddingtop: 0,
+          paddingbottom: 0,
+          paddingright: 0,
+          paddingleft: 0,
+        }, //engraverParams
+        { viewportHorizontal: true } //renderParams
+      );
+      $(tunes_code[$i]).parent().css({marginTop:0})
+      //$(tunes_code[$i]).hide();
+    }
+  }
+})
 </script>
   
   

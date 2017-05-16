@@ -7,7 +7,7 @@
 Classes: ~~interval~~ :tada:, ~~cadence~~(Sequence can generate
 Progressions ✓) and ~~resolution~~ ✓, maybe ~~scale~~ (done :tada:.)
 
-Make a class for response (to be used by question.check_question)
+Make a class for response (to be used by question.check\_question)
 
 ### Documentation
 
@@ -45,6 +45,11 @@ eg.: I to IV, V to VIII etc
 track correct/wrong answers by type, mode, tonic, date etc, maybe using sqlite3
 db so that the user can track it's progress.
 
+Question base should accept aarguments intelligently, for example, `tonic` can
+be a string or a list, or a tuple, so he can sort one of the elements as tonic;
+`octave` can be int or tuple, so that the octave will be chose randomly by that
+range, etc. This will give us tools to load questions from config files.
+
 ### Refactoring
 
 ~~change global names~~ ✓
@@ -59,9 +64,9 @@ an extensive number of parameters and there are more to come.
 note: maybe you'd find this useful https://gist.github.com/rxaviers/7360908
 
 ~~Refactor keys so that they didn't give double sharps or double flats.~~ ✓
-:tada: CIRCLE_OF_FIFTHS !
+:tada: CIRCLE\_OF\_FIFTHS !
 
-Maybe refactor make_resoltion/sequence as generator so that we can interact
+Maybe refactor make\_resoltion/sequence as generator so that we can interact
 with the UI, (eg., every note played in resolution is highlighted in user
 interface.)
 

@@ -14,6 +14,10 @@ BirdEars provides facilities to musical ear training exercises.
 
 DEBUG = False
 
+#import logging
+#logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+#logging.debug('This is a log message.')
+
 # FIXME
 notes2 = ('C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B')
 notes3 = ('C', 'Db', 'D', 'Eb', 'Fb', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'Cb')
