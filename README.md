@@ -14,12 +14,14 @@
 [![PyPI Version](https://img.shields.io/pypi/v/birdears.svg?style=flat)](https://pypi.python.org/pypi/birdears)
 [![PyPI Python Versions](https://img.shields.io/pypi/pyversions/birdears.svg?style=flat)](https://pypi.python.org/pypi/birdears)
 [![Waffle.io](https://img.shields.io/waffle/label/iacchus/birdears/in%20progress.svg?style=flat)](https://waffle.io/iacchus/birdears)
-[![Documentation Status](https://readthedocs.org/projects/birdears/badge/?version=latest)](http://birdears.readthedocs.io/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/birdears/badge/?version=latest)](https://birdears.readthedocs.io/en/latest/?badge=latest)
 [![GitHub issues](https://img.shields.io/github/issues/iacchus/birdears.svg?style=flat)](https://github.com/iacchus/birdears/issues)
 
 ## Functional Ear Training for Musicians
 
-In current development though functional. Uses python 3 and [sox](http://sox.sourceforge.net/).
+Birdears uses functional ear training method for ear training. It helps you to recognize melodic and harmonic intervals. It uses python 3 and [sox](http://sox.sourceforge.net/).
+
+More documentation is at [birdrears Read The Docs](https://birdears.readthedocs.io)
 
 ## Installing
 
@@ -123,7 +125,7 @@ pep8 birdears --exclude=click
 
 ### Module Documentation
 
-Our documentation is online at [readthedocs](http://birdears.readthedocs.io).
+Our documentation is online at [readthedocs](https://birdears.readthedocs.io).
 
 We are using Sphinx to generate documentation for this module. The sphinx resource
 files are in the `docs/sphinx/` directory.
@@ -179,8 +181,5 @@ python setup.py sdist
 python setup.py bdist_wheel
 ```
 
-To publish to PyPI:
+Read also [TODO.md](TODO.md)
 
-```
-twine upload dist/*
-```
