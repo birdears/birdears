@@ -121,6 +121,9 @@ formatting:
 Module Documentation
 ~~~~~~~~~~~~~~~~~~~~
 
+Our documentation is online at
+`readthedocs <http://birdears.readthedocs.io>`__.
+
 We are using Sphinx to generate documentation for this module. The
 sphinx resource files are in the ``docs/sphinx/`` directory.
 

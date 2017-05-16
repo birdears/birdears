@@ -18,19 +18,34 @@
 
 In current development though functional. Uses python 3 and [sox](http://sox.sourceforge.net/).
 
-## Usage
+## Installing
+
 
 ### 1. Install the Dependencies
 
 Install `sox` and `python3` (see [below](https://github.com/iacchus/birdears#installing--dependencies)) and,
 
-### 2. clone the repository
+### 2. a. Via pip
+
+You may want to create a virtualenv before installing via `pip`.
+
+```
+pip install birdears
+```
+
+Then use the command:
+
+```
+birdears
+```
+
+### 2. b. Clone the repository
 
 ```
 git clone https://github.com/iacchus/birdears.git
 ```
 
-### 3. and just run the package's __main__:
+Then run the script with:
 
 ```
 python3 -m birdears
@@ -73,10 +88,11 @@ z x c v b n m    -------  a  b c  d  e  f  g
 
 ### Other keys
 
-| Key          | What it Does                  |
-|         ---: | :---                          |
-| <kbd>q</kbd> | quit.                         |
-| <kbd>r</kbd> | to repeat the tonic/interval. |
+| Key                  | What it Does                                            |
+|                 ---: | :---                                                    |
+| <kbd>q</kbd>         | quit.                                                   |
+| <kbd>r</kbd>         | to repeat the tonic/interval.                           |
+| <kbd>Backspace</kbd> | In melodic dictation, remove previous entered interval. |
 
 ## Installing  Dependencies
 
@@ -104,7 +120,7 @@ pep8 birdears --exclude=click
 
 ### Module Documentation
 
-Our documentation is online at ~~[readthedocs]~~ link needed;
+Our documentation is online at [readthedocs](http://birdears.readthedocs.io).
 
 We are using Sphinx to generate documentation for this module. The sphinx resource
 files are in the `docs/sphinx/` directory.
@@ -165,7 +181,3 @@ To publish to PyPI:
 ```
 twine upload dist/*
 ```
-
-[PEP 8](https://pep8.org) — the Style Guide for Python Code
-
-[Python.org PEP8](https://www.python.org/dev/peps/pep-0008/)
