@@ -4,8 +4,8 @@ BirdEars
 |Travis Build Status| |Coveralls| |Codecov| |Code Climate coverage|
 |Code Climate issues| |Code Climate gpa| |Gitter|
 
-|PyPI Status| |PyPI Version| |PyPI Python Versions| |Waffle.io|
-|Documentation Status|
+|Maintenance| |GitHub (pre-)release| |PyPI Status| |PyPI Version| |PyPI
+Python Versions| |Waffle.io| |Documentation Status| |GitHub issues|
 
 Functional Ear Training for Musicians
 -------------------------------------
@@ -13,8 +13,8 @@ Functional Ear Training for Musicians
 In current development though functional. Uses python 3 and
 `sox <http://sox.sourceforge.net/>`__.
 
-Usage
------
+Installing
+----------
 
 1. Install the Dependencies
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -23,15 +23,29 @@ Install ``sox`` and ``python3`` (see
 `below <https://github.com/iacchus/birdears#installing--dependencies>`__)
 and,
 
-2. clone the repository
-~~~~~~~~~~~~~~~~~~~~~~~
+2. a. Via pip
+~~~~~~~~~~~~~
+
+You may want to create a virtualenv before installing via ``pip``.
+
+::
+
+    pip install birdears
+
+Then use the command:
+
+::
+
+    birdears
+
+2. b. Clone the repository
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
 
     git clone https://github.com/iacchus/birdears.git
 
-3. and just run the package's **main**:
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Then run the script with:
 
 ::
 
@@ -79,13 +93,15 @@ Screenshot or didn't happen
 Other keys
 ~~~~~~~~~~
 
-+-------+---------------------------------+
-| Key   | What it Does                    |
-+=======+=================================+
-| q     | quit.                           |
-+-------+---------------------------------+
-| r     | to repeat the tonic/interval.   |
-+-------+---------------------------------+
++-------------+-----------------------------------------------------------+
+| Key         | What it Does                                              |
++=============+===========================================================+
+| q           | quit.                                                     |
++-------------+-----------------------------------------------------------+
+| r           | to repeat the tonic/interval.                             |
++-------------+-----------------------------------------------------------+
+| Backspace   | In melodic dictation, remove previous entered interval.   |
++-------------+-----------------------------------------------------------+
 
 Installing Dependencies
 -----------------------
@@ -198,10 +214,6 @@ To publish to PyPI:
 
     twine upload dist/*
 
-`PEP 8 <https://pep8.org>`__ — the Style Guide for Python Code
-
-`Python.org PEP8 <https://www.python.org/dev/peps/pep-0008/>`__
-
 .. |Travis Build Status| image:: https://img.shields.io/travis/iacchus/birdears.svg?label=build
    :target: https://travis-ci.org/iacchus/birdears
 .. |Coveralls| image:: https://img.shields.io/coveralls/iacchus/birdears.svg?label=Coveralls
@@ -216,6 +228,10 @@ To publish to PyPI:
    :target: https://codeclimate.com/github/iacchus/birdears
 .. |Gitter| image:: https://img.shields.io/gitter/room/birdears/Lobby.svg
    :target: https://gitter.im/birdears/Lobby
+.. |Maintenance| image:: https://img.shields.io/maintenance/yes/2017.svg
+   :target: https://github.com/iacchus/birdears/issues/new?title=Is+birdears+still+maintained&body=File+an+issue+if+the+maintained+button+says+no
+.. |GitHub (pre-)release| image:: https://img.shields.io/github/release/iacchus/birdears/all.svg
+   :target: https://github.com/iacchus/birdears/releases
 .. |PyPI Status| image:: https://img.shields.io/pypi/status/birdears.svg?label=PyPI+Status
    :target: https://pypi.python.org/pypi/birdears
 .. |PyPI Version| image:: https://img.shields.io/pypi/v/birdears.svg
@@ -226,3 +242,5 @@ To publish to PyPI:
    :target: https://waffle.io/iacchus/birdears
 .. |Documentation Status| image:: https://readthedocs.org/projects/birdears/badge/?version=latest
    :target: http://birdears.readthedocs.io/en/latest/?badge=latest
+.. |GitHub issues| image:: https://img.shields.io/github/issues/iacchus/birdears.svg
+   :target: https://github.com/iacchus/birdears/issues

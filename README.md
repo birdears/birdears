@@ -8,11 +8,14 @@
 [![Code Climate gpa](https://img.shields.io/codeclimate/github/iacchus/birdears.svg?label=GPA)](https://codeclimate.com/github/iacchus/birdears)
 [![Gitter](https://img.shields.io/gitter/room/birdears/Lobby.svg)](https://gitter.im/birdears/Lobby)
 
+[![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)](https://github.com/iacchus/birdears/issues/new?title=Is+birdears+still+maintained&body=File+an+issue+if+the+maintained+button+says+no)
+[![GitHub (pre-)release](https://img.shields.io/github/release/iacchus/birdears/all.svg)](https://github.com/iacchus/birdears/releases)
 [![PyPI Status](https://img.shields.io/pypi/status/birdears.svg?label=PyPI+Status)](https://pypi.python.org/pypi/birdears)
 [![PyPI Version](https://img.shields.io/pypi/v/birdears.svg)](https://pypi.python.org/pypi/birdears)
 [![PyPI Python Versions](https://img.shields.io/pypi/pyversions/birdears.svg)](https://pypi.python.org/pypi/birdears)
 [![Waffle.io](https://img.shields.io/waffle/label/iacchus/birdears/in%20progress.svg)](https://waffle.io/iacchus/birdears)
 [![Documentation Status](https://readthedocs.org/projects/birdears/badge/?version=latest)](http://birdears.readthedocs.io/en/latest/?badge=latest)
+[![GitHub issues](https://img.shields.io/github/issues/iacchus/birdears.svg)](https://github.com/iacchus/birdears/issues)
 
 ## Functional Ear Training for Musicians
 
