@@ -14,7 +14,7 @@ Birdears uses functional ear training method for ear training. It helps
 you to recognize melodic and harmonic intervals. It uses python 3 and
 `sox <http://sox.sourceforge.net/>`__.
 
-More documentation is at `birdrears Read The
+More documentation is at `birdears Read The
 Docs <https://birdears.readthedocs.io>`__
 
 Installing
