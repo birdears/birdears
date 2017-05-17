@@ -127,8 +127,11 @@ class DiatonicInterval(IntervalBase):
         else:
             interval_octave = int(octave) - distance['octaves']
 
+        tonic_concrete = "{}{}".format(tonic, octave)
+
         interval_data = dict(
             tonic_octave=octave,
+            tonic_note_and_octave=tonic_concrete,
             interval_octave=interval_octave,
             chromatic_offset=chromatic_offset,
             note_and_octave=note_and_octave,
@@ -254,8 +257,11 @@ class ChromaticInterval(IntervalBase):
         else:
             interval_octave = int(octave) - distance['octaves']
 
+        tonic_concrete = "{}{}".format(tonic, octave)
+
         interval_data = dict(
             tonic_octave=octave,
+            tonic_note_and_octave=tonic_concrete,
             interval_octave=interval_octave,
             chromatic_offset=chromatic_offset,
             note_and_octave=note_and_octave,

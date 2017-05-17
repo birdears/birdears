@@ -2,21 +2,7 @@
 BirdEars provides facilities to musical ear training exercises.
 """
 
-#__all__ = ['scale', 'interval', 'sequence', 'questionbase', 'resolution', 'questionbase', 'questions', 'interfaces']
-
-#import scale
-#import interval
-#import sequence
-#import resolution
-#import questionbase
-#import questions
-#import interfaces
-
 DEBUG = False
-
-#import logging
-#logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
-#logging.debug('This is a log message.')
 
 # FIXME
 notes2 = ('C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B')
@@ -24,7 +10,7 @@ notes3 = ('C', 'Db', 'D', 'Eb', 'Fb', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'Cb')
 
 KEYS = ('C', 'C#', 'Db', 'D', 'D#', 'Eb', 'E', 'F', 'F#', 'Gb', 'G', 'G#',
         'Ab', 'A', 'A#', 'Bb', 'B')
-        
+
 CIRCLE_OF_FIFTHS = [
         ('C', 'G', 'D', 'A', 'E', 'B', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F'),
         ('C', 'F', 'Bb', 'Eb', 'Ab', 'C#', 'F#', 'Cb', 'E', 'A', 'D', 'G')

@@ -56,20 +56,25 @@ class QuestionBase:
         self.is_chromatic = chromatic
 
         # self.octave = octave if octave else randrange(3, 5)
-        self.octave = octave or randrange(3, 5)
-        self.n_octaves = n_octaves or 1
+        if not octave:
+            octave = randrange(3, 5)
+        elif type(octave) == list:
+            octave = choice(octave)
+        elif type(octave) == tuple and len(octave) == 2:
+            octave = randrange(octave)
+
+        self.octave = octave
+
+        if not n_octaves:
+            self.n_octaves = 1
 
         # FIXME: maybe this should go to __main__
         self.keyboard_index = KEYBOARD_INDICES['chromatic'][self.mode]
 
-        # if descending:
-        #    self.keyboard_index = self.keyboard_index[::-1].swapcase()
-
-        # FIXME
-        # self.tonic = tonic if tonic else choice(KEYS)
         if not tonic:
-            x = randrange(2)
             tonic = choice(CIRCLE_OF_FIFTHS[randrange(2)])
+        elif type(tonic) == list:
+            tonic = choice(tonic)
 
         self.tonic = tonic
 

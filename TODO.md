@@ -45,10 +45,13 @@ eg.: I to IV, V to VIII etc
 track correct/wrong answers by type, mode, tonic, date etc, maybe using sqlite3
 db so that the user can track it's progress.
 
-Question base should accept aarguments intelligently, for example, `tonic` can
-be a string or a list, or a tuple, so he can sort one of the elements as tonic;
-`octave` can be int or tuple, so that the octave will be chose randomly by that
-range, etc. This will give us tools to load questions from config files.
+Question base should accept aarguments intelligently, for example, ~~`tonic` can
+be a string or a list~~, or a tuple, so he can sort one of the elements as tonic;
+~~`octave` can be int or tuple, so that the octave will be chosen randomly by that
+range~~, etc. This will give us tools to load questions from config files.
+
+question, resolution, pre-qestion: duration, delay and post delay should be
+configurable via options too.
 
 ### Refactoring
 

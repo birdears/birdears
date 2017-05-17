@@ -67,21 +67,17 @@ class HarmonicIntervalQuestion(QuestionBase):
 
         self.question = self.make_question()
 
-        # FIXME
-        # self.resolution = \
-        #    self.make_resolution(chromatic=chromatic, mode=self.mode,
-        #                         tonic=self.tonic, interval=self.interval,
-        #                         descending=descending)
-
-        resolve = Resolution(method='resolve_to_nearest_tonic_harmonically',
+        resolve = Resolution(method='nearest_tonic',
                              duration=self.resolution_duration,
                              delay=self.resolution_delay,
                              pos_delay=self.resolution_pos_delay)
 
-        self.resolution = resolve.resolve(chromatic=chromatic, mode=self.mode,
-                                          tonic=self.tonic,
-                                          intervals=self.interval,
-                                          descending=descending)
+        self.resolution = resolve(chromatic=chromatic, mode=self.mode,
+                                  tonic=self.tonic, intervals=self.interval,
+                                  descending=descending, harmonic=True,
+                                  duration=self.resolution_duration,
+                                  delay=self.resolution_delay,
+                                  pos_delay=self.resolution_pos_delay)
 
     def make_question(self):
 

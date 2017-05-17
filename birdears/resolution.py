@@ -5,8 +5,22 @@ from .scale import ChromaticScale
 
 from .sequence import Sequence
 
+from functools import wraps
+
+METHODS = {}
+
+
+def register_method(f, *args, **kwargs):
+    @wraps(f)
+    def decorator(*args, **kwargs):
+        METHODS.update({f.__name_: f})
+        return f(*args, **kwargs)
+    return decorator
+
 
 class Resolution:
+
+    methods = {}
 
     def __init__(self, method, duration, delay, pos_delay):
         """This class implements methods for different types of question
@@ -25,134 +39,79 @@ class Resolution:
             * Maybe refactor the resolve `method`s with a prefix.
         """
 
-        self.METHOD = getattr(self, method)
-
+        self.METHOD = globals()[method]
         self.resolution_duration = duration
         self.resolution_delay = delay
         self.resolution_pos_delay = pos_delay
 
-    def resolve(self, *args, **kwargs):
+    def __call__(self, *args, **kwargs):
         """Calls the resolution method and pass arguments to it.
         """
         return self.METHOD(*args, **kwargs)
 
-    def resolve_to_nearest_tonic(self, chromatic, mode, tonic, intervals,
-                                 descending=None):
-        """Resolve the intervals to their nearest tonics.
 
-        Args:
-            chromatic (bool): x
-            mode (str): x
-            tonic (str): x
-            intervals (str or array_type): x
-            descending (bool): x
+def nearest_tonic(chromatic, mode, tonic, intervals, harmonic=None,
+                  descending=None, duration=None, delay=None, pos_delay=None):
+    """Resolve the intervals to their nearest tonics.
 
-        Todo:
-            * chromatic doesn't seem to be used.
-        """
+    Args:
+        chromatic (bool): x
+        mode (str): x
+        tonic (str): x
+        intervals (str or array_type): x
+        descending (bool): x
 
-        global DIATONIC_MODES, MAX_SEMITONES_RESOLVE_BELOW
+    Todo:
+        * chromatic doesn't seem to be used.
+    """
 
-        sequence_list = []
+    global DIATONIC_MODES, MAX_SEMITONES_RESOLVE_BELOW
 
-        if type(intervals) is not list:
-            intervals = [intervals]
+    sequence_list = []
 
-        # diatonic_mode = DIATONIC_MODES[mode]
+    if type(intervals) is not list:
+        intervals = [intervals]
 
-        for interval in intervals:
-            resolution_pitch = []
-            scale_pitch = DiatonicScale(tonic=tonic, mode=mode,
-                                        octave=interval.interval_octave,
-                                        descending=descending)
-            self.res_scale = scale_pitch
+    for interval in intervals:
+        resolution_pitch = []
+        scale_pitch = DiatonicScale(tonic=tonic, mode=mode,
+                                    octave=interval.interval_octave,
+                                    descending=descending)
 
-            if interval.chromatic_offset <= MAX_SEMITONES_RESOLVE_BELOW:
-                begin_to_diatonic = slice(None, interval.diatonic_index + 1)
-                resolution_pitch.extend(scale_pitch.scale[begin_to_diatonic])
-                if interval.is_chromatic:
-                    resolution_pitch.append(interval.note_and_octave)
-                resolution_pitch.reverse()
-            else:
-                diatonic_to_end = slice(interval.diatonic_index, None)
-                if interval.is_chromatic:
-                    resolution_pitch.append(interval.note_and_octave)
-                resolution_pitch.extend(scale_pitch.scale[diatonic_to_end])
+        if interval.chromatic_offset <= MAX_SEMITONES_RESOLVE_BELOW:
+            begin_to_diatonic = slice(None, interval.diatonic_index + 1)
+            resolution_pitch.extend(scale_pitch.scale[begin_to_diatonic])
+            if interval.is_chromatic:
+                resolution_pitch.append(interval.note_and_octave)
+            resolution_pitch.reverse()
+        else:
+            diatonic_to_end = slice(interval.diatonic_index, None)
+            if interval.is_chromatic:
+                resolution_pitch.append(interval.note_and_octave)
+            resolution_pitch.extend(scale_pitch.scale[diatonic_to_end])
 
-            # unisson and octave
-            if interval.semitones == 0:
-                resolution_pitch.append(scale_pitch.scale[0])
+        # unisson and octave
+        if interval.semitones == 0:
+            resolution_pitch.append(scale_pitch.scale[0])
 
-            elif interval.semitones % 12 == 0:
-                # FIXME: multipe octaves
-                resolution_pitch.append("{}{}".format(tonic,
-                                        interval.tonic_octave))
+        elif interval.semitones % 12 == 0:
+            # FIXME: multipe octaves
+            resolution_pitch.append("{}{}".format(tonic,
+                                    interval.tonic_octave))
 
-            sequence_list.append(Sequence(resolution_pitch,
-                                 duration=self.resolution_duration,
-                                 delay=self.resolution_delay,
-                                 pos_delay=self.resolution_pos_delay))
+        if harmonic:
+            seq = [[interval.tonic_note_and_octave, x]
+                   for x in resolution_pitch]
+        else:
+            seq = resolution_pitch
 
-        return sequence_list
+        print(seq)
+        sequence_list.append(Sequence(seq, duration=duration, delay=delay,
+                             pos_delay=pos_delay))
 
-    def resolve_to_nearest_tonic_harmonically(self, chromatic, mode, tonic,
-                                              intervals, descending=None):
-        """Resolve the intervals to their nearest tonics harmonically.
+    return sequence_list
 
-        Args:
-            chromatic (bool): x
-            mode (str): x
-            tonic (str): x
-            intervals (str or array_type): x
-            descending (bool): x
 
-        Todo:
-            * chromatic doesn't seem to be used.
-        """
-
-        global DIATONIC_MODES, MAX_SEMITONES_RESOLVE_BELOW
-
-        sequence_list = []
-
-        if type(intervals) is not list:
-            intervals = [intervals]
-
-        # diatonic_mode = DIATONIC_MODES[mode]
-
-        for interval in intervals:
-            resolution_pitch = []
-            scale_pitch = DiatonicScale(tonic=tonic, mode=mode,
-                                        octave=interval.interval_octave,
-                                        descending=descending)
-            self.res_scale = scale_pitch
-
-            if interval.chromatic_offset <= MAX_SEMITONES_RESOLVE_BELOW:
-                begin_to_diatonic = slice(None, interval.diatonic_index + 1)
-                resolution_pitch.extend(scale_pitch.scale[begin_to_diatonic])
-                if interval.is_chromatic:
-                    resolution_pitch.append(interval.note_and_octave)
-                resolution_pitch.reverse()
-            else:
-                diatonic_to_end = slice(interval.diatonic_index, None)
-                if interval.is_chromatic:
-                    resolution_pitch.append(interval.note_and_octave)
-                resolution_pitch.extend(scale_pitch.scale[diatonic_to_end])
-
-            # unisson and octave
-            if interval.semitones == 0:
-                resolution_pitch.append(scale_pitch.scale[0])
-
-            elif interval.semitones % 12 == 0:
-                # FIXME: multipe octaves
-                resolution_pitch.append("{}{}".format(tonic,
-                                        interval.tonic_octave))
-
-            # for item in resolution_pitch:
-            harmonic_seq = [[tonic, x] for x in resolution_pitch]
-
-            sequence_list.append(Sequence(harmonic_seq,
-                                 duration=self.resolution_duration,
-                                 delay=self.resolution_delay,
-                                 pos_delay=self.resolution_pos_delay))
-
-        return sequence_list
+def repeat_only(elements, duration=None, delay=None, pos_delay=None):
+    return Sequence(elements, duration=duration, delay=delay,
+                    pos_delay=pos_delay)

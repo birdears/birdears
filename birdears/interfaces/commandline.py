@@ -126,17 +126,20 @@ Keyboard  {keyboard}
 
     print(center_text(question_text, nl=1))
 
+
 def make_input_str(user_input, keyboard_index):
-    input_str=str()
+    input_str = str()
 
     user_input_semitones = [keyboard_index.index(s)
                             for s in user_input]
 
     user_str = "".join([INTERVALS[s][1].center(5)
-                                 for s in user_input_semitones]).center(COLS)
-    input_str=("\r{}".format(user_str))
+                       for s in user_input_semitones]).center(COLS)
+
+    input_str = ("\r{}".format(user_str))
 
     return input_str
+
 
 def CommandLine(exercise, **kwargs):
 
@@ -162,6 +165,8 @@ def CommandLine(exercise, **kwargs):
         MYCLASS = HarmonicIntervalQuestion
         dictate_notes = 1
 
+    from ..resolution import METHODS
+    print(METHODS)
     getch = _Getch()
 
     new_question_bit = True
@@ -185,9 +190,7 @@ def CommandLine(exercise, **kwargs):
 
             continue
 
-
         user_input = getch()
-
 
         if user_input in question.keyboard_index and user_input != ' ':  # spc
 
@@ -206,8 +209,8 @@ def CommandLine(exercise, **kwargs):
 
                 new_question_bit = True
 
+        # backspace
         elif user_input == '\x7f':
-            #print('backspace!')
             if(len(input_keys) > 0) and exercise == 'dictation':
                 del(input_keys[-1])
                 input_str = make_input_str(input_keys, question.keyboard_index)
@@ -220,7 +223,6 @@ def CommandLine(exercise, **kwargs):
         # r - repeat interval
         elif user_input == 'r':
             question.play_question()
-            # question.question.play()
 
 
 if __name__ == "__main__":

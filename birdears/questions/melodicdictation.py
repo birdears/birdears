@@ -76,24 +76,7 @@ class MelodicDictationQuestion(QuestionBase):
                                      in self.question_phrase_intervals])
 
         self.question = self.make_question(self.question_phrase)
-
-        self.resolution = Sequence(self.question.elements,
-                                   duration=self.resolution_duration,
-                                   delay=self.resolution_delay,
-                                   pos_delay=self.resolution_pos_delay)
-
-        # TODO: implement after
-        # resolve = Resolution (method='resolve_to_nearest_tonic',
-        #                      duration=self.resolution_duration,
-        #                      delay=self.resolution_delay,
-        #                      pos_delay=self.resolution_pos_delay)
-
-        # self.resolution = \
-        #    resolve.resolve_to_nearest_tonic(chromatic, self.mode,
-        # self.resolution = resolve.resolve(chromatic=chromatic,
-        #                                   mode=self.mode,
-        #         tonic=self.tonic, intervals=self.question_phrase_intervals,
-        #                                            descending=descending)
+        self.resolution = self.make_resolution()
 
     def make_question(self, phrase_semitones):
         return Sequence([self.scales['chromatic_pitch'].scale[n]
@@ -101,6 +84,21 @@ class MelodicDictationQuestion(QuestionBase):
                         duration=self.question_duration,
                         delay=self.question_delay,
                         pos_delay=self.question_pos_delay)
+
+    def make_resolution(self):
+        # the idea here is execute resolve() to each interval of the dictation
+
+        resolve = Resolution(method='repeat_only',
+                             duration=self.resolution_duration,
+                             delay=self.resolution_delay,
+                             pos_delay=self.resolution_pos_delay)
+
+        resolution = resolve(self.question.elements,
+                             duration=self.resolution_duration,
+                             delay=self.resolution_delay,
+                             pos_delay=self.resolution_pos_delay)
+
+        return resolution
 
     def play_question(self):
         self.question.play()
@@ -137,12 +135,6 @@ class MelodicDictationQuestion(QuestionBase):
             else:
                 correct_semitones.append(False)
                 correct_wrong_str += "x".center(STR_OFFSET)
-
-#         extra_response_str = """\
-# {}
-# {}
-# {}
-# """.format(correct_response_str, correct_wrong_str, user_response_str)
 
         extra_response_str = """\
 {}

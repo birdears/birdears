@@ -16,9 +16,15 @@ CTX_SETTINGS = dict(
 )
 
 
+main_epilog = """
+You can use '<command> --help' to show options for a specific command.
+
+More info at https://github.com/iacchus/birdears
+"""
+
+
 @click.group(options_metavar='', subcommand_metavar='<command> [options]',
-             epilog="You can use '<command> --help' to show options for a"
-                    " specific command.",
+             epilog=main_epilog,
              context_settings=CTX_SETTINGS)
 def cli():
     """birdears ─ Functional Ear Training for Musicians!"""

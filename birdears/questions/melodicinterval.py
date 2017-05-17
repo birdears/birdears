@@ -63,15 +63,17 @@ class MelodicIntervalQuestion(QuestionBase):
         # self.pre_question = self.make_pre_question()
         self.question = self.make_question()
 
-        resolve = Resolution(method='resolve_to_nearest_tonic',
+        resolve = Resolution(method='nearest_tonic',
                              duration=self.resolution_duration,
                              delay=self.resolution_delay,
                              pos_delay=self.resolution_pos_delay)
 
         self.resolution = \
-            resolve.resolve(chromatic=chromatic, mode=self.mode,
-                            tonic=self.tonic, intervals=self.interval,
-                            descending=descending)
+            resolve(chromatic=chromatic, mode=self.mode, tonic=self.tonic,
+                    intervals=self.interval, descending=descending,
+                    duration=self.resolution_duration,
+                    delay=self.resolution_delay,
+                    pos_delay=self.resolution_pos_delay)
 
     # def make_pre_question(self):
     #     self.pre_question = Sequence([], duration=self.question_duration,
@@ -96,44 +98,6 @@ class MelodicIntervalQuestion(QuestionBase):
     def make_resolution(self, chromatic, mode, tonic, interval,
                         descending=None):
 
-        # global DIATONIC_MODES, MAX_SEMITONES_RESOLVE_BELOW
-        #
-        # resolution_pitch = []
-        #
-        # # diatonic_mode = DIATONIC_MODES[mode]
-        #
-        # scale_pitch = DiatonicScale(tonic=tonic, mode=mode,
-        #                             octave=interval.interval_octave,
-        #                             descending=descending)
-        # self.res_scale = scale_pitch
-        #
-        # if interval.chromatic_offset <= MAX_SEMITONES_RESOLVE_BELOW:
-        #     begin_to_diatonic = slice(None, interval.diatonic_index + 1)
-        #     resolution_pitch = scale_pitch.scale[begin_to_diatonic]
-        #     if interval.is_chromatic:
-        #         resolution_pitch.append(interval.note_and_octave)
-        #     resolution_pitch.reverse()
-        # else:
-        #     diatonic_to_end = slice(interval.diatonic_index, None)
-        #     if interval.is_chromatic:
-        #         resolution_pitch.append(interval.note_and_octave)
-        #     resolution_pitch.extend(scale_pitch.scale[diatonic_to_end])
-        #
-        # # unisson and octave
-        # if interval.semitones == 0:
-        #     resolution_pitch.append(scale_pitch.scale[0])
-        #
-        # elif interval.semitones % 12 == 0:
-        #     # FIXME: multipe octaves
-        #     resolution_pitch.append("{}{}".format(tonic,
-        #                             interval.tonic_octave))
-        #
-        # resolution = Sequence(resolution_pitch,
-        #                       duration=self.resolution_duration,
-        #                       delay=self.resolution_delay,
-        #                       pos_delay=self.resolution_pos_delay)
-        #
-        # return resolution
         pass
 
     def play_question(self):
