@@ -587,11 +587,6 @@ in the resolution.</li>
 </dd></dl>
 
 <dl class="function">
-<dt id="birdears.resolution.register_method">
-<code class="descclassname">birdears.resolution.</code><code class="descname">register_method</code><span class="sig-paren">(</span><em>f</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.resolution.register_method" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
 <dt id="birdears.resolution.repeat_only">
 <code class="descclassname">birdears.resolution.</code><code class="descname">repeat_only</code><span class="sig-paren">(</span><em>elements</em>, <em>duration=None</em>, <em>delay=None</em>, <em>pos_delay=None</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.resolution.repeat_only" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -720,7 +715,7 @@ note (octave) to the scale.</li>
 <span id="birdears-sequence-module"></span><h2>birdears.sequence module<a class="headerlink" href="#module-birdears.sequence" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="birdears.sequence.Sequence">
-<em class="property">class </em><code class="descclassname">birdears.sequence.</code><code class="descname">Sequence</code><span class="sig-paren">(</span><em>elements</em>, <em>duration=2</em>, <em>delay=1.5</em>, <em>pos_delay=1</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.sequence.Sequence" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">birdears.sequence.</code><code class="descname">Sequence</code><span class="sig-paren">(</span><em>elements=[]</em>, <em>duration=2</em>, <em>delay=1.5</em>, <em>pos_delay=1</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.sequence.Sequence" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 <p>Register a Sequence of notes and/or chords.</p>
 <dl class="attribute">
@@ -732,7 +727,7 @@ strings) in this Sequence.</p>
 
 <dl class="method">
 <dt id="birdears.sequence.Sequence.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>elements</em>, <em>duration=2</em>, <em>delay=1.5</em>, <em>pos_delay=1</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.sequence.Sequence.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>elements=[]</em>, <em>duration=2</em>, <em>delay=1.5</em>, <em>pos_delay=1</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.sequence.Sequence.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
 <dt>Inits the Sequence with an array and sets the default times for</dt>
 <dd>playing / pausing the elements.</dd>

@@ -10,12 +10,12 @@ from functools import wraps
 METHODS = {}
 
 
-def register_method(f, *args, **kwargs):
-    @wraps(f)
-    def decorator(*args, **kwargs):
-        METHODS.update({f.__name_: f})
-        return f(*args, **kwargs)
-    return decorator
+# def register_method(f, *args, **kwargs):
+#    @wraps(f)
+#    def decorator(*args, **kwargs):
+#        METHODS.update({f.__name_: f})
+#        return f(*args, **kwargs)
+#    return decorator
 
 
 class Resolution:
@@ -105,7 +105,6 @@ def nearest_tonic(chromatic, mode, tonic, intervals, harmonic=None,
         else:
             seq = resolution_pitch
 
-        print(seq)
         sequence_list.append(Sequence(seq, duration=duration, delay=delay,
                              pos_delay=pos_delay))
 

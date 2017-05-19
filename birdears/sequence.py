@@ -12,7 +12,7 @@ class Sequence:
             strings) in this Sequence.
     """
 
-    def __init__(self, elements, duration=2, delay=1.5, pos_delay=1):
+    def __init__(self, elements=[], duration=2, delay=1.5, pos_delay=1):
         """Inits the Sequence with an array and sets the default times for
             playing / pausing the elements.
 

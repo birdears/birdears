@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# exis onn error
+# exit on error
 set -e
 
 echo 'starting..'
@@ -10,6 +10,8 @@ pep8 birdears --exclude=click
 
 # run tests
 coverage run --source=birdears --module pytest --verbose tests/
+coverage html --omit='*birdears/click/*' -d docs/coverage-html/
+
 
 # remove pypi builds
 rm -rf birdears.egg-info/

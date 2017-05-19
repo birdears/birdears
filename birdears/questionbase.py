@@ -61,12 +61,14 @@ class QuestionBase:
         elif type(octave) == list:
             octave = choice(octave)
         elif type(octave) == tuple and len(octave) == 2:
-            octave = randrange(octave)
+            octave = randrange(*octave)
 
         self.octave = octave
 
         if not n_octaves:
             self.n_octaves = 1
+        else:
+            self.n_octaves = n_octaves
 
         # FIXME: maybe this should go to __main__
         self.keyboard_index = KEYBOARD_INDICES['chromatic'][self.mode]

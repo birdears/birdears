@@ -25,7 +25,23 @@ def test_questionbase_placeholders():
 
     a.make_question()
     a.make_resolution()
+    a.play_question()
     a.check_question()
+
+    assert(a)
+
+def test_questionbase_toniclist():
+    a = QuestionBase(tonic=['G', 'D', 'A'])
+
+    assert(a)
+
+def test_questionbase_octavelist():
+    a = QuestionBase(octave=[2,3,5])
+
+    assert(a)
+
+def test_questionbase_octavetuple():
+    a = QuestionBase(octave=(2,5))
 
     assert(a)
 
@@ -61,6 +77,13 @@ def test_sequenceclass_append():
 def test_sequenceclass_extend():
     sequence = Sequence(['C3'])
     sequence.extend(['C4', 'D4', 'E4'])
+
+    assert(sequence.elements)
+
+def test_sequenceclass_makeprogression():
+    sequence = Sequence()
+    sequence.make_chord_progression(tonic='A', mode='minor',
+                                    degrees=[1, 4, 5, 1])
 
     assert(sequence.elements)
 
@@ -136,10 +159,22 @@ def test_diatonicscaleclass():
     a = DiatonicScale(tonic='C', mode='major')
     assert(a)
 
+def test_diatonicscale_gettriad():
+
+    a = DiatonicScale(tonic='C', mode='major')
+    b = a.get_triad(degree=7)
+    assert(b)
+
 def test_chromaticscaleclass():
 
     a = ChromaticScale(tonic='C')
     assert(a)
+
+def test_chromaticscale_gettriad():
+
+    a = ChromaticScale(tonic='C')
+    b = a.get_triad(mode='major', degree=7)
+    assert(b)
 
 def test_diatonicscaleclass_params():
     global KEYS

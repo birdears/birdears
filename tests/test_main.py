@@ -65,5 +65,42 @@ def test_cli_dictation(monkeypatch):
         a = __main__.cli()
     except SystemExit:
         pass
+    assert(True)
+
+def test_cli_dictation_repeat_and_backspace(monkeypatch):
+
+    keys = ['q', '\x7f', 'z', '\x7f', 'r', 'x', 'v', 'b', 'z', 'c']
+
+    def mockreturn():
+        return lambda: keys.pop() # quits
+
+    sys_argv = ['PYTEST_ARGV0', 'dictation', '-x', '4']
+
+    monkeypatch.setattr('sys.argv', sys_argv)
+    monkeypatch.setattr('birdears.interfaces.commandline._Getch', mockreturn)
+
+    try:
+        a = __main__.cli()
+    except SystemExit:
+        pass
+
+    assert(True)
+
+def test_cli_instrumental(monkeypatch):
+
+    def mockreturn(x):
+        exit(0)
+        # return lambda: 'q' # quits
+
+    sys_argv = ['PYTEST_ARGV0', 'instrumental', '-w', '3']
+
+    monkeypatch.setattr('sys.argv', sys_argv)
+    monkeypatch.setattr('birdears.interfaces.commandline.print_instrumental',
+                        mockreturn)
+
+    try:
+        a = __main__.cli()
+    except SystemExit:
+        pass
 
     assert(True)
