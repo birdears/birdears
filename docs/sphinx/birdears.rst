@@ -20,6 +20,14 @@ birdears\.interval module
     :undoc-members:
     :show-inheritance:
 
+birdears\.prequestion module
+----------------------------
+
+.. automodule:: birdears.prequestion
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 birdears\.questionbase module
 -----------------------------
 

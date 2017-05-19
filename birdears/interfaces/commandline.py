@@ -22,6 +22,7 @@ def center_text(text, sep=True, nl=0):
             not (False).
         nl (int): How many new lines to add after text.
     """
+
     linelist = list(text.splitlines())
 
     # gets the biggest line
@@ -160,6 +161,7 @@ def make_input_str(user_input, keyboard_index):
         user_input (array_type): The list of keyboard keys entered by user.
         keyboard_index (array_type): The keyboard mapping used by question.
     """
+
     input_str = str()
 
     user_input_semitones = [keyboard_index.index(s)
@@ -204,8 +206,9 @@ def CommandLine(exercise, **kwargs):
         MYCLASS = HarmonicIntervalQuestion
         dictate_notes = 1
 
-    from ..resolution import METHODS
-    print(METHODS)
+    # rmme
+    from ..resolution import RESOLUTION_METHODS
+    print(RESOLUTION_METHODS)
     getch = _Getch()
 
     new_question_bit = True

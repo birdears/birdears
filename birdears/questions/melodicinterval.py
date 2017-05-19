@@ -11,6 +11,7 @@ from ..scale import DiatonicScale
 
 from ..sequence import Sequence
 from ..resolution import Resolution
+from ..prequestion import PreQuestion
 
 
 class MelodicIntervalQuestion(QuestionBase):
@@ -60,25 +61,28 @@ class MelodicIntervalQuestion(QuestionBase):
                                               n_octaves=n_octaves,
                                               descending=descending)
 
-        # self.pre_question = self.make_pre_question()
+        self.pre_question = self.make_pre_question(method='tonic_only')
         self.question = self.make_question()
         self.resolution = self.make_resolution(method='nearest_tonic')
 
-    # def make_pre_question(self):
-    #     self.pre_question = Sequence([], duration=self.question_duration,
-    #                         delay=self.question_delay,
-    #                         pos_delay=1)
-    #     self.pre_question.make_chord_progression(self.tonic, self.mode,
-    #                                              [1, 4, 5, 1])
-    #
-    #     return self.pre_question
+    def make_pre_question(self, method):
+        prequestion = PreQuestion(method=method,
+                                  duration=self.question_duration,
+                                  delay=self.question_delay,
+                                  pos_delay=self.question_pos_delay)
+
+        return prequestion(**dict(tonic=self.tonic, tonic_octave=self.octave,
+                           mode=self.mode, intervals=self.interval,
+                           duration=self.question_duration,
+                           delay=self.question_delay,
+                           pos_delay=self.question_pos_delay))
 
     def make_question(self):
 
         tonic = self.concrete_tonic
         interval = self.interval.note_and_octave
 
-        question = Sequence([tonic, interval], duration=self.question_duration,
+        question = Sequence([interval], duration=self.question_duration,
                             delay=self.question_delay,
                             pos_delay=self.question_pos_delay)
 
@@ -90,8 +94,8 @@ class MelodicIntervalQuestion(QuestionBase):
                              delay=self.resolution_delay,
                              pos_delay=self.resolution_pos_delay)
 
-        resolution = resolve(chromatic=self.is_chromatic, mode=self.mode,
-                             tonic=self.tonic, intervals=self.interval,
+        resolution = resolve(mode=self.mode, tonic=self.tonic,
+                             intervals=self.interval,
                              descending=self.is_descending,
                              duration=self.resolution_duration,
                              delay=self.resolution_delay,
@@ -100,7 +104,7 @@ class MelodicIntervalQuestion(QuestionBase):
         return resolution
 
     def play_question(self):
-        # self.pre_question.play()
+        self.pre_question.play()
         self.question.play()
 
     def play_resolution(self):
@@ -108,7 +112,8 @@ class MelodicIntervalQuestion(QuestionBase):
             sequence.play()
 
     def check_question(self, user_input_char):
-        """Checks whether the given answer is correct."""
+        """Checks whether the given answer is correct.
+        """
 
         global INTERVALS
 

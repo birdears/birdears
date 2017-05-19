@@ -161,14 +161,20 @@ $(document).ready(function(){
 <h2 id="_">_</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="birdears.html#birdears.resolution.Resolution.__call__">__call__() (birdears.resolution.Resolution method)</a>
+      <li><a href="birdears.html#birdears.prequestion.PreQuestion.__call__">__call__() (birdears.prequestion.PreQuestion method)</a>
+
+      <ul>
+        <li><a href="birdears.html#birdears.resolution.Resolution.__call__">(birdears.resolution.Resolution method)</a>
 </li>
+      </ul></li>
       <li><a href="birdears.html#birdears.interval.ChromaticInterval.__init__">__init__() (birdears.interval.ChromaticInterval method)</a>
 
       <ul>
         <li><a href="birdears.html#birdears.interval.DiatonicInterval.__init__">(birdears.interval.DiatonicInterval method)</a>
 </li>
         <li><a href="birdears.html#birdears.interval.IntervalBase.__init__">(birdears.interval.IntervalBase method)</a>
+</li>
+        <li><a href="birdears.html#birdears.prequestion.PreQuestion.__init__">(birdears.prequestion.PreQuestion method)</a>
 </li>
         <li><a href="birdears.html#birdears.questionbase.QuestionBase.__init__">(birdears.questionbase.QuestionBase method)</a>
 </li>
@@ -210,6 +216,8 @@ $(document).ready(function(){
       <li><a href="birdears.interfaces.html#module-birdears.interfaces.commandline">birdears.interfaces.commandline (module)</a>
 </li>
       <li><a href="birdears.html#module-birdears.interval">birdears.interval (module)</a>
+</li>
+      <li><a href="birdears.html#module-birdears.prequestion">birdears.prequestion (module)</a>
 </li>
       <li><a href="birdears.html#module-birdears.questionbase">birdears.questionbase (module)</a>
 </li>
@@ -361,6 +369,16 @@ $(document).ready(function(){
 </li>
       <li><a href="birdears.interfaces.html#birdears.interfaces.commandline.make_input_str">make_input_str() (in module birdears.interfaces.commandline)</a>
 </li>
+      <li><a href="birdears.questions.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.make_pre_question">make_pre_question() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)</a>
+
+      <ul>
+        <li><a href="birdears.questions.html#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.make_pre_question">(birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method)</a>
+</li>
+        <li><a href="birdears.questions.html#birdears.questions.melodicdictation.MelodicDictationQuestion.make_pre_question">(birdears.questions.melodicdictation.MelodicDictationQuestion method)</a>
+</li>
+        <li><a href="birdears.questions.html#birdears.questions.melodicinterval.MelodicIntervalQuestion.make_pre_question">(birdears.questions.melodicinterval.MelodicIntervalQuestion method)</a>
+</li>
+      </ul></li>
       <li><a href="birdears.html#birdears.questionbase.QuestionBase.make_question">make_question() (birdears.questionbase.QuestionBase method)</a>
 
       <ul>
@@ -380,6 +398,8 @@ $(document).ready(function(){
       <ul>
         <li><a href="birdears.questions.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.make_resolution">(birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)</a>
 </li>
+        <li><a href="birdears.questions.html#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.make_resolution">(birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method)</a>
+</li>
         <li><a href="birdears.questions.html#birdears.questions.melodicdictation.MelodicDictationQuestion.make_resolution">(birdears.questions.melodicdictation.MelodicDictationQuestion method)</a>
 </li>
         <li><a href="birdears.questions.html#birdears.questions.melodicinterval.MelodicIntervalQuestion.make_resolution">(birdears.questions.melodicinterval.MelodicIntervalQuestion method)</a>
@@ -389,8 +409,6 @@ $(document).ready(function(){
 </li>
       <li><a href="birdears.questions.html#birdears.questions.melodicinterval.MelodicIntervalQuestion">MelodicIntervalQuestion (class in birdears.questions.melodicinterval)</a>
 </li>
-      <li><a href="birdears.html#birdears.resolution.Resolution.methods">methods (birdears.resolution.Resolution attribute)</a>
-</li>
   </ul></td>
 </tr></table>
 
@@ -398,6 +416,8 @@ $(document).ready(function(){
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="birdears.html#birdears.resolution.nearest_tonic">nearest_tonic() (in module birdears.resolution)</a>
+</li>
+      <li><a href="birdears.html#birdears.prequestion.none">none() (in module birdears.prequestion)</a>
 </li>
       <li><a href="birdears.html#birdears.interval.ChromaticInterval.note_and_octave">note_and_octave (birdears.interval.ChromaticInterval attribute)</a>
 
@@ -433,8 +453,6 @@ $(document).ready(function(){
         <li><a href="birdears.questions.html#birdears.questions.melodicinterval.MelodicIntervalQuestion.play_question">(birdears.questions.melodicinterval.MelodicIntervalQuestion method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="birdears.questions.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.play_resolution">play_resolution() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)</a>
 
       <ul>
@@ -443,11 +461,17 @@ $(document).ready(function(){
         <li><a href="birdears.questions.html#birdears.questions.melodicinterval.MelodicIntervalQuestion.play_resolution">(birdears.questions.melodicinterval.MelodicIntervalQuestion method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="birdears.html#birdears.prequestion.PreQuestion">PreQuestion (class in birdears.prequestion)</a>
+</li>
       <li><a href="birdears.interfaces.html#birdears.interfaces.commandline.print_instrumental">print_instrumental() (in module birdears.interfaces.commandline)</a>
 </li>
       <li><a href="birdears.interfaces.html#birdears.interfaces.commandline.print_question">print_question() (in module birdears.interfaces.commandline)</a>
 </li>
       <li><a href="birdears.interfaces.html#birdears.interfaces.commandline.print_response">print_response() (in module birdears.interfaces.commandline)</a>
+</li>
+      <li><a href="birdears.html#birdears.prequestion.progression_i_iv_v_i">progression_i_iv_v_i() (in module birdears.prequestion)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -463,10 +487,14 @@ $(document).ready(function(){
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="birdears.html#birdears.resolution.repeat_only">repeat_only() (in module birdears.resolution)</a>
+      <li><a href="birdears.html#birdears.prequestion.register_prequestion_method">register_prequestion_method() (in module birdears.prequestion)</a>
+</li>
+      <li><a href="birdears.html#birdears.resolution.register_resolution_method">register_resolution_method() (in module birdears.resolution)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="birdears.html#birdears.resolution.repeat_only">repeat_only() (in module birdears.resolution)</a>
+</li>
       <li><a href="birdears.html#birdears.resolution.Resolution">Resolution (class in birdears.resolution)</a>
 </li>
       <li><a href="birdears.html#birdears.interval.IntervalBase.return_simple">return_simple() (birdears.interval.IntervalBase method)</a>
@@ -477,8 +505,12 @@ $(document).ready(function(){
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="birdears.html#birdears.scale.DiatonicScale.scale">scale (birdears.scale.DiatonicScale attribute)</a>
+      <li><a href="birdears.html#birdears.scale.ChromaticScale.scale">scale (birdears.scale.ChromaticScale attribute)</a>
+
+      <ul>
+        <li><a href="birdears.html#birdears.scale.DiatonicScale.scale">(birdears.scale.DiatonicScale attribute)</a>
 </li>
+      </ul></li>
       <li><a href="birdears.html#birdears.scale.ScaleBase">ScaleBase (class in birdears.scale)</a>
 </li>
   </ul></td>
@@ -503,6 +535,10 @@ $(document).ready(function(){
         <li><a href="birdears.html#birdears.interval.DiatonicInterval.tonic_octave">(birdears.interval.DiatonicInterval attribute)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="birdears.html#birdears.prequestion.tonic_only">tonic_only() (in module birdears.prequestion)</a>
+</li>
   </ul></td>
 </tr></table>
 

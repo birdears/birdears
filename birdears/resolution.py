@@ -7,27 +7,39 @@ from .sequence import Sequence
 
 from functools import wraps
 
-METHODS = {}
+RESOLUTION_METHODS = {}
 # http://stackoverflow.com/questions/5910703/howto-get-all-methods-of-a-pyt\
 # hon-class-with-given-decorator
 # http://stackoverflow.com/questions/5707589/calling-functions-by-array-ind\
 # ex-in-python/5707605#5707605
 
-# def register_method(f, *args, **kwargs):
-#    @wraps(f)
-#    def decorator(*args, **kwargs):
-#        METHODS.update({f.__name_: f})
-#        return f(*args, **kwargs)
-#    return decorator
+
+def register_resolution_method(f, *args, **kwargs):
+    """Decorator for resolution method functions.
+
+    Functions decorated with this decorator will be registered in the
+    `RESOLUTION_METHODS` global.
+    """
+
+    @wraps(f)
+    def decorator(*args, **kwargs):
+        return f(*args, **kwargs)
+
+    RESOLUTION_METHODS.update({f.__name__: f})
+
+    return decorator
 
 
 class Resolution:
+    """This class implements methods for different types of question
+    resolutions.
 
-    methods = {}
+    A resolution is an answer to a question. It aims to create a mnemonic on
+    how the inverval resvolver to the tonic.
+    """
 
     def __init__(self, method, duration, delay, pos_delay):
-        """This class implements methods for different types of question
-        resolutions.
+        """Inits the resolution class.
 
         Args:
             method (str): The method used in the resolution.
@@ -37,12 +49,9 @@ class Resolution:
                 in the resolution.
             pos_delay (float): Waiting time after playing the last element
                 in the resolution.
-
-        Todo:
-            * Maybe refactor the resolve `method`s with a prefix.
         """
 
-        self.METHOD = globals()[method]
+        self.METHOD = RESOLUTION_METHODS[method]
         self.resolution_duration = duration
         self.resolution_delay = delay
         self.resolution_pos_delay = pos_delay
@@ -53,22 +62,22 @@ class Resolution:
         return self.METHOD(*args, **kwargs)
 
 
-def nearest_tonic(chromatic, mode, tonic, intervals, harmonic=None,
-                  descending=None, duration=None, delay=None, pos_delay=None):
+@register_resolution_method
+def nearest_tonic(mode, tonic, intervals, harmonic=None, descending=None,
+                  duration=None, delay=None, pos_delay=None):
     """Resolution method that resolve the intervals to their nearest tonics.
 
     Args:
-        chromatic (bool): x
-        mode (str): x
-        tonic (str): x
-        intervals (str or array_type): x
-        descending (bool): x
-        duration (float): x
-        delay (float): x
-        pos_delay (int): x
-
-    Todo:
-        * chromatic doesn't seem to be used.
+        mode (str): Mode of the scale.
+        tonic (str): Tonic of the scale. (eg., 'C')
+        intervals (str or array_type): Interval or list of intervals to resolve
+            to the nearest tonic.
+        descending (bool): Are the intervals descending (True) or
+            ascending (False).
+        duration (float): Duration of the elements of the resolution Sequence.
+        delay (float): Delay before the next of the elements of the
+            resolution Sequence.
+        pos_delay (int): Delay after the Sequence.
     """
 
     global DIATONIC_MODES, MAX_SEMITONES_RESOLVE_BELOW
@@ -117,18 +126,20 @@ def nearest_tonic(chromatic, mode, tonic, intervals, harmonic=None,
     return sequence_list
 
 
+@register_resolution_method
 def repeat_only(elements, duration=None, delay=None, pos_delay=None):
-    return Sequence(elements, duration=duration, delay=delay,
-                    pos_delay=pos_delay)
     """Resolution method that only repeats the sequence elements with given
     durations.
 
     Args:
-        elements (array_type): A list wih notes.
-        duration (float): x
-        delay (float): x
-        pos_delay (int): x
-
-    Todo:
-        * chromatic doesn't seem to be used.
+        elements (array_type): A list with notes.
+        duration (float): Duration of the elements of the resolution Sequence.
+        delay (float): Delay before the next of the elements of the
+            resolution Sequence.
+        pos_delay (int): Delay after the Sequence.
     """
+
+    sequence_list = Sequence(elements, duration=duration, delay=delay,
+                             pos_delay=pos_delay)
+
+    return sequence_list

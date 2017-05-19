@@ -14,6 +14,7 @@ from ..scale import ChromaticScale
 
 from ..sequence import Sequence
 from ..resolution import Resolution
+from ..prequestion import PreQuestion
 
 
 class MelodicDictationQuestion(QuestionBase):
@@ -75,8 +76,24 @@ class MelodicDictationQuestion(QuestionBase):
                                      for interval
                                      in self.question_phrase_intervals])
 
+        self.pre_question =\
+            self.make_pre_question(method='progression_i_iv_v_i')
+        # self.pre_question = self.make_pre_question(method='none')
         self.question = self.make_question(self.question_phrase)
         self.resolution = self.make_resolution()
+
+    def make_pre_question(self, method):
+        prequestion = PreQuestion(method=method,
+                                  duration=self.question_duration,
+                                  delay=self.question_delay,
+                                  pos_delay=self.question_pos_delay)
+
+        return prequestion(**dict(tonic=self.tonic, tonic_octave=self.octave,
+                           mode=self.mode,
+                           intervals=self.question_phrase_intervals,
+                           duration=self.question_duration,
+                           delay=self.question_delay,
+                           pos_delay=self.question_pos_delay))
 
     def make_question(self, phrase_semitones):
         return Sequence([self.scales['chromatic_pitch'].scale[n]
@@ -101,6 +118,7 @@ class MelodicDictationQuestion(QuestionBase):
         return resolution
 
     def play_question(self):
+        self.pre_question.play()
         self.question.play()
 
     def play_resolution(self):

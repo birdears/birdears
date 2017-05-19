@@ -156,6 +156,12 @@ class DiatonicScale(ScaleBase):
 
 
 class ChromaticScale(ScaleBase):
+    """Builds a musical chromatic scale.
+
+    Attributes:
+        scale (array_type): The array of notes representing the scale.
+    """
+
     def __init__(self, tonic, octave=None, n_octaves=None, descending=None,
                  dont_repeat_tonic=None):
         """Returns a chromatic scale from tonic.
@@ -213,7 +219,7 @@ class ChromaticScale(ScaleBase):
             degree (int): Degree of the scale. If provided, overrides the
                 `index` argument. (eg.: `1` for the 1st degree triad.)
         Returns:
-            An array with three pitches, one for each note of the triad.
+            A list with three pitches (str), one for each note of the triad.
         """
 
         global DIATONIC_MODES

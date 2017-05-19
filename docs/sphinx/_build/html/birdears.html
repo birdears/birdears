@@ -445,6 +445,68 @@ interval, for example, if tonic is C4 and interval is G5:</p>
 </dd></dl>
 
 </div>
+<div class="section" id="module-birdears.prequestion">
+<span id="birdears-prequestion-module"></span><h2>birdears.prequestion module<a class="headerlink" href="#module-birdears.prequestion" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="birdears.prequestion.PreQuestion">
+<em class="property">class </em><code class="descclassname">birdears.prequestion.</code><code class="descname">PreQuestion</code><span class="sig-paren">(</span><em>method</em>, <em>duration</em>, <em>delay</em>, <em>pos_delay</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.prequestion.PreQuestion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="birdears.prequestion.PreQuestion.__call__">
+<code class="descname">__call__</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.prequestion.PreQuestion.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls the resolution method and pass arguments to it.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="birdears.prequestion.PreQuestion.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>method</em>, <em>duration</em>, <em>delay</em>, <em>pos_delay</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.prequestion.PreQuestion.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class implements methods for different types of pre question
+progressions.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>method</strong> (<em>str</em>) &#8211; The method used in the pre question.</li>
+<li><strong>duration</strong> (<em>float</em>) &#8211; Default playing time for each element in the
+resolution.</li>
+<li><strong>delay</strong> (<em>float</em>) &#8211; Default waiting time to play the next element
+in the resolution.</li>
+<li><strong>pos_delay</strong> (<em>float</em>) &#8211; Waiting time after playing the last element
+in the resolution.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="birdears.prequestion.none">
+<code class="descclassname">birdears.prequestion.</code><code class="descname">none</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.prequestion.none" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="birdears.prequestion.progression_i_iv_v_i">
+<code class="descclassname">birdears.prequestion.</code><code class="descname">progression_i_iv_v_i</code><span class="sig-paren">(</span><em>tonic</em>, <em>mode</em>, <em>duration=None</em>, <em>delay=None</em>, <em>pos_delay=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.prequestion.progression_i_iv_v_i" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="birdears.prequestion.register_prequestion_method">
+<code class="descclassname">birdears.prequestion.</code><code class="descname">register_prequestion_method</code><span class="sig-paren">(</span><em>f</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.prequestion.register_prequestion_method" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator for resolution method functions.</p>
+<p>Functions decorated with this decorator will be registered in the
+<cite>PREQUESTION_METHODS</cite> global.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="birdears.prequestion.tonic_only">
+<code class="descclassname">birdears.prequestion.</code><code class="descname">tonic_only</code><span class="sig-paren">(</span><em>tonic</em>, <em>tonic_octave</em>, <em>intervals</em>, <em>harmonic=None</em>, <em>descending=None</em>, <em>duration=None</em>, <em>delay=None</em>, <em>pos_delay=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.prequestion.tonic_only" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
 <div class="section" id="module-birdears.questionbase">
 <span id="birdears-questionbase-module"></span><h2>birdears.questionbase module<a class="headerlink" href="#module-birdears.questionbase" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
@@ -516,6 +578,10 @@ diatonic scale of tonic/mode.</li>
 <dt id="birdears.resolution.Resolution">
 <em class="property">class </em><code class="descclassname">birdears.resolution.</code><code class="descname">Resolution</code><span class="sig-paren">(</span><em>method</em>, <em>duration</em>, <em>delay</em>, <em>pos_delay</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.resolution.Resolution" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>This class implements methods for different types of question
+resolutions.</p>
+<p>A resolution is an answer to a question. It aims to create a mnemonic on
+how the inverval resvolver to the tonic.</p>
 <dl class="method">
 <dt id="birdears.resolution.Resolution.__call__">
 <code class="descname">__call__</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.resolution.Resolution.__call__" title="Permalink to this definition">¶</a></dt>
@@ -525,8 +591,7 @@ diatonic scale of tonic/mode.</li>
 <dl class="method">
 <dt id="birdears.resolution.Resolution.__init__">
 <code class="descname">__init__</code><span class="sig-paren">(</span><em>method</em>, <em>duration</em>, <em>delay</em>, <em>pos_delay</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.resolution.Resolution.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>This class implements methods for different types of question
-resolutions.</p>
+<dd><p>Inits the resolution class.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -544,55 +609,65 @@ in the resolution.</li>
 </tr>
 </tbody>
 </table>
-<div class="admonition-todo admonition" id="index-2">
-<p class="first admonition-title">Todo</p>
-<ul class="last simple">
-<li>Maybe refactor the resolve <a href="#id1"><span class="problematic" id="id2">`</span></a>method`s with a prefix.</li>
-</ul>
-</div>
 </dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.resolution.Resolution.methods">
-<code class="descname">methods</code><em class="property"> = {}</em><a class="headerlink" href="#birdears.resolution.Resolution.methods" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 </dd></dl>
 
 <dl class="function">
 <dt id="birdears.resolution.nearest_tonic">
-<code class="descclassname">birdears.resolution.</code><code class="descname">nearest_tonic</code><span class="sig-paren">(</span><em>chromatic</em>, <em>mode</em>, <em>tonic</em>, <em>intervals</em>, <em>harmonic=None</em>, <em>descending=None</em>, <em>duration=None</em>, <em>delay=None</em>, <em>pos_delay=None</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.resolution.nearest_tonic" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">birdears.resolution.</code><code class="descname">nearest_tonic</code><span class="sig-paren">(</span><em>mode</em>, <em>tonic</em>, <em>intervals</em>, <em>harmonic=None</em>, <em>descending=None</em>, <em>duration=None</em>, <em>delay=None</em>, <em>pos_delay=None</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.resolution.nearest_tonic" title="Permalink to this definition">¶</a></dt>
 <dd><p>Resolution method that resolve the intervals to their nearest tonics.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>chromatic</strong> (<em>bool</em>) &#8211; x</li>
-<li><strong>mode</strong> (<em>str</em>) &#8211; x</li>
-<li><strong>tonic</strong> (<em>str</em>) &#8211; x</li>
-<li><strong>intervals</strong> (<em>str</em><em> or </em><em>array_type</em>) &#8211; x</li>
-<li><strong>descending</strong> (<em>bool</em>) &#8211; x</li>
-<li><strong>duration</strong> (<em>float</em>) &#8211; x</li>
-<li><strong>delay</strong> (<em>float</em>) &#8211; x</li>
-<li><strong>pos_delay</strong> (<em>int</em>) &#8211; x</li>
+<li><strong>mode</strong> (<em>str</em>) &#8211; Mode of the scale.</li>
+<li><strong>tonic</strong> (<em>str</em>) &#8211; Tonic of the scale. (eg., &#8216;C&#8217;)</li>
+<li><strong>intervals</strong> (<em>str</em><em> or </em><em>array_type</em>) &#8211; Interval or list of intervals to resolve
+to the nearest tonic.</li>
+<li><strong>descending</strong> (<em>bool</em>) &#8211; Are the intervals descending (True) or
+ascending (False).</li>
+<li><strong>duration</strong> (<em>float</em>) &#8211; Duration of the elements of the resolution Sequence.</li>
+<li><strong>delay</strong> (<em>float</em>) &#8211; Delay before the next of the elements of the
+resolution Sequence.</li>
+<li><strong>pos_delay</strong> (<em>int</em>) &#8211; Delay after the Sequence.</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
-<div class="admonition-todo admonition" id="index-3">
-<p class="first admonition-title">Todo</p>
-<ul class="last simple">
-<li>chromatic doesn&#8217;t seem to be used.</li>
-</ul>
-</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="birdears.resolution.register_resolution_method">
+<code class="descclassname">birdears.resolution.</code><code class="descname">register_resolution_method</code><span class="sig-paren">(</span><em>f</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.resolution.register_resolution_method" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator for resolution method functions.</p>
+<p>Functions decorated with this decorator will be registered in the
+<cite>RESOLUTION_METHODS</cite> global.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="birdears.resolution.repeat_only">
 <code class="descclassname">birdears.resolution.</code><code class="descname">repeat_only</code><span class="sig-paren">(</span><em>elements</em>, <em>duration=None</em>, <em>delay=None</em>, <em>pos_delay=None</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.resolution.repeat_only" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Resolution method that only repeats the sequence elements with given
+durations.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>elements</strong> (<em>array_type</em>) &#8211; A list with notes.</li>
+<li><strong>duration</strong> (<em>float</em>) &#8211; Duration of the elements of the resolution Sequence.</li>
+<li><strong>delay</strong> (<em>float</em>) &#8211; Delay before the next of the elements of the
+resolution Sequence.</li>
+<li><strong>pos_delay</strong> (<em>int</em>) &#8211; Delay after the Sequence.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </div>
 <div class="section" id="module-birdears.scale">
@@ -601,6 +676,13 @@ in the resolution.</li>
 <dt id="birdears.scale.ChromaticScale">
 <em class="property">class </em><code class="descclassname">birdears.scale.</code><code class="descname">ChromaticScale</code><span class="sig-paren">(</span><em>tonic</em>, <em>octave=None</em>, <em>n_octaves=None</em>, <em>descending=None</em>, <em>dont_repeat_tonic=None</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.scale.ChromaticScale" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#birdears.scale.ScaleBase" title="birdears.scale.ScaleBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.scale.ScaleBase</span></code></a></p>
+<p>Builds a musical chromatic scale.</p>
+<dl class="attribute">
+<dt id="birdears.scale.ChromaticScale.scale">
+<code class="descname">scale</code><a class="headerlink" href="#birdears.scale.ChromaticScale.scale" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>array_type</em> &#8211; The array of notes representing the scale.</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="birdears.scale.ChromaticScale.__init__">
 <code class="descname">__init__</code><span class="sig-paren">(</span><em>tonic</em>, <em>octave=None</em>, <em>n_octaves=None</em>, <em>descending=None</em>, <em>dont_repeat_tonic=None</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.scale.ChromaticScale.__init__" title="Permalink to this definition">¶</a></dt>
@@ -639,7 +721,7 @@ note (octave) to the scale.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">An array with three pitches, one for each note of the triad.</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A list with three pitches (str), one for each note of the triad.</p>
 </td>
 </tr>
 </tbody>
@@ -831,6 +913,7 @@ of each triad.</li>
 <li><a class="reference internal" href="#subpackages">Subpackages</a></li>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#module-birdears.interval">birdears.interval module</a></li>
+<li><a class="reference internal" href="#module-birdears.prequestion">birdears.prequestion module</a></li>
 <li><a class="reference internal" href="#module-birdears.questionbase">birdears.questionbase module</a></li>
 <li><a class="reference internal" href="#module-birdears.resolution">birdears.resolution module</a></li>
 <li><a class="reference internal" href="#module-birdears.scale">birdears.scale module</a></li>

@@ -11,6 +11,7 @@ from ..scale import DiatonicScale
 
 from ..sequence import Sequence
 from ..resolution import Resolution
+from ..prequestion import PreQuestion
 
 
 class HarmonicIntervalQuestion(QuestionBase):
@@ -65,8 +66,24 @@ class HarmonicIntervalQuestion(QuestionBase):
                                               n_octaves=n_octaves,
                                               descending=descending)
 
+        # self.pre_question = \
+        # self.make_pre_question(method='progression_i_iv_v_i')
+        # self.pre_question = self.make_pre_question(method='tonic_only')
+        self.pre_question = self.make_pre_question(method='none')
         self.question = self.make_question()
         self.resolution = self.make_resolution(method='nearest_tonic')
+
+    def make_pre_question(self, method):
+        prequestion = PreQuestion(method=method,
+                                  duration=self.question_duration,
+                                  delay=self.question_delay,
+                                  pos_delay=self.question_pos_delay)
+
+        return prequestion(**dict(tonic=self.tonic, tonic_octave=self.octave,
+                           mode=self.mode, intervals=self.interval,
+                           duration=self.question_duration,
+                           delay=self.question_delay,
+                           pos_delay=self.question_pos_delay))
 
     def make_question(self):
 
@@ -85,8 +102,8 @@ class HarmonicIntervalQuestion(QuestionBase):
                              delay=self.resolution_delay,
                              pos_delay=self.resolution_pos_delay)
 
-        resolution = resolve(chromatic=self.is_chromatic, mode=self.mode,
-                             tonic=self.tonic, intervals=self.interval,
+        resolution = resolve(mode=self.mode, tonic=self.tonic,
+                             intervals=self.interval,
                              descending=self.is_descending, harmonic=True,
                              duration=self.resolution_duration,
                              delay=self.resolution_delay,
@@ -95,6 +112,7 @@ class HarmonicIntervalQuestion(QuestionBase):
         return resolution
 
     def play_question(self):
+        self.pre_question.play()
         self.question.play()
 
     def play_resolution(self):

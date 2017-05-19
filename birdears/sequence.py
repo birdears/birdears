@@ -79,6 +79,7 @@ class Sequence:
             degrees (array_type): List with integers represending the degrees
                 of each triad.
         """
+
         scale = ChromaticScale(tonic=tonic)
 
         for degree in degrees:
@@ -93,6 +94,7 @@ class Sequence:
             duration (float): Duration of the note in seconds.
             delay (float): Delay after the note in seconds.
         """
+
         # requires sox to be installed
 
         duration = self.duration if duration is None else duration

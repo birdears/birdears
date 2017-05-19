@@ -14,6 +14,7 @@ from ..scale import ChromaticScale
 
 from ..sequence import Sequence
 from ..resolution import Resolution
+from ..prequestion import PreQuestion
 
 from ..interfaces.commandline import COLS
 from ..interfaces.commandline import center_text
@@ -87,22 +88,24 @@ class InstrumentalDictationQuestion(QuestionBase):
                                      for interval
                                      in self.question_phrase_intervals])
 
+        # self.pre_question = self.make_pre_question(method='none')
+        self.pre_question =\
+            self.make_pre_question(method='progression_i_iv_v_i')
         self.question = self.make_question(self.question_phrase)
+        self.resolution = self.make_resolution()
 
-        resolve = Resolution(method='nearest_tonic',
-                             duration=self.resolution_duration,
-                             delay=self.resolution_delay,
-                             pos_delay=self.resolution_pos_delay)
+    def make_pre_question(self, method):
+        prequestion = PreQuestion(method=method,
+                                  duration=self.question_duration,
+                                  delay=self.question_delay,
+                                  pos_delay=self.question_pos_delay)
 
-        # self.resolution = resolve.resolve_to_nearest_tonic(chromatic,
-        # self.mode,
-        self.resolution =\
-            resolve(chromatic=chromatic, mode=self.mode, tonic=self.tonic,
-                    intervals=self.question_phrase_intervals,
-                    descending=descending,
-                    duration=self.resolution_duration,
-                    delay=self.resolution_delay,
-                    pos_delay=self.resolution_pos_delay)
+        return prequestion(**dict(tonic=self.tonic, tonic_octave=self.octave,
+                           mode=self.mode,
+                           intervals=self.question_phrase_intervals,
+                           duration=self.question_duration,
+                           delay=self.question_delay,
+                           pos_delay=self.question_pos_delay))
 
     def make_question(self, phrase_semitones):
         return Sequence([self.scales['chromatic_pitch'].scale[n]
@@ -111,9 +114,25 @@ class InstrumentalDictationQuestion(QuestionBase):
                         delay=self.question_delay,
                         pos_delay=self.question_pos_delay)
 
+    def make_resolution(self):
+        # the idea here is execute resolve() to each interval of the dictation
+
+        resolve = Resolution(method='repeat_only',
+                             duration=self.resolution_duration,
+                             delay=self.resolution_delay,
+                             pos_delay=self.resolution_pos_delay)
+
+        resolution = resolve(elements=self.question.elements,
+                             duration=self.resolution_duration,
+                             delay=self.resolution_delay,
+                             pos_delay=self.resolution_pos_delay)
+
+        return resolution
+
     def play_question(self):
 
         for r in range(self.n_repeats):
+            self.pre_question.play()
             self.question.play()
 
             for i in range(self.wait_time):
@@ -132,7 +151,6 @@ class InstrumentalDictationQuestion(QuestionBase):
         """Checks whether the given answer is correct.
 
         This currently doesn't applies to instrumental dictation questions.
-
         """
 
         global INTERVALS

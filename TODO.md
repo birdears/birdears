@@ -11,13 +11,13 @@ Make a class for response (to be used by question.check\_question)
 
 ### Documentation
 
-Write documentation in docstrings using Google style docstrings.
+~~Write documentation in docstrings using Google style docstrings.~~
 
-Improve `click` CLI help documentation
+~~Improve `click` CLI help documentation.~~
 
 ### Features
 
-Different cadences.
+~~Different cadences.~~ :tada: Sequence: chord progressions; PreQuestion class
 
 ~~implement harmonic intervals~~ ✓
 
@@ -57,9 +57,9 @@ configurable via options too.
 
 ~~change global names~~ ✓
 
-we should think in a better algo for melodic dictation; currently always begins
+~~we should think in a better algo for melodic dictation; currently always begins
 with tonic; maybe playing a cadence with I-V-IV-I triads then choosing random
-intervals w/ or w/out tonic.
+intervals w/ or w/out tonic.~~ PreQuestion class ✓ :tada:
 
 We should use some kind of config object to configure exercises, as they have
 an extensive number of parameters and there are more to come.
