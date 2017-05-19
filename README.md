@@ -160,7 +160,7 @@ coverage run --source=birdears --module pytest --verbose tests/
 
 We use [coveralls](https://coveralls.io/github/iacchus/birdears) and [Travis CI](https://travis-ci.org/iacchus/birdears).
 
-Out tests are in repo's `tests/` directory. We also have a local repoting in html created by coverage, it should be online at https://iacchus.github.io/birdears/docs/coverge-html.
+Out tests are in repo's `tests/` directory. We also have a local repoting in html created by coverage, it should be online at https://iacchus.github.io/birdears/docs/coverage-html.
 
 ### Feature requests :gift: and suggestions
 
@@ -182,4 +182,3 @@ python setup.py bdist_wheel
 ```
 
 Read also [TODO.md](TODO.md)
-

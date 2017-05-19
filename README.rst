@@ -188,7 +188,7 @@ We use `coveralls <https://coveralls.io/github/iacchus/birdears>`__ and
 
 Out tests are in repo's ``tests/`` directory. We also have a local
 repoting in html created by coverage, it should be online at
-https://iacchus.github.io/birdears/docs/coverge-html.
+https://iacchus.github.io/birdears/docs/coverage-html.
 
 Feature requests :gift: and suggestions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

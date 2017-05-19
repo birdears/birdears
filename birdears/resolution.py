@@ -8,7 +8,10 @@ from .sequence import Sequence
 from functools import wraps
 
 METHODS = {}
-
+# http://stackoverflow.com/questions/5910703/howto-get-all-methods-of-a-pyt\
+# hon-class-with-given-decorator
+# http://stackoverflow.com/questions/5707589/calling-functions-by-array-ind\
+# ex-in-python/5707605#5707605
 
 # def register_method(f, *args, **kwargs):
 #    @wraps(f)
