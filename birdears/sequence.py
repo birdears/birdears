@@ -37,7 +37,7 @@ class Sequence:
         """Appends `elements` to Sequence.elements
 
         Args:
-            elements (array_type): elements to be appended to the class.
+            elements (array_type): Elements to be appended to the class.
         """
         self.elements.append(elements)
 
@@ -74,7 +74,7 @@ class Sequence:
         """Appends triad chord(s) to the Sequence.
 
         Args:
-            tonic(str): Tonic note of the scale.
+            tonic (str): Tonic note of the scale.
             mode (str): Mode of the scale from which build the triads upon.
             degrees (array_type): List with integers represending the degrees
                 of each triad.

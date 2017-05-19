@@ -147,32 +147,103 @@ $(document).ready(function(){
 <dl class="function">
 <dt id="birdears.interfaces.commandline.CommandLine">
 <code class="descclassname">birdears.interfaces.commandline.</code><code class="descname">CommandLine</code><span class="sig-paren">(</span><em>exercise</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.interfaces.commandline.CommandLine" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>This function implements the birdears loop for command line.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>exercise</strong> (<em>str</em>) &#8211; The question name.</li>
+<li><strong>**kwargs</strong> (<em>kwargs</em>) &#8211; FIXME: The kwargs can contain options for specific
+questions.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="function">
 <dt id="birdears.interfaces.commandline.center_text">
 <code class="descclassname">birdears.interfaces.commandline.</code><code class="descname">center_text</code><span class="sig-paren">(</span><em>text</em>, <em>sep=True</em>, <em>nl=0</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.interfaces.commandline.center_text" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>This function returns input text centered according to terminal columns.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>text</strong> (<em>str</em>) &#8211; The string to be centered, it can have multiple lines.</li>
+<li><strong>sep</strong> (<em>bool</em>) &#8211; Add line separator after centered text (True) or
+not (False).</li>
+<li><strong>nl</strong> (<em>int</em>) &#8211; How many new lines to add after text.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="function">
 <dt id="birdears.interfaces.commandline.make_input_str">
 <code class="descclassname">birdears.interfaces.commandline.</code><code class="descname">make_input_str</code><span class="sig-paren">(</span><em>user_input</em>, <em>keyboard_index</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.interfaces.commandline.make_input_str" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Makes a string representing intervals entered by the user.</p>
+<p>This function is to be used by questions which takes more than one interval
+input as MelodicDictation, and formats the intervals already entered.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>user_input</strong> (<em>array_type</em>) &#8211; The list of keyboard keys entered by user.</li>
+<li><strong>keyboard_index</strong> (<em>array_type</em>) &#8211; The keyboard mapping used by question.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="function">
 <dt id="birdears.interfaces.commandline.print_instrumental">
 <code class="descclassname">birdears.interfaces.commandline.</code><code class="descname">print_instrumental</code><span class="sig-paren">(</span><em>response</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.interfaces.commandline.print_instrumental" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Prints the formatted response for &#8216;instrumental&#8217; exercise.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>response</strong> (<em>dict</em>) &#8211; A response returned by question&#8217;s check_question()</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="function">
 <dt id="birdears.interfaces.commandline.print_question">
 <code class="descclassname">birdears.interfaces.commandline.</code><code class="descname">print_question</code><span class="sig-paren">(</span><em>question</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.interfaces.commandline.print_question" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Prints the question to the user.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>question</strong> (<em>obj</em>) &#8211; A Question class with the question to be printed.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="function">
 <dt id="birdears.interfaces.commandline.print_response">
 <code class="descclassname">birdears.interfaces.commandline.</code><code class="descname">print_response</code><span class="sig-paren">(</span><em>response</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.interfaces.commandline.print_response" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Prints the formatted response.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>response</strong> (<em>dict</em>) &#8211; A response returned by question&#8217;s check_question()</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </div>
 <div class="section" id="module-birdears.interfaces">

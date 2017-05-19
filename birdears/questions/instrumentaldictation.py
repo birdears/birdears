@@ -89,11 +89,6 @@ class InstrumentalDictationQuestion(QuestionBase):
 
         self.question = self.make_question(self.question_phrase)
 
-        # self.resolution = Sequence(self.question.elements,
-        #                           duration=self.resolution_duration,
-        #                           delay=self.resolution_delay,
-        #                           pos_delay=self.resolution_pos_delay)
-
         resolve = Resolution(method='nearest_tonic',
                              duration=self.resolution_duration,
                              delay=self.resolution_delay,

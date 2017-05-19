@@ -14,6 +14,14 @@ COLS = int(popen('tput cols', 'r').read())
 
 
 def center_text(text, sep=True, nl=0):
+    """This function returns input text centered according to terminal columns.
+
+    Args:
+        text (str): The string to be centered, it can have multiple lines.
+        sep (bool): Add line separator after centered text (True) or
+            not (False).
+        nl (int): How many new lines to add after text.
+    """
     linelist = list(text.splitlines())
 
     # gets the biggest line
@@ -42,6 +50,11 @@ def center_text(text, sep=True, nl=0):
 
 
 def print_response(response):
+    """Prints the formatted response.
+
+    Args:
+        response (dict): A response returned by question's check_question()
+    """
 
     text_kwargs = dict(
         user_resp=response['user_response_str'],
@@ -61,6 +74,11 @@ def print_response(response):
 
 
 def print_instrumental(response):
+    """Prints the formatted response for 'instrumental' exercise.
+
+    Args:
+        response (dict): A response returned by question's check_question()
+    """
 
     text_kwargs = dict(
         correct_resp=response['correct_response_str']
@@ -74,6 +92,11 @@ def print_instrumental(response):
 
 
 def print_question(question):
+    """Prints the question to the user.
+
+    Args:
+        question (obj): A Question class with the question to be printed.
+    """
 
     keyboard = question.keyboard_index
 
@@ -128,6 +151,15 @@ Keyboard  {keyboard}
 
 
 def make_input_str(user_input, keyboard_index):
+    """Makes a string representing intervals entered by the user.
+
+    This function is to be used by questions which takes more than one interval
+    input as MelodicDictation, and formats the intervals already entered.
+
+    Args:
+        user_input (array_type): The list of keyboard keys entered by user.
+        keyboard_index (array_type): The keyboard mapping used by question.
+    """
     input_str = str()
 
     user_input_semitones = [keyboard_index.index(s)
@@ -142,6 +174,13 @@ def make_input_str(user_input, keyboard_index):
 
 
 def CommandLine(exercise, **kwargs):
+    """This function implements the birdears loop for command line.
+
+    Args:
+        exercise (str): The question name.
+        **kwargs (kwargs): FIXME: The kwargs can contain options for specific
+            questions.
+    """
 
     if exercise == 'dictation':
         from ..questions.melodicdictation import MelodicDictationQuestion

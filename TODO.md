@@ -75,6 +75,10 @@ interface.)
 
 Encapsulate birdears.interfaces.commandline in a class.
 
+We should use some random() method inside Interval to select some random
+interval or namethe class as RandomInterval. First option is best and we should
+be able to generate not random interval using Interval class.
+
 ### Etc
 
 Lets reserve options to `-r` to `--resolution` method  (FET-like, Repeat-only,

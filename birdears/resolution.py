@@ -52,7 +52,7 @@ class Resolution:
 
 def nearest_tonic(chromatic, mode, tonic, intervals, harmonic=None,
                   descending=None, duration=None, delay=None, pos_delay=None):
-    """Resolve the intervals to their nearest tonics.
+    """Resolution method that resolve the intervals to their nearest tonics.
 
     Args:
         chromatic (bool): x
@@ -60,6 +60,9 @@ def nearest_tonic(chromatic, mode, tonic, intervals, harmonic=None,
         tonic (str): x
         intervals (str or array_type): x
         descending (bool): x
+        duration (float): x
+        delay (float): x
+        pos_delay (int): x
 
     Todo:
         * chromatic doesn't seem to be used.
@@ -114,3 +117,15 @@ def nearest_tonic(chromatic, mode, tonic, intervals, harmonic=None,
 def repeat_only(elements, duration=None, delay=None, pos_delay=None):
     return Sequence(elements, duration=duration, delay=delay,
                     pos_delay=pos_delay)
+    """Resolution method that only repeats the sequence elements with given
+    durations.
+
+    Args:
+        elements (array_type): A list wih notes.
+        duration (float): x
+        delay (float): x
+        pos_delay (int): x
+
+    Todo:
+        * chromatic doesn't seem to be used.
+    """

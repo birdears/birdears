@@ -64,18 +64,6 @@ class MelodicIntervalQuestion(QuestionBase):
         self.question = self.make_question()
         self.resolution = self.make_resolution(method='nearest_tonic')
 
-        # resolve = Resolution(method='nearest_tonic',
-        #                      duration=self.resolution_duration,
-        #                      delay=self.resolution_delay,
-        #                      pos_delay=self.resolution_pos_delay)
-        #
-        # self.resolution = \
-        #     resolve(chromatic=chromatic, mode=self.mode, tonic=self.tonic,
-        #             intervals=self.interval, descending=descending,
-        #             duration=self.resolution_duration,
-        #             delay=self.resolution_delay,
-        #             pos_delay=self.resolution_pos_delay)
-
     # def make_pre_question(self):
     #     self.pre_question = Sequence([], duration=self.question_duration,
     #                         delay=self.question_delay,
@@ -96,8 +84,6 @@ class MelodicIntervalQuestion(QuestionBase):
 
         return question
 
-    # def make_resolution(self, chromatic, mode, tonic, interval,
-    #                    descending=None):
     def make_resolution(self, method):
 
         resolve = Resolution(method=method, duration=self.resolution_duration,
