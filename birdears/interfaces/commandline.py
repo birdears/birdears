@@ -223,8 +223,3 @@ def CommandLine(exercise, **kwargs):
         # r - repeat interval
         elif user_input == 'r':
             question.play_question()
-
-
-if __name__ == "__main__":
-
-    cli()

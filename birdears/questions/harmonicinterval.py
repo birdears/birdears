@@ -66,18 +66,7 @@ class HarmonicIntervalQuestion(QuestionBase):
                                               descending=descending)
 
         self.question = self.make_question()
-
-        resolve = Resolution(method='nearest_tonic',
-                             duration=self.resolution_duration,
-                             delay=self.resolution_delay,
-                             pos_delay=self.resolution_pos_delay)
-
-        self.resolution = resolve(chromatic=chromatic, mode=self.mode,
-                                  tonic=self.tonic, intervals=self.interval,
-                                  descending=descending, harmonic=True,
-                                  duration=self.resolution_duration,
-                                  delay=self.resolution_delay,
-                                  pos_delay=self.resolution_pos_delay)
+        self.resolution = self.make_resolution(method='nearest_tonic')
 
     def make_question(self):
 
@@ -89,9 +78,21 @@ class HarmonicIntervalQuestion(QuestionBase):
 
         return question
 
-    def make_resolution(self, chromatic, mode, tonic, interval,
-                        descending=None):
-        pass
+    def make_resolution(self, method):
+
+        resolve = Resolution(method=method,
+                             duration=self.resolution_duration,
+                             delay=self.resolution_delay,
+                             pos_delay=self.resolution_pos_delay)
+
+        resolution = resolve(chromatic=self.is_chromatic, mode=self.mode,
+                             tonic=self.tonic, intervals=self.interval,
+                             descending=self.is_descending, harmonic=True,
+                             duration=self.resolution_duration,
+                             delay=self.resolution_delay,
+                             pos_delay=self.resolution_pos_delay)
+
+        return resolution
 
     def play_question(self):
         self.question.play()

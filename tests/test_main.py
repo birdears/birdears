@@ -18,8 +18,11 @@ def test_cli(monkeypatch):
 def test_cli_melodic(monkeypatch):
 
     from birdears.__main__ import melodic
+
+    keys = ['q', 'c']
+
     def mockreturn():
-        return lambda: 'q' # quits
+        return lambda: keys.pop() # quits
 
     sys_argv = ['PYTEST_ARGV0', 'melodic']
 
@@ -36,8 +39,10 @@ def test_cli_melodic(monkeypatch):
 def test_cli_harmonic(monkeypatch):
 
     from birdears.__main__ import harmonic
+    keys = ['q', 'c']
+
     def mockreturn():
-        return lambda: 'q' # quits
+        return lambda: keys.pop() # quits
 
     sys_argv = ['PYTEST_ARGV0', 'harmonic']
 
@@ -69,7 +74,13 @@ def test_cli_dictation(monkeypatch):
 
 def test_cli_dictation_repeat_and_backspace(monkeypatch):
 
-    keys = ['q', '\x7f', 'z', '\x7f', 'r', 'x', 'v', 'b', 'z', 'c']
+    keys = [
+        'q',
+        '\x7f', 'z', '\x7f',
+        'r',
+        'x', 'v', 'b', 'z',
+        'c', 'c', 'v', 'b'
+    ]
 
     def mockreturn():
         return lambda: keys.pop() # quits
@@ -88,9 +99,12 @@ def test_cli_dictation_repeat_and_backspace(monkeypatch):
 
 def test_cli_instrumental(monkeypatch):
 
+    keys = [ 'c', 'n' ]
     def mockreturn(x):
-        exit(0)
-        # return lambda: 'q' # quits
+        if len(keys) == 0:
+            exit(0)
+
+        return keys.pop()
 
     sys_argv = ['PYTEST_ARGV0', 'instrumental', '-w', '3']
 

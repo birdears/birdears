@@ -4,10 +4,6 @@ from birdears import KEYS
 from birdears.questions.instrumentaldictation \
     import InstrumentalDictationQuestion
 
-# def __init__(self, mode='major', max_intervals=3, n_notes=4, tonic=None,
-#                 octave=None, descending=None, chromatic=None, n_octaves=None,
-#                 *args, **kwargs):
-
 def test_instrumentaldictationclass():
     global KEYS
 

@@ -127,10 +127,11 @@ class InstrumentalDictationQuestion(QuestionBase):
                 print(center_text(text, sep=False), end='')
                 self.question._wait(1)
 
-    def play_resolution(self):
-
-        for sequence in self.resolution:
-            sequence.play()
+    # TODO: implement his later
+    # def play_resolution(self):
+    #
+    #    for sequence in self.resolution:
+    #        sequence.play()
 
     def check_question(self):
         """Checks whether the given answer is correct.
