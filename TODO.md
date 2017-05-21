@@ -29,8 +29,8 @@ to be played on instrument)~~ ✓
 plugins/extensions, easy way of users extending the software by using the api,
 maybe providing frontend tools
 
-configure it with a toml file, which will send parameters by the question class
-with a dict/config file.
+~~configure it with a toml file, which will send parameters by the question
+class with a dict/config file.~~ ✓ :tada:
 
 think on an interface, or a well written api that allows many interfaces:
 cli (maybe centering things) ✓; tui (urwid); gui (kivy)
@@ -78,6 +78,8 @@ Encapsulate birdears.interfaces.commandline in a class.
 We should use some random() method inside Interval to select some random
 interval or namethe class as RandomInterval. First option is best and we should
 be able to generate not random interval using Interval class.
+
+Maybe register question classes in a global.
 
 ### Etc
 

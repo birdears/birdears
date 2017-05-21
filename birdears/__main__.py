@@ -161,6 +161,23 @@ def instrumental(*args, **kwargs):
     kwargs.update({'exercise': 'instrumental'})
     CommandLine(**kwargs)
 
+load_epilog = """
+Loads exercise from file.
+"""
+
+
+@cli.command(options_metavar='', epilog=load_epilog)
+@click.argument('filename', type=click.File(), metavar='<filename>')
+def load(filename, *args, **kwargs):
+    """Loads exercise from .toml config file <filename>.
+    """
+
+    from .toml import toml
+
+    toml_file_str = filename.read()
+    config_dict = toml.loads(toml_file_str)
+
+    CommandLine(**config_dict)
 
 if __name__ == "__main__":
 

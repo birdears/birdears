@@ -206,9 +206,6 @@ def CommandLine(exercise, **kwargs):
         MYCLASS = HarmonicIntervalQuestion
         dictate_notes = 1
 
-    # rmme
-    from ..resolution import RESOLUTION_METHODS
-    print(RESOLUTION_METHODS)
     getch = _Getch()
 
     new_question_bit = True
