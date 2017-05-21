@@ -69,6 +69,12 @@ class Sequence:
         if self.pos_delay:
             self._wait(self.pos_delay)
 
+    def play_element(self, index):
+        """Plays element `sequence.elements[index].`
+        """
+
+        pass
+
     # FIXME: implement octave here:
     def make_chord_progression(self, tonic, mode, degrees):
         """Appends triad chord(s) to the Sequence.

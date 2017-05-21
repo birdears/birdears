@@ -1,3 +1,15 @@
+"""This module implements pre questions progressions.
+
+Pre questions are chord progressions or notes played before the question is
+played, so to affirmate the sound of the question key.
+
+For example a common cadence is chords I-IV-V-I from the diatonic scale, which
+in a key of `C` is `CM-FM-GM-CM` and in a key of `A` is `AM-DM-EM-AM`.
+
+Prequestion methods should be decorated with `register_prequestion_method`
+decorator, so that they will be registered as a valid prequestion method.
+"""
+
 from .sequence import Sequence
 
 from functools import wraps
@@ -10,7 +22,7 @@ PREQUESTION_METHODS = {}
 
 
 def register_prequestion_method(f, *args, **kwargs):
-    """Decorator for resolution method functions.
+    """Decorator for prequestion method functions.
 
     Functions decorated with this decorator will be registered in the
     `PREQUESTION_METHODS` global.
@@ -79,7 +91,6 @@ def tonic_only(tonic, tonic_octave, intervals, harmonic=None, descending=None,
         # else:
         #     sequence.append([tonic_and_octave])
 
-    print("sequence {}".format(sequence))
     return sequence
 
 

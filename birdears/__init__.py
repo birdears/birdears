@@ -4,9 +4,10 @@ BirdEars provides facilities to musical ear training exercises.
 
 DEBUG = False
 
-# FIXME
-notes2 = ('C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B')
-notes3 = ('C', 'Db', 'D', 'Eb', 'Fb', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'Cb')
+CHROMATIC_SHARP = ('C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#',
+                   'B')
+CHROMATIC_FLAT = ('C', 'Db', 'D', 'Eb', 'Fb', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb',
+                  'Cb')
 
 KEYS = ('C', 'C#', 'Db', 'D', 'D#', 'Eb', 'E', 'F', 'F#', 'Gb', 'G', 'G#',
         'Ab', 'A', 'A#', 'Bb', 'B')
@@ -62,6 +63,16 @@ DIATONIC_MODES = {
     'minor': (0, 2, 3, 5, 7, 8, 10, 12),
 }
 
+INTERVAL_INDEX = {
+    1: [0],
+    2: [1, 2],
+    3: [3, 4],
+    4: [5, 6],
+    5: [6, 7],
+    6: [8, 9],
+    7: [10, 11],
+    8: [12]
+}
 # MAJOR keyboard keys (with chromatics)
 # keyindex for major and chromatic major context
 #  s d   g h j        IIb  IIIb       Vb VIb  VIIb

@@ -1,8 +1,8 @@
 from . import DIATONIC_MODES
-from . import notes2
-from . import notes3
+from . import CHROMATIC_SHARP
+from . import CHROMATIC_FLAT
 
-from collections import deque
+# from collections import deque
 
 
 class ScaleBase:
@@ -44,18 +44,33 @@ class ScaleBase:
         note from C.
         """
 
-        global notes2, notes3
+        global CHROMATIC_SHARP, CHROMATIC_FLAT
 
         # use_flat = -1 if (note == 'F' or 'b' in note) else 0
 
         # FIXME
-        if note in notes2:
-            note_index = notes2.index(note)
-        # elif note in notes3:
+        if note in CHROMATIC_SHARP:
+            note_index = CHROMATIC_SHARP.index(note)
+        elif note in CHROMATIC_FLAT:
+            note_index = CHROMATIC_FLAT.index(note)
         else:
-            note_index = notes3.index(note)
+            raise InvalidNote
 
         return note_index
+
+    def _rotate_scale_by_idx(self, index, scale):
+        """Rotates chromatic C scale to generate another chromatic based on
+        index number of the tonic.
+        """
+
+        idx_to_end = slice(index, None)
+        begin_to_idx = slice(None, index)
+
+        rotated_scale = []
+        rotated_scale.extend(scale[idx_to_end])
+        rotated_scale.extend(scale[begin_to_idx])
+
+        return rotated_scale
 
 
 class DiatonicScale(ScaleBase):
@@ -177,7 +192,7 @@ class ChromaticScale(ScaleBase):
 
         super(ChromaticScale, self).__init__()
 
-        global notes3, notes2
+        global CHROMATIC_SHARP, CHROMATIC_FLAT
 
         self.tonic = tonic
         self.octave = octave
@@ -185,11 +200,13 @@ class ChromaticScale(ScaleBase):
         tonic_index = self._get_chromatic_idx(tonic)
 
         if tonic == 'F' or 'b' in tonic:
-            notes = deque(notes3)
+            notes = list(CHROMATIC_FLAT)
         else:
-            notes = deque(notes2)
+            notes = list(CHROMATIC_SHARP)
 
-        notes.rotate(-(tonic_index))
+        notes = self._rotate_scale_by_idx(tonic_index, notes)
+
+        # notes.rotate(-(tonic_index))
 
         if n_octaves:
             chromatic = notes * n_octaves

@@ -19,7 +19,8 @@ class MelodicIntervalQuestion(QuestionBase):
     """
 
     def __init__(self, mode='major', tonic=None, octave=None, descending=None,
-                 chromatic=None, n_octaves=None, *args, **kwargs):
+                 chromatic=None, n_octaves=None, valid_intervals=None,
+                 *args, **kwargs):
         """Inits the class.
 
         Args:
@@ -35,6 +36,9 @@ class MelodicIntervalQuestion(QuestionBase):
                 chromatic intervals, ie., intervals not in the diatonic scale
                 of tonic/mode.
             n_octaves (int): Maximum number of octaves of the question.
+            valid_intervals (int): A list with intervals (int) valid for random
+                choice, 1 is 1st, 2 is second etc. Eg. [1,4,5] to only tonics,
+                fourths and fifths.
         """
 
         super(MelodicIntervalQuestion, self).\
@@ -54,12 +58,14 @@ class MelodicIntervalQuestion(QuestionBase):
             self.interval = DiatonicInterval(mode=mode, tonic=self.tonic,
                                              octave=self.octave,
                                              n_octaves=n_octaves,
-                                             descending=descending)
+                                             descending=descending,
+                                             valid_intervals=valid_intervals)
         else:
             self.interval = ChromaticInterval(mode=mode, tonic=self.tonic,
                                               octave=self.octave,
                                               n_octaves=n_octaves,
-                                              descending=descending)
+                                              descending=descending,
+                                              valid_intervals=valid_intervals)
 
         self.pre_question = self.make_pre_question(method='tonic_only')
         self.question = self.make_question()

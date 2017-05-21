@@ -23,7 +23,7 @@ class MelodicDictationQuestion(QuestionBase):
 
     def __init__(self, mode='major', max_intervals=3, n_notes=4, tonic=None,
                  octave=None, descending=None, chromatic=None,
-                 n_octaves=None, *args, **kwargs):
+                 n_octaves=None, valid_intervals=None, *args, **kwargs):
         """Inits the class.
 
         Args:
@@ -42,6 +42,9 @@ class MelodicDictationQuestion(QuestionBase):
                 chromatic intervals, ie., intervals not in the diatonic scale
                 of tonic/mode.
             n_octaves (int): Maximum number of octaves of the question.
+            valid_intervals (int): A list with intervals (int) valid for random
+                choice, 1 is 1st, 2 is second etc. Eg. [1,4,5] to only tonics,
+                fourths and fifths.
         """
 
         super(MelodicDictationQuestion, self).\
@@ -64,7 +67,8 @@ class MelodicDictationQuestion(QuestionBase):
 
         question_intervals = [INTERVAL_CLASS(mode=mode, tonic=self.tonic,
                               octave=self.octave, n_octaves=n_octaves,
-                              descending=descending)
+                              descending=descending,
+                              valid_intervals=valid_intervals)
                               for _ in range(max_intervals)]
 
         self.question_phrase_intervals = [choice(question_intervals)

@@ -5,6 +5,7 @@ from . import DIATONIC_MODES
 from . import CHROMATIC_TYPE
 from . import INTERVALS
 from . import MAX_SEMITONES_RESOLVE_BELOW
+from . import INTERVAL_INDEX
 
 from .scale import ChromaticScale
 
@@ -69,7 +70,8 @@ class DiatonicInterval(IntervalBase):
         * Maybe remove `chromatic_offset` in favor of `distance['semitones']``
     """
 
-    def __init__(self, mode, tonic, octave, n_octaves=None, descending=None):
+    def __init__(self, mode, tonic, octave, n_octaves=None, descending=None,
+                 valid_intervals=None):
         """Inits the class and choses a random interval with the given args.
 
         Args:
@@ -79,6 +81,8 @@ class DiatonicInterval(IntervalBase):
             octave (str): Scientific octave of the scale (eg.: 4)
             n_octaves (int): Maximum number os octaves (eg. 2)
             descending (bool): Is the interval descending? (default: false)
+            valid_intervals (int): A list with intervals (int) valid for random
+                choice, 1 is 1st, 2 is second etc.
         """
 
         super(DiatonicInterval, self).__init__()
@@ -104,7 +108,22 @@ class DiatonicInterval(IntervalBase):
                 chromatic_network.extend([semitones + 12 * i for semitones in
                                           CHROMATIC_TYPE[1:]])
 
-        semitones = choice(step_network)
+        if not valid_intervals:
+            semitones = choice(step_network)
+        else:
+            valid_network = []
+            for item in valid_intervals:
+                valid_network.extend(INTERVAL_INDEX[item])
+            for i in range(1, n_octaves):
+                valid_network.extend([semitones + 12*i for semitones in
+                                      valid_network[1:]])
+            print(step_network)
+            print(valid_network)
+            valid_network = [x for x in valid_network if x in step_network]
+
+            print(step_network)
+            print(valid_network)
+            semitones = choice(valid_network)
 
         chromatic_scale = ChromaticScale(tonic=tonic, octave=None,
                                          n_octaves=n_octaves,
@@ -189,7 +208,8 @@ class ChromaticInterval(IntervalBase):
         * Maybe remove `chromatic_offset` in favor of `distance['semitones']``
     """
 
-    def __init__(self, mode, tonic, octave, n_octaves=None, descending=None):
+    def __init__(self, mode, tonic, octave, n_octaves=None, descending=None,
+                 valid_intervals=None):
         """Inits the class and choses a random interval with the given args.
 
         Args:
@@ -202,6 +222,8 @@ class ChromaticInterval(IntervalBase):
                 of C; default: false)
             n_octaves (int): Maximum number os octaves (eg. 2)
             descending (bool): Is the interval descending? (default: false)
+            valid_intervals (int): A list with inervals valid for random
+                choice, 1 is 1st, 2 is second etc.
         """
 
         super(ChromaticInterval, self).__init__()
@@ -227,7 +249,18 @@ class ChromaticInterval(IntervalBase):
                 chromatic_network.extend([semitones + 12 * i for semitones in
                                           CHROMATIC_TYPE[1:]])
 
-        semitones = choice(chromatic_network)
+        # semitones = choice(chromatic_network)
+        if not valid_intervals:
+            semitones = choice(chromatic_network)
+        else:
+            valid_network = []
+            for item in valid_intervals:
+                valid_network.extend(INTERVAL_INDEX[item])
+            for i in range(1, n_octaves):
+                valid_network.extend([semitones + 12*i for semitones in
+                                      valid_network])
+
+            semitones = choice(valid_network)
 
         chromatic_scale = ChromaticScale(tonic=tonic, octave=None,
                                          n_octaves=n_octaves,
