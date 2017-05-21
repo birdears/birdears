@@ -52,19 +52,20 @@ class Resolution:
         """
 
         self.METHOD = RESOLUTION_METHODS[method]
-        self.resolution_duration = duration
-        self.resolution_delay = delay
-        self.resolution_pos_delay = pos_delay
+        self.duration = duration
+        self.delay = delay
+        self.pos_delay = pos_delay
 
     def __call__(self, *args, **kwargs):
         """Calls the resolution method and pass arguments to it.
         """
-        return self.METHOD(*args, **kwargs)
+        return self.METHOD(duration=self.duration, delay=self.delay,
+                           pos_delay=self.pos_delay, *args, **kwargs)
 
 
 @register_resolution_method
-def nearest_tonic(mode, tonic, intervals, harmonic=None, descending=None,
-                  duration=None, delay=None, pos_delay=None):
+def nearest_tonic(mode, tonic, intervals, duration, delay, pos_delay,
+                  harmonic=None, descending=None):
     """Resolution method that resolve the intervals to their nearest tonics.
 
     Args:
@@ -127,7 +128,7 @@ def nearest_tonic(mode, tonic, intervals, harmonic=None, descending=None,
 
 
 @register_resolution_method
-def repeat_only(elements, duration=None, delay=None, pos_delay=None):
+def repeat_only(elements, duration, delay, pos_delay):
     """Resolution method that only repeats the sequence elements with given
     durations.
 

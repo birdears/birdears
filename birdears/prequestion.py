@@ -54,25 +54,26 @@ class PreQuestion:
         """
 
         self.METHOD = PREQUESTION_METHODS[method]
-        self.resolution_duration = duration
-        self.resolution_delay = delay
-        self.resolution_pos_delay = pos_delay
+        self.duration = duration
+        self.delay = delay
+        self.pos_delay = pos_delay
 
     def __call__(self, *args, **kwargs):
         """Calls the resolution method and pass arguments to it.
         """
-        return self.METHOD(*args, **kwargs)
+        return self.METHOD(duration=self.duration, delay=self.delay,
+                           pos_delay=self.pos_delay, *args, **kwargs)
 
 
 @register_prequestion_method
-def none(*args, **kwargs):
+def none(duration, delay, pos_delay, *args, **kwargs):
     return Sequence(duration=0, delay=0, pos_delay=0)
 
 
 @register_prequestion_method
 # FIXME: please refactor lol
-def tonic_only(tonic, tonic_octave, intervals, harmonic=None, descending=None,
-               duration=None, delay=None, pos_delay=None, *args, **kwargs):
+def tonic_only(tonic, tonic_octave, intervals, duration, delay, pos_delay,
+               harmonic=None, descending=None, *args, **kwargs):
     # harmonic? maybe remove this.
 
     sequence = Sequence()
@@ -95,8 +96,8 @@ def tonic_only(tonic, tonic_octave, intervals, harmonic=None, descending=None,
 
 
 @register_prequestion_method
-def progression_i_iv_v_i(tonic, mode, duration=None, delay=None,
-                         pos_delay=None, *args, **kwargs):
+def progression_i_iv_v_i(tonic, mode, duration, delay, pos_delay,
+                         *args, **kwargs):
 
     degrees = [1, 4, 5, 1]
 

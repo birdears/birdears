@@ -160,7 +160,7 @@ coverage run --source=birdears --module pytest --verbose tests/
 
 We use [coveralls](https://coveralls.io/github/iacchus/birdears) and [Travis CI](https://travis-ci.org/iacchus/birdears).
 
-Out tests are in repo's `tests/` directory. We also have a local repoting in html created by coverage, it should be online at https://iacchus.github.io/birdears/docs/coverage-html.
+Out tests are in repo's `tests/` directory. We also have a local repoting in html created by coverage, it should be online at https://iacchus.github.io/birdears/coverage-html.
 
 ### Feature requests :gift: and suggestions
 

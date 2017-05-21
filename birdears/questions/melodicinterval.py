@@ -13,6 +13,10 @@ from ..sequence import Sequence
 from ..resolution import Resolution
 from ..prequestion import PreQuestion
 
+DURATION = 0
+DELAY = 1
+POS_DELAY = 2
+
 
 class MelodicIntervalQuestion(QuestionBase):
     """Implements a Melodic Interval test.
@@ -47,13 +51,25 @@ class MelodicIntervalQuestion(QuestionBase):
                      n_octaves=n_octaves, valid_intervals=valid_intervals,
                      *args, **kwargs)
 
-        self.question_duration = 2
-        self.question_delay = 0.5
-        self.question_pos_delay = 0
+        durations = dict(
+            preq=(2, 0.5, 1),
+            quest=(2, 0.5, 0),
+            resol=(2.5, 0.5, 1)
+        )
 
-        self.resolution_duration = 2.5
-        self.resolution_delay = 0.5
-        self.resolution_pos_delay = 1
+        self.durations = durations
+
+        # self.prequestion_duration = 2
+        # self.prequestion_delay = 0.5
+        # self.prequestion_pos_delay = 0
+        #
+        # self.question_duration = 2
+        # self.question_delay = 0.5
+        # self.question_pos_delay = 0
+        #
+        # self.resolution_duration = 2.5
+        # self.resolution_delay = 0.5
+        # self.resolution_pos_delay = 1
 
         if not chromatic:
             self.interval = \
@@ -76,39 +92,35 @@ class MelodicIntervalQuestion(QuestionBase):
 
     def make_pre_question(self, method):
         prequestion = PreQuestion(method=method,
-                                  duration=self.question_duration,
-                                  delay=self.question_delay,
-                                  pos_delay=self.question_pos_delay)
+                                  duration=self.durations['preq'][DURATION],
+                                  delay=self.durations['preq'][DELAY],
+                                  pos_delay=self.durations['preq'][POS_DELAY])
 
         return prequestion(**dict(tonic=self.tonic, tonic_octave=self.octave,
-                           mode=self.mode, intervals=self.interval,
-                           duration=self.question_duration,
-                           delay=self.question_delay,
-                           pos_delay=self.question_pos_delay))
+                           mode=self.mode, intervals=self.interval))
 
     def make_question(self):
 
         tonic = self.concrete_tonic
         interval = self.interval.note_and_octave
 
-        question = Sequence([interval], duration=self.question_duration,
-                            delay=self.question_delay,
-                            pos_delay=self.question_pos_delay)
+        question = Sequence([interval],
+                            duration=self.durations['quest'][DURATION],
+                            delay=self.durations['quest'][DELAY],
+                            pos_delay=self.durations['quest'][POS_DELAY])
 
         return question
 
     def make_resolution(self, method):
 
-        resolve = Resolution(method=method, duration=self.resolution_duration,
-                             delay=self.resolution_delay,
-                             pos_delay=self.resolution_pos_delay)
+        resolve = Resolution(method=method,
+                             duration=self.durations['resol'][DURATION],
+                             delay=self.durations['resol'][DELAY],
+                             pos_delay=self.durations['resol'][POS_DELAY])
 
         resolution = resolve(mode=self.mode, tonic=self.tonic,
                              intervals=self.interval,
-                             descending=self.is_descending,
-                             duration=self.resolution_duration,
-                             delay=self.resolution_delay,
-                             pos_delay=self.resolution_pos_delay)
+                             descending=self.is_descending)
 
         return resolution
 
