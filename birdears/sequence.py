@@ -61,9 +61,14 @@ class Sequence:
             # lets leave the last element's delay for pos_delay:
             delay = self.delay if cur_idx != last_idx else 0
 
-            if type(element) == str:
-                self._play_note(element, delay=delay)
-            elif type(element) == list:
+            if type(element) == tuple:
+                el, duration, delay = element
+            else:
+                el = element
+                
+            if type(el) == str:
+                self._play_note(el, delay=delay)
+            elif type(el) == list:
                 self._play_chord(element, delay=delay)
 
         if self.pos_delay:

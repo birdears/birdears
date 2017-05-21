@@ -51,11 +51,17 @@ class HarmonicIntervalQuestion(QuestionBase):
                              n_octaves=n_octaves,
                              valid_intervals=valid_intervals, *args, **kwargs)
 
-        durations = dict(
-            preq=(3, 0.5, 1),
-            quest=(3, 0.5, 0),
-            resol=(2.5, 0.5, 1)
-        )
+        # durations = dict(
+        #     preq=(3, 0.5, 1),
+        #     quest=(3, 0.5, 0),
+        #     resol=(2.5, 0.5, 1)
+        # )
+
+        durations = {
+            'preq': {'duration':3, 'delay':0.5, 'pos_delay':1},
+            'quest': {'duration':3, 'delay':0.5, 'pos_delay':0},
+            'resol': {'duration':2.5, 'delay':0.5, 'pos_delay':1}
+        }
 
         self.durations = durations
 
@@ -94,10 +100,7 @@ class HarmonicIntervalQuestion(QuestionBase):
         self.resolution = self.make_resolution(method='nearest_tonic')
 
     def make_pre_question(self, method):
-        prequestion = PreQuestion(method=method,
-                                  duration=self.durations['preq'][DURATION],
-                                  delay=self.durations['preq'][DELAY],
-                                  pos_delay=self.durations['preq'][POS_DELAY])
+        prequestion = PreQuestion(method=method, **self.durations['preq'])
 
         return prequestion(**dict(tonic=self.tonic, tonic_octave=self.octave,
                            mode=self.mode, intervals=self.interval))
@@ -108,10 +111,7 @@ class HarmonicIntervalQuestion(QuestionBase):
         interval = self.interval.note_and_octave
         durations = self.durations
 
-        question = Sequence([[tonic, interval]],
-                            duration=self.durations['quest'][DURATION],
-                            delay=self.durations['quest'][DELAY],
-                            pos_delay=self.durations['quest'][POS_DELAY])
+        question = Sequence([[tonic, interval]], **self.durations['quest'])
 
         return question
 
@@ -119,10 +119,7 @@ class HarmonicIntervalQuestion(QuestionBase):
 
         durations = self.durations
 
-        resolve = Resolution(method=method,
-                             duration=self.durations['resol'][DURATION],
-                             delay=self.durations['resol'][DELAY],
-                             pos_delay=self.durations['resol'][POS_DELAY])
+        resolve = Resolution(method=method, **durations['resol'])
 
         resolution = resolve(mode=self.mode, tonic=self.tonic,
                              intervals=self.interval,

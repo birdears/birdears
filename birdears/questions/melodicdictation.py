@@ -57,25 +57,13 @@ class MelodicDictationQuestion(QuestionBase):
                      n_octaves=n_octaves, valid_intervals=valid_intervals,
                      *args, **kwargs)
 
-        durations = dict(
-            preq=(2, 0.5, 1),
-            quest=(2, 0.8, 0),
-            resol=(2.5, 0.5, 1)
-        )
+        durations = {
+            'preq': {'duration':2, 'delay':0.5, 'pos_delay':1},
+            'quest': {'duration':2, 'delay':0.8, 'pos_delay':0},
+            'resol': {'duration':2.5, 'delay':0.5, 'pos_delay':1}
+        }
 
         self.durations = durations
-
-        # self.prequestion_duration = 2
-        # self.prequestion_delay = 0.5
-        # self.prequestion_pos_delay = 0
-        #
-        # self.question_duration = 2
-        # self.question_delay = 0.8
-        # self.question_pos_delay = 0
-        #
-        # self.resolution_duration = 2.5
-        # self.resolution_delay = 0.5
-        # self.resolution_pos_delay = 1
 
         if not chromatic:
             INTERVAL_CLASS = DiatonicInterval
@@ -104,10 +92,7 @@ class MelodicDictationQuestion(QuestionBase):
         self.resolution = self.make_resolution()
 
     def make_pre_question(self, method):
-        prequestion = PreQuestion(method=method,
-                                  duration=self.durations['preq'][DURATION],
-                                  delay=self.durations['preq'][DELAY],
-                                  pos_delay=self.durations['preq'][POS_DELAY])
+        prequestion = PreQuestion(method=method, **self.durations['preq'])
 
         return prequestion(**dict(tonic=self.tonic, tonic_octave=self.octave,
                            mode=self.mode,
@@ -115,18 +100,12 @@ class MelodicDictationQuestion(QuestionBase):
 
     def make_question(self, phrase_semitones):
         return Sequence([self.scales['chromatic_pitch'].scale[n]
-                        for n in phrase_semitones],
-                        duration=self.durations['quest'][DURATION],
-                        delay=self.durations['quest'][DELAY],
-                        pos_delay=self.durations['quest'][POS_DELAY])
+                        for n in phrase_semitones], **self.durations['quest'])
 
     def make_resolution(self):
         # the idea here is execute resolve() to each interval of the dictation
 
-        resolve = Resolution(method='repeat_only',
-                             duration=self.durations['resol'][DURATION],
-                             delay=self.durations['resol'][DELAY],
-                             pos_delay=self.durations['resol'][POS_DELAY])
+        resolve = Resolution(method='repeat_only', **self.durations['resol'])
 
         resolution = resolve(self.question.elements)
 

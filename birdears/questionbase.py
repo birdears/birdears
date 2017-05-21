@@ -5,13 +5,29 @@ from random import randrange
 from random import choice
 
 from . import KEYBOARD_INDICES
-# from . import KEYS
 from . import CIRCLE_OF_FIFTHS
 
 from .scale import DiatonicScale
 from .scale import ChromaticScale
 
+QUESTION_CLASSES = {}
 
+def register_question_class(f, *args, **kwargs):
+    """Decorator for question classes.
+
+    Classes decorated with this decorator will be registered in the
+    `QUESTION_CLASSES` global.
+    """
+
+    @wraps(f)
+    def decorator(*args, **kwargs):
+        return f(*args, **kwargs)
+
+    QUESTION_CLASSES.update({f.__name__: f})
+
+    return decorator
+
+    
 class QuestionBase:
     """
     Base Class to be subclassed for Question classes.
@@ -19,14 +35,6 @@ class QuestionBase:
     This class implements attributes and routines to be used in Question
     subclasses.
     """
-
-    # question_duration = 2
-    # question_delay = 1.5
-    # question_pos_delay = 0
-    #
-    # resolution_duration = 2.5
-    # resolution_delay = 0.5
-    # resolution_pos_delay = 1
 
     def __init__(self, mode='major', tonic=None, octave=None, descending=None,
                  chromatic=None, n_octaves=None, valid_intervals=None,

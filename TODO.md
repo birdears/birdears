@@ -92,9 +92,9 @@ be able to generate not random interval using Interval class.**
 ~~Meybe we could avoid using collections.deque to support older python 3
 versions in birdears.scale.~~ ✓
 
-**Maybe sequence elements should be a tuple so to have each element the ability
-of handling its own duration, ldelay time, this way:
-`('C4', 2, 3)` or `(['C4','E4',"G4"], 1, 2)` ... `(element, duration, delay)`**
+~~Maybe sequence elements should be a tuple so to have each element the ability
+of handling its own duration, and delay time, this way:
+`('C4', 2, 3)` or `(['C4','E4',"G4"], 1, 2)` ... `(element, duration, delay)`~~
 
 **Maybe sequence can contain sequences play(): if type=sequence, then play()**
 
