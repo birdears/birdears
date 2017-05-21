@@ -117,12 +117,8 @@ class DiatonicInterval(IntervalBase):
             for i in range(1, n_octaves):
                 valid_network.extend([semitones + 12*i for semitones in
                                       valid_network[1:]])
-            print(step_network)
-            print(valid_network)
             valid_network = [x for x in valid_network if x in step_network]
 
-            print(step_network)
-            print(valid_network)
             semitones = choice(valid_network)
 
         chromatic_scale = ChromaticScale(tonic=tonic, octave=None,

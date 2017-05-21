@@ -50,12 +50,16 @@ distance between the two.
               help='Whether the question interval is descending.')
 @click.option('-c', '--chromatic', is_flag=True,
               help='If chosen, question has chromatic notes.')
-@click.option('-n', '--n_octaves', type=click.IntRange(1, 2), default=None,
+@click.option('-n', '--n_octaves', type=click.IntRange(1, 2), default=1,
               metavar='<n max>', help='Maximum number of octaves.')
+@click.option('-v', '--valid_intervals', type=str, default=None,
+              metavar='<1,2,..>', help='A comma-separated list without spaces\
+              of valid scale degrees to be chosen for the question.')
 def melodic(*args, **kwargs):
     """Melodic interval recognition
     """
 
+    print(kwargs['valid_intervals'])
     kwargs.update({'exercise': 'melodic'})
     CommandLine(**kwargs)
 
@@ -80,6 +84,9 @@ correct distance between the two.
               help='If chosen, question has chromatic notes.')
 @click.option('-n', '--n_octaves', type=click.IntRange(1, 2), default=None,
               metavar='<n max>', help='Maximum number of octaves.')
+@click.option('-v', '--valid_intervals', type=str, default=None,
+              metavar='<1,2,..>', help='A comma-separated list without spaces\
+              of valid scale degrees to be chosen for the question.')
 def harmonic(*args, **kwargs):
     """Harmonic interval recognition
     """
@@ -115,6 +122,9 @@ melodic dictation.
               help='If chosen, question has chromatic notes.')
 @click.option('-n', '--n_octaves', type=click.IntRange(1, 2), default=None,
               metavar='<n max>', help='Maximum number of octaves.')
+@click.option('-v', '--valid_intervals', type=str, default=None,
+              metavar='<1,2,..>', help='A comma-separated list without spaces\
+              of valid scale degrees to be chosen for the question.')
 def dictation(*args, **kwargs):
     """Melodic dictation
     """
@@ -154,6 +164,9 @@ instrument.
               help='If chosen, question has chromatic notes.')
 @click.option('-n', '--n_octaves', type=click.IntRange(1, 2), default=None,
               metavar='<n max>', help='Maximum number of octaves.')
+@click.option('-v', '--valid_intervals', type=str, default=None,
+              metavar='<1,2,..>', help='A comma-separated list without spaces\
+              of valid scale degrees to be chosen for the question.')
 def instrumental(*args, **kwargs):
     """Instrumental melodic time-based dictation
     """

@@ -29,7 +29,8 @@ class QuestionBase:
     # resolution_pos_delay = 1
 
     def __init__(self, mode='major', tonic=None, octave=None, descending=None,
-                 chromatic=None, n_octaves=None, *args, **kwargs):
+                 chromatic=None, n_octaves=None, valid_intervals=None,
+                 *args, **kwargs):
         """Inits the class.
 
         Args:
@@ -46,6 +47,9 @@ class QuestionBase:
                 (False) chromatic intervals, ie., intervals not in the
                 diatonic scale of tonic/mode.
             n_octaves (int): Maximum numbr of octaves of the question.
+            valid_intervals (list): A list with intervals (int) valid for random
+                choice, 1 is 1st, 2 is second etc. Eg. [1, 4, 5] to allow only
+                tonics, fourths and fifths.
         """
 
         global KEYBOARD_INDICES, CIRCLE_OF_FIFTHS
@@ -69,6 +73,13 @@ class QuestionBase:
             self.n_octaves = 1
         else:
             self.n_octaves = n_octaves
+
+        # this should go to questionbase
+        if type(valid_intervals) == str:
+            valid_intervals = valid_intervals.split(',')
+            valid_intervals = [int(x, 10) for x in valid_intervals]
+
+        self.valid_intervals = valid_intervals
 
         # FIXME: maybe this should go to __main__
         self.keyboard_index = KEYBOARD_INDICES['chromatic'][self.mode]

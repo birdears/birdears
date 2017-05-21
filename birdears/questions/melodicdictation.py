@@ -42,15 +42,16 @@ class MelodicDictationQuestion(QuestionBase):
                 chromatic intervals, ie., intervals not in the diatonic scale
                 of tonic/mode.
             n_octaves (int): Maximum number of octaves of the question.
-            valid_intervals (int): A list with intervals (int) valid for random
-                choice, 1 is 1st, 2 is second etc. Eg. [1,4,5] to only tonics,
-                fourths and fifths.
+            valid_intervals (list): A list with intervals (int) valid for random
+                choice, 1 is 1st, 2 is second etc. Eg. [1, 4, 5] to allow only
+                tonics, fourths and fifths.
         """
 
         super(MelodicDictationQuestion, self).\
             __init__(mode=mode, tonic=tonic, octave=octave,
                      descending=descending, chromatic=chromatic,
-                     n_octaves=n_octaves, *args, **kwargs)
+                     n_octaves=n_octaves, valid_intervals=valid_intervals,
+                     *args, **kwargs)
 
         self.question_duration = 2
         self.question_delay = 0.8
@@ -66,9 +67,9 @@ class MelodicDictationQuestion(QuestionBase):
             INTERVAL_CLASS = ChromaticInterval
 
         question_intervals = [INTERVAL_CLASS(mode=mode, tonic=self.tonic,
-                              octave=self.octave, n_octaves=n_octaves,
+                              octave=self.octave, n_octaves=self.n_octaves,
                               descending=descending,
-                              valid_intervals=valid_intervals)
+                              valid_intervals=self.valid_intervals)
                               for _ in range(max_intervals)]
 
         self.question_phrase_intervals = [choice(question_intervals)
@@ -78,7 +79,7 @@ class MelodicDictationQuestion(QuestionBase):
 
         self.question_phrase.extend([interval.semitones
                                      for interval
-                                     in self.question_phrase_intervals])
+                                        in self.question_phrase_intervals])
 
         self.pre_question =\
             self.make_pre_question(method='progression_i_iv_v_i')

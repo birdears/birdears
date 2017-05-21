@@ -1,0 +1,345 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>birdears.toml package &#8212; birdears 0.0.0-alpha.4 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0.0-alpha.4',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/hljs_styles/monokai.css" type="text/css" />
+  <script type="text/javascript" src="_static/js/highlight.pack.js"></script>
+  <script src="https://cdn.rawgit.com/iacchus/abcjs/master/bin/abcjs_plugin_3.1.2-hotfix-min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+  $(document).ready(function() {
+    $('.highlight-none pre').each(function(i, block) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+<script>
+  abcjs_plugin_autostart = false;
+  window.ABCJS.plugin.auto_render = false;
+
+$(document).ready(function(){
+  function is_it_abc(elem) {
+    if(window.ABCJS.plugin.getABCContainingElements(elem).length) return true;
+    else return false;
+  }
+
+  if($(".highlight-abc pre").length)
+  {
+    var tunes_code = $(".highlight-abc pre");
+			
+    for(var $i=0; tunes_code[$i]; $i++)
+    {               
+      if(! is_it_abc($(tunes_code[$i]))) continue;
+
+      var ws_strip="";
+      var mystr="";
+
+      ws_strip = $(tunes_code[$i]).text().split('\n');
+      for(var aaa=0; ws_strip[aaa]; aaa++) { mystr+=ws_strip[aaa].trim() + "\n"; }
+
+      $(tunes_code[$i]).text(mystr); //abctune
+
+      $('<div id="abctune-' + $i + '" class="abctune-rendered"></div>').insertBefore($(tunes_code[$i]).parent());
+      ABCJS.renderAbc(
+        "abctune-"+$i, //container
+        "%%staffsep 27pt\n" + $(tunes_code[$i]).text(), //abctune
+        { }, //parserParams
+        {
+          scale: 1,
+          staffwidth:600,
+          paddingtop: 0,
+          paddingbottom: 0,
+          paddingright: 0,
+          paddingleft: 0,
+        }, //engraverParams
+        { viewportHorizontal: true } //renderParams
+      );
+      $(tunes_code[$i]).parent().hide();
+    }
+  }
+
+  if($("code.abckeep").length)
+  {
+    var tunes_code = $("code.abckeep");
+			
+    for(var $i=0; tunes_code[$i]; $i++)
+    {               
+      if(! is_it_abc($(tunes_code[$i]))) continue;
+
+      var ws_strip="";
+      var mystr="";
+
+      ws_strip = $(tunes_code[$i]).text().split('\n');
+      for(var aaa=0; ws_strip[aaa]; aaa++) { mystr+=ws_strip[aaa].trim() + "\n"; }
+
+      $(tunes_code[$i]).text(mystr); //abctune
+
+      $('<div id="abctunekeep-' + $i + '" class="abctune-rendered"></div>').insertBefore($(tunes_code[$i]).parent());
+      ABCJS.renderAbc(
+        "abctunekeep-"+$i, //container
+        "%%staffsep 27pt\n"+$(tunes_code[$i]).text(), //abctune
+        { }, //parserParams
+        {
+          scale: 1,
+          staffwidth:700,
+          paddingtop: 0,
+          paddingbottom: 0,
+          paddingright: 0,
+          paddingleft: 0,
+        }, //engraverParams
+        { viewportHorizontal: true } //renderParams
+      );
+      $(tunes_code[$i]).parent().css({marginTop:0})
+      //$(tunes_code[$i]).hide();
+    }
+  }
+})
+</script>
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="birdears-toml-package">
+<h1>birdears.toml package<a class="headerlink" href="#birdears-toml-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-birdears.toml.toml">
+<span id="birdears-toml-toml-module"></span><h2>birdears.toml.toml module<a class="headerlink" href="#module-birdears.toml.toml" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="birdears.toml.toml.InlineTableDict">
+<em class="property">class </em><code class="descclassname">birdears.toml.toml.</code><code class="descname">InlineTableDict</code><a class="headerlink" href="#birdears.toml.toml.InlineTableDict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Sentinel subclass of dict for inline tables.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="birdears.toml.toml.TomlDecodeError">
+<em class="property">exception </em><code class="descclassname">birdears.toml.toml.</code><code class="descname">TomlDecodeError</code><a class="headerlink" href="#birdears.toml.toml.TomlDecodeError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="birdears.toml.toml.TomlTz">
+<em class="property">class </em><code class="descclassname">birdears.toml.toml.</code><code class="descname">TomlTz</code><span class="sig-paren">(</span><em>toml_offset</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.toml.toml.TomlTz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">datetime.tzinfo</span></code></p>
+<dl class="method">
+<dt id="birdears.toml.toml.TomlTz.dst">
+<code class="descname">dst</code><span class="sig-paren">(</span><em>dt</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.toml.toml.TomlTz.dst" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="birdears.toml.toml.TomlTz.tzname">
+<code class="descname">tzname</code><span class="sig-paren">(</span><em>dt</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.toml.toml.TomlTz.tzname" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="birdears.toml.toml.TomlTz.utcoffset">
+<code class="descname">utcoffset</code><span class="sig-paren">(</span><em>dt</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.toml.toml.TomlTz.utcoffset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="birdears.toml.toml.dump">
+<code class="descclassname">birdears.toml.toml.</code><code class="descname">dump</code><span class="sig-paren">(</span><em>o</em>, <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.toml.toml.dump" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes out dict as toml to a file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>o</strong> &#8211; Object to dump into toml</li>
+<li><strong>f</strong> &#8211; File descriptor where the toml should be stored</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">String containing the toml corresponding to dictionary</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal"><span class="pre">TypeError</span></code> &#8211; When anything other than file descriptor is passed</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="birdears.toml.toml.dumps">
+<code class="descclassname">birdears.toml.toml.</code><code class="descname">dumps</code><span class="sig-paren">(</span><em>o</em>, <em>preserve=False</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.toml.toml.dumps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stringifies input dict as toml</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>o</strong> &#8211; Object to dump into toml</li>
+<li><strong>preserve</strong> &#8211; Boolean parameter. If true, preserve inline tables.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">String containing the toml corresponding to dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="birdears.toml.toml.load">
+<code class="descclassname">birdears.toml.toml.</code><code class="descname">load</code><span class="sig-paren">(</span><em>f</em>, <em>_dict=&lt;class 'dict'&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.toml.toml.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses named file or files as toml and returns a dictionary</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>f</strong> &#8211; Path to the file to open, array of files to read into single dict
+or a file descriptor</li>
+<li><strong>_dict</strong> &#8211; (optional) Specifies the class of the returned toml dictionary</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Parsed toml file represented as a dictionary</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li>TypeError &#8211; When array of non-strings is passed</li>
+<li>TypeError &#8211; When f is invalid type</li>
+<li><a class="reference internal" href="#birdears.toml.toml.TomlDecodeError" title="birdears.toml.toml.TomlDecodeError"><code class="xref py py-exc docutils literal"><span class="pre">TomlDecodeError</span></code></a> &#8211; Error while decoding toml</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="birdears.toml.toml.loads">
+<code class="descclassname">birdears.toml.toml.</code><code class="descname">loads</code><span class="sig-paren">(</span><em>s</em>, <em>_dict=&lt;class 'dict'&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.toml.toml.loads" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses string as toml</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>s</strong> &#8211; String to be parsed</li>
+<li><strong>_dict</strong> &#8211; (optional) Specifies the class of the returned toml dictionary</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Parsed toml file represented as a dictionary</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><code class="xref py py-exc docutils literal"><span class="pre">TypeError</span></code> &#8211; When a non-string is passed</li>
+<li><a class="reference internal" href="#birdears.toml.toml.TomlDecodeError" title="birdears.toml.toml.TomlDecodeError"><code class="xref py py-exc docutils literal"><span class="pre">TomlDecodeError</span></code></a> &#8211; Error while decoding toml</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-birdears.toml">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-birdears.toml" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">birdears.toml package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-birdears.toml.toml">birdears.toml.toml module</a></li>
+<li><a class="reference internal" href="#module-birdears.toml">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/birdears.toml.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Iacchus Mercurius.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/birdears.toml.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

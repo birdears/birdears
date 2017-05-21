@@ -27,8 +27,7 @@ class InstrumentalDictationQuestion(QuestionBase):
     def __init__(self, mode='major', wait_time=11, n_repeats=1,
                  max_intervals=3, n_notes=4, tonic=None, octave=None,
                  descending=None, chromatic=None, n_octaves=None,
-                 valid_intervals=None,
-                 *args, **kwargs):
+                 valid_intervals=None, *args, **kwargs):
         """Inits the class.
 
         Args:
@@ -51,15 +50,16 @@ class InstrumentalDictationQuestion(QuestionBase):
                 chromatic intervals, ie., intervals not in the diatonic scale
                 of tonic/mode.
             n_octaves (int): Maximum number of octaves of the question.
-            valid_intervals (int): A list with intervals (int) valid for random
-                choice, 1 is 1st, 2 is second etc. Eg. [1,4,5] to only tonics,
-                fourths and fifths.
+            valid_intervals (list): A list with intervals (int) valid for random
+                choice, 1 is 1st, 2 is second etc. Eg. [1, 4, 5] to allow only
+                tonics, fourths and fifths.
         """
 
         super(InstrumentalDictationQuestion, self).\
             __init__(mode=mode, tonic=tonic, octave=octave,
                      descending=descending, chromatic=chromatic,
-                     n_octaves=n_octaves, *args, **kwargs)
+                     n_octaves=n_octaves, valid_intervals=valid_intervals,
+                     *args, **kwargs)
 
         self.wait_time = wait_time
         self.n_repeats = n_repeats
@@ -79,8 +79,8 @@ class InstrumentalDictationQuestion(QuestionBase):
             INTERVAL_CLASS = ChromaticInterval
 
         question_intervals = [INTERVAL_CLASS(mode=mode, tonic=self.tonic,
-                              octave=self.octave, n_octaves=n_octaves,
-                              descending=descending)
+                              octave=self.octave, n_octaves=self.n_octaves,
+                              descending=descending, self.valid_intervals)
                               for _ in range(max_intervals)]
 
         self.question_phrase_intervals = [choice(question_intervals)
@@ -90,7 +90,7 @@ class InstrumentalDictationQuestion(QuestionBase):
 
         self.question_phrase.extend([interval.semitones
                                      for interval
-                                     in self.question_phrase_intervals])
+                                        in self.question_phrase_intervals])
 
         # self.pre_question = self.make_pre_question(method='none')
         self.pre_question =\
