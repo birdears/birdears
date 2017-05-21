@@ -14,8 +14,8 @@
 [![PyPI Version](https://img.shields.io/pypi/v/birdears.svg?style=flat)](https://pypi.python.org/pypi/birdears)
 [![PyPI Python Versions](https://img.shields.io/pypi/pyversions/birdears.svg?style=flat)](https://pypi.python.org/pypi/birdears)
 [![Waffle.io](https://img.shields.io/waffle/label/iacchus/birdears/in%20progress.svg?style=flat)](https://waffle.io/iacchus/birdears)
-[![Documentation Status](https://readthedocs.org/projects/birdears/badge/?version=latest)](https://birdears.readthedocs.io/en/latest/?badge=latest)
 [![GitHub issues](https://img.shields.io/github/issues/iacchus/birdears.svg?style=flat&label=gh-issues)](https://github.com/iacchus/birdears/issues)
+[![Documentation Status](https://readthedocs.org/projects/birdears/badge/?version=latest)](https://birdears.readthedocs.io/en/latest/?badge=latest)
 
 ## Functional Ear Training for Musicians
 
