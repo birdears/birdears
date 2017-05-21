@@ -2,8 +2,6 @@ from . import DIATONIC_MODES
 from . import CHROMATIC_SHARP
 from . import CHROMATIC_FLAT
 
-# from collections import deque
-
 
 class ScaleBase:
     def __init__(self):
@@ -46,9 +44,6 @@ class ScaleBase:
 
         global CHROMATIC_SHARP, CHROMATIC_FLAT
 
-        # use_flat = -1 if (note == 'F' or 'b' in note) else 0
-
-        # FIXME
         if note in CHROMATIC_SHARP:
             note_index = CHROMATIC_SHARP.index(note)
         elif note in CHROMATIC_FLAT:
