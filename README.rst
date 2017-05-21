@@ -1,11 +1,11 @@
 BirdEars
 ========
 
-|Travis Build Status| |Coveralls| |Codecov| |Code Climate coverage|
-|Code Climate issues| |Code Climate gpa| |Gitter|
+|Maintenance| |Travis Build Status| |Coveralls| |Codecov| |Code Climate
+coverage| |Code Climate issues| |Code Climate gpa| |Gitter|
 
-|Maintenance| |GitHub (pre-)release| |PyPI Status| |PyPI Version| |PyPI
-Python Versions| |Waffle.io| |Documentation Status| |GitHub issues|
+|GitHub (pre-)release| |PyPI Status| |PyPI Version| |PyPI Python
+Versions| |Waffle.io| |GitHub issues| |Documentation Status|
 
 Functional Ear Training for Musicians
 -------------------------------------
@@ -216,6 +216,8 @@ To generate package for PyPI:
 
 Read also `TODO.md <TODO.md>`__
 
+.. |Maintenance| image:: https://img.shields.io/maintenance/yes/2017.svg?style=flat
+   :target: https://github.com/iacchus/birdears/issues/new?title=Is+birdears+still+maintained&body=Please+file+an+issue+if+the+maintained+button+says+no
 .. |Travis Build Status| image:: https://img.shields.io/travis/iacchus/birdears.svg?style=flat&label=build
    :target: https://travis-ci.org/iacchus/birdears
 .. |Coveralls| image:: https://img.shields.io/coveralls/iacchus/birdears.svg?style=flat&label=Coveralls
@@ -224,17 +226,15 @@ Read also `TODO.md <TODO.md>`__
    :target: https://codecov.io/gh/iacchus/birdears
 .. |Code Climate coverage| image:: https://img.shields.io/codeclimate/coverage/github/iacchus/birdears.svg?style=flat&label=Codeclimate
    :target: https://codeclimate.com/github/iacchus/birdears
-.. |Code Climate issues| image:: https://img.shields.io/codeclimate/issues/github/iacchus/birdears.svg?style=flat&label=issues
+.. |Code Climate issues| image:: https://img.shields.io/codeclimate/issues/github/iacchus/birdears.svg?style=flat&label=cclimate-issues
    :target: https://codeclimate.com/github/iacchus/birdears/issues
-.. |Code Climate gpa| image:: https://img.shields.io/codeclimate/github/iacchus/birdears.svg?style=flat&label=GPA
+.. |Code Climate gpa| image:: https://img.shields.io/codeclimate/github/iacchus/birdears.svg?style=flat&label=cclimate-GPA
    :target: https://codeclimate.com/github/iacchus/birdears
 .. |Gitter| image:: https://img.shields.io/gitter/room/birdears/Lobby.svg?style=flat
    :target: https://gitter.im/birdears/Lobby
-.. |Maintenance| image:: https://img.shields.io/maintenance/yes/2017.svg?style=flat
-   :target: https://github.com/iacchus/birdears/issues/new?title=Is+birdears+still+maintained&body=Please+file+an+issue+if+the+maintained+button+says+no
 .. |GitHub (pre-)release| image:: https://img.shields.io/github/release/iacchus/birdears/all.svg?style=flat
    :target: https://github.com/iacchus/birdears/releases
-.. |PyPI Status| image:: https://img.shields.io/pypi/status/birdears.svg?style=flat&label=PyPI+Status
+.. |PyPI Status| image:: https://img.shields.io/pypi/status/birdears.svg?style=flat&label=pypi-status
    :target: https://pypi.python.org/pypi/birdears
 .. |PyPI Version| image:: https://img.shields.io/pypi/v/birdears.svg?style=flat
    :target: https://pypi.python.org/pypi/birdears
@@ -242,7 +242,7 @@ Read also `TODO.md <TODO.md>`__
    :target: https://pypi.python.org/pypi/birdears
 .. |Waffle.io| image:: https://img.shields.io/waffle/label/iacchus/birdears/in%20progress.svg?style=flat
    :target: https://waffle.io/iacchus/birdears
+.. |GitHub issues| image:: https://img.shields.io/github/issues/iacchus/birdears.svg?style=flat&label=gh-issues
+   :target: https://github.com/iacchus/birdears/issues
 .. |Documentation Status| image:: https://readthedocs.org/projects/birdears/badge/?version=latest
    :target: https://birdears.readthedocs.io/en/latest/?badge=latest
-.. |GitHub issues| image:: https://img.shields.io/github/issues/iacchus/birdears.svg?style=flat
-   :target: https://github.com/iacchus/birdears/issues

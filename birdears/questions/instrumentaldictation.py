@@ -50,9 +50,9 @@ class InstrumentalDictationQuestion(QuestionBase):
                 chromatic intervals, ie., intervals not in the diatonic scale
                 of tonic/mode.
             n_octaves (int): Maximum number of octaves of the question.
-            valid_intervals (list): A list with intervals (int) valid for random
-                choice, 1 is 1st, 2 is second etc. Eg. [1, 4, 5] to allow only
-                tonics, fourths and fifths.
+            valid_intervals (list): A list with intervals (int) valid for
+                random choice, 1 is 1st, 2 is second etc. Eg. [1, 4, 5] to
+                allow only tonics, fourths and fifths.
         """
 
         super(InstrumentalDictationQuestion, self).\
@@ -80,7 +80,8 @@ class InstrumentalDictationQuestion(QuestionBase):
 
         question_intervals = [INTERVAL_CLASS(mode=mode, tonic=self.tonic,
                               octave=self.octave, n_octaves=self.n_octaves,
-                              descending=descending, self.valid_intervals)
+                              descending=descending,
+                              valid_intervals=self.valid_intervals)
                               for _ in range(max_intervals)]
 
         self.question_phrase_intervals = [choice(question_intervals)
@@ -90,7 +91,7 @@ class InstrumentalDictationQuestion(QuestionBase):
 
         self.question_phrase.extend([interval.semitones
                                      for interval
-                                        in self.question_phrase_intervals])
+                                     in self.question_phrase_intervals])
 
         # self.pre_question = self.make_pre_question(method='none')
         self.pre_question =\

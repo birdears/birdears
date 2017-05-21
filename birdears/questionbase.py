@@ -47,9 +47,9 @@ class QuestionBase:
                 (False) chromatic intervals, ie., intervals not in the
                 diatonic scale of tonic/mode.
             n_octaves (int): Maximum numbr of octaves of the question.
-            valid_intervals (list): A list with intervals (int) valid for random
-                choice, 1 is 1st, 2 is second etc. Eg. [1, 4, 5] to allow only
-                tonics, fourths and fifths.
+            valid_intervals (list): A list with intervals (int) valid for
+                random choice, 1 is 1st, 2 is second etc. Eg. [1, 4, 5] to
+                allow only tonics, fourths and fifths.
         """
 
         global KEYBOARD_INDICES, CIRCLE_OF_FIFTHS

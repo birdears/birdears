@@ -36,9 +36,9 @@ class HarmonicIntervalQuestion(QuestionBase):
                 chromatic intervals, ie., intervals not in the diatonic scale
                 of tonic/mode.
             n_octaves (int): Maximum number of octaves of the question.
-            valid_intervals (list): A list with intervals (int) valid for random
-                choice, 1 is 1st, 2 is second etc. Eg. [1, 4, 5] to allow only
-                tonics, fourths and fifths.
+            valid_intervals (list): A list with intervals (int) valid for
+                random choice, 1 is 1st, 2 is second etc. Eg. [1, 4, 5] to
+                allow only tonics, fourths and fifths.
         """
 
         super(HarmonicIntervalQuestion,
@@ -58,20 +58,20 @@ class HarmonicIntervalQuestion(QuestionBase):
         tonic = self.tonic
 
         if not chromatic:
-            self.interval = DiatonicInterval(mode=mode, tonic=self.tonic,
-                                             octave=self.octave,
-                                             n_octaves=n_octaves,
-                                             descending=descending,
-                                             valid_intervals=\
-                                                self.valid_intervals)
+            self.interval = \
+                DiatonicInterval(mode=mode, tonic=self.tonic,
+                                 octave=self.octave,
+                                 n_octaves=n_octaves,
+                                 descending=descending,
+                                 valid_intervals=self.valid_intervals)
 
         else:
-            self.interval = ChromaticInterval(mode=mode, tonic=self.tonic,
-                                              octave=self.octave,
-                                              n_octaves=n_octaves,
-                                              descending=descending,
-                                              valid_intervals=\
-                                                self.valid_intervals)
+            self.interval = \
+                ChromaticInterval(mode=mode, tonic=self.tonic,
+                                  octave=self.octave,
+                                  n_octaves=n_octaves,
+                                  descending=descending,
+                                  valid_intervals=self.valid_intervals)
 
         self.pre_question = self.make_pre_question(method='none')
         self.question = self.make_question()

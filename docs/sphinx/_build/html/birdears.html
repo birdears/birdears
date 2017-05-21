@@ -522,14 +522,14 @@ in the resolution.</li>
 <span id="birdears-questionbase-module"></span><h2>birdears.questionbase module<a class="headerlink" href="#module-birdears.questionbase" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="birdears.questionbase.QuestionBase">
-<em class="property">class </em><code class="descclassname">birdears.questionbase.</code><code class="descname">QuestionBase</code><span class="sig-paren">(</span><em>mode='major'</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.questionbase.QuestionBase" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">birdears.questionbase.</code><code class="descname">QuestionBase</code><span class="sig-paren">(</span><em>mode='major'</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>valid_intervals=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.questionbase.QuestionBase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 <p>Base Class to be subclassed for Question classes.</p>
 <p>This class implements attributes and routines to be used in Question
 subclasses.</p>
 <dl class="method">
 <dt id="birdears.questionbase.QuestionBase.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>mode='major'</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.questionbase.QuestionBase.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>mode='major'</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>valid_intervals=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.questionbase.QuestionBase.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Inits the class.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -549,6 +549,9 @@ ie., intervals have lower pitch than the tonic.</li>
 (False) chromatic intervals, ie., intervals not in the
 diatonic scale of tonic/mode.</li>
 <li><strong>n_octaves</strong> (<em>int</em>) &#8211; Maximum numbr of octaves of the question.</li>
+<li><strong>valid_intervals</strong> (<em>list</em>) &#8211; A list with intervals (int) valid for
+random choice, 1 is 1st, 2 is second etc. Eg. [1, 4, 5] to
+allow only tonics, fourths and fifths.</li>
 </ul>
 </td>
 </tr>
