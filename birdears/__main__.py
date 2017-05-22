@@ -217,6 +217,10 @@ def kivy(*args, **kwargs):
     """
 
     # CommandLine(**config_dict)
+    from .interfaces.gui.app import BirdearsApp
+
+    BirdearsApp().run()
+
     pass
 
 if __name__ == "__main__":
