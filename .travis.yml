@@ -9,7 +9,7 @@ before_install:
 install:
   - pip install coveralls codecov codeclimate-test-reporter
 # command to run tests
-script: coverage run --source=birdears --omit=birdears/click/** --module pytest --capture=no --verbose tests/
+script: coverage run --source=birdears --omit=birdears/click/**,birdears/toml/** --module pytest --capture=no --verbose tests/
 env:
   - PYTHONPATH='' PYTEST=true
 after_success:
