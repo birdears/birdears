@@ -192,6 +192,33 @@ def load(filename, *args, **kwargs):
 
     CommandLine(**config_dict)
 
+urwid_epilog = """
+This uses urwid to load birdears TUI.
+"""
+
+
+@cli.command(options_metavar='', epilog=urwid_epilog)
+def urwid(*args, **kwargs):
+    """Starts birdears text user interface (using urwid).
+    """
+
+    # TextUserInterface(**config_dict)
+    pass
+
+
+kivy_epilog = """
+This uses kivy to load birdears GUI.
+"""
+
+
+@cli.command(options_metavar='', epilog=kivy_epilog)
+def kivy(*args, **kwargs):
+    """Starts birdears graphical user interface (using kivy).
+    """
+
+    # CommandLine(**config_dict)
+    pass
+
 if __name__ == "__main__":
 
     cli()

@@ -9,7 +9,7 @@ echo 'starting..'
 pep8 birdears --exclude=click,toml
 
 # run tests
-coverage run --source=birdears --module pytest --verbose tests/
+coverage run --source=birdears --omit=birdears/click/**,birdears/toml/** --module pytest --verbose tests/
 coverage html --omit='*birdears/click/*','*birdears/toml/*' -d docs/coverage-html/
 
 # remove pypi builds
