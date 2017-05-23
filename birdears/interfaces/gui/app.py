@@ -31,24 +31,42 @@ class ExerciseScreen(Screen):
     def __init__(self, **kwargs):
         super(ExerciseScreen, self).__init__(**kwargs)
 
-        #self.add_widget(ExerciseWidget())
+        self.add_widget(ExerciseWidget())
 
 class ExerciseWidget(BoxLayout):
+
+    #bt11 = ObjectProperty(None)
+
     def __init__(self, **kwargs):
         super(ExerciseWidget, self).__init__(**kwargs)
+        self.bt11.disabled = True
+        #for child in self.children:
+        #    print(child)
+        #print(self.ids.interval_buttons)
+        print(self.bt11)
+
+
 
 class BirdearsApp(App):
 
     def build(self):
-        # return Label(text='hello, world!!')
 
-            # BirdearsScreenManager(initial_screen=InitialScreen(),
         self.sm =  BirdearsScreenManager(transition=NoTransition())
-        self.sm.add_widget(InitialScreen(name='initial'))
-        self.sm.add_widget(ExerciseScreen(name='exercise'))
-        self.sm.current = 'initial'
+        self.sm.switch_to(InitialScreen(name='initial'))
 
         return self.sm
 
     def show_screen(self, screen_name):
         self.sm.current = screen_name
+
+    def show_exercise(self, exercise):
+
+        if exercise == 'melodic':
+            from ...questions.melodicinterval import MelodicIntervalQuestion
+            self.question = MelodicIntervalQuestion()
+
+
+        print(self.question)
+        #self.sm.current = 'exercise'
+        # self.sm.current = screen_name
+        self.sm.switch_to(ExerciseScreen(name='exercise'))

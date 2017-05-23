@@ -1,4 +1,4 @@
-<BirdearsScreenManager>
+<BirdearsScreenManager>:
     canvas.before:
         Color:
             rgba: 1, 1, 1, 1
@@ -6,7 +6,7 @@
             pos: self.pos
             size: self.size
 
-<InitialScreen>
+<InitialScreen>:
     BoxLayout:
         orientation: 'vertical'
         Label:
@@ -18,24 +18,28 @@
             spacing: 4
             Button:
                 text: 'Melodic Interval'
-                on_press: app.show_screen('exercise')
+                on_press: app.show_exercise('melodic')
             Button:
                 text: 'Harmonic Interval'
+                on_press: app.show_exercise('harmonic')
             Button:
                 text: 'Melodic Dictation'
+                on_press: app.show_exercise('dictation')
             Button:
                 text: 'Instrumental Dictation'
+                on_press: app.show_exercise('instrumental')
         Label:
             color: 0,0,0,1
             text: 'https://github.com/iacchus/birdears/'
 
-<ExerciseScreen>
-    ExerciseWidget:
-        id: hey
+<ExerciseScreen>:
+    #ExerciseWidget:
 
-<ExerciseWidget>
+# this is for major; for minor, copy and change the button ids accordingly
+<ExerciseWidget>:
     orientation: 'vertical'
     size_hint: (1, 1)
+    bt11: bt11.__self__
     BoxLayout:
         id: repeat_resolve_screen
         orientation: 'horizontal'
@@ -53,16 +57,24 @@
             Label:
                 size_hint: (0.5, 1)
             Button:
+                id: bt1
                 text: 'b2'
             Button:
+                id: bt3
                 text: 'b3'
+                on_press: print(root.bt11)
+
             Label:
                 size_hint: (1, 1)
             Button:
+                id: bt6
                 text: '#4'
+                disabled: True
             Button:
+                id: bt8
                 text: 'b6'
             Button:
+                id: bt10
                 text: 'b7'
             Label:
                 size_hint: (1.5, 1)
@@ -71,20 +83,28 @@
             padding: 16,0,16,32
             spacing: 4
             Button:
+                id: bt0
                 text: '1'
             Button:
+                id: bt2
                 text: '2'
             Button:
+                id: bt4
                 text: '3'
             Button:
+                id: bt5
                 text: '4'
             Button:
+                id: bt7
                 text: '5'
             Button:
+                id: bt9
                 text: '6'
             Button:
+                id: bt11
                 text: '7'
             Button:
+                id: bt12
                 text: '8'
     BoxLayout:
         id: correct_and_incorrect
