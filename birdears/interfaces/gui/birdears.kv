@@ -1,0 +1,97 @@
+<BirdearsScreenManager>
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<InitialScreen>
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            color: 0,0,0,1
+            text: 'Birdears - Functional Ear Training'
+        GridLayout:
+            cols: 2
+            padding: 16,16,16,16
+            spacing: 4
+            Button:
+                text: 'Melodic Interval'
+                on_press: app.show_screen('exercise')
+            Button:
+                text: 'Harmonic Interval'
+            Button:
+                text: 'Melodic Dictation'
+            Button:
+                text: 'Instrumental Dictation'
+        Label:
+            color: 0,0,0,1
+            text: 'https://github.com/iacchus/birdears/'
+
+<ExerciseScreen>
+    ExerciseWidget:
+        id: hey
+
+<ExerciseWidget>
+    orientation: 'vertical'
+    size_hint: (1, 1)
+    BoxLayout:
+        id: repeat_resolve_screen
+        orientation: 'horizontal'
+        Button:
+            text: 'Repeat'
+        Button:
+            text: 'Play the correct Answer'
+    BoxLayout:
+        id: interval_buttons
+        orientation: 'vertical'
+        BoxLayout:
+            id: interval_chromatics
+            padding: 16,28,16,4
+            spacing: 4
+            Label:
+                size_hint: (0.5, 1)
+            Button:
+                text: 'b2'
+            Button:
+                text: 'b3'
+            Label:
+                size_hint: (1, 1)
+            Button:
+                text: '#4'
+            Button:
+                text: 'b6'
+            Button:
+                text: 'b7'
+            Label:
+                size_hint: (1.5, 1)
+        BoxLayout:
+            id: interval_scale_tones
+            padding: 16,0,16,32
+            spacing: 4
+            Button:
+                text: '1'
+            Button:
+                text: '2'
+            Button:
+                text: '3'
+            Button:
+                text: '4'
+            Button:
+                text: '5'
+            Button:
+                text: '6'
+            Button:
+                text: '7'
+            Button:
+                text: '8'
+    BoxLayout:
+        id: correct_and_incorrect
+        orientation: 'horizontal'
+        Label:
+            markup: 'true'
+            text: '[color=666666]1[/color][color=333333]/[/color][color=999999]20[/color]'
+        Label:
+            markup: 'true'
+            text: '[color=00ff00]0+[/color] [color=ff0000]0+[/color]'
