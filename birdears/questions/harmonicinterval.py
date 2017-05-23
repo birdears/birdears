@@ -13,10 +13,6 @@ from ..sequence import Sequence
 from ..resolution import Resolution
 from ..prequestion import PreQuestion
 
-DURATION = 0
-DELAY = 1
-POS_DELAY = 2
-
 
 class HarmonicIntervalQuestion(QuestionBase):
     """Implements a Harmonic Interval test.
@@ -51,31 +47,12 @@ class HarmonicIntervalQuestion(QuestionBase):
                              n_octaves=n_octaves,
                              valid_intervals=valid_intervals, *args, **kwargs)
 
-        # durations = dict(
-        #     preq=(3, 0.5, 1),
-        #     quest=(3, 0.5, 0),
-        #     resol=(2.5, 0.5, 1)
-        # )
-
         durations = {
             'preq': {'duration':3, 'delay':0.5, 'pos_delay':1},
             'quest': {'duration':3, 'delay':0.5, 'pos_delay':0},
             'resol': {'duration':2.5, 'delay':0.5, 'pos_delay':1}
         }
-
         self.durations = durations
-
-        # self.prequestion_duration = 3
-        # self.prequestion_delay = 0.5
-        # self.prequestion_pos_delay = 0
-        #
-        # self.question_duration = 3
-        # self.question_delay = 0.5
-        # self.question_pos_delay = 0
-        #
-        # self.resolution_duration = 2.5
-        # self.resolution_delay = 0.5
-        # self.resolution_pos_delay = 1
 
         tonic = self.tonic
 

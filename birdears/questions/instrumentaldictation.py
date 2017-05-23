@@ -19,10 +19,6 @@ from ..prequestion import PreQuestion
 from ..interfaces.commandline import COLS
 from ..interfaces.commandline import center_text
 
-DURATION = 0
-DELAY = 1
-POS_DELAY = 2
-
 
 class InstrumentalDictationQuestion(QuestionBase):
     """Implements an instrumental dictation test.
@@ -65,18 +61,11 @@ class InstrumentalDictationQuestion(QuestionBase):
                      n_octaves=n_octaves, valid_intervals=valid_intervals,
                      *args, **kwargs)
 
-        # durations = dict(
-        #     preq=(2, 0.5, 1),
-        #     quest=(2, 0.5, 0),
-        #     resol=(2.5, 0.5, 1)
-        # )
-
         durations = {
             'preq': {'duration':2, 'delay':0.5, 'pos_delay':1},
             'quest': {'duration':2, 'delay':0.5, 'pos_delay':0},
             'resol': {'duration':2.5, 'delay':0.5, 'pos_delay':1}
         }
-
         self.durations = durations
 
         self.wait_time = wait_time

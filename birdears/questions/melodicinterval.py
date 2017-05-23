@@ -13,10 +13,6 @@ from ..sequence import Sequence
 from ..resolution import Resolution
 from ..prequestion import PreQuestion
 
-DURATION = 0
-DELAY = 1
-POS_DELAY = 2
-
 
 class MelodicIntervalQuestion(QuestionBase):
     """Implements a Melodic Interval test.
@@ -51,31 +47,12 @@ class MelodicIntervalQuestion(QuestionBase):
                      n_octaves=n_octaves, valid_intervals=valid_intervals,
                      *args, **kwargs)
 
-        # durations = dict(
-        #     preq=dict(duration=2, delay=0.5, pos_delay=1),
-        #     quest=dict(duration=2, delay=0.5, pos_delay=0),
-        #     resol=dict(duration=2.5, delay=0.5, pos_delay=1)
-        # )
-
         durations = {
             'preq': {'duration':2, 'delay':0.5, 'pos_delay':1},
             'quest': {'duration':2, 'delay':0.5, 'pos_delay':0},
             'resol': {'duration':2.5, 'delay':0.5, 'pos_delay':1}
         }
-
         self.durations = durations
-
-        # self.prequestion_duration = 2
-        # self.prequestion_delay = 0.5
-        # self.prequestion_pos_delay = 0
-        #
-        # self.question_duration = 2
-        # self.question_delay = 0.5
-        # self.question_pos_delay = 0
-        #
-        # self.resolution_duration = 2.5
-        # self.resolution_delay = 0.5
-        # self.resolution_pos_delay = 1
 
         if not chromatic:
             self.interval = \

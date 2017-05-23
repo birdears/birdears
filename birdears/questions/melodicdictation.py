@@ -16,10 +16,6 @@ from ..sequence import Sequence
 from ..resolution import Resolution
 from ..prequestion import PreQuestion
 
-DURATION = 0
-DELAY = 1
-POS_DELAY = 2
-
 
 class MelodicDictationQuestion(QuestionBase):
     """Implements a melodic dictation test.
@@ -62,7 +58,6 @@ class MelodicDictationQuestion(QuestionBase):
             'quest': {'duration':2, 'delay':0.8, 'pos_delay':0},
             'resol': {'duration':2.5, 'delay':0.5, 'pos_delay':1}
         }
-
         self.durations = durations
 
         if not chromatic:

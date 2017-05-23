@@ -42,14 +42,26 @@ class ExerciseWidget(BoxLayout):
         valid_semitones = self.question.get_valid_semitones()
 
         for semitone in valid_semitones:
-            getattr(self, "bt{btid}".format(btid=semitone)).disabled = False
+            bt = getattr(self, "bt{btid}".format(btid=semitone))
+            bt.disabled = False
+            bt.keyboard = self.question.keyboard_index[semitone]
+            bt.semitone = semitone
+            print(bt.keyboard)
+
+        self.question.play_question()
             #self.bt11.disabled = True
         #for child in self.children:
         #    print(child)
         #print(self.ids.interval_buttons)
         #print(self.bt11)
 
+    def check_question(self, semitone):
 
+        self.question.play_resolution()
+        keyboard = self.question.keyboard_index[semitone]
+        response = self.question.check_question([keyboard])
+
+        print(response)
 
 class BirdearsApp(App):
 
