@@ -6,6 +6,9 @@ from random import choice
 
 from . import KEYBOARD_INDICES
 from . import CIRCLE_OF_FIFTHS
+from . import DIATONIC_MODES
+from . import CHROMATIC_TYPE
+from . import INTERVAL_INDEX
 
 from .scale import DiatonicScale
 from .scale import ChromaticScale
@@ -27,7 +30,7 @@ def register_question_class(f, *args, **kwargs):
 
     return decorator
 
-    
+
 class QuestionBase:
     """
     Base Class to be subclassed for Question classes.
@@ -124,8 +127,59 @@ class QuestionBase:
         })
         self.scales = scales
 
+
         self.concrete_tonic = scales['diatonic_pitch'].scale[0]
         self.scale_size = len(scales['diatonic'].scale)
+
+    def get_valid_semitones(self):
+        """Returns a list with valid semitones for question.
+        """
+
+        global DIATONIC_MODES, CHROMATIC_TYPE, MAX_SEMITONES_RESOLVE_BELOW
+        global INTERVALS
+
+        diatonic_mode = list(DIATONIC_MODES[self.mode])
+        chromatic_network = list(CHROMATIC_TYPE)
+
+        step_network = diatonic_mode
+
+        # FIXME: please refactore this with method signature n_octaves=1:
+        if self.n_octaves:
+            for i in range(1, self.n_octaves):
+                step_network.extend([semitones + 12 * i for semitones in
+                                     diatonic_mode[1:]])
+                chromatic_network.extend([semitones + 12 * i for semitones in
+                                          CHROMATIC_TYPE[1:]])
+
+        if not self.is_chromatic:
+            if not self.valid_intervals:
+                # semitones = choice(step_network)
+                valid_network = step_network
+            else:
+                valid_network = []
+                for item in self.valid_intervals:
+                    valid_network.extend(INTERVAL_INDEX[item])
+                for i in range(1, self.n_octaves):
+                    valid_network.extend([semitones + 12*i for semitones in
+                                          valid_network[1:]])
+                valid_network = [x for x in valid_network if x in step_network]
+
+                # semitones = choice(valid_network)
+        else:
+            if not self.valid_intervals:
+                #semitones = choice(chromatic_network)
+                valid_network = chromatic_network
+            else:
+                valid_network = []
+                for item in self.valid_intervals:
+                    valid_network.extend(INTERVAL_INDEX[item])
+                for i in range(1, self.n_octaves):
+                    valid_network.extend([semitones + 12*i for semitones in
+                                          valid_network])
+
+                # semitones = choice(valid_network)
+
+        return valid_network
 
     def make_question(self):
         """This method should be overwritten by the question subclasses.

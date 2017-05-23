@@ -39,7 +39,20 @@
 <ExerciseWidget>:
     orientation: 'vertical'
     size_hint: (1, 1)
+    question: app.question
+    bt0: bt0.__self__
+    bt1: bt1.__self__
+    bt2: bt2.__self__
+    bt3: bt3.__self__
+    bt4: bt4.__self__
+    bt5: bt5.__self__
+    bt6: bt6.__self__
+    bt7: bt7.__self__
+    bt8: bt8.__self__
+    bt9: bt9.__self__
+    bt10: bt10.__self__
     bt11: bt11.__self__
+    bt12: bt12.__self__
     BoxLayout:
         id: repeat_resolve_screen
         orientation: 'horizontal'
@@ -58,11 +71,12 @@
                 size_hint: (0.5, 1)
             Button:
                 id: bt1
+                disabled: True
                 text: 'b2'
             Button:
                 id: bt3
                 text: 'b3'
-                on_press: print(root.bt11)
+                disabled: True
 
             Label:
                 size_hint: (1, 1)
@@ -73,9 +87,11 @@
             Button:
                 id: bt8
                 text: 'b6'
+                disabled: True
             Button:
                 id: bt10
                 text: 'b7'
+                disabled: True
             Label:
                 size_hint: (1.5, 1)
         BoxLayout:
@@ -85,27 +101,35 @@
             Button:
                 id: bt0
                 text: '1'
+                disabled: True
             Button:
                 id: bt2
                 text: '2'
+                disabled: True
             Button:
                 id: bt4
                 text: '3'
+                disabled: True
             Button:
                 id: bt5
                 text: '4'
+                disabled: True
             Button:
                 id: bt7
                 text: '5'
+                disabled: True
             Button:
                 id: bt9
                 text: '6'
+                disabled: True
             Button:
                 id: bt11
                 text: '7'
+                disabled: True
             Button:
                 id: bt12
                 text: '8'
+                disabled: True
     BoxLayout:
         id: correct_and_incorrect
         orientation: 'horizontal'

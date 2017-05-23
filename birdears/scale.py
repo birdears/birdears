@@ -100,7 +100,7 @@ class DiatonicScale(ScaleBase):
 
         diatonic_mode = DIATONIC_MODES[mode]
 
-        chromatic = ChromaticScale(tonic).scale
+        chromatic = ChromaticScale(tonic=tonic).scale
 
         diatonic = [chromatic[semitones] for semitones in diatonic_mode[:-1]]
 
@@ -140,7 +140,7 @@ class DiatonicScale(ScaleBase):
 
         diatonic_mode = DIATONIC_MODES[mode]
 
-        chromatic = ChromaticScale(tonic).scale
+        chromatic = ChromaticScale(tonic=tonic).scale
 
         diatonic = [chromatic[semitones] for semitones in diatonic_mode[:-1]]
 

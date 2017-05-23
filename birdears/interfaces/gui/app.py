@@ -39,11 +39,15 @@ class ExerciseWidget(BoxLayout):
 
     def __init__(self, **kwargs):
         super(ExerciseWidget, self).__init__(**kwargs)
-        self.bt11.disabled = True
+        valid_semitones = self.question.get_valid_semitones()
+
+        for semitone in valid_semitones:
+            getattr(self, "bt{btid}".format(btid=semitone)).disabled = False
+            #self.bt11.disabled = True
         #for child in self.children:
         #    print(child)
         #print(self.ids.interval_buttons)
-        print(self.bt11)
+        #print(self.bt11)
 
 
 

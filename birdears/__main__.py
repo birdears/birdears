@@ -59,7 +59,6 @@ def melodic(*args, **kwargs):
     """Melodic interval recognition
     """
 
-    print(kwargs['valid_intervals'])
     kwargs.update({'exercise': 'melodic'})
     CommandLine(**kwargs)
 
