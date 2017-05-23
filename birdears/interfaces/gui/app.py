@@ -8,7 +8,6 @@ from kivy.uix.screenmanager import ScreenManager
 from kivy.uix.screenmanager import Screen
 from kivy.uix.boxlayout import BoxLayout
 
-# from kivy.uix.screenmanager import FadeTransition, NoTransition
 from kivy.uix.screenmanager import NoTransition
 
 from kivy.uix.button import Button
@@ -35,29 +34,26 @@ class ExerciseScreen(Screen):
 
 class ExerciseWidget(BoxLayout):
 
-    #bt11 = ObjectProperty(None)
-
     def __init__(self, **kwargs):
         super(ExerciseWidget, self).__init__(**kwargs)
+
         valid_semitones = self.question.get_valid_semitones()
 
         for semitone in valid_semitones:
             bt = getattr(self, "bt{btid}".format(btid=semitone))
+
             bt.disabled = False
             bt.keyboard = self.question.keyboard_index[semitone]
             bt.semitone = semitone
+
             print(bt.keyboard)
 
         self.question.play_question()
-            #self.bt11.disabled = True
-        #for child in self.children:
-        #    print(child)
-        #print(self.ids.interval_buttons)
-        #print(self.bt11)
 
     def check_question(self, semitone):
 
         self.question.play_resolution()
+
         keyboard = self.question.keyboard_index[semitone]
         response = self.question.check_question([keyboard])
 
@@ -80,6 +76,15 @@ class BirdearsApp(App):
         if exercise == 'melodic':
             from ...questions.melodicinterval import MelodicIntervalQuestion
             self.question = MelodicIntervalQuestion()
+        elif exercise == 'harmonic':
+            from ...questions.harmonicinterval import HarmonicIntervalQuestion
+            self.question = HarmonicIntervalQuestion()
+        elif exercise == 'dictation':
+            from ...questions.melodicdictation import MelodicDictationQuestion
+            self.question = MelodicDictationQuestion()
+        elif exercise == 'instrumental':
+            from ...questions.instrumentaldictation import InstrumentalDictationQuestion
+            self.question = InstrumentalDictationQuestion()
 
 
         print(self.question)

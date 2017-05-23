@@ -201,7 +201,12 @@ def urwid(*args, **kwargs):
     """Starts birdears text user interface (using urwid).
     """
 
-    # TextUserInterface(**config_dict)
+    try:
+        import urwid
+    except ImportError:
+        print("You need to install 'urwid' python library to use the tui.")
+        exit(1)
+        
     pass
 
 
@@ -215,12 +220,16 @@ def kivy(*args, **kwargs):
     """Starts birdears graphical user interface (using kivy).
     """
 
-    # CommandLine(**config_dict)
+    try:
+        import kivy
+    except ImportError:
+        print("You need to install 'kivy' python library to use the gui.")
+        exit(1)
+
     from .interfaces.gui.app import BirdearsApp
 
     BirdearsApp().run()
 
-    pass
 
 if __name__ == "__main__":
 
