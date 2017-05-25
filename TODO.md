@@ -98,6 +98,9 @@ of handling its own duration, and delay time, this way:
 
 **Maybe sequence can contain sequences play(): if type=sequence, then play()**
 
+**Refactor API so that inside an interface (eg., the GUI) we don't have stuff
+redunant to it (eg., commandline presentation on GUI when it imports the API)**
+
 ### Etc
 
 **Lets reserve options to `-r` to `--resolution` method  (FET-like, Repeat-only,

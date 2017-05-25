@@ -65,7 +65,7 @@ class Sequence:
                 el, duration, delay = element
             else:
                 el = element
-                
+
             if type(el) == str:
                 self._play_note(el, delay=delay)
             elif type(el) == list:
@@ -78,7 +78,22 @@ class Sequence:
         """Plays element `sequence.elements[index].`
         """
 
-        pass
+        element = self.elements[index]
+
+        delay = self.delay
+
+        if type(element) == tuple:
+            el, duration, delay = element
+        else:
+            el = element
+
+        if type(el) == str:
+            self._play_note(el, delay=delay)
+        elif type(el) == list:
+            self._play_chord(element, delay=delay)
+
+        #  if self.pos_delay:
+        #     self._wait(self.pos_delay)
 
     # FIXME: implement octave here:
     def make_chord_progression(self, tonic, mode, degrees):
@@ -156,3 +171,6 @@ class Sequence:
         """
 
         time.sleep(seconds)
+
+    def __len__(self):
+        return len(self.elements)

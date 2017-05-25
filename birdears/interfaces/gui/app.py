@@ -15,6 +15,81 @@ from kivy.uix.label import Label
 
 from kivy.properties import StringProperty, ObjectProperty
 
+from kivy.clock import Clock
+
+from ...sequence import Sequence
+
+class NonblockingSequence(Sequence):
+
+    def __init__(self, elements=[], duration=2, delay=1.5, pos_delay=1):
+        super(NonblockingSequence, self).__init__(elements=elements,
+                                                  duration=duration,
+                                                  delay=delay,
+                                                  pos_delay=pos_delay)
+
+        self.index = 0;
+        self.last_idx = len(self.elements) - 1
+        self.iterator = iter(self)
+
+    def play_callback(self, dt):
+        try:
+            a = next(self.iterator)
+            #a = next(self)
+
+            print(a)
+            if not a['is_last']:
+                Clock.schedule_once(self.play_callback, a['delay'])
+        except StopIteration:
+            self.iterator = iter(self)
+            print('exception recvd..')
+
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        """Plays the next element of note and/or chord in the Sequence and
+        schedules the next event.
+        """
+
+        is_last = True if self.index == self.last_idx else False
+
+        #last_idx = len(self.elements) - 1
+
+        element = self.elements[self.index]
+        # for cur_idx, element in enumerate(self.elements):
+
+        # lets leave the last element's delay for pos_delay:
+
+        delay = self.delay if not is_last else 0
+
+        if type(element) == tuple:
+            el, duration, delay = element
+        else:
+            el = element
+
+        if type(el) == str:
+            self._play_note(el, delay=delay)
+        elif type(el) == list:
+            self._play_chord(element, delay=delay)
+
+        self.play_element(self.index)
+
+        current_data = dict(
+            index=self.index,
+            element=el,
+            delay=delay,
+            is_last=is_last
+        )
+
+        self.index += 1
+
+        #yield current_data
+        return current_data
+
+    def _wait(self, seconds):
+        pass
+
 #Builder.load_file('interfaces/gui/birdears.kv')
 
 class BirdearsScreenManager(ScreenManager):
@@ -48,7 +123,22 @@ class ExerciseWidget(BoxLayout):
 
             print(bt.keyboard)
 
-        self.question.play_question()
+        nbprequestion = \
+            NonblockingSequence(elements=self.question.pre_question.elements,
+                                duration=self.question.pre_question.duration,
+                                delay=self.question.pre_question.delay,
+                                pos_delay=self.question.pre_question.pos_delay)
+
+        nbquestion = \
+            NonblockingSequence(elements=self.question.question.elements,
+                                duration=self.question.question.duration,
+                                delay=self.question.question.delay,
+                                pos_delay=self.question.question.pos_delay)
+
+        #play_iter = iter(nbquestion)
+        #nbquestion.play_next(play_iter)
+        Clock.schedule_once(nbprequestion.play_callback, 0)
+        Clock.schedule_once(nbquestion.play_callback, 1)
 
     def check_question(self, semitone):
 
@@ -83,7 +173,8 @@ class BirdearsApp(App):
             from ...questions.melodicdictation import MelodicDictationQuestion
             self.question = MelodicDictationQuestion()
         elif exercise == 'instrumental':
-            from ...questions.instrumentaldictation import InstrumentalDictationQuestion
+            from ...questions.instrumentaldictation import\
+                InstrumentalDictationQuestion
             self.question = InstrumentalDictationQuestion()
 
 
