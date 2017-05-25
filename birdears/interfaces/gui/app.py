@@ -33,8 +33,8 @@ class NonblockingSequence(Sequence):
 
     def play_callback(self, dt):
         try:
-            a = next(self.iterator)
-            #a = next(self)
+            #a = next(self.iterator)
+            a = next(self)
 
             print(a)
             if not a['is_last']:
