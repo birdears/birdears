@@ -33,6 +33,9 @@ class Sequence:
 
         self.elements = list(elements)
 
+        self.index = 0;
+        self.last_idx = len(self.elements) - 1
+
     def append(self, elements):
         """Appends `elements` to Sequence.elements
 
@@ -69,7 +72,7 @@ class Sequence:
             if type(el) == str:
                 self._play_note(el, delay=delay)
             elif type(el) == list:
-                self._play_chord(element, delay=delay)
+                self._play_chord(el, delay=delay)
 
         if self.pos_delay:
             self._wait(self.pos_delay)
@@ -90,7 +93,7 @@ class Sequence:
         if type(el) == str:
             self._play_note(el, delay=delay)
         elif type(el) == list:
-            self._play_chord(element, delay=delay)
+            self._play_chord(el, delay=delay)
 
         #  if self.pos_delay:
         #     self._wait(self.pos_delay)

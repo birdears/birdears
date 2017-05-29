@@ -100,9 +100,13 @@ class MelodicDictationQuestion(QuestionBase):
     def make_resolution(self):
         # the idea here is execute resolve() to each interval of the dictation
 
-        resolve = Resolution(method='repeat_only', **self.durations['resol'])
+        resolve = Resolution(method='nearest_tonic', **self.durations['resol'])
+        #resolve = Resolution(method='repeat_only', **self.durations['resol'])
 
-        resolution = resolve(self.question.elements)
+        intervals = [interval.note_and_octave for interval in
+                     self.question_phrase_intervals]
+        resolution = resolve(mode=self.mode, tonic=self.tonic,
+                             intervals=self.question_phrase_intervals)
 
         return resolution
 

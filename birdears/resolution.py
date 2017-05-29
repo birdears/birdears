@@ -88,6 +88,8 @@ def nearest_tonic(mode, tonic, intervals, duration, delay, pos_delay,
     if type(intervals) is not list:
         intervals = [intervals]
 
+    #last_el_idx = len(intervals) - 1
+    #for cur_el_idx, interval in enumerate(intervals):
     for interval in intervals:
         resolution_pitch = []
         scale_pitch = DiatonicScale(tonic=tonic, mode=mode,
@@ -121,10 +123,22 @@ def nearest_tonic(mode, tonic, intervals, duration, delay, pos_delay,
         else:
             seq = resolution_pitch
 
-        sequence_list.append(Sequence(seq, duration=duration, delay=delay,
-                             pos_delay=pos_delay))
+        seq_list = list()
+        last_el_idx = len(seq) - 1
+        for cur_el_idx, cur_el in enumerate(seq):
+            cur_delay = delay if last_el_idx != cur_el_idx else pos_delay
+            cur_tuple = (cur_el, duration, cur_delay)
+            seq_list.append(cur_tuple)
 
-    return sequence_list
+        cur_delay = delay if last_el_idx != cur_el_idx else pos_delay
+        cur_tuple = (cur_el, duration, cur_delay)
+
+        sequence_list.extend(seq_list)
+
+        # sequence_list.append(Sequence(seq, duration=duration, delay=delay,
+        #                     pos_delay=pos_delay))
+
+    return Sequence(elements=sequence_list, delay=delay, pos_delay=pos_delay)
 
 
 @register_resolution_method

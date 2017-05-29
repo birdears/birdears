@@ -29,16 +29,24 @@ class NonblockingSequence(Sequence):
 
         self.index = 0;
         self.last_idx = len(self.elements) - 1
-        self.iterator = iter(self)
+        #self.iterator = iter(self)
 
-    def play_callback(self, dt):
+    def play_callback(self, dt, next_callback=None):
         try:
             #a = next(self.iterator)
             a = next(self)
 
             print(a)
             if not a['is_last']:
-                Clock.schedule_once(self.play_callback, a['delay'])
+                Clock.schedule_once(lambda dt:
+                                    self.play_callback(dt, next_callback),
+                                    a['delay'])
+            else:
+                if next_callback:
+                    Clock.schedule_once(lambda dt: next_callback(),
+                                        self.pos_delay)
+
+
         except StopIteration:
             self.iterator = iter(self)
             print('exception recvd..')
@@ -54,13 +62,9 @@ class NonblockingSequence(Sequence):
 
         is_last = True if self.index == self.last_idx else False
 
-        #last_idx = len(self.elements) - 1
-
         element = self.elements[self.index]
-        # for cur_idx, element in enumerate(self.elements):
 
         # lets leave the last element's delay for pos_delay:
-
         delay = self.delay if not is_last else 0
 
         if type(element) == tuple:
@@ -79,12 +83,11 @@ class NonblockingSequence(Sequence):
             index=self.index,
             element=el,
             delay=delay,
-            is_last=is_last
+            is_last=is_last,
         )
 
         self.index += 1
 
-        #yield current_data
         return current_data
 
     def _wait(self, seconds):
@@ -123,13 +126,13 @@ class ExerciseWidget(BoxLayout):
 
             print(bt.keyboard)
 
-        nbprequestion = \
+        self.nbprequestion = \
             NonblockingSequence(elements=self.question.pre_question.elements,
                                 duration=self.question.pre_question.duration,
                                 delay=self.question.pre_question.delay,
                                 pos_delay=self.question.pre_question.pos_delay)
 
-        nbquestion = \
+        self.nbquestion = \
             NonblockingSequence(elements=self.question.question.elements,
                                 duration=self.question.question.duration,
                                 delay=self.question.question.delay,
@@ -137,12 +140,25 @@ class ExerciseWidget(BoxLayout):
 
         #play_iter = iter(nbquestion)
         #nbquestion.play_next(play_iter)
-        Clock.schedule_once(nbprequestion.play_callback, 0)
-        Clock.schedule_once(nbquestion.play_callback, 1)
+        self.play_pre_question()
+
+    def play_pre_question(self):
+        Clock.schedule_once(lambda dt: self.nbprequestion.play_callback(dt,
+                            self.play_question), 0)
+
+    def play_question(self):
+        Clock.schedule_once(self.nbquestion.play_callback, 0)
 
     def check_question(self, semitone):
 
         self.question.play_resolution()
+        self.nbresolution = \
+            NonblockingSequence(elements=self.question.resolution.elements,
+                                duration=self.question.resolution.duration,
+                                delay=self.question.resolution.delay,
+                                pos_delay=self.question.resolution.pos_delay)
+        Clock.schedule_once(lambda dt: self.nbpreresolution.play_callback, 0)
+
 
         keyboard = self.question.keyboard_index[semitone]
         response = self.question.check_question([keyboard])
