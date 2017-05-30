@@ -27,6 +27,7 @@ CRITICAL	A serious error, indicating that the program itself may be unable
 """
 
 import logging
+from functools import wraps
 
 from logging.config import dictConfig
 
@@ -62,3 +63,41 @@ logging_config = dict(
 dictConfig(logging_config)
 
 logger = logging.getLogger()
+
+def log_event(f, *args, **kwargs):
+
+    @wraps(f)
+    def decorator(*args, **kwargs):
+
+        # arguments = str(args) # 0 is self
+        # kw_arguments = str(kwargs)
+        qname = f.__qualname__
+
+        arguments = ', '.join([repr(arg) for arg in args]) # 0 is self
+        kw_arguments = ', '.join(['{}={}'.format(k,repr(v))
+                                 for k, v in kwargs.items()])
+
+        if logger.isEnabledFor(logging.INFO):
+            logger.info("{qname} called.".format(qname=qname))
+
+        if logger.isEnabledFor(logging.DEBUG):
+            # logger.debug("\t*{}, **{}".format(
+            # arguments, kw_arguments).expandtabs())
+            logger.debug("{qname}({args}, {kwargs})".\
+                         format(qname=qname, args=arguments,
+                                kwargs=kw_arguments). expandtabs())
+
+            # init returns the very own object
+            if f.__name__ != '__init__':
+
+                func_return = f(*args, **kwargs)
+                logger.debug("{qname} function returned: '{func_ret}'".\
+                             format(qname=qname,func_ret=func_return))
+
+                return func_return
+
+        return f(*args, **kwargs)
+
+    # RESOLUTION_METHODS.update({f.__name__: f})
+
+    return decorator

@@ -1,4 +1,5 @@
 from ..logger import logger
+from ..logger import log_event
 
 from ..questionbase import QuestionBase
 
@@ -20,6 +21,7 @@ class MelodicIntervalQuestion(QuestionBase):
     """Implements a Melodic Interval test.
     """
 
+    @log_event
     def __init__(self, mode='major', tonic=None, octave=None, descending=None,
                  chromatic=None, n_octaves=None, valid_intervals=None,
                  *args, **kwargs):

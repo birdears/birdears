@@ -1,3 +1,6 @@
+from .logger import logger
+from .logger import log_event
+
 import subprocess
 import time
 
@@ -12,6 +15,7 @@ class Sequence:
             strings) in this Sequence.
     """
 
+    @log_event
     def __init__(self, elements=[], duration=2, delay=1.5, pos_delay=1):
         """Inits the Sequence with an array and sets the default times for
             playing / pausing the elements.
@@ -36,6 +40,7 @@ class Sequence:
         self.index = 0;
         self.last_idx = len(self.elements) - 1
 
+    @log_event
     def append(self, elements):
         """Appends `elements` to Sequence.elements
 
