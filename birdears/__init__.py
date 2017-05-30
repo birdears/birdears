@@ -3,7 +3,9 @@ BirdEars provides facilities to musical ear training exercises.
 """
 
 from .logger import logger
-logger.debug('hello')
+logger.info('Starting app...')
+logger.debug('Starting appzz...')
+
 DEBUG = False
 
 CHROMATIC_SHARP = ('C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#',

@@ -31,15 +31,12 @@ import logging
 from logging.config import dictConfig
 
 logging.getLogger(__name__).addHandler(logging.NullHandler())
+
 logging_config = dict(
     version = 1,
     formatters = {
         'f': {
-            'format':
-              # '%(asctime)s %(module)s %(levelname)-8s\n%(message)s',
-              '%(module)s %(levelname)-8s\n%(message)s',
-              # '%(asctime)s %(name)-12s %(module)s \
-              # %(levelname)-8s %(message)s',
+             'format': '%(levelname)s:%(module)s:%(message)s',
              'datefmt': '%Y/%m/%d,%H:%M:%S',
         }
     },
@@ -52,7 +49,7 @@ logging_config = dict(
     },
     root = {
         'handlers': ['h'],
-        'level': logging.DEBUG,
+        'level': logging.WARNING,
     },
 )
 

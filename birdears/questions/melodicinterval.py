@@ -1,3 +1,5 @@
+from ..logger import logger
+
 from ..questionbase import QuestionBase
 
 from ..interval import DiatonicInterval
@@ -89,6 +91,7 @@ class MelodicIntervalQuestion(QuestionBase):
         return question
 
     def make_resolution(self, method):
+        logger.info('inside make_resolution')
 
         resolve = Resolution(method=method, **self.durations['resol'])
 

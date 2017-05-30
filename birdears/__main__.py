@@ -9,6 +9,7 @@ from . import DIATONIC_MODES
 
 from . import DEBUG
 
+
 from .interfaces.commandline import CommandLine
 
 CTX_SETTINGS = dict(
@@ -17,7 +18,7 @@ CTX_SETTINGS = dict(
 
 
 main_epilog = """
-You can use '<command> --help' to show options for a specific command.
+You can use 'birdears <command> --help' to show options for a specific command.
 
 More info at https://github.com/iacchus/birdears
 """
@@ -26,10 +27,19 @@ More info at https://github.com/iacchus/birdears
 @click.group(options_metavar='', subcommand_metavar='<command> [options]',
              epilog=main_epilog,
              context_settings=CTX_SETTINGS)
-def cli():
+@click.option('--debug/--no-debug', help='Turns on debugging; instead you can set DEBUG=1.', default=False, envvar='DEBUG')
+def cli(debug):
     """birdears ─ Functional Ear Training for Musicians!"""
 
-    pass
+    print(debug)
+    if debug:
+        from .logger import logger
+        from .logger import logging
+
+        global logger
+
+        logger.setLevel(logging.DEBUG)
+        logger.debug('debug is on.')
 
 melodic_epilog = """
 In this exercise birdears will play two notes, the tonic and the interval
@@ -206,7 +216,7 @@ def urwid(*args, **kwargs):
     except ImportError:
         print("You need to install 'urwid' python library to use the tui.")
         exit(1)
-        
+
     pass
 
 
