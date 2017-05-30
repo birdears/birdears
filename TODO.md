@@ -43,7 +43,7 @@ think on an interface, or a well written api that allows many interfaces:
 * **tui (urwid);**
 * **gui (kivy)**
 
-**logging**
+~~logging~~
 
 **improve live debugging options**
 
@@ -100,6 +100,8 @@ of handling its own duration, and delay time, this way:
 
 **Refactor API so that inside an interface (eg., the GUI) we don't have stuff
 redunant to it (eg., commandline presentation on GUI when it imports the API)**
+
+**GUI: we should do one widget for each type of exercise.**
 
 ### Etc
 

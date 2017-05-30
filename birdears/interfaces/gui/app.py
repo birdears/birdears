@@ -105,16 +105,32 @@ class InitialScreen(Screen):
         super(InitialScreen, self).__init__(**kwargs)
 
 class ExerciseScreen(Screen):
-    def __init__(self, **kwargs):
+    def __init__(self, type, **kwargs):
         super(ExerciseScreen, self).__init__(**kwargs)
 
-        self.add_widget(ExerciseWidget())
+        self.add_widget(ExerciseWidget(type=type))
 
 class ExerciseWidget(BoxLayout):
 
-    def __init__(self, **kwargs):
+    def __init__(self, type, **kwargs):
         super(ExerciseWidget, self).__init__(**kwargs)
 
+        exercise = type
+        if exercise == 'melodic':
+            from ...questions.melodicinterval import MelodicIntervalQuestion
+            self.question = MelodicIntervalQuestion()
+        elif exercise == 'harmonic':
+            from ...questions.harmonicinterval import HarmonicIntervalQuestion
+            self.question = HarmonicIntervalQuestion()
+        elif exercise == 'dictation':
+            from ...questions.melodicdictation import MelodicDictationQuestion
+            self.question = MelodicDictationQuestion()
+        elif exercise == 'instrumental':
+            from ...questions.instrumentaldictation import\
+                InstrumentalDictationQuestion
+            self.question = InstrumentalDictationQuestion()
+
+        print(self.question)
         valid_semitones = self.question.get_valid_semitones()
 
         for semitone in valid_semitones:
@@ -157,7 +173,7 @@ class ExerciseWidget(BoxLayout):
                                 duration=self.question.resolution.duration,
                                 delay=self.question.resolution.delay,
                                 pos_delay=self.question.resolution.pos_delay)
-        Clock.schedule_once(lambda dt: self.nbpreresolution.play_callback, 0)
+        Clock.schedule_once(lambda dt: self.nbresolution.play_callback, 0)
 
 
         keyboard = self.question.keyboard_index[semitone]
@@ -179,22 +195,21 @@ class BirdearsApp(App):
 
     def show_exercise(self, exercise):
 
-        if exercise == 'melodic':
-            from ...questions.melodicinterval import MelodicIntervalQuestion
-            self.question = MelodicIntervalQuestion()
-        elif exercise == 'harmonic':
-            from ...questions.harmonicinterval import HarmonicIntervalQuestion
-            self.question = HarmonicIntervalQuestion()
-        elif exercise == 'dictation':
-            from ...questions.melodicdictation import MelodicDictationQuestion
-            self.question = MelodicDictationQuestion()
-        elif exercise == 'instrumental':
-            from ...questions.instrumentaldictation import\
-                InstrumentalDictationQuestion
-            self.question = InstrumentalDictationQuestion()
+        # if exercise == 'melodic':
+        #     from ...questions.melodicinterval import MelodicIntervalQuestion
+        #     self.question = MelodicIntervalQuestion()
+        # elif exercise == 'harmonic':
+        #     from ...questions.harmonicinterval import HarmonicIntervalQuestion
+        #     self.question = HarmonicIntervalQuestion()
+        # elif exercise == 'dictation':
+        #     from ...questions.melodicdictation import MelodicDictationQuestion
+        #     self.question = MelodicDictationQuestion()
+        # elif exercise == 'instrumental':
+        #     from ...questions.instrumentaldictation import\
+        #         InstrumentalDictationQuestion
+        #     self.question = InstrumentalDictationQuestion()
 
 
-        print(self.question)
         #self.sm.current = 'exercise'
         # self.sm.current = screen_name
-        self.sm.switch_to(ExerciseScreen(name='exercise'))
+        self.sm.switch_to(ExerciseScreen(name='exercise', type=exercise))
