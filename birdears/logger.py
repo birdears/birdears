@@ -32,12 +32,18 @@ from logging.config import dictConfig
 
 logging.getLogger(__name__).addHandler(logging.NullHandler())
 
+log_format = """\
+%(levelname)s:%(filename)s,%(lineno)s:%(funcName)s() %(message)s\
+"""
+
+date_format = '%Y/%m/%d,%H:%M:%S'
+
 logging_config = dict(
     version = 1,
     formatters = {
         'f': {
-             'format': '%(levelname)s:%(module)s:%(message)s',
-             'datefmt': '%Y/%m/%d,%H:%M:%S',
+             'format': log_format,
+             'datefmt': date_format,
         }
     },
     handlers = {

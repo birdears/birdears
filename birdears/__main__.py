@@ -7,9 +7,6 @@ from . import _Getch
 from . import INTERVALS
 from . import DIATONIC_MODES
 
-from . import DEBUG
-
-
 from .interfaces.commandline import CommandLine
 
 CTX_SETTINGS = dict(
