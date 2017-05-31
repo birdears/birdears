@@ -103,6 +103,11 @@ redunant to it (eg., commandline presentation on GUI when it imports the API)**
 
 **GUI: we should do one widget for each type of exercise.**
 
+
+**we can make sequence not musical agnostics, ie., containing only strings for notes
+and chords, but alo semitones so that play() can send this for threaded UI
+callbacks.**
+
 ### Etc
 
 **Lets reserve options to `-r` to `--resolution` method  (FET-like, Repeat-only,

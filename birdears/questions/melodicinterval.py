@@ -52,9 +52,9 @@ class MelodicIntervalQuestion(QuestionBase):
                      *args, **kwargs)
 
         durations = {
-            'preq': {'duration':2, 'delay':0.5, 'pos_delay':1},
-            'quest': {'duration':2, 'delay':0.5, 'pos_delay':0},
-            'resol': {'duration':2.5, 'delay':0.5, 'pos_delay':1}
+            'preq': {'duration': 2, 'delay': 0.5, 'pos_delay': 1},
+            'quest': {'duration': 2, 'delay': 0.5, 'pos_delay': 0},
+            'resol': {'duration': 2.5, 'delay': 0.5, 'pos_delay': 1}
         }
         self.durations = durations
 
@@ -115,7 +115,7 @@ class MelodicIntervalQuestion(QuestionBase):
     def play_resolution(self):
         # for sequence in self.resolution:
         #    sequence.play()
-        #for sequence in self.resolution:
+        # for sequence in self.resolution:
         self.resolution.play()
 
     def check_question(self, user_input_char):

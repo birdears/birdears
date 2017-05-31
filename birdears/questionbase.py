@@ -15,6 +15,7 @@ from .scale import ChromaticScale
 
 QUESTION_CLASSES = {}
 
+
 def register_question_class(f, *args, **kwargs):
     """Decorator for question classes.
 
@@ -127,7 +128,6 @@ class QuestionBase:
         })
         self.scales = scales
 
-
         self.concrete_tonic = scales['diatonic_pitch'].scale[0]
         self.scale_size = len(scales['diatonic'].scale)
 
@@ -167,7 +167,7 @@ class QuestionBase:
                 # semitones = choice(valid_network)
         else:
             if not self.valid_intervals:
-                #semitones = choice(chromatic_network)
+                # semitones = choice(chromatic_network)
                 valid_network = chromatic_network
             else:
                 valid_network = []

@@ -144,6 +144,15 @@ $(document).ready(function(){
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="birdears.interfaces.html">birdears.interfaces package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="birdears.interfaces.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="birdears.interfaces.gui.html">birdears.interfaces.gui package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="birdears.interfaces.gui.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="birdears.interfaces.gui.html#module-birdears.interfaces.gui.app">birdears.interfaces.gui.app module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="birdears.interfaces.gui.html#module-birdears.interfaces.gui">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="birdears.interfaces.html#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="birdears.interfaces.html#module-birdears.interfaces.commandline">birdears.interfaces.commandline module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="birdears.interfaces.html#module-birdears.interfaces">Module contents</a></li>
@@ -449,6 +458,40 @@ choice, 1 is 1st, 2 is second etc.</li>
 </dd></dl>
 
 </div>
+<div class="section" id="module-birdears.logger">
+<span id="birdears-logger-module"></span><h2>birdears.logger module<a class="headerlink" href="#module-birdears.logger" title="Permalink to this headline">¶</a></h2>
+<p>This submodule exports <cite>logger</cite> to log events.</p>
+<p>Logging messages which are less severe than <cite>lvl</cite> will be ignored</p>
+<p>Level       Numeric value
+&#8212;&#8211;       &#8212;&#8212;&#8212;&#8212;-
+CRITICAL    50
+ERROR       40
+WARNING     30
+INFO        20
+DEBUG       10
+NOTSET      0</p>
+<p>Level       When it’s used
+&#8212;&#8211;       &#8212;&#8212;&#8212;&#8212;&#8211;
+DEBUG       Detailed information, typically of interest only when diagnosing</p>
+<blockquote>
+<div>problems.</div></blockquote>
+<p>INFO        Confirmation that things are working as expected.
+WARNING     An indication that something unexpected happened, or indicative of</p>
+<blockquote>
+<div>some problem in the near future (e.g. ‘disk space low’).
+The software is still working as expected.</div></blockquote>
+<dl class="docutils">
+<dt>ERROR       Due to a more serious problem, the software has not been able to</dt>
+<dd>perform some function.</dd>
+<dt>CRITICAL        A serious error, indicating that the program itself may be unable</dt>
+<dd>to continue running.</dd>
+</dl>
+<dl class="function">
+<dt id="birdears.logger.log_event">
+<code class="descclassname">birdears.logger.</code><code class="descname">log_event</code><span class="sig-paren">(</span><em>f</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.logger.log_event" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
 <div class="section" id="module-birdears.prequestion">
 <span id="birdears-prequestion-module"></span><h2>birdears.prequestion module<a class="headerlink" href="#module-birdears.prequestion" title="Permalink to this headline">¶</a></h2>
 <p>This module implements pre questions progressions.</p>
@@ -566,6 +609,12 @@ allow only tonics, fourths and fifths.</li>
 </dd></dl>
 
 <dl class="method">
+<dt id="birdears.questionbase.QuestionBase.get_valid_semitones">
+<code class="descname">get_valid_semitones</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.questionbase.QuestionBase.get_valid_semitones" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list with valid semitones for question.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="birdears.questionbase.QuestionBase.make_question">
 <code class="descname">make_question</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.questionbase.QuestionBase.make_question" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method should be overwritten by the question subclasses.</p>
@@ -583,6 +632,14 @@ allow only tonics, fourths and fifths.</li>
 <dd><p>This method should be overwritten by the question subclasses.</p>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="function">
+<dt id="birdears.questionbase.register_question_class">
+<code class="descclassname">birdears.questionbase.</code><code class="descname">register_question_class</code><span class="sig-paren">(</span><em>f</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.questionbase.register_question_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator for question classes.</p>
+<p>Classes decorated with this decorator will be registered in the
+<cite>QUESTION_CLASSES</cite> global.</p>
 </dd></dl>
 
 </div>
@@ -825,33 +882,6 @@ strings) in this Sequence.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="birdears.sequence.Sequence.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>elements=[]</em>, <em>duration=2</em>, <em>delay=1.5</em>, <em>pos_delay=1</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.sequence.Sequence.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt>Inits the Sequence with an array and sets the default times for</dt>
-<dd>playing / pausing the elements.</dd>
-</dl>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>elements</strong> (<em>array_type</em>) &#8211; List of elements in this sequence.
-(notes or chords)</li>
-<li><strong>duration</strong> (<em>float</em>) &#8211; Default playing time for each element in the
-sequence.</li>
-<li><strong>delay</strong> (<em>float</em>) &#8211; Default waiting time to play the next element
-in the sequence.</li>
-<li><strong>pos_delay</strong> (<em>float</em>) &#8211; Waiting time after playing the last element
-in the sequence.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
 <dt id="birdears.sequence.Sequence.append">
 <code class="descname">append</code><span class="sig-paren">(</span><em>elements</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.sequence.Sequence.append" title="Permalink to this definition">¶</a></dt>
 <dd><p>Appends <cite>elements</cite> to Sequence.elements</p>
@@ -863,6 +893,13 @@ in the sequence.</li>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="method">
+<dt id="birdears.sequence.Sequence.async_play">
+<code class="descname">async_play</code><span class="sig-paren">(</span><em>callback</em>, <em>end_callback</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.sequence.Sequence.async_play" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plays the Sequence elements of notes and/or chords and wait for
+<cite>Sequence.pos_delay</cite> seconds.</p>
 </dd></dl>
 
 <dl class="method">
@@ -901,10 +938,8 @@ of each triad.</li>
 
 <dl class="method">
 <dt id="birdears.sequence.Sequence.play">
-<code class="descname">play</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.sequence.Sequence.play" title="Permalink to this definition">¶</a></dt>
-<dd><p>Plays the Sequence elements of notes and/or chords and wait for
-<cite>Sequence.pos_delay</cite> seconds.</p>
-</dd></dl>
+<code class="descname">play</code><span class="sig-paren">(</span><em>callback=None</em>, <em>end_callback=None</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.sequence.Sequence.play" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="method">
 <dt id="birdears.sequence.Sequence.play_element">
@@ -933,6 +968,7 @@ of each triad.</li>
 <li><a class="reference internal" href="#subpackages">Subpackages</a></li>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#module-birdears.interval">birdears.interval module</a></li>
+<li><a class="reference internal" href="#module-birdears.logger">birdears.logger module</a></li>
 <li><a class="reference internal" href="#module-birdears.prequestion">birdears.prequestion module</a></li>
 <li><a class="reference internal" href="#module-birdears.questionbase">birdears.questionbase module</a></li>
 <li><a class="reference internal" href="#module-birdears.resolution">birdears.resolution module</a></li>

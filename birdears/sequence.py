@@ -7,8 +7,8 @@ import time
 
 from .scale import ChromaticScale
 
-#SEQUENCE_THREAD = Thread()
 SEQUENCE_THREAD = None
+
 
 class Sequence:
     """Register a Sequence of notes and/or chords.
@@ -40,7 +40,7 @@ class Sequence:
 
         self.elements = list(elements)
 
-        self.index = 0;
+        self.index = 0
         self.last_idx = len(self.elements) - 1
 
     @log_event
@@ -63,7 +63,7 @@ class Sequence:
     @log_event
     def play(self, callback=None, end_callback=None):
         global SEQUENCE_THREAD
-        callback = print
+        # callback = print
 
         if hasattr(SEQUENCE_THREAD, 'is_alive') and SEQUENCE_THREAD.is_alive():
             SEQUENCE_THREAD.join()
@@ -91,7 +91,7 @@ class Sequence:
             is_last = False if cur_idx != last_idx else True
 
             # lets leave the last element's delay for pos_delay:
-            delay = self.delay if not is_last  else 0
+            delay = self.delay if not is_last else 0
 
             if type(element) == tuple:
                 el, duration, delay = element

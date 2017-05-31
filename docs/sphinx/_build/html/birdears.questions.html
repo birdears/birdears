@@ -26,7 +26,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="birdears.interfaces package" href="birdears.interfaces.html" />
+    <link rel="prev" title="birdears.interfaces.gui package" href="birdears.interfaces.gui.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/hljs_styles/monokai.css" type="text/css" />
@@ -371,37 +371,6 @@ allow only tonics, fourths and fifths.</li>
 <dd><p>Bases: <a class="reference internal" href="birdears.html#birdears.questionbase.QuestionBase" title="birdears.questionbase.QuestionBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.questionbase.QuestionBase</span></code></a></p>
 <p>Implements a Melodic Interval test.</p>
 <dl class="method">
-<dt id="birdears.questions.melodicinterval.MelodicIntervalQuestion.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>mode='major'</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>valid_intervals=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.questions.melodicinterval.MelodicIntervalQuestion.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Inits the class.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>mode</strong> (<em>str</em>) &#8211; A string representing the mode of the question.
-Eg., &#8216;major&#8217; or &#8216;minor&#8217;</li>
-<li><strong>tonic</strong> (<em>str</em>) &#8211; A string representing the tonic of the question,
-eg.: &#8216;C&#8217;; if omitted, it will be selected randomly.</li>
-<li><strong>octave</strong> (<em>int</em>) &#8211; A scienfic octave notation, for example, 4 for &#8216;C4&#8217;;
-if not present, it will be randomly chosen.</li>
-<li><strong>descending</strong> (<em>bool</em>) &#8211; Is the question direction in descending, ie.,
-intervals have lower pitch than the tonic.</li>
-<li><strong>chromatic</strong> (<em>bool</em>) &#8211; If the question can have (True) or not (False)
-chromatic intervals, ie., intervals not in the diatonic scale
-of tonic/mode.</li>
-<li><strong>n_octaves</strong> (<em>int</em>) &#8211; Maximum number of octaves of the question.</li>
-<li><strong>valid_intervals</strong> (<em>list</em>) &#8211; A list with intervals (int) valid for
-random choice, 1 is 1st, 2 is second etc. Eg. [1, 4, 5] to
-allow only tonics, fourths and fifths.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
 <dt id="birdears.questions.melodicinterval.MelodicIntervalQuestion.check_question">
 <code class="descname">check_question</code><span class="sig-paren">(</span><em>user_input_char</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.questions.melodicinterval.MelodicIntervalQuestion.check_question" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks whether the given answer is correct.</p>
@@ -463,7 +432,7 @@ allow only tonics, fourths and fifths.</li>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
   <li><a href="birdears.html">birdears package</a><ul>
-      <li>Previous: <a href="birdears.interfaces.html" title="previous chapter">birdears.interfaces package</a></li>
+      <li>Previous: <a href="birdears.interfaces.gui.html" title="previous chapter">birdears.interfaces.gui package</a></li>
   </ul></li>
   </ul></li>
 </ul>

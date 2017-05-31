@@ -24,7 +24,9 @@ More info at https://github.com/iacchus/birdears
 @click.group(options_metavar='', subcommand_metavar='<command> [options]',
              epilog=main_epilog,
              context_settings=CTX_SETTINGS)
-@click.option('--debug/--no-debug', help='Turns on debugging; instead you can set DEBUG=1.', default=False, envvar='DEBUG')
+@click.option('--debug/--no-debug',
+              help='Turns on debugging; instead you can set DEBUG=1.',
+              default=False, envvar='DEBUG')
 def cli(debug):
     """birdears ─ Functional Ear Training for Musicians!"""
 

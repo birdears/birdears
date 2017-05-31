@@ -40,21 +40,21 @@ log_format = """\
 date_format = '%Y/%m/%d,%H:%M:%S'
 
 logging_config = dict(
-    version = 1,
-    formatters = {
+    version=1,
+    formatters={
         'f': {
              'format': log_format,
              'datefmt': date_format,
         }
     },
-    handlers = {
+    handlers={
         'h': {
                 'class': 'logging.StreamHandler',
                 'formatter': 'f',
                 'level': logging.DEBUG,
         }
     },
-    root = {
+    root={
         'handlers': ['h'],
         'level': logging.WARNING,
     },
@@ -63,6 +63,7 @@ logging_config = dict(
 dictConfig(logging_config)
 
 logger = logging.getLogger()
+
 
 def log_event(f, *args, **kwargs):
 
@@ -73,8 +74,8 @@ def log_event(f, *args, **kwargs):
         # kw_arguments = str(kwargs)
         qname = f.__qualname__
 
-        arguments = ', '.join([repr(arg) for arg in args]) # 0 is self
-        kw_arguments = ', '.join(['{}={}'.format(k,repr(v))
+        arguments = ', '.join([repr(arg) for arg in args])  # 0 is self
+        kw_arguments = ', '.join(['{}={}'.format(k, repr(v))
                                  for k, v in kwargs.items()])
 
         if logger.isEnabledFor(logging.INFO):
@@ -83,7 +84,7 @@ def log_event(f, *args, **kwargs):
         if logger.isEnabledFor(logging.DEBUG):
             # logger.debug("\t*{}, **{}".format(
             # arguments, kw_arguments).expandtabs())
-            logger.debug("{qname}({args}, {kwargs})".\
+            logger.debug("{qname}({args}, {kwargs})".
                          format(qname=qname, args=arguments,
                                 kwargs=kw_arguments). expandtabs())
 
@@ -91,8 +92,8 @@ def log_event(f, *args, **kwargs):
             if f.__name__ != '__init__':
 
                 func_return = f(*args, **kwargs)
-                logger.debug("{qname} function returned: '{func_ret}'".\
-                             format(qname=qname,func_ret=func_return))
+                logger.debug("{qname} function returned: '{func_ret}'".
+                             format(qname=qname, func_ret=func_return))
 
                 return func_return
 

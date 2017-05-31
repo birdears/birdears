@@ -88,8 +88,8 @@ def nearest_tonic(mode, tonic, intervals, duration, delay, pos_delay,
     if type(intervals) is not list:
         intervals = [intervals]
 
-    #last_el_idx = len(intervals) - 1
-    #for cur_el_idx, interval in enumerate(intervals):
+    # last_el_idx = len(intervals) - 1
+    # for cur_el_idx, interval in enumerate(intervals):
     for interval in intervals:
         resolution_pitch = []
         scale_pitch = DiatonicScale(tonic=tonic, mode=mode,

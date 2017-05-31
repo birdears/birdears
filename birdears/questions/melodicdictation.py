@@ -54,9 +54,9 @@ class MelodicDictationQuestion(QuestionBase):
                      *args, **kwargs)
 
         durations = {
-            'preq': {'duration':2, 'delay':0.5, 'pos_delay':1},
-            'quest': {'duration':2, 'delay':0.8, 'pos_delay':0},
-            'resol': {'duration':2.5, 'delay':0.5, 'pos_delay':1}
+            'preq': {'duration': 2, 'delay': 0.5, 'pos_delay': 1},
+            'quest': {'duration': 2, 'delay': 0.8, 'pos_delay': 0},
+            'resol': {'duration': 2.5, 'delay': 0.5, 'pos_delay': 1}
         }
         self.durations = durations
 
@@ -102,7 +102,8 @@ class MelodicDictationQuestion(QuestionBase):
 
         resolve = Resolution(method='repeat_only', **self.durations['resol'])
         resolution = resolve(elements=self.question.elements)
-        #resolve = Resolution(method='nearest_tonic', **self.durations['resol'])
+        # resolve = Resolution(method='nearest_tonic', **self.durations\
+        # ['resol'])
 
         # resolution = resolve(mode=self.mode, tonic=self.tonic,
         #                     intervals=self.question_phrase_intervals)

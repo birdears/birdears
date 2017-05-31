@@ -48,9 +48,9 @@ class HarmonicIntervalQuestion(QuestionBase):
                              valid_intervals=valid_intervals, *args, **kwargs)
 
         durations = {
-            'preq': {'duration':3, 'delay':0.5, 'pos_delay':1},
-            'quest': {'duration':3, 'delay':0.5, 'pos_delay':0},
-            'resol': {'duration':2.5, 'delay':0.5, 'pos_delay':1}
+            'preq': {'duration': 3, 'delay': 0.5, 'pos_delay': 1},
+            'quest': {'duration': 3, 'delay': 0.5, 'pos_delay': 0},
+            'resol': {'duration': 2.5, 'delay': 0.5, 'pos_delay': 1}
         }
         self.durations = durations
 
