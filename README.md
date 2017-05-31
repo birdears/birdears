@@ -30,6 +30,22 @@ More documentation is at [birdears Read The Docs](https://birdears.readthedocs.i
 
 Install `sox` and `python3` (see [below](https://github.com/iacchus/birdears#installing--dependencies)) and,
 
+#### Optional Dependencies
+
+##### Text-user-interface (TUI)
+
+Python's 'urwid' tui library will be necessary to run the TUI; although it is
+not implemented yet.
+
+##### Graphical-User-Interface (GUI)
+
+Python's Kivy and SDL2 are required to run the GUI; it's development already
+began and can be acessed with:
+
+`$ birdears kivy`
+
+It is not functional yet.
+
 ### 2. a. Via pip
 
 You may want to create a virtualenv before installing via `pip`.

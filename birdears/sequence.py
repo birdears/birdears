@@ -1,6 +1,7 @@
 from .logger import logger
 from .logger import log_event
 
+from threading import Thread
 import subprocess
 import time
 
@@ -57,7 +58,44 @@ class Sequence:
         """
         self.elements.extend(elements)
 
-    def play(self):
+    def play(self, callback=None, end_callback=None):
+        callback = print
+        thread = Thread(target=self.async_play,
+                        kwargs={
+                            'callback': callback,
+                            'end_callback':end_callback
+                        })
+
+        thread.start()
+        #thread.join()
+        print('hello')
+        return thread
+    # def play(self):
+    #     """Plays the Sequence elements of notes and/or chords and wait for
+    #     `Sequence.pos_delay` seconds.
+    #     """
+    #
+    #     last_idx = len(self.elements) - 1
+    #
+    #     for cur_idx, element in enumerate(self.elements):
+    #
+    #         # lets leave the last element's delay for pos_delay:
+    #         delay = self.delay if cur_idx != last_idx else 0
+    #
+    #         if type(element) == tuple:
+    #             el, duration, delay = element
+    #         else:
+    #             el = element
+    #
+    #         if type(el) == str:
+    #             self._play_note(el, delay=delay)
+    #         elif type(el) == list:
+    #             self._play_chord(el, delay=delay)
+    #
+    #     if self.pos_delay:
+    #         self._wait(self.pos_delay)
+
+    def async_play(self, callback, end_callback):
         """Plays the Sequence elements of notes and/or chords and wait for
         `Sequence.pos_delay` seconds.
         """
@@ -66,13 +104,25 @@ class Sequence:
 
         for cur_idx, element in enumerate(self.elements):
 
+            is_last = False if cur_idx != last_idx else True
+
             # lets leave the last element's delay for pos_delay:
-            delay = self.delay if cur_idx != last_idx else 0
+            delay = self.delay if not is_last  else 0
 
             if type(element) == tuple:
                 el, duration, delay = element
             else:
                 el = element
+
+            current_data = dict(
+                index=cur_idx,
+                element=el,
+                delay=delay,
+                is_last=is_last,
+            )
+
+            if callback:
+                callback(current_data)
 
             if type(el) == str:
                 self._play_note(el, delay=delay)
@@ -82,30 +132,8 @@ class Sequence:
         if self.pos_delay:
             self._wait(self.pos_delay)
 
-    def async_play(self, callback):
-        """Plays the Sequence elements of notes and/or chords and wait for
-        `Sequence.pos_delay` seconds.
-        """
-
-        last_idx = len(self.elements) - 1
-
-        for cur_idx, element in enumerate(self.elements):
-
-            # lets leave the last element's delay for pos_delay:
-            delay = self.delay if cur_idx != last_idx else 0
-
-            if type(element) == tuple:
-                el, duration, delay = element
-            else:
-                el = element
-
-            if type(el) == str:
-                self._play_note(el, delay=delay)
-            elif type(el) == list:
-                self._play_chord(el, delay=delay)
-
-        if self.pos_delay:
-            self._wait(self.pos_delay)
+        if end_callback:
+            end_callback()
 
     def play_element(self, index):
         """Plays element `sequence.elements[index].`
