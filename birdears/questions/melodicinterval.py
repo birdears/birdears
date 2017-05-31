@@ -104,6 +104,11 @@ class MelodicIntervalQuestion(QuestionBase):
         return resolution
 
     def play_question(self):
+        # Other threads can call a thread’s join() method. This blocks the
+        # calling thread until the thread whose join() method is called is
+        # terminated.
+        # https://docs.python.org/3/library/threading.html#thread-objects
+
         self.pre_question.play()
         self.question.play()
 

@@ -7,6 +7,8 @@ import time
 
 from .scale import ChromaticScale
 
+#SEQUENCE_THREAD = Thread()
+SEQUENCE_THREAD = None
 
 class Sequence:
     """Register a Sequence of notes and/or chords.
@@ -58,43 +60,25 @@ class Sequence:
         """
         self.elements.extend(elements)
 
+    @log_event
     def play(self, callback=None, end_callback=None):
+        global SEQUENCE_THREAD
         callback = print
-        thread = Thread(target=self.async_play,
-                        kwargs={
-                            'callback': callback,
-                            'end_callback':end_callback
-                        })
 
-        thread.start()
-        #thread.join()
-        print('hello')
-        return thread
-    # def play(self):
-    #     """Plays the Sequence elements of notes and/or chords and wait for
-    #     `Sequence.pos_delay` seconds.
-    #     """
-    #
-    #     last_idx = len(self.elements) - 1
-    #
-    #     for cur_idx, element in enumerate(self.elements):
-    #
-    #         # lets leave the last element's delay for pos_delay:
-    #         delay = self.delay if cur_idx != last_idx else 0
-    #
-    #         if type(element) == tuple:
-    #             el, duration, delay = element
-    #         else:
-    #             el = element
-    #
-    #         if type(el) == str:
-    #             self._play_note(el, delay=delay)
-    #         elif type(el) == list:
-    #             self._play_chord(el, delay=delay)
-    #
-    #     if self.pos_delay:
-    #         self._wait(self.pos_delay)
+        if hasattr(SEQUENCE_THREAD, 'is_alive') and SEQUENCE_THREAD.is_alive():
+            SEQUENCE_THREAD.join()
 
+        SEQUENCE_THREAD = Thread(target=self.async_play,
+                                 kwargs={
+                                    'callback': callback,
+                                    'end_callback': end_callback
+                                 })
+
+        SEQUENCE_THREAD.start()
+
+        return SEQUENCE_THREAD
+
+    @log_event
     def async_play(self, callback, end_callback):
         """Plays the Sequence elements of notes and/or chords and wait for
         `Sequence.pos_delay` seconds.

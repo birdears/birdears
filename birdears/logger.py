@@ -78,7 +78,7 @@ def log_event(f, *args, **kwargs):
                                  for k, v in kwargs.items()])
 
         if logger.isEnabledFor(logging.INFO):
-            logger.info("{qname} called.".format(qname=qname))
+            logger.info("{qname}() called.".format(qname=qname))
 
         if logger.isEnabledFor(logging.DEBUG):
             # logger.debug("\t*{}, **{}".format(
