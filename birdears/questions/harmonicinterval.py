@@ -109,9 +109,9 @@ class HarmonicIntervalQuestion(QuestionBase):
         self.question.play()
 
     def play_resolution(self):
-        # for sequence in self.resolution:
-        #    sequence.play()
-        self.resolution.play()
+        
+        thread = self.resolution.play()
+        thread.join()
 
     def check_question(self, user_input_char):
         """Checks whether the given answer is correct."""

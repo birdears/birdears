@@ -16,7 +16,7 @@ from ..sequence import Sequence
 from ..resolution import Resolution
 from ..prequestion import PreQuestion
 
-from ..sequence import SEQUENCE_THREAD
+#from ..sequence import SEQUENCE_THREAD
 
 
 class MelodicIntervalQuestion(QuestionBase):
@@ -115,14 +115,8 @@ class MelodicIntervalQuestion(QuestionBase):
         self.question.play()
 
     def play_resolution(self):
-        global SEQUENCE_THREAD
-        # for sequence in self.resolution:
-        #    sequence.play()
-        # for sequence in self.resolution:
-        thread=self.resolution.play()
-        #self.resolution
 
-        #SEQUENCE_THREAD.join()
+        thread = self.resolution.play()
         thread.join()
 
     def check_question(self, user_input_char):

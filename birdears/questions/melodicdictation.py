@@ -116,7 +116,8 @@ class MelodicDictationQuestion(QuestionBase):
 
     def play_resolution(self):
 
-        self.resolution.play()
+        thread = self.resolution.play()
+        thread.join()
 
         # for sequence in self.resolution:
         #    sequence.play()
