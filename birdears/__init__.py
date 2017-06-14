@@ -109,17 +109,9 @@ KEYBOARD_INDICES = {
             'minor': "zsxcfvgbnjmk,SXCFVGBNJMKZ",
             'major': "zsxdcvgbhnjm,SXDCVGBHNJMZ",
         },
-        #'descending': {
-        #    'minor': "zsxcfvgbnjmkZSXCFVGBNJMK,",
-        #    'major': "zsxdcvgbhnjmZSXDCVGBHNJM,",
-        #}
         'descending': {
             'minor': ",kmjnbgvfcxszKMJNBGVFCXSZ",
             'major': ",mjnhbgvcdxszMJNHBGVCDXSZ",
-
-            #   k   j        g   f      s
-            # ,   m   n   b   v   c   x   z
-            # a   g   f   e   d   c   b   a
         }
     }
 }

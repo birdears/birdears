@@ -256,9 +256,9 @@ def CommandLine(exercise, **kwargs):
                 print(input_str, end='')
 
         # q/Q - quit
-        elif user_input in ('q','Q'):
+        elif user_input in ('q', 'Q'):
             exit(0)
 
         # r - repeat interval
-        elif user_input in ('r','R'):
+        elif user_input in ('r', 'R'):
             question.play_question()
