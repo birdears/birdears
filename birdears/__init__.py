@@ -64,7 +64,12 @@ INTERVALS = (
 CHROMATIC_TYPE = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
 DIATONIC_MODES = {
     'major': (0, 2, 4, 5, 7, 9, 11, 12),
+    'dorian': (0, 2, 3, 5, 7, 9, 10, 12),
+    'phrygian': (0, 1, 3, 5, 7, 8, 10, 12),
+    'lydian': (0, 2, 4, 6, 7, 9, 11, 12),
+    'mixolydian': (0, 2, 4, 5, 7, 9, 10, 12),
     'minor': (0, 2, 3, 5, 7, 8, 10, 12),
+    'locrian': (0, 1, 3, 5, 6, 8, 10, 12),
 }
 
 INTERVAL_INDEX = {
@@ -90,8 +95,9 @@ INTERVAL_INDEX = {
 #  s   f g   j k   eg.:      a#   c# d#    f# g#
 # z x c v b n m    -------  a  b c  d  e  f  g
 
-# TODO: these should be inverted/reverted for descending scales:
 
+# it is better if this is made progamatically
+# note that all diatonic are in keys zxcvvbnm, and uppercase
 KEYBOARD_INDICES = {
     'diatonic': {
         'ascending': {
@@ -106,15 +112,46 @@ KEYBOARD_INDICES = {
     },
     'chromatic': {
         'ascending': {
-            'minor': "zsxcfvgbnjmk,SXCFVGBNJMKZ",
-            'major': "zsxdcvgbhnjm,SXDCVGBHNJMZ",
+            'major':      "zsxdcvgbhnjm,SXDCVGBHNJMZ",
+            'dorian':     "zsxcfvgbhnmk,SXCFVGBHNMKZ",
+            'phrygian':   "zxdcfvgbnjmk,XDCFVGBNJMKZ",
+            'lydian':     "zsxdcfvbhnjm,SXDCFVBHNJMZ",
+            'myxolidian': "zsxdcvgbhnmk,SXDCVGBHNMNZ",
+            'minor':      "zsxcfvgbnjmk,SXCFVGBNJMKZ",
+            'locrian':    "zxdcfvbhnjmk,XDCFVBHNJMKZ",
         },
         'descending': {
-            'minor': ",kmjnbgvfcxszKMJNBGVFCXSZ",
-            'major': ",mjnhbgvcdxszMJNHBGVCDXSZ",
+            'major':      ",mjnhbgvcdxszMJNHBGVCDXSZ",
+            'dorian':     ",kmnhbgvfcxszKMNHBGVFCXSZ",
+            'dorian':     ",kmnhbgvfcxszKMNHBGVFCXSZ",
+            'phrygian':   ",kmjnbgvfcdxzKMJNBGVFCDXZ",
+            'lydian':     ",mjnhbvfcdxszMJNHBVFCDXSZ",
+            'mixolydian': ",kmnhbgvcdxszKMNHBGVCDXSZ",
+            'minor':      ",kmjnbgvfcxszKMJNBGVFCXSZ",
+            'locrian':    ",kmjnhbvfcdxzKMJNHBVFCDXZ",
         }
     }
 }
+#locriaan
+#       d   f       h   j   k
+# z   x   c   v   b   n   m   ,
+# b   c   d   e   f   g   a   b
+# mixolydian
+#   s   d       g   h       k
+# z   x   c   v   b   n   m   ,
+# g   a   b   c   d   e   f   g
+#lydian
+#   s   d   f       h   j
+# z   x   c   v   b   n   m   ,
+# f   g   a   b   c   d   e   f
+# phrygian
+#       d   f   g       j   k
+# z   x   c   v   b   n   m   ,
+# e   f   g   a   b   c   d   e
+#doriAN:
+#    s      f   g   h       k
+# z   x   c   v   b   n   m   ,
+# d   e   f   g   a   b   c   d
 
 # how many steps to resolve on tonic,
 # after which resolves on tonic octave
