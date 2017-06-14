@@ -73,6 +73,10 @@ distance between the two.
 @click.option('-v', '--valid_intervals', type=str, default=None,
               metavar='<1,2,..>', help='A comma-separated list without spaces\
               of valid scale degrees to be chosen for the question.')
+@click.option('-q', '--user_durations', type=str, default=None,
+              metavar='<1,0.5,n..>', help='A comma-separated list without\
+              spaces with PRECISLY 9 floating values. Or \'n\' for default\
+              duration.')
 def melodic(*args, **kwargs):
     """Melodic interval recognition
     """
@@ -108,6 +112,10 @@ correct distance between the two.
 @click.option('-v', '--valid_intervals', type=str, default=None,
               metavar='<1,2,..>', help='A comma-separated list without spaces\
               of valid scale degrees to be chosen for the question.')
+@click.option('-q', '--user_durations', type=str, default=None,
+              metavar='<1,0.5,n..>', help='A comma-separated list without\
+              spaces with PRECISLY 9 floating values. Or \'n\' for default\
+              duration.')
 def harmonic(*args, **kwargs):
     """Harmonic interval recognition
     """
@@ -150,6 +158,10 @@ melodic dictation.
 @click.option('-v', '--valid_intervals', type=str, default=None,
               metavar='<1,2,..>', help='A comma-separated list without spaces\
               of valid scale degrees to be chosen for the question.')
+@click.option('-q', '--user_durations', type=str, default=None,
+              metavar='<1,0.5,n..>', help='A comma-separated list without\
+              spaces with PRECISLY 9 floating values. Or \'n\' for default\
+              duration.')
 def dictation(*args, **kwargs):
     """Melodic dictation
     """
@@ -196,6 +208,10 @@ instrument.
 @click.option('-v', '--valid_intervals', type=str, default=None,
               metavar='<1,2,..>', help='A comma-separated list without spaces\
               of valid scale degrees to be chosen for the question.')
+@click.option('-q', '--user_durations', type=str, default=None,
+              metavar='<1,0.5,n..>', help='A comma-separated list without\
+              spaces with PRECISLY 9 floating values. Or \'n\' for default\
+              duration.')
 def instrumental(*args, **kwargs):
     """Instrumental melodic time-based dictation
     """

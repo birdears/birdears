@@ -23,7 +23,8 @@ class MelodicDictationQuestion(QuestionBase):
 
     def __init__(self, mode='major', max_intervals=3, n_notes=4, tonic=None,
                  octave=None, descending=None, chromatic=None,
-                 n_octaves=None, valid_intervals=None, *args, **kwargs):
+                 n_octaves=None, valid_intervals=None, user_durations=None,
+                 *args, **kwargs):
         """Inits the class.
 
         Args:
@@ -51,14 +52,32 @@ class MelodicDictationQuestion(QuestionBase):
             __init__(mode=mode, tonic=tonic, octave=octave,
                      descending=descending, chromatic=chromatic,
                      n_octaves=n_octaves, valid_intervals=valid_intervals,
-                     *args, **kwargs)
+                     user_durations=user_durations, *args, **kwargs)
 
-        durations = {
+        self.durations = {
             'preq': {'duration': 2, 'delay': 0.5, 'pos_delay': 1},
             'quest': {'duration': 2, 'delay': 0.8, 'pos_delay': 0},
             'resol': {'duration': 2.5, 'delay': 0.5, 'pos_delay': 1}
         }
-        self.durations = durations
+        #self.durations = durations
+
+        if user_durations:
+            ud_index = {
+                0: ('preq', 'duration'),
+                1: ('preq', 'delay'),
+                2: ('preq', 'pos_delay'),
+                3: ('quest', 'duration'),
+                4: ('quest', 'delay'),
+                5: ('quest', 'pos_delay'),
+                6: ('resol', 'duration'),
+                7: ('resol', 'delay'),
+                8: ('resol', 'pos_delay'),
+            }
+            ud = user_durations.split(',')
+            if len(ud) == len(ud_index):
+                for idx, v in ud_index.items():
+                    if ud[idx] != 'n':
+                        self.durations[v[0]][v[1]] = float(ud[idx])
 
         if not chromatic:
             INTERVAL_CLASS = DiatonicInterval
