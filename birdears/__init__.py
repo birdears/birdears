@@ -132,26 +132,6 @@ KEYBOARD_INDICES = {
         }
     }
 }
-#locriaan
-#       d   f       h   j   k
-# z   x   c   v   b   n   m   ,
-# b   c   d   e   f   g   a   b
-# mixolydian
-#   s   d       g   h       k
-# z   x   c   v   b   n   m   ,
-# g   a   b   c   d   e   f   g
-#lydian
-#   s   d   f       h   j
-# z   x   c   v   b   n   m   ,
-# f   g   a   b   c   d   e   f
-# phrygian
-#       d   f   g       j   k
-# z   x   c   v   b   n   m   ,
-# e   f   g   a   b   c   d   e
-#doriAN:
-#    s      f   g   h       k
-# z   x   c   v   b   n   m   ,
-# d   e   f   g   a   b   c   d
 
 # how many steps to resolve on tonic,
 # after which resolves on tonic octave

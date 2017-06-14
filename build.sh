@@ -9,8 +9,8 @@ echo 'starting..'
 pep8 birdears --exclude=click,toml
 
 # run tests
-coverage run --source=birdears --omit=birdears/click/**,birdears/toml/** --module pytest --verbose tests/
-coverage html --omit='*birdears/click/*','*birdears/toml/*' -d docs/coverage-html/
+coverage run --source=birdears --omit=birdears/click/**,birdears/toml/**,birdears/interfaces/gui/**,birdears/interfaces/urwid/** --module pytest --verbose tests/
+coverage html --omit='*birdears/click/*','*birdears/toml/*','*birdears/interfaces/gui/*','*birdears/interfaces/urwid/*' -d docs/coverage-html/
 
 # remove pypi builds
 rm -rf birdears.egg-info/
@@ -25,7 +25,8 @@ pandoc --from=markdown --to=rst README.md -o README.rst
 #rm docs/sphinx/birdears.questions.rst
 #rm docs/sphinx/modules.rst
 #rm docs/sphinx/birdears.interfaces.rst
-sphinx-apidoc --force -d 4 -o docs/sphinx/ birdears/ birdears/click/ birdears/toml/
+sphinx-apidoc --force -d 4 -o docs/sphinx/ birdears/ birdears/click/ birdears/toml/ birdears/interfaces/gui birdears/interfaces/urwid
+
 
 
 # build sphinx documentation

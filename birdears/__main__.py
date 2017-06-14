@@ -11,7 +11,7 @@ from .interfaces.commandline import CommandLine
 
 CTX_SETTINGS = dict(
     help_option_names=['-h', '--help'],
-    #max_content_width=click.get_terminal_size()[0],
+    # max_content_width=click.get_terminal_size()[0],
     max_content_width=80,
 )
 

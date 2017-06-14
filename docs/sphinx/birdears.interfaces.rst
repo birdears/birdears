@@ -1,13 +1,6 @@
 birdears\.interfaces package
 ============================
 
-Subpackages
------------
-
-.. toctree::
-
-    birdears.interfaces.gui
-
 Submodules
 ----------
 
