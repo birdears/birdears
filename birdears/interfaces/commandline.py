@@ -8,7 +8,6 @@ from .. import CHROMATIC_TYPE
 
 from .. import DEBUG
 
-
 from os import popen
 COLS = int(popen('tput cols', 'r').read())
 
@@ -119,6 +118,7 @@ def print_question(question):
     if question.is_descending:
         highest = max(scale_index)
         scale_index = [highest - x for x in scale_index]
+        scale = reversed(scale)
 
     intervals = [INTERVALS[i][1] for i in scale_index]
     keys = [keyboard[i] for i in scale_index]
@@ -255,10 +255,10 @@ def CommandLine(exercise, **kwargs):
                 input_str = make_input_str(input_keys, question.keyboard_index)
                 print(input_str, end='')
 
-        # q - quit
-        elif user_input == 'q':
+        # q/Q - quit
+        elif user_input in ('q','Q'):
             exit(0)
 
         # r - repeat interval
-        elif user_input == 'r':
+        elif user_input in ('r','R'):
             question.play_question()

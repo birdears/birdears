@@ -93,8 +93,10 @@ class QuestionBase:
 
         self.valid_intervals = valid_intervals
 
+        direction = 'ascending' if not self.is_descending else 'descending'
         # FIXME: maybe this should go to __main__
-        self.keyboard_index = KEYBOARD_INDICES['chromatic'][self.mode]
+        self.keyboard_index = \
+            KEYBOARD_INDICES['chromatic'][direction][self.mode]
 
         if not tonic:
             tonic = choice(CIRCLE_OF_FIFTHS[randrange(2)])

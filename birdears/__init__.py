@@ -94,12 +94,33 @@ INTERVAL_INDEX = {
 
 KEYBOARD_INDICES = {
     'diatonic': {
-        'minor': 'z xc v bn m Z XC V BN M,',
-        'major': 'z x cv b n mZ X CV B NM,'
+        'ascending': {
+            'minor': 'z xc v bn m Z XC V BN M,',
+            'major': 'z x cv b n mZ X CV B NM,'
+        },
+        # FIXME
+        'descending': {
+            'minor': 'z xc v bn m Z XC V BN M,',
+            'major': 'z x cv b n mZ X CV B NM,'
+        },
     },
     'chromatic': {
-        'minor': "zsxcfvgbnjmkZSXCFVGBNJMK,",
-        'major': "zsxdcvgbhnjmZSXDCVGBHNJM,",
+        'ascending': {
+            'minor': "zsxcfvgbnjmk,SXCFVGBNJMKZ",
+            'major': "zsxdcvgbhnjm,SXDCVGBHNJMZ",
+        },
+        #'descending': {
+        #    'minor': "zsxcfvgbnjmkZSXCFVGBNJMK,",
+        #    'major': "zsxdcvgbhnjmZSXDCVGBHNJM,",
+        #}
+        'descending': {
+            'minor': ",kmjnbgvfcxszKMJNBGVFCXSZ",
+            'major': ",mjnhbgvcdxszMJNHBGVCDXSZ",
+
+            #   k   j        g   f      s
+            # ,   m   n   b   v   c   x   z
+            # a   g   f   e   d   c   b   a
+        }
     }
 }
 
