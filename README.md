@@ -51,7 +51,7 @@ It is not functional yet.
 You may want to create a virtualenv before installing via `pip`.
 
 ```
-pip install birdears
+pip install --upgrade birdears
 ```
 
 Then use the command:

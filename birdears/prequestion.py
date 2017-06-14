@@ -1,13 +1,13 @@
-"""This module implements pre questions progressions.
+"""This module implements pre-questions' progressions.
 
 Pre questions are chord progressions or notes played before the question is
-played, so to affirmate the sound of the question key.
+played, so to affirmate the sound of the question's key.
 
 For example a common cadence is chords I-IV-V-I from the diatonic scale, which
 in a key of `C` is `CM-FM-GM-CM` and in a key of `A` is `AM-DM-EM-AM`.
 
-Prequestion methods should be decorated with `register_prequestion_method`
-decorator, so that they will be registered as a valid prequestion method.
+Pre-question methods should be decorated with `register_prequestion_method`
+decorator, so that they will be registered as a valid pre-question method.
 """
 
 from .sequence import Sequence
@@ -40,7 +40,7 @@ def register_prequestion_method(f, *args, **kwargs):
 class PreQuestion:
 
     def __init__(self, method, duration, delay, pos_delay):
-        """This class implements methods for different types of pre question
+        """This class implements methods for different types of pre-question
         progressions.
 
         Args:

@@ -109,7 +109,6 @@ class HarmonicIntervalQuestion(QuestionBase):
         self.question.play()
 
     def play_resolution(self):
-        
         thread = self.resolution.play()
         thread.join()
 

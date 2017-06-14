@@ -1,6 +1,6 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
@@ -128,7 +128,7 @@ $(document).ready(function(){
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">
+  <body>
   
 
     <div class="document">
@@ -145,31 +145,31 @@ $(document).ready(function(){
 <span id="birdears-questions-harmonicinterval-module"></span><h2>birdears.questions.harmonicinterval module<a class="headerlink" href="#module-birdears.questions.harmonicinterval" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="birdears.questions.harmonicinterval.HarmonicIntervalQuestion">
-<em class="property">class </em><code class="descclassname">birdears.questions.harmonicinterval.</code><code class="descname">HarmonicIntervalQuestion</code><span class="sig-paren">(</span><em>mode='major'</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>valid_intervals=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.questions.harmonicinterval.HarmonicIntervalQuestion" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">birdears.questions.harmonicinterval.</code><code class="descname">HarmonicIntervalQuestion</code><span class="sig-paren">(</span><em>mode=’major’</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>valid_intervals=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.questions.harmonicinterval.HarmonicIntervalQuestion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="birdears.html#birdears.questionbase.QuestionBase" title="birdears.questionbase.QuestionBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.questionbase.QuestionBase</span></code></a></p>
 <p>Implements a Harmonic Interval test.</p>
 <dl class="method">
 <dt id="birdears.questions.harmonicinterval.HarmonicIntervalQuestion.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>mode='major'</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>valid_intervals=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>mode=’major’</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>valid_intervals=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Inits the class.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>mode</strong> (<em>str</em>) &#8211; A string representing the mode of the question.
-Eg., &#8216;major&#8217; or &#8216;minor&#8217;</li>
-<li><strong>tonic</strong> (<em>str</em>) &#8211; A string representing the tonic of the question,
-eg.: &#8216;C&#8217;; if omitted, it will be selected randomly.</li>
-<li><strong>octave</strong> (<em>int</em>) &#8211; A scienfic octave notation, for example, 4 for &#8216;C4&#8217;;
+<li><strong>mode</strong> (<em>str</em>) – A string representing the mode of the question.
+Eg., ‘major’ or ‘minor’</li>
+<li><strong>tonic</strong> (<em>str</em>) – A string representing the tonic of the question,
+eg.: ‘C’; if omitted, it will be selected randomly.</li>
+<li><strong>octave</strong> (<em>int</em>) – A scienfic octave notation, for example, 4 for ‘C4’;
 if not present, it will be randomly chosen.</li>
-<li><strong>descending</strong> (<em>bool</em>) &#8211; Is the question direction in descending, ie.,
+<li><strong>descending</strong> (<em>bool</em>) – Is the question direction in descending, ie.,
 intervals have lower pitch than the tonic.</li>
-<li><strong>chromatic</strong> (<em>bool</em>) &#8211; If the question can have (True) or not (False)
+<li><strong>chromatic</strong> (<em>bool</em>) – If the question can have (True) or not (False)
 chromatic intervals, ie., intervals not in the diatonic scale
 of tonic/mode.</li>
-<li><strong>n_octaves</strong> (<em>int</em>) &#8211; Maximum number of octaves of the question.</li>
-<li><strong>valid_intervals</strong> (<em>list</em>) &#8211; A list with intervals (int) valid for
+<li><strong>n_octaves</strong> (<em>int</em>) – Maximum number of octaves of the question.</li>
+<li><strong>valid_intervals</strong> (<em>list</em>) – A list with intervals (int) valid for
 random choice, 1 is 1st, 2 is second etc. Eg. [1, 4, 5] to
 allow only tonics, fourths and fifths.</li>
 </ul>
@@ -217,38 +217,38 @@ allow only tonics, fourths and fifths.</li>
 <span id="birdears-questions-instrumentaldictation-module"></span><h2>birdears.questions.instrumentaldictation module<a class="headerlink" href="#module-birdears.questions.instrumentaldictation" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="birdears.questions.instrumentaldictation.InstrumentalDictationQuestion">
-<em class="property">class </em><code class="descclassname">birdears.questions.instrumentaldictation.</code><code class="descname">InstrumentalDictationQuestion</code><span class="sig-paren">(</span><em>mode='major'</em>, <em>wait_time=11</em>, <em>n_repeats=1</em>, <em>max_intervals=3</em>, <em>n_notes=4</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>valid_intervals=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">birdears.questions.instrumentaldictation.</code><code class="descname">InstrumentalDictationQuestion</code><span class="sig-paren">(</span><em>mode=’major’</em>, <em>wait_time=11</em>, <em>n_repeats=1</em>, <em>max_intervals=3</em>, <em>n_notes=4</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>valid_intervals=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="birdears.html#birdears.questionbase.QuestionBase" title="birdears.questionbase.QuestionBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.questionbase.QuestionBase</span></code></a></p>
 <p>Implements an instrumental dictation test.</p>
 <dl class="method">
 <dt id="birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>mode='major'</em>, <em>wait_time=11</em>, <em>n_repeats=1</em>, <em>max_intervals=3</em>, <em>n_notes=4</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>valid_intervals=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>mode=’major’</em>, <em>wait_time=11</em>, <em>n_repeats=1</em>, <em>max_intervals=3</em>, <em>n_notes=4</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>valid_intervals=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Inits the class.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>mode</strong> (<em>str</em>) &#8211; A string representing the mode of the question.
-Eg., &#8216;major&#8217; or &#8216;minor&#8217;.</li>
-<li><strong>wait_time</strong> (<em>float</em>) &#8211; Wait time in seconds for the next question or
+<li><strong>mode</strong> (<em>str</em>) – A string representing the mode of the question.
+Eg., ‘major’ or ‘minor’.</li>
+<li><strong>wait_time</strong> (<em>float</em>) – Wait time in seconds for the next question or
 repeat.</li>
-<li><strong>n_repeats</strong> (<em>int</em>) &#8211; Number of times the same dictation will be
+<li><strong>n_repeats</strong> (<em>int</em>) – Number of times the same dictation will be
 repeated before the end of the exercise.</li>
-<li><strong>max_intervals</strong> (<em>int</em>) &#8211; The maximum number of random intervals the
+<li><strong>max_intervals</strong> (<em>int</em>) – The maximum number of random intervals the
 question will have.</li>
-<li><strong>n_notes</strong> (<em>int</em>) &#8211; The number of notes the melodic dictation will have.</li>
-<li><strong>tonic</strong> (<em>str</em>) &#8211; A string representing the tonic of the question,
-eg.: &#8216;C&#8217;; if omitted, it will be selected randomly.</li>
-<li><strong>octave</strong> (<em>int</em>) &#8211; A scienfic octave notation, for example, 4 for &#8216;C4&#8217;;
+<li><strong>n_notes</strong> (<em>int</em>) – The number of notes the melodic dictation will have.</li>
+<li><strong>tonic</strong> (<em>str</em>) – A string representing the tonic of the question,
+eg.: ‘C’; if omitted, it will be selected randomly.</li>
+<li><strong>octave</strong> (<em>int</em>) – A scienfic octave notation, for example, 4 for ‘C4’;
 if not present, it will be randomly chosen.</li>
-<li><strong>descending</strong> (<em>bool</em>) &#8211; Is the question direction in descending, ie.,
+<li><strong>descending</strong> (<em>bool</em>) – Is the question direction in descending, ie.,
 intervals have lower pitch than the tonic.</li>
-<li><strong>chromatic</strong> (<em>bool</em>) &#8211; If the question can have (True) or not (False)
+<li><strong>chromatic</strong> (<em>bool</em>) – If the question can have (True) or not (False)
 chromatic intervals, ie., intervals not in the diatonic scale
 of tonic/mode.</li>
-<li><strong>n_octaves</strong> (<em>int</em>) &#8211; Maximum number of octaves of the question.</li>
-<li><strong>valid_intervals</strong> (<em>list</em>) &#8211; A list with intervals (int) valid for
+<li><strong>n_octaves</strong> (<em>int</em>) – Maximum number of octaves of the question.</li>
+<li><strong>valid_intervals</strong> (<em>list</em>) – A list with intervals (int) valid for
 random choice, 1 is 1st, 2 is second etc. Eg. [1, 4, 5] to
 allow only tonics, fourths and fifths.</li>
 </ul>
@@ -262,7 +262,7 @@ allow only tonics, fourths and fifths.</li>
 <dt id="birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.check_question">
 <code class="descname">check_question</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.check_question" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks whether the given answer is correct.</p>
-<p>This currently doesn&#8217;t applies to instrumental dictation questions.</p>
+<p>This currently doesn’t applies to instrumental dictation questions.</p>
 </dd></dl>
 
 <dl class="method">
@@ -292,34 +292,34 @@ allow only tonics, fourths and fifths.</li>
 <span id="birdears-questions-melodicdictation-module"></span><h2>birdears.questions.melodicdictation module<a class="headerlink" href="#module-birdears.questions.melodicdictation" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="birdears.questions.melodicdictation.MelodicDictationQuestion">
-<em class="property">class </em><code class="descclassname">birdears.questions.melodicdictation.</code><code class="descname">MelodicDictationQuestion</code><span class="sig-paren">(</span><em>mode='major'</em>, <em>max_intervals=3</em>, <em>n_notes=4</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>valid_intervals=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.questions.melodicdictation.MelodicDictationQuestion" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">birdears.questions.melodicdictation.</code><code class="descname">MelodicDictationQuestion</code><span class="sig-paren">(</span><em>mode=’major’</em>, <em>max_intervals=3</em>, <em>n_notes=4</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>valid_intervals=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.questions.melodicdictation.MelodicDictationQuestion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="birdears.html#birdears.questionbase.QuestionBase" title="birdears.questionbase.QuestionBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.questionbase.QuestionBase</span></code></a></p>
 <p>Implements a melodic dictation test.</p>
 <dl class="method">
 <dt id="birdears.questions.melodicdictation.MelodicDictationQuestion.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>mode='major'</em>, <em>max_intervals=3</em>, <em>n_notes=4</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>valid_intervals=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.questions.melodicdictation.MelodicDictationQuestion.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>mode=’major’</em>, <em>max_intervals=3</em>, <em>n_notes=4</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>valid_intervals=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.questions.melodicdictation.MelodicDictationQuestion.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Inits the class.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>mode</strong> (<em>str</em>) &#8211; A string representing the mode of the question.
-Eg., &#8216;major&#8217; or &#8216;minor&#8217;.</li>
-<li><strong>max_intervals</strong> (<em>int</em>) &#8211; The maximum number of random intervals
+<li><strong>mode</strong> (<em>str</em>) – A string representing the mode of the question.
+Eg., ‘major’ or ‘minor’.</li>
+<li><strong>max_intervals</strong> (<em>int</em>) – The maximum number of random intervals
 the question will have.</li>
-<li><strong>n_notes</strong> (<em>int</em>) &#8211; The number of notes the melodic dictation will have.</li>
-<li><strong>tonic</strong> (<em>str</em>) &#8211; A string representing the tonic of the question,
-eg.: &#8216;C&#8217;; if omitted, it will be selected randomly.</li>
-<li><strong>octave</strong> (<em>int</em>) &#8211; A scienfic octave notation, for example, 4 for &#8216;C4&#8217;;
+<li><strong>n_notes</strong> (<em>int</em>) – The number of notes the melodic dictation will have.</li>
+<li><strong>tonic</strong> (<em>str</em>) – A string representing the tonic of the question,
+eg.: ‘C’; if omitted, it will be selected randomly.</li>
+<li><strong>octave</strong> (<em>int</em>) – A scienfic octave notation, for example, 4 for ‘C4’;
 if not present, it will be randomly chosen.</li>
-<li><strong>descending</strong> (<em>bool</em>) &#8211; Is the question direction in descending, ie.,
+<li><strong>descending</strong> (<em>bool</em>) – Is the question direction in descending, ie.,
 intervals have lower pitch than the tonic.</li>
-<li><strong>chromatic</strong> (<em>bool</em>) &#8211; If the question can have (True) or not (False)
+<li><strong>chromatic</strong> (<em>bool</em>) – If the question can have (True) or not (False)
 chromatic intervals, ie., intervals not in the diatonic scale
 of tonic/mode.</li>
-<li><strong>n_octaves</strong> (<em>int</em>) &#8211; Maximum number of octaves of the question.</li>
-<li><strong>valid_intervals</strong> (<em>list</em>) &#8211; A list with intervals (int) valid for
+<li><strong>n_octaves</strong> (<em>int</em>) – Maximum number of octaves of the question.</li>
+<li><strong>valid_intervals</strong> (<em>list</em>) – A list with intervals (int) valid for
 random choice, 1 is 1st, 2 is second etc. Eg. [1, 4, 5] to
 allow only tonics, fourths and fifths.</li>
 </ul>
@@ -367,7 +367,7 @@ allow only tonics, fourths and fifths.</li>
 <span id="birdears-questions-melodicinterval-module"></span><h2>birdears.questions.melodicinterval module<a class="headerlink" href="#module-birdears.questions.melodicinterval" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="birdears.questions.melodicinterval.MelodicIntervalQuestion">
-<em class="property">class </em><code class="descclassname">birdears.questions.melodicinterval.</code><code class="descname">MelodicIntervalQuestion</code><span class="sig-paren">(</span><em>mode='major'</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>valid_intervals=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.questions.melodicinterval.MelodicIntervalQuestion" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">birdears.questions.melodicinterval.</code><code class="descname">MelodicIntervalQuestion</code><span class="sig-paren">(</span><em>mode=’major’</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>valid_intervals=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.questions.melodicinterval.MelodicIntervalQuestion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="birdears.html#birdears.questionbase.QuestionBase" title="birdears.questionbase.QuestionBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.questionbase.QuestionBase</span></code></a></p>
 <p>Implements a Melodic Interval test.</p>
 <dl class="method">
@@ -462,7 +462,7 @@ allow only tonics, fourths and fifths.</li>
       &copy;2017, Iacchus Mercurius.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |

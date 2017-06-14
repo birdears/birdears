@@ -16,8 +16,6 @@ from ..sequence import Sequence
 from ..resolution import Resolution
 from ..prequestion import PreQuestion
 
-#from ..sequence import SEQUENCE_THREAD
-
 
 class MelodicIntervalQuestion(QuestionBase):
     """Implements a Melodic Interval test.
