@@ -24,6 +24,9 @@ More info at https://github.com/iacchus/birdears
 """
 
 
+valid_modes = ", ".join(VALID_MODES)
+
+
 @click.group(options_metavar='', subcommand_metavar='<command> [options]',
              epilog=main_epilog,
              context_settings=CTX_SETTINGS)
@@ -33,7 +36,6 @@ More info at https://github.com/iacchus/birdears
 def cli(debug):
     """birdears ─ Functional Ear Training for Musicians!"""
 
-    print(debug)
     if debug:
         from .logger import logger
         from .logger import logging
@@ -50,7 +52,7 @@ distance between the two.
 
 <mode> is one of these: {valid_modes}
 """.format(
-    valid_modes=", ".join(VALID_MODES)
+    valid_modes=valid_modes,
 )
 
 
@@ -85,7 +87,7 @@ correct distance between the two.
 
 <mode> is one of these: {valid_modes}
 """.format(
-    valid_modes=", ".join(VALID_MODES)
+    valid_modes=valid_modes,
 )
 
 
@@ -121,7 +123,7 @@ melodic dictation.
 
 <mode> is one of these: {valid_modes}
 """.format(
-    valid_modes=", ".join(VALID_MODES)
+    valid_modes=valid_modes,
 )
 
 
@@ -163,7 +165,7 @@ instrument.
 
 <mode> is one of these: {valid_modes}
 """.format(
-    valid_modes=", ".join(VALID_MODES)
+    valid_modes=valid_modes,
 )
 
 
