@@ -73,8 +73,9 @@ class MelodicIntervalQuestion(QuestionBase):
             ud = user_durations.split(',')
             if len(ud) == len(ud_index):
                 for idx, v in ud_index.items():
-                    if ud[idx] != 'n':
-                        self.durations[v[0]][v[1]] = float(ud[idx])
+                    cur_duration = ud[idx].strip()
+                    if cur_duration != 'n':
+                        self.durations[v[0]][v[1]] = float(cur_duration)
 
 
         if not chromatic:
