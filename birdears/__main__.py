@@ -31,9 +31,10 @@ You can use 'birdears <command> --help' to show options for a specific command.
 More info at https://github.com/iacchus/birdears
 """
 
-tonic_list = list(CHROMATIC_SHARP + CHROMATIC_FLAT)
+tonics = list(set(CHROMATIC_SHARP + CHROMATIC_FLAT))
+tonics.sort()
 
-valid_tonics = list(set(tonic_list))
+valid_tonics = ", ".join(tonics)
 valid_modes = ", ".join(VALID_MODES)
 valid_prequestion_methods = ", ".join(VALID_PREQUESTION_METHODS)
 valid_resolution_methods = ", ".join(VALID_RESOLUTION_METHODS)
@@ -70,11 +71,14 @@ Valid values are as follows:
 
 -m <mode> is one of: {valid_modes}
 
+-t <tonic> is one of: {valid_tonics}
+
 -p <prequestion_method> is one of: {valid_prequestion_methods}
 
 -r <resolution_method> is one of: {valid_resolution_methods}
 """.format(
     valid_modes=valid_modes,
+    valid_tonics=valid_tonics,
     valid_resolution_methods=valid_resolution_methods,
     valid_prequestion_methods=valid_prequestion_methods,
 )
@@ -83,7 +87,7 @@ Valid values are as follows:
 @cli.command(options_metavar='[options]', epilog=melodic_epilog)
 @click.option('-m', '--mode', type=click.Choice(VALID_MODES),
               default='major', metavar='<mode>', help="Mode of the question.")
-@click.option('-t', '--tonic', type=str, default=None, metavar='<note>',
+@click.option('-t', '--tonic', type=str, default=None, metavar='<tonic>',
               help='Tonic of the question.')
 @click.option('-o', '--octave', type=click.IntRange(2, 5), default=None,
               metavar='<octave>',
@@ -127,11 +131,14 @@ Valid values are as follows:
 
 -m <mode> is one of: {valid_modes}
 
+-t <tonic> is one of: {valid_tonics}
+
 -p <prequestion_method> is one of: {valid_prequestion_methods}
 
 -r <resolution_method> is one of: {valid_resolution_methods}
 """.format(
     valid_modes=valid_modes,
+    valid_tonics=valid_tonics,
     valid_resolution_methods=valid_resolution_methods,
     valid_prequestion_methods=valid_prequestion_methods,
 )
@@ -185,11 +192,14 @@ Valid values are as follows:
 
 -m <mode> is one of: {valid_modes}
 
+-t <tonic> is one of: {valid_tonics}
+
 -p <prequestion_method> is one of: {valid_prequestion_methods}
 
 -r <resolution_method> is one of: {valid_resolution_methods}
 """.format(
     valid_modes=valid_modes,
+    valid_tonics=valid_tonics,
     valid_resolution_methods=valid_resolution_methods,
     valid_prequestion_methods=valid_prequestion_methods,
 )
@@ -249,11 +259,14 @@ Valid values are as follows:
 
 -m <mode> is one of: {valid_modes}
 
+-t <tonic> is one of: {valid_tonics}
+
 -p <prequestion_method> is one of: {valid_prequestion_methods}
 
 -r <resolution_method> is one of: {valid_resolution_methods}
 """.format(
     valid_modes=valid_modes,
+    valid_tonics=valid_tonics,
     valid_resolution_methods=valid_resolution_methods,
     valid_prequestion_methods=valid_prequestion_methods,
 )
