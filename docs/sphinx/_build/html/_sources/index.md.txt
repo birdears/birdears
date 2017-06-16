@@ -4,6 +4,15 @@
 
 * [birdears API](birdears.rst)
 
+```eval_rst
+
+.. toctree::
+   :maxdepth: 3
+
+   index.md
+   birdears.rst
+```
+
 ## What is Functional Ear Training
 
 ### The method
