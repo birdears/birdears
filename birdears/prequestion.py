@@ -39,7 +39,8 @@ def register_prequestion_method(f, *args, **kwargs):
 
 class PreQuestion:
 
-    def __init__(self, method, duration, delay, pos_delay):
+    #def __init__(self, method, duration, delay, pos_delay):
+    def __init__(self, method, question):
         """This class implements methods for different types of pre-question
         progressions.
 
@@ -54,27 +55,34 @@ class PreQuestion:
         """
 
         self.METHOD = PREQUESTION_METHODS[method]
-        self.duration = duration
-        self.delay = delay
-        self.pos_delay = pos_delay
+        self.question = question
+
+        # self.duration = duration
+        # self.delay = delay
+        # self.pos_delay = pos_delay
 
     def __call__(self, *args, **kwargs):
         """Calls the resolution method and pass arguments to it.
         """
-        return self.METHOD(duration=self.duration, delay=self.delay,
-                           pos_delay=self.pos_delay, *args, **kwargs)
+        return self.METHOD(question=self.question, *args, **kwargs)
 
 
 @register_prequestion_method
-def none(duration, delay, pos_delay, *args, **kwargs):
+def none(question, *args, **kwargs):
     return Sequence(duration=0, delay=0, pos_delay=0)
 
 
 @register_prequestion_method
 # FIXME: please refactor lol
-def tonic_only(tonic, tonic_octave, intervals, duration, delay, pos_delay,
-               harmonic=None, descending=None, *args, **kwargs):
+# def tonic_only(tonic, tonic_octave, intervals, duration, delay, pos_delay,
+#               harmonic=None, descending=None, *args, **kwargs):
+def tonic_only(question, *args, **kwargs):
     # harmonic? maybe remove this.
+
+    intervals = question.interval if not hasattr(question,'intervals') else\
+                question.intervals
+    tonic = question.tonic
+    tonic_octave = question.octave
 
     sequence = Sequence()
 
@@ -96,8 +104,15 @@ def tonic_only(tonic, tonic_octave, intervals, duration, delay, pos_delay,
 
 
 @register_prequestion_method
-def progression_i_iv_v_i(tonic, mode, duration, delay, pos_delay,
-                         *args, **kwargs):
+# def progression_i_iv_v_i(tonic, mode, duration, delay, pos_delay,
+#                         *args, **kwargs):
+def progression_i_iv_v_i(question, *args, **kwargs):
+
+    tonic = question.tonic
+    mode = question.mode
+    duration = question.durations['preq']['duration']
+    delay = question.durations['preq']['delay']
+    pos_delay = question.durations['preq']['pos_delay']
 
     degrees = [1, 4, 5, 1]
 

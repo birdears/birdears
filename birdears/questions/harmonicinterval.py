@@ -99,10 +99,9 @@ class HarmonicIntervalQuestion(QuestionBase):
         self.resolution = self.make_resolution(method='nearest_tonic')
 
     def make_pre_question(self, method):
-        prequestion = PreQuestion(method=method, **self.durations['preq'])
+        prequestion = PreQuestion(method=method, question=self)
 
-        return prequestion(**dict(tonic=self.tonic, tonic_octave=self.octave,
-                           mode=self.mode, intervals=self.interval))
+        return prequestion()
 
     def make_question(self):
 

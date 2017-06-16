@@ -115,11 +115,9 @@ class MelodicDictationQuestion(QuestionBase):
         self.resolution = self.make_resolution()
 
     def make_pre_question(self, method):
-        prequestion = PreQuestion(method=method, **self.durations['preq'])
+        prequestion = PreQuestion(method=method, question=self)
 
-        return prequestion(**dict(tonic=self.tonic, tonic_octave=self.octave,
-                           mode=self.mode,
-                           intervals=self.question_phrase_intervals))
+        return prequestion()
 
     def make_question(self, phrase_semitones):
         return Sequence([self.scales['chromatic_pitch'].scale[n]

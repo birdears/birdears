@@ -50,7 +50,7 @@ class MelodicIntervalQuestion(QuestionBase):
             'quest': {'duration': 2, 'delay': 0.5, 'pos_delay': 0},
             'resol': {'duration': 2.5, 'delay': 0.5, 'pos_delay': 1}
         }
-        
+
         super(MelodicIntervalQuestion, self).\
             __init__(mode=mode, tonic=tonic, octave=octave,
                      descending=descending, chromatic=chromatic,
@@ -103,10 +103,10 @@ class MelodicIntervalQuestion(QuestionBase):
         self.resolution = self.make_resolution(method='nearest_tonic')
 
     def make_pre_question(self, method):
-        prequestion = PreQuestion(method=method, **self.durations['preq'])
+        #prequestion = PreQuestion(method=method, **self.durations['preq'])
+        prequestion = PreQuestion(method=method, question=self)
 
-        return prequestion(**dict(tonic=self.tonic, tonic_octave=self.octave,
-                           mode=self.mode, intervals=self.interval))
+        return prequestion()
 
     def make_question(self):
 
