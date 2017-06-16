@@ -78,7 +78,7 @@ python3 -m birdears
 
 Key Index for major and chromatic major context
 
-![irdears keyboard](https://birdears.github.io/docs/ascending.svg)
+![irdears keyboard](https://iacchus.github.io/birdears/docs/ascending.svg)
 
 *(**SHIFT** key meaning an octave higher)*
 
