@@ -42,7 +42,8 @@ class QuestionBase:
 
     def __init__(self, mode='major', tonic=None, octave=None, descending=None,
                  chromatic=None, n_octaves=None, valid_intervals=None,
-                 user_durations=None, *args, **kwargs):
+                 user_durations=None, prequestion_method=None,
+                 resolution_method=None, *args, **kwargs):
         """Inits the class.
 
         Args:
@@ -152,6 +153,9 @@ class QuestionBase:
                     cur_duration = ud[idx].strip()
                     if cur_duration != 'n':
                         self.durations[v[0]][v[1]] = float(cur_duration)
+
+        self.prequestion_method = prequestion_method
+        self.resolution_method = resolution_method
 
     def get_valid_semitones(self):
         """Returns a list with valid semitones for question.

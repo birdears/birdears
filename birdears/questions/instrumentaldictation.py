@@ -28,7 +28,8 @@ class InstrumentalDictationQuestion(QuestionBase):
                  max_intervals=3, n_notes=4, tonic=None, octave=None,
                  descending=None, chromatic=None, n_octaves=None,
                  valid_intervals=None, user_durations=None,
-                 *args, **kwargs):
+                 prequestion_method='progression_i_iv_v_i',
+                 resolution_method='repeat_only', *args, **kwargs):
         """Inits the class.
 
         Args:
@@ -66,7 +67,9 @@ class InstrumentalDictationQuestion(QuestionBase):
             __init__(mode=mode, tonic=tonic, octave=octave,
                      descending=descending, chromatic=chromatic,
                      n_octaves=n_octaves, valid_intervals=valid_intervals,
-                     user_durations=user_durations, *args, **kwargs)
+                     user_durations=user_durations,
+                     prequestion_method=prequestion_method,
+                     resolution_method=resolution_method, *args, **kwargs)
 
         self.is_harmonic = False
 
@@ -122,9 +125,9 @@ class InstrumentalDictationQuestion(QuestionBase):
 
         # self.pre_question = self.make_pre_question(method='none')
         self.pre_question =\
-            self.make_pre_question(method='progression_i_iv_v_i')
+            self.make_pre_question(method=prequestion_method)
         self.question = self.make_question(self.question_phrase)
-        self.resolution = self.make_resolution()
+        self.resolution = self.make_resolution(method=resolution_method)
 
     def make_pre_question(self, method):
         prequestion = PreQuestion(method=method, question=self)
@@ -135,11 +138,11 @@ class InstrumentalDictationQuestion(QuestionBase):
         return Sequence([self.scales['chromatic_pitch'].scale[n]
                         for n in phrase_semitones], **self.durations['quest'])
 
-    def make_resolution(self):
+    def make_resolution(self, method):
         # the idea here is execute resolve() to each interval of the dictation
 
         #resolve = Resolution(method='repeat_only', **self.durations['resol'])
-        resolve = Resolution(method='repeat_only', question=self)
+        resolve = Resolution(method=method, question=self)
 
         resolution = resolve()
 

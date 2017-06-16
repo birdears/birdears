@@ -20,7 +20,8 @@ class HarmonicIntervalQuestion(QuestionBase):
 
     def __init__(self, mode='major', tonic=None, octave=None, descending=None,
                  chromatic=None, n_octaves=None, valid_intervals=None,
-                 user_durations=None, *args, **kwargs):
+                 user_durations=None, prequestion_method='none',
+                 resolution_method='nearest_tonic', *args, **kwargs):
         """Inits the class.
 
         Args:
@@ -52,7 +53,10 @@ class HarmonicIntervalQuestion(QuestionBase):
                              descending=descending, chromatic=chromatic,
                              n_octaves=n_octaves,
                              valid_intervals=valid_intervals,
-                             user_durations=user_durations, *args, **kwargs)
+                             user_durations=user_durations,
+                             prequestion_method=prequestion_method,
+                             resolution_method=resolution_method,
+                             *args, **kwargs)
 
         self.is_harmonic = True
 
@@ -94,9 +98,10 @@ class HarmonicIntervalQuestion(QuestionBase):
                                   descending=descending,
                                   valid_intervals=self.valid_intervals)
 
-        self.pre_question = self.make_pre_question(method='none')
+        #self.pre_question = self.make_pre_question(method='none')
+        self.pre_question = self.make_pre_question(method=prequestion_method)
         self.question = self.make_question()
-        self.resolution = self.make_resolution(method='nearest_tonic')
+        self.resolution = self.make_resolution(method=resolution_method)
 
     def make_pre_question(self, method):
         prequestion = PreQuestion(method=method, question=self)

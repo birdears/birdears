@@ -9,6 +9,9 @@ from . import DIATONIC_MODES
 
 from .interfaces.commandline import CommandLine
 
+from .prequestion import PREQUESTION_METHODS
+from .resolution import RESOLUTION_METHODS
+
 CTX_SETTINGS = dict(
     help_option_names=['-h', '--help'],
     # max_content_width=click.get_terminal_size()[0],
@@ -16,6 +19,8 @@ CTX_SETTINGS = dict(
 )
 
 VALID_MODES = tuple(DIATONIC_MODES.keys())
+VALID_PREQUESTION_METHODS = tuple(PREQUESTION_METHODS.keys())
+VALID_RESOLUTION_METHODS = tuple(RESOLUTION_METHODS.keys())
 
 main_epilog = """
 You can use 'birdears <command> --help' to show options for a specific command.
@@ -25,7 +30,8 @@ More info at https://github.com/iacchus/birdears
 
 
 valid_modes = ", ".join(VALID_MODES)
-
+valid_prequestion_methods = ", ".join(VALID_PREQUESTION_METHODS)
+valid_resolution_methods = ", ".join(VALID_RESOLUTION_METHODS)
 
 @click.group(options_metavar='', subcommand_metavar='<command> [options]',
              epilog=main_epilog,
@@ -45,16 +51,27 @@ def cli(debug):
         logger.setLevel(logging.DEBUG)
         logger.debug('debug is on.')
 
+#
+# melodic interval
+#
+
 melodic_epilog = """
 In this exercise birdears will play two notes, the tonic and the interval
 melodically, ie., one after the other and you should reply which is the correct
 distance between the two.
 
-<mode> is one of these: {valid_modes}
+Valid values are as follows:
+
+-m <mode> is one of: {valid_modes}
+
+-p <prequestion_method> is one of: {valid_prequestion_methods}
+
+-r <resolution_method> is one of: {valid_resolution_methods}
 """.format(
     valid_modes=valid_modes,
+    valid_resolution_methods=valid_resolution_methods,
+    valid_prequestion_methods=valid_prequestion_methods,
 )
-
 
 @cli.command(options_metavar='[options]', epilog=melodic_epilog)
 @click.option('-m', '--mode', type=click.Choice(VALID_MODES),
@@ -77,6 +94,13 @@ distance between the two.
               metavar='<1,0.5,n..>', help='A comma-separated list without\
               spaces with PRECISLY 9 floating values. Or \'n\' for default\
               duration.')
+@click.option('-p', '--prequestion_method', type=str, default='tonic_only',
+              metavar='<prequestion_method>',
+              help='The name of a pre-question method.')
+@click.option('-r', '--resolution_method', type=str, default='nearest_tonic',
+              metavar='<resolution_method>',
+              help='The name of a resolution method.')
+
 def melodic(*args, **kwargs):
     """Melodic interval recognition
     """
@@ -84,14 +108,26 @@ def melodic(*args, **kwargs):
     kwargs.update({'exercise': 'melodic'})
     CommandLine(**kwargs)
 
+#
+# harmonic interval
+#
+
 harmonic_epilog = """
 In this exercise birdears will play two notes, the tonic and the interval
 harmonically, ie., both on the same time and you should reply which is the
 correct distance between the two.
 
-<mode> is one of these: {valid_modes}
+Valid values are as follows:
+
+-m <mode> is one of: {valid_modes}
+
+-p <prequestion_method> is one of: {valid_prequestion_methods}
+
+-r <resolution_method> is one of: {valid_resolution_methods}
 """.format(
     valid_modes=valid_modes,
+    valid_resolution_methods=valid_resolution_methods,
+    valid_prequestion_methods=valid_prequestion_methods,
 )
 
 
@@ -116,6 +152,12 @@ correct distance between the two.
               metavar='<1,0.5,n..>', help='A comma-separated list without\
               spaces with PRECISLY 9 floating values. Or \'n\' for default\
               duration.')
+@click.option('-p', '--prequestion_method', type=str, default='tonic_only',
+              metavar='<prequestion_method>',
+              help='The name of a pre-question method.')
+@click.option('-r', '--resolution_method', type=str, default='nearest_tonic',
+              metavar='<resolution_method>',
+              help='The name of a resolution method.')
 def harmonic(*args, **kwargs):
     """Harmonic interval recognition
     """
@@ -123,15 +165,27 @@ def harmonic(*args, **kwargs):
     kwargs.update({'exercise': 'harmonic'})
     CommandLine(**kwargs)
 
+#
+# dictation
+#
 
 dictation_epilog = """
 In this exercise birdears will choose some random intervals and create a
 melodic dictation with them. You should reply the correct intervals of the
 melodic dictation.
 
-<mode> is one of these: {valid_modes}
+
+Valid values are as follows:
+
+-m <mode> is one of: {valid_modes}
+
+-p <prequestion_method> is one of: {valid_prequestion_methods}
+
+-r <resolution_method> is one of: {valid_resolution_methods}
 """.format(
     valid_modes=valid_modes,
+    valid_resolution_methods=valid_resolution_methods,
+    valid_prequestion_methods=valid_prequestion_methods,
 )
 
 
@@ -162,6 +216,12 @@ melodic dictation.
               metavar='<1,0.5,n..>', help='A comma-separated list without\
               spaces with PRECISLY 9 floating values. Or \'n\' for default\
               duration.')
+@click.option('-p', '--prequestion_method', type=str, default='progression_i_iv_v_i',
+              metavar='<prequestion_method>',
+              help='The name of a pre-question method.')
+@click.option('-r', '--resolution_method', type=str, default='repeat_only',
+              metavar='<resolution_method>',
+              help='The name of a resolution method.')
 def dictation(*args, **kwargs):
     """Melodic dictation
     """
@@ -170,14 +230,26 @@ def dictation(*args, **kwargs):
     CommandLine(**kwargs)
 
 
+#
+# instrumental dictation
+#
+
 instrumental_epilog = """
 In this exercise birdears will choose some random intervals and create a
 melodic dictation with them. You should play the correct melody in you musical
 instrument.
 
-<mode> is one of these: {valid_modes}
+Valid values are as follows:
+
+-m <mode> is one of: {valid_modes}
+
+-p <prequestion_method> is one of: {valid_prequestion_methods}
+
+-r <resolution_method> is one of: {valid_resolution_methods}
 """.format(
     valid_modes=valid_modes,
+    valid_resolution_methods=valid_resolution_methods,
+    valid_prequestion_methods=valid_prequestion_methods,
 )
 
 
@@ -212,12 +284,22 @@ instrument.
               metavar='<1,0.5,n..>', help='A comma-separated list without\
               spaces with PRECISLY 9 floating values. Or \'n\' for default\
               duration.')
+@click.option('-p', '--prequestion_method', type=str, default='progression_i_iv_v_i',
+              metavar='<prequestion_method>',
+              help='The name of a pre-question method.')
+# @click.option('-r', '--resolution_method', type=str, default='nearest_tonic',
+#              metavar='<resolution_method>',
+#              help='The name of a resolution method.')
 def instrumental(*args, **kwargs):
     """Instrumental melodic time-based dictation
     """
 
     kwargs.update({'exercise': 'instrumental'})
     CommandLine(**kwargs)
+
+#
+# birdear's "load"
+#
 
 load_epilog = """
 Loads exercise from file.

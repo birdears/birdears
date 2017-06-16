@@ -83,7 +83,9 @@ def nearest_tonic(question):
 
     mode = question.mode
     tonic = question.tonic
-    intervals = question.interval
+    if not hasattr(question, 'question_phrase_intervals'):
+        intervals = question.interval
+    else: intervals = question.question_phrase_intervals
     duration = question.durations['resol']['duration']
     delay = question.durations['resol']['delay']
     pos_delay = question.durations['resol']['pos_delay']
@@ -149,6 +151,7 @@ def nearest_tonic(question):
 
 
 @register_resolution_method
+# FIXME : it should both play preq and question
 #def repeat_only(elements, duration, delay, pos_delay):
 def repeat_only(question):
     """Resolution method that only repeats the sequence elements with given

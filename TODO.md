@@ -31,6 +31,8 @@ Classes:
 
 ~~bindings with argparse~~ click ✓
 
+MAKE SOMEHING FOR IMPROVISING ON PRE-MADE HARMONIES**
+
 **plugins/extensions, easy way of users extending the software by using the api,
 maybe providing frontend tools**
 
@@ -58,8 +60,8 @@ be a string or a list~~, or a tuple, so he can sort one of the elements as tonic
 ~~`octave` can be int or tuple, so that the octave will be chosen randomly by that
 range~~, etc. This will give us tools to load questions from config files.
 
-**question, resolution, pre-qestion: duration, delay and post delay should be
-configurable via options too.**
+~~question, resolution, pre-qestion: duration, delay and post delay should be
+configurable via options too.~~ ✓
 
 ### Refactoring
 
@@ -77,9 +79,9 @@ note: maybe you'd find this useful https://gist.github.com/rxaviers/7360908
 ~~Refactor keys so that they didn't give double sharps or double flats.~~ ✓
 :tada: CIRCLE\_OF\_FIFTHS !
 
-**Maybe refactor make\_resoltion/sequence as generator so that we can interact
+~~Maybe refactor make\_resoltion/sequence as generator so that we can interact
 with the UI, (eg., every note played in resolution is highlighted in user
-interface.)**
+interface.)~~ ✓ DID IT with threading.
 
 **Encapsulate birdears.interfaces.commandline in a class.**
 
@@ -96,13 +98,12 @@ versions in birdears.scale.~~ ✓
 of handling its own duration, and delay time, this way:
 `('C4', 2, 3)` or `(['C4','E4',"G4"], 1, 2)` ... `(element, duration, delay)`~~
 
-**Maybe sequence can contain sequences play(): if type=sequence, then play()**
+**Maybe sequence can contain sequences play(): if type==sequence, then play()**
 
 **Refactor API so that inside an interface (eg., the GUI) we don't have stuff
 redunant to it (eg., commandline presentation on GUI when it imports the API)**
 
 **GUI: we should do one widget for each type of exercise.**
-
 
 **we can make sequence not musical agnostics, ie., containing only strings for notes
 and chords, but alo semitones so that play() can send this for threaded UI
@@ -110,6 +111,6 @@ callbacks.**
 
 ### Etc
 
-**Lets reserve options to `-r` to `--resolution` method  (FET-like, Repeat-only,
+~~Lets reserve options to `-r` to `--resolution` method  (FET-like, Repeat-only,
 Inverted-question) ans `-p` to`--pre-question` (I-IV-V-I, Tonic-Interval, etc,
-ie., tonic affirmation before question.)**
+ie., tonic affirmation before question.)~~ ✓ done as planned.

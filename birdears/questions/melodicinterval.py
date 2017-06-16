@@ -24,7 +24,8 @@ class MelodicIntervalQuestion(QuestionBase):
     @log_event
     def __init__(self, mode='major', tonic=None, octave=None, descending=None,
                  chromatic=None, n_octaves=None, valid_intervals=None,
-                 user_durations=None, *args, **kwargs):
+                 user_durations=None, prequestion_method='tonic_only',
+                 resolution_method='nearest_tonic', *args, **kwargs):
         """Inits the class.
 
         Args:
@@ -55,7 +56,9 @@ class MelodicIntervalQuestion(QuestionBase):
             __init__(mode=mode, tonic=tonic, octave=octave,
                      descending=descending, chromatic=chromatic,
                      n_octaves=n_octaves, valid_intervals=valid_intervals,
-                     user_durations=user_durations, *args, **kwargs)
+                     user_durations=user_durations,
+                     prequestion_method=prequestion_method,
+                     resolution_method=resolution_method, *args, **kwargs)
 
         #if not self.durations:
         #self.durations = durations
@@ -98,9 +101,9 @@ class MelodicIntervalQuestion(QuestionBase):
                                   descending=descending,
                                   valid_intervals=self.valid_intervals)
 
-        self.pre_question = self.make_pre_question(method='tonic_only')
+        self.pre_question = self.make_pre_question(method=prequestion_method)
         self.question = self.make_question()
-        self.resolution = self.make_resolution(method='nearest_tonic')
+        self.resolution = self.make_resolution(method=resolution_method)
 
     def make_pre_question(self, method):
         #prequestion = PreQuestion(method=method, **self.durations['preq'])
