@@ -44,6 +44,27 @@ class MelodicIntervalQuestion(QuestionBase):
             valid_intervals (list): A list with intervals (int) valid for
                 random choice, 1 is 1st, 2 is second etc. Eg. [1, 4, 5] to
                 allow only tonics, fourths and fifths.
+            user_durations (str): A string with 9 comma-separated `int` or
+                `float`s to set the default duration for the notes played. The
+                values are respectively for: pre-question duration (1st),
+                pre-question delay (2nd), and pre-question pos-delay (3rd);
+                question duration (4th), question delay (5th), and question
+                pos-delay (6th); resolution duration (7th), resolution
+                delay (8th), and resolution pos-delay (9th).
+                duration is the duration in of the note in seconds; delay is
+                the time to wait before playing the next note, and pos_delay is
+                the time to wait after all the notes of the respective sequence
+                have been played. If any of the user durations is `n`, the
+                default duration for the type of question will be used instead.
+                Example::
+                    "2,0.5,1,2,n,0,2.5,n,1"
+            prequestion_method (str): Method of playing a cadence or the
+                exercise tonic before the question so to affirm the question
+                musical tonic key to the ear. Valid ones are registered in the
+                `birdears.prequestion.PREQUESION_METHODS` global dict.
+            resolution_method (str): Method of playing the resolution of an
+                exercise. Valid ones are registered in the
+                `birdears.resolution.RESOLUTION_METHODS` global dict.
         """
 
         default_durations = {

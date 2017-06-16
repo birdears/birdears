@@ -63,11 +63,6 @@ class DiatonicInterval(IntervalBase):
         data (tuple): A tuple representing the interval data in the form of
             (semitones, short_name, long_name), for example::
                 (19, 'P12', 'Perfect Twelfth')
-
-    Todo:
-        * Maybe we should refactor some of the attributes with a tuple
-            (note, octave)
-        * Maybe remove `chromatic_offset` in favor of `distance['semitones']``
     """
 
     def __init__(self, mode, tonic, octave, n_octaves=None, descending=None,

@@ -3,6 +3,7 @@ This submodule exports `logger` to log events.
 
 Logging messages which are less severe than `lvl` will be ignored
 
+```
 Level       Numeric value
 -----       -------------
 CRITICAL    50
@@ -24,6 +25,7 @@ ERROR       Due to a more serious problem, the software has not been able to
                 perform some function.
 CRITICAL	A serious error, indicating that the program itself may be unable
                 to continue running.
+```
 """
 
 import logging
@@ -66,6 +68,11 @@ logger = logging.getLogger()
 
 
 def log_event(f, *args, **kwargs):
+    """
+    Decorator. Functions and method decorated with this decorator will have
+    their signature logged when birdears is executed with `--debug` mode. Both
+    function signature with their call values and their return will be logged.
+    """
 
     @wraps(f)
     def decorator(*args, **kwargs):

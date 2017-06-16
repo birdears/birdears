@@ -81,12 +81,7 @@ Keybindings for intervals
 
 Key Index for major and chromatic major context
 
-::
-
-      keyboard              would represent
-
-     s d   g h j        IIb  IIIb       Vb VIb  VIIb
-    z x c v b n m  <-  I   II   III  IV   V   VI   VII
+**readme should be rewritten**
 
 *(**SHIFT** key meaning an octave higher)*
 
@@ -109,9 +104,9 @@ Screenshot or didn't happen
 *(development version)*
 
 .. figure:: https://i.imgur.com/PSZCL2a.png
-   :alt: birsears screenshot
+   :alt: birdears screenshot
 
-   birsears screenshot
+   birdears screenshot
 
 Other keys
 ~~~~~~~~~~
