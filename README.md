@@ -78,13 +78,7 @@ python3 -m birdears
 
 Key Index for major and chromatic major context
 
-
-```
-  keyboard              would represent
-
- s d   g h j        IIb  IIIb       Vb VIb  VIIb
-z x c v b n m  <-  I   II   III  IV   V   VI   VII
-```
+![](docs/ascending.svg)
 
 *(**SHIFT** key meaning an octave higher)*
 
