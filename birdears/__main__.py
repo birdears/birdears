@@ -9,6 +9,9 @@ from . import DIATONIC_MODES
 
 from .interfaces.commandline import CommandLine
 
+from . import CHROMATIC_SHARP
+from . import CHROMATIC_FLAT
+
 from .prequestion import PREQUESTION_METHODS
 from .resolution import RESOLUTION_METHODS
 
@@ -28,6 +31,9 @@ You can use 'birdears <command> --help' to show options for a specific command.
 More info at https://github.com/iacchus/birdears
 """
 
+tonic_list = list(CHROMATIC_SHARP + CHROMATIC_FLAT)
+
+valid_tonics = list(set(tonic_list))
 valid_modes = ", ".join(VALID_MODES)
 valid_prequestion_methods = ", ".join(VALID_PREQUESTION_METHODS)
 valid_resolution_methods = ", ".join(VALID_RESOLUTION_METHODS)
