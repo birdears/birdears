@@ -49,7 +49,7 @@ class MelodicDictationQuestion(QuestionBase):
                 allow only tonics, fourths and fifths.
         """
 
-        self.default_durations = {
+        default_durations = {
             'preq': {'duration': 2, 'delay': 0.5, 'pos_delay': 1},
             'quest': {'duration': 2, 'delay': 0.8, 'pos_delay': 0},
             'resol': {'duration': 2.5, 'delay': 0.5, 'pos_delay': 1}
@@ -61,7 +61,8 @@ class MelodicDictationQuestion(QuestionBase):
                      n_octaves=n_octaves, valid_intervals=valid_intervals,
                      user_durations=user_durations,
                      prequestion_method=prequestion_method,
-                     resolution_method=resolution_method, *args, **kwargs)
+                     resolution_method=resolution_method,
+                     default_durations=default_durations, *args, **kwargs)
 
         self.is_harmonic = False
 

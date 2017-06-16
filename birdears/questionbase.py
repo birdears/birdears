@@ -40,12 +40,11 @@ class QuestionBase:
     subclasses.
     """
 
-    default_durations = None
-
     def __init__(self, mode='major', tonic=None, octave=None, descending=None,
                  chromatic=None, n_octaves=None, valid_intervals=None,
                  user_durations=None, prequestion_method=None,
-                 resolution_method=None, *args, **kwargs):
+                 resolution_method=None, default_durations = None,
+                 *args, **kwargs):
         """Inits the class.
 
         Args:
@@ -136,7 +135,7 @@ class QuestionBase:
         self.concrete_tonic = scales['diatonic_pitch'].scale[0]
         self.scale_size = len(scales['diatonic'].scale)
 
-        self.durations = self.default_durations
+        self.durations = default_durations
         if user_durations:
             ud_index = {
                 0: ('preq', 'duration'),

@@ -152,7 +152,7 @@ Valid values are as follows:
               metavar='<1,0.5,n..>', help='A comma-separated list without\
               spaces with PRECISLY 9 floating values. Or \'n\' for default\
               duration.')
-@click.option('-p', '--prequestion_method', type=str, default='tonic_only',
+@click.option('-p', '--prequestion_method', type=str, default='none',
               metavar='<prequestion_method>',
               help='The name of a pre-question method.')
 @click.option('-r', '--resolution_method', type=str, default='nearest_tonic',
