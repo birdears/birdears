@@ -16,7 +16,10 @@
    inkscape:version="0.92.1 r"
    version="1.0"
    sodipodi:docname="ascending.svg"
-   viewBox="0 0 900 300">
+   viewBox="0 0 900 300"
+   inkscape:export-filename="/home/iacchus/git-stuff/birdears/docs/ascending.svg.png"
+   inkscape:export-xdpi="118.64"
+   inkscape:export-ydpi="118.64">
   <defs
      id="defs4">
     <marker
@@ -182,8 +185,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.73806881"
-     inkscape:cx="471.84012"
-     inkscape:cy="-83.428236"
+     inkscape:cx="543.02038"
+     inkscape:cy="73.738682"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:grid-points="true"
@@ -218,7 +221,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
         <dc:description>Downloaded from https://commons.wikimedia.org/wiki/File:KB_United_States-NoAltGr.svg
 
 Licensed under Creative Commons Attribution-Share Alike 3.0 Unported
@@ -231,7 +234,7 @@ attribution – You must attribute the work in the manner specified by the autho
 share alike – If you alter, transform, or build upon this work, you may distribute the resulting work only under the same or similar license to this one.</dc:description>
         <dc:rights>
           <cc:Agent>
-            <dc:title></dc:title>
+            <dc:title />
           </cc:Agent>
         </dc:rights>
       </cc:Work>
@@ -402,7 +405,7 @@ share alike – If you alter, transform, or build upon this work, you may distri
        id="rect2298"
        inkscape:connector-curvature="0" />
     <path
-       style="fill:#669966;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dashoffset:0pt;stroke-opacity:1"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dashoffset:0pt;stroke-opacity:1"
        d="m 285,120 h 60 v 60 h -60 z"
        id="rect2300"
        inkscape:connector-curvature="0" />
@@ -779,7 +782,7 @@ share alike – If you alter, transform, or build upon this work, you may distri
        id="text5653"
        inkscape:connector-curvature="0" />
     <path
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:24px;line-height:125%;font-family:'Swis721 BT';text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:24px;line-height:125%;font-family:'Swis721 BT';text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0"
        d="m 365.17969,141.57422 c -0.64064,0.86719 -1.37111,1.50391 -2.19141,1.91016 -0.81251,0.40624 -1.76954,0.60937 -2.87109,0.60937 -2.41407,0 -4.3711,-0.83594 -5.8711,-2.50781 -1.49219,-1.67969 -2.23828,-3.88281 -2.23828,-6.60938 0,-2.74999 0.74609,-4.9492 2.23828,-6.59765 1.49219,-1.64842 3.48047,-2.47264 5.96485,-2.47266 2.16405,2e-5 3.92967,0.51955 5.29687,1.55859 1.36717,1.03127 2.17967,2.45314 2.4375,4.26563 h -3.62109 c -0.21876,-0.89843 -0.66798,-1.58202 -1.34766,-2.05078 -0.67188,-0.46874 -1.55079,-0.70311 -2.63672,-0.70313 -1.44532,2e-5 -2.58203,0.53127 -3.41015,1.59375 -0.82032,1.0547 -1.23048,2.51564 -1.23047,4.38282 -1e-5,1.875 0.42968,3.34375 1.28906,4.40625 0.85937,1.0625 2.03906,1.59375 3.53906,1.59375 1.12499,0 2.0664,-0.33203 2.82422,-0.9961 0.7578,-0.66406 1.22655,-1.57421 1.40625,-2.73047 h -3.91406 v -2.95312 h 7.14844 v 9.33984 h -2.37891 l -0.43359,-2.03906"
        id="text5657"
        inkscape:connector-curvature="0" />
@@ -955,6 +958,43 @@ share alike – If you alter, transform, or build upon this work, you may distri
        inkscape:connector-curvature="0" />
     <flowRoot
        xml:space="preserve"
+       id="flowRoot4940"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18.66666603px;line-height:125%;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       transform="matrix(0.9375,0,0,0.9375,0.83075229,-283.63447)"><flowRegion
+         id="flowRegion4942"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18.66666603px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start"><rect
+           id="rect4944"
+           width="352"
+           height="160"
+           x="288"
+           y="384"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18.66666603px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start" /></flowRegion><flowPara
+         id="flowPara4799"
+         style="letter-spacing:-2px">repeat</flowPara><flowPara
+         id="flowPara4801"
+         style="letter-spacing:-2px">question</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4954"
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:40px;line-height:125%;letter-spacing:0px;word-spacing:0px"><flowRegion
+         id="flowRegion4956"><rect
+           id="rect4958"
+           width="288"
+           height="160"
+           x="224"
+           y="416" /></flowRegion><flowPara
+         id="flowPara4960" /></flowRoot>    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:bold;font-size:20px;line-height:125%;font-family:Inconsolata;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.9375px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:'Inconsolata, Bold';font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;"
+       x="100.14"
+       y="94.889999"
+       id="text4964"><tspan
+         sodipodi:role="line"
+         id="tspan4962"
+         x="100.14"
+         y="94.889999"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:20px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata, Bold';stroke-width:0.9375px;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;">quit</tspan></text>
+    <flowRoot
+       xml:space="preserve"
        id="flowRoot4740"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        transform="matrix(0.9375,0,0,0.9375,-23.686524,-206.94824)"><flowRegion
@@ -1099,18 +1139,6 @@ share alike – If you alter, transform, or build upon this work, you may distri
          id="flowPara4746-37"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:21.33333397px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start">D4</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
-       id="flowRoot4740-72"
-       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       transform="matrix(0.9375,0,0,0.9375,67.136278,-168.15226)"><flowRegion
-         id="flowRegion4742-64"><rect
-           id="rect4744-52"
-           width="352"
-           height="96"
-           x="192"
-           y="416" /></flowRegion><flowPara
-         id="flowPara4746-02"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:21.33333397px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start">P1</flowPara></flowRoot>    <flowRoot
-       xml:space="preserve"
        id="flowRoot4740-909"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        transform="matrix(0.9375,0,0,0.9375,65.258789,-266.99707)"><flowRegion
@@ -1133,40 +1161,5 @@ share alike – If you alter, transform, or build upon this work, you may distri
            x="192"
            y="416" /></flowRegion><flowPara
          id="flowPara4746-04"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:21.33333397px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start">m2</flowPara></flowRoot>    <flowRoot
-       xml:space="preserve"
-       id="flowRoot4940"
-       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       transform="matrix(0.9375,0,0,0.9375,-8.8914474,-321.36231)"><flowRegion
-         id="flowRegion4942"><rect
-           id="rect4944"
-           width="352"
-           height="160"
-           x="288"
-           y="384" /></flowRegion><flowPara
-         id="flowPara4948"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:21.33333397px;line-height:0.99999998%;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata Bold'">repeat</flowPara><flowPara
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:21.33333397px;line-height:0.99999998%;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata Bold'"
-         id="flowPara4952">question</flowPara></flowRoot>    <flowRoot
-       xml:space="preserve"
-       id="flowRoot4954"
-       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:40px;line-height:125%;letter-spacing:0px;word-spacing:0px"><flowRegion
-         id="flowRegion4956"><rect
-           id="rect4958"
-           width="288"
-           height="160"
-           x="224"
-           y="416" /></flowRegion><flowPara
-         id="flowPara4960"></flowPara></flowRoot>    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:37.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.9375px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="100.14"
-       y="94.889999"
-       id="text4964"><tspan
-         sodipodi:role="line"
-         id="tspan4962"
-         x="100.14"
-         y="94.889999"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;font-family:Inconsolata;-inkscape-font-specification:Inconsolata;stroke-width:0.9375px">quit</tspan></text>
-  </g>
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:21.33333397px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start">m2</flowPara></flowRoot>  </g>
 </svg>
