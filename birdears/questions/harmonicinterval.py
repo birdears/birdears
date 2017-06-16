@@ -60,27 +60,7 @@ class HarmonicIntervalQuestion(QuestionBase):
 
         self.is_harmonic = True
 
-
-        # if user_durations:
-        #     ud_index = {
-        #         0: ('preq', 'duration'),
-        #         1: ('preq', 'delay'),
-        #         2: ('preq', 'pos_delay'),
-        #         3: ('quest', 'duration'),
-        #         4: ('quest', 'delay'),
-        #         5: ('quest', 'pos_delay'),
-        #         6: ('resol', 'duration'),
-        #         7: ('resol', 'delay'),
-        #         8: ('resol', 'pos_delay'),
-        #     }
-        #     ud = user_durations.split(',')
-        #     if len(ud) == len(ud_index):
-        #         for idx, v in ud_index.items():
-        #             cur_duration = ud[idx].strip()
-        #             if cur_duration != 'n':
-        #                 self.durations[v[0]][v[1]] = float(cur_duration)
-
-        tonic = self.tonic
+        # tonic = self.tonic
 
         if not chromatic:
             self.interval = \
@@ -98,7 +78,6 @@ class HarmonicIntervalQuestion(QuestionBase):
                                   descending=descending,
                                   valid_intervals=self.valid_intervals)
 
-        #self.pre_question = self.make_pre_question(method='none')
         self.pre_question = self.make_pre_question(method=prequestion_method)
         self.question = self.make_question()
         self.resolution = self.make_resolution(method=resolution_method)
@@ -120,15 +99,8 @@ class HarmonicIntervalQuestion(QuestionBase):
 
     def make_resolution(self, method):
 
-        durations = self.durations
-
-        # resolve = Resolution(method=method, **durations['resol'])
         resolve = Resolution(method=method, question=self)
-
         resolution = resolve()
-        # resolution = resolve(mode=self.mode, tonic=self.tonic,
-        #                     intervals=self.interval,
-        #                     descending=self.is_descending, harmonic=True)
 
         return resolution
 

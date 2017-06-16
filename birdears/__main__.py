@@ -28,10 +28,10 @@ You can use 'birdears <command> --help' to show options for a specific command.
 More info at https://github.com/iacchus/birdears
 """
 
-
 valid_modes = ", ".join(VALID_MODES)
 valid_prequestion_methods = ", ".join(VALID_PREQUESTION_METHODS)
 valid_resolution_methods = ", ".join(VALID_RESOLUTION_METHODS)
+
 
 @click.group(options_metavar='', subcommand_metavar='<command> [options]',
              epilog=main_epilog,
@@ -73,6 +73,7 @@ Valid values are as follows:
     valid_prequestion_methods=valid_prequestion_methods,
 )
 
+
 @cli.command(options_metavar='[options]', epilog=melodic_epilog)
 @click.option('-m', '--mode', type=click.Choice(VALID_MODES),
               default='major', metavar='<mode>', help="Mode of the question.")
@@ -100,7 +101,6 @@ Valid values are as follows:
 @click.option('-r', '--resolution_method', type=str, default='nearest_tonic',
               metavar='<resolution_method>',
               help='The name of a resolution method.')
-
 def melodic(*args, **kwargs):
     """Melodic interval recognition
     """
@@ -216,8 +216,8 @@ Valid values are as follows:
               metavar='<1,0.5,n..>', help='A comma-separated list without\
               spaces with PRECISLY 9 floating values. Or \'n\' for default\
               duration.')
-@click.option('-p', '--prequestion_method', type=str, default='progression_i_iv_v_i',
-              metavar='<prequestion_method>',
+@click.option('-p', '--prequestion_method', type=str,
+              default='progression_i_iv_v_i', metavar='<prequestion_method>',
               help='The name of a pre-question method.')
 @click.option('-r', '--resolution_method', type=str, default='repeat_only',
               metavar='<resolution_method>',
@@ -284,8 +284,8 @@ Valid values are as follows:
               metavar='<1,0.5,n..>', help='A comma-separated list without\
               spaces with PRECISLY 9 floating values. Or \'n\' for default\
               duration.')
-@click.option('-p', '--prequestion_method', type=str, default='progression_i_iv_v_i',
-              metavar='<prequestion_method>',
+@click.option('-p', '--prequestion_method', type=str,
+              default='progression_i_iv_v_i', metavar='<prequestion_method>',
               help='The name of a pre-question method.')
 @click.option('-r', '--resolution_method', type=str, default='nearest_tonic',
               metavar='<resolution_method>',

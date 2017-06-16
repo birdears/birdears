@@ -40,6 +40,8 @@ class QuestionBase:
     subclasses.
     """
 
+    default_durations = None
+
     def __init__(self, mode='major', tonic=None, octave=None, descending=None,
                  chromatic=None, n_octaves=None, valid_intervals=None,
                  user_durations=None, prequestion_method=None,

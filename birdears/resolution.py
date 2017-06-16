@@ -38,7 +38,6 @@ class Resolution:
     how the inverval resvolver to the tonic.
     """
 
-    #def __init__(self, method, duration, delay, pos_delay):
     def __init__(self, method, question):
         """Inits the resolution class.
 
@@ -48,21 +47,14 @@ class Resolution:
 
         self.METHOD = RESOLUTION_METHODS[method]
         self.question = question
-        #self.duration = duration
-        #self.delay = delay
-        #self.pos_delay = pos_delay
 
     def __call__(self, *args, **kwargs):
         """Calls the resolution method and pass arguments to it.
         """
-        #return self.METHOD(duration=self.duration, delay=self.delay,
-        #                   pos_delay=self.pos_delay, *args, **kwargs)
         return self.METHOD(question=self.question, *args, **kwargs)
 
 
 @register_resolution_method
-#def nearest_tonic(mode, tonic, intervals, duration, delay, pos_delay,
-#                  harmonic=None, descending=None):
 def nearest_tonic(question):
     """Resolution method that resolve the intervals to their nearest tonics.
 
@@ -85,7 +77,8 @@ def nearest_tonic(question):
     tonic = question.tonic
     if not hasattr(question, 'question_phrase_intervals'):
         intervals = question.interval
-    else: intervals = question.question_phrase_intervals
+    else:
+        intervals = question.question_phrase_intervals
     duration = question.durations['resol']['duration']
     delay = question.durations['resol']['delay']
     pos_delay = question.durations['resol']['pos_delay']
@@ -97,8 +90,6 @@ def nearest_tonic(question):
     if type(intervals) is not list:
         intervals = [intervals]
 
-    # last_el_idx = len(intervals) - 1
-    # for cur_el_idx, interval in enumerate(intervals):
     for interval in intervals:
         resolution_pitch = []
         scale_pitch = DiatonicScale(tonic=tonic, mode=mode,
@@ -144,15 +135,11 @@ def nearest_tonic(question):
 
         sequence_list.extend(seq_list)
 
-        # sequence_list.append(Sequence(seq, duration=duration, delay=delay,
-        #                     pos_delay=pos_delay))
-
     return Sequence(elements=sequence_list, delay=delay, pos_delay=pos_delay)
 
 
 @register_resolution_method
 # FIXME : it should both play preq and question
-#def repeat_only(elements, duration, delay, pos_delay):
 def repeat_only(question):
     """Resolution method that only repeats the sequence elements with given
     durations.

@@ -60,30 +60,6 @@ class MelodicIntervalQuestion(QuestionBase):
                      prequestion_method=prequestion_method,
                      resolution_method=resolution_method, *args, **kwargs)
 
-        #if not self.durations:
-        #self.durations = durations
-
-        # TODO: this should go to QuestionBase
-        # if user_durations:
-        #     ud_index = {
-        #         0: ('preq', 'duration'),
-        #         1: ('preq', 'delay'),
-        #         2: ('preq', 'pos_delay'),
-        #         3: ('quest', 'duration'),
-        #         4: ('quest', 'delay'),
-        #         5: ('quest', 'pos_delay'),
-        #         6: ('resol', 'duration'),
-        #         7: ('resol', 'delay'),
-        #         8: ('resol', 'pos_delay'),
-        #     }
-        #     ud = user_durations.split(',')
-        #     if len(ud) == len(ud_index):
-        #         for idx, v in ud_index.items():
-        #             cur_duration = ud[idx].strip()
-        #             if cur_duration != 'n':
-        #                 self.durations[v[0]][v[1]] = float(cur_duration)
-
-
         self.is_harmonic = False
 
         if not chromatic:
@@ -106,7 +82,6 @@ class MelodicIntervalQuestion(QuestionBase):
         self.resolution = self.make_resolution(method=resolution_method)
 
     def make_pre_question(self, method):
-        #prequestion = PreQuestion(method=method, **self.durations['preq'])
         prequestion = PreQuestion(method=method, question=self)
 
         return prequestion()
@@ -121,15 +96,9 @@ class MelodicIntervalQuestion(QuestionBase):
         return question
 
     def make_resolution(self, method):
-        logger.info('inside make_resolution')
 
-        # resolve = Resolution(method=method, **self.durations['resol'])
         resolve = Resolution(method=method, question=self)
-
         resolution = resolve()
-        #resolution = resolve(mode=self.mode, tonic=self.tonic,
-        #                     intervals=self.interval,
-        #                     descending=self.is_descending)
 
         return resolution
 

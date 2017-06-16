@@ -39,7 +39,6 @@ def register_prequestion_method(f, *args, **kwargs):
 
 class PreQuestion:
 
-    #def __init__(self, method, duration, delay, pos_delay):
     def __init__(self, method, question):
         """This class implements methods for different types of pre-question
         progressions.
@@ -57,10 +56,6 @@ class PreQuestion:
         self.METHOD = PREQUESTION_METHODS[method]
         self.question = question
 
-        # self.duration = duration
-        # self.delay = delay
-        # self.pos_delay = pos_delay
-
     def __call__(self, *args, **kwargs):
         """Calls the resolution method and pass arguments to it.
         """
@@ -73,13 +68,9 @@ def none(question, *args, **kwargs):
 
 
 @register_prequestion_method
-# FIXME: please refactor lol
-# def tonic_only(tonic, tonic_octave, intervals, duration, delay, pos_delay,
-#               harmonic=None, descending=None, *args, **kwargs):
 def tonic_only(question, *args, **kwargs):
-    # harmonic? maybe remove this.
 
-    intervals = question.interval if not hasattr(question,'intervals') else\
+    intervals = question.interval if not hasattr(question, 'intervals') else\
                 question.intervals
     tonic = question.tonic
     tonic_octave = question.octave
@@ -104,8 +95,6 @@ def tonic_only(question, *args, **kwargs):
 
 
 @register_prequestion_method
-# def progression_i_iv_v_i(tonic, mode, duration, delay, pos_delay,
-#                         *args, **kwargs):
 def progression_i_iv_v_i(question, *args, **kwargs):
 
     tonic = question.tonic
