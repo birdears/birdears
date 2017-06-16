@@ -38,34 +38,32 @@ class Resolution:
     how the inverval resvolver to the tonic.
     """
 
-    def __init__(self, method, duration, delay, pos_delay):
+    #def __init__(self, method, duration, delay, pos_delay):
+    def __init__(self, method, question):
         """Inits the resolution class.
 
         Args:
             method (str): The method used in the resolution.
-            duration (float): Default playing time for each element in the
-                resolution.
-            delay (float): Default waiting time to play the next element
-                in the resolution.
-            pos_delay (float): Waiting time after playing the last element
-                in the resolution.
         """
 
         self.METHOD = RESOLUTION_METHODS[method]
-        self.duration = duration
-        self.delay = delay
-        self.pos_delay = pos_delay
+        self.question = question
+        #self.duration = duration
+        #self.delay = delay
+        #self.pos_delay = pos_delay
 
     def __call__(self, *args, **kwargs):
         """Calls the resolution method and pass arguments to it.
         """
-        return self.METHOD(duration=self.duration, delay=self.delay,
-                           pos_delay=self.pos_delay, *args, **kwargs)
+        #return self.METHOD(duration=self.duration, delay=self.delay,
+        #                   pos_delay=self.pos_delay, *args, **kwargs)
+        return self.METHOD(question=self.question, *args, **kwargs)
 
 
 @register_resolution_method
-def nearest_tonic(mode, tonic, intervals, duration, delay, pos_delay,
-                  harmonic=None, descending=None):
+#def nearest_tonic(mode, tonic, intervals, duration, delay, pos_delay,
+#                  harmonic=None, descending=None):
+def nearest_tonic(question):
     """Resolution method that resolve the intervals to their nearest tonics.
 
     Args:
@@ -82,6 +80,15 @@ def nearest_tonic(mode, tonic, intervals, duration, delay, pos_delay,
     """
 
     global DIATONIC_MODES, MAX_SEMITONES_RESOLVE_BELOW
+
+    mode = question.mode
+    tonic = question.tonic
+    intervals = question.interval
+    duration = question.durations['resol']['duration']
+    delay = question.durations['resol']['delay']
+    pos_delay = question.durations['resol']['pos_delay']
+    harmonic = question.is_harmonic
+    descending = question.is_descending
 
     sequence_list = []
 
@@ -142,7 +149,8 @@ def nearest_tonic(mode, tonic, intervals, duration, delay, pos_delay,
 
 
 @register_resolution_method
-def repeat_only(elements, duration, delay, pos_delay):
+#def repeat_only(elements, duration, delay, pos_delay):
+def repeat_only(question):
     """Resolution method that only repeats the sequence elements with given
     durations.
 
@@ -153,6 +161,10 @@ def repeat_only(elements, duration, delay, pos_delay):
             resolution Sequence.
         pos_delay (int): Delay after the Sequence.
     """
+    elements = question.question.elements
+    duration = question.durations['resol']['duration']
+    delay = question.durations['resol']['delay']
+    pos_delay = question.durations['resol']['pos_delay']
 
     sequence_list = Sequence(elements, duration=duration, delay=delay,
                              pos_delay=pos_delay)

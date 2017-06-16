@@ -133,6 +133,7 @@ class QuestionBase:
         self.concrete_tonic = scales['diatonic_pitch'].scale[0]
         self.scale_size = len(scales['diatonic'].scale)
 
+        self.durations = self.default_durations
         if user_durations:
             ud_index = {
                 0: ('preq', 'duration'),

@@ -41,6 +41,12 @@ class HarmonicIntervalQuestion(QuestionBase):
                 allow only tonics, fourths and fifths.
         """
 
+        self.default_durations = {
+            'preq': {'duration': 3, 'delay': 0.5, 'pos_delay': 1},
+            'quest': {'duration': 3, 'delay': 0.5, 'pos_delay': 0},
+            'resol': {'duration': 2.5, 'delay': 0.5, 'pos_delay': 1}
+        }
+
         super(HarmonicIntervalQuestion,
               self).__init__(mode=mode, tonic=tonic, octave=octave,
                              descending=descending, chromatic=chromatic,
@@ -48,12 +54,8 @@ class HarmonicIntervalQuestion(QuestionBase):
                              valid_intervals=valid_intervals,
                              user_durations=user_durations, *args, **kwargs)
 
-        if not self.durations:
-            self.durations = {
-                'preq': {'duration': 3, 'delay': 0.5, 'pos_delay': 1},
-                'quest': {'duration': 3, 'delay': 0.5, 'pos_delay': 0},
-                'resol': {'duration': 2.5, 'delay': 0.5, 'pos_delay': 1}
-            }
+        self.is_harmonic = True
+
 
         # if user_durations:
         #     ud_index = {
@@ -116,11 +118,13 @@ class HarmonicIntervalQuestion(QuestionBase):
 
         durations = self.durations
 
-        resolve = Resolution(method=method, **durations['resol'])
+        # resolve = Resolution(method=method, **durations['resol'])
+        resolve = Resolution(method=method, question=self)
 
-        resolution = resolve(mode=self.mode, tonic=self.tonic,
-                             intervals=self.interval,
-                             descending=self.is_descending, harmonic=True)
+        resolution = resolve()
+        # resolution = resolve(mode=self.mode, tonic=self.tonic,
+        #                     intervals=self.interval,
+        #                     descending=self.is_descending, harmonic=True)
 
         return resolution
 

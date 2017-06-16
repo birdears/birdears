@@ -48,18 +48,26 @@ class MelodicDictationQuestion(QuestionBase):
                 allow only tonics, fourths and fifths.
         """
 
+        self.default_durations = {
+            'preq': {'duration': 2, 'delay': 0.5, 'pos_delay': 1},
+            'quest': {'duration': 2, 'delay': 0.8, 'pos_delay': 0},
+            'resol': {'duration': 2.5, 'delay': 0.5, 'pos_delay': 1}
+        }
+
         super(MelodicDictationQuestion, self).\
             __init__(mode=mode, tonic=tonic, octave=octave,
                      descending=descending, chromatic=chromatic,
                      n_octaves=n_octaves, valid_intervals=valid_intervals,
                      user_durations=user_durations, *args, **kwargs)
 
-        if not self.durations:
-            self.durations = {
-                'preq': {'duration': 2, 'delay': 0.5, 'pos_delay': 1},
-                'quest': {'duration': 2, 'delay': 0.8, 'pos_delay': 0},
-                'resol': {'duration': 2.5, 'delay': 0.5, 'pos_delay': 1}
-            }
+        self.is_harmonic = False
+
+        # if not self.durations:
+        #     self.durations = {
+        #         'preq': {'duration': 2, 'delay': 0.5, 'pos_delay': 1},
+        #         'quest': {'duration': 2, 'delay': 0.8, 'pos_delay': 0},
+        #         'resol': {'duration': 2.5, 'delay': 0.5, 'pos_delay': 1}
+        #     }
 
         # if user_durations:
         #     ud_index = {
@@ -120,8 +128,10 @@ class MelodicDictationQuestion(QuestionBase):
     def make_resolution(self):
         # the idea here is execute resolve() to each interval of the dictation
 
-        resolve = Resolution(method='repeat_only', **self.durations['resol'])
-        resolution = resolve(elements=self.question.elements)
+        # resolve = Resolution(method='repeat_only', **self.durations['resol'])
+        # resolution = resolve(elements=self.question.elements)
+        resolve = Resolution(method='repeat_only', question=self)
+        resolution = resolve()
         # resolve = Resolution(method='nearest_tonic', **self.durations\
         # ['resol'])
 

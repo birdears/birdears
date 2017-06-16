@@ -45,18 +45,19 @@ class MelodicIntervalQuestion(QuestionBase):
                 allow only tonics, fourths and fifths.
         """
 
+        self.default_durations = {
+            'preq': {'duration': 2, 'delay': 0.5, 'pos_delay': 1},
+            'quest': {'duration': 2, 'delay': 0.5, 'pos_delay': 0},
+            'resol': {'duration': 2.5, 'delay': 0.5, 'pos_delay': 1}
+        }
+        
         super(MelodicIntervalQuestion, self).\
             __init__(mode=mode, tonic=tonic, octave=octave,
                      descending=descending, chromatic=chromatic,
                      n_octaves=n_octaves, valid_intervals=valid_intervals,
                      user_durations=user_durations, *args, **kwargs)
 
-        if not self.durations:
-            self.durations = {
-                'preq': {'duration': 2, 'delay': 0.5, 'pos_delay': 1},
-                'quest': {'duration': 2, 'delay': 0.5, 'pos_delay': 0},
-                'resol': {'duration': 2.5, 'delay': 0.5, 'pos_delay': 1}
-            }
+        #if not self.durations:
         #self.durations = durations
 
         # TODO: this should go to QuestionBase
@@ -79,6 +80,8 @@ class MelodicIntervalQuestion(QuestionBase):
         #             if cur_duration != 'n':
         #                 self.durations[v[0]][v[1]] = float(cur_duration)
 
+
+        self.is_harmonic = False
 
         if not chromatic:
             self.interval = \
@@ -117,11 +120,13 @@ class MelodicIntervalQuestion(QuestionBase):
     def make_resolution(self, method):
         logger.info('inside make_resolution')
 
-        resolve = Resolution(method=method, **self.durations['resol'])
+        # resolve = Resolution(method=method, **self.durations['resol'])
+        resolve = Resolution(method=method, question=self)
 
-        resolution = resolve(mode=self.mode, tonic=self.tonic,
-                             intervals=self.interval,
-                             descending=self.is_descending)
+        resolution = resolve()
+        #resolution = resolve(mode=self.mode, tonic=self.tonic,
+        #                     intervals=self.interval,
+        #                     descending=self.is_descending)
 
         return resolution
 
