@@ -62,31 +62,32 @@ class InstrumentalDictationQuestion(QuestionBase):
                      n_octaves=n_octaves, valid_intervals=valid_intervals,
                      user_durations=user_durations, *args, **kwargs)
 
-        self.durations = {
-            'preq': {'duration': 2, 'delay': 0.5, 'pos_delay': 1},
-            'quest': {'duration': 2, 'delay': 0.5, 'pos_delay': 0},
-            'resol': {'duration': 2.5, 'delay': 0.5, 'pos_delay': 1}
-        }
+        if not self.durations:
+            self.durations = {
+                'preq': {'duration': 2, 'delay': 0.5, 'pos_delay': 1},
+                'quest': {'duration': 2, 'delay': 0.5, 'pos_delay': 0},
+                'resol': {'duration': 2.5, 'delay': 0.5, 'pos_delay': 1}
+            }
         #durations = durations
 
-        if user_durations:
-            ud_index = {
-                0: ('preq', 'duration'),
-                1: ('preq', 'delay'),
-                2: ('preq', 'pos_delay'),
-                3: ('quest', 'duration'),
-                4: ('quest', 'delay'),
-                5: ('quest', 'pos_delay'),
-                6: ('resol', 'duration'),
-                7: ('resol', 'delay'),
-                8: ('resol', 'pos_delay'),
-            }
-            ud = user_durations.split(',')
-            if len(ud) == len(ud_index):
-                for idx, v in ud_index.items():
-                    cur_duration = ud[idx].strip()
-                    if cur_duration != 'n':
-                        self.durations[v[0]][v[1]] = float(cur_duration)
+        # if user_durations:
+        #     ud_index = {
+        #         0: ('preq', 'duration'),
+        #         1: ('preq', 'delay'),
+        #         2: ('preq', 'pos_delay'),
+        #         3: ('quest', 'duration'),
+        #         4: ('quest', 'delay'),
+        #         5: ('quest', 'pos_delay'),
+        #         6: ('resol', 'duration'),
+        #         7: ('resol', 'delay'),
+        #         8: ('resol', 'pos_delay'),
+        #     }
+        #     ud = user_durations.split(',')
+        #     if len(ud) == len(ud_index):
+        #         for idx, v in ud_index.items():
+        #             cur_duration = ud[idx].strip()
+        #             if cur_duration != 'n':
+        #                 self.durations[v[0]][v[1]] = float(cur_duration)
 
         self.wait_time = wait_time
         self.n_repeats = n_repeats

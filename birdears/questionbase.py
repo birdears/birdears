@@ -42,7 +42,7 @@ class QuestionBase:
 
     def __init__(self, mode='major', tonic=None, octave=None, descending=None,
                  chromatic=None, n_octaves=None, valid_intervals=None,
-                 *args, **kwargs):
+                 user_durations=None, *args, **kwargs):
         """Inits the class.
 
         Args:
@@ -132,6 +132,25 @@ class QuestionBase:
 
         self.concrete_tonic = scales['diatonic_pitch'].scale[0]
         self.scale_size = len(scales['diatonic'].scale)
+
+        if user_durations:
+            ud_index = {
+                0: ('preq', 'duration'),
+                1: ('preq', 'delay'),
+                2: ('preq', 'pos_delay'),
+                3: ('quest', 'duration'),
+                4: ('quest', 'delay'),
+                5: ('quest', 'pos_delay'),
+                6: ('resol', 'duration'),
+                7: ('resol', 'delay'),
+                8: ('resol', 'pos_delay'),
+            }
+            ud = user_durations.split(',')
+            if len(ud) == len(ud_index):
+                for idx, v in ud_index.items():
+                    cur_duration = ud[idx].strip()
+                    if cur_duration != 'n':
+                        self.durations[v[0]][v[1]] = float(cur_duration)
 
     def get_valid_semitones(self):
         """Returns a list with valid semitones for question.
