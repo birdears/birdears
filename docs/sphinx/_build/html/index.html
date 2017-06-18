@@ -191,21 +191,6 @@ $(document).ready(function(){
 <span id="what-is-functional-ear-training"></span><h2>What is Functional Ear Training<a class="headerlink" href="#what-is-functional-ear-training" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="the-method">
 <span id="the-method"></span><h3>The method<a class="headerlink" href="#the-method" title="Permalink to this headline">¶</a></h3>
-<p>Testing abc</p>
-<div class="highlight-abc"><div class="highlight"><pre><span></span>X: 1
-T: Banish Misfortune
-R: jig
-M: 6/8
-L: 1/8
-K: Dmix
-fed cAG| A2d cAG| F2D DED| FEF GFG|
-AGA cAG| AGA cde|fed cAG| Ad^c d3:|
-f2d d^cd| f2g agf| e2c cBc|e2f gfe|
-f2g agf| e2f gfe|fed cAG|Ad^c d3:|
-f2g e2f| d2e c2d|ABA GAG| F2F GED|
-c3 cAG| AGA cde| fed cAG| Ad^c d3:|
-</pre></div>
-</div>
 </div>
 </div>
 <div class="section" id="birdears-modes">
@@ -216,6 +201,7 @@ c3 cAG| AGA cde| fed cAG| Ad^c d3:|
 <li>harmonic interval question</li>
 <li>melodic dictation question</li>
 <li>instrumental dictation question</li>
+<li>load from config file</li>
 </ul>
 <div class="section" id="basic-usage">
 <span id="basic-usage"></span><h3>basic usage<a class="headerlink" href="#basic-usage" title="Permalink to this headline">¶</a></h3>
@@ -229,19 +215,26 @@ Usage: birdears  &lt;command&gt; [options]
   birdears ─ Functional Ear Training for Musicians!
 
 Options:
-  -h, --help  Show this message and exit.
+  --debug / --no-debug  Turns on debugging; instead you can set DEBUG=1.
+  -h, --help            Show this message and exit.
 
 Commands:
   dictation     Melodic dictation
   harmonic      Harmonic interval recognition
   instrumental  Instrumental melodic time-based dictation
+  kivy          Starts birdears graphical user interface...
+  load          Loads exercise from .toml config file...
   melodic       Melodic interval recognition
+  urwid         Starts birdears text user interface (using...
 
-  You can use &#39;&lt;command&gt; --help&#39; to show options for a specific command.
+  You can use &#39;birdears &lt;command&gt; --help&#39; to show options for a specific
+  command.
+
+  More info at https://github.com/iacchus/birdears
 </pre></div>
 </div>
-<p>There are four commands, which are <code class="docutils literal"><span class="pre">dictation</span></code>, <code class="docutils literal"><span class="pre">harmonic</span></code>, <code class="docutils literal"><span class="pre">instrumental</span></code> and
-<code class="docutils literal"><span class="pre">melodic</span></code>.</p>
+<p>There are five commands, which are <code class="docutils literal"><span class="pre">dictation</span></code>, <code class="docutils literal"><span class="pre">harmonic</span></code>, <code class="docutils literal"><span class="pre">instrumental</span></code> and
+<code class="docutils literal"><span class="pre">melodic</span></code> and <code class="docutils literal"><span class="pre">load</span></code>.</p>
 <p>You can play the default question for these by starting birdears with one of
 these commands, or you can check the <code class="docutils literal"><span class="pre">--help</span></code> for additional options for each
 of the commands, invoking this way:</p>
@@ -263,17 +256,40 @@ Usage: birdears melodic [options]
   Melodic interval recognition
 
 Options:
-  -m, --mode [major|minor]  Mode of the question.
-  -t, --tonic &lt;note&gt;        Tonic of the question.
-  -o, --octave &lt;octave&gt;     Octave of the question.
-  -d, --descending          Whether the question interval is descending.
-  -c, --chromatic           If chosen, question has chromatic notes.
-  -n, --n_octaves &lt;n max&gt;   Maximum number of octaves.
-  -h, --help                Show this message and exit.
+  -m, --mode &lt;mode&gt;               Mode of the question.
+  -t, --tonic &lt;tonic&gt;             Tonic of the question.
+  -o, --octave &lt;octave&gt;           Octave of the question.
+  -d, --descending                Whether the question interval is descending.
+  -c, --chromatic                 If chosen, question has chromatic notes.
+  -n, --n_octaves &lt;n max&gt;         Maximum number of octaves.
+  -v, --valid_intervals &lt;1,2,..&gt;  A comma-separated list without spaces
+                                  of valid scale degrees to be chosen for the
+                                  question.
+  -q, --user_durations &lt;1,0.5,n..&gt;
+                                  A comma-separated list without
+                                  spaces with PRECISLY 9 floating values. Or
+                                  &#39;n&#39; for default              duration.
+  -p, --prequestion_method &lt;prequestion_method&gt;
+                                  The name of a pre-question method.
+  -r, --resolution_method &lt;resolution_method&gt;
+                                  The name of a resolution method.
+  -h, --help                      Show this message and exit.
 
   In this exercise birdears will play two notes, the tonic and the interval
   melodically, ie., one after the other and you should reply which is the
   correct distance between the two.
+
+  Valid values are as follows:
+
+  -m &lt;mode&gt; is one of: major, dorian, phrygian, lydian, mixolydian, minor,
+  locrian
+
+  -t &lt;tonic&gt; is one of: A, A#, Ab, B, Bb, C, C#, Cb, D, D#, Db, E, Eb, F,
+  F#, Fb, G, G#, Gb
+
+  -p &lt;prequestion_method&gt; is one of: none, tonic_only, progression_i_iv_v_i
+
+  -r &lt;resolution_method&gt; is one of: nearest_tonic, repeat_only
 </pre></div>
 </div>
 </div>
@@ -291,17 +307,40 @@ Usage: birdears harmonic [options]
   Harmonic interval recognition
 
 Options:
-  -m, --mode [major|minor]  Mode of the question.
-  -t, --tonic &lt;note&gt;        Tonic of the question.
-  -o, --octave &lt;octave&gt;     Octave of the question.
-  -d, --descending          Whether the question interval is descending.
-  -c, --chromatic           If chosen, question has chromatic notes.
-  -n, --n_octaves &lt;n max&gt;   Maximum number of octaves.
-  -h, --help                Show this message and exit.
+  -m, --mode &lt;mode&gt;               Mode of the question.
+  -t, --tonic &lt;note&gt;              Tonic of the question.
+  -o, --octave &lt;octave&gt;           Octave of the question.
+  -d, --descending                Whether the question interval is descending.
+  -c, --chromatic                 If chosen, question has chromatic notes.
+  -n, --n_octaves &lt;n max&gt;         Maximum number of octaves.
+  -v, --valid_intervals &lt;1,2,..&gt;  A comma-separated list without spaces
+                                  of valid scale degrees to be chosen for the
+                                  question.
+  -q, --user_durations &lt;1,0.5,n..&gt;
+                                  A comma-separated list without
+                                  spaces with PRECISLY 9 floating values. Or
+                                  &#39;n&#39; for default              duration.
+  -p, --prequestion_method &lt;prequestion_method&gt;
+                                  The name of a pre-question method.
+  -r, --resolution_method &lt;resolution_method&gt;
+                                  The name of a resolution method.
+  -h, --help                      Show this message and exit.
 
   In this exercise birdears will play two notes, the tonic and the interval
   harmonically, ie., both on the same time and you should reply which is the
   correct distance between the two.
+
+  Valid values are as follows:
+
+  -m &lt;mode&gt; is one of: major, dorian, phrygian, lydian, mixolydian, minor,
+  locrian
+
+  -t &lt;tonic&gt; is one of: A, A#, Ab, B, Bb, C, C#, Cb, D, D#, Db, E, Eb, F,
+  F#, Fb, G, G#, Gb
+
+  -p &lt;prequestion_method&gt; is one of: none, tonic_only, progression_i_iv_v_i
+
+  -r &lt;resolution_method&gt; is one of: nearest_tonic, repeat_only
 </pre></div>
 </div>
 </div>
@@ -314,24 +353,10 @@ melodic dictation.</p>
 </pre></div>
 </div>
 <div class="highlight-none"><div class="highlight"><pre><span></span>$ birdears dictation --help
-Usage: birdears dictation [options]
+Usage: birdears  &lt;command&gt; [options]
+Try &quot;birdears -h&quot; for help.
 
-  Melodic dictation
-
-Options:
-  -m, --mode [major|minor]     Mode of the question.
-  -i, --max_intervals &lt;n max&gt;  Max random intervals for the dictation.
-  -x, --n_notes &lt;n notes&gt;      Number of notes for the dictation.
-  -t, --tonic &lt;note&gt;           Tonic of the question.
-  -o, --octave &lt;octave&gt;        Octave of the question.
-  -d, --descending             Wether the question interval is descending.
-  -c, --chromatic              If chosen, question has chromatic notes.
-  -n, --n_octaves &lt;n max&gt;      Maximum number of octaves.
-  -h, --help                   Show this message and exit.
-
-  In this exercise birdears will choose some random intervals and create a
-  melodic dictation with them. You should reply the correct intervals of the
-  melodic dictation.
+Error: No such command &quot;dication&quot;.
 </pre></div>
 </div>
 </div>
@@ -349,21 +374,44 @@ Usage: birdears instrumental [options]
   Instrumental melodic time-based dictation
 
 Options:
-  -m, --mode [major|minor]     Mode of the question.
-  -w, --wait_time &lt;seconds&gt;    Time in seconds for next question/repeat.
-  -u, --n_repeats &lt;times&gt;      Times to repeat question.
-  -i, --max_intervals &lt;n max&gt;  Max random intervals for the dictation.
-  -x, --n_notes &lt;n notes&gt;      Number of notes for the dictation.
-  -t, --tonic &lt;note&gt;           Tonic of the question.
-  -o, --octave &lt;octave&gt;        Octave of the question.
-  -d, --descending             Wether the question interval is descending.
-  -c, --chromatic              If chosen, question has chromatic notes.
-  -n, --n_octaves &lt;n max&gt;      Maximum number of octaves.
-  -h, --help                   Show this message and exit.
+  -m, --mode &lt;mode&gt;               Mode of the question.
+  -w, --wait_time &lt;seconds&gt;       Time in seconds for next question/repeat.
+  -u, --n_repeats &lt;times&gt;         Times to repeat question.
+  -i, --max_intervals &lt;n max&gt;     Max random intervals for the dictation.
+  -x, --n_notes &lt;n notes&gt;         Number of notes for the dictation.
+  -t, --tonic &lt;note&gt;              Tonic of the question.
+  -o, --octave &lt;octave&gt;           Octave of the question.
+  -d, --descending                Wether the question interval is descending.
+  -c, --chromatic                 If chosen, question has chromatic notes.
+  -n, --n_octaves &lt;n max&gt;         Maximum number of octaves.
+  -v, --valid_intervals &lt;1,2,..&gt;  A comma-separated list without spaces
+                                  of valid scale degrees to be chosen for the
+                                  question.
+  -q, --user_durations &lt;1,0.5,n..&gt;
+                                  A comma-separated list without
+                                  spaces with PRECISLY 9 floating values. Or
+                                  &#39;n&#39; for default              duration.
+  -p, --prequestion_method &lt;prequestion_method&gt;
+                                  The name of a pre-question method.
+  -r, --resolution_method &lt;resolution_method&gt;
+                                  The name of a resolution method.
+  -h, --help                      Show this message and exit.
 
   In this exercise birdears will choose some random intervals and create a
   melodic dictation with them. You should play the correct melody in you
   musical instrument.
+
+  Valid values are as follows:
+
+  -m &lt;mode&gt; is one of: major, dorian, phrygian, lydian, mixolydian, minor,
+  locrian
+
+  -t &lt;tonic&gt; is one of: A, A#, Ab, B, Bb, C, C#, Cb, D, D#, Db, E, Eb, F,
+  F#, Fb, G, G#, Gb
+
+  -p &lt;prequestion_method&gt; is one of: none, tonic_only, progression_i_iv_v_i
+
+  -r &lt;resolution_method&gt; is one of: nearest_tonic, repeat_only
 </pre></div>
 </div>
 </div>
