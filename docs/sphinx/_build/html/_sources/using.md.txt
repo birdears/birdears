@@ -1,7 +1,15 @@
-# using birdears
+# Using birdears
 
+```eval_rst
+
+.. toctree::
+   :maxdepth: 3
+
+```
 
 ## What is Functional Ear Training
+
+*write me!*
 
 ### The method
 
@@ -239,3 +247,7 @@ Options:
 
   -r <resolution_method> is one of: nearest_tonic, repeat_only
 ```
+
+### Load from config file
+
+write me!!

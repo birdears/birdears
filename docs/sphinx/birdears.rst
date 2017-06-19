@@ -1,5 +1,5 @@
-birdears API
-============
+birdears package
+================
 
 Subpackages
 -----------

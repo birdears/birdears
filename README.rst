@@ -7,228 +7,411 @@ coverage| |Code Climate issues| |Code Climate gpa| |Gitter|
 |GitHub (pre-)release| |PyPI Status| |PyPI Version| |PyPI Python
 Versions| |Waffle.io| |GitHub issues| |Documentation Status|
 
-Functional Ear Training for Musicians
--------------------------------------
+.. raw:: html
 
-Birdears uses functional ear training method for ear training. It helps
-you to recognize melodic and harmonic intervals. It uses python 3 and
-`sox <http://sox.sourceforge.net/>`__.
+   <!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
-More documentation is at `birdears Read The
-Docs <https://birdears.readthedocs.io>`__
+-  `Introduction <#introduction>`__
+
+   -  `birdears <#birdears>`__
+   -  `What is musical ear training <#what-is-musical-ear-training>`__
+   -  `Features <#features>`__
+
+-  `Installing <#installing>`__
+
+   -  `Installing the dependencies <#installing-the-dependencies>`__
+
+      -  `Arch Linux <#arch-linux>`__
+
+   -  `Installing birdears <#installing-birdears>`__
+
+      -  `In-depth installation <#in-depth-installation>`__
+
+-  `Running <#running>`__
+-  `Modes <#modes>`__
+
+   -  `melodic <#melodic>`__
+
+      -  `Description <#description>`__
+      -  `Command-line options <#command-line-options>`__
+
+   -  `harmonic <#harmonic>`__
+
+      -  `Description <#description>`__
+      -  `Command-line options <#command-line-options>`__
+
+   -  `dictation <#dictation>`__
+
+      -  `Description <#description>`__
+      -  `Command-line options <#command-line-options>`__
+
+   -  `instrumental <#instrumental>`__
+
+      -  `Description <#description>`__
+      -  `Command-line options <#command-line-options>`__
+
+-  `Loading from preset files <#loading-from-preset-files>`__
+
+   -  `Pre-made presets <#pre-made-presets>`__
+
+      -  `Pre-made presets
+         description <#pre-made-presets-description>`__
+
+   -  `Creating new preset files <#creating-new-preset-files>`__
+
+-  `Contributing <#contributing>`__
+
+.. raw:: html
+
+   <!-- /TOC -->
+
+Introduction
+------------
+
+birdears
+~~~~~~~~
+
+``birdears`` is a software written in Python 3 for ...
+
+What is musical ear training
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+It is a method..
+
+Features
+~~~~~~~~
+
+-  questions
+-  load from config file
 
 Installing
 ----------
 
-1. Install the Dependencies
+Installing the dependencies
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Install ``sox`` and ``python3`` (see
-`below <https://github.com/iacchus/birdears#installing--dependencies>`__)
-and,
+Arch Linux
+^^^^^^^^^^
 
-Optional Dependencies
+::
+
+    sudo pacman -Syu sox python python-pip
+
+Installing birdears
+~~~~~~~~~~~~~~~~~~~
+
+``pip install --user --upgrade birdears``
+
+In-depth installation
 ^^^^^^^^^^^^^^^^^^^^^
 
-Text-user-interface (TUI)
-'''''''''''''''''''''''''
+Running
+-------
 
-Python's 'urwid' tui library will be necessary to run the TUI; although
-it is not implemented yet.
+After installing just run:
 
-Graphical-User-Interface (GUI)
-''''''''''''''''''''''''''''''
+``birdears --help``
 
-Python's Kivy and SDL2 are required to run the GUI; it's development
-already began and can be acessed with:
+Modes
+-----
 
-``$ birdears kivy``
+melodic
+~~~~~~~
 
-It is not functional yet.
+Description
+^^^^^^^^^^^
 
-2. a. Via pip
-~~~~~~~~~~~~~
+In this exercise birdears will play two notes, the tonic and the
+interval melodically, ie., one after the other and you should reply
+which is the correct distance between the two.
 
-You may want to create a virtualenv before installing via ``pip``.
-
-::
-
-    pip install --upgrade birdears
-
-Then use the command:
+Command-line options
+^^^^^^^^^^^^^^^^^^^^
 
 ::
 
-    birdears
+    Usage: birdears melodic [options]
 
-2. b. Clone the repository
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+      Melodic interval recognition
+
+    Options:
+      -m, --mode <mode>               Mode of the question.
+      -t, --tonic <tonic>             Tonic of the question.
+      -o, --octave <octave>           Octave of the question.
+      -d, --descending                Whether the question interval is descending.
+      -c, --chromatic                 If chosen, question has chromatic notes.
+      -n, --n_octaves <n max>         Maximum number of octaves.
+      -v, --valid_intervals <1,2,..>  A comma-separated list without spaces
+                                      of valid scale degrees to be chosen for the
+                                      question.
+      -q, --user_durations <1,0.5,n..>
+                                      A comma-separated list without
+                                      spaces with PRECISLY 9 floating values. Or
+                                      'n' for default              duration.
+      -p, --prequestion_method <prequestion_method>
+                                      The name of a pre-question method.
+      -r, --resolution_method <resolution_method>
+                                      The name of a resolution method.
+      -h, --help                      Show this message and exit.
+
+      In this exercise birdears will play two notes, the tonic and the interval
+      melodically, ie., one after the other and you should reply which is the
+      correct distance between the two.
+
+      Valid values are as follows:
+
+      -m <mode> is one of: major, dorian, phrygian, lydian, mixolydian, minor,
+      locrian
+
+      -t <tonic> is one of: A, A#, Ab, B, Bb, C, C#, Cb, D, D#, Db, E, Eb, F,
+      F#, Fb, G, G#, Gb
+
+      -p <prequestion_method> is one of: none, tonic_only, progression_i_iv_v_i
+
+      -r <resolution_method> is one of: nearest_tonic, repeat_only
+
+harmonic
+~~~~~~~~
+
+Description
+^^^^^^^^^^^
+
+Command-line options
+^^^^^^^^^^^^^^^^^^^^
 
 ::
 
-    git clone https://github.com/iacchus/birdears.git
+    Usage: birdears harmonic [options]
 
-Then run the script with:
+      Harmonic interval recognition
+
+    Options:
+      -m, --mode <mode>               Mode of the question.
+      -t, --tonic <note>              Tonic of the question.
+      -o, --octave <octave>           Octave of the question.
+      -d, --descending                Whether the question interval is descending.
+      -c, --chromatic                 If chosen, question has chromatic notes.
+      -n, --n_octaves <n max>         Maximum number of octaves.
+      -v, --valid_intervals <1,2,..>  A comma-separated list without spaces
+                                      of valid scale degrees to be chosen for the
+                                      question.
+      -q, --user_durations <1,0.5,n..>
+                                      A comma-separated list without
+                                      spaces with PRECISLY 9 floating values. Or
+                                      'n' for default              duration.
+      -p, --prequestion_method <prequestion_method>
+                                      The name of a pre-question method.
+      -r, --resolution_method <resolution_method>
+                                      The name of a resolution method.
+      -h, --help                      Show this message and exit.
+
+      In this exercise birdears will play two notes, the tonic and the interval
+      harmonically, ie., both on the same time and you should reply which is the
+      correct distance between the two.
+
+      Valid values are as follows:
+
+      -m <mode> is one of: major, dorian, phrygian, lydian, mixolydian, minor,
+      locrian
+
+      -t <tonic> is one of: A, A#, Ab, B, Bb, C, C#, Cb, D, D#, Db, E, Eb, F,
+      F#, Fb, G, G#, Gb
+
+      -p <prequestion_method> is one of: none, tonic_only, progression_i_iv_v_i
+
+      -r <resolution_method> is one of: nearest_tonic, repeat_only
+
+dictation
+~~~~~~~~~
+
+Description
+^^^^^^^^^^^
+
+In this exercise birdears will choose some random intervals and create a
+melodic dictation with them. You should reply the correct intervals of
+the melodic dictation.
+
+Command-line options
+^^^^^^^^^^^^^^^^^^^^
 
 ::
 
-    python3 -m birdears
+    Usage: birdears dictation [options]
 
-Keybindings for intervals
+      Melodic dictation
+
+    Options:
+      -m, --mode <mode>               Mode of the question.
+      -i, --max_intervals <n max>     Max random intervals for the dictation.
+      -x, --n_notes <n notes>         Number of notes for the dictation.
+      -t, --tonic <note>              Tonic of the question.
+      -o, --octave <octave>           Octave of the question.
+      -d, --descending                Wether the question interval is descending.
+      -c, --chromatic                 If chosen, question has chromatic notes.
+      -n, --n_octaves <n max>         Maximum number of octaves.
+      -v, --valid_intervals <1,2,..>  A comma-separated list without spaces
+                                      of valid scale degrees to be chosen for the
+                                      question.
+      -q, --user_durations <1,0.5,n..>
+                                      A comma-separated list without
+                                      spaces with PRECISLY 9 floating values. Or
+                                      'n' for default              duration.
+      -p, --prequestion_method <prequestion_method>
+                                      The name of a pre-question method.
+      -r, --resolution_method <resolution_method>
+                                      The name of a resolution method.
+      -h, --help                      Show this message and exit.
+
+      In this exercise birdears will choose some random intervals and create a
+      melodic dictation with them. You should reply the correct intervals of the
+      melodic dictation.
+
+      Valid values are as follows:
+
+      -m <mode> is one of: major, dorian, phrygian, lydian, mixolydian, minor,
+      locrian
+
+      -t <tonic> is one of: A, A#, Ab, B, Bb, C, C#, Cb, D, D#, Db, E, Eb, F,
+      F#, Fb, G, G#, Gb
+
+      -p <prequestion_method> is one of: none, tonic_only, progression_i_iv_v_i
+
+      -r <resolution_method> is one of: nearest_tonic, repeat_only
+
+instrumental
+~~~~~~~~~~~~
+
+Description
+^^^^^^^^^^^
+
+In this exercise birdears will choose some random intervals and create a
+melodic dictation with them. You should play the correct melody in you
+musical instrument.
+
+Command-line options
+^^^^^^^^^^^^^^^^^^^^
+
+::
+
+    Usage: birdears instrumental [options]
+
+      Instrumental melodic time-based dictation
+
+    Options:
+      -m, --mode <mode>               Mode of the question.
+      -w, --wait_time <seconds>       Time in seconds for next question/repeat.
+      -u, --n_repeats <times>         Times to repeat question.
+      -i, --max_intervals <n max>     Max random intervals for the dictation.
+      -x, --n_notes <n notes>         Number of notes for the dictation.
+      -t, --tonic <note>              Tonic of the question.
+      -o, --octave <octave>           Octave of the question.
+      -d, --descending                Wether the question interval is descending.
+      -c, --chromatic                 If chosen, question has chromatic notes.
+      -n, --n_octaves <n max>         Maximum number of octaves.
+      -v, --valid_intervals <1,2,..>  A comma-separated list without spaces
+                                      of valid scale degrees to be chosen for the
+                                      question.
+      -q, --user_durations <1,0.5,n..>
+                                      A comma-separated list without
+                                      spaces with PRECISLY 9 floating values. Or
+                                      'n' for default              duration.
+      -p, --prequestion_method <prequestion_method>
+                                      The name of a pre-question method.
+      -r, --resolution_method <resolution_method>
+                                      The name of a resolution method.
+      -h, --help                      Show this message and exit.
+
+      In this exercise birdears will choose some random intervals and create a
+      melodic dictation with them. You should play the correct melody in you
+      musical instrument.
+
+      Valid values are as follows:
+
+      -m <mode> is one of: major, dorian, phrygian, lydian, mixolydian, minor,
+      locrian
+
+      -t <tonic> is one of: A, A#, Ab, B, Bb, C, C#, Cb, D, D#, Db, E, Eb, F,
+      F#, Fb, G, G#, Gb
+
+      -p <prequestion_method> is one of: none, tonic_only, progression_i_iv_v_i
+
+      -r <resolution_method> is one of: nearest_tonic, repeat_only
+
+Loading from preset files
 -------------------------
 
-**MAJOR keyboard keys** (with *chromatics*)
+Pre-made presets
+~~~~~~~~~~~~~~~~
 
-Key Index for major and chromatic major context
+Birdears cointains some pre-made presets in it's ``presets/``
+subdirectory.
 
-**readme should be rewritten**
+The study for beginners is recommended by following the numeric order of
+those files (000, 001, then 002 etc.)
 
-*(**SHIFT** key meaning an octave higher)*
+Pre-made presets description
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**MINOR keyboard keys** (with *chromatics*)
+Maybe these things would go better in the readhedocs documentation.
 
-Key index for minor and chromatic minor context
+Creating new preset files
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
-::
-
-       keyboard                 would represent
-                               in chromatics in
-                                'a' minor context
-
-     s   f g   j k   eg.:      a#   c# d#    f# g#
-    z x c v b n m    -------  a  b c  d  e  f  g
-
-Screenshot or didn't happen
----------------------------
-
-*(development version)*
-
-.. figure:: https://i.imgur.com/PSZCL2a.png
-   :alt: birdears screenshot
-
-   birdears screenshot
-
-Other keys
-~~~~~~~~~~
-
-+-------------+-----------------------------------------------------------+
-| Key         | What it Does                                              |
-+=============+===========================================================+
-| q           | quit.                                                     |
-+-------------+-----------------------------------------------------------+
-| r           | to repeat the tonic/interval.                             |
-+-------------+-----------------------------------------------------------+
-| Backspace   | In melodic dictation, remove previous entered interval.   |
-+-------------+-----------------------------------------------------------+
-
-Installing Dependencies
------------------------
-
-Submit your distro's too..
-
-Arch Linux
-~~~~~~~~~~
-
-::
-
-    sudo pacman -S python sox
+You can open the files cointained in birdears premade ``presets/``
+folder to have an ideia on how config files are made; it is simply the
+command line options written in a form ``toml`` standard.
 
 Contributing
 ------------
 
-Coding
-~~~~~~
+Those who want to contribute to this project can read
+`CONTRIBUTING.md <CONTRIBUTING.md>`__.
 
-We ask for people who wants to contribute for the code to look to the
-musical side first,
-
-Checking code style
-^^^^^^^^^^^^^^^^^^^
-
-We use `pep8 <https://pypi.python.org/pypi/pep8>`__ to check code
-formatting:
+--------------
 
 ::
 
-    pep8 birdears --exclude=click
+    readme should contain
 
-Module Documentation
-~~~~~~~~~~~~~~~~~~~~
+    [toc]
 
-Our documentation is online at
-`readthedocs <https://birdears.readthedocs.io>`__.
+    * introduction
+      * feats
 
-We are using Sphinx to generate documentation for this module. The
-sphinx resource files are in the ``docs/sphinx/`` directory.
+    * screenshot(s)
 
-We use Google Style Docstrings to write documentation for the API. Here
-is Google's online `Python Style
-Guide <https://google.github.io/styleguide/pyguide.html>`__ which has
-some of the specification or Sphinx Napoleon documentation
-`online <http://www.sphinx-doc.org/en/stable/ext/napoleon.html>`__ or in
-`PDF <https://readthedocs.org/projects/sphinxcontrib-napoleon/downloads/pdf/latest/>`__.
-Napoleon is the extension used by Sphinx to render Google Docstrings in
-the documentation.
+    * installing
+      * dependencies
+      * pip
+        * what is pip
+        * installing via pip
+        * using a virtualenv
+      * cloning the repository
 
-Runing apidoc
-^^^^^^^^^^^^^
+    * running
 
-We want to exclude third-party module ``click`` when generating
-automatic documentation for the package:
+    * modes
+      * melodic
+        * description
+        * cli options (--help)
+      * harmonic
+        * description
+        * cli options (--help)
+      * dictation
+        * description
+        * cli options (--help)
+      * instrumenetal
+        * description
+        * cli options (--help)
 
-::
+    * loading from config file
+      * presets
 
-    sphinx-apidoc -o docs/sphinx/_apidoc birdears/ birdears/click/
+    * * *
 
-End-user Documentation
-~~~~~~~~~~~~~~~~~~~~~~
-
-We aim to build a method / music theory together with this software,
-maybe in the GitHub repo's wiki.
-
-Writing Tests
-~~~~~~~~~~~~~
-
-We use `pytest <https://docs.pytest.org/en/latest/>`__ to run tests; we
-use `coverage.py <https://coverage.readthedocs.io>`__ to report code
-coverage;
-
-::
-
-    coverage run --source=birdears --module pytest --verbose tests/
-
-We use `coveralls <https://coveralls.io/github/iacchus/birdears>`__ and
-`Travis CI <https://travis-ci.org/iacchus/birdears>`__.
-
-Out tests are in repo's ``tests/`` directory. We also have a local
-repoting in html created by coverage, it should be online at
-https://iacchus.github.io/birdears/coverage-html.
-
-Feature requests :gift: and suggestions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-You are welcome to use `github
-issues <https://github.com/iacchus/birdears/issues>`__ or
-`gitter.im <https://gitter.im/birdears/Lobby>`__ to ask for, or give
-ideia for new features.
-
-Other stuff
------------
-
-We are using pandoc to convert README from .md to .rst:
-
-::
-
-    pandoc --from=markdown --to=rst README.md -o README.rst
-
-To generate package for PyPI:
-
-::
-
-    python setup.py sdist
-    python setup.py bdist_wheel
-
-Read also `TODO.md <TODO.md>`__
+    * development info
+      as is in readme
+      c
 
 .. |Maintenance| image:: https://img.shields.io/maintenance/yes/2017.svg?style=flat
    :target: https://github.com/iacchus/birdears/issues/new?title=Is+birdears+still+maintained&body=Please+file+an+issue+if+the+maintained+button+says+no
