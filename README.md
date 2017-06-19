@@ -60,11 +60,201 @@ After installing just run:
 
 ### melodic
 
+#### Description
+
+#### Command-line options
+
+```
+Usage: birdears melodic [options]
+
+  Melodic interval recognition
+
+Options:
+  -m, --mode <mode>               Mode of the question.
+  -t, --tonic <tonic>             Tonic of the question.
+  -o, --octave <octave>           Octave of the question.
+  -d, --descending                Whether the question interval is descending.
+  -c, --chromatic                 If chosen, question has chromatic notes.
+  -n, --n_octaves <n max>         Maximum number of octaves.
+  -v, --valid_intervals <1,2,..>  A comma-separated list without spaces
+                                  of valid scale degrees to be chosen for the
+                                  question.
+  -q, --user_durations <1,0.5,n..>
+                                  A comma-separated list without
+                                  spaces with PRECISLY 9 floating values. Or
+                                  'n' for default              duration.
+  -p, --prequestion_method <prequestion_method>
+                                  The name of a pre-question method.
+  -r, --resolution_method <resolution_method>
+                                  The name of a resolution method.
+  -h, --help                      Show this message and exit.
+
+  In this exercise birdears will play two notes, the tonic and the interval
+  melodically, ie., one after the other and you should reply which is the
+  correct distance between the two.
+
+  Valid values are as follows:
+
+  -m <mode> is one of: major, dorian, phrygian, lydian, mixolydian, minor,
+  locrian
+
+  -t <tonic> is one of: A, A#, Ab, B, Bb, C, C#, Cb, D, D#, Db, E, Eb, F,
+  F#, Fb, G, G#, Gb
+
+  -p <prequestion_method> is one of: none, tonic_only, progression_i_iv_v_i
+
+  -r <resolution_method> is one of: nearest_tonic, repeat_only
+```
+
 ### harmonic
+
+#### Description
+
+#### Command-line options
+
+```
+Usage: birdears harmonic [options]
+
+  Harmonic interval recognition
+
+Options:
+  -m, --mode <mode>               Mode of the question.
+  -t, --tonic <note>              Tonic of the question.
+  -o, --octave <octave>           Octave of the question.
+  -d, --descending                Whether the question interval is descending.
+  -c, --chromatic                 If chosen, question has chromatic notes.
+  -n, --n_octaves <n max>         Maximum number of octaves.
+  -v, --valid_intervals <1,2,..>  A comma-separated list without spaces
+                                  of valid scale degrees to be chosen for the
+                                  question.
+  -q, --user_durations <1,0.5,n..>
+                                  A comma-separated list without
+                                  spaces with PRECISLY 9 floating values. Or
+                                  'n' for default              duration.
+  -p, --prequestion_method <prequestion_method>
+                                  The name of a pre-question method.
+  -r, --resolution_method <resolution_method>
+                                  The name of a resolution method.
+  -h, --help                      Show this message and exit.
+
+  In this exercise birdears will play two notes, the tonic and the interval
+  harmonically, ie., both on the same time and you should reply which is the
+  correct distance between the two.
+
+  Valid values are as follows:
+
+  -m <mode> is one of: major, dorian, phrygian, lydian, mixolydian, minor,
+  locrian
+
+  -t <tonic> is one of: A, A#, Ab, B, Bb, C, C#, Cb, D, D#, Db, E, Eb, F,
+  F#, Fb, G, G#, Gb
+
+  -p <prequestion_method> is one of: none, tonic_only, progression_i_iv_v_i
+
+  -r <resolution_method> is one of: nearest_tonic, repeat_only
+```
 
 ### dictation
 
+#### Description
+
+#### Command-line options
+
+```
+Usage: birdears dictation [options]
+
+  Melodic dictation
+
+Options:
+  -m, --mode <mode>               Mode of the question.
+  -i, --max_intervals <n max>     Max random intervals for the dictation.
+  -x, --n_notes <n notes>         Number of notes for the dictation.
+  -t, --tonic <note>              Tonic of the question.
+  -o, --octave <octave>           Octave of the question.
+  -d, --descending                Wether the question interval is descending.
+  -c, --chromatic                 If chosen, question has chromatic notes.
+  -n, --n_octaves <n max>         Maximum number of octaves.
+  -v, --valid_intervals <1,2,..>  A comma-separated list without spaces
+                                  of valid scale degrees to be chosen for the
+                                  question.
+  -q, --user_durations <1,0.5,n..>
+                                  A comma-separated list without
+                                  spaces with PRECISLY 9 floating values. Or
+                                  'n' for default              duration.
+  -p, --prequestion_method <prequestion_method>
+                                  The name of a pre-question method.
+  -r, --resolution_method <resolution_method>
+                                  The name of a resolution method.
+  -h, --help                      Show this message and exit.
+
+  In this exercise birdears will choose some random intervals and create a
+  melodic dictation with them. You should reply the correct intervals of the
+  melodic dictation.
+
+  Valid values are as follows:
+
+  -m <mode> is one of: major, dorian, phrygian, lydian, mixolydian, minor,
+  locrian
+
+  -t <tonic> is one of: A, A#, Ab, B, Bb, C, C#, Cb, D, D#, Db, E, Eb, F,
+  F#, Fb, G, G#, Gb
+
+  -p <prequestion_method> is one of: none, tonic_only, progression_i_iv_v_i
+
+  -r <resolution_method> is one of: nearest_tonic, repeat_only
+```
+
 ### instrumental
+
+#### Description
+
+#### Command-line options
+
+```
+Usage: birdears instrumental [options]
+
+  Instrumental melodic time-based dictation
+
+Options:
+  -m, --mode <mode>               Mode of the question.
+  -w, --wait_time <seconds>       Time in seconds for next question/repeat.
+  -u, --n_repeats <times>         Times to repeat question.
+  -i, --max_intervals <n max>     Max random intervals for the dictation.
+  -x, --n_notes <n notes>         Number of notes for the dictation.
+  -t, --tonic <note>              Tonic of the question.
+  -o, --octave <octave>           Octave of the question.
+  -d, --descending                Wether the question interval is descending.
+  -c, --chromatic                 If chosen, question has chromatic notes.
+  -n, --n_octaves <n max>         Maximum number of octaves.
+  -v, --valid_intervals <1,2,..>  A comma-separated list without spaces
+                                  of valid scale degrees to be chosen for the
+                                  question.
+  -q, --user_durations <1,0.5,n..>
+                                  A comma-separated list without
+                                  spaces with PRECISLY 9 floating values. Or
+                                  'n' for default              duration.
+  -p, --prequestion_method <prequestion_method>
+                                  The name of a pre-question method.
+  -r, --resolution_method <resolution_method>
+                                  The name of a resolution method.
+  -h, --help                      Show this message and exit.
+
+  In this exercise birdears will choose some random intervals and create a
+  melodic dictation with them. You should play the correct melody in you
+  musical instrument.
+
+  Valid values are as follows:
+
+  -m <mode> is one of: major, dorian, phrygian, lydian, mixolydian, minor,
+  locrian
+
+  -t <tonic> is one of: A, A#, Ab, B, Bb, C, C#, Cb, D, D#, Db, E, Eb, F,
+  F#, Fb, G, G#, Gb
+
+  -p <prequestion_method> is one of: none, tonic_only, progression_i_iv_v_i
+
+  -r <resolution_method> is one of: nearest_tonic, repeat_only
+```
 
 ## Loading from preset files
 
