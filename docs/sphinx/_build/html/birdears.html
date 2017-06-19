@@ -441,33 +441,30 @@ choice, 1 is 1st, 2 is second etc.</li>
 <div class="section" id="module-birdears.logger">
 <span id="birdears-logger-module"></span><h2>birdears.logger module<a class="headerlink" href="#module-birdears.logger" title="Permalink to this headline">¶</a></h2>
 <p>This submodule exports <cite>logger</cite> to log events.</p>
-<p>Logging messages which are less severe than <cite>lvl</cite> will be ignored</p>
-<p><a href="#id1"><span class="problematic" id="id2">``</span></a>`
-Level       Numeric value
-—–       ————-
+<p>Logging messages which are less severe than <cite>lvl</cite> will be ignored:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>Level       Numeric value
+-----       -------------
 CRITICAL    50
 ERROR       40
 WARNING     30
 INFO        20
 DEBUG       10
-NOTSET      0</p>
-<p>Level       When it’s used
-—–       ————–
-DEBUG       Detailed information, typically of interest only when diagnosing</p>
-<blockquote>
-<div>problems.</div></blockquote>
-<p>INFO        Confirmation that things are working as expected.
-WARNING     An indication that something unexpected happened, or indicative of</p>
-<blockquote>
-<div>some problem in the near future (e.g. ‘disk space low’).
-The software is still working as expected.</div></blockquote>
-<dl class="docutils">
-<dt>ERROR       Due to a more serious problem, the software has not been able to</dt>
-<dd>perform some function.</dd>
-<dt>CRITICAL        A serious error, indicating that the program itself may be unable</dt>
-<dd>to continue running.</dd>
-</dl>
-<p><a href="#id3"><span class="problematic" id="id4">``</span></a><a href="#id5"><span class="problematic" id="id6">`</span></a></p>
+NOTSET      0
+
+Level       When it’s used
+-----       --------------
+DEBUG       Detailed information, typically of interest only when diagnosing
+                problems.
+INFO        Confirmation that things are working as expected.
+WARNING     An indication that something unexpected happened, or indicative of
+                some problem in the near future (e.g. ‘disk space low’).
+                The software is still working as expected.
+ERROR       Due to a more serious problem, the software has not been able to
+                perform some function.
+CRITICAL    A serious error, indicating that the program itself may be unable
+                to continue running.
+</pre></div>
+</div>
 <dl class="function">
 <dt id="birdears.logger.log_event">
 <code class="descclassname">birdears.logger.</code><code class="descname">log_event</code><span class="sig-paren">(</span><em>f</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#birdears.logger.log_event" title="Permalink to this definition">¶</a></dt>
@@ -527,7 +524,7 @@ progressions.</p>
 :param question: Question object from which to generate the</p>
 <blockquote>
 <div>pre-question sequence. (this is provided by the <cite>Resolution</cite> class
-when it is <a href="#id7"><span class="problematic" id="id8">`</span></a>__call__`ed)</div></blockquote>
+when it is <a href="#id1"><span class="problematic" id="id2">`</span></a>__call__`ed)</div></blockquote>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -547,7 +544,7 @@ on the grades I, IV, V the I of the question key.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>question</strong> (<em>obj</em>) – Question object from which to generate the
 pre-question sequence. (this is provided by the <cite>Resolution</cite> class
-when it is <a href="#id9"><span class="problematic" id="id10">`</span></a>__call__`ed)</td>
+when it is <a href="#id3"><span class="problematic" id="id4">`</span></a>__call__`ed)</td>
 </tr>
 </tbody>
 </table>
@@ -572,7 +569,7 @@ question.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>question</strong> (<em>obj</em>) – Question object from which to generate the
 pre-question sequence. (this is provided by the <cite>Resolution</cite> class
-when it is <a href="#id11"><span class="problematic" id="id12">`</span></a>__call__`ed)</td>
+when it is <a href="#id5"><span class="problematic" id="id6">`</span></a>__call__`ed)</td>
 </tr>
 </tbody>
 </table>
@@ -736,7 +733,7 @@ the.method.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>question</strong> (<em>obj</em>) – Question object from which to generate the
 resolution sequence. (this is provided by the <cite>Prequestion</cite> class
-when it is <a href="#id13"><span class="problematic" id="id14">`</span></a>__call__`ed)</td>
+when it is <a href="#id7"><span class="problematic" id="id8">`</span></a>__call__`ed)</td>
 </tr>
 </tbody>
 </table>
@@ -761,7 +758,7 @@ durations.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>question</strong> (<em>obj</em>) – Question object from which to generate the
 resolution sequence. (this is provided by the <cite>Prequestion</cite> class
-when it is <a href="#id15"><span class="problematic" id="id16">`</span></a>__call__`ed)</td>
+when it is <a href="#id9"><span class="problematic" id="id10">`</span></a>__call__`ed)</td>
 </tr>
 </tbody>
 </table>
