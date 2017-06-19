@@ -1,14 +1,13 @@
 # birdears documentation
 
-## Contents
+Welcome to birdears documetation.
 
 ```eval_rst
 
 .. toctree::
    :maxdepth: 3
 
-   index.md
-   using.md
-   birdears.rst
+   installing
+   using
+   birdears
 ```
-
