@@ -17,128 +17,46 @@
 [![GitHub issues](https://img.shields.io/github/issues/iacchus/birdears.svg?style=flat&label=gh-issues)](https://github.com/iacchus/birdears/issues)
 [![Documentation Status](https://readthedocs.org/projects/birdears/badge/?version=latest)](https://birdears.readthedocs.io/en/latest/?badge=latest)
 
-<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
-
-- [BirdEars](#birdears)
-	- [Functional Ear Training for Musicians](#functional-ear-training-for-musicians)
-	- [Installing](#installing)
-		- [1. Install the Dependencies](#1-install-the-dependencies)
-			- [Optional Dependencies](#optional-dependencies)
-				- [Text-user-interface (TUI)](#text-user-interface-tui)
-				- [Graphical-User-Interface (GUI)](#graphical-user-interface-gui)
-		- [2. a. Via pip](#2-a-via-pip)
-		- [2. b. Clone the repository](#2-b-clone-the-repository)
-	- [Keybindings for intervals](#keybindings-for-intervals)
-	- [Screenshot or didn't happen](#screenshot-or-didnt-happen)
-		- [Other keys](#other-keys)
-	- [Installing  Dependencies](#installing-dependencies)
-		- [Arch Linux](#arch-linux)
-	- [Contributing](#contributing)
-
-<!-- /TOC -->
-
-## Functional Ear Training for Musicians
-
-Birdears uses functional ear training method for ear training. It helps you to recognize melodic and harmonic intervals. It uses python 3 and [sox](http://sox.sourceforge.net/).
-
-More documentation is at [birdears Read The Docs](https://birdears.readthedocs.io)
-
-## Installing
-
-
-### 1. Install the Dependencies
-
-Install `sox` and `python3` (see [below](https://github.com/iacchus/birdears#installing--dependencies)) and,
-
-#### Optional Dependencies
-
-##### Text-user-interface (TUI)
-
-Python's 'urwid' tui library will be necessary to run the TUI; although it is
-not implemented yet.
-
-##### Graphical-User-Interface (GUI)
-
-Python's Kivy and SDL2 are required to run the GUI; it's development already
-began and can be acessed with:
-
-`$ birdears kivy`
-
-It is not functional yet.
-
-### 2. a. Via pip
-
-You may want to create a virtualenv before installing via `pip`.
-
 ```
-pip install --upgrade birdears
+readme should contain
+
+[toc]
+
+* introduction
+  * feats
+
+* screenshot(s)
+
+* installing
+  * dependencies
+  * pip
+    * what is pip
+    * installing via pip
+    * using a virtualenv
+  * cloning the repository
+
+* running
+
+* modes
+  * melodic
+    * description
+    * cli options (--help)
+  * harmonic
+    * description
+    * cli options (--help)
+  * dictation
+    * description
+    * cli options (--help)
+  * instrumenetal
+    * description
+    * cli options (--help)
+
+* loading from config file
+  * presets
+
+* * *
+
+* development info
+  as is in readme
+  c
 ```
-
-Then use the command:
-
-```
-birdears
-```
-
-### 2. b. Clone the repository
-
-```
-git clone https://github.com/iacchus/birdears.git
-```
-
-Then run the script with:
-
-```
-python3 -m birdears
-```
-
-## Keybindings for intervals
-
-**MAJOR keyboard keys** (with *chromatics*)
-
-Key Index for major and chromatic major context
-
-**readme should be rewritten**
-
-*(**SHIFT** key meaning an octave higher)*
-
-**MINOR keyboard keys** (with *chromatics*)
-
-Key index for minor and chromatic minor context
-
-```
-   keyboard                 would represent
-                           in chromatics in
-                            'a' minor context
-
- s   f g   j k   eg.:      a#   c# d#    f# g#
-z x c v b n m    -------  a  b c  d  e  f  g
-```
-
-## Screenshot or didn't happen
-
-*(development version)*
-
-![birdears screenshot](https://i.imgur.com/PSZCL2a.png)
-
-### Other keys
-
-| Key                  | What it Does                                            |
-|                 ---: | :---                                                    |
-| <kbd>q</kbd>         | quit.                                                   |
-| <kbd>r</kbd>         | to repeat the tonic/interval.                           |
-| <kbd>Backspace</kbd> | In melodic dictation, remove previous entered interval. |
-
-## Installing  Dependencies
-
-Submit your distro's too..
-
-### Arch Linux
-
-```
-sudo pacman -S python sox
-```
-
-## Contributing
-
-Those who want to contribute to this project can read [CONTRIBUTING.md](CONTRIBUTING.md).
