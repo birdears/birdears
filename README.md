@@ -52,6 +52,10 @@ sudo pacman -Syu sox python python-pip
 
 ## Running
 
+After installing just run:
+
+`birdears --help`
+
 ## Modes
 
 ### melodic
@@ -63,6 +67,22 @@ sudo pacman -Syu sox python python-pip
 ### instrumental
 
 ## Loading from preset files
+
+### Pre-made presets
+
+Birdears cointains some pre-made presets in it's `presets/` subdirectory.
+
+The study for beginners is recommended by following the numeric order of those files (000, 001, then 002 etc.) 
+
+#### Pre-made presets description
+
+Maybe these things would go better in the readhedocs documentation.
+
+### Creating new preset files
+
+You can open the files cointained in birdears premade `presets/` folder to have
+an ideia on how config files are made; it is simply the command line options
+written in a form `toml` standard.
 
 
 ## Contributing
