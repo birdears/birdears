@@ -17,6 +17,38 @@
 [![GitHub issues](https://img.shields.io/github/issues/iacchus/birdears.svg?style=flat&label=gh-issues)](https://github.com/iacchus/birdears/issues)
 [![Documentation Status](https://readthedocs.org/projects/birdears/badge/?version=latest)](https://birdears.readthedocs.io/en/latest/?badge=latest)
 
+<!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [Introduction](#introduction)
+	- [birdears](#birdears)
+	- [What is musical ear training](#what-is-musical-ear-training)
+	- [Features](#features)
+- [Installing](#installing)
+	- [Installing the dependencies](#installing-the-dependencies)
+		- [Arch Linux](#arch-linux)
+	- [Installing birdears](#installing-birdears)
+		- [In-depth installation](#in-depth-installation)
+- [Running](#running)
+- [Modes](#modes)
+	- [melodic](#melodic)
+		- [Description](#description)
+		- [Command-line options](#command-line-options)
+	- [harmonic](#harmonic)
+		- [Description](#description)
+		- [Command-line options](#command-line-options)
+	- [dictation](#dictation)
+		- [Description](#description)
+		- [Command-line options](#command-line-options)
+	- [instrumental](#instrumental)
+		- [Description](#description)
+		- [Command-line options](#command-line-options)
+- [Loading from preset files](#loading-from-preset-files)
+	- [Pre-made presets](#pre-made-presets)
+		- [Pre-made presets description](#pre-made-presets-description)
+	- [Creating new preset files](#creating-new-preset-files)
+- [Contributing](#contributing)
+
+<!-- /TOC -->
 
 ## Introduction
 
@@ -61,6 +93,10 @@ After installing just run:
 ### melodic
 
 #### Description
+
+In this exercise birdears will play two notes, the tonic and the interval
+melodically, ie., one after the other and you should reply which is the
+correct distance between the two.
 
 #### Command-line options
 
@@ -158,6 +194,10 @@ Options:
 
 #### Description
 
+In this exercise birdears will choose some random intervals and create a
+melodic dictation with them. You should reply the correct intervals of the
+melodic dictation.
+
 #### Command-line options
 
 ```
@@ -207,6 +247,10 @@ Options:
 ### instrumental
 
 #### Description
+
+In this exercise birdears will choose some random intervals and create a
+melodic dictation with them. You should play the correct melody in you
+musical instrument.
 
 #### Command-line options
 
@@ -262,7 +306,7 @@ Options:
 
 Birdears cointains some pre-made presets in it's `presets/` subdirectory.
 
-The study for beginners is recommended by following the numeric order of those files (000, 001, then 002 etc.) 
+The study for beginners is recommended by following the numeric order of those files (000, 001, then 002 etc.)
 
 #### Pre-made presets description
 
