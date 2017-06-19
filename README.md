@@ -17,6 +17,26 @@
 [![GitHub issues](https://img.shields.io/github/issues/iacchus/birdears.svg?style=flat&label=gh-issues)](https://github.com/iacchus/birdears/issues)
 [![Documentation Status](https://readthedocs.org/projects/birdears/badge/?version=latest)](https://birdears.readthedocs.io/en/latest/?badge=latest)
 
+<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [BirdEars](#birdears)
+	- [Functional Ear Training for Musicians](#functional-ear-training-for-musicians)
+	- [Installing](#installing)
+		- [1. Install the Dependencies](#1-install-the-dependencies)
+			- [Optional Dependencies](#optional-dependencies)
+				- [Text-user-interface (TUI)](#text-user-interface-tui)
+				- [Graphical-User-Interface (GUI)](#graphical-user-interface-gui)
+		- [2. a. Via pip](#2-a-via-pip)
+		- [2. b. Clone the repository](#2-b-clone-the-repository)
+	- [Keybindings for intervals](#keybindings-for-intervals)
+	- [Screenshot or didn't happen](#screenshot-or-didnt-happen)
+		- [Other keys](#other-keys)
+	- [Installing  Dependencies](#installing-dependencies)
+		- [Arch Linux](#arch-linux)
+	- [Contributing](#contributing)
+
+<!-- /TOC -->
+
 ## Functional Ear Training for Musicians
 
 Birdears uses functional ear training method for ear training. It helps you to recognize melodic and harmonic intervals. It uses python 3 and [sox](http://sox.sourceforge.net/).
@@ -121,4 +141,4 @@ sudo pacman -S python sox
 
 ## Contributing
 
-Those who want to contribute to this project can read [CONTRIBUTING.md](CONTRIBUTING.md), as well as discuss on it's [gitter.im](https://gitter.im/birdears/Lobby) or open [issue on Github](https://github.com/iacchus/birdears/issues).
+Those who want to contribute to this project can read [CONTRIBUTING.md](CONTRIBUTING.md).

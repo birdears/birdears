@@ -1,5 +1,19 @@
 # CONTRIBUTING
 
+<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [CONTRIBUTING](#contributing)
+	- [Coding](#coding)
+		- [Checking code style](#checking-code-style)
+	- [Module Documentation](#module-documentation)
+		- [Runing apidoc](#runing-apidoc)
+	- [End-user Documentation](#end-user-documentation)
+	- [Writing Tests](#writing-tests)
+	- [Feature requests :gift: and suggestions](#feature-requests-gift-and-suggestions)
+- [Other stuff](#other-stuff)
+
+<!-- /TOC -->
+
 ## Coding
 
 We ask for people who wants to contribute for the code to look to the musical side first,
