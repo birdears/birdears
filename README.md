@@ -17,6 +17,60 @@
 [![GitHub issues](https://img.shields.io/github/issues/iacchus/birdears.svg?style=flat&label=gh-issues)](https://github.com/iacchus/birdears/issues)
 [![Documentation Status](https://readthedocs.org/projects/birdears/badge/?version=latest)](https://birdears.readthedocs.io/en/latest/?badge=latest)
 
+
+## Introduction
+
+
+### birdears
+
+`birdears` is a software written in Python 3 for ...
+
+### What is musical ear training
+
+It is a method..
+
+### Features
+
+* questions
+* load from config file
+
+## Installing
+
+### Installing the dependencies
+
+#### Arch Linux
+
+```
+sudo pacman -Syu sox python python-pip
+```
+
+### Installing birdears
+
+`pip install --user --upgrade birdears`
+
+#### In-depth installation
+
+## Running
+
+## Modes
+
+### melodic
+
+### harmonic
+
+### dictation
+
+### instrumental
+
+## Loading from preset files
+
+
+## Contributing
+
+Those who want to contribute to this project can read [CONTRIBUTING.md](CONTRIBUTING.md).
+
+* * *
+
 ```
 readme should contain
 
