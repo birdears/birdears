@@ -4,16 +4,13 @@
 [![Travis Build Status](https://img.shields.io/travis/iacchus/birdears.svg?style=flat-square&label=build)](https://travis-ci.org/iacchus/birdears)
 [![Coveralls](https://img.shields.io/coveralls/iacchus/birdears.svg?style=flat-square&label=Coveralls)](https://coveralls.io/github/iacchus/birdears)
 [![Codecov](https://img.shields.io/codecov/c/github/iacchus/birdears.svg?style=flat-square&label=Codecov)](https://codecov.io/gh/iacchus/birdears)
-[![Code Climate coverage](https://img.shields.io/codeclimate/coverage/github/iacchus/birdears.svg?style=flat-square&label=Codeclimate)](https://codeclimate.com/github/iacchus/birdears)
-[![Code Climate issues](https://img.shields.io/codeclimate/issues/github/iacchus/birdears.svg?style=flat-square&label=cclimate-issues)](https://codeclimate.com/github/iacchus/birdears/issues)
-[![Code Climate gpa](https://img.shields.io/codeclimate/github/iacchus/birdears.svg?style=flat-square&label=cclimate-GPA)](https://codeclimate.com/github/iacchus/birdears)
 [![Gitter](https://img.shields.io/gitter/room/birdears/Lobby.svg?style=flat-square)](https://gitter.im/birdears/Lobby)
 
 [![GitHub (pre-)release](https://img.shields.io/github/release/iacchus/birdears/all.svg?style=flat-square)](https://github.com/iacchus/birdears/releases)
 [![PyPI Status](https://img.shields.io/pypi/status/birdears.svg?style=flat-square&label=pypi-status)](https://pypi.python.org/pypi/birdears)
 [![PyPI Version](https://img.shields.io/pypi/v/birdears.svg?style=flat-square)](https://pypi.python.org/pypi/birdears)
 [![PyPI Python Versions](https://img.shields.io/pypi/pyversions/birdears.svg?style=flat-square)](https://pypi.python.org/pypi/birdears)
-[![Waffle.io](https://img.shields.io/waffle/label/iacchus/birdears/in%20progress.svg?style=flat-square)](https://waffle.io/iacchus/birdears)
+[![Waffle.io](https://img.shields.io/waffle/label/iacchus/birdears/in%20progress.svg?style=flat-square?waffle.io-issues)](https://waffle.io/iacchus/birdears)
 [![GitHub issues](https://img.shields.io/github/issues/iacchus/birdears.svg?style=flat-square&label=gh-issues)](https://github.com/iacchus/birdears/issues)
 [![Documentation Status](https://img.shields.io/badge/readthedocs-latest-orange.svg?style=flat-square)](https://birdears.readthedocs.io/en/latest/)
 

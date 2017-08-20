@@ -338,45 +338,6 @@ def load(filename, *args, **kwargs):
 
     CommandLine(**config_dict)
 
-urwid_epilog = """
-This uses urwid to load birdears TUI.
-"""
-
-
-@cli.command(options_metavar='', epilog=urwid_epilog)
-def urwid(*args, **kwargs):
-    """Starts birdears text user interface (using urwid).
-    """
-
-    try:
-        import urwid
-    except ImportError:
-        print("You need to install 'urwid' python library to use the tui.")
-        exit(1)
-
-    pass
-
-
-kivy_epilog = """
-This uses kivy to load birdears GUI.
-"""
-
-
-@cli.command(options_metavar='', epilog=kivy_epilog)
-def kivy(*args, **kwargs):
-    """Starts birdears graphical user interface (using kivy).
-    """
-
-    try:
-        import kivy
-    except ImportError:
-        print("You need to install 'kivy' python library to use the gui.")
-        exit(1)
-
-    from .interfaces.gui.app import BirdearsApp
-
-    BirdearsApp().run()
-
 
 if __name__ == "__main__":
 
