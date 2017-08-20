@@ -11,7 +11,7 @@
 [![PyPI Status](https://img.shields.io/pypi/status/birdears.svg?style=flat-square&label=pypi-status)](https://pypi.python.org/pypi/birdears)
 [![PyPI Version](https://img.shields.io/pypi/v/birdears.svg?style=flat-square)](https://pypi.python.org/pypi/birdears)
 [![PyPI Python Versions](https://img.shields.io/pypi/pyversions/birdears.svg?style=flat-square)](https://pypi.python.org/pypi/birdears)
-[![Waffle.io](https://img.shields.io/waffle/label/iacchus/birdears/in%20progress.svg?style=flat-square?waffle.io-issues)](https://waffle.io/iacchus/birdears)
+[![Waffle.io](https://img.shields.io/waffle/label/iacchus/birdears/in%20progress.svg?style=flat-square&label=waffle-issues)](https://waffle.io/iacchus/birdears)
 [![GitHub issues](https://img.shields.io/github/issues/iacchus/birdears.svg?style=flat-square&label=gh-issues)](https://github.com/iacchus/birdears/issues)
 [![Documentation Status](https://img.shields.io/badge/readthedocs-latest-orange.svg?style=flat-square)](https://birdears.readthedocs.io/en/latest/)
 
