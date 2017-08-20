@@ -58,11 +58,13 @@
 
 ### birdears
 
-`birdears` is a software written in Python 3 for ...
+`birdears` is a software written in Python 3 for ear training for musicians
+(musical intelligence, transcribing music, composing). It is a clone of the
+method used by [Funcitional Ear Trainer App](https://play.google.com/store/apps/details?id=com.kaizen9.fet.android) for Android.
 
 ### What is musical ear training
 
-It is a method..
+It is a method of ear training.
 
 ### Features
 
