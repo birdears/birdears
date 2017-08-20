@@ -74,9 +74,9 @@ birdears
 
 ``birdears`` is a software written in Python 3 for ear training for
 musicians (musical intelligence, transcribing music, composing). It is a
-clone of the method used by `Funcitional Ear Trainer
-App <https://play.google.com/store/apps/details?id=com.kaizen9.fet.android>`__
-for Android.
+clone of the method used by `Funcitional Ear
+Trainer <https://play.google.com/store/apps/details?id=com.kaizen9.fet.android>`__
+app for Android.
 
 What is musical ear training
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -87,6 +87,7 @@ Features
 ~~~~~~~~
 
 -  questions
+-  pretty much configurable
 -  load from config file
 
 Installing
@@ -371,52 +372,6 @@ Contributing
 
 Those who want to contribute to this project can read
 `CONTRIBUTING.md <CONTRIBUTING.md>`__.
-
---------------
-
-::
-
-    readme should contain
-
-    [toc]
-
-    * introduction
-      * feats
-
-    * screenshot(s)
-
-    * installing
-      * dependencies
-      * pip
-        * what is pip
-        * installing via pip
-        * using a virtualenv
-      * cloning the repository
-
-    * running
-
-    * modes
-      * melodic
-        * description
-        * cli options (--help)
-      * harmonic
-        * description
-        * cli options (--help)
-      * dictation
-        * description
-        * cli options (--help)
-      * instrumenetal
-        * description
-        * cli options (--help)
-
-    * loading from config file
-      * presets
-
-    * * *
-
-    * development info
-      as is in readme
-      c
 
 .. |Maintenance| image:: https://img.shields.io/maintenance/yes/2017.svg?style=flat-square
    :target: https://github.com/iacchus/birdears/issues/new?title=Is+birdears+still+maintained&body=Please+file+an+issue+if+the+maintained+button+says+no
