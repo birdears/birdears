@@ -79,7 +79,7 @@ sudo pacman -Syu sox python python-pip
 
 ### Installing birdears
 
-`pip install --user --upgrade birdears`
+`pip install --user --upgrade --no-cache-dir birdears`
 
 #### In-depth installation
 

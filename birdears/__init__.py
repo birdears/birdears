@@ -10,15 +10,15 @@ DEBUG = False
 
 CHROMATIC_SHARP = ('C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#',
                    'B')
-CHROMATIC_FLAT = ('C', 'Db', 'D', 'Eb', 'Fb', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb',
-                  'Cb')
+CHROMATIC_FLAT = ('C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb',
+                  'B')
 
 KEYS = ('C', 'C#', 'Db', 'D', 'D#', 'Eb', 'E', 'F', 'F#', 'Gb', 'G', 'G#',
         'Ab', 'A', 'A#', 'Bb', 'B')
 
 CIRCLE_OF_FIFTHS = [
         ('C', 'G', 'D', 'A', 'E', 'B', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F'),
-        ('C', 'F', 'Bb', 'Eb', 'Ab', 'C#', 'F#', 'Cb', 'E', 'A', 'D', 'G')
+        ('C', 'F', 'Bb', 'Eb', 'Ab', 'C#', 'F#', 'B', 'E', 'A', 'D', 'G')
     ]
 
 INTERVALS = (
