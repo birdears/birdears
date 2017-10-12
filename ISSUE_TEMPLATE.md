@@ -1,12 +1,9 @@
-**Note: for support questions, please use stackoverflow**.
- This repository's issues are reserved for feature requests and bug reports.
+*feel free to ignore this issues auto template or ignore fields that you find irrelevant to the current issue*
 
 * **I'm submitting a ...**
   - [ ] bug report
   - [ ] feature request
   - [ ] support request
-
-* **Do you want to request a *feature* or report a *bug*?**
 
 * **What is the current behavior?**
 
@@ -19,6 +16,12 @@ https://plnkr.co or similar (you can use this template as a starting point: http
 
 * **Please tell us about your environment:**
 
-Operating System, birdears version, Python vrsion, ar you using a virtualenv?
+  Operating System: 
+
+  birdears version: 
+
+  Python version:
+
+  Are you using a Python virtualenv?
 
 * **Other information** (e.g. detailed explanation, stacktraces, related issues, suggestions how to fix, links for us to have context, eg. stackoverflow, gitter, etc)
