@@ -1,11 +1,10 @@
 BirdEars
 ========
 
-|Maintenance| |Travis Build Status| |Coveralls| |Codecov| |Gitter|
-|Awesome Sheet Music|
+|Maintenance| |Travis Build Status| |Coveralls| |Awesome Sheet Music|
 
 |GitHub (pre-)release| |PyPI Status| |PyPI Version| |PyPI Python
-Versions| |Waffle.io| |GitHub issues| |Documentation Status|
+Versions| |Documentation Status|
 
 .. raw:: html
 
@@ -31,34 +30,11 @@ Versions| |Waffle.io| |GitHub issues| |Documentation Status|
 -  `Modes <#modes>`__
 
    -  `melodic <#melodic>`__
-
-      -  `Description <#description>`__
-      -  `Command-line options <#command-line-options>`__
-
    -  `harmonic <#harmonic>`__
-
-      -  `Description <#description>`__
-      -  `Command-line options <#command-line-options>`__
-
    -  `dictation <#dictation>`__
-
-      -  `Description <#description>`__
-      -  `Command-line options <#command-line-options>`__
-
    -  `instrumental <#instrumental>`__
 
-      -  `Description <#description>`__
-      -  `Command-line options <#command-line-options>`__
-
 -  `Loading from preset files <#loading-from-preset-files>`__
-
-   -  `Pre-made presets <#pre-made-presets>`__
-
-      -  `Pre-made presets
-         description <#pre-made-presets-description>`__
-
-   -  `Creating new preset files <#creating-new-preset-files>`__
-
 -  `Contributing <#contributing>`__
 
 .. raw:: html
@@ -67,6 +43,8 @@ Versions| |Waffle.io| |GitHub issues| |Documentation Status|
 
 Introduction
 ------------
+
+.. birdears-1:
 
 birdears
 ~~~~~~~~
@@ -77,10 +55,28 @@ clone of the method used by `Funcitional Ear
 Trainer <https://play.google.com/store/apps/details?id=com.kaizen9.fet.android>`__
 app for Android.
 
+It comes with four modes, or four kind of exercises, which are:
+``melodic``, ``harmonic``, ``dictation`` and ``instrumental``.
+
+In resume, with the *melodic* mode two notes are played one after the
+other and you have to guess the interval; with the ``harmonic`` mode,
+two notes are played simoutaneously (harmonically) and you should guess
+the interval.
+
+With the *dictation* mode, more than 2 notes are played (*ie*., a
+melodic dictation) and you should tell what are the intervals between
+them.
+
+With the *instrumental* mode, it is a like the *dictation*, but you will
+be expected to play the notes on your instrument, *ie*., birdears will
+not wait for a typed reply and you should prectice with your own
+judgement. The melody can be repeat any times and you can have as much
+time as you want to try it out.
+
 What is musical ear training
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-It is a method of ear training.
+*this needs to be written. The method.*
 
 Features
 ~~~~~~~~
@@ -88,6 +84,7 @@ Features
 -  questions
 -  pretty much configurable
 -  load from config file
+-  you can make your own presets
 
 Installing
 ----------
@@ -109,6 +106,20 @@ Installing birdears
 
 In-depth installation
 ^^^^^^^^^^^^^^^^^^^^^
+
+You can choose to use a virtualenv to use birdears; this should give you
+an idea on how to setup one virtualenv.
+
+You should first install virtualenv (for python3) using your
+distribution’s package (supposing you’re on linux), then on terminal:
+
+::
+
+    virtualenv -p python3 venv # use the directory venv/ for the virtualenv
+    venv/bin/activate # activate the virtualenv; this should be done every 
+                      # time you may want to run the software installed here.
+    pip install birdears # this will install it
+    birdears --help # this will run it
 
 Running
 -------
@@ -178,8 +189,12 @@ Command-line options
 harmonic
 ~~~~~~~~
 
+.. description-1:
+
 Description
 ^^^^^^^^^^^
+
+.. command-line-options-1:
 
 Command-line options
 ^^^^^^^^^^^^^^^^^^^^
@@ -229,12 +244,16 @@ Command-line options
 dictation
 ~~~~~~~~~
 
+.. description-2:
+
 Description
 ^^^^^^^^^^^
 
 In this exercise birdears will choose some random intervals and create a
 melodic dictation with them. You should reply the correct intervals of
 the melodic dictation.
+
+.. command-line-options-2:
 
 Command-line options
 ^^^^^^^^^^^^^^^^^^^^
@@ -286,12 +305,16 @@ Command-line options
 instrumental
 ~~~~~~~~~~~~
 
+.. description-3:
+
 Description
 ^^^^^^^^^^^
 
 In this exercise birdears will choose some random intervals and create a
 melodic dictation with them. You should play the correct melody in you
 musical instrument.
+
+.. command-line-options-3:
 
 Command-line options
 ^^^^^^^^^^^^^^^^^^^^
@@ -348,7 +371,7 @@ Loading from preset files
 Pre-made presets
 ~~~~~~~~~~~~~~~~
 
-Birdears cointains some pre-made presets in it's ``presets/``
+Birdears cointains some pre-made presets in it’s ``presets/``
 subdirectory.
 
 The study for beginners is recommended by following the numeric order of
@@ -378,10 +401,6 @@ Those who want to contribute to this project can read
    :target: https://travis-ci.org/iacchus/birdears
 .. |Coveralls| image:: https://img.shields.io/coveralls/iacchus/birdears.svg?style=flat-square&label=Coveralls
    :target: https://coveralls.io/github/iacchus/birdears
-.. |Codecov| image:: https://img.shields.io/codecov/c/github/iacchus/birdears.svg?style=flat-square&label=Codecov
-   :target: https://codecov.io/gh/iacchus/birdears
-.. |Gitter| image:: https://img.shields.io/gitter/room/birdears/Lobby.svg?style=flat-square
-   :target: https://gitter.im/birdears/Lobby
 .. |Awesome Sheet Music| image:: https://img.shields.io/badge/awesome-sheet%20music-blue.svg?style=flat-square&logoWidth=14;&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAABmJLR0QA%2FwD%2FAP%2BgvaeTAAAACXBIWXMAAD2EAAA9hAHVrK90AAAAB3RJTUUH4QYVEQ4dGSq4mgAAAuVJREFUKM8FwUtoHGUAB%2FD%2F983s7CSb7s6%2BsrtJtqbEJA21llgQi4VaCL5QRKXQg6JXEUTqrfQi9CTozYPeUgrtxceh1kbEEEtBeslzTbdrup109r2zMzvZ2Xl8s9%2F4%2B5Hvfg4vOGpzqJf3aCpY%2FfTMi5OvE%2B6mdx%2Fud0YjP5PNxpiuh6X9%2F3I%2F6mzcScvT%2BvjYCUucknhkYSnvNYTvr5169YNLCEMAHKfPvZxwrBZaqoaGWn%2BNBNWlJ4dzn3147n2totckelwZhdr%2B9U%2FOvnnx0kRSgTJdhOBpIPYzSMyE7DaQJEcoFOO5lFK%2BeszcjxblGU%2BUzHosO5%2B6Ek2kQUYuupt3cXxxEoTIYN0WFDGHNnGwvVFGLJ1eXqv%2B8dzJPK%2FRhvbLKwtnzoI7BvyBjqBzCGEiC5ougAgCCJUAymHZPuYWc8J27cGV3c76jOgM9FlwjpE7APMZAscHH%2FYQsBgAhqBvYCyeREgRbm%2FV3aXixLwf6DFxqpCIDpqPQMQIjNoTBLaN9uYO7v30T9h72sHlL1fIV1%2Bvh0mBsp16na6czmUuJM5XaM%2Fo5UEp9JqGeGEO7tBHfGYW73x8kay8%2FTwRvADL02PIClw6shkxbd8sxl%2Fo0yghVl%2FvIyoL0DY30G8ZcKt7kDnDVDGHQbOFNAFZzlC4ozDiub6SofGAWsNIZWh10X7WwtODNsyeh15ZhfVYw6M%2Ft9Do%2B1jdMsPAC%2BEEHCyAy5WCT5VE%2FqDyr4rh0IZlu%2BygZg%2FdaAw2O0KTUWh%2FVXBe4kT1KVgIeAPh1rHxJBdufHsnKJXvXK7slIV61SodNI7iswVRDgnB%2FEuz8IiDvs1xs2yH1Q099oaZfyj5lkRVf4Ta4%2B69vuF6ajeodkRJ2tzroVRq4%2F5v2xiTFahd115ITn5eu23L5on3mBn5O0UNTxB2m%2FIDdZD5hiUW7qcyhd%2B%2F%2BHUNc2%2B9i8OBwFfXDo11Hfjho2t3I4tRIRoYNBAV738fRoHSSCa2GwAAAABJRU5ErkJggg%3D%3D
    :target: https://iacchus.github.io/awesome-sheet-music/
 .. |GitHub (pre-)release| image:: https://img.shields.io/github/release/iacchus/birdears/all.svg?style=flat-square
@@ -392,9 +411,5 @@ Those who want to contribute to this project can read
    :target: https://pypi.python.org/pypi/birdears
 .. |PyPI Python Versions| image:: https://img.shields.io/pypi/pyversions/birdears.svg?style=flat-square
    :target: https://pypi.python.org/pypi/birdears
-.. |Waffle.io| image:: https://img.shields.io/waffle/label/iacchus/birdears/in%20progress.svg?style=flat-square?waffle.io-issues
-   :target: https://waffle.io/iacchus/birdears
-.. |GitHub issues| image:: https://img.shields.io/github/issues/iacchus/birdears.svg?style=flat-square&label=gh-issues
-   :target: https://github.com/iacchus/birdears/issues
 .. |Documentation Status| image:: https://img.shields.io/badge/readthedocs-latest-orange.svg?style=flat-square
    :target: https://birdears.readthedocs.io/en/latest/
