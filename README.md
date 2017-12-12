@@ -66,12 +66,14 @@ you can have as much time as you want to try it out.
 * pretty much configurable
 * load from config file
 * you can make your own presets
+* can be used interactively *(docs needed)*
+* can be used as a library *(docs needed)*
 
 ## Installing
 
 ### Installing the dependencies
 
-`birdears` depends only on python >= 3.5 and sox (which should by installed by your distribution's package manager,
+`birdears` depends only on `python >= 3.5` and `sox` (which should be installed by your distribution's package manager,
 supposing you're using linux, and which provides the `play` command.) 
 
 #### Arch Linux
