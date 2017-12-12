@@ -33,6 +33,8 @@
 
 <!-- /TOC -->
 
+For support chat, enter [#birdears channel](http://webchat.freenode.net/?randomnick=1&channels=%23birdears&uio=MTY9dHJ1ZSYxMT0yNDY57) on freenode (chat.freenode.net/6697 - ssl).
+
 ## Introduction
 
 
