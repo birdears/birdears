@@ -48,8 +48,6 @@ def test_questionbase_octavetuple():
 def test_scalebase_placeholders():
     a = ScaleBase()
 
-    #a.get_triad(degree='something something')
-
     assert(a)
 
 def test_sequenceclass_notes():
@@ -150,9 +148,6 @@ def test_chromaticintervalclass_params():
                               n_octaves=n_octaves, descending=descending)
 
         assert(a)
-
-#    def __init__(self, tonic, mode=None, octave=None, n_octaves=None,
-#                 chromatic=None, descending=None, dont_repeat_tonic=None):
 
 def test_diatonicscaleclass():
 
