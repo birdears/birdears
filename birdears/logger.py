@@ -66,6 +66,7 @@ logger = logging.getLogger()
 
 logging.disable(logging.CRITICAL)
 
+
 def log_event(f, *args, **kwargs):
     """
     Decorator. Functions and method decorated with this decorator will have
