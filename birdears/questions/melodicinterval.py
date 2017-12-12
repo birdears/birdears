@@ -1,4 +1,3 @@
-from ..logger import logger
 from ..logger import log_event
 
 from ..questionbase import QuestionBase

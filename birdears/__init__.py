@@ -3,8 +3,6 @@ BirdEars provides facilities to musical ear training exercises.
 """
 
 from .logger import logger
-logger.info('Starting app...')
-logger.debug('Starting appzz...')
 
 DEBUG = False
 
