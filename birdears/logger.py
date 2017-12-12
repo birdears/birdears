@@ -64,7 +64,7 @@ dictConfig(logging_config)
 
 logger = logging.getLogger()
 
-logger.setLevel(logging.NOTSET)
+logging.disable(logging.CRITICAL)
 
 def log_event(f, *args, **kwargs):
     """
