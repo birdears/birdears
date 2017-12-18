@@ -47,3 +47,7 @@ pre {
 code.docutils.literal {
   font-family: 'Inconsolata', monospace;
 }
+
+code {
+  border: 1px solid #ddd;
+}
