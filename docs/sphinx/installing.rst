@@ -14,7 +14,9 @@ Arch Linux
 Installing birdears
 ~~~~~~~~~~~~~~~~~~~
 
-``pip install --user --upgrade --no-cache-dir birdears``
+::
+
+    pip install --user --upgrade --no-cache-dir birdears
 
 In-depth installation
 ^^^^^^^^^^^^^^^^^^^^^

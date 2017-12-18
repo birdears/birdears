@@ -36,6 +36,11 @@ pandoc --from=markdown --to=rst README.md -o README.rst
 cd docs/sphinx/
 make clean
 make html
+make latex
+cd -
+
+cd docs/sphinx/_build/latex
+xelatex birdears.tex
 
 # go back to original directory
 cd -
