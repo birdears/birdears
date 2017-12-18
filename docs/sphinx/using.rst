@@ -62,7 +62,7 @@ There are five commands, which are `dictation`, `harmonic`, `instrumental` and
 `melodic` and `load`.
 
 You can play the default question for these by starting birdears with one of
-these commands, or you can check the :code:`--help` for additional options for each
+these commands, or you can check the ``--help`` for additional options for each
 of the commands, invoking this way:
 
 ::

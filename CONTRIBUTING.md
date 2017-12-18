@@ -48,6 +48,35 @@ We want to exclude third-party module `click` when generating automatic document
 sphinx-apidoc -o docs/sphinx/_apidoc birdears/ birdears/click/
 ```
 
+### Sphinx reStructuredText references
+
+* http://www.sphinx-doc.org/en/stable/rest.html
+* http://docutils.sourceforge.net/docs/user/rst/quickref.html
+* https://docs.python.org/devguide/documenting.html#style-guide
+
+### Section Conventions
+
+As in https://docs.python.org/devguide/documenting.html#sections:
+
+#### 7.3.6. Sections
+
+Section headers are created by underlining (and optionally overlining) the section title with a punctuation character, at least as long as the text:
+
+```
+=================
+This is a heading
+=================
+```
+
+Normally, there are no heading levels assigned to certain characters as the structure is determined from the succession of headings. However, for the Python documentation, here is a suggested convention:
+
+* # with overline, for parts
+* * with overline, for chapters
+* =, for sections
+* -, for subsections
+* ^, for subsubsections
+* ", for paragraphs
+
 ## End-user Documentation
 
 We aim to build a method / music theory together with this software, maybe in the

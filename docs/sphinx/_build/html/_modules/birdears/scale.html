@@ -1,0 +1,444 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>birdears.scale &#8212; birdears 0.1.1 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/hljs_styles/monokai.css" type="text/css" />
+  <script type="text/javascript" src="../../_static/js/highlight.pack.js"></script>
+  <script src="https://cdn.rawgit.com/iacchus/abcjs/master/bin/abcjs_plugin_3.1.2-hotfix-min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+  $(document).ready(function() {
+    $('.highlight-none pre').each(function(i, block) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+<script>
+  abcjs_plugin_autostart = false;
+  window.ABCJS.plugin.auto_render = false;
+
+$(document).ready(function(){
+  function is_it_abc(elem) {
+    if(window.ABCJS.plugin.getABCContainingElements(elem).length) return true;
+    else return false;
+  }
+
+  if($(".highlight-abc pre").length)
+  {
+    var tunes_code = $(".highlight-abc pre");
+			
+    for(var $i=0; tunes_code[$i]; $i++)
+    {               
+      if(! is_it_abc($(tunes_code[$i]))) continue;
+
+      var ws_strip="";
+      var mystr="";
+
+      ws_strip = $(tunes_code[$i]).text().split('\n');
+      for(var aaa=0; ws_strip[aaa]; aaa++) { mystr+=ws_strip[aaa].trim() + "\n"; }
+
+      $(tunes_code[$i]).text(mystr); //abctune
+
+      $('<div id="abctune-' + $i + '" class="abctune-rendered"></div>').insertBefore($(tunes_code[$i]).parent());
+      ABCJS.renderAbc(
+        "abctune-"+$i, //container
+        "%%staffsep 27pt\n" + $(tunes_code[$i]).text(), //abctune
+        { }, //parserParams
+        {
+          scale: 1,
+          staffwidth:600,
+          paddingtop: 0,
+          paddingbottom: 0,
+          paddingright: 0,
+          paddingleft: 0,
+        }, //engraverParams
+        { viewportHorizontal: true } //renderParams
+      );
+      $(tunes_code[$i]).parent().hide();
+    }
+  }
+
+  if($("code.abckeep").length)
+  {
+    var tunes_code = $("code.abckeep");
+			
+    for(var $i=0; tunes_code[$i]; $i++)
+    {               
+      if(! is_it_abc($(tunes_code[$i]))) continue;
+
+      var ws_strip="";
+      var mystr="";
+
+      ws_strip = $(tunes_code[$i]).text().split('\n');
+      for(var aaa=0; ws_strip[aaa]; aaa++) { mystr+=ws_strip[aaa].trim() + "\n"; }
+
+      $(tunes_code[$i]).text(mystr); //abctune
+
+      $('<div id="abctunekeep-' + $i + '" class="abctune-rendered"></div>').insertBefore($(tunes_code[$i]).parent());
+      ABCJS.renderAbc(
+        "abctunekeep-"+$i, //container
+        "%%staffsep 27pt\n"+$(tunes_code[$i]).text(), //abctune
+        { }, //parserParams
+        {
+          scale: 1,
+          staffwidth:700,
+          paddingtop: 0,
+          paddingbottom: 0,
+          paddingright: 0,
+          paddingleft: 0,
+        }, //engraverParams
+        { viewportHorizontal: true } //renderParams
+      );
+      $(tunes_code[$i]).parent().css({marginTop:0})
+      //$(tunes_code[$i]).hide();
+    }
+  }
+})
+</script>
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for birdears.scale</h1><div class="highlight"><pre>
+<span></span>from . import DIATONIC_MODES
+from . import CHROMATIC_SHARP
+from . import CHROMATIC_FLAT
+
+
+<div class="viewcode-block" id="ScaleBase"><a class="viewcode-back" href="../../index.html#birdears.scale.ScaleBase">[docs]</a>class ScaleBase:
+    def __init__(self):
+        pass
+
+    def _append_octave_to_scale(self, scale, starting_octave, descending=None):
+        &quot;&quot;&quot;Inserts scientific octave number to the notes on a the given scale.
+        &quot;&quot;&quot;
+
+        next_octave = 1 if not descending else -1
+
+        scale_with_octave = []
+        changing_note = None
+
+        current_octave = starting_octave
+
+        if not descending:
+            for closest in [&#39;C&#39;, &#39;C#&#39;, &#39;Db&#39;]:
+                if closest in scale:
+                    changing_note = closest
+                    break
+        else:
+            for closest in [&#39;B&#39;, &#39;Bb&#39;, &#39;A#&#39;]:
+                if closest in scale:
+                    changing_note = closest
+                    break
+
+        for idx, note in enumerate(scale):
+            if idx &gt; 0 and note == changing_note:
+                current_octave += next_octave
+
+            scale_with_octave.append(&quot;{}{}&quot;.format(note, current_octave))
+
+        return scale_with_octave
+
+    def _get_chromatic_idx(self, note):
+        &quot;&quot;&quot;Gets the chromatic index, ie., the distance in semitones of a given
+        note from C.
+        &quot;&quot;&quot;
+
+        global CHROMATIC_SHARP, CHROMATIC_FLAT
+
+        if note in CHROMATIC_SHARP:
+            note_index = CHROMATIC_SHARP.index(note)
+        elif note in CHROMATIC_FLAT:
+            note_index = CHROMATIC_FLAT.index(note)
+        else:
+            raise InvalidNote
+
+        return note_index
+
+    def _rotate_scale_by_idx(self, index, scale):
+        &quot;&quot;&quot;Rotates chromatic C scale to generate another chromatic based on
+        index number of the tonic.
+        &quot;&quot;&quot;
+
+        idx_to_end = slice(index, None)
+        begin_to_idx = slice(None, index)
+
+        rotated_scale = []
+        rotated_scale.extend(scale[idx_to_end])
+        rotated_scale.extend(scale[begin_to_idx])
+
+        return rotated_scale</div>
+
+
+<div class="viewcode-block" id="DiatonicScale"><a class="viewcode-back" href="../../index.html#birdears.scale.DiatonicScale">[docs]</a>class DiatonicScale(ScaleBase):
+    &quot;&quot;&quot;Builds a musical diatonic scale.
+
+    Attributes:
+        scale (array_type): The array of notes representing the scale.
+    &quot;&quot;&quot;
+
+<div class="viewcode-block" id="DiatonicScale.__init__"><a class="viewcode-back" href="../../index.html#birdears.scale.DiatonicScale.__init__">[docs]</a>    def __init__(self, tonic, mode=None, octave=None, n_octaves=None,
+                 descending=None, dont_repeat_tonic=None):
+        &quot;&quot;&quot;Returns a diatonic scale from tonic and mode.
+
+        Args:
+            tonic (str): The note which the scale will be built upon.
+            mode (str): The mode the scale will be built upon.
+                (&#39;major&#39; or &#39;minor&#39;)
+            octave (int): The scientific octave the scale will be built upon.
+            n_octaves (int): The number of octaves the scale will contain.
+            descending (bool): Whether the scale is descending.
+            dont_repeat_tonic (bool): Whether to skip appending the last
+                note (octave) to the scale.
+        &quot;&quot;&quot;
+
+        super(DiatonicScale, self).__init__()
+
+        global DIATONIC_MODES
+
+        self.tonic = tonic
+        self.mode = mode
+        self.octave = octave
+
+        diatonic_mode = DIATONIC_MODES[mode]
+
+        chromatic = ChromaticScale(tonic=tonic).scale
+
+        diatonic = [chromatic[semitones] for semitones in diatonic_mode[:-1]]
+
+        if n_octaves:
+            diatonic = diatonic * n_octaves
+
+        # FIXME: check if this works on descending
+        if not dont_repeat_tonic:
+            diatonic.append(chromatic[diatonic_mode[-1]])
+
+        if descending:
+            diatonic.reverse()
+
+        if octave:
+            diatonic = self._append_octave_to_scale(scale=diatonic,
+                                                    starting_octave=octave,
+                                                    descending=descending)
+
+        self.scale = diatonic</div>
+
+<div class="viewcode-block" id="DiatonicScale.get_triad"><a class="viewcode-back" href="../../index.html#birdears.scale.DiatonicScale.get_triad">[docs]</a>    def get_triad(self, index=0, degree=None):
+        &quot;&quot;&quot;Returns an array with notes from a scale&#39;s triad.
+
+        Args:
+            index (int): triad index (eg.: 0 for 1st degree triad.)
+            degree (int): Degree of the scale. If provided, overrides the
+                `index` argument. (eg.: `1` for the 1st degree triad.)
+        Returns:
+            An array with three pitches, one for each note of the triad.
+        &quot;&quot;&quot;
+
+        global DIATONIC_MODES
+
+        tonic = self.tonic
+        mode = self.mode
+        octave = self.octave
+
+        diatonic_mode = DIATONIC_MODES[mode]
+
+        chromatic = ChromaticScale(tonic=tonic).scale
+
+        diatonic = [chromatic[semitones] for semitones in diatonic_mode[:-1]]
+
+        diatonic = diatonic * 2
+
+        # FIXME: check if this works on descending
+        diatonic.append(chromatic[diatonic_mode[-1]])
+
+        octave = self.octave or 4
+        diatonic = self._append_octave_to_scale(scale=diatonic,
+                                                starting_octave=octave,
+                                                descending=False)
+
+        self.scale = diatonic
+        if degree:
+            index = degree - 1
+
+        form = [0, 2, 4]
+
+        triad = [diatonic[index+note] for note in form]
+
+        return triad</div></div>
+
+
+<div class="viewcode-block" id="ChromaticScale"><a class="viewcode-back" href="../../index.html#birdears.scale.ChromaticScale">[docs]</a>class ChromaticScale(ScaleBase):
+    &quot;&quot;&quot;Builds a musical chromatic scale.
+
+    Attributes:
+        scale (array_type): The array of notes representing the scale.
+    &quot;&quot;&quot;
+
+<div class="viewcode-block" id="ChromaticScale.__init__"><a class="viewcode-back" href="../../index.html#birdears.scale.ChromaticScale.__init__">[docs]</a>    def __init__(self, tonic, octave=None, n_octaves=None, descending=None,
+                 dont_repeat_tonic=None):
+        &quot;&quot;&quot;Returns a chromatic scale from tonic.
+
+        Args:
+            tonic (str): The note which the scale will be built upon.
+            octave (int): The scientific octave the scale will be built upon.
+            n_octaves (int): The number of octaves the scale will contain.
+            descending (bool): Whether the scale is descending.
+            dont_repeat_tonic (bool): Whether to skip appending the last
+                note (octave) to the scale.
+        &quot;&quot;&quot;
+
+        super(ChromaticScale, self).__init__()
+
+        global CHROMATIC_SHARP, CHROMATIC_FLAT
+
+        self.tonic = tonic
+        self.octave = octave
+
+        tonic_index = self._get_chromatic_idx(tonic)
+
+        if tonic == &#39;F&#39; or &#39;b&#39; in tonic:
+            notes = list(CHROMATIC_FLAT)
+        else:
+            notes = list(CHROMATIC_SHARP)
+
+        notes = self._rotate_scale_by_idx(tonic_index, notes)
+
+        # notes.rotate(-(tonic_index))
+
+        if n_octaves:
+            chromatic = notes * n_octaves
+        else:
+            chromatic = notes
+
+        # FIXME: check if this works on descending
+        if not dont_repeat_tonic:
+            chromatic.append(chromatic[0])
+
+        if descending:
+            chromatic.reverse()
+
+        if octave:
+            chromatic = self._append_octave_to_scale(scale=chromatic,
+                                                     starting_octave=octave,
+                                                     descending=descending)
+
+        self.scale = chromatic</div>
+
+<div class="viewcode-block" id="ChromaticScale.get_triad"><a class="viewcode-back" href="../../index.html#birdears.scale.ChromaticScale.get_triad">[docs]</a>    def get_triad(self, mode, index=0, degree=None):
+        &quot;&quot;&quot;Returns an array with notes from a scale&#39;s triad.
+
+        Args:
+            mode (str): Mode of the scale (eg. &#39;major&#39; or &#39;minor&#39;)
+            index (int): Triad index (eg.: 0 for 1st degree triad.)
+            degree (int): Degree of the scale. If provided, overrides the
+                `index` argument. (eg.: `1` for the 1st degree triad.)
+        Returns:
+            A list with three pitches (str), one for each note of the triad.
+        &quot;&quot;&quot;
+
+        global DIATONIC_MODES
+
+        tonic = self.tonic
+        octave = self.octave
+
+        diatonic_mode = DIATONIC_MODES[mode]
+
+        chromatic = ChromaticScale(tonic).scale
+
+        diatonic = [chromatic[semitones] for semitones in diatonic_mode[:-1]]
+
+        diatonic = diatonic * 2
+
+        # FIXME: check if this works on descending
+        diatonic.append(chromatic[diatonic_mode[-1]])
+
+        octave = self.octave or 4
+        diatonic = self._append_octave_to_scale(scale=diatonic,
+                                                starting_octave=octave,
+                                                descending=False)
+
+        self.scale = diatonic
+        if degree:
+            index = degree - 1
+
+        form = [0, 2, 4]
+
+        triad = [diatonic[index+note] for note in form]
+
+        return triad</div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Iacchus Mercurius.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

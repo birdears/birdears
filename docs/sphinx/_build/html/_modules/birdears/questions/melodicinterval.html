@@ -1,0 +1,359 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>birdears.questions.melodicinterval &#8212; birdears 0.1.1 documentation</title>
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/hljs_styles/monokai.css" type="text/css" />
+  <script type="text/javascript" src="../../../_static/js/highlight.pack.js"></script>
+  <script src="https://cdn.rawgit.com/iacchus/abcjs/master/bin/abcjs_plugin_3.1.2-hotfix-min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+  $(document).ready(function() {
+    $('.highlight-none pre').each(function(i, block) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+<script>
+  abcjs_plugin_autostart = false;
+  window.ABCJS.plugin.auto_render = false;
+
+$(document).ready(function(){
+  function is_it_abc(elem) {
+    if(window.ABCJS.plugin.getABCContainingElements(elem).length) return true;
+    else return false;
+  }
+
+  if($(".highlight-abc pre").length)
+  {
+    var tunes_code = $(".highlight-abc pre");
+			
+    for(var $i=0; tunes_code[$i]; $i++)
+    {               
+      if(! is_it_abc($(tunes_code[$i]))) continue;
+
+      var ws_strip="";
+      var mystr="";
+
+      ws_strip = $(tunes_code[$i]).text().split('\n');
+      for(var aaa=0; ws_strip[aaa]; aaa++) { mystr+=ws_strip[aaa].trim() + "\n"; }
+
+      $(tunes_code[$i]).text(mystr); //abctune
+
+      $('<div id="abctune-' + $i + '" class="abctune-rendered"></div>').insertBefore($(tunes_code[$i]).parent());
+      ABCJS.renderAbc(
+        "abctune-"+$i, //container
+        "%%staffsep 27pt\n" + $(tunes_code[$i]).text(), //abctune
+        { }, //parserParams
+        {
+          scale: 1,
+          staffwidth:600,
+          paddingtop: 0,
+          paddingbottom: 0,
+          paddingright: 0,
+          paddingleft: 0,
+        }, //engraverParams
+        { viewportHorizontal: true } //renderParams
+      );
+      $(tunes_code[$i]).parent().hide();
+    }
+  }
+
+  if($("code.abckeep").length)
+  {
+    var tunes_code = $("code.abckeep");
+			
+    for(var $i=0; tunes_code[$i]; $i++)
+    {               
+      if(! is_it_abc($(tunes_code[$i]))) continue;
+
+      var ws_strip="";
+      var mystr="";
+
+      ws_strip = $(tunes_code[$i]).text().split('\n');
+      for(var aaa=0; ws_strip[aaa]; aaa++) { mystr+=ws_strip[aaa].trim() + "\n"; }
+
+      $(tunes_code[$i]).text(mystr); //abctune
+
+      $('<div id="abctunekeep-' + $i + '" class="abctune-rendered"></div>').insertBefore($(tunes_code[$i]).parent());
+      ABCJS.renderAbc(
+        "abctunekeep-"+$i, //container
+        "%%staffsep 27pt\n"+$(tunes_code[$i]).text(), //abctune
+        { }, //parserParams
+        {
+          scale: 1,
+          staffwidth:700,
+          paddingtop: 0,
+          paddingbottom: 0,
+          paddingright: 0,
+          paddingleft: 0,
+        }, //engraverParams
+        { viewportHorizontal: true } //renderParams
+      );
+      $(tunes_code[$i]).parent().css({marginTop:0})
+      //$(tunes_code[$i]).hide();
+    }
+  }
+})
+</script>
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for birdears.questions.melodicinterval</h1><div class="highlight"><pre>
+<span></span>from ..logger import log_event
+
+from ..questionbase import QuestionBase
+
+from ..interval import DiatonicInterval
+from ..interval import ChromaticInterval
+
+from .. import DIATONIC_MODES
+from .. import MAX_SEMITONES_RESOLVE_BELOW
+from .. import INTERVALS
+
+from ..scale import DiatonicScale
+
+from ..sequence import Sequence
+from ..resolution import Resolution
+from ..prequestion import PreQuestion
+
+
+<div class="viewcode-block" id="MelodicIntervalQuestion"><a class="viewcode-back" href="../../../index.html#birdears.questions.melodicinterval.MelodicIntervalQuestion">[docs]</a>class MelodicIntervalQuestion(QuestionBase):
+    &quot;&quot;&quot;Implements a Melodic Interval test.
+    &quot;&quot;&quot;
+
+    @log_event
+    def __init__(self, mode=&#39;major&#39;, tonic=None, octave=None, descending=None,
+                 chromatic=None, n_octaves=None, valid_intervals=None,
+                 user_durations=None, prequestion_method=&#39;tonic_only&#39;,
+                 resolution_method=&#39;nearest_tonic&#39;, *args, **kwargs):
+        &quot;&quot;&quot;Inits the class.
+
+        Args:
+            mode (str): A string representing the mode of the question.
+                Eg., &#39;major&#39; or &#39;minor&#39;
+            tonic (str): A string representing the tonic of the question,
+                eg.: &#39;C&#39;; if omitted, it will be selected randomly.
+            octave (int): A scienfic octave notation, for example, 4 for &#39;C4&#39;;
+                if not present, it will be randomly chosen.
+            descending (bool): Is the question direction in descending, ie.,
+                intervals have lower pitch than the tonic.
+            chromatic (bool): If the question can have (True) or not (False)
+                chromatic intervals, ie., intervals not in the diatonic scale
+                of tonic/mode.
+            n_octaves (int): Maximum number of octaves of the question.
+            valid_intervals (list): A list with intervals (int) valid for
+                random choice, 1 is 1st, 2 is second etc. Eg. [1, 4, 5] to
+                allow only tonics, fourths and fifths.
+            user_durations (str): A string with 9 comma-separated `int` or
+                `float`s to set the default duration for the notes played. The
+                values are respectively for: pre-question duration (1st),
+                pre-question delay (2nd), and pre-question pos-delay (3rd);
+                question duration (4th), question delay (5th), and question
+                pos-delay (6th); resolution duration (7th), resolution
+                delay (8th), and resolution pos-delay (9th).
+                duration is the duration in of the note in seconds; delay is
+                the time to wait before playing the next note, and pos_delay is
+                the time to wait after all the notes of the respective sequence
+                have been played. If any of the user durations is `n`, the
+                default duration for the type of question will be used instead.
+                Example::
+                    &quot;2,0.5,1,2,n,0,2.5,n,1&quot;
+            prequestion_method (str): Method of playing a cadence or the
+                exercise tonic before the question so to affirm the question
+                musical tonic key to the ear. Valid ones are registered in the
+                `birdears.prequestion.PREQUESION_METHODS` global dict.
+            resolution_method (str): Method of playing the resolution of an
+                exercise. Valid ones are registered in the
+                `birdears.resolution.RESOLUTION_METHODS` global dict.
+        &quot;&quot;&quot;
+
+        default_durations = {
+            &#39;preq&#39;: {&#39;duration&#39;: 2, &#39;delay&#39;: 0.5, &#39;pos_delay&#39;: 1},
+            &#39;quest&#39;: {&#39;duration&#39;: 2, &#39;delay&#39;: 0.5, &#39;pos_delay&#39;: 0},
+            &#39;resol&#39;: {&#39;duration&#39;: 2.5, &#39;delay&#39;: 0.5, &#39;pos_delay&#39;: 1}
+        }
+
+        super(MelodicIntervalQuestion, self).\
+            __init__(mode=mode, tonic=tonic, octave=octave,
+                     descending=descending, chromatic=chromatic,
+                     n_octaves=n_octaves, valid_intervals=valid_intervals,
+                     user_durations=user_durations,
+                     prequestion_method=prequestion_method,
+                     resolution_method=resolution_method,
+                     default_durations=default_durations, *args, **kwargs)
+
+        self.is_harmonic = False
+
+        if not chromatic:
+            self.interval = \
+                DiatonicInterval(mode=mode, tonic=self.tonic,
+                                 octave=self.octave,
+                                 n_octaves=self.n_octaves,
+                                 descending=descending,
+                                 valid_intervals=self.valid_intervals)
+        else:
+            self.interval = \
+                ChromaticInterval(mode=mode, tonic=self.tonic,
+                                  octave=self.octave,
+                                  n_octaves=self.n_octaves,
+                                  descending=descending,
+                                  valid_intervals=self.valid_intervals)
+
+        self.pre_question = self.make_pre_question(method=prequestion_method)
+        self.question = self.make_question()
+        self.resolution = self.make_resolution(method=resolution_method)
+
+<div class="viewcode-block" id="MelodicIntervalQuestion.make_pre_question"><a class="viewcode-back" href="../../../index.html#birdears.questions.melodicinterval.MelodicIntervalQuestion.make_pre_question">[docs]</a>    def make_pre_question(self, method):
+        prequestion = PreQuestion(method=method, question=self)
+
+        return prequestion()</div>
+
+<div class="viewcode-block" id="MelodicIntervalQuestion.make_question"><a class="viewcode-back" href="../../../index.html#birdears.questions.melodicinterval.MelodicIntervalQuestion.make_question">[docs]</a>    def make_question(self):
+
+        tonic = self.concrete_tonic
+        interval = self.interval.note_and_octave
+
+        question = Sequence([interval], **self.durations[&#39;quest&#39;])
+
+        return question</div>
+
+<div class="viewcode-block" id="MelodicIntervalQuestion.make_resolution"><a class="viewcode-back" href="../../../index.html#birdears.questions.melodicinterval.MelodicIntervalQuestion.make_resolution">[docs]</a>    def make_resolution(self, method):
+
+        resolve = Resolution(method=method, question=self)
+        resolution = resolve()
+
+        return resolution</div>
+
+<div class="viewcode-block" id="MelodicIntervalQuestion.play_question"><a class="viewcode-back" href="../../../index.html#birdears.questions.melodicinterval.MelodicIntervalQuestion.play_question">[docs]</a>    def play_question(self):
+        # Other threads can call a thread’s join() method. This blocks the
+        # calling thread until the thread whose join() method is called is
+        # terminated.
+        # https://docs.python.org/3/library/threading.html#thread-objects
+
+        self.pre_question.play()
+        self.question.play()</div>
+
+<div class="viewcode-block" id="MelodicIntervalQuestion.play_resolution"><a class="viewcode-back" href="../../../index.html#birdears.questions.melodicinterval.MelodicIntervalQuestion.play_resolution">[docs]</a>    def play_resolution(self):
+
+        thread = self.resolution.play()
+        thread.join()</div>
+
+<div class="viewcode-block" id="MelodicIntervalQuestion.check_question"><a class="viewcode-back" href="../../../index.html#birdears.questions.melodicinterval.MelodicIntervalQuestion.check_question">[docs]</a>    def check_question(self, user_input_char):
+        &quot;&quot;&quot;Checks whether the given answer is correct.
+        &quot;&quot;&quot;
+
+        global INTERVALS
+
+        semitones = self.keyboard_index.index(user_input_char[0])
+
+        tonic = self.scales[&#39;chromatic_pitch&#39;].scale[0]
+
+        user_interval = INTERVALS[semitones][2]
+        correct_interval = INTERVALS[self.interval.semitones][2]
+
+        user_note = self.scales[&#39;chromatic_pitch&#39;].scale[semitones]
+        correct_note = self.scales[&#39;chromatic_pitch&#39;]\
+            .scale[self.interval.semitones]
+
+        signal = &#39;✓&#39; if semitones == self.interval.semitones else &#39;x&#39;  # u2713
+
+        extra_response_str = &quot;&quot;&quot;\
+       “{}” ({}─{})
+user {} “{}” ({}─{})
+{} semitones
+&quot;&quot;&quot;.format(correct_interval, tonic, correct_note,
+           signal, user_interval, tonic, user_note, self.interval.semitones)
+
+        response = dict(
+            is_correct=False,
+            user_interval=user_interval,
+            correct_interval=correct_interval,
+            user_response_str=user_interval,
+            correct_response_str=correct_interval,
+            extra_response_str=extra_response_str,
+        )
+
+        if semitones == self.interval.semitones:
+            response.update({&#39;is_correct&#39;: True})
+
+        else:
+            response.update({&#39;is_correct&#39;: False})
+
+        return response</div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Iacchus Mercurius.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

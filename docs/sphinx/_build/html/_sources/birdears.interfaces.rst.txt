@@ -1,6 +1,11 @@
 birdears\.interfaces package
 ============================
 
+.. automodule:: birdears.interfaces
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 Submodules
 ----------
 
@@ -13,10 +18,3 @@ birdears\.interfaces\.commandline module
     :show-inheritance:
 
 
-Module contents
----------------
-
-.. automodule:: birdears.interfaces
-    :members:
-    :undoc-members:
-    :show-inheritance:

@@ -1,6 +1,11 @@
 birdears\.questions package
 ===========================
 
+.. automodule:: birdears.questions
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 Submodules
 ----------
 
@@ -37,10 +42,3 @@ birdears\.questions\.melodicinterval module
     :show-inheritance:
 
 
-Module contents
----------------
-
-.. automodule:: birdears.questions
-    :members:
-    :undoc-members:
-    :show-inheritance:

@@ -49,5 +49,9 @@ code.docutils.literal {
 }
 
 code {
-  border: 1px solid #ddd;
+ // border: 1px solid #ddd;
+}
+
+div#subpackages, #submodules {
+    display: none;    
 }

@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Installing birdears &#8212; birdears 0.0.6-alpha.3 documentation</title>
+    <title>Installing birdears &#8212; birdears 0.1.1 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.0.6-alpha.3',
+        VERSION:     '0.1.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -136,13 +136,32 @@ $(document).ready(function(){
             
   <div class="section" id="installing-birdears">
 <h1>Installing birdears<a class="headerlink" href="#installing-birdears" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="via-pip">
-<h2>Via pip<a class="headerlink" href="#via-pip" title="Permalink to this headline">¶</a></h2>
-<p>this way is via pip</p>
+<div class="section" id="installing-the-dependencies">
+<h2>Installing the dependencies<a class="headerlink" href="#installing-the-dependencies" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="arch-linux">
+<h3>Arch Linux<a class="headerlink" href="#arch-linux" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none"><div class="highlight"><pre><span></span>sudo pacman -Syu sox python python-pip
+</pre></div>
 </div>
-<div class="section" id="cloning-the-repository">
-<h2>Cloning the repository<a class="headerlink" href="#cloning-the-repository" title="Permalink to this headline">¶</a></h2>
-<p>This way is by cloning the repository</p>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>Installing birdears<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span> <span class="pre">--upgrade</span> <span class="pre">--no-cache-dir</span> <span class="pre">birdears</span></code></p>
+<div class="section" id="in-depth-installation">
+<h3>In-depth installation<a class="headerlink" href="#in-depth-installation" title="Permalink to this headline">¶</a></h3>
+<p>You can choose to use a virtualenv to use birdears; this should give you
+an idea on how to setup one virtualenv.</p>
+<p>You should first install virtualenv (for python3) using your
+distribution’s package (supposing you’re on linux), then on terminal:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>virtualenv -p python3 venv # use the directory venv/ for the virtualenv
+venv/bin/activate # activate the virtualenv; this should be done every
+                  # time you may want to run the software installed here.
+pip install birdears # this will install it
+birdears --help # this will run it
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 
@@ -155,8 +174,14 @@ $(document).ready(function(){
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Installing birdears</a><ul>
-<li><a class="reference internal" href="#via-pip">Via pip</a></li>
-<li><a class="reference internal" href="#cloning-the-repository">Cloning the repository</a></li>
+<li><a class="reference internal" href="#installing-the-dependencies">Installing the dependencies</a><ul>
+<li><a class="reference internal" href="#arch-linux">Arch Linux</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id1">Installing birdears</a><ul>
+<li><a class="reference internal" href="#in-depth-installation">In-depth installation</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

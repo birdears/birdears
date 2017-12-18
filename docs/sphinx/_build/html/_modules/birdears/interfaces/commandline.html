@@ -1,0 +1,442 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>birdears.interfaces.commandline &#8212; birdears 0.1.1 documentation</title>
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/hljs_styles/monokai.css" type="text/css" />
+  <script type="text/javascript" src="../../../_static/js/highlight.pack.js"></script>
+  <script src="https://cdn.rawgit.com/iacchus/abcjs/master/bin/abcjs_plugin_3.1.2-hotfix-min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+  $(document).ready(function() {
+    $('.highlight-none pre').each(function(i, block) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+<script>
+  abcjs_plugin_autostart = false;
+  window.ABCJS.plugin.auto_render = false;
+
+$(document).ready(function(){
+  function is_it_abc(elem) {
+    if(window.ABCJS.plugin.getABCContainingElements(elem).length) return true;
+    else return false;
+  }
+
+  if($(".highlight-abc pre").length)
+  {
+    var tunes_code = $(".highlight-abc pre");
+			
+    for(var $i=0; tunes_code[$i]; $i++)
+    {               
+      if(! is_it_abc($(tunes_code[$i]))) continue;
+
+      var ws_strip="";
+      var mystr="";
+
+      ws_strip = $(tunes_code[$i]).text().split('\n');
+      for(var aaa=0; ws_strip[aaa]; aaa++) { mystr+=ws_strip[aaa].trim() + "\n"; }
+
+      $(tunes_code[$i]).text(mystr); //abctune
+
+      $('<div id="abctune-' + $i + '" class="abctune-rendered"></div>').insertBefore($(tunes_code[$i]).parent());
+      ABCJS.renderAbc(
+        "abctune-"+$i, //container
+        "%%staffsep 27pt\n" + $(tunes_code[$i]).text(), //abctune
+        { }, //parserParams
+        {
+          scale: 1,
+          staffwidth:600,
+          paddingtop: 0,
+          paddingbottom: 0,
+          paddingright: 0,
+          paddingleft: 0,
+        }, //engraverParams
+        { viewportHorizontal: true } //renderParams
+      );
+      $(tunes_code[$i]).parent().hide();
+    }
+  }
+
+  if($("code.abckeep").length)
+  {
+    var tunes_code = $("code.abckeep");
+			
+    for(var $i=0; tunes_code[$i]; $i++)
+    {               
+      if(! is_it_abc($(tunes_code[$i]))) continue;
+
+      var ws_strip="";
+      var mystr="";
+
+      ws_strip = $(tunes_code[$i]).text().split('\n');
+      for(var aaa=0; ws_strip[aaa]; aaa++) { mystr+=ws_strip[aaa].trim() + "\n"; }
+
+      $(tunes_code[$i]).text(mystr); //abctune
+
+      $('<div id="abctunekeep-' + $i + '" class="abctune-rendered"></div>').insertBefore($(tunes_code[$i]).parent());
+      ABCJS.renderAbc(
+        "abctunekeep-"+$i, //container
+        "%%staffsep 27pt\n"+$(tunes_code[$i]).text(), //abctune
+        { }, //parserParams
+        {
+          scale: 1,
+          staffwidth:700,
+          paddingtop: 0,
+          paddingbottom: 0,
+          paddingright: 0,
+          paddingleft: 0,
+        }, //engraverParams
+        { viewportHorizontal: true } //renderParams
+      );
+      $(tunes_code[$i]).parent().css({marginTop:0})
+      //$(tunes_code[$i]).hide();
+    }
+  }
+})
+</script>
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for birdears.interfaces.commandline</h1><div class="highlight"><pre>
+<span></span>from .. import click
+
+from .. import _Getch
+
+from .. import INTERVALS
+from .. import DIATONIC_MODES
+from .. import CHROMATIC_TYPE
+
+from .. import DEBUG
+
+from os import popen
+COLS = int(popen(&#39;tput cols&#39;, &#39;r&#39;).read())
+
+
+<div class="viewcode-block" id="center_text"><a class="viewcode-back" href="../../../index.html#birdears.interfaces.commandline.center_text">[docs]</a>def center_text(text, sep=True, nl=0):
+    &quot;&quot;&quot;This function returns input text centered according to terminal columns.
+
+    Args:
+        text (str): The string to be centered, it can have multiple lines.
+        sep (bool): Add line separator after centered text (True) or
+            not (False).
+        nl (int): How many new lines to add after text.
+    &quot;&quot;&quot;
+
+    linelist = list(text.splitlines())
+
+    # gets the biggest line
+    biggest_line_size = 0
+    for line in linelist:
+        line_lenght = len(line.expandtabs())
+        if line_lenght &gt; biggest_line_size:
+            biggest_line_size = line_lenght
+
+    columns = COLS
+    offset = biggest_line_size / 2
+    perfect_center = columns / 2
+    padsize = int(perfect_center - offset)
+    spacing = &#39; &#39; * padsize  # space char
+
+    text = str()
+    for line in linelist:
+        text += (spacing + line + &#39;\n&#39;)
+
+    divider = spacing + (&#39;─&#39; * int(biggest_line_size))  # unicode 0x2500
+    text += divider if sep else &#39;&#39;
+
+    text += nl * &#39;\n&#39;
+
+    return text</div>
+
+
+<div class="viewcode-block" id="print_response"><a class="viewcode-back" href="../../../index.html#birdears.interfaces.commandline.print_response">[docs]</a>def print_response(response):
+    &quot;&quot;&quot;Prints the formatted response.
+
+    Args:
+        response (dict): A response returned by question&#39;s check_question()
+    &quot;&quot;&quot;
+
+    text_kwargs = dict(
+        user_resp=response[&#39;user_response_str&#39;],
+        correct_resp=response[&#39;correct_response_str&#39;]
+    )
+
+    # TODO: make a class for response
+    if response[&#39;is_correct&#39;]:
+        response_text = &quot;Correct!&quot;
+    else:
+        response_text = &quot;Wrong..&quot;
+
+    if &#39;extra_response_str&#39; in response.keys():
+        print(center_text(response[&#39;extra_response_str&#39;]))
+
+    print(center_text(response_text, nl=2))</div>
+
+
+<div class="viewcode-block" id="print_instrumental"><a class="viewcode-back" href="../../../index.html#birdears.interfaces.commandline.print_instrumental">[docs]</a>def print_instrumental(response):
+    &quot;&quot;&quot;Prints the formatted response for &#39;instrumental&#39; exercise.
+
+    Args:
+        response (dict): A response returned by question&#39;s check_question()
+    &quot;&quot;&quot;
+
+    text_kwargs = dict(
+        correct_resp=response[&#39;correct_response_str&#39;]
+    )
+
+    response_text = &quot;&quot;&quot;
+{correct_resp}
+&quot;&quot;&quot;.format(**text_kwargs)
+
+    print(center_text(response_text, nl=2))</div>
+
+
+<div class="viewcode-block" id="print_question"><a class="viewcode-back" href="../../../index.html#birdears.interfaces.commandline.print_question">[docs]</a>def print_question(question):
+    &quot;&quot;&quot;Prints the question to the user.
+
+    Args:
+        question (obj): A Question class with the question to be printed.
+    &quot;&quot;&quot;
+
+    keyboard = question.keyboard_index
+
+    if not question.is_chromatic:
+        scale = list(question.scales[&#39;diatonic&#39;].scale)
+
+        mode = list(DIATONIC_MODES[question.mode])
+        scale_index = list(mode)
+    else:
+        scale = list(question.scales[&#39;chromatic&#39;].scale)
+
+        mode = list(CHROMATIC_TYPE)
+        scale_index = list(mode)
+
+    for o in range(1, question.n_octaves):
+        scale_index.extend([x + (12*o) for x in mode[1:]])
+
+    # FIXME: bug with descending n_octaves=2
+    if question.is_descending:
+        highest = max(scale_index)
+        scale_index = [highest - x for x in scale_index]
+        scale = reversed(scale)
+
+    intervals = [INTERVALS[i][1] for i in scale_index]
+    keys = [keyboard[i] for i in scale_index]
+
+    scale_str = &quot; &quot;.join(map(lambda x: x.ljust(3), scale))
+    intervals_str = &quot; &quot;.join(map(lambda x: x.ljust(3), intervals))
+    keys_str = &quot; &quot;.join(map(lambda x: x.ljust(3), keys))
+
+    text_kwargs = dict(
+        tonic=question.tonic,
+        mode=question.mode,
+        chroma=question.is_chromatic,
+        desc=question.is_descending,
+        scale=scale_str,
+        intervals=intervals_str,
+        keyboard=keys_str,
+    )
+
+    question_text = &quot;&quot;&quot;\
+
+KEY: {tonic} {mode}
+(chromatic: {chroma}; descending: {desc})
+
+Intervals {intervals}
+Scale     {scale}
+Keyboard  {keyboard}
+
+&quot;&quot;&quot;.format(**text_kwargs)
+
+    print(center_text(question_text, nl=1))</div>
+
+
+<div class="viewcode-block" id="make_input_str"><a class="viewcode-back" href="../../../index.html#birdears.interfaces.commandline.make_input_str">[docs]</a>def make_input_str(user_input, keyboard_index):
+    &quot;&quot;&quot;Makes a string representing intervals entered by the user.
+
+    This function is to be used by questions which takes more than one interval
+    input as MelodicDictation, and formats the intervals already entered.
+
+    Args:
+        user_input (array_type): The list of keyboard keys entered by user.
+        keyboard_index (array_type): The keyboard mapping used by question.
+    &quot;&quot;&quot;
+
+    input_str = str()
+
+    user_input_semitones = [keyboard_index.index(s)
+                            for s in user_input]
+
+    user_str = &quot;&quot;.join([INTERVALS[s][1].center(5)
+                       for s in user_input_semitones]).center(COLS)
+
+    input_str = (&quot;\r{}&quot;.format(user_str))
+
+    return input_str</div>
+
+
+<div class="viewcode-block" id="CommandLine"><a class="viewcode-back" href="../../../index.html#birdears.interfaces.commandline.CommandLine">[docs]</a>def CommandLine(exercise, **kwargs):
+    &quot;&quot;&quot;This function implements the birdears loop for command line.
+
+    Args:
+        exercise (str): The question name.
+        **kwargs (kwargs): FIXME: The kwargs can contain options for specific
+            questions.
+    &quot;&quot;&quot;
+
+    if exercise == &#39;dictation&#39;:
+        from ..questions.melodicdictation import MelodicDictationQuestion
+        dictate_notes = kwargs[&#39;n_notes&#39;]
+        MYCLASS = MelodicDictationQuestion
+
+    elif exercise == &#39;instrumental&#39;:
+        from ..questions.instrumentaldictation \
+            import InstrumentalDictationQuestion
+
+        dictate_notes = kwargs[&#39;n_notes&#39;]
+        MYCLASS = InstrumentalDictationQuestion
+
+    elif exercise == &#39;melodic&#39;:
+        from ..questions.melodicinterval import MelodicIntervalQuestion
+        MYCLASS = MelodicIntervalQuestion
+        dictate_notes = 1
+
+    elif exercise == &#39;harmonic&#39;:
+        from ..questions.harmonicinterval import HarmonicIntervalQuestion
+        MYCLASS = HarmonicIntervalQuestion
+        dictate_notes = 1
+
+    getch = _Getch()
+
+    new_question_bit = True
+
+    while True:
+        if new_question_bit is True:
+
+            new_question_bit = False
+
+            input_keys = []
+            question = MYCLASS(**kwargs)
+
+            print_question(question)
+            question.play_question()
+
+        if exercise == &#39;instrumental&#39;:
+            response = question.check_question()
+            print_instrumental(response)
+
+            new_question_bit = True
+
+            continue
+
+        user_input = getch()
+
+        if user_input in question.keyboard_index and user_input != &#39; &#39;:  # spc
+
+            input_keys.append(user_input)
+
+            if exercise == &#39;dictation&#39;:
+                input_str = make_input_str(input_keys, question.keyboard_index)
+                print(input_str, end=&#39;&#39;)
+
+            if len(input_keys) == dictate_notes:
+
+                response = question.check_question(input_keys)
+                print_response(response)
+
+                question.play_resolution()
+
+                new_question_bit = True
+
+        # backspace
+        elif user_input == &#39;\x7f&#39;:
+            if(len(input_keys) &gt; 0) and exercise == &#39;dictation&#39;:
+                del(input_keys[-1])
+                input_str = make_input_str(input_keys, question.keyboard_index)
+                print(input_str, end=&#39;&#39;)
+
+        # q/Q - quit
+        elif user_input in (&#39;q&#39;, &#39;Q&#39;):
+            exit(0)
+
+        # r - repeat interval
+        elif user_input in (&#39;r&#39;, &#39;R&#39;):
+            question.play_question()</div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Iacchus Mercurius.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

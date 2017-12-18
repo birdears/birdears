@@ -1,6 +1,11 @@
 birdears package
 ================
 
+.. automodule:: birdears
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 Subpackages
 -----------
 
@@ -69,10 +74,3 @@ birdears\.sequence module
     :show-inheritance:
 
 
-Module contents
----------------
-
-.. automodule:: birdears
-    :members:
-    :undoc-members:
-    :show-inheritance:

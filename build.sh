@@ -25,7 +25,10 @@ pandoc --from=markdown --to=rst README.md -o README.rst
 #rm docs/sphinx/birdears.questions.rst
 #rm docs/sphinx/modules.rst
 #rm docs/sphinx/birdears.interfaces.rst
-sphinx-apidoc --force -d 4 -o docs/sphinx/ birdears/ birdears/click/ birdears/toml/ birdears/interfaces/gui birdears/interfaces/urwid
+
+# ATTENTION
+# sphinx apidoc now should be run only by hand,andwith care for it's --force option, only when the api changes, as we will be editing the .rst generated with it by hand
+#sphinx-apidoc --force -d 4 --module-first --implicit-namespaces -o docs/sphinx/ birdears/ birdears/click/ birdears/toml/ birdears/interfaces/gui birdears/interfaces/urwid
 
 
 
