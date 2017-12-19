@@ -73,7 +73,8 @@ INTERVALS = (
 )
 """tuple of tuples: Data representing intervals.
 
-A tuple of tuples representing data for the intervals with format (semitones, short name, full name)."""
+A tuple of tuples representing data for the intervals with format
+(semitones, short name, full name)."""
 
 CHROMATIC_TYPE = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
 """tuple: A map of the chromatic chromatic scale.
@@ -106,7 +107,8 @@ INTERVAL_INDEX = {
 }
 """dict of lists: A mapping of semitones of each interval.
 
-A mapping of semitones which index to each interval name, major/minor, perfect, augmented/diminished"""
+A mapping of semitones which index to each interval name, major/minor,
+perfect, augmented/diminished"""
 
 # MAJOR keyboard keys (with chromatics)
 # keyindex for major and chromatic major context

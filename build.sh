@@ -18,29 +18,18 @@ rm -rf build/
 rm -rf dist/
 
 # convert readme to rst for pypi
+rm README.rst
 pandoc --from=markdown --to=rst README.md -o README.rst
 
-# run sphinx-apidoc
-#rm docs/sphinx/birdears.rst 
-#rm docs/sphinx/birdears.questions.rst
-#rm docs/sphinx/modules.rst
-#rm docs/sphinx/birdears.interfaces.rst
-
 # ATTENTION
-# sphinx apidoc now should be run only by hand,andwith care for it's --force option, only when the api changes, as we will be editing the .rst generated with it by hand
+# sphinx apidoc now should be run only by hand, and with care for it's --force option, only when the api changes, as we will be editing the .rst generated with it by hand
 #sphinx-apidoc --force -d 4 --module-first --implicit-namespaces -o docs/sphinx/ birdears/ birdears/click/ birdears/toml/ birdears/interfaces/gui birdears/interfaces/urwid
-
-
 
 # build sphinx documentation
 cd docs/sphinx/
 make clean
 make html
-make latex
-cd -
-
-cd docs/sphinx/_build/latex
-xelatex birdears.tex
+make latexpdf
 
 # go back to original directory
 cd -
@@ -49,4 +38,17 @@ cd -
 python setup.py sdist
 python setup.py bdist_wheel
 
+git add .
+git commit -a -m 'Commit from build.sh'
+
 echo 'end..'
+
+echo 'Please remember of tagging this before pushing to GitHub for a release (ex: git tag 0.1.2; git push --tags)'
+
+read -p "Do you want to upload it to PyPI? [Yy/n]" -n 1 -r
+echo    # (optional) move to a new line
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    twine upload dist/birdears*
+fi
+

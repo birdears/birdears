@@ -28,6 +28,10 @@ not wait for a typed reply and you should prectice with your own
 judgement. The melody can be repeat any times and you can have as much
 time as you want to try it out.
 
+Project at GitHub_.
+
+.. _GitHub: https://github.com/iacchus/birdears
+
 .. toctree::
    :maxdepth: 3
 
