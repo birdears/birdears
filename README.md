@@ -23,6 +23,8 @@
 	- [Installing birdears](#installing-birdears)
 		- [In-depth installation](#in-depth-installation)
 - [Running](#running)
+- [Example](#example)
+   - [Keybindings](#keybindings)
 - [Documentation](#documentation)
 - [Contributing](#contributing)
 
@@ -107,6 +109,18 @@ birdears --help               # and this will run it
 After installing just run:
 
 `birdears --help`
+
+## Example
+
+Execute
+
+```
+birdears melodic
+```
+
+### Keybindings
+
+![birdears - ionian (major) keybindings](ionian-keybindings-birdears.png)
 
 ## Documentation
 
