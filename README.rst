@@ -132,7 +132,7 @@ distribution’s package (supposing you’re on linux), then on terminal:
 
     virtualenv -p python3 ~/.venv # use the directory ~/.venv/ for the virtualenv
 
-    ~/.venv/bin/activate          # activate the virtualenv; this should be done
+    source~/.venv/bin/activate    # activate the virtualenv; this should be done
                                   # every time you may want to run the software
                                   # installed here.
 
@@ -198,8 +198,8 @@ Command-line options
       -m <mode> is one of: major, dorian, phrygian, lydian, mixolydian, minor,
       locrian
 
-      -t <tonic> is one of: A, A#, Ab, B, Bb, C, C#, Cb, D, D#, Db, E, Eb, F,
-      F#, Fb, G, G#, Gb
+      -t <tonic> is one of: A, A#, Ab, B, Bb, C, C#, D, D#, Db, E, Eb, F, F#, G,
+      G#, Gb
 
       -p <prequestion_method> is one of: none, tonic_only, progression_i_iv_v_i
 
@@ -212,6 +212,10 @@ harmonic
 
 Description
 ^^^^^^^^^^^
+
+In this exercise birdears will play two notes, the tonic and the
+interval harmonically, ie., both on the same time and you should reply
+which is the correct distance between the two.
 
 .. command-line-options-1:
 
@@ -253,8 +257,8 @@ Command-line options
       -m <mode> is one of: major, dorian, phrygian, lydian, mixolydian, minor,
       locrian
 
-      -t <tonic> is one of: A, A#, Ab, B, Bb, C, C#, Cb, D, D#, Db, E, Eb, F,
-      F#, Fb, G, G#, Gb
+      -t <tonic> is one of: A, A#, Ab, B, Bb, C, C#, D, D#, Db, E, Eb, F, F#, G,
+      G#, Gb
 
       -p <prequestion_method> is one of: none, tonic_only, progression_i_iv_v_i
 
@@ -314,8 +318,8 @@ Command-line options
       -m <mode> is one of: major, dorian, phrygian, lydian, mixolydian, minor,
       locrian
 
-      -t <tonic> is one of: A, A#, Ab, B, Bb, C, C#, Cb, D, D#, Db, E, Eb, F,
-      F#, Fb, G, G#, Gb
+      -t <tonic> is one of: A, A#, Ab, B, Bb, C, C#, D, D#, Db, E, Eb, F, F#, G,
+      G#, Gb
 
       -p <prequestion_method> is one of: none, tonic_only, progression_i_iv_v_i
 
@@ -377,8 +381,8 @@ Command-line options
       -m <mode> is one of: major, dorian, phrygian, lydian, mixolydian, minor,
       locrian
 
-      -t <tonic> is one of: A, A#, Ab, B, Bb, C, C#, Cb, D, D#, Db, E, Eb, F,
-      F#, Fb, G, G#, Gb
+      -t <tonic> is one of: A, A#, Ab, B, Bb, C, C#, D, D#, Db, E, Eb, F, F#, G,
+      G#, Gb
 
       -p <prequestion_method> is one of: none, tonic_only, progression_i_iv_v_i
 
