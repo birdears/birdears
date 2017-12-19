@@ -120,6 +120,8 @@ birdears melodic
 
 ### Keybindings
 
+These are the keybindings for the **Ionian (Major) Scale**; black keys are the chromatic notes.
+
 ![birdears - ionian (major) keybindings](ionian-keybindings-birdears.png)
 
 ## Documentation
