@@ -132,7 +132,7 @@ distribution’s package (supposing you’re on linux), then on terminal:
 
     virtualenv -p python3 ~/.venv # use the directory ~/.venv/ for the virtualenv
 
-    source~/.venv/bin/activate    # activate the virtualenv; this should be done
+    source ~/.venv/bin/activate   # activate the virtualenv; this should be done
                                   # every time you may want to run the software
                                   # installed here.
 

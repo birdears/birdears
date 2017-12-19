@@ -71,16 +71,8 @@ To see the commands avaliable just invoke the command without any arguments:
   
     More info at https://github.com/iacchus/birdears
   
-    
-  There are five commands, which are `dictation`, `harmonic`, `instrumental` and
-  `melodic` and `load`.
-  
-  You can play the default question for these by starting birdears with one of
-  these commands, or you can check the ``--help`` for additional options for each
-  of the commands, invoking this way:
-
 ::
-
+  
   birdears <command> --help
 
 melodic
@@ -96,7 +88,6 @@ correct distance between the two.
 
 ::
 
-  $ birdears melodic --help
   Usage: birdears melodic [options]
   
     Melodic interval recognition
@@ -130,13 +121,13 @@ correct distance between the two.
     -m <mode> is one of: major, dorian, phrygian, lydian, mixolydian, minor,
     locrian
   
-    -t <tonic> is one of: A, A#, Ab, B, Bb, C, C#, Cb, D, D#, Db, E, Eb, F,
-    F#, Fb, G, G#, Gb
+    -t <tonic> is one of: A, A#, Ab, B, Bb, C, C#, D, D#, Db, E, Eb, F, F#, G,
+    G#, Gb
   
     -p <prequestion_method> is one of: none, tonic_only, progression_i_iv_v_i
   
     -r <resolution_method> is one of: nearest_tonic, repeat_only
-  
+    
 harmonic
 ~~~~~~~~
 
@@ -150,7 +141,6 @@ correct distance between the two.
 
 ::
 
-  $ birdears harmonic --help
   Usage: birdears harmonic [options]
   
     Harmonic interval recognition
@@ -184,31 +174,67 @@ correct distance between the two.
     -m <mode> is one of: major, dorian, phrygian, lydian, mixolydian, minor,
     locrian
   
-    -t <tonic> is one of: A, A#, Ab, B, Bb, C, C#, Cb, D, D#, Db, E, Eb, F,
-    F#, Fb, G, G#, Gb
+    -t <tonic> is one of: A, A#, Ab, B, Bb, C, C#, D, D#, Db, E, Eb, F, F#, G,
+    G#, Gb
   
     -p <prequestion_method> is one of: none, tonic_only, progression_i_iv_v_i
   
     -r <resolution_method> is one of: nearest_tonic, repeat_only
-
+  
 dictation
 ~~~~~~~~~
-
+ 
 In this exercise birdears will choose some random intervals and create a
 melodic dictation with them. You should reply the correct intervals of the
 melodic dictation.
-
+  
 ::
   
   birdears dictation --help
 
 ::
 
-  $ birdears dictation --help
-  Usage: birdears  <command> [options]
-  Try "birdears -h" for help.
+  Usage: birdears dictation [options]
   
-  Error: No such command "dication".
+    Melodic dictation
+  
+  Options:
+    -m, --mode <mode>               Mode of the question.
+    -i, --max_intervals <n max>     Max random intervals for the dictation.
+    -x, --n_notes <n notes>         Number of notes for the dictation.
+    -t, --tonic <note>              Tonic of the question.
+    -o, --octave <octave>           Octave of the question.
+    -d, --descending                Wether the question interval is descending.
+    -c, --chromatic                 If chosen, question has chromatic notes.
+    -n, --n_octaves <n max>         Maximum number of octaves.
+    -v, --valid_intervals <1,2,..>  A comma-separated list without spaces
+                                    of valid scale degrees to be chosen for the
+                                    question.
+    -q, --user_durations <1,0.5,n..>
+                                    A comma-separated list without
+                                    spaces with PRECISLY 9 floating values. Or
+                                    'n' for default              duration.
+    -p, --prequestion_method <prequestion_method>
+                                    The name of a pre-question method.
+    -r, --resolution_method <resolution_method>
+                                    The name of a resolution method.
+    -h, --help                      Show this message and exit.
+  
+    In this exercise birdears will choose some random intervals and create a
+    melodic dictation with them. You should reply the correct intervals of the
+    melodic dictation.
+  
+    Valid values are as follows:
+  
+    -m <mode> is one of: major, dorian, phrygian, lydian, mixolydian, minor,
+    locrian
+  
+    -t <tonic> is one of: A, A#, Ab, B, Bb, C, C#, D, D#, Db, E, Eb, F, F#, G,
+    G#, Gb
+  
+    -p <prequestion_method> is one of: none, tonic_only, progression_i_iv_v_i
+  
+    -r <resolution_method> is one of: nearest_tonic, repeat_only
 
 instrumental
 ~~~~~~~~~~~~
@@ -223,7 +249,6 @@ musical instrument.
 
 ::
   
-  $ birdears instrumental --help
   Usage: birdears instrumental [options]
   
     Instrumental melodic time-based dictation
@@ -261,22 +286,19 @@ musical instrument.
     -m <mode> is one of: major, dorian, phrygian, lydian, mixolydian, minor,
     locrian
   
-    -t <tonic> is one of: A, A#, Ab, B, Bb, C, C#, Cb, D, D#, Db, E, Eb, F,
-    F#, Fb, G, G#, Gb
+    -t <tonic> is one of: A, A#, Ab, B, Bb, C, C#, D, D#, Db, E, Eb, F, F#, G,
+    G#, Gb
   
     -p <prequestion_method> is one of: none, tonic_only, progression_i_iv_v_i
   
     -r <resolution_method> is one of: nearest_tonic, repeat_only
 
-
-*write me!!*
-
 Loading from config/preset files
 --------------------------------
-
+ 
 Pre-made presets
 ~~~~~~~~~~~~~~~~
-
+  
 ``birdears`` cointains some pre-made presets in it’s ``presets/``
 subdirectory.
 

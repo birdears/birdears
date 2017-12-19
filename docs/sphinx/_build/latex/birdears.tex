@@ -96,7 +96,7 @@ time as you want to try it out.
 
 
 \chapter{Installing birdears}
-\label{\detokenize{installing:birdears-documentation}}\label{\detokenize{installing::doc}}\label{\detokenize{installing:installing-birdears}}
+\label{\detokenize{installing:installing-birdears}}\label{\detokenize{installing:birdears-documentation}}\label{\detokenize{installing::doc}}
 
 \section{Installing the dependencies}
 \label{\detokenize{installing:installing-the-dependencies}}
@@ -128,7 +128,7 @@ distribution’s package (supposing you’re on linux), then issue on terminal:
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 virtualenv \PYGZhy{}p python3 \PYGZti{}/.venv \PYGZsh{} use the directory \PYGZti{}/.venv/ for the virtualenv
 
-\PYGZti{}/.venv/bin/activate          \PYGZsh{} activate the virtualenv; this should be done
+source \PYGZti{}/.venv/bin/activate   \PYGZsh{} activate the virtualenv; this should be done
                               \PYGZsh{} every time you may want to run the software
                               \PYGZsh{} installed here.
 
@@ -139,7 +139,7 @@ birdears \PYGZhy{}\PYGZhy{}help               \PYGZsh{} and this will run it
 
 
 \chapter{Using birdears}
-\label{\detokenize{using::doc}}\label{\detokenize{using:using-birdears}}
+\label{\detokenize{using:using-birdears}}\label{\detokenize{using::doc}}
 
 \section{What is Functional Ear Training}
 \label{\detokenize{using:what-is-functional-ear-training}}
@@ -216,14 +216,6 @@ Commands:
   command.
 
   More info at https://github.com/iacchus/birdears
-
-
-There are five commands, which are {}`dictation{}`, {}`harmonic{}`, {}`instrumental{}` and
-{}`melodic{}` and {}`load{}`.
-
-You can play the default question for these by starting birdears with one of
-these commands, or you can check the {}`{}`\PYGZhy{}\PYGZhy{}help{}`{}` for additional options for each
-of the commands, invoking this way:
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
@@ -242,7 +234,6 @@ birdears melodic \PYGZhy{}\PYGZhy{}help
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZdl{} birdears melodic \PYGZhy{}\PYGZhy{}help
 Usage: birdears melodic [options]
 
   Melodic interval recognition
@@ -276,8 +267,8 @@ Options:
   \PYGZhy{}m \PYGZlt{}mode\PYGZgt{} is one of: major, dorian, phrygian, lydian, mixolydian, minor,
   locrian
 
-  \PYGZhy{}t \PYGZlt{}tonic\PYGZgt{} is one of: A, A\PYGZsh{}, Ab, B, Bb, C, C\PYGZsh{}, Cb, D, D\PYGZsh{}, Db, E, Eb, F,
-  F\PYGZsh{}, Fb, G, G\PYGZsh{}, Gb
+  \PYGZhy{}t \PYGZlt{}tonic\PYGZgt{} is one of: A, A\PYGZsh{}, Ab, B, Bb, C, C\PYGZsh{}, D, D\PYGZsh{}, Db, E, Eb, F, F\PYGZsh{}, G,
+  G\PYGZsh{}, Gb
 
   \PYGZhy{}p \PYGZlt{}prequestion\PYGZus{}method\PYGZgt{} is one of: none, tonic\PYGZus{}only, progression\PYGZus{}i\PYGZus{}iv\PYGZus{}v\PYGZus{}i
 
@@ -296,7 +287,6 @@ birdears harmonic \PYGZhy{}\PYGZhy{}help
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZdl{} birdears harmonic \PYGZhy{}\PYGZhy{}help
 Usage: birdears harmonic [options]
 
   Harmonic interval recognition
@@ -330,8 +320,8 @@ Options:
   \PYGZhy{}m \PYGZlt{}mode\PYGZgt{} is one of: major, dorian, phrygian, lydian, mixolydian, minor,
   locrian
 
-  \PYGZhy{}t \PYGZlt{}tonic\PYGZgt{} is one of: A, A\PYGZsh{}, Ab, B, Bb, C, C\PYGZsh{}, Cb, D, D\PYGZsh{}, Db, E, Eb, F,
-  F\PYGZsh{}, Fb, G, G\PYGZsh{}, Gb
+  \PYGZhy{}t \PYGZlt{}tonic\PYGZgt{} is one of: A, A\PYGZsh{}, Ab, B, Bb, C, C\PYGZsh{}, D, D\PYGZsh{}, Db, E, Eb, F, F\PYGZsh{}, G,
+  G\PYGZsh{}, Gb
 
   \PYGZhy{}p \PYGZlt{}prequestion\PYGZus{}method\PYGZgt{} is one of: none, tonic\PYGZus{}only, progression\PYGZus{}i\PYGZus{}iv\PYGZus{}v\PYGZus{}i
 
@@ -350,11 +340,47 @@ birdears dictation \PYGZhy{}\PYGZhy{}help
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZdl{} birdears dictation \PYGZhy{}\PYGZhy{}help
-Usage: birdears  \PYGZlt{}command\PYGZgt{} [options]
-Try \PYGZdq{}birdears \PYGZhy{}h\PYGZdq{} for help.
+Usage: birdears dictation [options]
 
-Error: No such command \PYGZdq{}dication\PYGZdq{}.
+  Melodic dictation
+
+Options:
+  \PYGZhy{}m, \PYGZhy{}\PYGZhy{}mode \PYGZlt{}mode\PYGZgt{}               Mode of the question.
+  \PYGZhy{}i, \PYGZhy{}\PYGZhy{}max\PYGZus{}intervals \PYGZlt{}n max\PYGZgt{}     Max random intervals for the dictation.
+  \PYGZhy{}x, \PYGZhy{}\PYGZhy{}n\PYGZus{}notes \PYGZlt{}n notes\PYGZgt{}         Number of notes for the dictation.
+  \PYGZhy{}t, \PYGZhy{}\PYGZhy{}tonic \PYGZlt{}note\PYGZgt{}              Tonic of the question.
+  \PYGZhy{}o, \PYGZhy{}\PYGZhy{}octave \PYGZlt{}octave\PYGZgt{}           Octave of the question.
+  \PYGZhy{}d, \PYGZhy{}\PYGZhy{}descending                Wether the question interval is descending.
+  \PYGZhy{}c, \PYGZhy{}\PYGZhy{}chromatic                 If chosen, question has chromatic notes.
+  \PYGZhy{}n, \PYGZhy{}\PYGZhy{}n\PYGZus{}octaves \PYGZlt{}n max\PYGZgt{}         Maximum number of octaves.
+  \PYGZhy{}v, \PYGZhy{}\PYGZhy{}valid\PYGZus{}intervals \PYGZlt{}1,2,..\PYGZgt{}  A comma\PYGZhy{}separated list without spaces
+                                  of valid scale degrees to be chosen for the
+                                  question.
+  \PYGZhy{}q, \PYGZhy{}\PYGZhy{}user\PYGZus{}durations \PYGZlt{}1,0.5,n..\PYGZgt{}
+                                  A comma\PYGZhy{}separated list without
+                                  spaces with PRECISLY 9 floating values. Or
+                                  \PYGZsq{}n\PYGZsq{} for default              duration.
+  \PYGZhy{}p, \PYGZhy{}\PYGZhy{}prequestion\PYGZus{}method \PYGZlt{}prequestion\PYGZus{}method\PYGZgt{}
+                                  The name of a pre\PYGZhy{}question method.
+  \PYGZhy{}r, \PYGZhy{}\PYGZhy{}resolution\PYGZus{}method \PYGZlt{}resolution\PYGZus{}method\PYGZgt{}
+                                  The name of a resolution method.
+  \PYGZhy{}h, \PYGZhy{}\PYGZhy{}help                      Show this message and exit.
+
+  In this exercise birdears will choose some random intervals and create a
+  melodic dictation with them. You should reply the correct intervals of the
+  melodic dictation.
+
+  Valid values are as follows:
+
+  \PYGZhy{}m \PYGZlt{}mode\PYGZgt{} is one of: major, dorian, phrygian, lydian, mixolydian, minor,
+  locrian
+
+  \PYGZhy{}t \PYGZlt{}tonic\PYGZgt{} is one of: A, A\PYGZsh{}, Ab, B, Bb, C, C\PYGZsh{}, D, D\PYGZsh{}, Db, E, Eb, F, F\PYGZsh{}, G,
+  G\PYGZsh{}, Gb
+
+  \PYGZhy{}p \PYGZlt{}prequestion\PYGZus{}method\PYGZgt{} is one of: none, tonic\PYGZus{}only, progression\PYGZus{}i\PYGZus{}iv\PYGZus{}v\PYGZus{}i
+
+  \PYGZhy{}r \PYGZlt{}resolution\PYGZus{}method\PYGZgt{} is one of: nearest\PYGZus{}tonic, repeat\PYGZus{}only
 \end{sphinxVerbatim}
 
 
@@ -369,7 +395,6 @@ birdears instrumental \PYGZhy{}\PYGZhy{}help
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZdl{} birdears instrumental \PYGZhy{}\PYGZhy{}help
 Usage: birdears instrumental [options]
 
   Instrumental melodic time\PYGZhy{}based dictation
@@ -407,15 +432,13 @@ Options:
   \PYGZhy{}m \PYGZlt{}mode\PYGZgt{} is one of: major, dorian, phrygian, lydian, mixolydian, minor,
   locrian
 
-  \PYGZhy{}t \PYGZlt{}tonic\PYGZgt{} is one of: A, A\PYGZsh{}, Ab, B, Bb, C, C\PYGZsh{}, Cb, D, D\PYGZsh{}, Db, E, Eb, F,
-  F\PYGZsh{}, Fb, G, G\PYGZsh{}, Gb
+  \PYGZhy{}t \PYGZlt{}tonic\PYGZgt{} is one of: A, A\PYGZsh{}, Ab, B, Bb, C, C\PYGZsh{}, D, D\PYGZsh{}, Db, E, Eb, F, F\PYGZsh{}, G,
+  G\PYGZsh{}, Gb
 
   \PYGZhy{}p \PYGZlt{}prequestion\PYGZus{}method\PYGZgt{} is one of: none, tonic\PYGZus{}only, progression\PYGZus{}i\PYGZus{}iv\PYGZus{}v\PYGZus{}i
 
   \PYGZhy{}r \PYGZlt{}resolution\PYGZus{}method\PYGZgt{} is one of: nearest\PYGZus{}tonic, repeat\PYGZus{}only
 \end{sphinxVerbatim}
-
-\sphinxstyleemphasis{write me!!}
 
 
 \section{Loading from config/preset files}
@@ -443,7 +466,7 @@ command line options written in a form \sphinxcode{toml} standard.
 
 
 \chapter{birdears package}
-\label{\detokenize{birdears:module-birdears}}\label{\detokenize{birdears::doc}}\label{\detokenize{birdears:birdears-package}}\index{birdears (module)}
+\label{\detokenize{birdears:birdears-package}}\label{\detokenize{birdears::doc}}\label{\detokenize{birdears:module-birdears}}\index{birdears (module)}
 BirdEars provides facilities to musical ear training exercises.
 
 
@@ -451,7 +474,7 @@ BirdEars provides facilities to musical ear training exercises.
 \label{\detokenize{birdears:subpackages}}
 
 \subsection{birdears.interfaces package}
-\label{\detokenize{birdears.interfaces::doc}}\label{\detokenize{birdears.interfaces:module-birdears.interfaces}}\label{\detokenize{birdears.interfaces:birdears-interfaces-package}}\index{birdears.interfaces (module)}
+\label{\detokenize{birdears.interfaces:birdears-interfaces-package}}\label{\detokenize{birdears.interfaces:module-birdears.interfaces}}\label{\detokenize{birdears.interfaces::doc}}\index{birdears.interfaces (module)}
 
 \subsubsection{Submodules}
 \label{\detokenize{birdears.interfaces:submodules}}
@@ -564,7 +587,7 @@ Prints the formatted response.
 
 
 \subsection{birdears.questions package}
-\label{\detokenize{birdears.questions::doc}}\label{\detokenize{birdears.questions:birdears-questions-package}}\phantomsection\label{\detokenize{birdears.questions:module-birdears.questions}}\index{birdears.questions (module)}
+\label{\detokenize{birdears.questions:birdears-questions-package}}\label{\detokenize{birdears.questions::doc}}\phantomsection\label{\detokenize{birdears.questions:module-birdears.questions}}\index{birdears.questions (module)}
 
 \subsubsection{Submodules}
 \label{\detokenize{birdears.questions:submodules}}
@@ -963,7 +986,7 @@ Checks whether the given answer is correct.
 
 
 \subsubsection{birdears.questions.melodicinterval module}
-\label{\detokenize{birdears.questions:birdears-questions-melodicinterval-module}}\label{\detokenize{birdears.questions:module-birdears.questions.melodicinterval}}\index{birdears.questions.melodicinterval (module)}\index{MelodicIntervalQuestion (class in birdears.questions.melodicinterval)}
+\label{\detokenize{birdears.questions:module-birdears.questions.melodicinterval}}\label{\detokenize{birdears.questions:birdears-questions-melodicinterval-module}}\index{birdears.questions.melodicinterval (module)}\index{MelodicIntervalQuestion (class in birdears.questions.melodicinterval)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{birdears.questions:birdears.questions.melodicinterval.MelodicIntervalQuestion}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.questions.melodicinterval.}\sphinxbfcode{MelodicIntervalQuestion}}{\emph{mode='major'}, \emph{tonic=None}, \emph{octave=None}, \emph{descending=None}, \emph{chromatic=None}, \emph{n\_octaves=None}, \emph{valid\_intervals=None}, \emph{user\_durations=None}, \emph{prequestion\_method='tonic\_only'}, \emph{resolution\_method='nearest\_tonic'}, \emph{*args}, \emph{**kwargs}}{}
@@ -1017,7 +1040,7 @@ Checks whether the given answer is correct.
 \label{\detokenize{birdears:submodules}}
 
 \section{birdears.interval module}
-\label{\detokenize{birdears:module-birdears.interval}}\label{\detokenize{birdears:birdears-interval-module}}\index{birdears.interval (module)}\index{ChromaticInterval (class in birdears.interval)}
+\label{\detokenize{birdears:birdears-interval-module}}\label{\detokenize{birdears:module-birdears.interval}}\index{birdears.interval (module)}\index{ChromaticInterval (class in birdears.interval)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{birdears:birdears.interval.ChromaticInterval}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.interval.}\sphinxbfcode{ChromaticInterval}}{\emph{mode}, \emph{tonic}, \emph{octave}, \emph{n\_octaves=None}, \emph{descending=None}, \emph{valid\_intervals=None}}{}
@@ -1375,7 +1398,7 @@ This method returns a dict with only the values passed to \sphinxtitleref{keys}.
 
 
 \section{birdears.logger module}
-\label{\detokenize{birdears:birdears-logger-module}}\label{\detokenize{birdears:module-birdears.logger}}\index{birdears.logger (module)}
+\label{\detokenize{birdears:module-birdears.logger}}\label{\detokenize{birdears:birdears-logger-module}}\index{birdears.logger (module)}
 This submodule exports \sphinxtitleref{logger} to log events.
 
 Logging messages which are less severe than \sphinxtitleref{lvl} will be ignored:
@@ -1416,7 +1439,7 @@ function signature with their call values and their return will be logged.
 
 
 \section{birdears.prequestion module}
-\label{\detokenize{birdears:module-birdears.prequestion}}\label{\detokenize{birdears:birdears-prequestion-module}}\index{birdears.prequestion (module)}
+\label{\detokenize{birdears:birdears-prequestion-module}}\label{\detokenize{birdears:module-birdears.prequestion}}\index{birdears.prequestion (module)}
 This module implements pre-questions’ progressions.
 
 Pre questions are chord progressions or notes played before the question is
@@ -2053,7 +2076,7 @@ distribution’s package (supposing you’re on linux), then issue on terminal:
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 virtualenv \PYGZhy{}p python3 \PYGZti{}/.venv \PYGZsh{} use the directory \PYGZti{}/.venv/ for the virtualenv
 
-\PYGZti{}/.venv/bin/activate          \PYGZsh{} activate the virtualenv; this should be done
+source \PYGZti{}/.venv/bin/activate   \PYGZsh{} activate the virtualenv; this should be done
                               \PYGZsh{} every time you may want to run the software
                               \PYGZsh{} installed here.
 
@@ -2141,14 +2164,6 @@ Commands:
   command.
 
   More info at https://github.com/iacchus/birdears
-
-
-There are five commands, which are {}`dictation{}`, {}`harmonic{}`, {}`instrumental{}` and
-{}`melodic{}` and {}`load{}`.
-
-You can play the default question for these by starting birdears with one of
-these commands, or you can check the {}`{}`\PYGZhy{}\PYGZhy{}help{}`{}` for additional options for each
-of the commands, invoking this way:
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
@@ -2167,7 +2182,6 @@ birdears melodic \PYGZhy{}\PYGZhy{}help
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZdl{} birdears melodic \PYGZhy{}\PYGZhy{}help
 Usage: birdears melodic [options]
 
   Melodic interval recognition
@@ -2201,8 +2215,8 @@ Options:
   \PYGZhy{}m \PYGZlt{}mode\PYGZgt{} is one of: major, dorian, phrygian, lydian, mixolydian, minor,
   locrian
 
-  \PYGZhy{}t \PYGZlt{}tonic\PYGZgt{} is one of: A, A\PYGZsh{}, Ab, B, Bb, C, C\PYGZsh{}, Cb, D, D\PYGZsh{}, Db, E, Eb, F,
-  F\PYGZsh{}, Fb, G, G\PYGZsh{}, Gb
+  \PYGZhy{}t \PYGZlt{}tonic\PYGZgt{} is one of: A, A\PYGZsh{}, Ab, B, Bb, C, C\PYGZsh{}, D, D\PYGZsh{}, Db, E, Eb, F, F\PYGZsh{}, G,
+  G\PYGZsh{}, Gb
 
   \PYGZhy{}p \PYGZlt{}prequestion\PYGZus{}method\PYGZgt{} is one of: none, tonic\PYGZus{}only, progression\PYGZus{}i\PYGZus{}iv\PYGZus{}v\PYGZus{}i
 
@@ -2221,7 +2235,6 @@ birdears harmonic \PYGZhy{}\PYGZhy{}help
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZdl{} birdears harmonic \PYGZhy{}\PYGZhy{}help
 Usage: birdears harmonic [options]
 
   Harmonic interval recognition
@@ -2255,8 +2268,8 @@ Options:
   \PYGZhy{}m \PYGZlt{}mode\PYGZgt{} is one of: major, dorian, phrygian, lydian, mixolydian, minor,
   locrian
 
-  \PYGZhy{}t \PYGZlt{}tonic\PYGZgt{} is one of: A, A\PYGZsh{}, Ab, B, Bb, C, C\PYGZsh{}, Cb, D, D\PYGZsh{}, Db, E, Eb, F,
-  F\PYGZsh{}, Fb, G, G\PYGZsh{}, Gb
+  \PYGZhy{}t \PYGZlt{}tonic\PYGZgt{} is one of: A, A\PYGZsh{}, Ab, B, Bb, C, C\PYGZsh{}, D, D\PYGZsh{}, Db, E, Eb, F, F\PYGZsh{}, G,
+  G\PYGZsh{}, Gb
 
   \PYGZhy{}p \PYGZlt{}prequestion\PYGZus{}method\PYGZgt{} is one of: none, tonic\PYGZus{}only, progression\PYGZus{}i\PYGZus{}iv\PYGZus{}v\PYGZus{}i
 
@@ -2275,11 +2288,47 @@ birdears dictation \PYGZhy{}\PYGZhy{}help
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZdl{} birdears dictation \PYGZhy{}\PYGZhy{}help
-Usage: birdears  \PYGZlt{}command\PYGZgt{} [options]
-Try \PYGZdq{}birdears \PYGZhy{}h\PYGZdq{} for help.
+Usage: birdears dictation [options]
 
-Error: No such command \PYGZdq{}dication\PYGZdq{}.
+  Melodic dictation
+
+Options:
+  \PYGZhy{}m, \PYGZhy{}\PYGZhy{}mode \PYGZlt{}mode\PYGZgt{}               Mode of the question.
+  \PYGZhy{}i, \PYGZhy{}\PYGZhy{}max\PYGZus{}intervals \PYGZlt{}n max\PYGZgt{}     Max random intervals for the dictation.
+  \PYGZhy{}x, \PYGZhy{}\PYGZhy{}n\PYGZus{}notes \PYGZlt{}n notes\PYGZgt{}         Number of notes for the dictation.
+  \PYGZhy{}t, \PYGZhy{}\PYGZhy{}tonic \PYGZlt{}note\PYGZgt{}              Tonic of the question.
+  \PYGZhy{}o, \PYGZhy{}\PYGZhy{}octave \PYGZlt{}octave\PYGZgt{}           Octave of the question.
+  \PYGZhy{}d, \PYGZhy{}\PYGZhy{}descending                Wether the question interval is descending.
+  \PYGZhy{}c, \PYGZhy{}\PYGZhy{}chromatic                 If chosen, question has chromatic notes.
+  \PYGZhy{}n, \PYGZhy{}\PYGZhy{}n\PYGZus{}octaves \PYGZlt{}n max\PYGZgt{}         Maximum number of octaves.
+  \PYGZhy{}v, \PYGZhy{}\PYGZhy{}valid\PYGZus{}intervals \PYGZlt{}1,2,..\PYGZgt{}  A comma\PYGZhy{}separated list without spaces
+                                  of valid scale degrees to be chosen for the
+                                  question.
+  \PYGZhy{}q, \PYGZhy{}\PYGZhy{}user\PYGZus{}durations \PYGZlt{}1,0.5,n..\PYGZgt{}
+                                  A comma\PYGZhy{}separated list without
+                                  spaces with PRECISLY 9 floating values. Or
+                                  \PYGZsq{}n\PYGZsq{} for default              duration.
+  \PYGZhy{}p, \PYGZhy{}\PYGZhy{}prequestion\PYGZus{}method \PYGZlt{}prequestion\PYGZus{}method\PYGZgt{}
+                                  The name of a pre\PYGZhy{}question method.
+  \PYGZhy{}r, \PYGZhy{}\PYGZhy{}resolution\PYGZus{}method \PYGZlt{}resolution\PYGZus{}method\PYGZgt{}
+                                  The name of a resolution method.
+  \PYGZhy{}h, \PYGZhy{}\PYGZhy{}help                      Show this message and exit.
+
+  In this exercise birdears will choose some random intervals and create a
+  melodic dictation with them. You should reply the correct intervals of the
+  melodic dictation.
+
+  Valid values are as follows:
+
+  \PYGZhy{}m \PYGZlt{}mode\PYGZgt{} is one of: major, dorian, phrygian, lydian, mixolydian, minor,
+  locrian
+
+  \PYGZhy{}t \PYGZlt{}tonic\PYGZgt{} is one of: A, A\PYGZsh{}, Ab, B, Bb, C, C\PYGZsh{}, D, D\PYGZsh{}, Db, E, Eb, F, F\PYGZsh{}, G,
+  G\PYGZsh{}, Gb
+
+  \PYGZhy{}p \PYGZlt{}prequestion\PYGZus{}method\PYGZgt{} is one of: none, tonic\PYGZus{}only, progression\PYGZus{}i\PYGZus{}iv\PYGZus{}v\PYGZus{}i
+
+  \PYGZhy{}r \PYGZlt{}resolution\PYGZus{}method\PYGZgt{} is one of: nearest\PYGZus{}tonic, repeat\PYGZus{}only
 \end{sphinxVerbatim}
 
 
@@ -2294,7 +2343,6 @@ birdears instrumental \PYGZhy{}\PYGZhy{}help
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZdl{} birdears instrumental \PYGZhy{}\PYGZhy{}help
 Usage: birdears instrumental [options]
 
   Instrumental melodic time\PYGZhy{}based dictation
@@ -2332,15 +2380,13 @@ Options:
   \PYGZhy{}m \PYGZlt{}mode\PYGZgt{} is one of: major, dorian, phrygian, lydian, mixolydian, minor,
   locrian
 
-  \PYGZhy{}t \PYGZlt{}tonic\PYGZgt{} is one of: A, A\PYGZsh{}, Ab, B, Bb, C, C\PYGZsh{}, Cb, D, D\PYGZsh{}, Db, E, Eb, F,
-  F\PYGZsh{}, Fb, G, G\PYGZsh{}, Gb
+  \PYGZhy{}t \PYGZlt{}tonic\PYGZgt{} is one of: A, A\PYGZsh{}, Ab, B, Bb, C, C\PYGZsh{}, D, D\PYGZsh{}, Db, E, Eb, F, F\PYGZsh{}, G,
+  G\PYGZsh{}, Gb
 
   \PYGZhy{}p \PYGZlt{}prequestion\PYGZus{}method\PYGZgt{} is one of: none, tonic\PYGZus{}only, progression\PYGZus{}i\PYGZus{}iv\PYGZus{}v\PYGZus{}i
 
   \PYGZhy{}r \PYGZlt{}resolution\PYGZus{}method\PYGZgt{} is one of: nearest\PYGZus{}tonic, repeat\PYGZus{}only
 \end{sphinxVerbatim}
-
-\sphinxstyleemphasis{write me!!}
 
 
 \section{Loading from config/preset files}
@@ -2382,7 +2428,7 @@ BirdEars provides facilities to musical ear training exercises.
 \label{\detokenize{index:submodules}}
 
 \section{birdears.interval module}
-\label{\detokenize{index:module-birdears.interval}}\label{\detokenize{index:birdears-interval-module}}\index{birdears.interval (module)}\index{ChromaticInterval (class in birdears.interval)}
+\label{\detokenize{index:birdears-interval-module}}\label{\detokenize{index:module-birdears.interval}}\index{birdears.interval (module)}\index{ChromaticInterval (class in birdears.interval)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{index:birdears.interval.ChromaticInterval}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.interval.}\sphinxbfcode{ChromaticInterval}}{\emph{mode}, \emph{tonic}, \emph{octave}, \emph{n\_octaves=None}, \emph{descending=None}, \emph{valid\_intervals=None}}{}
@@ -2740,7 +2786,7 @@ This method returns a dict with only the values passed to \sphinxtitleref{keys}.
 
 
 \section{birdears.logger module}
-\label{\detokenize{index:birdears-logger-module}}\label{\detokenize{index:module-birdears.logger}}\index{birdears.logger (module)}
+\label{\detokenize{index:module-birdears.logger}}\label{\detokenize{index:birdears-logger-module}}\index{birdears.logger (module)}
 This submodule exports \sphinxtitleref{logger} to log events.
 
 Logging messages which are less severe than \sphinxtitleref{lvl} will be ignored:
@@ -2781,7 +2827,7 @@ function signature with their call values and their return will be logged.
 
 
 \section{birdears.prequestion module}
-\label{\detokenize{index:module-birdears.prequestion}}\label{\detokenize{index:birdears-prequestion-module}}\index{birdears.prequestion (module)}
+\label{\detokenize{index:birdears-prequestion-module}}\label{\detokenize{index:module-birdears.prequestion}}\index{birdears.prequestion (module)}
 This module implements pre-questions’ progressions.
 
 Pre questions are chord progressions or notes played before the question is
@@ -3785,7 +3831,7 @@ Checks whether the given answer is correct.
 
 
 \section{birdears.questions.melodicinterval module}
-\label{\detokenize{index:birdears-questions-melodicinterval-module}}\label{\detokenize{index:module-birdears.questions.melodicinterval}}\index{birdears.questions.melodicinterval (module)}\index{MelodicIntervalQuestion (class in birdears.questions.melodicinterval)}
+\label{\detokenize{index:module-birdears.questions.melodicinterval}}\label{\detokenize{index:birdears-questions-melodicinterval-module}}\index{birdears.questions.melodicinterval (module)}\index{MelodicIntervalQuestion (class in birdears.questions.melodicinterval)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{index:birdears.questions.melodicinterval.MelodicIntervalQuestion}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.questions.melodicinterval.}\sphinxbfcode{MelodicIntervalQuestion}}{\emph{mode='major'}, \emph{tonic=None}, \emph{octave=None}, \emph{descending=None}, \emph{chromatic=None}, \emph{n\_octaves=None}, \emph{valid\_intervals=None}, \emph{user\_durations=None}, \emph{prequestion\_method='tonic\_only'}, \emph{resolution\_method='nearest\_tonic'}, \emph{*args}, \emph{**kwargs}}{}
@@ -3836,7 +3882,7 @@ Checks whether the given answer is correct.
 
 
 \chapter{birdears.interfaces package}
-\label{\detokenize{index:module-birdears.interfaces}}\label{\detokenize{index:birdears-interfaces-package}}\index{birdears.interfaces (module)}
+\label{\detokenize{index:birdears-interfaces-package}}\label{\detokenize{index:module-birdears.interfaces}}\index{birdears.interfaces (module)}
 
 \section{Submodules}
 \label{\detokenize{index:id13}}
