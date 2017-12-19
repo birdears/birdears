@@ -32,8 +32,16 @@ Project at GitHub_.
 
 .. _GitHub: https://github.com/iacchus/birdears
 
+Download the PDF version of this book. Clicking here_.
+
+.. _here: https://github.com/iacchus/birdears/raw/master/docs/sphinx/_build/latex/birdears.pdf
+
+.. raw:: html
+
+  <script src="https://asciinema.org/a/153476.js" id="asciicast-153476" async></script>
+
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 0
    :hidden:
 
    features
