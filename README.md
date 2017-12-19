@@ -151,7 +151,7 @@ These are the keybindings for the **Ionian (Major) Scale**; black keys are the c
 
 ## Advanced
 
-![birdears - advanced keybindings](docs/keybindings/advanced.png)
+![birdears - advanced keybindings](docs/keybindings/advanced-layout.png)
 
 
 ## Documentation
