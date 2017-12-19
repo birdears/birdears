@@ -158,7 +158,7 @@ from ..prequestion import PreQuestion
     &quot;&quot;&quot;Implements a Melodic Interval test.
     &quot;&quot;&quot;
 
-    @log_event
+<div class="viewcode-block" id="MelodicIntervalQuestion.__init__"><a class="viewcode-back" href="../../../index.html#birdears.questions.melodicinterval.MelodicIntervalQuestion.__init__">[docs]</a>    @log_event
     def __init__(self, mode=&#39;major&#39;, tonic=None, octave=None, descending=None,
                  chromatic=None, n_octaves=None, valid_intervals=None,
                  user_durations=None, prequestion_method=&#39;tonic_only&#39;,
@@ -238,7 +238,7 @@ from ..prequestion import PreQuestion
 
         self.pre_question = self.make_pre_question(method=prequestion_method)
         self.question = self.make_question()
-        self.resolution = self.make_resolution(method=resolution_method)
+        self.resolution = self.make_resolution(method=resolution_method)</div>
 
 <div class="viewcode-block" id="MelodicIntervalQuestion.make_pre_question"><a class="viewcode-back" href="../../../index.html#birdears.questions.melodicinterval.MelodicIntervalQuestion.make_pre_question">[docs]</a>    def make_pre_question(self, method):
         prequestion = PreQuestion(method=method, question=self)

@@ -29,7 +29,9 @@ judgement. The melody can be repeat any times and you can have as much
 time as you want to try it out.
 
 .. toctree::
+   :caption: Table of Contents
    :maxdepth: 3
+   :numbered:
 
    installing
    using

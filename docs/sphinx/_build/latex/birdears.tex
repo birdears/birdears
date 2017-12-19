@@ -39,6 +39,7 @@
 \usepackage{hypcap}% it must be loaded after hyperref.
 % Set up styles of URL: it should be placed after hyperref.
 \urlstyle{same}
+\addto\captionsenglish{\renewcommand{\contentsname}{Table of Contents}}
 
 \addto\captionsenglish{\renewcommand{\figurename}{Fig.}}
 \addto\captionsenglish{\renewcommand{\tablename}{Table}}
@@ -96,7 +97,7 @@ time as you want to try it out.
 
 
 \chapter{Installing birdears}
-\label{\detokenize{installing:installing-birdears}}\label{\detokenize{installing:birdears-documentation}}\label{\detokenize{installing::doc}}
+\label{\detokenize{installing:installing-birdears}}\label{\detokenize{installing::doc}}\label{\detokenize{installing:birdears-documentation}}
 
 \section{Installing the dependencies}
 \label{\detokenize{installing:installing-the-dependencies}}
@@ -139,7 +140,7 @@ birdears \PYGZhy{}\PYGZhy{}help               \PYGZsh{} and this will run it
 
 
 \chapter{Using birdears}
-\label{\detokenize{using:using-birdears}}\label{\detokenize{using::doc}}
+\label{\detokenize{using::doc}}\label{\detokenize{using:using-birdears}}
 
 \section{What is Functional Ear Training}
 \label{\detokenize{using:what-is-functional-ear-training}}
@@ -466,7 +467,7 @@ command line options written in a form \sphinxcode{toml} standard.
 
 
 \chapter{birdears package}
-\label{\detokenize{birdears:birdears-package}}\label{\detokenize{birdears::doc}}\label{\detokenize{birdears:module-birdears}}\index{birdears (module)}
+\label{\detokenize{birdears:module-birdears}}\label{\detokenize{birdears:birdears-package}}\label{\detokenize{birdears::doc}}\index{birdears (module)}
 BirdEars provides facilities to musical ear training exercises.
 
 
@@ -587,13 +588,13 @@ Prints the formatted response.
 
 
 \subsection{birdears.questions package}
-\label{\detokenize{birdears.questions:birdears-questions-package}}\label{\detokenize{birdears.questions::doc}}\phantomsection\label{\detokenize{birdears.questions:module-birdears.questions}}\index{birdears.questions (module)}
+\label{\detokenize{birdears.questions:module-birdears.questions}}\label{\detokenize{birdears.questions::doc}}\label{\detokenize{birdears.questions:birdears-questions-package}}\index{birdears.questions (module)}
 
 \subsubsection{Submodules}
 \label{\detokenize{birdears.questions:submodules}}
 
 \subsubsection{birdears.questions.harmonicinterval module}
-\label{\detokenize{birdears.questions:birdears-questions-harmonicinterval-module}}\label{\detokenize{birdears.questions:module-birdears.questions.harmonicinterval}}\index{birdears.questions.harmonicinterval (module)}\index{HarmonicIntervalQuestion (class in birdears.questions.harmonicinterval)}
+\label{\detokenize{birdears.questions:module-birdears.questions.harmonicinterval}}\label{\detokenize{birdears.questions:birdears-questions-harmonicinterval-module}}\index{birdears.questions.harmonicinterval (module)}\index{HarmonicIntervalQuestion (class in birdears.questions.harmonicinterval)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{birdears.questions:birdears.questions.harmonicinterval.HarmonicIntervalQuestion}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.questions.harmonicinterval.}\sphinxbfcode{HarmonicIntervalQuestion}}{\emph{mode='major'}, \emph{tonic=None}, \emph{octave=None}, \emph{descending=None}, \emph{chromatic=None}, \emph{n\_octaves=None}, \emph{valid\_intervals=None}, \emph{user\_durations=None}, \emph{prequestion\_method='none'}, \emph{resolution\_method='nearest\_tonic'}, \emph{*args}, \emph{**kwargs}}{}
@@ -674,6 +675,12 @@ exercise. Valid ones are registered in the
 
 \end{fulllineitems}
 
+\index{\_\_module\_\_ (birdears.questions.harmonicinterval.HarmonicIntervalQuestion attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{birdears.questions:birdears.questions.harmonicinterval.HarmonicIntervalQuestion.__module__}}\pysigline{\sphinxbfcode{\_\_module\_\_}\sphinxbfcode{ = 'birdears.questions.harmonicinterval'}}
+\end{fulllineitems}
+
 \index{check\_question() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)}
 
 \begin{fulllineitems}
@@ -718,7 +725,7 @@ Checks whether the given answer is correct.
 
 
 \subsubsection{birdears.questions.instrumentaldictation module}
-\label{\detokenize{birdears.questions:module-birdears.questions.instrumentaldictation}}\label{\detokenize{birdears.questions:birdears-questions-instrumentaldictation-module}}\index{birdears.questions.instrumentaldictation (module)}\index{InstrumentalDictationQuestion (class in birdears.questions.instrumentaldictation)}
+\label{\detokenize{birdears.questions:birdears-questions-instrumentaldictation-module}}\label{\detokenize{birdears.questions:module-birdears.questions.instrumentaldictation}}\index{birdears.questions.instrumentaldictation (module)}\index{InstrumentalDictationQuestion (class in birdears.questions.instrumentaldictation)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{birdears.questions:birdears.questions.instrumentaldictation.InstrumentalDictationQuestion}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.questions.instrumentaldictation.}\sphinxbfcode{InstrumentalDictationQuestion}}{\emph{mode='major'}, \emph{wait\_time=11}, \emph{n\_repeats=1}, \emph{max\_intervals=3}, \emph{n\_notes=4}, \emph{tonic=None}, \emph{octave=None}, \emph{descending=None}, \emph{chromatic=None}, \emph{n\_octaves=None}, \emph{valid\_intervals=None}, \emph{user\_durations=None}, \emph{prequestion\_method='progression\_i\_iv\_v\_i'}, \emph{resolution\_method='repeat\_only'}, \emph{*args}, \emph{**kwargs}}{}
@@ -814,6 +821,12 @@ exercise. Valid ones are registered in the
 
 \end{fulllineitems}
 
+\index{\_\_module\_\_ (birdears.questions.instrumentaldictation.InstrumentalDictationQuestion attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{birdears.questions:birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.__module__}}\pysigline{\sphinxbfcode{\_\_module\_\_}\sphinxbfcode{ = 'birdears.questions.instrumentaldictation'}}
+\end{fulllineitems}
+
 \index{check\_question() (birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method)}
 
 \begin{fulllineitems}
@@ -854,7 +867,7 @@ This currently doesn’t applies to instrumental dictation questions.
 
 
 \subsubsection{birdears.questions.melodicdictation module}
-\label{\detokenize{birdears.questions:birdears-questions-melodicdictation-module}}\label{\detokenize{birdears.questions:module-birdears.questions.melodicdictation}}\index{birdears.questions.melodicdictation (module)}\index{MelodicDictationQuestion (class in birdears.questions.melodicdictation)}
+\label{\detokenize{birdears.questions:module-birdears.questions.melodicdictation}}\label{\detokenize{birdears.questions:birdears-questions-melodicdictation-module}}\index{birdears.questions.melodicdictation (module)}\index{MelodicDictationQuestion (class in birdears.questions.melodicdictation)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{birdears.questions:birdears.questions.melodicdictation.MelodicDictationQuestion}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.questions.melodicdictation.}\sphinxbfcode{MelodicDictationQuestion}}{\emph{mode='major'}, \emph{max\_intervals=3}, \emph{n\_notes=4}, \emph{tonic=None}, \emph{octave=None}, \emph{descending=None}, \emph{chromatic=None}, \emph{n\_octaves=None}, \emph{valid\_intervals=None}, \emph{user\_durations=None}, \emph{prequestion\_method='progression\_i\_iv\_v\_i'}, \emph{resolution\_method='repeat\_only'}, \emph{*args}, \emph{**kwargs}}{}
@@ -942,6 +955,12 @@ exercise. Valid ones are registered in the
 
 \end{fulllineitems}
 
+\index{\_\_module\_\_ (birdears.questions.melodicdictation.MelodicDictationQuestion attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{birdears.questions:birdears.questions.melodicdictation.MelodicDictationQuestion.__module__}}\pysigline{\sphinxbfcode{\_\_module\_\_}\sphinxbfcode{ = 'birdears.questions.melodicdictation'}}
+\end{fulllineitems}
+
 \index{check\_question() (birdears.questions.melodicdictation.MelodicDictationQuestion method)}
 
 \begin{fulllineitems}
@@ -993,6 +1012,86 @@ Checks whether the given answer is correct.
 Bases: {\hyperref[\detokenize{index:birdears.questionbase.QuestionBase}]{\sphinxcrossref{\sphinxcode{birdears.questionbase.QuestionBase}}}}
 
 Implements a Melodic Interval test.
+\index{\_\_init\_\_() (birdears.questions.melodicinterval.MelodicIntervalQuestion method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{birdears.questions:birdears.questions.melodicinterval.MelodicIntervalQuestion.__init__}}\pysiglinewithargsret{\sphinxbfcode{\_\_init\_\_}}{\emph{mode='major'}, \emph{tonic=None}, \emph{octave=None}, \emph{descending=None}, \emph{chromatic=None}, \emph{n\_octaves=None}, \emph{valid\_intervals=None}, \emph{user\_durations=None}, \emph{prequestion\_method='tonic\_only'}, \emph{resolution\_method='nearest\_tonic'}, \emph{*args}, \emph{**kwargs}}{}
+Inits the class.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{mode} (\sphinxstyleliteralemphasis{str}) \textendash{} A string representing the mode of the question.
+Eg., ‘major’ or ‘minor’
+
+\item {} 
+\sphinxstyleliteralstrong{tonic} (\sphinxstyleliteralemphasis{str}) \textendash{} A string representing the tonic of the question,
+eg.: ‘C’; if omitted, it will be selected randomly.
+
+\item {} 
+\sphinxstyleliteralstrong{octave} (\sphinxstyleliteralemphasis{int}) \textendash{} A scienfic octave notation, for example, 4 for ‘C4’;
+if not present, it will be randomly chosen.
+
+\item {} 
+\sphinxstyleliteralstrong{descending} (\sphinxstyleliteralemphasis{bool}) \textendash{} Is the question direction in descending, ie.,
+intervals have lower pitch than the tonic.
+
+\item {} 
+\sphinxstyleliteralstrong{chromatic} (\sphinxstyleliteralemphasis{bool}) \textendash{} If the question can have (True) or not (False)
+chromatic intervals, ie., intervals not in the diatonic scale
+of tonic/mode.
+
+\item {} 
+\sphinxstyleliteralstrong{n\_octaves} (\sphinxstyleliteralemphasis{int}) \textendash{} Maximum number of octaves of the question.
+
+\item {} 
+\sphinxstyleliteralstrong{valid\_intervals} (\sphinxstyleliteralemphasis{list}) \textendash{} A list with intervals (int) valid for
+random choice, 1 is 1st, 2 is second etc. Eg. {[}1, 4, 5{]} to
+allow only tonics, fourths and fifths.
+
+\item {} 
+\sphinxstyleliteralstrong{user\_durations} (\sphinxstyleliteralemphasis{str}) \textendash{} 
+A string with 9 comma-separated \sphinxtitleref{int} or
+\sphinxtitleref{float{}`s to set the default duration for the notes played. The
+values are respectively for: pre-question duration (1st),
+pre-question delay (2nd), and pre-question pos-delay (3rd);
+question duration (4th), question delay (5th), and question
+pos-delay (6th); resolution duration (7th), resolution
+delay (8th), and resolution pos-delay (9th).
+duration is the duration in of the note in seconds; delay is
+the time to wait before playing the next note, and pos\_delay is
+the time to wait after all the notes of the respective sequence
+have been played. If any of the user durations is {}`n}, the
+default duration for the type of question will be used instead.
+Example:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYGZdq{}2,0.5,1,2,n,0,2.5,n,1\PYGZdq{}
+\end{sphinxVerbatim}
+
+
+\item {} 
+\sphinxstyleliteralstrong{prequestion\_method} (\sphinxstyleliteralemphasis{str}) \textendash{} Method of playing a cadence or the
+exercise tonic before the question so to affirm the question
+musical tonic key to the ear. Valid ones are registered in the
+\sphinxtitleref{birdears.prequestion.PREQUESION\_METHODS} global dict.
+
+\item {} 
+\sphinxstyleliteralstrong{resolution\_method} (\sphinxstyleliteralemphasis{str}) \textendash{} Method of playing the resolution of an
+exercise. Valid ones are registered in the
+\sphinxtitleref{birdears.resolution.RESOLUTION\_METHODS} global dict.
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{\_\_module\_\_ (birdears.questions.melodicinterval.MelodicIntervalQuestion attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{birdears.questions:birdears.questions.melodicinterval.MelodicIntervalQuestion.__module__}}\pysigline{\sphinxbfcode{\_\_module\_\_}\sphinxbfcode{ = 'birdears.questions.melodicinterval'}}
+\end{fulllineitems}
+
 \index{check\_question() (birdears.questions.melodicinterval.MelodicIntervalQuestion method)}
 
 \begin{fulllineitems}
@@ -1213,6 +1312,12 @@ choice, 1 is 1st, 2 is second etc.
 
 \end{fulllineitems}
 
+\index{\_\_module\_\_ (birdears.interval.ChromaticInterval attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{birdears:birdears.interval.ChromaticInterval.__module__}}\pysigline{\sphinxbfcode{\_\_module\_\_}\sphinxbfcode{ = 'birdears.interval'}}
+\end{fulllineitems}
+
 
 \end{fulllineitems}
 
@@ -1368,6 +1473,12 @@ choice, 1 is 1st, 2 is second etc.
 
 \end{fulllineitems}
 
+\index{\_\_module\_\_ (birdears.interval.DiatonicInterval attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{birdears:birdears.interval.DiatonicInterval.__module__}}\pysigline{\sphinxbfcode{\_\_module\_\_}\sphinxbfcode{ = 'birdears.interval'}}
+\end{fulllineitems}
+
 
 \end{fulllineitems}
 
@@ -1376,11 +1487,31 @@ choice, 1 is 1st, 2 is second etc.
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{birdears:birdears.interval.IntervalBase}}\pysigline{\sphinxbfcode{class }\sphinxcode{birdears.interval.}\sphinxbfcode{IntervalBase}}
 Bases: \sphinxcode{object}
+\index{\_\_dict\_\_ (birdears.interval.IntervalBase attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{birdears:birdears.interval.IntervalBase.__dict__}}\pysigline{\sphinxbfcode{\_\_dict\_\_}\sphinxbfcode{ = mappingproxy(\{'\_\_module\_\_': 'birdears.interval', '\_\_init\_\_': \textless{}function IntervalBase.\_\_init\_\_\textgreater{}, 'return\_simple': \textless{}function IntervalBase.return\_simple\textgreater{}, '\_\_dict\_\_': \textless{}attribute '\_\_dict\_\_' of 'IntervalBase' objects\textgreater{}, '\_\_weakref\_\_': \textless{}attribute '\_\_weakref\_\_' of 'IntervalBase' objects\textgreater{}, '\_\_doc\_\_': None\})}}
+\end{fulllineitems}
+
 \index{\_\_init\_\_() (birdears.interval.IntervalBase method)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{birdears:birdears.interval.IntervalBase.__init__}}\pysiglinewithargsret{\sphinxbfcode{\_\_init\_\_}}{}{}
 Base class for interval classes.
+
+\end{fulllineitems}
+
+\index{\_\_module\_\_ (birdears.interval.IntervalBase attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{birdears:birdears.interval.IntervalBase.__module__}}\pysigline{\sphinxbfcode{\_\_module\_\_}\sphinxbfcode{ = 'birdears.interval'}}
+\end{fulllineitems}
+
+\index{\_\_weakref\_\_ (birdears.interval.IntervalBase attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{birdears:birdears.interval.IntervalBase.__weakref__}}\pysigline{\sphinxbfcode{\_\_weakref\_\_}}
+list of weak references to the object (if defined)
 
 \end{fulllineitems}
 
@@ -1398,7 +1529,7 @@ This method returns a dict with only the values passed to \sphinxtitleref{keys}.
 
 
 \section{birdears.logger module}
-\label{\detokenize{birdears:module-birdears.logger}}\label{\detokenize{birdears:birdears-logger-module}}\index{birdears.logger (module)}
+\label{\detokenize{birdears:birdears-logger-module}}\label{\detokenize{birdears:module-birdears.logger}}\index{birdears.logger (module)}
 This submodule exports \sphinxtitleref{logger} to log events.
 
 Logging messages which are less severe than \sphinxtitleref{lvl} will be ignored:
@@ -1439,7 +1570,7 @@ function signature with their call values and their return will be logged.
 
 
 \section{birdears.prequestion module}
-\label{\detokenize{birdears:birdears-prequestion-module}}\label{\detokenize{birdears:module-birdears.prequestion}}\index{birdears.prequestion (module)}
+\label{\detokenize{birdears:module-birdears.prequestion}}\label{\detokenize{birdears:birdears-prequestion-module}}\index{birdears.prequestion (module)}
 This module implements pre-questions’ progressions.
 
 Pre questions are chord progressions or notes played before the question is
@@ -1466,6 +1597,12 @@ the method.
 
 \end{fulllineitems}
 
+\index{\_\_dict\_\_ (birdears.prequestion.PreQuestion attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{birdears:birdears.prequestion.PreQuestion.__dict__}}\pysigline{\sphinxbfcode{\_\_dict\_\_}\sphinxbfcode{ = mappingproxy(\{'\_\_module\_\_': 'birdears.prequestion', '\_\_init\_\_': \textless{}function PreQuestion.\_\_init\_\_\textgreater{}, '\_\_call\_\_': \textless{}function PreQuestion.\_\_call\_\_\textgreater{}, '\_\_dict\_\_': \textless{}attribute '\_\_dict\_\_' of 'PreQuestion' objects\textgreater{}, '\_\_weakref\_\_': \textless{}attribute '\_\_weakref\_\_' of 'PreQuestion' objects\textgreater{}, '\_\_doc\_\_': None\})}}
+\end{fulllineitems}
+
 \index{\_\_init\_\_() (birdears.prequestion.PreQuestion method)}
 
 \begin{fulllineitems}
@@ -1486,6 +1623,20 @@ progressions.
 \end{itemize}
 
 \end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{\_\_module\_\_ (birdears.prequestion.PreQuestion attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{birdears:birdears.prequestion.PreQuestion.__module__}}\pysigline{\sphinxbfcode{\_\_module\_\_}\sphinxbfcode{ = 'birdears.prequestion'}}
+\end{fulllineitems}
+
+\index{\_\_weakref\_\_ (birdears.prequestion.PreQuestion attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{birdears:birdears.prequestion.PreQuestion.__weakref__}}\pysigline{\sphinxbfcode{\_\_weakref\_\_}}
+list of weak references to the object (if defined)
 
 \end{fulllineitems}
 
@@ -1554,7 +1705,7 @@ when it is {\color{red}\bfseries{}{}`}\_\_call\_\_{}`ed)
 
 
 \section{birdears.questionbase module}
-\label{\detokenize{birdears:birdears-questionbase-module}}\label{\detokenize{birdears:module-birdears.questionbase}}\index{birdears.questionbase (module)}\index{QuestionBase (class in birdears.questionbase)}
+\label{\detokenize{birdears:module-birdears.questionbase}}\label{\detokenize{birdears:birdears-questionbase-module}}\index{birdears.questionbase (module)}\index{QuestionBase (class in birdears.questionbase)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{birdears:birdears.questionbase.QuestionBase}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.questionbase.}\sphinxbfcode{QuestionBase}}{\emph{mode='major'}, \emph{tonic=None}, \emph{octave=None}, \emph{descending=None}, \emph{chromatic=None}, \emph{n\_octaves=None}, \emph{valid\_intervals=None}, \emph{user\_durations=None}, \emph{prequestion\_method=None}, \emph{resolution\_method=None}, \emph{default\_durations=None}, \emph{*args}, \emph{**kwargs}}{}
@@ -1564,6 +1715,12 @@ Base Class to be subclassed for Question classes.
 
 This class implements attributes and routines to be used in Question
 subclasses.
+\index{\_\_dict\_\_ (birdears.questionbase.QuestionBase attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{birdears:birdears.questionbase.QuestionBase.__dict__}}\pysigline{\sphinxbfcode{\_\_dict\_\_}\sphinxbfcode{ = mappingproxy(\{'\_\_module\_\_': 'birdears.questionbase', '\_\_doc\_\_': '\textbackslash{}n    Base Class to be subclassed for Question classes.\textbackslash{}n\textbackslash{}n    This class implements attributes and routines to be used in Question\textbackslash{}n    subclasses.\textbackslash{}n    ', '\_\_init\_\_': \textless{}function QuestionBase.\_\_init\_\_\textgreater{}, 'get\_valid\_semitones': \textless{}function QuestionBase.get\_valid\_semitones\textgreater{}, 'make\_question': \textless{}function QuestionBase.make\_question\textgreater{}, 'make\_resolution': \textless{}function QuestionBase.make\_resolution\textgreater{}, 'play\_question': \textless{}function QuestionBase.play\_question\textgreater{}, 'check\_question': \textless{}function QuestionBase.check\_question\textgreater{}, '\_\_dict\_\_': \textless{}attribute '\_\_dict\_\_' of 'QuestionBase' objects\textgreater{}, '\_\_weakref\_\_': \textless{}attribute '\_\_weakref\_\_' of 'QuestionBase' objects\textgreater{}\})}}
+\end{fulllineitems}
+
 \index{\_\_init\_\_() (birdears.questionbase.QuestionBase method)}
 
 \begin{fulllineitems}
@@ -1643,6 +1800,20 @@ each type of sequence. This is provided by the subclasses.
 
 \end{fulllineitems}
 
+\index{\_\_module\_\_ (birdears.questionbase.QuestionBase attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{birdears:birdears.questionbase.QuestionBase.__module__}}\pysigline{\sphinxbfcode{\_\_module\_\_}\sphinxbfcode{ = 'birdears.questionbase'}}
+\end{fulllineitems}
+
+\index{\_\_weakref\_\_ (birdears.questionbase.QuestionBase attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{birdears:birdears.questionbase.QuestionBase.__weakref__}}\pysigline{\sphinxbfcode{\_\_weakref\_\_}}
+list of weak references to the object (if defined)
+
+\end{fulllineitems}
+
 \index{check\_question() (birdears.questionbase.QuestionBase method)}
 
 \begin{fulllineitems}
@@ -1700,7 +1871,7 @@ Classes decorated with this decorator will be registered in the
 
 
 \section{birdears.resolution module}
-\label{\detokenize{birdears:birdears-resolution-module}}\label{\detokenize{birdears:module-birdears.resolution}}\index{birdears.resolution (module)}\index{Resolution (class in birdears.resolution)}
+\label{\detokenize{birdears:module-birdears.resolution}}\label{\detokenize{birdears:birdears-resolution-module}}\index{birdears.resolution (module)}\index{Resolution (class in birdears.resolution)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{birdears:birdears.resolution.Resolution}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.resolution.}\sphinxbfcode{Resolution}}{\emph{method}, \emph{question}}{}
@@ -1722,6 +1893,12 @@ the.method.
 
 \end{fulllineitems}
 
+\index{\_\_dict\_\_ (birdears.resolution.Resolution attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{birdears:birdears.resolution.Resolution.__dict__}}\pysigline{\sphinxbfcode{\_\_dict\_\_}\sphinxbfcode{ = mappingproxy(\{'\_\_module\_\_': 'birdears.resolution', '\_\_doc\_\_': 'This class implements methods for different types of question\textbackslash{}n    resolutions.\textbackslash{}n\textbackslash{}n    A resolution is an answer to a question. It aims to create a mnemonic on\textbackslash{}n    how the inverval resvolver to the tonic.\textbackslash{}n    ', '\_\_init\_\_': \textless{}function Resolution.\_\_init\_\_\textgreater{}, '\_\_call\_\_': \textless{}function Resolution.\_\_call\_\_\textgreater{}, '\_\_dict\_\_': \textless{}attribute '\_\_dict\_\_' of 'Resolution' objects\textgreater{}, '\_\_weakref\_\_': \textless{}attribute '\_\_weakref\_\_' of 'Resolution' objects\textgreater{}\})}}
+\end{fulllineitems}
+
 \index{\_\_init\_\_() (birdears.resolution.Resolution method)}
 
 \begin{fulllineitems}
@@ -1741,6 +1918,20 @@ Inits the resolution class.
 \end{itemize}
 
 \end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{\_\_module\_\_ (birdears.resolution.Resolution attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{birdears:birdears.resolution.Resolution.__module__}}\pysigline{\sphinxbfcode{\_\_module\_\_}\sphinxbfcode{ = 'birdears.resolution'}}
+\end{fulllineitems}
+
+\index{\_\_weakref\_\_ (birdears.resolution.Resolution attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{birdears:birdears.resolution.Resolution.__weakref__}}\pysigline{\sphinxbfcode{\_\_weakref\_\_}}
+list of weak references to the object (if defined)
 
 \end{fulllineitems}
 
@@ -1792,7 +1983,7 @@ when it is {\color{red}\bfseries{}{}`}\_\_call\_\_{}`ed)
 
 
 \section{birdears.scale module}
-\label{\detokenize{birdears:module-birdears.scale}}\label{\detokenize{birdears:birdears-scale-module}}\index{birdears.scale (module)}\index{ChromaticScale (class in birdears.scale)}
+\label{\detokenize{birdears:birdears-scale-module}}\label{\detokenize{birdears:module-birdears.scale}}\index{birdears.scale (module)}\index{ChromaticScale (class in birdears.scale)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{birdears:birdears.scale.ChromaticScale}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.scale.}\sphinxbfcode{ChromaticScale}}{\emph{tonic}, \emph{octave=None}, \emph{n\_octaves=None}, \emph{descending=None}, \emph{dont\_repeat\_tonic=None}}{}
@@ -1834,6 +2025,12 @@ note (octave) to the scale.
 
 \end{description}\end{quote}
 
+\end{fulllineitems}
+
+\index{\_\_module\_\_ (birdears.scale.ChromaticScale attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{birdears:birdears.scale.ChromaticScale.__module__}}\pysigline{\sphinxbfcode{\_\_module\_\_}\sphinxbfcode{ = 'birdears.scale'}}
 \end{fulllineitems}
 
 \index{get\_triad() (birdears.scale.ChromaticScale method)}
@@ -1913,6 +2110,12 @@ note (octave) to the scale.
 
 \end{fulllineitems}
 
+\index{\_\_module\_\_ (birdears.scale.DiatonicScale attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{birdears:birdears.scale.DiatonicScale.__module__}}\pysigline{\sphinxbfcode{\_\_module\_\_}\sphinxbfcode{ = 'birdears.scale'}}
+\end{fulllineitems}
+
 \index{get\_triad() (birdears.scale.DiatonicScale method)}
 
 \begin{fulllineitems}
@@ -1944,13 +2147,39 @@ An array with three pitches, one for each note of the triad.
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{birdears:birdears.scale.ScaleBase}}\pysigline{\sphinxbfcode{class }\sphinxcode{birdears.scale.}\sphinxbfcode{ScaleBase}}
 Bases: \sphinxcode{object}
+\index{\_\_dict\_\_ (birdears.scale.ScaleBase attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{birdears:birdears.scale.ScaleBase.__dict__}}\pysigline{\sphinxbfcode{\_\_dict\_\_}\sphinxbfcode{ = mappingproxy(\{'\_\_module\_\_': 'birdears.scale', '\_\_init\_\_': \textless{}function ScaleBase.\_\_init\_\_\textgreater{}, '\_append\_octave\_to\_scale': \textless{}function ScaleBase.\_append\_octave\_to\_scale\textgreater{}, '\_get\_chromatic\_idx': \textless{}function ScaleBase.\_get\_chromatic\_idx\textgreater{}, '\_rotate\_scale\_by\_idx': \textless{}function ScaleBase.\_rotate\_scale\_by\_idx\textgreater{}, '\_\_dict\_\_': \textless{}attribute '\_\_dict\_\_' of 'ScaleBase' objects\textgreater{}, '\_\_weakref\_\_': \textless{}attribute '\_\_weakref\_\_' of 'ScaleBase' objects\textgreater{}, '\_\_doc\_\_': None\})}}
+\end{fulllineitems}
+
+\index{\_\_init\_\_() (birdears.scale.ScaleBase method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{birdears:birdears.scale.ScaleBase.__init__}}\pysiglinewithargsret{\sphinxbfcode{\_\_init\_\_}}{}{}
+\end{fulllineitems}
+
+\index{\_\_module\_\_ (birdears.scale.ScaleBase attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{birdears:birdears.scale.ScaleBase.__module__}}\pysigline{\sphinxbfcode{\_\_module\_\_}\sphinxbfcode{ = 'birdears.scale'}}
+\end{fulllineitems}
+
+\index{\_\_weakref\_\_ (birdears.scale.ScaleBase attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{birdears:birdears.scale.ScaleBase.__weakref__}}\pysigline{\sphinxbfcode{\_\_weakref\_\_}}
+list of weak references to the object (if defined)
+
+\end{fulllineitems}
+
 
 \end{fulllineitems}
 
 
 
 \section{birdears.sequence module}
-\label{\detokenize{birdears:birdears-sequence-module}}\label{\detokenize{birdears:module-birdears.sequence}}\index{birdears.sequence (module)}\index{Sequence (class in birdears.sequence)}
+\label{\detokenize{birdears:module-birdears.sequence}}\label{\detokenize{birdears:birdears-sequence-module}}\index{birdears.sequence (module)}\index{Sequence (class in birdears.sequence)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{birdears:birdears.sequence.Sequence}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.sequence.}\sphinxbfcode{Sequence}}{\emph{elements={[}{]}}, \emph{duration=2}, \emph{delay=1.5}, \emph{pos\_delay=1}}{}
@@ -1963,6 +2192,64 @@ Register a Sequence of notes and/or chords.
 \phantomsection\label{\detokenize{birdears:birdears.sequence.Sequence.elements}}\pysigline{\sphinxbfcode{elements}}
 \sphinxstyleemphasis{array\_type} \textendash{} List of notes (strings) ou chords (list of
 strings) in this Sequence.
+
+\end{fulllineitems}
+
+\index{\_\_dict\_\_ (birdears.sequence.Sequence attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{birdears:birdears.sequence.Sequence.__dict__}}\pysigline{\sphinxbfcode{\_\_dict\_\_}\sphinxbfcode{ = mappingproxy(\{'\_\_module\_\_': 'birdears.sequence', '\_\_doc\_\_': 'Register a Sequence of notes and/or chords.\textbackslash{}n\textbackslash{}n    Attributes:\textbackslash{}n        elements (array\_type): List of notes (strings) ou chords (list of\textbackslash{}n            strings) in this Sequence.\textbackslash{}n    ', '\_\_init\_\_': \textless{}function Sequence.\_\_init\_\_\textgreater{}, 'append': \textless{}function Sequence.append\textgreater{}, 'extend': \textless{}function Sequence.extend\textgreater{}, 'play': \textless{}function Sequence.play\textgreater{}, 'async\_play': \textless{}function Sequence.async\_play\textgreater{}, 'play\_element': \textless{}function Sequence.play\_element\textgreater{}, 'make\_chord\_progression': \textless{}function Sequence.make\_chord\_progression\textgreater{}, '\_async\_play\_note': \textless{}function Sequence.\_async\_play\_note\textgreater{}, '\_async\_play\_chord': \textless{}function Sequence.\_async\_play\_chord\textgreater{}, '\_async\_wait': \textless{}function Sequence.\_async\_wait\textgreater{}, '\_play\_note': \textless{}function Sequence.\_play\_note\textgreater{}, '\_play\_chord': \textless{}function Sequence.\_play\_chord\textgreater{}, '\_wait': \textless{}function Sequence.\_wait\textgreater{}, '\_\_len\_\_': \textless{}function Sequence.\_\_len\_\_\textgreater{}, '\_\_dict\_\_': \textless{}attribute '\_\_dict\_\_' of 'Sequence' objects\textgreater{}, '\_\_weakref\_\_': \textless{}attribute '\_\_weakref\_\_' of 'Sequence' objects\textgreater{}\})}}
+\end{fulllineitems}
+
+\index{\_\_init\_\_() (birdears.sequence.Sequence method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{birdears:birdears.sequence.Sequence.__init__}}\pysiglinewithargsret{\sphinxbfcode{\_\_init\_\_}}{\emph{elements={[}{]}}, \emph{duration=2}, \emph{delay=1.5}, \emph{pos\_delay=1}}{}~\begin{description}
+\item[{Inits the Sequence with an array and sets the default times for}] \leavevmode
+playing / pausing the elements.
+
+\end{description}
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{elements} (\sphinxstyleliteralemphasis{array\_type}) \textendash{} List of elements in this sequence.
+(notes or chords)
+
+\item {} 
+\sphinxstyleliteralstrong{duration} (\sphinxstyleliteralemphasis{float}) \textendash{} Default playing time for each element in the
+sequence.
+
+\item {} 
+\sphinxstyleliteralstrong{delay} (\sphinxstyleliteralemphasis{float}) \textendash{} Default waiting time to play the next element
+in the sequence.
+
+\item {} 
+\sphinxstyleliteralstrong{pos\_delay} (\sphinxstyleliteralemphasis{float}) \textendash{} Waiting time after playing the last element
+in the sequence.
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{\_\_len\_\_() (birdears.sequence.Sequence method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{birdears:birdears.sequence.Sequence.__len__}}\pysiglinewithargsret{\sphinxbfcode{\_\_len\_\_}}{}{}
+\end{fulllineitems}
+
+\index{\_\_module\_\_ (birdears.sequence.Sequence attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{birdears:birdears.sequence.Sequence.__module__}}\pysigline{\sphinxbfcode{\_\_module\_\_}\sphinxbfcode{ = 'birdears.sequence'}}
+\end{fulllineitems}
+
+\index{\_\_weakref\_\_ (birdears.sequence.Sequence attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{birdears:birdears.sequence.Sequence.__weakref__}}\pysigline{\sphinxbfcode{\_\_weakref\_\_}}
+list of weak references to the object (if defined)
 
 \end{fulllineitems}
 
@@ -2601,6 +2888,12 @@ choice, 1 is 1st, 2 is second etc.
 
 \end{fulllineitems}
 
+\index{\_\_module\_\_ (birdears.interval.ChromaticInterval attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{index:birdears.interval.ChromaticInterval.__module__}}\pysigline{\sphinxbfcode{\_\_module\_\_}\sphinxbfcode{ = 'birdears.interval'}}
+\end{fulllineitems}
+
 
 \end{fulllineitems}
 
@@ -2756,6 +3049,12 @@ choice, 1 is 1st, 2 is second etc.
 
 \end{fulllineitems}
 
+\index{\_\_module\_\_ (birdears.interval.DiatonicInterval attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{index:birdears.interval.DiatonicInterval.__module__}}\pysigline{\sphinxbfcode{\_\_module\_\_}\sphinxbfcode{ = 'birdears.interval'}}
+\end{fulllineitems}
+
 
 \end{fulllineitems}
 
@@ -2764,11 +3063,31 @@ choice, 1 is 1st, 2 is second etc.
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{index:birdears.interval.IntervalBase}}\pysigline{\sphinxbfcode{class }\sphinxcode{birdears.interval.}\sphinxbfcode{IntervalBase}}
 Bases: \sphinxcode{object}
+\index{\_\_dict\_\_ (birdears.interval.IntervalBase attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{index:birdears.interval.IntervalBase.__dict__}}\pysigline{\sphinxbfcode{\_\_dict\_\_}\sphinxbfcode{ = mappingproxy(\{'\_\_module\_\_': 'birdears.interval', '\_\_init\_\_': \textless{}function IntervalBase.\_\_init\_\_\textgreater{}, 'return\_simple': \textless{}function IntervalBase.return\_simple\textgreater{}, '\_\_dict\_\_': \textless{}attribute '\_\_dict\_\_' of 'IntervalBase' objects\textgreater{}, '\_\_weakref\_\_': \textless{}attribute '\_\_weakref\_\_' of 'IntervalBase' objects\textgreater{}, '\_\_doc\_\_': None\})}}
+\end{fulllineitems}
+
 \index{\_\_init\_\_() (birdears.interval.IntervalBase method)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{index:birdears.interval.IntervalBase.__init__}}\pysiglinewithargsret{\sphinxbfcode{\_\_init\_\_}}{}{}
 Base class for interval classes.
+
+\end{fulllineitems}
+
+\index{\_\_module\_\_ (birdears.interval.IntervalBase attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{index:birdears.interval.IntervalBase.__module__}}\pysigline{\sphinxbfcode{\_\_module\_\_}\sphinxbfcode{ = 'birdears.interval'}}
+\end{fulllineitems}
+
+\index{\_\_weakref\_\_ (birdears.interval.IntervalBase attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{index:birdears.interval.IntervalBase.__weakref__}}\pysigline{\sphinxbfcode{\_\_weakref\_\_}}
+list of weak references to the object (if defined)
 
 \end{fulllineitems}
 
@@ -2786,7 +3105,7 @@ This method returns a dict with only the values passed to \sphinxtitleref{keys}.
 
 
 \section{birdears.logger module}
-\label{\detokenize{index:module-birdears.logger}}\label{\detokenize{index:birdears-logger-module}}\index{birdears.logger (module)}
+\label{\detokenize{index:birdears-logger-module}}\label{\detokenize{index:module-birdears.logger}}\index{birdears.logger (module)}
 This submodule exports \sphinxtitleref{logger} to log events.
 
 Logging messages which are less severe than \sphinxtitleref{lvl} will be ignored:
@@ -2827,7 +3146,7 @@ function signature with their call values and their return will be logged.
 
 
 \section{birdears.prequestion module}
-\label{\detokenize{index:birdears-prequestion-module}}\label{\detokenize{index:module-birdears.prequestion}}\index{birdears.prequestion (module)}
+\label{\detokenize{index:module-birdears.prequestion}}\label{\detokenize{index:birdears-prequestion-module}}\index{birdears.prequestion (module)}
 This module implements pre-questions’ progressions.
 
 Pre questions are chord progressions or notes played before the question is
@@ -2854,6 +3173,12 @@ the method.
 
 \end{fulllineitems}
 
+\index{\_\_dict\_\_ (birdears.prequestion.PreQuestion attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{index:birdears.prequestion.PreQuestion.__dict__}}\pysigline{\sphinxbfcode{\_\_dict\_\_}\sphinxbfcode{ = mappingproxy(\{'\_\_module\_\_': 'birdears.prequestion', '\_\_init\_\_': \textless{}function PreQuestion.\_\_init\_\_\textgreater{}, '\_\_call\_\_': \textless{}function PreQuestion.\_\_call\_\_\textgreater{}, '\_\_dict\_\_': \textless{}attribute '\_\_dict\_\_' of 'PreQuestion' objects\textgreater{}, '\_\_weakref\_\_': \textless{}attribute '\_\_weakref\_\_' of 'PreQuestion' objects\textgreater{}, '\_\_doc\_\_': None\})}}
+\end{fulllineitems}
+
 \index{\_\_init\_\_() (birdears.prequestion.PreQuestion method)}
 
 \begin{fulllineitems}
@@ -2874,6 +3199,20 @@ progressions.
 \end{itemize}
 
 \end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{\_\_module\_\_ (birdears.prequestion.PreQuestion attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{index:birdears.prequestion.PreQuestion.__module__}}\pysigline{\sphinxbfcode{\_\_module\_\_}\sphinxbfcode{ = 'birdears.prequestion'}}
+\end{fulllineitems}
+
+\index{\_\_weakref\_\_ (birdears.prequestion.PreQuestion attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{index:birdears.prequestion.PreQuestion.__weakref__}}\pysigline{\sphinxbfcode{\_\_weakref\_\_}}
+list of weak references to the object (if defined)
 
 \end{fulllineitems}
 
@@ -2942,7 +3281,7 @@ when it is {\color{red}\bfseries{}{}`}\_\_call\_\_{}`ed)
 
 
 \section{birdears.questionbase module}
-\label{\detokenize{index:birdears-questionbase-module}}\label{\detokenize{index:module-birdears.questionbase}}\index{birdears.questionbase (module)}\index{QuestionBase (class in birdears.questionbase)}
+\label{\detokenize{index:module-birdears.questionbase}}\label{\detokenize{index:birdears-questionbase-module}}\index{birdears.questionbase (module)}\index{QuestionBase (class in birdears.questionbase)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{index:birdears.questionbase.QuestionBase}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.questionbase.}\sphinxbfcode{QuestionBase}}{\emph{mode='major'}, \emph{tonic=None}, \emph{octave=None}, \emph{descending=None}, \emph{chromatic=None}, \emph{n\_octaves=None}, \emph{valid\_intervals=None}, \emph{user\_durations=None}, \emph{prequestion\_method=None}, \emph{resolution\_method=None}, \emph{default\_durations=None}, \emph{*args}, \emph{**kwargs}}{}
@@ -2952,6 +3291,12 @@ Base Class to be subclassed for Question classes.
 
 This class implements attributes and routines to be used in Question
 subclasses.
+\index{\_\_dict\_\_ (birdears.questionbase.QuestionBase attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{index:birdears.questionbase.QuestionBase.__dict__}}\pysigline{\sphinxbfcode{\_\_dict\_\_}\sphinxbfcode{ = mappingproxy(\{'\_\_module\_\_': 'birdears.questionbase', '\_\_doc\_\_': '\textbackslash{}n    Base Class to be subclassed for Question classes.\textbackslash{}n\textbackslash{}n    This class implements attributes and routines to be used in Question\textbackslash{}n    subclasses.\textbackslash{}n    ', '\_\_init\_\_': \textless{}function QuestionBase.\_\_init\_\_\textgreater{}, 'get\_valid\_semitones': \textless{}function QuestionBase.get\_valid\_semitones\textgreater{}, 'make\_question': \textless{}function QuestionBase.make\_question\textgreater{}, 'make\_resolution': \textless{}function QuestionBase.make\_resolution\textgreater{}, 'play\_question': \textless{}function QuestionBase.play\_question\textgreater{}, 'check\_question': \textless{}function QuestionBase.check\_question\textgreater{}, '\_\_dict\_\_': \textless{}attribute '\_\_dict\_\_' of 'QuestionBase' objects\textgreater{}, '\_\_weakref\_\_': \textless{}attribute '\_\_weakref\_\_' of 'QuestionBase' objects\textgreater{}\})}}
+\end{fulllineitems}
+
 \index{\_\_init\_\_() (birdears.questionbase.QuestionBase method)}
 
 \begin{fulllineitems}
@@ -3031,6 +3376,20 @@ each type of sequence. This is provided by the subclasses.
 
 \end{fulllineitems}
 
+\index{\_\_module\_\_ (birdears.questionbase.QuestionBase attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{index:birdears.questionbase.QuestionBase.__module__}}\pysigline{\sphinxbfcode{\_\_module\_\_}\sphinxbfcode{ = 'birdears.questionbase'}}
+\end{fulllineitems}
+
+\index{\_\_weakref\_\_ (birdears.questionbase.QuestionBase attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{index:birdears.questionbase.QuestionBase.__weakref__}}\pysigline{\sphinxbfcode{\_\_weakref\_\_}}
+list of weak references to the object (if defined)
+
+\end{fulllineitems}
+
 \index{check\_question() (birdears.questionbase.QuestionBase method)}
 
 \begin{fulllineitems}
@@ -3088,7 +3447,7 @@ Classes decorated with this decorator will be registered in the
 
 
 \section{birdears.resolution module}
-\label{\detokenize{index:birdears-resolution-module}}\label{\detokenize{index:module-birdears.resolution}}\index{birdears.resolution (module)}\index{Resolution (class in birdears.resolution)}
+\label{\detokenize{index:module-birdears.resolution}}\label{\detokenize{index:birdears-resolution-module}}\index{birdears.resolution (module)}\index{Resolution (class in birdears.resolution)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{index:birdears.resolution.Resolution}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.resolution.}\sphinxbfcode{Resolution}}{\emph{method}, \emph{question}}{}
@@ -3110,6 +3469,12 @@ the.method.
 
 \end{fulllineitems}
 
+\index{\_\_dict\_\_ (birdears.resolution.Resolution attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{index:birdears.resolution.Resolution.__dict__}}\pysigline{\sphinxbfcode{\_\_dict\_\_}\sphinxbfcode{ = mappingproxy(\{'\_\_module\_\_': 'birdears.resolution', '\_\_doc\_\_': 'This class implements methods for different types of question\textbackslash{}n    resolutions.\textbackslash{}n\textbackslash{}n    A resolution is an answer to a question. It aims to create a mnemonic on\textbackslash{}n    how the inverval resvolver to the tonic.\textbackslash{}n    ', '\_\_init\_\_': \textless{}function Resolution.\_\_init\_\_\textgreater{}, '\_\_call\_\_': \textless{}function Resolution.\_\_call\_\_\textgreater{}, '\_\_dict\_\_': \textless{}attribute '\_\_dict\_\_' of 'Resolution' objects\textgreater{}, '\_\_weakref\_\_': \textless{}attribute '\_\_weakref\_\_' of 'Resolution' objects\textgreater{}\})}}
+\end{fulllineitems}
+
 \index{\_\_init\_\_() (birdears.resolution.Resolution method)}
 
 \begin{fulllineitems}
@@ -3129,6 +3494,20 @@ Inits the resolution class.
 \end{itemize}
 
 \end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{\_\_module\_\_ (birdears.resolution.Resolution attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{index:birdears.resolution.Resolution.__module__}}\pysigline{\sphinxbfcode{\_\_module\_\_}\sphinxbfcode{ = 'birdears.resolution'}}
+\end{fulllineitems}
+
+\index{\_\_weakref\_\_ (birdears.resolution.Resolution attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{index:birdears.resolution.Resolution.__weakref__}}\pysigline{\sphinxbfcode{\_\_weakref\_\_}}
+list of weak references to the object (if defined)
 
 \end{fulllineitems}
 
@@ -3180,7 +3559,7 @@ when it is {\color{red}\bfseries{}{}`}\_\_call\_\_{}`ed)
 
 
 \section{birdears.scale module}
-\label{\detokenize{index:module-birdears.scale}}\label{\detokenize{index:birdears-scale-module}}\index{birdears.scale (module)}\index{ChromaticScale (class in birdears.scale)}
+\label{\detokenize{index:birdears-scale-module}}\label{\detokenize{index:module-birdears.scale}}\index{birdears.scale (module)}\index{ChromaticScale (class in birdears.scale)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{index:birdears.scale.ChromaticScale}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.scale.}\sphinxbfcode{ChromaticScale}}{\emph{tonic}, \emph{octave=None}, \emph{n\_octaves=None}, \emph{descending=None}, \emph{dont\_repeat\_tonic=None}}{}
@@ -3222,6 +3601,12 @@ note (octave) to the scale.
 
 \end{description}\end{quote}
 
+\end{fulllineitems}
+
+\index{\_\_module\_\_ (birdears.scale.ChromaticScale attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{index:birdears.scale.ChromaticScale.__module__}}\pysigline{\sphinxbfcode{\_\_module\_\_}\sphinxbfcode{ = 'birdears.scale'}}
 \end{fulllineitems}
 
 \index{get\_triad() (birdears.scale.ChromaticScale method)}
@@ -3301,6 +3686,12 @@ note (octave) to the scale.
 
 \end{fulllineitems}
 
+\index{\_\_module\_\_ (birdears.scale.DiatonicScale attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{index:birdears.scale.DiatonicScale.__module__}}\pysigline{\sphinxbfcode{\_\_module\_\_}\sphinxbfcode{ = 'birdears.scale'}}
+\end{fulllineitems}
+
 \index{get\_triad() (birdears.scale.DiatonicScale method)}
 
 \begin{fulllineitems}
@@ -3332,13 +3723,39 @@ An array with three pitches, one for each note of the triad.
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{index:birdears.scale.ScaleBase}}\pysigline{\sphinxbfcode{class }\sphinxcode{birdears.scale.}\sphinxbfcode{ScaleBase}}
 Bases: \sphinxcode{object}
+\index{\_\_dict\_\_ (birdears.scale.ScaleBase attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{index:birdears.scale.ScaleBase.__dict__}}\pysigline{\sphinxbfcode{\_\_dict\_\_}\sphinxbfcode{ = mappingproxy(\{'\_\_module\_\_': 'birdears.scale', '\_\_init\_\_': \textless{}function ScaleBase.\_\_init\_\_\textgreater{}, '\_append\_octave\_to\_scale': \textless{}function ScaleBase.\_append\_octave\_to\_scale\textgreater{}, '\_get\_chromatic\_idx': \textless{}function ScaleBase.\_get\_chromatic\_idx\textgreater{}, '\_rotate\_scale\_by\_idx': \textless{}function ScaleBase.\_rotate\_scale\_by\_idx\textgreater{}, '\_\_dict\_\_': \textless{}attribute '\_\_dict\_\_' of 'ScaleBase' objects\textgreater{}, '\_\_weakref\_\_': \textless{}attribute '\_\_weakref\_\_' of 'ScaleBase' objects\textgreater{}, '\_\_doc\_\_': None\})}}
+\end{fulllineitems}
+
+\index{\_\_init\_\_() (birdears.scale.ScaleBase method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{index:birdears.scale.ScaleBase.__init__}}\pysiglinewithargsret{\sphinxbfcode{\_\_init\_\_}}{}{}
+\end{fulllineitems}
+
+\index{\_\_module\_\_ (birdears.scale.ScaleBase attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{index:birdears.scale.ScaleBase.__module__}}\pysigline{\sphinxbfcode{\_\_module\_\_}\sphinxbfcode{ = 'birdears.scale'}}
+\end{fulllineitems}
+
+\index{\_\_weakref\_\_ (birdears.scale.ScaleBase attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{index:birdears.scale.ScaleBase.__weakref__}}\pysigline{\sphinxbfcode{\_\_weakref\_\_}}
+list of weak references to the object (if defined)
+
+\end{fulllineitems}
+
 
 \end{fulllineitems}
 
 
 
 \section{birdears.sequence module}
-\label{\detokenize{index:birdears-sequence-module}}\label{\detokenize{index:module-birdears.sequence}}\index{birdears.sequence (module)}\index{Sequence (class in birdears.sequence)}
+\label{\detokenize{index:module-birdears.sequence}}\label{\detokenize{index:birdears-sequence-module}}\index{birdears.sequence (module)}\index{Sequence (class in birdears.sequence)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{index:birdears.sequence.Sequence}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.sequence.}\sphinxbfcode{Sequence}}{\emph{elements={[}{]}}, \emph{duration=2}, \emph{delay=1.5}, \emph{pos\_delay=1}}{}
@@ -3351,6 +3768,64 @@ Register a Sequence of notes and/or chords.
 \phantomsection\label{\detokenize{index:birdears.sequence.Sequence.elements}}\pysigline{\sphinxbfcode{elements}}
 \sphinxstyleemphasis{array\_type} \textendash{} List of notes (strings) ou chords (list of
 strings) in this Sequence.
+
+\end{fulllineitems}
+
+\index{\_\_dict\_\_ (birdears.sequence.Sequence attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{index:birdears.sequence.Sequence.__dict__}}\pysigline{\sphinxbfcode{\_\_dict\_\_}\sphinxbfcode{ = mappingproxy(\{'\_\_module\_\_': 'birdears.sequence', '\_\_doc\_\_': 'Register a Sequence of notes and/or chords.\textbackslash{}n\textbackslash{}n    Attributes:\textbackslash{}n        elements (array\_type): List of notes (strings) ou chords (list of\textbackslash{}n            strings) in this Sequence.\textbackslash{}n    ', '\_\_init\_\_': \textless{}function Sequence.\_\_init\_\_\textgreater{}, 'append': \textless{}function Sequence.append\textgreater{}, 'extend': \textless{}function Sequence.extend\textgreater{}, 'play': \textless{}function Sequence.play\textgreater{}, 'async\_play': \textless{}function Sequence.async\_play\textgreater{}, 'play\_element': \textless{}function Sequence.play\_element\textgreater{}, 'make\_chord\_progression': \textless{}function Sequence.make\_chord\_progression\textgreater{}, '\_async\_play\_note': \textless{}function Sequence.\_async\_play\_note\textgreater{}, '\_async\_play\_chord': \textless{}function Sequence.\_async\_play\_chord\textgreater{}, '\_async\_wait': \textless{}function Sequence.\_async\_wait\textgreater{}, '\_play\_note': \textless{}function Sequence.\_play\_note\textgreater{}, '\_play\_chord': \textless{}function Sequence.\_play\_chord\textgreater{}, '\_wait': \textless{}function Sequence.\_wait\textgreater{}, '\_\_len\_\_': \textless{}function Sequence.\_\_len\_\_\textgreater{}, '\_\_dict\_\_': \textless{}attribute '\_\_dict\_\_' of 'Sequence' objects\textgreater{}, '\_\_weakref\_\_': \textless{}attribute '\_\_weakref\_\_' of 'Sequence' objects\textgreater{}\})}}
+\end{fulllineitems}
+
+\index{\_\_init\_\_() (birdears.sequence.Sequence method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{index:birdears.sequence.Sequence.__init__}}\pysiglinewithargsret{\sphinxbfcode{\_\_init\_\_}}{\emph{elements={[}{]}}, \emph{duration=2}, \emph{delay=1.5}, \emph{pos\_delay=1}}{}~\begin{description}
+\item[{Inits the Sequence with an array and sets the default times for}] \leavevmode
+playing / pausing the elements.
+
+\end{description}
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{elements} (\sphinxstyleliteralemphasis{array\_type}) \textendash{} List of elements in this sequence.
+(notes or chords)
+
+\item {} 
+\sphinxstyleliteralstrong{duration} (\sphinxstyleliteralemphasis{float}) \textendash{} Default playing time for each element in the
+sequence.
+
+\item {} 
+\sphinxstyleliteralstrong{delay} (\sphinxstyleliteralemphasis{float}) \textendash{} Default waiting time to play the next element
+in the sequence.
+
+\item {} 
+\sphinxstyleliteralstrong{pos\_delay} (\sphinxstyleliteralemphasis{float}) \textendash{} Waiting time after playing the last element
+in the sequence.
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{\_\_len\_\_() (birdears.sequence.Sequence method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{index:birdears.sequence.Sequence.__len__}}\pysiglinewithargsret{\sphinxbfcode{\_\_len\_\_}}{}{}
+\end{fulllineitems}
+
+\index{\_\_module\_\_ (birdears.sequence.Sequence attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{index:birdears.sequence.Sequence.__module__}}\pysigline{\sphinxbfcode{\_\_module\_\_}\sphinxbfcode{ = 'birdears.sequence'}}
+\end{fulllineitems}
+
+\index{\_\_weakref\_\_ (birdears.sequence.Sequence attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{index:birdears.sequence.Sequence.__weakref__}}\pysigline{\sphinxbfcode{\_\_weakref\_\_}}
+list of weak references to the object (if defined)
 
 \end{fulllineitems}
 
@@ -3438,7 +3913,7 @@ Plays element \sphinxtitleref{sequence.elements{[}index{]}.}
 \label{\detokenize{index:id12}}
 
 \section{birdears.questions.harmonicinterval module}
-\label{\detokenize{index:birdears-questions-harmonicinterval-module}}\label{\detokenize{index:module-birdears.questions.harmonicinterval}}\index{birdears.questions.harmonicinterval (module)}\index{HarmonicIntervalQuestion (class in birdears.questions.harmonicinterval)}
+\label{\detokenize{index:module-birdears.questions.harmonicinterval}}\label{\detokenize{index:birdears-questions-harmonicinterval-module}}\index{birdears.questions.harmonicinterval (module)}\index{HarmonicIntervalQuestion (class in birdears.questions.harmonicinterval)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{index:birdears.questions.harmonicinterval.HarmonicIntervalQuestion}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.questions.harmonicinterval.}\sphinxbfcode{HarmonicIntervalQuestion}}{\emph{mode='major'}, \emph{tonic=None}, \emph{octave=None}, \emph{descending=None}, \emph{chromatic=None}, \emph{n\_octaves=None}, \emph{valid\_intervals=None}, \emph{user\_durations=None}, \emph{prequestion\_method='none'}, \emph{resolution\_method='nearest\_tonic'}, \emph{*args}, \emph{**kwargs}}{}
@@ -3519,6 +3994,12 @@ exercise. Valid ones are registered in the
 
 \end{fulllineitems}
 
+\index{\_\_module\_\_ (birdears.questions.harmonicinterval.HarmonicIntervalQuestion attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{index:birdears.questions.harmonicinterval.HarmonicIntervalQuestion.__module__}}\pysigline{\sphinxbfcode{\_\_module\_\_}\sphinxbfcode{ = 'birdears.questions.harmonicinterval'}}
+\end{fulllineitems}
+
 \index{check\_question() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)}
 
 \begin{fulllineitems}
@@ -3563,7 +4044,7 @@ Checks whether the given answer is correct.
 
 
 \section{birdears.questions.instrumentaldictation module}
-\label{\detokenize{index:module-birdears.questions.instrumentaldictation}}\label{\detokenize{index:birdears-questions-instrumentaldictation-module}}\index{birdears.questions.instrumentaldictation (module)}\index{InstrumentalDictationQuestion (class in birdears.questions.instrumentaldictation)}
+\label{\detokenize{index:birdears-questions-instrumentaldictation-module}}\label{\detokenize{index:module-birdears.questions.instrumentaldictation}}\index{birdears.questions.instrumentaldictation (module)}\index{InstrumentalDictationQuestion (class in birdears.questions.instrumentaldictation)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{index:birdears.questions.instrumentaldictation.InstrumentalDictationQuestion}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.questions.instrumentaldictation.}\sphinxbfcode{InstrumentalDictationQuestion}}{\emph{mode='major'}, \emph{wait\_time=11}, \emph{n\_repeats=1}, \emph{max\_intervals=3}, \emph{n\_notes=4}, \emph{tonic=None}, \emph{octave=None}, \emph{descending=None}, \emph{chromatic=None}, \emph{n\_octaves=None}, \emph{valid\_intervals=None}, \emph{user\_durations=None}, \emph{prequestion\_method='progression\_i\_iv\_v\_i'}, \emph{resolution\_method='repeat\_only'}, \emph{*args}, \emph{**kwargs}}{}
@@ -3659,6 +4140,12 @@ exercise. Valid ones are registered in the
 
 \end{fulllineitems}
 
+\index{\_\_module\_\_ (birdears.questions.instrumentaldictation.InstrumentalDictationQuestion attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{index:birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.__module__}}\pysigline{\sphinxbfcode{\_\_module\_\_}\sphinxbfcode{ = 'birdears.questions.instrumentaldictation'}}
+\end{fulllineitems}
+
 \index{check\_question() (birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method)}
 
 \begin{fulllineitems}
@@ -3699,7 +4186,7 @@ This currently doesn’t applies to instrumental dictation questions.
 
 
 \section{birdears.questions.melodicdictation module}
-\label{\detokenize{index:birdears-questions-melodicdictation-module}}\label{\detokenize{index:module-birdears.questions.melodicdictation}}\index{birdears.questions.melodicdictation (module)}\index{MelodicDictationQuestion (class in birdears.questions.melodicdictation)}
+\label{\detokenize{index:module-birdears.questions.melodicdictation}}\label{\detokenize{index:birdears-questions-melodicdictation-module}}\index{birdears.questions.melodicdictation (module)}\index{MelodicDictationQuestion (class in birdears.questions.melodicdictation)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{index:birdears.questions.melodicdictation.MelodicDictationQuestion}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.questions.melodicdictation.}\sphinxbfcode{MelodicDictationQuestion}}{\emph{mode='major'}, \emph{max\_intervals=3}, \emph{n\_notes=4}, \emph{tonic=None}, \emph{octave=None}, \emph{descending=None}, \emph{chromatic=None}, \emph{n\_octaves=None}, \emph{valid\_intervals=None}, \emph{user\_durations=None}, \emph{prequestion\_method='progression\_i\_iv\_v\_i'}, \emph{resolution\_method='repeat\_only'}, \emph{*args}, \emph{**kwargs}}{}
@@ -3787,6 +4274,12 @@ exercise. Valid ones are registered in the
 
 \end{fulllineitems}
 
+\index{\_\_module\_\_ (birdears.questions.melodicdictation.MelodicDictationQuestion attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{index:birdears.questions.melodicdictation.MelodicDictationQuestion.__module__}}\pysigline{\sphinxbfcode{\_\_module\_\_}\sphinxbfcode{ = 'birdears.questions.melodicdictation'}}
+\end{fulllineitems}
+
 \index{check\_question() (birdears.questions.melodicdictation.MelodicDictationQuestion method)}
 
 \begin{fulllineitems}
@@ -3838,6 +4331,86 @@ Checks whether the given answer is correct.
 Bases: {\hyperref[\detokenize{index:birdears.questionbase.QuestionBase}]{\sphinxcrossref{\sphinxcode{birdears.questionbase.QuestionBase}}}}
 
 Implements a Melodic Interval test.
+\index{\_\_init\_\_() (birdears.questions.melodicinterval.MelodicIntervalQuestion method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{index:birdears.questions.melodicinterval.MelodicIntervalQuestion.__init__}}\pysiglinewithargsret{\sphinxbfcode{\_\_init\_\_}}{\emph{mode='major'}, \emph{tonic=None}, \emph{octave=None}, \emph{descending=None}, \emph{chromatic=None}, \emph{n\_octaves=None}, \emph{valid\_intervals=None}, \emph{user\_durations=None}, \emph{prequestion\_method='tonic\_only'}, \emph{resolution\_method='nearest\_tonic'}, \emph{*args}, \emph{**kwargs}}{}
+Inits the class.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{mode} (\sphinxstyleliteralemphasis{str}) \textendash{} A string representing the mode of the question.
+Eg., ‘major’ or ‘minor’
+
+\item {} 
+\sphinxstyleliteralstrong{tonic} (\sphinxstyleliteralemphasis{str}) \textendash{} A string representing the tonic of the question,
+eg.: ‘C’; if omitted, it will be selected randomly.
+
+\item {} 
+\sphinxstyleliteralstrong{octave} (\sphinxstyleliteralemphasis{int}) \textendash{} A scienfic octave notation, for example, 4 for ‘C4’;
+if not present, it will be randomly chosen.
+
+\item {} 
+\sphinxstyleliteralstrong{descending} (\sphinxstyleliteralemphasis{bool}) \textendash{} Is the question direction in descending, ie.,
+intervals have lower pitch than the tonic.
+
+\item {} 
+\sphinxstyleliteralstrong{chromatic} (\sphinxstyleliteralemphasis{bool}) \textendash{} If the question can have (True) or not (False)
+chromatic intervals, ie., intervals not in the diatonic scale
+of tonic/mode.
+
+\item {} 
+\sphinxstyleliteralstrong{n\_octaves} (\sphinxstyleliteralemphasis{int}) \textendash{} Maximum number of octaves of the question.
+
+\item {} 
+\sphinxstyleliteralstrong{valid\_intervals} (\sphinxstyleliteralemphasis{list}) \textendash{} A list with intervals (int) valid for
+random choice, 1 is 1st, 2 is second etc. Eg. {[}1, 4, 5{]} to
+allow only tonics, fourths and fifths.
+
+\item {} 
+\sphinxstyleliteralstrong{user\_durations} (\sphinxstyleliteralemphasis{str}) \textendash{} 
+A string with 9 comma-separated \sphinxtitleref{int} or
+\sphinxtitleref{float{}`s to set the default duration for the notes played. The
+values are respectively for: pre-question duration (1st),
+pre-question delay (2nd), and pre-question pos-delay (3rd);
+question duration (4th), question delay (5th), and question
+pos-delay (6th); resolution duration (7th), resolution
+delay (8th), and resolution pos-delay (9th).
+duration is the duration in of the note in seconds; delay is
+the time to wait before playing the next note, and pos\_delay is
+the time to wait after all the notes of the respective sequence
+have been played. If any of the user durations is {}`n}, the
+default duration for the type of question will be used instead.
+Example:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYGZdq{}2,0.5,1,2,n,0,2.5,n,1\PYGZdq{}
+\end{sphinxVerbatim}
+
+
+\item {} 
+\sphinxstyleliteralstrong{prequestion\_method} (\sphinxstyleliteralemphasis{str}) \textendash{} Method of playing a cadence or the
+exercise tonic before the question so to affirm the question
+musical tonic key to the ear. Valid ones are registered in the
+\sphinxtitleref{birdears.prequestion.PREQUESION\_METHODS} global dict.
+
+\item {} 
+\sphinxstyleliteralstrong{resolution\_method} (\sphinxstyleliteralemphasis{str}) \textendash{} Method of playing the resolution of an
+exercise. Valid ones are registered in the
+\sphinxtitleref{birdears.resolution.RESOLUTION\_METHODS} global dict.
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{\_\_module\_\_ (birdears.questions.melodicinterval.MelodicIntervalQuestion attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{index:birdears.questions.melodicinterval.MelodicIntervalQuestion.__module__}}\pysigline{\sphinxbfcode{\_\_module\_\_}\sphinxbfcode{ = 'birdears.questions.melodicinterval'}}
+\end{fulllineitems}
+
 \index{check\_question() (birdears.questions.melodicinterval.MelodicIntervalQuestion method)}
 
 \begin{fulllineitems}
@@ -3882,7 +4455,7 @@ Checks whether the given answer is correct.
 
 
 \chapter{birdears.interfaces package}
-\label{\detokenize{index:birdears-interfaces-package}}\label{\detokenize{index:module-birdears.interfaces}}\index{birdears.interfaces (module)}
+\label{\detokenize{index:module-birdears.interfaces}}\label{\detokenize{index:birdears-interfaces-package}}\index{birdears.interfaces (module)}
 
 \section{Submodules}
 \label{\detokenize{index:id13}}
