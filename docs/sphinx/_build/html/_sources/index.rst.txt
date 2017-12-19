@@ -44,12 +44,15 @@ Download the PDF version of this book. Clicking here_.
    :maxdepth: 3
    :hidden:
 
+   community
    features
    installing
    using
    birdears
    birdears.questions
    birdears.interfaces
+
+.. include:: community.rst
 
 .. include:: features.rst
 

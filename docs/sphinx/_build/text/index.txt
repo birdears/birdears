@@ -30,6 +30,16 @@ Project at GitHub.
 Download the PDF version of this book. Clicking here.
 
 
+Support
+=======
+
+irc: #birdears at freenode github: github.com/iacchus/birdears
+
+*etc*
+
+*write me*
+
+
 Features
 ========
 

@@ -1,10 +1,10 @@
 # Fdb version 3
-["makeindex birdears.idx"] 1513702511 "birdears.idx" "birdears.ind" "birdears" 1513702523
-  "birdears.idx" 1513702522 21490 08f492aabc64c335a4451b91688b4570 ""
+["makeindex birdears.idx"] 1513703187 "birdears.idx" "birdears.ind" "birdears" 1513703196
+  "birdears.idx" 1513703195 21490 0f17d4b1829a454b9ae165d040f4da1d ""
   (generated)
   "birdears.ilg"
   "birdears.ind"
-["pdflatex"] 1513702518 "birdears.tex" "birdears.pdf" "birdears" 1513702523
+["pdflatex"] 1513703192 "birdears.tex" "birdears.pdf" "birdears" 1513703196
   "/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc" 1510784367 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1510784337 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/share/texmf-dist/fonts/tfm/adobe/courier/pcrb8c.tfm" 1510784341 1268 8067e4f35cbae42c0f58b48da75bf496 ""
@@ -155,11 +155,11 @@
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1510784374 32585 d82bbcf7626b7842c87671687479e852 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1512119733 334286 7d54d57af850f32d2e4cd0d3222731c3 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1512119688 7736838 b66cc3c55fc2a19697f4a056c7cda46c ""
-  "birdears.aux" 1513702522 55331 f5e7776e52db2ed98946090bcb566c0d ""
-  "birdears.ind" 1513702512 13176 914f3c281e765d1d54eb71a91762fc93 "makeindex birdears.idx"
-  "birdears.out" 1513702522 12940 0400d0c113927da802e3d995ead397d3 ""
-  "birdears.tex" 1513702506 203716 eeb864d30cc82766f270c28ec7801264 ""
-  "birdears.toc" 1513702522 7805 be26e59b5e8fb1bbabe80d463360aa7a ""
+  "birdears.aux" 1513703195 55954 e9aff4a05a842fde8ba7e9e4e85d00a4 ""
+  "birdears.ind" 1513703187 13176 64576a642155a47435c57708dfca6621 "makeindex birdears.idx"
+  "birdears.out" 1513703195 13118 b27e2e695382a66959aa5440b80dc8ce ""
+  "birdears.tex" 1513703183 204112 fa115c9e0a71ad339d2a8505b8c42fcd ""
+  "birdears.toc" 1513703195 7954 54361272f955f24d1e158a7060e3eccc ""
   "dorian.png" 1513697879 17549 1009eb328f21c6a3ee422d7908cf9edf ""
   "footnotehyper-sphinx.sty" 1508671197 8841 e18cbb7bca599a223414f9b8a156abee ""
   "ionian.png" 1513697879 17346 8cf9b14753c0aba9cd6099bc1e168853 ""
@@ -169,13 +169,13 @@
   "mixolydian.png" 1513697879 17517 fa8151e827c9e95147a3dffeef3570e3 ""
   "phrygian.png" 1513697879 17279 c7969b2551e2b21aa3c47ac62c7a4f62 ""
   "sphinx.sty" 1508728659 62670 74cadfc8799b8ec9c0014b7f476b628d ""
-  "sphinxhighlight.sty" 1513702501 8137 38a433148fcb7611515a989ff1750dd5 ""
+  "sphinxhighlight.sty" 1513703179 8137 38a433148fcb7611515a989ff1750dd5 ""
   "sphinxmanual.cls" 1508671197 3589 0b0aac49c6f36925cf5f9d524a75a978 ""
   "sphinxmulticell.sty" 1508671197 14618 0defbdc8536ad2e67f1eac6a1431bc55 ""
   (generated)
-  "birdears.log"
-  "birdears.pdf"
   "birdears.toc"
-  "birdears.aux"
-  "birdears.out"
   "birdears.idx"
+  "birdears.pdf"
+  "birdears.out"
+  "birdears.aux"
+  "birdears.log"
