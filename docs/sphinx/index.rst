@@ -38,10 +38,10 @@ Download the PDF version of this book. Clicking here_.
 
 .. raw:: html
 
-  <script src="https://asciinema.org/a/153476.js" id="asciicast-153476" async></script>
+  <script src="https://asciinema.org/a/153478.js" id="asciicast-153478" async></script>
 
 .. toctree::
-   :maxdepth: 0
+   :maxdepth: 3
    :hidden:
 
    features
@@ -49,6 +49,7 @@ Download the PDF version of this book. Clicking here_.
    using
    birdears
    birdears.questions
+   birdears.interfaces
 
 .. include:: features.rst
 
