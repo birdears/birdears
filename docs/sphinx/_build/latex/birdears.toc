@@ -9,22 +9,24 @@
 \contentsline {section}{\numberline {2.2}The method}{5}{section.2.2}
 \contentsline {section}{\numberline {2.3}birdears modes}{5}{section.2.3}
 \contentsline {section}{\numberline {2.4}basic usage}{5}{section.2.4}
-\contentsline {section}{\numberline {2.5}melodic}{6}{section.2.5}
-\contentsline {section}{\numberline {2.6}harmonic}{7}{section.2.6}
-\contentsline {section}{\numberline {2.7}dictation}{8}{section.2.7}
-\contentsline {section}{\numberline {2.8}instrumental}{8}{section.2.8}
-\contentsline {section}{\numberline {2.9}Load from config file}{9}{section.2.9}
+\contentsline {subsection}{\numberline {2.4.1}melodic}{6}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}harmonic}{7}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.3}dictation}{8}{subsection.2.4.3}
+\contentsline {subsection}{\numberline {2.4.4}instrumental}{8}{subsection.2.4.4}
+\contentsline {subsection}{\numberline {2.4.5}Pre-made presets}{9}{subsection.2.4.5}
+\contentsline {subsubsection}{Pre-made presets description}{9}{subsubsection*.3}
+\contentsline {subsection}{\numberline {2.4.6}Creating new preset files}{9}{subsection.2.4.6}
 \contentsline {chapter}{\numberline {3}birdears package}{11}{chapter.3}
 \contentsline {section}{\numberline {3.1}Subpackages}{11}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}birdears.interfaces package}{11}{subsection.3.1.1}
-\contentsline {subsubsection}{Submodules}{11}{subsubsection*.3}
-\contentsline {subsubsection}{birdears.interfaces.commandline module}{11}{subsubsection*.4}
+\contentsline {subsubsection}{Submodules}{11}{subsubsection*.4}
+\contentsline {subsubsection}{birdears.interfaces.commandline module}{11}{subsubsection*.5}
 \contentsline {subsection}{\numberline {3.1.2}birdears.questions package}{12}{subsection.3.1.2}
-\contentsline {subsubsection}{Submodules}{12}{subsubsection*.12}
-\contentsline {subsubsection}{birdears.questions.harmonicinterval module}{12}{subsubsection*.13}
-\contentsline {subsubsection}{birdears.questions.instrumentaldictation module}{14}{subsubsection*.22}
-\contentsline {subsubsection}{birdears.questions.melodicdictation module}{16}{subsubsection*.30}
-\contentsline {subsubsection}{birdears.questions.melodicinterval module}{17}{subsubsection*.39}
+\contentsline {subsubsection}{Submodules}{12}{subsubsection*.13}
+\contentsline {subsubsection}{birdears.questions.harmonicinterval module}{12}{subsubsection*.14}
+\contentsline {subsubsection}{birdears.questions.instrumentaldictation module}{14}{subsubsection*.23}
+\contentsline {subsubsection}{birdears.questions.melodicdictation module}{16}{subsubsection*.31}
+\contentsline {subsubsection}{birdears.questions.melodicinterval module}{17}{subsubsection*.40}
 \contentsline {section}{\numberline {3.2}Submodules}{18}{section.3.2}
 \contentsline {section}{\numberline {3.3}birdears.interval module}{18}{section.3.3}
 \contentsline {section}{\numberline {3.4}birdears.logger module}{20}{section.3.4}
@@ -43,11 +45,13 @@
 \contentsline {section}{\numberline {5.2}The method}{29}{section.5.2}
 \contentsline {section}{\numberline {5.3}birdears modes}{29}{section.5.3}
 \contentsline {section}{\numberline {5.4}basic usage}{29}{section.5.4}
-\contentsline {section}{\numberline {5.5}melodic}{30}{section.5.5}
-\contentsline {section}{\numberline {5.6}harmonic}{31}{section.5.6}
-\contentsline {section}{\numberline {5.7}dictation}{32}{section.5.7}
-\contentsline {section}{\numberline {5.8}instrumental}{32}{section.5.8}
-\contentsline {section}{\numberline {5.9}Load from config file}{33}{section.5.9}
+\contentsline {subsection}{\numberline {5.4.1}melodic}{30}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.4.2}harmonic}{31}{subsection.5.4.2}
+\contentsline {subsection}{\numberline {5.4.3}dictation}{32}{subsection.5.4.3}
+\contentsline {subsection}{\numberline {5.4.4}instrumental}{32}{subsection.5.4.4}
+\contentsline {subsection}{\numberline {5.4.5}Pre-made presets}{33}{subsection.5.4.5}
+\contentsline {subsubsection}{Pre-made presets description}{33}{subsubsection*.114}
+\contentsline {subsection}{\numberline {5.4.6}Creating new preset files}{33}{subsection.5.4.6}
 \contentsline {chapter}{\numberline {6}API}{35}{chapter.6}
 \contentsline {chapter}{\numberline {7}birdears package}{37}{chapter.7}
 \contentsline {section}{\numberline {7.1}Subpackages}{37}{section.7.1}
@@ -68,4 +72,4 @@
 \contentsline {chapter}{\numberline {9}birdears.interfaces package}{55}{chapter.9}
 \contentsline {section}{\numberline {9.1}Submodules}{55}{section.9.1}
 \contentsline {section}{\numberline {9.2}birdears.interfaces.commandline module}{55}{section.9.2}
-\contentsline {chapter}{Python Module Index}{57}{section*.215}
+\contentsline {chapter}{Python Module Index}{57}{section*.217}

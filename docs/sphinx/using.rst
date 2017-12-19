@@ -70,7 +70,7 @@ of the commands, invoking this way:
   birdears <command> --help
 
 melodic
--------
+~~~~~~~
 
 In this exercise birdears will play two notes, the tonic and the interval
 melodically, ie., one after the other and you should reply which is the
@@ -124,7 +124,7 @@ correct distance between the two.
     -r <resolution_method> is one of: nearest_tonic, repeat_only
   
 harmonic
---------
+~~~~~~~~
 
 In this exercise birdears will play two notes, the tonic and the interval
 harmonically, ie., both on the same time and you should reply which is the
@@ -178,7 +178,7 @@ correct distance between the two.
     -r <resolution_method> is one of: nearest_tonic, repeat_only
 
 dictation
----------
+~~~~~~~~~
 
 In this exercise birdears will choose some random intervals and create a
 melodic dictation with them. You should reply the correct intervals of the
@@ -197,7 +197,7 @@ melodic dictation.
   Error: No such command "dication".
 
 instrumental
-------------
+~~~~~~~~~~~~
 
 In this exercise birdears will choose some random intervals and create a
 melodic dictation with them. You should play the correct melody in you
@@ -254,7 +254,29 @@ musical instrument.
   
     -r <resolution_method> is one of: nearest_tonic, repeat_only
 
-Load from config file
----------------------
 
 *write me!!*
+Loading from config/preset files
+--------------------------------
+
+Pre-made presets
+~~~~~~~~~~~~~~~~
+
+``birdears`` cointains some pre-made presets in it’s ``presets/``
+subdirectory.
+
+The study for beginners is recommended by following the numeric order of
+those files (000, 001, then 002 etc.)
+
+Pre-made presets description
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+*write me*
+
+Creating new preset files
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can open the files cointained in birdears premade ``presets/``
+folder to have an ideia on how config files are made; it is simply the
+command line options written in a form ``toml`` standard.
+
