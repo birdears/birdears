@@ -2,7 +2,6 @@
   {
     "backcolor": "#666699",
     "author": "Iacchus Mercurius",
-    "notes": "Test\n*ok*\n",
     "radii": "0px",
     "css": "@import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700|Open+Sans+Condensed:300,300i,700|Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');\n\n* {\n    border-radius: 2px !important;\n    font-family: 'Inconsolata';\n}\n\n.keylabel1 {font-weight:bold;}"
   },
@@ -10,7 +9,10 @@
     {
       "c": "#dddddd",
       "a": 5,
-      "f": 2
+      "fa": [
+        2,
+        2
+      ]
     },
     "q\nquit birdears",
     {
@@ -20,12 +22,14 @@
       "f": 3
     },
     "w",
+    {
+      "f": 3
+    },
     "e",
     {
       "c": "#dddddd",
       "t": "#000000",
-      "a": 5,
-      "f": 2
+      "a": 5
     },
     "r\nrepeat question",
     {
@@ -35,61 +39,72 @@
       "f": 3
     },
     "t",
+    {
+      "f": 3
+    },
     "y",
+    {
+      "f": 3
+    },
     "u",
+    {
+      "f": 3
+    },
     "i",
+    {
+      "f": 3
+    },
     "o",
+    {
+      "f": 3
+    },
     "p"
   ],
   [
     {
-      "x": 0.5
+      "x": 0.5,
+      "f": 3
     },
     "a",
     {
       "c": "#333333",
       "t": "#ffffff",
-      "a": 5,
-      "f": 2
+      "a": 5
     },
     "s\nminor second",
     {
       "c": "#eeeeee",
       "t": "#777777",
-      "a": 7
+      "a": 7,
+      "f": 3
     },
     "d",
     {
       "c": "#333333",
       "t": "#ffffff",
-      "a": 5,
-      "f": 3,
-      "f2": 2
+      "a": 5
     },
     "f\nmajor third",
-    {
-      "f": 2
-    },
     "g\ntritone (A4/D5)",
     "h\nminor sixth",
     {
       "c": "#eeeeee",
       "t": "#777777",
-      "a": 7
+      "a": 7,
+      "f": 3
     },
     "j",
     {
       "c": "#333333",
       "t": "#ffffff",
-      "a": 5,
-      "f": 3,
-      "f2": 2
+      "a": 5
     },
     "k\nmajor seventh",
     {
       "c": "#eeeeee",
       "t": "#777777",
-      "a": 7
+      "a": 7,
+      "f": 3
     },
     "l",
     {
@@ -102,8 +117,7 @@
       "x": 1,
       "c": "#dddddd",
       "t": "#000000",
-      "a": 5,
-      "f": 2
+      "a": 5
     },
     "z\nperfect unisson",
     "x\nmajor second",
@@ -116,8 +130,7 @@
     {
       "c": "#eeeeee",
       "t": "#666666",
-      "a": 7,
-      "f": 3
+      "a": 7
     },
     "",
     ""

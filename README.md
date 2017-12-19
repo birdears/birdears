@@ -135,7 +135,7 @@ These are the keybindings for the **Ionian (Major) Scale**; black keys are the c
 
 ### aeolian
 
-![birdears - aeolian keybindings](docs/keybindings/aeolian.png)
+![birdears - aeolian keybindings](docs/keybindings/minor.png)
 
 ### locrian
 

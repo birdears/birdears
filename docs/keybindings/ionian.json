@@ -3,7 +3,6 @@
     "backcolor": "#666699",
     "name": "birdears keybindings ─ ionian (major) mode",
     "author": "Iacchus Mercurius",
-    "notes": "Test\n*ok*\n",
     "radii": "0px",
     "css": "@import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700|Open+Sans+Condensed:300,300i,700|Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');\n\n* {\n    border-radius: 2px !important;\n    font-family: 'Inconsolata';\n}\n\n.keylabel1 {font-weight:bold;}"
   },
@@ -68,7 +67,7 @@
       "a": 5,
       "f": 2
     },
-    "g\ntritone (A4/D5)",
+    "g\ntritone (A4/d5)",
     "h\nminor sixth",
     "j\nminor seventh",
     {

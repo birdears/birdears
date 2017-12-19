@@ -58,13 +58,16 @@
     "d\nmajor second",
     {
       "f": 3,
-      "f2": 2
+      "fa": [
+        2,
+        2
+      ]
     },
     "f\nmajor third",
     {
       "f": 2
     },
-    "g\ntritone (A4/D5)",
+    "g\ntritone (A4/d5)",
     {
       "c": "#eeeeee",
       "t": "#777777",
@@ -76,16 +79,20 @@
       "t": "#ffffff",
       "a": 5
     },
-    "j\nmajor sixt",
+    "j\nmajor sixth",
     {
       "f": 3,
-      "f2": 2
+      "fa": [
+        2,
+        2
+      ]
     },
     "k\nmajor seventh",
     {
       "c": "#eeeeee",
       "t": "#777777",
-      "a": 7
+      "a": 7,
+      "f": 3
     },
     "l",
     {
