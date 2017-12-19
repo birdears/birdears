@@ -1,0 +1,680 @@
+birdears package
+****************
+
+BirdEars provides facilities to musical ear training exercises.
+
+
+Subpackages
+===========
+
+* birdears.interfaces package
+
+  * Submodules
+
+  * birdears.interfaces.commandline module
+
+* birdears.questions package
+
+  * Submodules
+
+  * birdears.questions.harmonicinterval module
+
+  * birdears.questions.instrumentaldictation module
+
+  * birdears.questions.melodicdictation module
+
+  * birdears.questions.melodicinterval module
+
+
+Submodules
+==========
+
+
+birdears.interval module
+========================
+
+class birdears.interval.ChromaticInterval(mode, tonic, octave, n_octaves=None, descending=None, valid_intervals=None)
+
+   Bases: "birdears.interval.IntervalBase"
+
+   Chooses a diatonic interval for the question.
+
+   tonic_octave
+
+      *int* – Scientific octave for the tonic. For example, if the
+      tonic is a ‘C4’ then *tonic_octave* is 4.
+
+   interval octave
+
+      *int* – Scientific octave for the interval. For example, if the
+      interval is a ‘G5’ then *tonic_octave* is 5.
+
+   chromatic_offset
+
+      *int* – The offset in semitones inside one octave; maybe it will
+      be deprecated in favour of *distance[‘semitones’]* which is the
+      same.
+
+   note_and_octave
+
+      *str* – Note and octave of the interval, for example, if the
+      interval is G5 the note name is ‘G5’.
+
+   note_name
+
+      *str* – The note name of the interval, for example, if the
+      interval is G5 then the name is ‘G’.
+
+   semitones
+
+      *int* – Semitones from tonic to octave. If tonic is C4 and
+      interval is G5 the number of semitones is 19.
+
+   is_chromatic
+
+      *bool* – If the current interval is chromatic (True) or if it
+      exists in the diatonic scale which key is tonic.
+
+   is_descending
+
+      *bool* – If the interval has a descending direction, ie., has a
+      lower pitch than the tonic.
+
+   diatonic_index
+
+      *int* – If the interval is chromatic, this will be the nearest
+      diatonic interval in the direction of the resolution (closest
+      tonic.) From II to IV degrees, it is the ditonic interval
+      before; from V to VII it is the diatonic interval after.
+
+   distance
+
+      *dict* – A dictionary which the distance from tonic to interval,
+      for example, if tonic is C4 and interval is G5:
+
+         {
+             'octaves': 1,
+             'semitones': 7
+         }
+
+   data
+
+      *tuple* – A tuple representing the interval data in the form of
+      (semitones, short_name, long_name), for example:
+
+         (19, 'P12', 'Perfect Twelfth')
+
+   Todo:
+
+   * Maybe we should refactor some of the attributes with a tuple
+
+        (note, octave)
+
+   * Maybe remove *chromatic_offset* in favor of
+     *distance[‘semitones’]`*
+
+   __init__(mode, tonic, octave, n_octaves=None, descending=None, valid_intervals=None)
+
+      Inits the class and choses a random interval with the given
+      args.
+
+      Parameters:
+         * **mode** (*str*) – Diatonic mode for the interval. (eg.:
+           ‘major’ or ‘minor’)
+
+         * **tonic** (*str*) – Tonic of the scale. (eg.: ‘Bb’)
+
+         * **octave** (*str*) – Scientific octave of the scale (eg.:
+           4)
+
+         * **interval** (*str*) – Not implemented. The interval.
+
+         * **chromatic** (*bool*) – Can have chromatic notes? (eg.:
+           F# in a key of C; default: false)
+
+         * **n_octaves** (*int*) – Maximum number os octaves (eg. 2)
+
+         * **descending** (*bool*) – Is the interval descending?
+           (default: false)
+
+         * **valid_intervals** (*int*) – A list with inervals valid
+           for random choice, 1 is 1st, 2 is second etc.
+
+class birdears.interval.DiatonicInterval(mode, tonic, octave, n_octaves=None, descending=None, valid_intervals=None)
+
+   Bases: "birdears.interval.IntervalBase"
+
+   Chooses a diatonic interval for the question.
+
+   tonic_octave
+
+      *int* – Scientific octave for the tonic. For example, if the
+      tonic is a ‘C4’ then *tonic_octave* is 4.
+
+   interval octave
+
+      *int* – Scientific octave for the interval. For example, if the
+      interval is a ‘G5’ then *tonic_octave* is 5.
+
+   chromatic_offset
+
+      *int* – The offset in semitones inside one octave. Relative
+      semitones to tonic.
+
+   note_and_octave
+
+      *str* – Note and octave of the interval, for example, if the
+      interval is G5 the note name is ‘G5’.
+
+   note_name
+
+      *str* – The note name of the interval, for example, if the
+      interval is G5 then the name is ‘G’.
+
+   semitones
+
+      *int* – Semitones from tonic to octave. If tonic is C4 and
+      interval is G5 the number of semitones is 19.
+
+   is_chromatic
+
+      *bool* – If the current interval is chromatic (True) or if it
+      exists in the diatonic scale which key is tonic.
+
+   is_descending
+
+      *bool* – If the interval has a descending direction, ie., has a
+      lower pitch than the tonic.
+
+   diatonic_index
+
+      *int* – If the interval is chromatic, this will be the nearest
+      diatonic interval in the direction of the resolution (closest
+      tonic.) From II to IV degrees, it is the ditonic interval
+      before; from V to VII it is the diatonic interval after.
+
+   distance
+
+      *dict* – A dictionary which the distance from tonic to interval,
+      for example, if tonic is C4 and interval is G5:
+
+         {
+             'octaves': 1,
+             'semitones': 7
+         }
+
+   data
+
+      *tuple* – A tuple representing the interval data in the form of
+      (semitones, short_name, long_name), for example:
+
+         (19, 'P12', 'Perfect Twelfth')
+
+   __init__(mode, tonic, octave, n_octaves=None, descending=None, valid_intervals=None)
+
+      Inits the class and choses a random interval with the given
+      args.
+
+      Parameters:
+         * **mode** (*str*) – Diatonic mode for the interval. (eg.:
+           ‘major’ or ‘minor’)
+
+         * **tonic** (*str*) – Tonic of the scale. (eg.: ‘Bb’)
+
+         * **octave** (*str*) – Scientific octave of the scale (eg.:
+           4)
+
+         * **n_octaves** (*int*) – Maximum number os octaves (eg. 2)
+
+         * **descending** (*bool*) – Is the interval descending?
+           (default: false)
+
+         * **valid_intervals** (*int*) – A list with intervals (int)
+           valid for random choice, 1 is 1st, 2 is second etc.
+
+class birdears.interval.IntervalBase
+
+   Bases: "object"
+
+   __init__()
+
+      Base class for interval classes.
+
+   return_simple(keys)
+
+      This method returns a dict with only the values passed to
+      *keys*.
+
+
+birdears.logger module
+======================
+
+This submodule exports *logger* to log events.
+
+Logging messages which are less severe than *lvl* will be ignored:
+
+   Level       Numeric value
+   -----       -------------
+   CRITICAL    50
+   ERROR       40
+   WARNING     30
+   INFO        20
+   DEBUG       10
+   NOTSET      0
+
+   Level       When it’s used
+   -----       --------------
+   DEBUG       Detailed information, typically of interest only when
+                   diagnosing problems.
+   INFO        Confirmation that things are working as expected.
+   WARNING     An indication that something unexpected happened, or indicative
+                   of some problem in the near future (e.g. ‘disk space low’).
+                   The software is still working as expected.
+   ERROR       Due to a more serious problem, the software has not been able
+                   to perform some function.
+   CRITICAL    A serious error, indicating that the program itself may be
+                   unable to continue running.
+
+birdears.logger.log_event(f, *args, **kwargs)
+
+   Decorator. Functions and method decorated with this decorator will
+   have their signature logged when birdears is executed with *–debug*
+   mode. Both function signature with their call values and their
+   return will be logged.
+
+
+birdears.prequestion module
+===========================
+
+This module implements pre-questions’ progressions.
+
+Pre questions are chord progressions or notes played before the
+question is played, so to affirmate the sound of the question’s key.
+
+For example a common cadence is chords I-IV-V-I from the diatonic
+scale, which in a key of *C* is *CM-FM-GM-CM* and in a key of *A* is
+*AM-DM-EM-AM*.
+
+Pre-question methods should be decorated with
+*register_prequestion_method* decorator, so that they will be
+registered as a valid pre-question method.
+
+class birdears.prequestion.PreQuestion(method, question)
+
+   Bases: "object"
+
+   __call__(*args, **kwargs)
+
+      Calls the resolution method and pass arguments to it.
+
+      Returns a *birdears.Sequence* object with the pre-question
+      generated by the method.
+
+   __init__(method, question)
+
+      This class implements methods for different types of pre-
+      question progressions.
+
+      Parameters:
+         * **method** (*str*) – The method used in the pre question.
+
+         * **question** (*obj*) – Question object from which to
+           generate the
+
+         * **sequence.** (*pre-question*) –
+
+birdears.prequestion.none(question, *args, **kwargs)
+
+   Pre-question method that return an empty sequence with no delay.
+   :param question: Question object from which to generate the
+
+      pre-question sequence. (this is provided by the *Resolution*
+      class when it is >>`<<__call__`ed)
+
+birdears.prequestion.progression_i_iv_v_i(question, *args, **kwargs)
+
+   Pre-question method that play’s a chord progression with triad
+   chords built on the grades I, IV, V the I of the question key.
+
+   Parameters:
+      **question** (*obj*) – Question object from which to generate
+      the pre-question sequence. (this is provided by the *Resolution*
+      class when it is >>`<<__call__`ed)
+
+birdears.prequestion.register_prequestion_method(f, *args, **kwargs)
+
+   Decorator for prequestion method functions.
+
+   Functions decorated with this decorator will be registered in the
+   *PREQUESTION_METHODS* global dict.
+
+birdears.prequestion.tonic_only(question, *args, **kwargs)
+
+   Pre-question method that only play’s the question tonic note before
+   the question.
+
+   Parameters:
+      **question** (*obj*) – Question object from which to generate
+      the pre-question sequence. (this is provided by the *Resolution*
+      class when it is >>`<<__call__`ed)
+
+
+birdears.questionbase module
+============================
+
+class birdears.questionbase.QuestionBase(mode='major', tonic=None, octave=None, descending=None, chromatic=None, n_octaves=None, valid_intervals=None, user_durations=None, prequestion_method=None, resolution_method=None, default_durations=None, *args, **kwargs)
+
+   Bases: "object"
+
+   Base Class to be subclassed for Question classes.
+
+   This class implements attributes and routines to be used in
+   Question subclasses.
+
+   __init__(mode='major', tonic=None, octave=None, descending=None, chromatic=None, n_octaves=None, valid_intervals=None, user_durations=None, prequestion_method=None, resolution_method=None, default_durations=None, *args, **kwargs)
+
+      Inits the class.
+
+      Parameters:
+         * **mode** (*str*) – A string represnting the mode of the
+           question. Eg., ‘major’ or ‘minor’
+
+         * **tonic** (*str*) – A string representing the tonic of
+           the question, eg.: ‘C’; if omitted, it will be selected
+           randomly.
+
+         * **octave** (*int*) – A scienfic octave notation, for
+           example, 4 for ‘C4’; if not present, it will be randomly
+           chosen.
+
+         * **descending** (*bool*) – Is the question direction in
+           descending, ie., intervals have lower pitch than the tonic.
+
+         * **chromatic** (*bool*) – If the question can have (True)
+           or not (False) chromatic intervals, ie., intervals not in
+           the diatonic scale of tonic/mode.
+
+         * **n_octaves** (*int*) – Maximum numbr of octaves of the
+           question.
+
+         * **valid_intervals** (*list*) – A list with intervals
+           (int) valid for random choice, 1 is 1st, 2 is second etc.
+           Eg. [1, 4, 5] to allow only tonics, fourths and fifths.
+
+         * **user_durations** (*dict*) –
+
+           A string with 9 comma-separated *int* or *float`s to set
+           the default duration for the notes played. The values are
+           respectively for: pre-question duration (1st), pre-question
+           delay (2nd), and pre-question pos-delay (3rd); question
+           duration (4th), question delay (5th), and question pos-
+           delay (6th); resolution duration (7th), resolution delay
+           (8th), and resolution pos-delay (9th). duration is the
+           duration in of the note in seconds; delay is the time to
+           wait before playing the next note, and pos_delay is the
+           time to wait after all the notes of the respective sequence
+           have been played. If any of the user durations is `n*, the
+           default duration for the type of question will be used
+           instead. Example:
+
+              "2,0.5,1,2,n,0,2.5,n,1"
+
+         * **prequestion_method** (*str*) – Method of playing a
+           cadence or the exercise tonic before the question so to
+           affirm the question musical tonic key to the ear. Valid
+           ones are registered in the
+           *birdears.prequestion.PREQUESION_METHODS* global dict.
+
+         * **resolution_method** (*str*) – Method of playing the
+           resolution of an exercise Valid ones are registered in the
+           *birdears.resolution.RESOLUTION_METHODS* global dict.
+
+         * **user_durations** – Dictionary with the default
+           durations for each type of sequence. This is provided by
+           the subclasses.
+
+   check_question()
+
+      This method should be overwritten by the question subclasses.
+
+   get_valid_semitones()
+
+      Returns a list with valid semitones for question.
+
+   make_question()
+
+      This method should be overwritten by the question subclasses.
+
+   make_resolution()
+
+      This method should be overwritten by the question subclasses.
+
+   play_question()
+
+      This method should be overwritten by the question subclasses.
+
+birdears.questionbase.register_question_class(f, *args, **kwargs)
+
+   Decorator for question classes.
+
+   Classes decorated with this decorator will be registered in the
+   *QUESTION_CLASSES* global.
+
+
+birdears.resolution module
+==========================
+
+class birdears.resolution.Resolution(method, question)
+
+   Bases: "object"
+
+   This class implements methods for different types of question
+   resolutions.
+
+   A resolution is an answer to a question. It aims to create a
+   mnemonic on how the inverval resvolver to the tonic.
+
+   __call__(*args, **kwargs)
+
+      Calls the resolution method and pass arguments to it.
+
+      Returns a *birdears.Sequence* object with the resolution
+      generated by the.method.
+
+   __init__(method, question)
+
+      Inits the resolution class.
+
+      Parameters:
+         * **method** (*str*) – The method used in the resolution.
+
+         * **question** (*obj*) – Question object from which to
+           generate the
+
+         * **sequence.** (*resolution*) –
+
+birdears.resolution.nearest_tonic(question)
+
+   Resolution method that resolve the intervals to their nearest
+   tonics.
+
+   Parameters:
+      **question** (*obj*) – Question object from which to generate
+      the resolution sequence. (this is provided by the *Prequestion*
+      class when it is >>`<<__call__`ed)
+
+birdears.resolution.register_resolution_method(f, *args, **kwargs)
+
+   Decorator for resolution method functions.
+
+   Functions decorated with this decorator will be registered in the
+   *RESOLUTION_METHODS* global dict.
+
+birdears.resolution.repeat_only(question)
+
+   Resolution method that only repeats the sequence elements with
+   given durations.
+
+   Parameters:
+      **question** (*obj*) – Question object from which to generate
+      the resolution sequence. (this is provided by the *Prequestion*
+      class when it is >>`<<__call__`ed)
+
+
+birdears.scale module
+=====================
+
+class birdears.scale.ChromaticScale(tonic, octave=None, n_octaves=None, descending=None, dont_repeat_tonic=None)
+
+   Bases: "birdears.scale.ScaleBase"
+
+   Builds a musical chromatic scale.
+
+   scale
+
+      *array_type* – The array of notes representing the scale.
+
+   __init__(tonic, octave=None, n_octaves=None, descending=None, dont_repeat_tonic=None)
+
+      Returns a chromatic scale from tonic.
+
+      Parameters:
+         * **tonic** (*str*) – The note which the scale will be
+           built upon.
+
+         * **octave** (*int*) – The scientific octave the scale will
+           be built upon.
+
+         * **n_octaves** (*int*) – The number of octaves the scale
+           will contain.
+
+         * **descending** (*bool*) – Whether the scale is
+           descending.
+
+         * **dont_repeat_tonic** (*bool*) – Whether to skip
+           appending the last note (octave) to the scale.
+
+   get_triad(mode, index=0, degree=None)
+
+      Returns an array with notes from a scale’s triad.
+
+      Parameters:
+         * **mode** (*str*) – Mode of the scale (eg. ‘major’ or
+           ‘minor’)
+
+         * **index** (*int*) – Triad index (eg.: 0 for 1st degree
+           triad.)
+
+         * **degree** (*int*) – Degree of the scale. If provided,
+           overrides the *index* argument. (eg.: *1* for the 1st
+           degree triad.)
+
+      Returns:
+         A list with three pitches (str), one for each note of the
+         triad.
+
+class birdears.scale.DiatonicScale(tonic, mode=None, octave=None, n_octaves=None, descending=None, dont_repeat_tonic=None)
+
+   Bases: "birdears.scale.ScaleBase"
+
+   Builds a musical diatonic scale.
+
+   scale
+
+      *array_type* – The array of notes representing the scale.
+
+   __init__(tonic, mode=None, octave=None, n_octaves=None, descending=None, dont_repeat_tonic=None)
+
+      Returns a diatonic scale from tonic and mode.
+
+      Parameters:
+         * **tonic** (*str*) – The note which the scale will be
+           built upon.
+
+         * **mode** (*str*) – The mode the scale will be built upon.
+           (‘major’ or ‘minor’)
+
+         * **octave** (*int*) – The scientific octave the scale will
+           be built upon.
+
+         * **n_octaves** (*int*) – The number of octaves the scale
+           will contain.
+
+         * **descending** (*bool*) – Whether the scale is
+           descending.
+
+         * **dont_repeat_tonic** (*bool*) – Whether to skip
+           appending the last note (octave) to the scale.
+
+   get_triad(index=0, degree=None)
+
+      Returns an array with notes from a scale’s triad.
+
+      Parameters:
+         * **index** (*int*) – triad index (eg.: 0 for 1st degree
+           triad.)
+
+         * **degree** (*int*) – Degree of the scale. If provided,
+           overrides the *index* argument. (eg.: *1* for the 1st
+           degree triad.)
+
+      Returns:
+         An array with three pitches, one for each note of the triad.
+
+class birdears.scale.ScaleBase
+
+   Bases: "object"
+
+
+birdears.sequence module
+========================
+
+class birdears.sequence.Sequence(elements=[], duration=2, delay=1.5, pos_delay=1)
+
+   Bases: "object"
+
+   Register a Sequence of notes and/or chords.
+
+   elements
+
+      *array_type* – List of notes (strings) ou chords (list of
+      strings) in this Sequence.
+
+   append(elements)
+
+      Appends *elements* to Sequence.elements
+
+      Parameters:
+         **elements** (*array_type*) – Elements to be appended to the
+         class.
+
+   async_play(callback, end_callback)
+
+      Plays the Sequence elements of notes and/or chords and wait for
+      *Sequence.pos_delay* seconds.
+
+   extend(elements)
+
+      Extends Sequence.elements with *elements*.
+
+      Parameters:
+         **elements** (*array_type*) – elements extend the class with.
+
+   make_chord_progression(tonic, mode, degrees)
+
+      Appends triad chord(s) to the Sequence.
+
+      Parameters:
+         * **tonic** (*str*) – Tonic note of the scale.
+
+         * **mode** (*str*) – Mode of the scale from which build the
+           triads upon.
+
+         * **degrees** (*array_type*) – List with integers
+           represending the degrees of each triad.
+
+   play(callback=None, end_callback=None)
+
+   play_element(index)
+
+      Plays element *sequence.elements[index].*
