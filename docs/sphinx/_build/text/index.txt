@@ -41,6 +41,8 @@ time as you want to try it out.
 
   * basic usage
 
+  * Loading from config/preset files
+
 * birdears package
 
   * Subpackages
@@ -360,7 +362,11 @@ you musical instrument.
 
      -r <resolution_method> is one of: nearest_tonic, repeat_only
 
-*write me!!* Loading from config/preset files ——————————–
+*write me!!*
+
+
+Loading from config/preset files
+--------------------------------
 
 
 Pre-made presets
