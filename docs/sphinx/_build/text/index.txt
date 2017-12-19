@@ -25,6 +25,8 @@ will not wait for a typed reply and you should prectice with your own
 judgement. The melody can be repeat any times and you can have as much
 time as you want to try it out.
 
+* Features
+
 * Installing birdears
 
   * Installing the dependencies
@@ -41,9 +43,7 @@ time as you want to try it out.
 
   * The method
 
-  * birdears modes
-
-  * basic usage
+  * birdears modes and basic usage
 
     * melodic
 
@@ -168,8 +168,8 @@ We can use abc language to notate music withing the documentation, ok
    c3 cAG| AGA cde| fed cAG| Ad^c d3:|
 
 
-birdears modes
---------------
+birdears modes and basic usage
+------------------------------
 
 birdears actually has four modes:
 
@@ -180,12 +180,6 @@ birdears actually has four modes:
 * melodic dictation question
 
 * instrumental dictation question
-
-* load from config file
-
-
-basic usage
------------
 
 To see the commands avaliable just invoke the command without any
 arguments:

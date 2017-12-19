@@ -29,7 +29,7 @@ We can use abc language to notate music withing the documentation, ok
   f2g e2f| d2e c2d|ABA GAG| F2F GED|
   c3 cAG| AGA cde| fed cAG| Ad^c d3:|
   
-birdears modes
+birdears modes and basic usage
 --------------
 
 birdears actually has four modes:
@@ -38,10 +38,6 @@ birdears actually has four modes:
 * harmonic interval question
 * melodic dictation question
 * instrumental dictation question
-* load from config file
-
-basic usage
------------
 
 To see the commands avaliable just invoke the command without any arguments:
 

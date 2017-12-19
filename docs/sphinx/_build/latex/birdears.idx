@@ -1,250 +1,250 @@
-\indexentry{birdears (module)|hyperpage}{11}
-\indexentry{CHROMATIC\_FLAT (in module birdears)|hyperpage}{11}
-\indexentry{CHROMATIC\_SHARP (in module birdears)|hyperpage}{11}
-\indexentry{CHROMATIC\_TYPE (in module birdears)|hyperpage}{11}
-\indexentry{CIRCLE\_OF\_FIFTHS (in module birdears)|hyperpage}{11}
-\indexentry{DIATONIC\_MODES (in module birdears)|hyperpage}{11}
-\indexentry{INTERVALS (in module birdears)|hyperpage}{11}
-\indexentry{INTERVAL\_INDEX (in module birdears)|hyperpage}{11}
-\indexentry{KEYS (in module birdears)|hyperpage}{11}
-\indexentry{birdears.interfaces (module)|hyperpage}{11}
-\indexentry{birdears.interfaces.commandline (module)|hyperpage}{12}
-\indexentry{CommandLine() (in module birdears.interfaces.commandline)|hyperpage}{12}
-\indexentry{center\_text() (in module birdears.interfaces.commandline)|hyperpage}{12}
-\indexentry{make\_input\_str() (in module birdears.interfaces.commandline)|hyperpage}{12}
-\indexentry{print\_instrumental() (in module birdears.interfaces.commandline)|hyperpage}{12}
-\indexentry{print\_question() (in module birdears.interfaces.commandline)|hyperpage}{12}
-\indexentry{print\_response() (in module birdears.interfaces.commandline)|hyperpage}{12}
-\indexentry{birdears.questions (module)|hyperpage}{12}
-\indexentry{birdears.questions.harmonicinterval (module)|hyperpage}{13}
-\indexentry{HarmonicIntervalQuestion (class in birdears.questions.harmonicinterval)|hyperpage}{13}
-\indexentry{\_\_init\_\_() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)|hyperpage}{13}
-\indexentry{check\_question() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)|hyperpage}{14}
-\indexentry{make\_pre\_question() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)|hyperpage}{14}
-\indexentry{make\_question() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)|hyperpage}{14}
-\indexentry{make\_resolution() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)|hyperpage}{14}
-\indexentry{play\_question() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)|hyperpage}{14}
-\indexentry{play\_resolution() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)|hyperpage}{14}
-\indexentry{birdears.questions.instrumentaldictation (module)|hyperpage}{14}
-\indexentry{InstrumentalDictationQuestion (class in birdears.questions.instrumentaldictation)|hyperpage}{14}
-\indexentry{\_\_init\_\_() (birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method)|hyperpage}{14}
-\indexentry{check\_question() (birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method)|hyperpage}{15}
-\indexentry{make\_pre\_question() (birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method)|hyperpage}{15}
-\indexentry{make\_question() (birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method)|hyperpage}{15}
-\indexentry{make\_resolution() (birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method)|hyperpage}{15}
-\indexentry{play\_question() (birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method)|hyperpage}{15}
-\indexentry{birdears.questions.melodicdictation (module)|hyperpage}{16}
-\indexentry{MelodicDictationQuestion (class in birdears.questions.melodicdictation)|hyperpage}{16}
-\indexentry{\_\_init\_\_() (birdears.questions.melodicdictation.MelodicDictationQuestion method)|hyperpage}{16}
-\indexentry{check\_question() (birdears.questions.melodicdictation.MelodicDictationQuestion method)|hyperpage}{17}
-\indexentry{make\_pre\_question() (birdears.questions.melodicdictation.MelodicDictationQuestion method)|hyperpage}{17}
-\indexentry{make\_question() (birdears.questions.melodicdictation.MelodicDictationQuestion method)|hyperpage}{17}
-\indexentry{make\_resolution() (birdears.questions.melodicdictation.MelodicDictationQuestion method)|hyperpage}{17}
-\indexentry{play\_question() (birdears.questions.melodicdictation.MelodicDictationQuestion method)|hyperpage}{17}
-\indexentry{play\_resolution() (birdears.questions.melodicdictation.MelodicDictationQuestion method)|hyperpage}{17}
-\indexentry{birdears.questions.melodicinterval (module)|hyperpage}{17}
-\indexentry{MelodicIntervalQuestion (class in birdears.questions.melodicinterval)|hyperpage}{17}
-\indexentry{check\_question() (birdears.questions.melodicinterval.MelodicIntervalQuestion method)|hyperpage}{17}
-\indexentry{make\_pre\_question() (birdears.questions.melodicinterval.MelodicIntervalQuestion method)|hyperpage}{17}
-\indexentry{make\_question() (birdears.questions.melodicinterval.MelodicIntervalQuestion method)|hyperpage}{17}
-\indexentry{make\_resolution() (birdears.questions.melodicinterval.MelodicIntervalQuestion method)|hyperpage}{17}
-\indexentry{play\_question() (birdears.questions.melodicinterval.MelodicIntervalQuestion method)|hyperpage}{17}
-\indexentry{play\_resolution() (birdears.questions.melodicinterval.MelodicIntervalQuestion method)|hyperpage}{18}
-\indexentry{birdears.interval (module)|hyperpage}{18}
-\indexentry{ChromaticInterval (class in birdears.interval)|hyperpage}{18}
-\indexentry{tonic\_octave (birdears.interval.ChromaticInterval attribute)|hyperpage}{18}
-\indexentry{chromatic\_offset (birdears.interval.ChromaticInterval attribute)|hyperpage}{18}
-\indexentry{note\_and\_octave (birdears.interval.ChromaticInterval attribute)|hyperpage}{18}
-\indexentry{note\_name (birdears.interval.ChromaticInterval attribute)|hyperpage}{18}
-\indexentry{semitones (birdears.interval.ChromaticInterval attribute)|hyperpage}{18}
-\indexentry{is\_chromatic (birdears.interval.ChromaticInterval attribute)|hyperpage}{18}
-\indexentry{is\_descending (birdears.interval.ChromaticInterval attribute)|hyperpage}{18}
-\indexentry{diatonic\_index (birdears.interval.ChromaticInterval attribute)|hyperpage}{18}
-\indexentry{distance (birdears.interval.ChromaticInterval attribute)|hyperpage}{18}
-\indexentry{data (birdears.interval.ChromaticInterval attribute)|hyperpage}{18}
-\indexentry{\_\_init\_\_() (birdears.interval.ChromaticInterval method)|hyperpage}{19}
-\indexentry{DiatonicInterval (class in birdears.interval)|hyperpage}{19}
-\indexentry{tonic\_octave (birdears.interval.DiatonicInterval attribute)|hyperpage}{19}
-\indexentry{chromatic\_offset (birdears.interval.DiatonicInterval attribute)|hyperpage}{19}
-\indexentry{note\_and\_octave (birdears.interval.DiatonicInterval attribute)|hyperpage}{19}
-\indexentry{note\_name (birdears.interval.DiatonicInterval attribute)|hyperpage}{19}
-\indexentry{semitones (birdears.interval.DiatonicInterval attribute)|hyperpage}{19}
-\indexentry{is\_chromatic (birdears.interval.DiatonicInterval attribute)|hyperpage}{19}
-\indexentry{is\_descending (birdears.interval.DiatonicInterval attribute)|hyperpage}{19}
-\indexentry{diatonic\_index (birdears.interval.DiatonicInterval attribute)|hyperpage}{19}
-\indexentry{distance (birdears.interval.DiatonicInterval attribute)|hyperpage}{19}
-\indexentry{data (birdears.interval.DiatonicInterval attribute)|hyperpage}{20}
-\indexentry{\_\_init\_\_() (birdears.interval.DiatonicInterval method)|hyperpage}{20}
-\indexentry{IntervalBase (class in birdears.interval)|hyperpage}{20}
-\indexentry{\_\_init\_\_() (birdears.interval.IntervalBase method)|hyperpage}{20}
-\indexentry{return\_simple() (birdears.interval.IntervalBase method)|hyperpage}{20}
-\indexentry{birdears.logger (module)|hyperpage}{20}
-\indexentry{log\_event() (in module birdears.logger)|hyperpage}{21}
-\indexentry{birdears.prequestion (module)|hyperpage}{21}
-\indexentry{PreQuestion (class in birdears.prequestion)|hyperpage}{21}
-\indexentry{\_\_call\_\_() (birdears.prequestion.PreQuestion method)|hyperpage}{21}
-\indexentry{\_\_init\_\_() (birdears.prequestion.PreQuestion method)|hyperpage}{21}
-\indexentry{none() (in module birdears.prequestion)|hyperpage}{21}
-\indexentry{progression\_i\_iv\_v\_i() (in module birdears.prequestion)|hyperpage}{21}
-\indexentry{register\_prequestion\_method() (in module birdears.prequestion)|hyperpage}{21}
-\indexentry{tonic\_only() (in module birdears.prequestion)|hyperpage}{22}
-\indexentry{birdears.questionbase (module)|hyperpage}{22}
-\indexentry{QuestionBase (class in birdears.questionbase)|hyperpage}{22}
-\indexentry{\_\_init\_\_() (birdears.questionbase.QuestionBase method)|hyperpage}{22}
-\indexentry{check\_question() (birdears.questionbase.QuestionBase method)|hyperpage}{23}
-\indexentry{get\_valid\_semitones() (birdears.questionbase.QuestionBase method)|hyperpage}{23}
-\indexentry{make\_question() (birdears.questionbase.QuestionBase method)|hyperpage}{23}
-\indexentry{make\_resolution() (birdears.questionbase.QuestionBase method)|hyperpage}{23}
-\indexentry{play\_question() (birdears.questionbase.QuestionBase method)|hyperpage}{23}
-\indexentry{register\_question\_class() (in module birdears.questionbase)|hyperpage}{23}
-\indexentry{birdears.resolution (module)|hyperpage}{23}
-\indexentry{Resolution (class in birdears.resolution)|hyperpage}{23}
-\indexentry{\_\_call\_\_() (birdears.resolution.Resolution method)|hyperpage}{23}
-\indexentry{\_\_init\_\_() (birdears.resolution.Resolution method)|hyperpage}{23}
-\indexentry{nearest\_tonic() (in module birdears.resolution)|hyperpage}{23}
-\indexentry{register\_resolution\_method() (in module birdears.resolution)|hyperpage}{24}
-\indexentry{repeat\_only() (in module birdears.resolution)|hyperpage}{24}
-\indexentry{birdears.scale (module)|hyperpage}{24}
-\indexentry{ChromaticScale (class in birdears.scale)|hyperpage}{24}
-\indexentry{scale (birdears.scale.ChromaticScale attribute)|hyperpage}{24}
-\indexentry{\_\_init\_\_() (birdears.scale.ChromaticScale method)|hyperpage}{24}
-\indexentry{get\_triad() (birdears.scale.ChromaticScale method)|hyperpage}{24}
-\indexentry{DiatonicScale (class in birdears.scale)|hyperpage}{24}
-\indexentry{scale (birdears.scale.DiatonicScale attribute)|hyperpage}{24}
-\indexentry{\_\_init\_\_() (birdears.scale.DiatonicScale method)|hyperpage}{24}
-\indexentry{get\_triad() (birdears.scale.DiatonicScale method)|hyperpage}{25}
-\indexentry{ScaleBase (class in birdears.scale)|hyperpage}{25}
-\indexentry{birdears.sequence (module)|hyperpage}{25}
-\indexentry{Sequence (class in birdears.sequence)|hyperpage}{25}
-\indexentry{elements (birdears.sequence.Sequence attribute)|hyperpage}{25}
-\indexentry{append() (birdears.sequence.Sequence method)|hyperpage}{25}
-\indexentry{async\_play() (birdears.sequence.Sequence method)|hyperpage}{25}
-\indexentry{extend() (birdears.sequence.Sequence method)|hyperpage}{25}
-\indexentry{make\_chord\_progression() (birdears.sequence.Sequence method)|hyperpage}{25}
-\indexentry{play() (birdears.sequence.Sequence method)|hyperpage}{26}
-\indexentry{play\_element() (birdears.sequence.Sequence method)|hyperpage}{26}
-\indexentry{birdears (module)|hyperpage}{37}
-\indexentry{CHROMATIC\_FLAT (in module birdears)|hyperpage}{37}
-\indexentry{CHROMATIC\_SHARP (in module birdears)|hyperpage}{37}
-\indexentry{CHROMATIC\_TYPE (in module birdears)|hyperpage}{37}
-\indexentry{CIRCLE\_OF\_FIFTHS (in module birdears)|hyperpage}{37}
-\indexentry{DIATONIC\_MODES (in module birdears)|hyperpage}{37}
-\indexentry{INTERVALS (in module birdears)|hyperpage}{37}
-\indexentry{INTERVAL\_INDEX (in module birdears)|hyperpage}{37}
-\indexentry{KEYS (in module birdears)|hyperpage}{37}
-\indexentry{birdears.interval (module)|hyperpage}{38}
-\indexentry{ChromaticInterval (class in birdears.interval)|hyperpage}{38}
-\indexentry{tonic\_octave (birdears.interval.ChromaticInterval attribute)|hyperpage}{38}
-\indexentry{chromatic\_offset (birdears.interval.ChromaticInterval attribute)|hyperpage}{38}
-\indexentry{note\_and\_octave (birdears.interval.ChromaticInterval attribute)|hyperpage}{38}
-\indexentry{note\_name (birdears.interval.ChromaticInterval attribute)|hyperpage}{38}
-\indexentry{semitones (birdears.interval.ChromaticInterval attribute)|hyperpage}{38}
-\indexentry{is\_chromatic (birdears.interval.ChromaticInterval attribute)|hyperpage}{38}
-\indexentry{is\_descending (birdears.interval.ChromaticInterval attribute)|hyperpage}{38}
-\indexentry{diatonic\_index (birdears.interval.ChromaticInterval attribute)|hyperpage}{38}
-\indexentry{distance (birdears.interval.ChromaticInterval attribute)|hyperpage}{38}
-\indexentry{data (birdears.interval.ChromaticInterval attribute)|hyperpage}{38}
-\indexentry{\_\_init\_\_() (birdears.interval.ChromaticInterval method)|hyperpage}{39}
-\indexentry{DiatonicInterval (class in birdears.interval)|hyperpage}{39}
-\indexentry{tonic\_octave (birdears.interval.DiatonicInterval attribute)|hyperpage}{39}
-\indexentry{chromatic\_offset (birdears.interval.DiatonicInterval attribute)|hyperpage}{39}
-\indexentry{note\_and\_octave (birdears.interval.DiatonicInterval attribute)|hyperpage}{39}
-\indexentry{note\_name (birdears.interval.DiatonicInterval attribute)|hyperpage}{39}
-\indexentry{semitones (birdears.interval.DiatonicInterval attribute)|hyperpage}{39}
-\indexentry{is\_chromatic (birdears.interval.DiatonicInterval attribute)|hyperpage}{39}
-\indexentry{is\_descending (birdears.interval.DiatonicInterval attribute)|hyperpage}{39}
-\indexentry{diatonic\_index (birdears.interval.DiatonicInterval attribute)|hyperpage}{39}
-\indexentry{distance (birdears.interval.DiatonicInterval attribute)|hyperpage}{39}
-\indexentry{data (birdears.interval.DiatonicInterval attribute)|hyperpage}{40}
-\indexentry{\_\_init\_\_() (birdears.interval.DiatonicInterval method)|hyperpage}{40}
-\indexentry{IntervalBase (class in birdears.interval)|hyperpage}{40}
-\indexentry{\_\_init\_\_() (birdears.interval.IntervalBase method)|hyperpage}{40}
-\indexentry{return\_simple() (birdears.interval.IntervalBase method)|hyperpage}{40}
-\indexentry{birdears.logger (module)|hyperpage}{40}
-\indexentry{log\_event() (in module birdears.logger)|hyperpage}{41}
-\indexentry{birdears.prequestion (module)|hyperpage}{41}
-\indexentry{PreQuestion (class in birdears.prequestion)|hyperpage}{41}
-\indexentry{\_\_call\_\_() (birdears.prequestion.PreQuestion method)|hyperpage}{41}
-\indexentry{\_\_init\_\_() (birdears.prequestion.PreQuestion method)|hyperpage}{41}
-\indexentry{none() (in module birdears.prequestion)|hyperpage}{41}
-\indexentry{progression\_i\_iv\_v\_i() (in module birdears.prequestion)|hyperpage}{41}
-\indexentry{register\_prequestion\_method() (in module birdears.prequestion)|hyperpage}{41}
-\indexentry{tonic\_only() (in module birdears.prequestion)|hyperpage}{42}
-\indexentry{birdears.questionbase (module)|hyperpage}{42}
-\indexentry{QuestionBase (class in birdears.questionbase)|hyperpage}{42}
-\indexentry{\_\_init\_\_() (birdears.questionbase.QuestionBase method)|hyperpage}{42}
-\indexentry{check\_question() (birdears.questionbase.QuestionBase method)|hyperpage}{43}
-\indexentry{get\_valid\_semitones() (birdears.questionbase.QuestionBase method)|hyperpage}{43}
-\indexentry{make\_question() (birdears.questionbase.QuestionBase method)|hyperpage}{43}
-\indexentry{make\_resolution() (birdears.questionbase.QuestionBase method)|hyperpage}{43}
-\indexentry{play\_question() (birdears.questionbase.QuestionBase method)|hyperpage}{43}
-\indexentry{register\_question\_class() (in module birdears.questionbase)|hyperpage}{43}
-\indexentry{birdears.resolution (module)|hyperpage}{43}
-\indexentry{Resolution (class in birdears.resolution)|hyperpage}{43}
-\indexentry{\_\_call\_\_() (birdears.resolution.Resolution method)|hyperpage}{43}
-\indexentry{\_\_init\_\_() (birdears.resolution.Resolution method)|hyperpage}{43}
-\indexentry{nearest\_tonic() (in module birdears.resolution)|hyperpage}{43}
-\indexentry{register\_resolution\_method() (in module birdears.resolution)|hyperpage}{44}
-\indexentry{repeat\_only() (in module birdears.resolution)|hyperpage}{44}
-\indexentry{birdears.scale (module)|hyperpage}{44}
-\indexentry{ChromaticScale (class in birdears.scale)|hyperpage}{44}
-\indexentry{scale (birdears.scale.ChromaticScale attribute)|hyperpage}{44}
-\indexentry{\_\_init\_\_() (birdears.scale.ChromaticScale method)|hyperpage}{44}
-\indexentry{get\_triad() (birdears.scale.ChromaticScale method)|hyperpage}{44}
-\indexentry{DiatonicScale (class in birdears.scale)|hyperpage}{44}
-\indexentry{scale (birdears.scale.DiatonicScale attribute)|hyperpage}{44}
-\indexentry{\_\_init\_\_() (birdears.scale.DiatonicScale method)|hyperpage}{44}
-\indexentry{get\_triad() (birdears.scale.DiatonicScale method)|hyperpage}{45}
-\indexentry{ScaleBase (class in birdears.scale)|hyperpage}{45}
-\indexentry{birdears.sequence (module)|hyperpage}{45}
-\indexentry{Sequence (class in birdears.sequence)|hyperpage}{45}
-\indexentry{elements (birdears.sequence.Sequence attribute)|hyperpage}{45}
-\indexentry{append() (birdears.sequence.Sequence method)|hyperpage}{45}
-\indexentry{async\_play() (birdears.sequence.Sequence method)|hyperpage}{45}
-\indexentry{extend() (birdears.sequence.Sequence method)|hyperpage}{45}
-\indexentry{make\_chord\_progression() (birdears.sequence.Sequence method)|hyperpage}{45}
-\indexentry{play() (birdears.sequence.Sequence method)|hyperpage}{46}
-\indexentry{play\_element() (birdears.sequence.Sequence method)|hyperpage}{46}
-\indexentry{birdears.questions (module)|hyperpage}{47}
-\indexentry{birdears.questions.harmonicinterval (module)|hyperpage}{47}
-\indexentry{HarmonicIntervalQuestion (class in birdears.questions.harmonicinterval)|hyperpage}{47}
-\indexentry{\_\_init\_\_() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)|hyperpage}{47}
-\indexentry{check\_question() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)|hyperpage}{48}
-\indexentry{make\_pre\_question() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)|hyperpage}{48}
-\indexentry{make\_question() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)|hyperpage}{48}
-\indexentry{make\_resolution() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)|hyperpage}{48}
-\indexentry{play\_question() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)|hyperpage}{48}
-\indexentry{play\_resolution() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)|hyperpage}{48}
-\indexentry{birdears.questions.instrumentaldictation (module)|hyperpage}{49}
-\indexentry{InstrumentalDictationQuestion (class in birdears.questions.instrumentaldictation)|hyperpage}{49}
-\indexentry{\_\_init\_\_() (birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method)|hyperpage}{49}
-\indexentry{check\_question() (birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method)|hyperpage}{50}
-\indexentry{make\_pre\_question() (birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method)|hyperpage}{50}
-\indexentry{make\_question() (birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method)|hyperpage}{50}
-\indexentry{make\_resolution() (birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method)|hyperpage}{50}
-\indexentry{play\_question() (birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method)|hyperpage}{50}
-\indexentry{birdears.questions.melodicdictation (module)|hyperpage}{51}
-\indexentry{MelodicDictationQuestion (class in birdears.questions.melodicdictation)|hyperpage}{51}
-\indexentry{\_\_init\_\_() (birdears.questions.melodicdictation.MelodicDictationQuestion method)|hyperpage}{51}
-\indexentry{check\_question() (birdears.questions.melodicdictation.MelodicDictationQuestion method)|hyperpage}{52}
-\indexentry{make\_pre\_question() (birdears.questions.melodicdictation.MelodicDictationQuestion method)|hyperpage}{52}
-\indexentry{make\_question() (birdears.questions.melodicdictation.MelodicDictationQuestion method)|hyperpage}{52}
-\indexentry{make\_resolution() (birdears.questions.melodicdictation.MelodicDictationQuestion method)|hyperpage}{52}
-\indexentry{play\_question() (birdears.questions.melodicdictation.MelodicDictationQuestion method)|hyperpage}{52}
-\indexentry{play\_resolution() (birdears.questions.melodicdictation.MelodicDictationQuestion method)|hyperpage}{52}
-\indexentry{birdears.questions.melodicinterval (module)|hyperpage}{52}
-\indexentry{MelodicIntervalQuestion (class in birdears.questions.melodicinterval)|hyperpage}{52}
-\indexentry{check\_question() (birdears.questions.melodicinterval.MelodicIntervalQuestion method)|hyperpage}{52}
-\indexentry{make\_pre\_question() (birdears.questions.melodicinterval.MelodicIntervalQuestion method)|hyperpage}{52}
-\indexentry{make\_question() (birdears.questions.melodicinterval.MelodicIntervalQuestion method)|hyperpage}{52}
-\indexentry{make\_resolution() (birdears.questions.melodicinterval.MelodicIntervalQuestion method)|hyperpage}{52}
-\indexentry{play\_question() (birdears.questions.melodicinterval.MelodicIntervalQuestion method)|hyperpage}{52}
-\indexentry{play\_resolution() (birdears.questions.melodicinterval.MelodicIntervalQuestion method)|hyperpage}{53}
-\indexentry{birdears.interfaces (module)|hyperpage}{55}
-\indexentry{birdears.interfaces.commandline (module)|hyperpage}{55}
-\indexentry{CommandLine() (in module birdears.interfaces.commandline)|hyperpage}{55}
-\indexentry{center\_text() (in module birdears.interfaces.commandline)|hyperpage}{55}
-\indexentry{make\_input\_str() (in module birdears.interfaces.commandline)|hyperpage}{55}
-\indexentry{print\_instrumental() (in module birdears.interfaces.commandline)|hyperpage}{55}
-\indexentry{print\_question() (in module birdears.interfaces.commandline)|hyperpage}{55}
-\indexentry{print\_response() (in module birdears.interfaces.commandline)|hyperpage}{55}
+\indexentry{birdears (module)|hyperpage}{13}
+\indexentry{CHROMATIC\_FLAT (in module birdears)|hyperpage}{13}
+\indexentry{CHROMATIC\_SHARP (in module birdears)|hyperpage}{13}
+\indexentry{CHROMATIC\_TYPE (in module birdears)|hyperpage}{13}
+\indexentry{CIRCLE\_OF\_FIFTHS (in module birdears)|hyperpage}{13}
+\indexentry{DIATONIC\_MODES (in module birdears)|hyperpage}{13}
+\indexentry{INTERVALS (in module birdears)|hyperpage}{13}
+\indexentry{INTERVAL\_INDEX (in module birdears)|hyperpage}{13}
+\indexentry{KEYS (in module birdears)|hyperpage}{13}
+\indexentry{birdears.interfaces (module)|hyperpage}{13}
+\indexentry{birdears.interfaces.commandline (module)|hyperpage}{14}
+\indexentry{CommandLine() (in module birdears.interfaces.commandline)|hyperpage}{14}
+\indexentry{center\_text() (in module birdears.interfaces.commandline)|hyperpage}{14}
+\indexentry{make\_input\_str() (in module birdears.interfaces.commandline)|hyperpage}{14}
+\indexentry{print\_instrumental() (in module birdears.interfaces.commandline)|hyperpage}{14}
+\indexentry{print\_question() (in module birdears.interfaces.commandline)|hyperpage}{14}
+\indexentry{print\_response() (in module birdears.interfaces.commandline)|hyperpage}{14}
+\indexentry{birdears.questions (module)|hyperpage}{14}
+\indexentry{birdears.questions.harmonicinterval (module)|hyperpage}{15}
+\indexentry{HarmonicIntervalQuestion (class in birdears.questions.harmonicinterval)|hyperpage}{15}
+\indexentry{\_\_init\_\_() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)|hyperpage}{15}
+\indexentry{check\_question() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)|hyperpage}{16}
+\indexentry{make\_pre\_question() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)|hyperpage}{16}
+\indexentry{make\_question() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)|hyperpage}{16}
+\indexentry{make\_resolution() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)|hyperpage}{16}
+\indexentry{play\_question() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)|hyperpage}{16}
+\indexentry{play\_resolution() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)|hyperpage}{16}
+\indexentry{birdears.questions.instrumentaldictation (module)|hyperpage}{16}
+\indexentry{InstrumentalDictationQuestion (class in birdears.questions.instrumentaldictation)|hyperpage}{16}
+\indexentry{\_\_init\_\_() (birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method)|hyperpage}{16}
+\indexentry{check\_question() (birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method)|hyperpage}{17}
+\indexentry{make\_pre\_question() (birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method)|hyperpage}{17}
+\indexentry{make\_question() (birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method)|hyperpage}{17}
+\indexentry{make\_resolution() (birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method)|hyperpage}{17}
+\indexentry{play\_question() (birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method)|hyperpage}{17}
+\indexentry{birdears.questions.melodicdictation (module)|hyperpage}{18}
+\indexentry{MelodicDictationQuestion (class in birdears.questions.melodicdictation)|hyperpage}{18}
+\indexentry{\_\_init\_\_() (birdears.questions.melodicdictation.MelodicDictationQuestion method)|hyperpage}{18}
+\indexentry{check\_question() (birdears.questions.melodicdictation.MelodicDictationQuestion method)|hyperpage}{19}
+\indexentry{make\_pre\_question() (birdears.questions.melodicdictation.MelodicDictationQuestion method)|hyperpage}{19}
+\indexentry{make\_question() (birdears.questions.melodicdictation.MelodicDictationQuestion method)|hyperpage}{19}
+\indexentry{make\_resolution() (birdears.questions.melodicdictation.MelodicDictationQuestion method)|hyperpage}{19}
+\indexentry{play\_question() (birdears.questions.melodicdictation.MelodicDictationQuestion method)|hyperpage}{19}
+\indexentry{play\_resolution() (birdears.questions.melodicdictation.MelodicDictationQuestion method)|hyperpage}{19}
+\indexentry{birdears.questions.melodicinterval (module)|hyperpage}{19}
+\indexentry{MelodicIntervalQuestion (class in birdears.questions.melodicinterval)|hyperpage}{19}
+\indexentry{check\_question() (birdears.questions.melodicinterval.MelodicIntervalQuestion method)|hyperpage}{19}
+\indexentry{make\_pre\_question() (birdears.questions.melodicinterval.MelodicIntervalQuestion method)|hyperpage}{19}
+\indexentry{make\_question() (birdears.questions.melodicinterval.MelodicIntervalQuestion method)|hyperpage}{19}
+\indexentry{make\_resolution() (birdears.questions.melodicinterval.MelodicIntervalQuestion method)|hyperpage}{19}
+\indexentry{play\_question() (birdears.questions.melodicinterval.MelodicIntervalQuestion method)|hyperpage}{19}
+\indexentry{play\_resolution() (birdears.questions.melodicinterval.MelodicIntervalQuestion method)|hyperpage}{20}
+\indexentry{birdears.interval (module)|hyperpage}{20}
+\indexentry{ChromaticInterval (class in birdears.interval)|hyperpage}{20}
+\indexentry{tonic\_octave (birdears.interval.ChromaticInterval attribute)|hyperpage}{20}
+\indexentry{chromatic\_offset (birdears.interval.ChromaticInterval attribute)|hyperpage}{20}
+\indexentry{note\_and\_octave (birdears.interval.ChromaticInterval attribute)|hyperpage}{20}
+\indexentry{note\_name (birdears.interval.ChromaticInterval attribute)|hyperpage}{20}
+\indexentry{semitones (birdears.interval.ChromaticInterval attribute)|hyperpage}{20}
+\indexentry{is\_chromatic (birdears.interval.ChromaticInterval attribute)|hyperpage}{20}
+\indexentry{is\_descending (birdears.interval.ChromaticInterval attribute)|hyperpage}{20}
+\indexentry{diatonic\_index (birdears.interval.ChromaticInterval attribute)|hyperpage}{20}
+\indexentry{distance (birdears.interval.ChromaticInterval attribute)|hyperpage}{20}
+\indexentry{data (birdears.interval.ChromaticInterval attribute)|hyperpage}{20}
+\indexentry{\_\_init\_\_() (birdears.interval.ChromaticInterval method)|hyperpage}{21}
+\indexentry{DiatonicInterval (class in birdears.interval)|hyperpage}{21}
+\indexentry{tonic\_octave (birdears.interval.DiatonicInterval attribute)|hyperpage}{21}
+\indexentry{chromatic\_offset (birdears.interval.DiatonicInterval attribute)|hyperpage}{21}
+\indexentry{note\_and\_octave (birdears.interval.DiatonicInterval attribute)|hyperpage}{21}
+\indexentry{note\_name (birdears.interval.DiatonicInterval attribute)|hyperpage}{21}
+\indexentry{semitones (birdears.interval.DiatonicInterval attribute)|hyperpage}{21}
+\indexentry{is\_chromatic (birdears.interval.DiatonicInterval attribute)|hyperpage}{21}
+\indexentry{is\_descending (birdears.interval.DiatonicInterval attribute)|hyperpage}{21}
+\indexentry{diatonic\_index (birdears.interval.DiatonicInterval attribute)|hyperpage}{21}
+\indexentry{distance (birdears.interval.DiatonicInterval attribute)|hyperpage}{21}
+\indexentry{data (birdears.interval.DiatonicInterval attribute)|hyperpage}{22}
+\indexentry{\_\_init\_\_() (birdears.interval.DiatonicInterval method)|hyperpage}{22}
+\indexentry{IntervalBase (class in birdears.interval)|hyperpage}{22}
+\indexentry{\_\_init\_\_() (birdears.interval.IntervalBase method)|hyperpage}{22}
+\indexentry{return\_simple() (birdears.interval.IntervalBase method)|hyperpage}{22}
+\indexentry{birdears.logger (module)|hyperpage}{22}
+\indexentry{log\_event() (in module birdears.logger)|hyperpage}{23}
+\indexentry{birdears.prequestion (module)|hyperpage}{23}
+\indexentry{PreQuestion (class in birdears.prequestion)|hyperpage}{23}
+\indexentry{\_\_call\_\_() (birdears.prequestion.PreQuestion method)|hyperpage}{23}
+\indexentry{\_\_init\_\_() (birdears.prequestion.PreQuestion method)|hyperpage}{23}
+\indexentry{none() (in module birdears.prequestion)|hyperpage}{23}
+\indexentry{progression\_i\_iv\_v\_i() (in module birdears.prequestion)|hyperpage}{23}
+\indexentry{register\_prequestion\_method() (in module birdears.prequestion)|hyperpage}{23}
+\indexentry{tonic\_only() (in module birdears.prequestion)|hyperpage}{24}
+\indexentry{birdears.questionbase (module)|hyperpage}{24}
+\indexentry{QuestionBase (class in birdears.questionbase)|hyperpage}{24}
+\indexentry{\_\_init\_\_() (birdears.questionbase.QuestionBase method)|hyperpage}{24}
+\indexentry{check\_question() (birdears.questionbase.QuestionBase method)|hyperpage}{25}
+\indexentry{get\_valid\_semitones() (birdears.questionbase.QuestionBase method)|hyperpage}{25}
+\indexentry{make\_question() (birdears.questionbase.QuestionBase method)|hyperpage}{25}
+\indexentry{make\_resolution() (birdears.questionbase.QuestionBase method)|hyperpage}{25}
+\indexentry{play\_question() (birdears.questionbase.QuestionBase method)|hyperpage}{25}
+\indexentry{register\_question\_class() (in module birdears.questionbase)|hyperpage}{25}
+\indexentry{birdears.resolution (module)|hyperpage}{25}
+\indexentry{Resolution (class in birdears.resolution)|hyperpage}{25}
+\indexentry{\_\_call\_\_() (birdears.resolution.Resolution method)|hyperpage}{25}
+\indexentry{\_\_init\_\_() (birdears.resolution.Resolution method)|hyperpage}{25}
+\indexentry{nearest\_tonic() (in module birdears.resolution)|hyperpage}{25}
+\indexentry{register\_resolution\_method() (in module birdears.resolution)|hyperpage}{26}
+\indexentry{repeat\_only() (in module birdears.resolution)|hyperpage}{26}
+\indexentry{birdears.scale (module)|hyperpage}{26}
+\indexentry{ChromaticScale (class in birdears.scale)|hyperpage}{26}
+\indexentry{scale (birdears.scale.ChromaticScale attribute)|hyperpage}{26}
+\indexentry{\_\_init\_\_() (birdears.scale.ChromaticScale method)|hyperpage}{26}
+\indexentry{get\_triad() (birdears.scale.ChromaticScale method)|hyperpage}{26}
+\indexentry{DiatonicScale (class in birdears.scale)|hyperpage}{26}
+\indexentry{scale (birdears.scale.DiatonicScale attribute)|hyperpage}{26}
+\indexentry{\_\_init\_\_() (birdears.scale.DiatonicScale method)|hyperpage}{26}
+\indexentry{get\_triad() (birdears.scale.DiatonicScale method)|hyperpage}{27}
+\indexentry{ScaleBase (class in birdears.scale)|hyperpage}{27}
+\indexentry{birdears.sequence (module)|hyperpage}{27}
+\indexentry{Sequence (class in birdears.sequence)|hyperpage}{27}
+\indexentry{elements (birdears.sequence.Sequence attribute)|hyperpage}{27}
+\indexentry{append() (birdears.sequence.Sequence method)|hyperpage}{27}
+\indexentry{async\_play() (birdears.sequence.Sequence method)|hyperpage}{27}
+\indexentry{extend() (birdears.sequence.Sequence method)|hyperpage}{27}
+\indexentry{make\_chord\_progression() (birdears.sequence.Sequence method)|hyperpage}{27}
+\indexentry{play() (birdears.sequence.Sequence method)|hyperpage}{28}
+\indexentry{play\_element() (birdears.sequence.Sequence method)|hyperpage}{28}
+\indexentry{birdears (module)|hyperpage}{39}
+\indexentry{CHROMATIC\_FLAT (in module birdears)|hyperpage}{39}
+\indexentry{CHROMATIC\_SHARP (in module birdears)|hyperpage}{39}
+\indexentry{CHROMATIC\_TYPE (in module birdears)|hyperpage}{39}
+\indexentry{CIRCLE\_OF\_FIFTHS (in module birdears)|hyperpage}{39}
+\indexentry{DIATONIC\_MODES (in module birdears)|hyperpage}{39}
+\indexentry{INTERVALS (in module birdears)|hyperpage}{39}
+\indexentry{INTERVAL\_INDEX (in module birdears)|hyperpage}{39}
+\indexentry{KEYS (in module birdears)|hyperpage}{39}
+\indexentry{birdears.interval (module)|hyperpage}{40}
+\indexentry{ChromaticInterval (class in birdears.interval)|hyperpage}{40}
+\indexentry{tonic\_octave (birdears.interval.ChromaticInterval attribute)|hyperpage}{40}
+\indexentry{chromatic\_offset (birdears.interval.ChromaticInterval attribute)|hyperpage}{40}
+\indexentry{note\_and\_octave (birdears.interval.ChromaticInterval attribute)|hyperpage}{40}
+\indexentry{note\_name (birdears.interval.ChromaticInterval attribute)|hyperpage}{40}
+\indexentry{semitones (birdears.interval.ChromaticInterval attribute)|hyperpage}{40}
+\indexentry{is\_chromatic (birdears.interval.ChromaticInterval attribute)|hyperpage}{40}
+\indexentry{is\_descending (birdears.interval.ChromaticInterval attribute)|hyperpage}{40}
+\indexentry{diatonic\_index (birdears.interval.ChromaticInterval attribute)|hyperpage}{40}
+\indexentry{distance (birdears.interval.ChromaticInterval attribute)|hyperpage}{40}
+\indexentry{data (birdears.interval.ChromaticInterval attribute)|hyperpage}{40}
+\indexentry{\_\_init\_\_() (birdears.interval.ChromaticInterval method)|hyperpage}{41}
+\indexentry{DiatonicInterval (class in birdears.interval)|hyperpage}{41}
+\indexentry{tonic\_octave (birdears.interval.DiatonicInterval attribute)|hyperpage}{41}
+\indexentry{chromatic\_offset (birdears.interval.DiatonicInterval attribute)|hyperpage}{41}
+\indexentry{note\_and\_octave (birdears.interval.DiatonicInterval attribute)|hyperpage}{41}
+\indexentry{note\_name (birdears.interval.DiatonicInterval attribute)|hyperpage}{41}
+\indexentry{semitones (birdears.interval.DiatonicInterval attribute)|hyperpage}{41}
+\indexentry{is\_chromatic (birdears.interval.DiatonicInterval attribute)|hyperpage}{41}
+\indexentry{is\_descending (birdears.interval.DiatonicInterval attribute)|hyperpage}{41}
+\indexentry{diatonic\_index (birdears.interval.DiatonicInterval attribute)|hyperpage}{41}
+\indexentry{distance (birdears.interval.DiatonicInterval attribute)|hyperpage}{41}
+\indexentry{data (birdears.interval.DiatonicInterval attribute)|hyperpage}{42}
+\indexentry{\_\_init\_\_() (birdears.interval.DiatonicInterval method)|hyperpage}{42}
+\indexentry{IntervalBase (class in birdears.interval)|hyperpage}{42}
+\indexentry{\_\_init\_\_() (birdears.interval.IntervalBase method)|hyperpage}{42}
+\indexentry{return\_simple() (birdears.interval.IntervalBase method)|hyperpage}{42}
+\indexentry{birdears.logger (module)|hyperpage}{42}
+\indexentry{log\_event() (in module birdears.logger)|hyperpage}{43}
+\indexentry{birdears.prequestion (module)|hyperpage}{43}
+\indexentry{PreQuestion (class in birdears.prequestion)|hyperpage}{43}
+\indexentry{\_\_call\_\_() (birdears.prequestion.PreQuestion method)|hyperpage}{43}
+\indexentry{\_\_init\_\_() (birdears.prequestion.PreQuestion method)|hyperpage}{43}
+\indexentry{none() (in module birdears.prequestion)|hyperpage}{43}
+\indexentry{progression\_i\_iv\_v\_i() (in module birdears.prequestion)|hyperpage}{43}
+\indexentry{register\_prequestion\_method() (in module birdears.prequestion)|hyperpage}{43}
+\indexentry{tonic\_only() (in module birdears.prequestion)|hyperpage}{44}
+\indexentry{birdears.questionbase (module)|hyperpage}{44}
+\indexentry{QuestionBase (class in birdears.questionbase)|hyperpage}{44}
+\indexentry{\_\_init\_\_() (birdears.questionbase.QuestionBase method)|hyperpage}{44}
+\indexentry{check\_question() (birdears.questionbase.QuestionBase method)|hyperpage}{45}
+\indexentry{get\_valid\_semitones() (birdears.questionbase.QuestionBase method)|hyperpage}{45}
+\indexentry{make\_question() (birdears.questionbase.QuestionBase method)|hyperpage}{45}
+\indexentry{make\_resolution() (birdears.questionbase.QuestionBase method)|hyperpage}{45}
+\indexentry{play\_question() (birdears.questionbase.QuestionBase method)|hyperpage}{45}
+\indexentry{register\_question\_class() (in module birdears.questionbase)|hyperpage}{45}
+\indexentry{birdears.resolution (module)|hyperpage}{45}
+\indexentry{Resolution (class in birdears.resolution)|hyperpage}{45}
+\indexentry{\_\_call\_\_() (birdears.resolution.Resolution method)|hyperpage}{45}
+\indexentry{\_\_init\_\_() (birdears.resolution.Resolution method)|hyperpage}{45}
+\indexentry{nearest\_tonic() (in module birdears.resolution)|hyperpage}{45}
+\indexentry{register\_resolution\_method() (in module birdears.resolution)|hyperpage}{46}
+\indexentry{repeat\_only() (in module birdears.resolution)|hyperpage}{46}
+\indexentry{birdears.scale (module)|hyperpage}{46}
+\indexentry{ChromaticScale (class in birdears.scale)|hyperpage}{46}
+\indexentry{scale (birdears.scale.ChromaticScale attribute)|hyperpage}{46}
+\indexentry{\_\_init\_\_() (birdears.scale.ChromaticScale method)|hyperpage}{46}
+\indexentry{get\_triad() (birdears.scale.ChromaticScale method)|hyperpage}{46}
+\indexentry{DiatonicScale (class in birdears.scale)|hyperpage}{46}
+\indexentry{scale (birdears.scale.DiatonicScale attribute)|hyperpage}{46}
+\indexentry{\_\_init\_\_() (birdears.scale.DiatonicScale method)|hyperpage}{46}
+\indexentry{get\_triad() (birdears.scale.DiatonicScale method)|hyperpage}{47}
+\indexentry{ScaleBase (class in birdears.scale)|hyperpage}{47}
+\indexentry{birdears.sequence (module)|hyperpage}{47}
+\indexentry{Sequence (class in birdears.sequence)|hyperpage}{47}
+\indexentry{elements (birdears.sequence.Sequence attribute)|hyperpage}{47}
+\indexentry{append() (birdears.sequence.Sequence method)|hyperpage}{47}
+\indexentry{async\_play() (birdears.sequence.Sequence method)|hyperpage}{47}
+\indexentry{extend() (birdears.sequence.Sequence method)|hyperpage}{47}
+\indexentry{make\_chord\_progression() (birdears.sequence.Sequence method)|hyperpage}{47}
+\indexentry{play() (birdears.sequence.Sequence method)|hyperpage}{48}
+\indexentry{play\_element() (birdears.sequence.Sequence method)|hyperpage}{48}
+\indexentry{birdears.questions (module)|hyperpage}{49}
+\indexentry{birdears.questions.harmonicinterval (module)|hyperpage}{49}
+\indexentry{HarmonicIntervalQuestion (class in birdears.questions.harmonicinterval)|hyperpage}{49}
+\indexentry{\_\_init\_\_() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)|hyperpage}{49}
+\indexentry{check\_question() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)|hyperpage}{50}
+\indexentry{make\_pre\_question() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)|hyperpage}{50}
+\indexentry{make\_question() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)|hyperpage}{50}
+\indexentry{make\_resolution() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)|hyperpage}{50}
+\indexentry{play\_question() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)|hyperpage}{50}
+\indexentry{play\_resolution() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)|hyperpage}{50}
+\indexentry{birdears.questions.instrumentaldictation (module)|hyperpage}{51}
+\indexentry{InstrumentalDictationQuestion (class in birdears.questions.instrumentaldictation)|hyperpage}{51}
+\indexentry{\_\_init\_\_() (birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method)|hyperpage}{51}
+\indexentry{check\_question() (birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method)|hyperpage}{52}
+\indexentry{make\_pre\_question() (birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method)|hyperpage}{52}
+\indexentry{make\_question() (birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method)|hyperpage}{52}
+\indexentry{make\_resolution() (birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method)|hyperpage}{52}
+\indexentry{play\_question() (birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method)|hyperpage}{52}
+\indexentry{birdears.questions.melodicdictation (module)|hyperpage}{53}
+\indexentry{MelodicDictationQuestion (class in birdears.questions.melodicdictation)|hyperpage}{53}
+\indexentry{\_\_init\_\_() (birdears.questions.melodicdictation.MelodicDictationQuestion method)|hyperpage}{53}
+\indexentry{check\_question() (birdears.questions.melodicdictation.MelodicDictationQuestion method)|hyperpage}{54}
+\indexentry{make\_pre\_question() (birdears.questions.melodicdictation.MelodicDictationQuestion method)|hyperpage}{54}
+\indexentry{make\_question() (birdears.questions.melodicdictation.MelodicDictationQuestion method)|hyperpage}{54}
+\indexentry{make\_resolution() (birdears.questions.melodicdictation.MelodicDictationQuestion method)|hyperpage}{54}
+\indexentry{play\_question() (birdears.questions.melodicdictation.MelodicDictationQuestion method)|hyperpage}{54}
+\indexentry{play\_resolution() (birdears.questions.melodicdictation.MelodicDictationQuestion method)|hyperpage}{54}
+\indexentry{birdears.questions.melodicinterval (module)|hyperpage}{54}
+\indexentry{MelodicIntervalQuestion (class in birdears.questions.melodicinterval)|hyperpage}{54}
+\indexentry{check\_question() (birdears.questions.melodicinterval.MelodicIntervalQuestion method)|hyperpage}{54}
+\indexentry{make\_pre\_question() (birdears.questions.melodicinterval.MelodicIntervalQuestion method)|hyperpage}{54}
+\indexentry{make\_question() (birdears.questions.melodicinterval.MelodicIntervalQuestion method)|hyperpage}{54}
+\indexentry{make\_resolution() (birdears.questions.melodicinterval.MelodicIntervalQuestion method)|hyperpage}{54}
+\indexentry{play\_question() (birdears.questions.melodicinterval.MelodicIntervalQuestion method)|hyperpage}{54}
+\indexentry{play\_resolution() (birdears.questions.melodicinterval.MelodicIntervalQuestion method)|hyperpage}{55}
+\indexentry{birdears.interfaces (module)|hyperpage}{57}
+\indexentry{birdears.interfaces.commandline (module)|hyperpage}{57}
+\indexentry{CommandLine() (in module birdears.interfaces.commandline)|hyperpage}{57}
+\indexentry{center\_text() (in module birdears.interfaces.commandline)|hyperpage}{57}
+\indexentry{make\_input\_str() (in module birdears.interfaces.commandline)|hyperpage}{57}
+\indexentry{print\_instrumental() (in module birdears.interfaces.commandline)|hyperpage}{57}
+\indexentry{print\_question() (in module birdears.interfaces.commandline)|hyperpage}{57}
+\indexentry{print\_response() (in module birdears.interfaces.commandline)|hyperpage}{57}

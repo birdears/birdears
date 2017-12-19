@@ -31,6 +31,7 @@ time as you want to try it out.
 .. toctree::
    :maxdepth: 3
 
+   features
    installing
    using
    birdears

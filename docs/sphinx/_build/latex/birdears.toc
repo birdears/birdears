@@ -1,78 +1,77 @@
 \select@language {english}
-\contentsline {chapter}{\numberline {1}Installing birdears}{3}{chapter.1}
-\contentsline {section}{\numberline {1.1}Installing the dependencies}{3}{section.1.1}
-\contentsline {subsection}{\numberline {1.1.1}Arch Linux}{3}{subsection.1.1.1}
-\contentsline {section}{\numberline {1.2}Installing birdears}{3}{section.1.2}
-\contentsline {subsection}{\numberline {1.2.1}In-depth installation}{3}{subsection.1.2.1}
-\contentsline {chapter}{\numberline {2}Using birdears}{5}{chapter.2}
-\contentsline {section}{\numberline {2.1}What is Functional Ear Training}{5}{section.2.1}
-\contentsline {section}{\numberline {2.2}The method}{5}{section.2.2}
-\contentsline {section}{\numberline {2.3}birdears modes}{5}{section.2.3}
-\contentsline {section}{\numberline {2.4}basic usage}{5}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}melodic}{6}{subsection.2.4.1}
-\contentsline {subsection}{\numberline {2.4.2}harmonic}{7}{subsection.2.4.2}
-\contentsline {subsection}{\numberline {2.4.3}dictation}{8}{subsection.2.4.3}
-\contentsline {subsection}{\numberline {2.4.4}instrumental}{9}{subsection.2.4.4}
-\contentsline {section}{\numberline {2.5}Loading from config/preset files}{10}{section.2.5}
-\contentsline {subsection}{\numberline {2.5.1}Pre-made presets}{10}{subsection.2.5.1}
-\contentsline {subsubsection}{Pre-made presets description}{10}{subsubsection*.3}
-\contentsline {subsection}{\numberline {2.5.2}Creating new preset files}{10}{subsection.2.5.2}
-\contentsline {chapter}{\numberline {3}birdears package}{11}{chapter.3}
-\contentsline {section}{\numberline {3.1}Subpackages}{11}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}birdears.interfaces package}{11}{subsection.3.1.1}
-\contentsline {subsubsection}{Submodules}{12}{subsubsection*.12}
-\contentsline {subsubsection}{birdears.interfaces.commandline module}{12}{subsubsection*.13}
-\contentsline {subsection}{\numberline {3.1.2}birdears.questions package}{12}{subsection.3.1.2}
-\contentsline {subsubsection}{Submodules}{12}{subsubsection*.21}
-\contentsline {subsubsection}{birdears.questions.harmonicinterval module}{13}{subsubsection*.22}
-\contentsline {subsubsection}{birdears.questions.instrumentaldictation module}{14}{subsubsection*.31}
-\contentsline {subsubsection}{birdears.questions.melodicdictation module}{16}{subsubsection*.39}
-\contentsline {subsubsection}{birdears.questions.melodicinterval module}{17}{subsubsection*.48}
-\contentsline {section}{\numberline {3.2}Submodules}{18}{section.3.2}
-\contentsline {section}{\numberline {3.3}birdears.interval module}{18}{section.3.3}
-\contentsline {section}{\numberline {3.4}birdears.logger module}{20}{section.3.4}
-\contentsline {section}{\numberline {3.5}birdears.prequestion module}{21}{section.3.5}
-\contentsline {section}{\numberline {3.6}birdears.questionbase module}{22}{section.3.6}
-\contentsline {section}{\numberline {3.7}birdears.resolution module}{23}{section.3.7}
-\contentsline {section}{\numberline {3.8}birdears.scale module}{24}{section.3.8}
-\contentsline {section}{\numberline {3.9}birdears.sequence module}{25}{section.3.9}
-\contentsline {chapter}{\numberline {4}Installing birdears}{27}{chapter.4}
-\contentsline {section}{\numberline {4.1}Installing the dependencies}{27}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Arch Linux}{27}{subsection.4.1.1}
-\contentsline {section}{\numberline {4.2}Installing birdears}{27}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}In-depth installation}{27}{subsection.4.2.1}
-\contentsline {chapter}{\numberline {5}Using birdears}{29}{chapter.5}
-\contentsline {section}{\numberline {5.1}What is Functional Ear Training}{29}{section.5.1}
-\contentsline {section}{\numberline {5.2}The method}{29}{section.5.2}
-\contentsline {section}{\numberline {5.3}birdears modes}{29}{section.5.3}
-\contentsline {section}{\numberline {5.4}basic usage}{29}{section.5.4}
-\contentsline {subsection}{\numberline {5.4.1}melodic}{30}{subsection.5.4.1}
-\contentsline {subsection}{\numberline {5.4.2}harmonic}{31}{subsection.5.4.2}
-\contentsline {subsection}{\numberline {5.4.3}dictation}{32}{subsection.5.4.3}
-\contentsline {subsection}{\numberline {5.4.4}instrumental}{33}{subsection.5.4.4}
-\contentsline {section}{\numberline {5.5}Loading from config/preset files}{34}{section.5.5}
-\contentsline {subsection}{\numberline {5.5.1}Pre-made presets}{34}{subsection.5.5.1}
-\contentsline {subsubsection}{Pre-made presets description}{34}{subsubsection*.122}
-\contentsline {subsection}{\numberline {5.5.2}Creating new preset files}{34}{subsection.5.5.2}
-\contentsline {chapter}{\numberline {6}API}{35}{chapter.6}
-\contentsline {chapter}{\numberline {7}birdears package}{37}{chapter.7}
-\contentsline {section}{\numberline {7.1}Subpackages}{38}{section.7.1}
-\contentsline {section}{\numberline {7.2}Submodules}{38}{section.7.2}
-\contentsline {section}{\numberline {7.3}birdears.interval module}{38}{section.7.3}
-\contentsline {section}{\numberline {7.4}birdears.logger module}{40}{section.7.4}
-\contentsline {section}{\numberline {7.5}birdears.prequestion module}{41}{section.7.5}
-\contentsline {section}{\numberline {7.6}birdears.questionbase module}{42}{section.7.6}
-\contentsline {section}{\numberline {7.7}birdears.resolution module}{43}{section.7.7}
-\contentsline {section}{\numberline {7.8}birdears.scale module}{44}{section.7.8}
-\contentsline {section}{\numberline {7.9}birdears.sequence module}{45}{section.7.9}
-\contentsline {chapter}{\numberline {8}birdears.questions package}{47}{chapter.8}
-\contentsline {section}{\numberline {8.1}Submodules}{47}{section.8.1}
-\contentsline {section}{\numberline {8.2}birdears.questions.harmonicinterval module}{47}{section.8.2}
-\contentsline {section}{\numberline {8.3}birdears.questions.instrumentaldictation module}{49}{section.8.3}
-\contentsline {section}{\numberline {8.4}birdears.questions.melodicdictation module}{51}{section.8.4}
-\contentsline {section}{\numberline {8.5}birdears.questions.melodicinterval module}{52}{section.8.5}
-\contentsline {chapter}{\numberline {9}birdears.interfaces package}{55}{chapter.9}
-\contentsline {section}{\numberline {9.1}Submodules}{55}{section.9.1}
-\contentsline {section}{\numberline {9.2}birdears.interfaces.commandline module}{55}{section.9.2}
-\contentsline {chapter}{Python Module Index}{57}{section*.233}
-\contentsline {chapter}{Index}{59}{section*.234}
+\contentsline {chapter}{\numberline {1}Features}{3}{chapter.1}
+\contentsline {chapter}{\numberline {2}Installing birdears}{5}{chapter.2}
+\contentsline {section}{\numberline {2.1}Installing the dependencies}{5}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Arch Linux}{5}{subsection.2.1.1}
+\contentsline {section}{\numberline {2.2}Installing birdears}{5}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}In-depth installation}{5}{subsection.2.2.1}
+\contentsline {chapter}{\numberline {3}Using birdears}{7}{chapter.3}
+\contentsline {section}{\numberline {3.1}What is Functional Ear Training}{7}{section.3.1}
+\contentsline {section}{\numberline {3.2}The method}{7}{section.3.2}
+\contentsline {section}{\numberline {3.3}birdears modes and basic usage}{7}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}melodic}{8}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}harmonic}{9}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}dictation}{10}{subsection.3.3.3}
+\contentsline {subsection}{\numberline {3.3.4}instrumental}{11}{subsection.3.3.4}
+\contentsline {section}{\numberline {3.4}Loading from config/preset files}{12}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Pre-made presets}{12}{subsection.3.4.1}
+\contentsline {subsubsection}{Pre-made presets description}{12}{subsubsection*.3}
+\contentsline {subsection}{\numberline {3.4.2}Creating new preset files}{12}{subsection.3.4.2}
+\contentsline {chapter}{\numberline {4}birdears package}{13}{chapter.4}
+\contentsline {section}{\numberline {4.1}Subpackages}{13}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}birdears.interfaces package}{13}{subsection.4.1.1}
+\contentsline {subsubsection}{Submodules}{14}{subsubsection*.12}
+\contentsline {subsubsection}{birdears.interfaces.commandline module}{14}{subsubsection*.13}
+\contentsline {subsection}{\numberline {4.1.2}birdears.questions package}{14}{subsection.4.1.2}
+\contentsline {subsubsection}{Submodules}{14}{subsubsection*.21}
+\contentsline {subsubsection}{birdears.questions.harmonicinterval module}{15}{subsubsection*.22}
+\contentsline {subsubsection}{birdears.questions.instrumentaldictation module}{16}{subsubsection*.31}
+\contentsline {subsubsection}{birdears.questions.melodicdictation module}{18}{subsubsection*.39}
+\contentsline {subsubsection}{birdears.questions.melodicinterval module}{19}{subsubsection*.48}
+\contentsline {section}{\numberline {4.2}Submodules}{20}{section.4.2}
+\contentsline {section}{\numberline {4.3}birdears.interval module}{20}{section.4.3}
+\contentsline {section}{\numberline {4.4}birdears.logger module}{22}{section.4.4}
+\contentsline {section}{\numberline {4.5}birdears.prequestion module}{23}{section.4.5}
+\contentsline {section}{\numberline {4.6}birdears.questionbase module}{24}{section.4.6}
+\contentsline {section}{\numberline {4.7}birdears.resolution module}{25}{section.4.7}
+\contentsline {section}{\numberline {4.8}birdears.scale module}{26}{section.4.8}
+\contentsline {section}{\numberline {4.9}birdears.sequence module}{27}{section.4.9}
+\contentsline {chapter}{\numberline {5}Installing birdears}{29}{chapter.5}
+\contentsline {section}{\numberline {5.1}Installing the dependencies}{29}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Arch Linux}{29}{subsection.5.1.1}
+\contentsline {section}{\numberline {5.2}Installing birdears}{29}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}In-depth installation}{29}{subsection.5.2.1}
+\contentsline {chapter}{\numberline {6}Using birdears}{31}{chapter.6}
+\contentsline {section}{\numberline {6.1}What is Functional Ear Training}{31}{section.6.1}
+\contentsline {section}{\numberline {6.2}The method}{31}{section.6.2}
+\contentsline {section}{\numberline {6.3}birdears modes and basic usage}{31}{section.6.3}
+\contentsline {subsection}{\numberline {6.3.1}melodic}{32}{subsection.6.3.1}
+\contentsline {subsection}{\numberline {6.3.2}harmonic}{33}{subsection.6.3.2}
+\contentsline {subsection}{\numberline {6.3.3}dictation}{34}{subsection.6.3.3}
+\contentsline {subsection}{\numberline {6.3.4}instrumental}{35}{subsection.6.3.4}
+\contentsline {section}{\numberline {6.4}Loading from config/preset files}{36}{section.6.4}
+\contentsline {subsection}{\numberline {6.4.1}Pre-made presets}{36}{subsection.6.4.1}
+\contentsline {subsubsection}{Pre-made presets description}{36}{subsubsection*.122}
+\contentsline {subsection}{\numberline {6.4.2}Creating new preset files}{36}{subsection.6.4.2}
+\contentsline {chapter}{\numberline {7}API}{37}{chapter.7}
+\contentsline {chapter}{\numberline {8}birdears package}{39}{chapter.8}
+\contentsline {section}{\numberline {8.1}Subpackages}{40}{section.8.1}
+\contentsline {section}{\numberline {8.2}Submodules}{40}{section.8.2}
+\contentsline {section}{\numberline {8.3}birdears.interval module}{40}{section.8.3}
+\contentsline {section}{\numberline {8.4}birdears.logger module}{42}{section.8.4}
+\contentsline {section}{\numberline {8.5}birdears.prequestion module}{43}{section.8.5}
+\contentsline {section}{\numberline {8.6}birdears.questionbase module}{44}{section.8.6}
+\contentsline {section}{\numberline {8.7}birdears.resolution module}{45}{section.8.7}
+\contentsline {section}{\numberline {8.8}birdears.scale module}{46}{section.8.8}
+\contentsline {section}{\numberline {8.9}birdears.sequence module}{47}{section.8.9}
+\contentsline {chapter}{\numberline {9}birdears.questions package}{49}{chapter.9}
+\contentsline {section}{\numberline {9.1}Submodules}{49}{section.9.1}
+\contentsline {section}{\numberline {9.2}birdears.questions.harmonicinterval module}{49}{section.9.2}
+\contentsline {section}{\numberline {9.3}birdears.questions.instrumentaldictation module}{51}{section.9.3}
+\contentsline {section}{\numberline {9.4}birdears.questions.melodicdictation module}{53}{section.9.4}
+\contentsline {section}{\numberline {9.5}birdears.questions.melodicinterval module}{54}{section.9.5}
+\contentsline {chapter}{\numberline {10}birdears.interfaces package}{57}{chapter.10}
+\contentsline {section}{\numberline {10.1}Submodules}{57}{section.10.1}
+\contentsline {section}{\numberline {10.2}birdears.interfaces.commandline module}{57}{section.10.2}
+\contentsline {chapter}{Python Module Index}{59}{section*.233}
+\contentsline {chapter}{Index}{61}{section*.234}

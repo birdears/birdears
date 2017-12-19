@@ -1,10 +1,10 @@
 # Fdb version 3
-["makeindex birdears.idx"] 1513679154 "birdears.idx" "birdears.ind" "birdears" 1513679168
-  "birdears.idx" 1513679166 21490 a5d6470184caa0078767bd0983cf9fdb ""
+["makeindex birdears.idx"] 1513679617 "birdears.idx" "birdears.ind" "birdears" 1513679637
+  "birdears.idx" 1513679635 21490 640e17ddc04952cf77601572b6f9d18b ""
   (generated)
-  "birdears.ilg"
   "birdears.ind"
-["pdflatex"] 1513679161 "birdears.tex" "birdears.pdf" "birdears" 1513679168
+  "birdears.ilg"
+["pdflatex"] 1513679628 "birdears.tex" "birdears.pdf" "birdears" 1513679637
   "/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc" 1510784367 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1510784337 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/share/texmf-dist/fonts/tfm/adobe/courier/pcrb8c.tfm" 1510784341 1268 8067e4f35cbae42c0f58b48da75bf496 ""
@@ -155,20 +155,20 @@
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1510784374 32585 d82bbcf7626b7842c87671687479e852 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1512119733 334286 7d54d57af850f32d2e4cd0d3222731c3 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1512119688 7736838 b66cc3c55fc2a19697f4a056c7cda46c ""
-  "birdears.aux" 1513679166 48362 ffae0d789c7451b04fe280c7464fd97e ""
-  "birdears.ind" 1513679154 13176 b1452bd35345d76bf421fdbbc24a98f9 "makeindex birdears.idx"
-  "birdears.out" 1513679166 10704 665aef85b2f5177dad19a761d6b5fe10 ""
-  "birdears.tex" 1513679145 197399 e49cf29d0ba80780f072882b2bf6ea2e ""
-  "birdears.toc" 1513679166 6337 6555dd29fc3a474dc5966cc92ff2de50 ""
+  "birdears.aux" 1513679635 48432 6258e859f9f69045b195ab3ea9b52a01 ""
+  "birdears.ind" 1513679618 13176 267cfd4c5b0883b432e455e4504eaa48 "makeindex birdears.idx"
+  "birdears.out" 1513679635 10745 b99126aa48d28cbc081d1652c7afee60 ""
+  "birdears.tex" 1513679607 197670 0e2308f0d6a980594d2942c1683b68e6 ""
+  "birdears.toc" 1513679635 6299 3da0aa9a3cf700f15aedc2f5c912cab1 ""
   "footnotehyper-sphinx.sty" 1513061108 8841 e18cbb7bca599a223414f9b8a156abee ""
   "sphinx.sty" 1513061108 62670 74cadfc8799b8ec9c0014b7f476b628d ""
-  "sphinxhighlight.sty" 1513679138 8137 38a433148fcb7611515a989ff1750dd5 ""
+  "sphinxhighlight.sty" 1513679597 8137 38a433148fcb7611515a989ff1750dd5 ""
   "sphinxmanual.cls" 1513061108 3589 0b0aac49c6f36925cf5f9d524a75a978 ""
   "sphinxmulticell.sty" 1513061108 14618 0defbdc8536ad2e67f1eac6a1431bc55 ""
   (generated)
-  "birdears.aux"
-  "birdears.log"
-  "birdears.idx"
-  "birdears.toc"
   "birdears.out"
+  "birdears.toc"
+  "birdears.aux"
   "birdears.pdf"
+  "birdears.idx"
+  "birdears.log"
