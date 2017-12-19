@@ -1,4 +1,4 @@
-# BirdEars
+# birdears
 
 [![Maintenance](https://img.shields.io/maintenance/yes/2017.svg?style=flat-square)](https://github.com/iacchus/birdears/issues/new?title=Is+birdears+still+maintained&body=Please+file+an+issue+if+the+maintained+button+says+no)
 [![Travis Build Status](https://img.shields.io/travis/iacchus/birdears.svg?style=flat-square&label=build)](https://travis-ci.org/iacchus/birdears)
@@ -352,3 +352,5 @@ the screencast was recorded with a command similar to
 COLUMNS=120 LINES=36 ttyrec
 seq2gif -s 2 -i ttyrecord -w 120 -h 36 -o use.gif
 ```
+
+[ttyrec](https://aur.archlinux.org/packages/ttyrec/) and [seq2gif](https://github.com/saitoha/seq2gif)
