@@ -96,7 +96,7 @@ time as you want to try it out.
 
 
 \chapter{Installing birdears}
-\label{\detokenize{installing::doc}}\label{\detokenize{installing:birdears-documentation}}\label{\detokenize{installing:installing-birdears}}
+\label{\detokenize{installing:installing-birdears}}\label{\detokenize{installing::doc}}\label{\detokenize{installing:birdears-documentation}}
 
 \section{Installing the dependencies}
 \label{\detokenize{installing:installing-the-dependencies}}
@@ -148,6 +148,21 @@ birdears \PYGZhy{}\PYGZhy{}help               \PYGZsh{} and this will run it
 
 \section{The method}
 \label{\detokenize{using:the-method}}
+\sphinxcode{{}`abc
+X: 1
+T: Banish Misfortune
+R: jig
+M: 6/8
+L: 1/8
+K: Dmix
+fed cAG\textbar{} A2d cAG\textbar{} F2D DED\textbar{} FEF GFG\textbar{}
+AGA cAG\textbar{} AGA cde\textbar{}fed cAG\textbar{} Ad\textasciicircum{}c d3:\textbar{}
+f2d d\textasciicircum{}cd\textbar{} f2g agf\textbar{} e2c cBc\textbar{}e2f gfe\textbar{}
+f2g agf\textbar{} e2f gfe\textbar{}fed cAG\textbar{}Ad\textasciicircum{}c d3:\textbar{}
+f2g e2f\textbar{} d2e c2d\textbar{}ABA GAG\textbar{} F2F GED\textbar{}
+c3 cAG\textbar{} AGA cde\textbar{} fed cAG\textbar{} Ad\textasciicircum{}c d3:\textbar{}
+{}`}
+
 
 \section{birdears modes}
 \label{\detokenize{using:birdears-modes}}
@@ -428,7 +443,7 @@ command line options written in a form \sphinxcode{toml} standard.
 
 
 \chapter{birdears package}
-\label{\detokenize{birdears::doc}}\label{\detokenize{birdears:module-birdears}}\label{\detokenize{birdears:birdears-package}}\index{birdears (module)}
+\label{\detokenize{birdears:module-birdears}}\label{\detokenize{birdears::doc}}\label{\detokenize{birdears:birdears-package}}\index{birdears (module)}
 BirdEars provides facilities to musical ear training exercises.
 
 
@@ -436,13 +451,13 @@ BirdEars provides facilities to musical ear training exercises.
 \label{\detokenize{birdears:subpackages}}
 
 \subsection{birdears.interfaces package}
-\label{\detokenize{birdears.interfaces::doc}}\label{\detokenize{birdears.interfaces:birdears-interfaces-package}}\label{\detokenize{birdears.interfaces:module-birdears.interfaces}}\index{birdears.interfaces (module)}
+\label{\detokenize{birdears.interfaces:module-birdears.interfaces}}\label{\detokenize{birdears.interfaces:birdears-interfaces-package}}\label{\detokenize{birdears.interfaces::doc}}\index{birdears.interfaces (module)}
 
 \subsubsection{Submodules}
 \label{\detokenize{birdears.interfaces:submodules}}
 
 \subsubsection{birdears.interfaces.commandline module}
-\label{\detokenize{birdears.interfaces:birdears-interfaces-commandline-module}}\label{\detokenize{birdears.interfaces:module-birdears.interfaces.commandline}}\index{birdears.interfaces.commandline (module)}\index{CommandLine() (in module birdears.interfaces.commandline)}
+\label{\detokenize{birdears.interfaces:module-birdears.interfaces.commandline}}\label{\detokenize{birdears.interfaces:birdears-interfaces-commandline-module}}\index{birdears.interfaces.commandline (module)}\index{CommandLine() (in module birdears.interfaces.commandline)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{birdears.interfaces:birdears.interfaces.commandline.CommandLine}}\pysiglinewithargsret{\sphinxcode{birdears.interfaces.commandline.}\sphinxbfcode{CommandLine}}{\emph{exercise}, \emph{**kwargs}}{}
@@ -555,7 +570,7 @@ Prints the formatted response.
 \label{\detokenize{birdears.questions:submodules}}
 
 \subsubsection{birdears.questions.harmonicinterval module}
-\label{\detokenize{birdears.questions:birdears-questions-harmonicinterval-module}}\label{\detokenize{birdears.questions:module-birdears.questions.harmonicinterval}}\index{birdears.questions.harmonicinterval (module)}\index{HarmonicIntervalQuestion (class in birdears.questions.harmonicinterval)}
+\label{\detokenize{birdears.questions:module-birdears.questions.harmonicinterval}}\label{\detokenize{birdears.questions:birdears-questions-harmonicinterval-module}}\index{birdears.questions.harmonicinterval (module)}\index{HarmonicIntervalQuestion (class in birdears.questions.harmonicinterval)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{birdears.questions:birdears.questions.harmonicinterval.HarmonicIntervalQuestion}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.questions.harmonicinterval.}\sphinxbfcode{HarmonicIntervalQuestion}}{\emph{mode='major'}, \emph{tonic=None}, \emph{octave=None}, \emph{descending=None}, \emph{chromatic=None}, \emph{n\_octaves=None}, \emph{valid\_intervals=None}, \emph{user\_durations=None}, \emph{prequestion\_method='none'}, \emph{resolution\_method='nearest\_tonic'}, \emph{*args}, \emph{**kwargs}}{}
@@ -680,7 +695,7 @@ Checks whether the given answer is correct.
 
 
 \subsubsection{birdears.questions.instrumentaldictation module}
-\label{\detokenize{birdears.questions:module-birdears.questions.instrumentaldictation}}\label{\detokenize{birdears.questions:birdears-questions-instrumentaldictation-module}}\index{birdears.questions.instrumentaldictation (module)}\index{InstrumentalDictationQuestion (class in birdears.questions.instrumentaldictation)}
+\label{\detokenize{birdears.questions:birdears-questions-instrumentaldictation-module}}\label{\detokenize{birdears.questions:module-birdears.questions.instrumentaldictation}}\index{birdears.questions.instrumentaldictation (module)}\index{InstrumentalDictationQuestion (class in birdears.questions.instrumentaldictation)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{birdears.questions:birdears.questions.instrumentaldictation.InstrumentalDictationQuestion}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.questions.instrumentaldictation.}\sphinxbfcode{InstrumentalDictationQuestion}}{\emph{mode='major'}, \emph{wait\_time=11}, \emph{n\_repeats=1}, \emph{max\_intervals=3}, \emph{n\_notes=4}, \emph{tonic=None}, \emph{octave=None}, \emph{descending=None}, \emph{chromatic=None}, \emph{n\_octaves=None}, \emph{valid\_intervals=None}, \emph{user\_durations=None}, \emph{prequestion\_method='progression\_i\_iv\_v\_i'}, \emph{resolution\_method='repeat\_only'}, \emph{*args}, \emph{**kwargs}}{}
@@ -1002,7 +1017,7 @@ Checks whether the given answer is correct.
 \label{\detokenize{birdears:submodules}}
 
 \section{birdears.interval module}
-\label{\detokenize{birdears:birdears-interval-module}}\label{\detokenize{birdears:module-birdears.interval}}\index{birdears.interval (module)}\index{ChromaticInterval (class in birdears.interval)}
+\label{\detokenize{birdears:module-birdears.interval}}\label{\detokenize{birdears:birdears-interval-module}}\index{birdears.interval (module)}\index{ChromaticInterval (class in birdears.interval)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{birdears:birdears.interval.ChromaticInterval}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.interval.}\sphinxbfcode{ChromaticInterval}}{\emph{mode}, \emph{tonic}, \emph{octave}, \emph{n\_octaves=None}, \emph{descending=None}, \emph{valid\_intervals=None}}{}
@@ -1401,7 +1416,7 @@ function signature with their call values and their return will be logged.
 
 
 \section{birdears.prequestion module}
-\label{\detokenize{birdears:birdears-prequestion-module}}\label{\detokenize{birdears:module-birdears.prequestion}}\index{birdears.prequestion (module)}
+\label{\detokenize{birdears:module-birdears.prequestion}}\label{\detokenize{birdears:birdears-prequestion-module}}\index{birdears.prequestion (module)}
 This module implements pre-questions’ progressions.
 
 Pre questions are chord progressions or notes played before the question is
@@ -1516,7 +1531,7 @@ when it is {\color{red}\bfseries{}{}`}\_\_call\_\_{}`ed)
 
 
 \section{birdears.questionbase module}
-\label{\detokenize{birdears:birdears-questionbase-module}}\label{\detokenize{birdears:module-birdears.questionbase}}\index{birdears.questionbase (module)}\index{QuestionBase (class in birdears.questionbase)}
+\label{\detokenize{birdears:module-birdears.questionbase}}\label{\detokenize{birdears:birdears-questionbase-module}}\index{birdears.questionbase (module)}\index{QuestionBase (class in birdears.questionbase)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{birdears:birdears.questionbase.QuestionBase}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.questionbase.}\sphinxbfcode{QuestionBase}}{\emph{mode='major'}, \emph{tonic=None}, \emph{octave=None}, \emph{descending=None}, \emph{chromatic=None}, \emph{n\_octaves=None}, \emph{valid\_intervals=None}, \emph{user\_durations=None}, \emph{prequestion\_method=None}, \emph{resolution\_method=None}, \emph{default\_durations=None}, \emph{*args}, \emph{**kwargs}}{}
@@ -1912,7 +1927,7 @@ Bases: \sphinxcode{object}
 
 
 \section{birdears.sequence module}
-\label{\detokenize{birdears:birdears-sequence-module}}\label{\detokenize{birdears:module-birdears.sequence}}\index{birdears.sequence (module)}\index{Sequence (class in birdears.sequence)}
+\label{\detokenize{birdears:module-birdears.sequence}}\label{\detokenize{birdears:birdears-sequence-module}}\index{birdears.sequence (module)}\index{Sequence (class in birdears.sequence)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{birdears:birdears.sequence.Sequence}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.sequence.}\sphinxbfcode{Sequence}}{\emph{elements={[}{]}}, \emph{duration=2}, \emph{delay=1.5}, \emph{pos\_delay=1}}{}
@@ -2058,6 +2073,21 @@ birdears \PYGZhy{}\PYGZhy{}help               \PYGZsh{} and this will run it
 
 \section{The method}
 \label{\detokenize{index:the-method}}
+\sphinxcode{{}`abc
+X: 1
+T: Banish Misfortune
+R: jig
+M: 6/8
+L: 1/8
+K: Dmix
+fed cAG\textbar{} A2d cAG\textbar{} F2D DED\textbar{} FEF GFG\textbar{}
+AGA cAG\textbar{} AGA cde\textbar{}fed cAG\textbar{} Ad\textasciicircum{}c d3:\textbar{}
+f2d d\textasciicircum{}cd\textbar{} f2g agf\textbar{} e2c cBc\textbar{}e2f gfe\textbar{}
+f2g agf\textbar{} e2f gfe\textbar{}fed cAG\textbar{}Ad\textasciicircum{}c d3:\textbar{}
+f2g e2f\textbar{} d2e c2d\textbar{}ABA GAG\textbar{} F2F GED\textbar{}
+c3 cAG\textbar{} AGA cde\textbar{} fed cAG\textbar{} Ad\textasciicircum{}c d3:\textbar{}
+{}`}
+
 
 \section{birdears modes}
 \label{\detokenize{index:birdears-modes}}
@@ -2352,7 +2382,7 @@ BirdEars provides facilities to musical ear training exercises.
 \label{\detokenize{index:submodules}}
 
 \section{birdears.interval module}
-\label{\detokenize{index:birdears-interval-module}}\label{\detokenize{index:module-birdears.interval}}\index{birdears.interval (module)}\index{ChromaticInterval (class in birdears.interval)}
+\label{\detokenize{index:module-birdears.interval}}\label{\detokenize{index:birdears-interval-module}}\index{birdears.interval (module)}\index{ChromaticInterval (class in birdears.interval)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{index:birdears.interval.ChromaticInterval}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.interval.}\sphinxbfcode{ChromaticInterval}}{\emph{mode}, \emph{tonic}, \emph{octave}, \emph{n\_octaves=None}, \emph{descending=None}, \emph{valid\_intervals=None}}{}
@@ -2751,7 +2781,7 @@ function signature with their call values and their return will be logged.
 
 
 \section{birdears.prequestion module}
-\label{\detokenize{index:birdears-prequestion-module}}\label{\detokenize{index:module-birdears.prequestion}}\index{birdears.prequestion (module)}
+\label{\detokenize{index:module-birdears.prequestion}}\label{\detokenize{index:birdears-prequestion-module}}\index{birdears.prequestion (module)}
 This module implements pre-questions’ progressions.
 
 Pre questions are chord progressions or notes played before the question is
@@ -2866,7 +2896,7 @@ when it is {\color{red}\bfseries{}{}`}\_\_call\_\_{}`ed)
 
 
 \section{birdears.questionbase module}
-\label{\detokenize{index:birdears-questionbase-module}}\label{\detokenize{index:module-birdears.questionbase}}\index{birdears.questionbase (module)}\index{QuestionBase (class in birdears.questionbase)}
+\label{\detokenize{index:module-birdears.questionbase}}\label{\detokenize{index:birdears-questionbase-module}}\index{birdears.questionbase (module)}\index{QuestionBase (class in birdears.questionbase)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{index:birdears.questionbase.QuestionBase}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.questionbase.}\sphinxbfcode{QuestionBase}}{\emph{mode='major'}, \emph{tonic=None}, \emph{octave=None}, \emph{descending=None}, \emph{chromatic=None}, \emph{n\_octaves=None}, \emph{valid\_intervals=None}, \emph{user\_durations=None}, \emph{prequestion\_method=None}, \emph{resolution\_method=None}, \emph{default\_durations=None}, \emph{*args}, \emph{**kwargs}}{}
@@ -3262,7 +3292,7 @@ Bases: \sphinxcode{object}
 
 
 \section{birdears.sequence module}
-\label{\detokenize{index:birdears-sequence-module}}\label{\detokenize{index:module-birdears.sequence}}\index{birdears.sequence (module)}\index{Sequence (class in birdears.sequence)}
+\label{\detokenize{index:module-birdears.sequence}}\label{\detokenize{index:birdears-sequence-module}}\index{birdears.sequence (module)}\index{Sequence (class in birdears.sequence)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{index:birdears.sequence.Sequence}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.sequence.}\sphinxbfcode{Sequence}}{\emph{elements={[}{]}}, \emph{duration=2}, \emph{delay=1.5}, \emph{pos\_delay=1}}{}
@@ -3356,13 +3386,13 @@ Plays element \sphinxtitleref{sequence.elements{[}index{]}.}
 
 
 \chapter{birdears.questions package}
-\label{\detokenize{index:birdears-questions-package}}\label{\detokenize{index:module-birdears.questions}}\index{birdears.questions (module)}
+\label{\detokenize{index:module-birdears.questions}}\label{\detokenize{index:birdears-questions-package}}\index{birdears.questions (module)}
 
 \section{Submodules}
 \label{\detokenize{index:id12}}
 
 \section{birdears.questions.harmonicinterval module}
-\label{\detokenize{index:birdears-questions-harmonicinterval-module}}\label{\detokenize{index:module-birdears.questions.harmonicinterval}}\index{birdears.questions.harmonicinterval (module)}\index{HarmonicIntervalQuestion (class in birdears.questions.harmonicinterval)}
+\label{\detokenize{index:module-birdears.questions.harmonicinterval}}\label{\detokenize{index:birdears-questions-harmonicinterval-module}}\index{birdears.questions.harmonicinterval (module)}\index{HarmonicIntervalQuestion (class in birdears.questions.harmonicinterval)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{index:birdears.questions.harmonicinterval.HarmonicIntervalQuestion}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.questions.harmonicinterval.}\sphinxbfcode{HarmonicIntervalQuestion}}{\emph{mode='major'}, \emph{tonic=None}, \emph{octave=None}, \emph{descending=None}, \emph{chromatic=None}, \emph{n\_octaves=None}, \emph{valid\_intervals=None}, \emph{user\_durations=None}, \emph{prequestion\_method='none'}, \emph{resolution\_method='nearest\_tonic'}, \emph{*args}, \emph{**kwargs}}{}
@@ -3487,7 +3517,7 @@ Checks whether the given answer is correct.
 
 
 \section{birdears.questions.instrumentaldictation module}
-\label{\detokenize{index:module-birdears.questions.instrumentaldictation}}\label{\detokenize{index:birdears-questions-instrumentaldictation-module}}\index{birdears.questions.instrumentaldictation (module)}\index{InstrumentalDictationQuestion (class in birdears.questions.instrumentaldictation)}
+\label{\detokenize{index:birdears-questions-instrumentaldictation-module}}\label{\detokenize{index:module-birdears.questions.instrumentaldictation}}\index{birdears.questions.instrumentaldictation (module)}\index{InstrumentalDictationQuestion (class in birdears.questions.instrumentaldictation)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{index:birdears.questions.instrumentaldictation.InstrumentalDictationQuestion}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.questions.instrumentaldictation.}\sphinxbfcode{InstrumentalDictationQuestion}}{\emph{mode='major'}, \emph{wait\_time=11}, \emph{n\_repeats=1}, \emph{max\_intervals=3}, \emph{n\_notes=4}, \emph{tonic=None}, \emph{octave=None}, \emph{descending=None}, \emph{chromatic=None}, \emph{n\_octaves=None}, \emph{valid\_intervals=None}, \emph{user\_durations=None}, \emph{prequestion\_method='progression\_i\_iv\_v\_i'}, \emph{resolution\_method='repeat\_only'}, \emph{*args}, \emph{**kwargs}}{}
@@ -3806,13 +3836,13 @@ Checks whether the given answer is correct.
 
 
 \chapter{birdears.interfaces package}
-\label{\detokenize{index:birdears-interfaces-package}}\label{\detokenize{index:module-birdears.interfaces}}\index{birdears.interfaces (module)}
+\label{\detokenize{index:module-birdears.interfaces}}\label{\detokenize{index:birdears-interfaces-package}}\index{birdears.interfaces (module)}
 
 \section{Submodules}
 \label{\detokenize{index:id13}}
 
 \section{birdears.interfaces.commandline module}
-\label{\detokenize{index:birdears-interfaces-commandline-module}}\label{\detokenize{index:module-birdears.interfaces.commandline}}\index{birdears.interfaces.commandline (module)}\index{CommandLine() (in module birdears.interfaces.commandline)}
+\label{\detokenize{index:module-birdears.interfaces.commandline}}\label{\detokenize{index:birdears-interfaces-commandline-module}}\index{birdears.interfaces.commandline (module)}\index{CommandLine() (in module birdears.interfaces.commandline)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{index:birdears.interfaces.commandline.CommandLine}}\pysiglinewithargsret{\sphinxcode{birdears.interfaces.commandline.}\sphinxbfcode{CommandLine}}{\emph{exercise}, \emph{**kwargs}}{}

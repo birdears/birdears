@@ -132,6 +132,11 @@ What is Functional Ear Training
 The method
 ----------
 
+"`abc X: 1 T: Banish Misfortune R: jig M: 6/8 L: 1/8 K: Dmix fed cAG|
+A2d cAG| F2D DED| FEF GFG| AGA cAG| AGA cde|fed cAG| Ad^c d3:| f2d
+d^cd| f2g agf| e2c cBc|e2f gfe| f2g agf| e2f gfe|fed cAG|Ad^c d3:| f2g
+e2f| d2e c2d|ABA GAG| F2F GED| c3 cAG| AGA cde| fed cAG| Ad^c d3:| `"
+
 
 birdears modes
 --------------
