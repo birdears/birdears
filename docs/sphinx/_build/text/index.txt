@@ -29,7 +29,11 @@ time as you want to try it out.
 
   * Installing the dependencies
 
+    * Arch Linux
+
   * Installing birdears
+
+    * In-depth installation
 
 * Using birdears
 
@@ -41,11 +45,27 @@ time as you want to try it out.
 
   * basic usage
 
+    * melodic
+
+    * harmonic
+
+    * dictation
+
+    * instrumental
+
   * Loading from config/preset files
+
+    * Pre-made presets
+
+    * Creating new preset files
 
 * birdears package
 
   * Subpackages
+
+    * birdears.interfaces package
+
+    * birdears.questions package
 
   * Submodules
 
