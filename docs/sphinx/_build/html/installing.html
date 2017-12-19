@@ -150,7 +150,8 @@ $(document).ready(function(){
 </div>
 <div class="section" id="id1">
 <h2>Installing birdears<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-none"><div class="highlight"><pre><span></span>pip install --user --upgrade --no-cache-dir birdears
+<p>To install,simple do this command with pip3</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>pip3 install --user --upgrade --no-cache-dir birdears
 </pre></div>
 </div>
 <div class="section" id="in-depth-installation">
@@ -158,12 +159,16 @@ $(document).ready(function(){
 <p>You can choose to use a virtualenv to use birdears; this should give you
 an idea on how to setup one virtualenv.</p>
 <p>You should first install virtualenv (for python3) using your
-distribution’s package (supposing you’re on linux), then on terminal:</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>virtualenv -p python3 venv # use the directory venv/ for the virtualenv
-venv/bin/activate # activate the virtualenv; this should be done every
-                  # time you may want to run the software installed here.
-pip install birdears # this will install it
-birdears --help # this will run it
+distribution’s package (supposing you’re on linux), then issue on terminal:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>virtualenv -p python3 ~/.venv # use the directory venv/ for the virtualenv
+
+~/.venv/bin/activate          # activate the virtualenv; this should be done
+                              # every time you may want to run the software
+                              # installed here.
+
+pip3 install birdears         # this will install the software
+
+birdears --help               # and this will run it
 </pre></div>
 </div>
 </div>

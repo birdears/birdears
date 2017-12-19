@@ -101,7 +101,9 @@ Arch Linux
 Installing birdears
 -------------------
 
-   pip install --user --upgrade --no-cache-dir birdears
+To install,simple do this command with pip3
+
+   pip3 install --user --upgrade --no-cache-dir birdears
 
 
 In-depth installation
@@ -111,19 +113,36 @@ You can choose to use a virtualenv to use birdears; this should give
 you an idea on how to setup one virtualenv.
 
 You should first install virtualenv (for python3) using your
-distribution’s package (supposing you’re on linux), then on terminal:
+distribution’s package (supposing you’re on linux), then issue on
+terminal:
 
-   virtualenv -p python3 venv # use the directory venv/ for the virtualenv
-   venv/bin/activate # activate the virtualenv; this should be done every
-                     # time you may want to run the software installed here.
-   pip install birdears # this will install it
-   birdears --help # this will run it
+   virtualenv -p python3 ~/.venv # use the directory venv/ for the virtualenv
+
+   ~/.venv/bin/activate          # activate the virtualenv; this should be done
+                                 # every time you may want to run the software
+                                 # installed here.
+
+   pip3 install birdears         # this will install the software
+
+   birdears --help               # and this will run it
 
 
 Using birdears
 ==============
 
+
+What is Functional Ear Training
+-------------------------------
+
 *write me!*
+
+
+The method
+----------
+
+
+birdears modes
+--------------
 
 birdears actually has four modes:
 
@@ -136,6 +155,10 @@ birdears actually has four modes:
 * instrumental dictation question
 
 * load from config file
+
+
+basic usage
+-----------
 
 To see the commands avaliable just invoke the command without any
 arguments:
@@ -173,6 +196,10 @@ one of these commands, or you can check the "--help" for additional
 options for each of the commands, invoking this way:
 
    birdears <command> --help
+
+
+melodic
+-------
 
 In this exercise birdears will play two notes, the tonic and the
 interval melodically, ie., one after the other and you should reply
@@ -221,6 +248,10 @@ which is the correct distance between the two.
 
      -r <resolution_method> is one of: nearest_tonic, repeat_only
 
+
+harmonic
+--------
+
 In this exercise birdears will play two notes, the tonic and the
 interval harmonically, ie., both on the same time and you should reply
 which is the correct distance between the two.
@@ -268,6 +299,10 @@ which is the correct distance between the two.
 
      -r <resolution_method> is one of: nearest_tonic, repeat_only
 
+
+dictation
+---------
+
 In this exercise birdears will choose some random intervals and create
 a melodic dictation with them. You should reply the correct intervals
 of the melodic dictation.
@@ -279,6 +314,10 @@ of the melodic dictation.
    Try "birdears -h" for help.
 
    Error: No such command "dication".
+
+
+instrumental
+------------
 
 In this exercise birdears will choose some random intervals and create
 a melodic dictation with them. You should play the correct melody in
@@ -331,6 +370,10 @@ you musical instrument.
 
      -r <resolution_method> is one of: nearest_tonic, repeat_only
 
+
+Load from config file
+---------------------
+
 *write me!!*
 
 
@@ -342,6 +385,10 @@ birdears package
 ================
 
 BirdEars provides facilities to musical ear training exercises.
+
+
+Subpackages
+-----------
 
 * birdears.interfaces package
 
@@ -360,6 +407,14 @@ BirdEars provides facilities to musical ear training exercises.
   * birdears.questions.melodicdictation module
 
   * birdears.questions.melodicinterval module
+
+
+Submodules
+----------
+
+
+birdears.interval module
+------------------------
 
 class birdears.interval.ChromaticInterval(mode, tonic, octave, n_octaves=None, descending=None, valid_intervals=None)
 
@@ -573,6 +628,10 @@ class birdears.interval.IntervalBase
       This method returns a dict with only the values passed to
       *keys*.
 
+
+birdears.logger module
+----------------------
+
 This submodule exports *logger* to log events.
 
 Logging messages which are less severe than *lvl* will be ignored:
@@ -605,6 +664,10 @@ birdears.logger.log_event(f, *args, **kwargs)
    have their signature logged when birdears is executed with *–debug*
    mode. Both function signature with their call values and their
    return will be logged.
+
+
+birdears.prequestion module
+---------------------------
 
 This module implements pre-questions’ progressions.
 
@@ -677,6 +740,10 @@ birdears.prequestion.tonic_only(question, *args, **kwargs)
       **question** (*obj*) – Question object from which to generate
       the pre-question sequence. (this is provided by the *Resolution*
       class when it is >>`<<__call__`ed)
+
+
+birdears.questionbase module
+----------------------------
 
 class birdears.questionbase.QuestionBase(mode='major', tonic=None, octave=None, descending=None, chromatic=None, n_octaves=None, valid_intervals=None, user_durations=None, prequestion_method=None, resolution_method=None, default_durations=None, *args, **kwargs)
 
@@ -776,6 +843,10 @@ birdears.questionbase.register_question_class(f, *args, **kwargs)
    Classes decorated with this decorator will be registered in the
    *QUESTION_CLASSES* global.
 
+
+birdears.resolution module
+--------------------------
+
 class birdears.resolution.Resolution(method, question)
 
    Bases: "object"
@@ -831,6 +902,10 @@ birdears.resolution.repeat_only(question)
       **question** (*obj*) – Question object from which to generate
       the resolution sequence. (this is provided by the *Prequestion*
       class when it is >>`<<__call__`ed)
+
+
+birdears.scale module
+---------------------
 
 class birdears.scale.ChromaticScale(tonic, octave=None, n_octaves=None, descending=None, dont_repeat_tonic=None)
 
@@ -933,6 +1008,10 @@ class birdears.scale.ScaleBase
 
    Bases: "object"
 
+
+birdears.sequence module
+------------------------
+
 class birdears.sequence.Sequence(elements=[], duration=2, delay=1.5, pos_delay=1)
 
    Bases: "object"
@@ -986,6 +1065,14 @@ class birdears.sequence.Sequence(elements=[], duration=2, delay=1.5, pos_delay=1
 
 birdears.questions package
 ==========================
+
+
+Submodules
+----------
+
+
+birdears.questions.harmonicinterval module
+------------------------------------------
 
 class birdears.questions.harmonicinterval.HarmonicIntervalQuestion(mode='major', tonic=None, octave=None, descending=None, chromatic=None, n_octaves=None, valid_intervals=None, user_durations=None, prequestion_method='none', resolution_method='nearest_tonic', *args, **kwargs)
 
@@ -1064,6 +1151,10 @@ class birdears.questions.harmonicinterval.HarmonicIntervalQuestion(mode='major',
    play_question()
 
    play_resolution()
+
+
+birdears.questions.instrumentaldictation module
+-----------------------------------------------
 
 class birdears.questions.instrumentaldictation.InstrumentalDictationQuestion(mode='major', wait_time=11, n_repeats=1, max_intervals=3, n_notes=4, tonic=None, octave=None, descending=None, chromatic=None, n_octaves=None, valid_intervals=None, user_durations=None, prequestion_method='progression_i_iv_v_i', resolution_method='repeat_only', *args, **kwargs)
 
@@ -1156,6 +1247,10 @@ class birdears.questions.instrumentaldictation.InstrumentalDictationQuestion(mod
 
    play_question()
 
+
+birdears.questions.melodicdictation module
+------------------------------------------
+
 class birdears.questions.melodicdictation.MelodicDictationQuestion(mode='major', max_intervals=3, n_notes=4, tonic=None, octave=None, descending=None, chromatic=None, n_octaves=None, valid_intervals=None, user_durations=None, prequestion_method='progression_i_iv_v_i', resolution_method='repeat_only', *args, **kwargs)
 
    Bases: "birdears.questionbase.QuestionBase"
@@ -1240,6 +1335,10 @@ class birdears.questions.melodicdictation.MelodicDictationQuestion(mode='major',
 
    play_resolution()
 
+
+birdears.questions.melodicinterval module
+-----------------------------------------
+
 class birdears.questions.melodicinterval.MelodicIntervalQuestion(mode='major', tonic=None, octave=None, descending=None, chromatic=None, n_octaves=None, valid_intervals=None, user_durations=None, prequestion_method='tonic_only', resolution_method='nearest_tonic', *args, **kwargs)
 
    Bases: "birdears.questionbase.QuestionBase"
@@ -1263,6 +1362,14 @@ class birdears.questions.melodicinterval.MelodicIntervalQuestion(mode='major', t
 
 birdears.interfaces package
 ===========================
+
+
+Submodules
+----------
+
+
+birdears.interfaces.commandline module
+--------------------------------------
 
 birdears.interfaces.commandline.CommandLine(exercise, **kwargs)
 

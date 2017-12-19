@@ -212,7 +212,8 @@ time as you want to try it out.</p>
 </div>
 <div class="section" id="id1">
 <h3>Installing birdears<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none"><div class="highlight"><pre><span></span>pip install --user --upgrade --no-cache-dir birdears
+<p>To install,simple do this command with pip3</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>pip3 install --user --upgrade --no-cache-dir birdears
 </pre></div>
 </div>
 <div class="section" id="in-depth-installation">
@@ -220,12 +221,16 @@ time as you want to try it out.</p>
 <p>You can choose to use a virtualenv to use birdears; this should give you
 an idea on how to setup one virtualenv.</p>
 <p>You should first install virtualenv (for python3) using your
-distribution’s package (supposing you’re on linux), then on terminal:</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>virtualenv -p python3 venv # use the directory venv/ for the virtualenv
-venv/bin/activate # activate the virtualenv; this should be done every
-                  # time you may want to run the software installed here.
-pip install birdears # this will install it
-birdears --help # this will run it
+distribution’s package (supposing you’re on linux), then issue on terminal:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>virtualenv -p python3 ~/.venv # use the directory venv/ for the virtualenv
+
+~/.venv/bin/activate          # activate the virtualenv; this should be done
+                              # every time you may want to run the software
+                              # installed here.
+
+pip3 install birdears         # this will install the software
+
+birdears --help               # and this will run it
 </pre></div>
 </div>
 </div>
@@ -235,7 +240,15 @@ birdears --help # this will run it
 <h2>Using birdears<a class="headerlink" href="#using-birdears" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 </div>
+<div class="section" id="what-is-functional-ear-training">
+<h3>What is Functional Ear Training<a class="headerlink" href="#what-is-functional-ear-training" title="Permalink to this headline">¶</a></h3>
 <p><em>write me!</em></p>
+</div>
+<div class="section" id="the-method">
+<h3>The method<a class="headerlink" href="#the-method" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="birdears-modes">
+<h3>birdears modes<a class="headerlink" href="#birdears-modes" title="Permalink to this headline">¶</a></h3>
 <p>birdears actually has four modes:</p>
 <ul class="simple">
 <li>melodic interval question</li>
@@ -244,6 +257,9 @@ birdears --help # this will run it
 <li>instrumental dictation question</li>
 <li>load from config file</li>
 </ul>
+</div>
+<div class="section" id="basic-usage">
+<h3>basic usage<a class="headerlink" href="#basic-usage" title="Permalink to this headline">¶</a></h3>
 <p>To see the commands avaliable just invoke the command without any arguments:</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>birdears
 </pre></div>
@@ -280,6 +296,9 @@ of the commands, invoking this way:</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>birdears &lt;command&gt; --help
 </pre></div>
 </div>
+</div>
+<div class="section" id="melodic">
+<h3>melodic<a class="headerlink" href="#melodic" title="Permalink to this headline">¶</a></h3>
 <p>In this exercise birdears will play two notes, the tonic and the interval
 melodically, ie., one after the other and you should reply which is the
 correct distance between the two.</p>
@@ -328,6 +347,9 @@ Options:
   -r &lt;resolution_method&gt; is one of: nearest_tonic, repeat_only
 </pre></div>
 </div>
+</div>
+<div class="section" id="harmonic">
+<h3>harmonic<a class="headerlink" href="#harmonic" title="Permalink to this headline">¶</a></h3>
 <p>In this exercise birdears will play two notes, the tonic and the interval
 harmonically, ie., both on the same time and you should reply which is the
 correct distance between the two.</p>
@@ -376,6 +398,9 @@ Options:
   -r &lt;resolution_method&gt; is one of: nearest_tonic, repeat_only
 </pre></div>
 </div>
+</div>
+<div class="section" id="dictation">
+<h3>dictation<a class="headerlink" href="#dictation" title="Permalink to this headline">¶</a></h3>
 <p>In this exercise birdears will choose some random intervals and create a
 melodic dictation with them. You should reply the correct intervals of the
 melodic dictation.</p>
@@ -389,6 +414,9 @@ Try &quot;birdears -h&quot; for help.
 Error: No such command &quot;dication&quot;.
 </pre></div>
 </div>
+</div>
+<div class="section" id="instrumental">
+<h3>instrumental<a class="headerlink" href="#instrumental" title="Permalink to this headline">¶</a></h3>
 <p>In this exercise birdears will choose some random intervals and create a
 melodic dictation with them. You should play the correct melody in you
 musical instrument.</p>
@@ -441,7 +469,11 @@ Options:
   -r &lt;resolution_method&gt; is one of: nearest_tonic, repeat_only
 </pre></div>
 </div>
+</div>
+<div class="section" id="load-from-config-file">
+<h3>Load from config file<a class="headerlink" href="#load-from-config-file" title="Permalink to this headline">¶</a></h3>
 <p><em>write me!!</em></p>
+</div>
 </div>
 <div class="section" id="api">
 <h2>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
@@ -449,6 +481,8 @@ Options:
 <div class="section" id="module-birdears">
 <span id="birdears-package"></span><h2>birdears package<a class="headerlink" href="#module-birdears" title="Permalink to this headline">¶</a></h2>
 <p>BirdEars provides facilities to musical ear training exercises.</p>
+<div class="section" id="subpackages">
+<h3>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h3>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="birdears.interfaces.html">birdears.interfaces package</a><ul>
@@ -466,7 +500,13 @@ Options:
 </li>
 </ul>
 </div>
-<span class="target" id="module-birdears.interval"></span><dl class="class">
+</div>
+<div class="section" id="submodules">
+<h3>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="module-birdears.interval">
+<span id="birdears-interval-module"></span><h3>birdears.interval module<a class="headerlink" href="#module-birdears.interval" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
 <dt id="birdears.interval.ChromaticInterval">
 <em class="property">class </em><code class="descclassname">birdears.interval.</code><code class="descname">ChromaticInterval</code><span class="sig-paren">(</span><em>mode</em>, <em>tonic</em>, <em>octave</em>, <em>n_octaves=None</em>, <em>descending=None</em>, <em>valid_intervals=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/interval.html#ChromaticInterval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.interval.ChromaticInterval" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#birdears.interval.IntervalBase" title="birdears.interval.IntervalBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.interval.IntervalBase</span></code></a></p>
@@ -737,7 +777,10 @@ choice, 1 is 1st, 2 is second etc.</li>
 
 </dd></dl>
 
-<span class="target" id="module-birdears.logger"></span><p>This submodule exports <cite>logger</cite> to log events.</p>
+</div>
+<div class="section" id="module-birdears.logger">
+<span id="birdears-logger-module"></span><h3>birdears.logger module<a class="headerlink" href="#module-birdears.logger" title="Permalink to this headline">¶</a></h3>
+<p>This submodule exports <cite>logger</cite> to log events.</p>
 <p>Logging messages which are less severe than <cite>lvl</cite> will be ignored:</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>Level       Numeric value
 -----       -------------
@@ -770,7 +813,10 @@ their signature logged when birdears is executed with <cite>–debug</cite> mode
 function signature with their call values and their return will be logged.</p>
 </dd></dl>
 
-<span class="target" id="module-birdears.prequestion"></span><p>This module implements pre-questions’ progressions.</p>
+</div>
+<div class="section" id="module-birdears.prequestion">
+<span id="birdears-prequestion-module"></span><h3>birdears.prequestion module<a class="headerlink" href="#module-birdears.prequestion" title="Permalink to this headline">¶</a></h3>
+<p>This module implements pre-questions’ progressions.</p>
 <p>Pre questions are chord progressions or notes played before the question is
 played, so to affirmate the sound of the question’s key.</p>
 <p>For example a common cadence is chords I-IV-V-I from the diatonic scale, which
@@ -869,7 +915,10 @@ when it is <a href="#id6"><span class="problematic" id="id7">`</span></a>__call_
 </table>
 </dd></dl>
 
-<span class="target" id="module-birdears.questionbase"></span><dl class="class">
+</div>
+<div class="section" id="module-birdears.questionbase">
+<span id="birdears-questionbase-module"></span><h3>birdears.questionbase module<a class="headerlink" href="#module-birdears.questionbase" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
 <dt id="birdears.questionbase.QuestionBase">
 <em class="property">class </em><code class="descclassname">birdears.questionbase.</code><code class="descname">QuestionBase</code><span class="sig-paren">(</span><em>mode='major'</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>valid_intervals=None</em>, <em>user_durations=None</em>, <em>prequestion_method=None</em>, <em>resolution_method=None</em>, <em>default_durations=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questionbase.html#QuestionBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questionbase.QuestionBase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
@@ -974,7 +1023,10 @@ each type of sequence. This is provided by the subclasses.</li>
 <cite>QUESTION_CLASSES</cite> global.</p>
 </dd></dl>
 
-<span class="target" id="module-birdears.resolution"></span><dl class="class">
+</div>
+<div class="section" id="module-birdears.resolution">
+<span id="birdears-resolution-module"></span><h3>birdears.resolution module<a class="headerlink" href="#module-birdears.resolution" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
 <dt id="birdears.resolution.Resolution">
 <em class="property">class </em><code class="descclassname">birdears.resolution.</code><code class="descname">Resolution</code><span class="sig-paren">(</span><em>method</em>, <em>question</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/resolution.html#Resolution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.resolution.Resolution" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
@@ -1052,7 +1104,10 @@ when it is <a href="#id10"><span class="problematic" id="id11">`</span></a>__cal
 </table>
 </dd></dl>
 
-<span class="target" id="module-birdears.scale"></span><dl class="class">
+</div>
+<div class="section" id="module-birdears.scale">
+<span id="birdears-scale-module"></span><h3>birdears.scale module<a class="headerlink" href="#module-birdears.scale" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
 <dt id="birdears.scale.ChromaticScale">
 <em class="property">class </em><code class="descclassname">birdears.scale.</code><code class="descname">ChromaticScale</code><span class="sig-paren">(</span><em>tonic</em>, <em>octave=None</em>, <em>n_octaves=None</em>, <em>descending=None</em>, <em>dont_repeat_tonic=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/scale.html#ChromaticScale"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.scale.ChromaticScale" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#birdears.scale.ScaleBase" title="birdears.scale.ScaleBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.scale.ScaleBase</span></code></a></p>
@@ -1175,7 +1230,10 @@ note (octave) to the scale.</li>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 </dd></dl>
 
-<span class="target" id="module-birdears.sequence"></span><dl class="class">
+</div>
+<div class="section" id="module-birdears.sequence">
+<span id="birdears-sequence-module"></span><h3>birdears.sequence module<a class="headerlink" href="#module-birdears.sequence" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
 <dt id="birdears.sequence.Sequence">
 <em class="property">class </em><code class="descclassname">birdears.sequence.</code><code class="descname">Sequence</code><span class="sig-paren">(</span><em>elements=[]</em>, <em>duration=2</em>, <em>delay=1.5</em>, <em>pos_delay=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/sequence.html#Sequence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.sequence.Sequence" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
@@ -1256,9 +1314,15 @@ of each triad.</li>
 </dd></dl>
 
 </div>
+</div>
 <div class="section" id="module-birdears.questions">
 <span id="birdears-questions-package"></span><h2>birdears.questions package<a class="headerlink" href="#module-birdears.questions" title="Permalink to this headline">¶</a></h2>
-<span class="target" id="module-birdears.questions.harmonicinterval"></span><dl class="class">
+<div class="section" id="id12">
+<h3>Submodules<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="module-birdears.questions.harmonicinterval">
+<span id="birdears-questions-harmonicinterval-module"></span><h3>birdears.questions.harmonicinterval module<a class="headerlink" href="#module-birdears.questions.harmonicinterval" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
 <dt id="birdears.questions.harmonicinterval.HarmonicIntervalQuestion">
 <em class="property">class </em><code class="descclassname">birdears.questions.harmonicinterval.</code><code class="descname">HarmonicIntervalQuestion</code><span class="sig-paren">(</span><em>mode='major'</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>valid_intervals=None</em>, <em>user_durations=None</em>, <em>prequestion_method='none'</em>, <em>resolution_method='nearest_tonic'</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questions/harmonicinterval.html#HarmonicIntervalQuestion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questions.harmonicinterval.HarmonicIntervalQuestion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#birdears.questionbase.QuestionBase" title="birdears.questionbase.QuestionBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.questionbase.QuestionBase</span></code></a></p>
@@ -1351,7 +1415,10 @@ exercise. Valid ones are registered in the
 
 </dd></dl>
 
-<span class="target" id="module-birdears.questions.instrumentaldictation"></span><dl class="class">
+</div>
+<div class="section" id="module-birdears.questions.instrumentaldictation">
+<span id="birdears-questions-instrumentaldictation-module"></span><h3>birdears.questions.instrumentaldictation module<a class="headerlink" href="#module-birdears.questions.instrumentaldictation" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
 <dt id="birdears.questions.instrumentaldictation.InstrumentalDictationQuestion">
 <em class="property">class </em><code class="descclassname">birdears.questions.instrumentaldictation.</code><code class="descname">InstrumentalDictationQuestion</code><span class="sig-paren">(</span><em>mode='major'</em>, <em>wait_time=11</em>, <em>n_repeats=1</em>, <em>max_intervals=3</em>, <em>n_notes=4</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>valid_intervals=None</em>, <em>user_durations=None</em>, <em>prequestion_method='progression_i_iv_v_i'</em>, <em>resolution_method='repeat_only'</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questions/instrumentaldictation.html#InstrumentalDictationQuestion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#birdears.questionbase.QuestionBase" title="birdears.questionbase.QuestionBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.questionbase.QuestionBase</span></code></a></p>
@@ -1447,7 +1514,10 @@ exercise. Valid ones are registered in the
 
 </dd></dl>
 
-<span class="target" id="module-birdears.questions.melodicdictation"></span><dl class="class">
+</div>
+<div class="section" id="module-birdears.questions.melodicdictation">
+<span id="birdears-questions-melodicdictation-module"></span><h3>birdears.questions.melodicdictation module<a class="headerlink" href="#module-birdears.questions.melodicdictation" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
 <dt id="birdears.questions.melodicdictation.MelodicDictationQuestion">
 <em class="property">class </em><code class="descclassname">birdears.questions.melodicdictation.</code><code class="descname">MelodicDictationQuestion</code><span class="sig-paren">(</span><em>mode='major'</em>, <em>max_intervals=3</em>, <em>n_notes=4</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>valid_intervals=None</em>, <em>user_durations=None</em>, <em>prequestion_method='progression_i_iv_v_i'</em>, <em>resolution_method='repeat_only'</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questions/melodicdictation.html#MelodicDictationQuestion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questions.melodicdictation.MelodicDictationQuestion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#birdears.questionbase.QuestionBase" title="birdears.questionbase.QuestionBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.questionbase.QuestionBase</span></code></a></p>
@@ -1543,7 +1613,10 @@ exercise. Valid ones are registered in the
 
 </dd></dl>
 
-<span class="target" id="module-birdears.questions.melodicinterval"></span><dl class="class">
+</div>
+<div class="section" id="module-birdears.questions.melodicinterval">
+<span id="birdears-questions-melodicinterval-module"></span><h3>birdears.questions.melodicinterval module<a class="headerlink" href="#module-birdears.questions.melodicinterval" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
 <dt id="birdears.questions.melodicinterval.MelodicIntervalQuestion">
 <em class="property">class </em><code class="descclassname">birdears.questions.melodicinterval.</code><code class="descname">MelodicIntervalQuestion</code><span class="sig-paren">(</span><em>mode='major'</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>valid_intervals=None</em>, <em>user_durations=None</em>, <em>prequestion_method='tonic_only'</em>, <em>resolution_method='nearest_tonic'</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questions/melodicinterval.html#MelodicIntervalQuestion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questions.melodicinterval.MelodicIntervalQuestion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#birdears.questionbase.QuestionBase" title="birdears.questionbase.QuestionBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.questionbase.QuestionBase</span></code></a></p>
@@ -1582,9 +1655,15 @@ exercise. Valid ones are registered in the
 </dd></dl>
 
 </div>
+</div>
 <div class="section" id="module-birdears.interfaces">
 <span id="birdears-interfaces-package"></span><h2>birdears.interfaces package<a class="headerlink" href="#module-birdears.interfaces" title="Permalink to this headline">¶</a></h2>
-<span class="target" id="module-birdears.interfaces.commandline"></span><dl class="function">
+<div class="section" id="id13">
+<h3>Submodules<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="module-birdears.interfaces.commandline">
+<span id="birdears-interfaces-commandline-module"></span><h3>birdears.interfaces.commandline module<a class="headerlink" href="#module-birdears.interfaces.commandline" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
 <dt id="birdears.interfaces.commandline.CommandLine">
 <code class="descclassname">birdears.interfaces.commandline.</code><code class="descname">CommandLine</code><span class="sig-paren">(</span><em>exercise</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/interfaces/commandline.html#CommandLine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.interfaces.commandline.CommandLine" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function implements the birdears loop for command line.</p>
@@ -1687,6 +1766,7 @@ input as MelodicDictation, and formats the intervals already entered.</p>
 
 </div>
 </div>
+</div>
 
 
           </div>
@@ -1708,11 +1788,44 @@ input as MelodicDictation, and formats the intervals already entered.</p>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#using-birdears">Using birdears</a></li>
+<li><a class="reference internal" href="#using-birdears">Using birdears</a><ul>
+<li><a class="reference internal" href="#what-is-functional-ear-training">What is Functional Ear Training</a></li>
+<li><a class="reference internal" href="#the-method">The method</a></li>
+<li><a class="reference internal" href="#birdears-modes">birdears modes</a></li>
+<li><a class="reference internal" href="#basic-usage">basic usage</a></li>
+<li><a class="reference internal" href="#melodic">melodic</a></li>
+<li><a class="reference internal" href="#harmonic">harmonic</a></li>
+<li><a class="reference internal" href="#dictation">dictation</a></li>
+<li><a class="reference internal" href="#instrumental">instrumental</a></li>
+<li><a class="reference internal" href="#load-from-config-file">Load from config file</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#api">API</a></li>
-<li><a class="reference internal" href="#module-birdears">birdears package</a></li>
-<li><a class="reference internal" href="#module-birdears.questions">birdears.questions package</a></li>
-<li><a class="reference internal" href="#module-birdears.interfaces">birdears.interfaces package</a></li>
+<li><a class="reference internal" href="#module-birdears">birdears package</a><ul>
+<li><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-birdears.interval">birdears.interval module</a></li>
+<li><a class="reference internal" href="#module-birdears.logger">birdears.logger module</a></li>
+<li><a class="reference internal" href="#module-birdears.prequestion">birdears.prequestion module</a></li>
+<li><a class="reference internal" href="#module-birdears.questionbase">birdears.questionbase module</a></li>
+<li><a class="reference internal" href="#module-birdears.resolution">birdears.resolution module</a></li>
+<li><a class="reference internal" href="#module-birdears.scale">birdears.scale module</a></li>
+<li><a class="reference internal" href="#module-birdears.sequence">birdears.sequence module</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-birdears.questions">birdears.questions package</a><ul>
+<li><a class="reference internal" href="#id12">Submodules</a></li>
+<li><a class="reference internal" href="#module-birdears.questions.harmonicinterval">birdears.questions.harmonicinterval module</a></li>
+<li><a class="reference internal" href="#module-birdears.questions.instrumentaldictation">birdears.questions.instrumentaldictation module</a></li>
+<li><a class="reference internal" href="#module-birdears.questions.melodicdictation">birdears.questions.melodicdictation module</a></li>
+<li><a class="reference internal" href="#module-birdears.questions.melodicinterval">birdears.questions.melodicinterval module</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-birdears.interfaces">birdears.interfaces package</a><ul>
+<li><a class="reference internal" href="#id13">Submodules</a></li>
+<li><a class="reference internal" href="#module-birdears.interfaces.commandline">birdears.interfaces.commandline module</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
