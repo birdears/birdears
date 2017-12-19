@@ -65,3 +65,13 @@ a {
 a.reference {
     border-bottom:1px solid #ddd;
 }
+
+.docutils.literal {
+    color: #fff;
+    background-color: #333;
+    //border: 1px solid #966;
+    
+    padding: 0 2px;
+    border-radius: 2px;
+    /font-size: 13px;
+}
