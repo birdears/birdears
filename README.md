@@ -35,6 +35,8 @@
 
 For the support chat, please `/join` [`#birdears`](http://webchat.freenode.net/?randomnick=1&channels=%23birdears&uio=MTY9dHJ1ZSYxMT0yNDY57) channel on freenode (chat.freenode.net/6697 - ssl).
 
+![birdears screencast](use.gif)
+
 ## Introduction
 
 
@@ -341,3 +343,12 @@ written in a form `toml` standard.
 ## Contributing
 
 Those who want to contribute to this project can read [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Etc
+
+the screencast was recorded with a command similar to
+
+```
+COLUMNS=120 LINES=36 ttyrec
+seq2gif -s 2 -i ttyrecord -w 120 -h 36 -o use.gif
+```
