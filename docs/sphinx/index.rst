@@ -41,7 +41,7 @@ time as you want to try it out.
 .. include:: using.rst
 
 API
-^^^
+===
 
 .. include:: birdears.rst
 

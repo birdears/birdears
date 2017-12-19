@@ -155,7 +155,7 @@ SEQUENCE_THREAD = None
             strings) in this Sequence.
     &quot;&quot;&quot;
 
-<div class="viewcode-block" id="Sequence.__init__"><a class="viewcode-back" href="../../index.html#birdears.sequence.Sequence.__init__">[docs]</a>    @log_event
+    @log_event
     def __init__(self, elements=[], duration=2, delay=1.5, pos_delay=1):
         &quot;&quot;&quot;Inits the Sequence with an array and sets the default times for
             playing / pausing the elements.
@@ -178,7 +178,7 @@ SEQUENCE_THREAD = None
         self.elements = list(elements)
 
         self.index = 0
-        self.last_idx = len(self.elements) - 1</div>
+        self.last_idx = len(self.elements) - 1
 
 <div class="viewcode-block" id="Sequence.append"><a class="viewcode-back" href="../../index.html#birdears.sequence.Sequence.append">[docs]</a>    @log_event
     def append(self, elements):
@@ -414,8 +414,8 @@ SEQUENCE_THREAD = None
 
         time.sleep(seconds)
 
-<div class="viewcode-block" id="Sequence.__len__"><a class="viewcode-back" href="../../index.html#birdears.sequence.Sequence.__len__">[docs]</a>    def __len__(self):
-        return len(self.elements)</div></div>
+    def __len__(self):
+        return len(self.elements)</div>
 </pre></div>
 
           </div>
