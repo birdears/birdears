@@ -116,7 +116,8 @@ note how the keys on the line from `z` (*unison*) to `,` (comma, *octave*) repre
 that are *natural* to the mode, and the line above represent the chromatics.
 
 Also, for exercises with two octaves, the **uppercased keys represent the second octave**. For
-example, `z` is *unison*, `Z` is the *octave*, `,` is the *double octave*.
+example, `z` is *unison*, `,` is the *octave*, `Z` (uppercased) is the *double octave*. The same
+for all the other intervals.
 
 ### ionian (major)
 

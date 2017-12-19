@@ -30,7 +30,7 @@ We can use abc language to notate music withing the documentation, ok
   c3 cAG| AGA cde| fed cAG| Ad^c d3:|
   
 birdears modes and basic usage
---------------
+------------------------------
 
 birdears actually has four modes:
 
@@ -312,4 +312,83 @@ Creating new preset files
 You can open the files cointained in birdears premade ``presets/``
 folder to have an ideia on how config files are made; it is simply the
 command line options written in a form ``toml`` standard.
+
+Keybindings
+-----------
+
+On the keybindings
+~~~~~~~~~~~~~~~~~~
+
+The following keyboard diagrams should give you an idea on how the
+keybindings work. Please note how the keys on the line from ``z``
+(*unison*) to ``,`` (comma, *octave*) represent the notes that are
+*natural* to the mode, and the line above represent the chromatics.
+
+Also, for exercises with two octaves, the **uppercased keys represent
+the second octave**. For example, ``z`` is *unison*, ``,`` is the
+*octave*, ``Z`` (uppercased) is the *double octave*. The same for all the other
+intervals.
+
+Major (Ionian)
+~~~~~~~~~~~~~~
+
+.. figure:: _static/img/keybindings/ionian.png
+  :scale: 100%
+  :alt: map to buried treasure
+
+  This is the caption of the figure (a simple paragraph).
+
+Dorian
+~~~~~~
+
+.. figure:: _static/img/keybindings/dorian.png
+  :scale: 100%
+  :alt: map to buried treasure
+
+  This is the caption of the figure (a simple paragraph).
+
+Phrygian
+~~~~~~~~
+
+.. figure:: _static/img/keybindings/phrygian.png
+  :scale: 100%
+  :alt: map to buried treasure
+
+  This is the caption of the figure (a simple paragraph).
+
+Lydian
+~~~~~~
+
+.. figure:: _static/img/keybindings/lydian.png
+  :scale: 100%
+  :alt: map to buried treasure
+
+  This is the caption of the figure (a simple paragraph).
+
+Mixolydian
+~~~~~~~~~~
+
+.. figure:: _static/img/keybindings/mixolydian.png
+  :scale: 100%
+  :alt: map to buried treasure
+
+  This is the caption of the figure (a simple paragraph).
+
+Minor (Aeolian)
+~~~~~~~~~~~~~~~
+
+.. figure:: _static/img/keybindings/minor.png
+  :scale: 100%
+  :alt: map to buried treasure
+
+  This is the caption of the figure (a simple paragraph).
+
+Locrian
+~~~~~~~
+
+.. figure:: _static/img/keybindings/locrian.png
+  :scale: 100%
+  :alt: map to buried treasure
+
+  This is the caption of the figure (a simple paragraph).
 

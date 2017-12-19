@@ -98,7 +98,7 @@ Project at \sphinxhref{https://github.com/iacchus/birdears}{GitHub}.
 
 
 \chapter{Features}
-\label{\detokenize{features::doc}}\label{\detokenize{features:birdears-documentation}}\label{\detokenize{features:features}}\begin{itemize}
+\label{\detokenize{features:features}}\label{\detokenize{features::doc}}\label{\detokenize{features:birdears-documentation}}\begin{itemize}
 \item {} 
 questions
 
@@ -164,7 +164,7 @@ birdears \PYGZhy{}\PYGZhy{}help               \PYGZsh{} and this will run it
 
 
 \chapter{Using birdears}
-\label{\detokenize{using::doc}}\label{\detokenize{using:using-birdears}}
+\label{\detokenize{using:using-birdears}}\label{\detokenize{using::doc}}
 
 \section{What is Functional Ear Training}
 \label{\detokenize{using:what-is-functional-ear-training}}
@@ -484,8 +484,94 @@ folder to have an ideia on how config files are made; it is simply the
 command line options written in a form \sphinxcode{toml} standard.
 
 
+\section{Keybindings}
+\label{\detokenize{using:keybindings}}
+
+\subsection{On the keybindings}
+\label{\detokenize{using:on-the-keybindings}}
+The following keyboard diagrams should give you an idea on how the
+keybindings work. Please note how the keys on the line from \sphinxcode{z}
+(\sphinxstyleemphasis{unison}) to \sphinxcode{,} (comma, \sphinxstyleemphasis{octave}) represent the notes that are
+\sphinxstyleemphasis{natural} to the mode, and the line above represent the chromatics.
+
+Also, for exercises with two octaves, the \sphinxstylestrong{uppercased keys represent
+the second octave}. For example, \sphinxcode{z} is \sphinxstyleemphasis{unison}, \sphinxcode{,} is the
+\sphinxstyleemphasis{octave}, \sphinxcode{Z} (uppercased) is the \sphinxstyleemphasis{double octave}. The same for all the other
+intervals.
+
+
+\subsection{Major (Ionian)}
+\label{\detokenize{using:major-ionian}}
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[scale=1.0]{{ionian}.png}
+\caption{This is the caption of the figure (a simple paragraph).}\label{\detokenize{using:id1}}\end{figure}
+
+
+\subsection{Dorian}
+\label{\detokenize{using:dorian}}
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[scale=1.0]{{dorian}.png}
+\caption{This is the caption of the figure (a simple paragraph).}\label{\detokenize{using:id2}}\end{figure}
+
+
+\subsection{Phrygian}
+\label{\detokenize{using:phrygian}}
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[scale=1.0]{{phrygian}.png}
+\caption{This is the caption of the figure (a simple paragraph).}\label{\detokenize{using:id3}}\end{figure}
+
+
+\subsection{Lydian}
+\label{\detokenize{using:lydian}}
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[scale=1.0]{{lydian}.png}
+\caption{This is the caption of the figure (a simple paragraph).}\label{\detokenize{using:id4}}\end{figure}
+
+
+\subsection{Mixolydian}
+\label{\detokenize{using:mixolydian}}
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[scale=1.0]{{mixolydian}.png}
+\caption{This is the caption of the figure (a simple paragraph).}\label{\detokenize{using:id5}}\end{figure}
+
+
+\subsection{Minor (Aeolian)}
+\label{\detokenize{using:minor-aeolian}}
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[scale=1.0]{{minor}.png}
+\caption{This is the caption of the figure (a simple paragraph).}\label{\detokenize{using:id6}}\end{figure}
+
+
+\subsection{Locrian}
+\label{\detokenize{using:locrian}}
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[scale=1.0]{{locrian}.png}
+\caption{This is the caption of the figure (a simple paragraph).}\label{\detokenize{using:id7}}\end{figure}
+
+
 \chapter{birdears package}
-\label{\detokenize{birdears::doc}}\label{\detokenize{birdears:module-birdears}}\label{\detokenize{birdears:birdears-package}}\index{birdears (module)}
+\label{\detokenize{birdears:module-birdears}}\label{\detokenize{birdears:birdears-package}}\label{\detokenize{birdears::doc}}\index{birdears (module)}
 birdears provides facilities to building musical ear training exercises.
 \index{CHROMATIC\_FLAT (in module birdears)}
 
@@ -575,13 +661,13 @@ These are the allowed keys for exercise as comprehended by birdears.
 \label{\detokenize{birdears:subpackages}}
 
 \subsection{birdears.interfaces package}
-\label{\detokenize{birdears.interfaces::doc}}\label{\detokenize{birdears.interfaces:birdears-interfaces-package}}\label{\detokenize{birdears.interfaces:module-birdears.interfaces}}\index{birdears.interfaces (module)}
+\label{\detokenize{birdears.interfaces:module-birdears.interfaces}}\label{\detokenize{birdears.interfaces:birdears-interfaces-package}}\label{\detokenize{birdears.interfaces::doc}}\index{birdears.interfaces (module)}
 
 \subsubsection{Submodules}
 \label{\detokenize{birdears.interfaces:submodules}}
 
 \subsubsection{birdears.interfaces.commandline module}
-\label{\detokenize{birdears.interfaces:module-birdears.interfaces.commandline}}\label{\detokenize{birdears.interfaces:birdears-interfaces-commandline-module}}\index{birdears.interfaces.commandline (module)}\index{CommandLine() (in module birdears.interfaces.commandline)}
+\label{\detokenize{birdears.interfaces:birdears-interfaces-commandline-module}}\label{\detokenize{birdears.interfaces:module-birdears.interfaces.commandline}}\index{birdears.interfaces.commandline (module)}\index{CommandLine() (in module birdears.interfaces.commandline)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{birdears.interfaces:birdears.interfaces.commandline.CommandLine}}\pysiglinewithargsret{\sphinxcode{birdears.interfaces.commandline.}\sphinxbfcode{CommandLine}}{\emph{exercise}, \emph{**kwargs}}{}
@@ -688,13 +774,13 @@ Prints the formatted response.
 
 
 \subsection{birdears.questions package}
-\label{\detokenize{birdears.questions::doc}}\label{\detokenize{birdears.questions:birdears-questions-package}}\phantomsection\label{\detokenize{birdears.questions:module-birdears.questions}}\index{birdears.questions (module)}
+\label{\detokenize{birdears.questions:birdears-questions-package}}\label{\detokenize{birdears.questions::doc}}\phantomsection\label{\detokenize{birdears.questions:module-birdears.questions}}\index{birdears.questions (module)}
 
 \subsubsection{Submodules}
 \label{\detokenize{birdears.questions:submodules}}
 
 \subsubsection{birdears.questions.harmonicinterval module}
-\label{\detokenize{birdears.questions:birdears-questions-harmonicinterval-module}}\label{\detokenize{birdears.questions:module-birdears.questions.harmonicinterval}}\index{birdears.questions.harmonicinterval (module)}\index{HarmonicIntervalQuestion (class in birdears.questions.harmonicinterval)}
+\label{\detokenize{birdears.questions:module-birdears.questions.harmonicinterval}}\label{\detokenize{birdears.questions:birdears-questions-harmonicinterval-module}}\index{birdears.questions.harmonicinterval (module)}\index{HarmonicIntervalQuestion (class in birdears.questions.harmonicinterval)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{birdears.questions:birdears.questions.harmonicinterval.HarmonicIntervalQuestion}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.questions.harmonicinterval.}\sphinxbfcode{HarmonicIntervalQuestion}}{\emph{mode='major'}, \emph{tonic=None}, \emph{octave=None}, \emph{descending=None}, \emph{chromatic=None}, \emph{n\_octaves=None}, \emph{valid\_intervals=None}, \emph{user\_durations=None}, \emph{prequestion\_method='none'}, \emph{resolution\_method='nearest\_tonic'}, \emph{*args}, \emph{**kwargs}}{}
@@ -819,7 +905,7 @@ Checks whether the given answer is correct.
 
 
 \subsubsection{birdears.questions.instrumentaldictation module}
-\label{\detokenize{birdears.questions:module-birdears.questions.instrumentaldictation}}\label{\detokenize{birdears.questions:birdears-questions-instrumentaldictation-module}}\index{birdears.questions.instrumentaldictation (module)}\index{InstrumentalDictationQuestion (class in birdears.questions.instrumentaldictation)}
+\label{\detokenize{birdears.questions:birdears-questions-instrumentaldictation-module}}\label{\detokenize{birdears.questions:module-birdears.questions.instrumentaldictation}}\index{birdears.questions.instrumentaldictation (module)}\index{InstrumentalDictationQuestion (class in birdears.questions.instrumentaldictation)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{birdears.questions:birdears.questions.instrumentaldictation.InstrumentalDictationQuestion}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.questions.instrumentaldictation.}\sphinxbfcode{InstrumentalDictationQuestion}}{\emph{mode='major'}, \emph{wait\_time=11}, \emph{n\_repeats=1}, \emph{max\_intervals=3}, \emph{n\_notes=4}, \emph{tonic=None}, \emph{octave=None}, \emph{descending=None}, \emph{chromatic=None}, \emph{n\_octaves=None}, \emph{valid\_intervals=None}, \emph{user\_durations=None}, \emph{prequestion\_method='progression\_i\_iv\_v\_i'}, \emph{resolution\_method='repeat\_only'}, \emph{*args}, \emph{**kwargs}}{}
@@ -1141,7 +1227,7 @@ Checks whether the given answer is correct.
 \label{\detokenize{birdears:submodules}}
 
 \section{birdears.interval module}
-\label{\detokenize{birdears:birdears-interval-module}}\label{\detokenize{birdears:module-birdears.interval}}\index{birdears.interval (module)}\index{ChromaticInterval (class in birdears.interval)}
+\label{\detokenize{birdears:module-birdears.interval}}\label{\detokenize{birdears:birdears-interval-module}}\index{birdears.interval (module)}\index{ChromaticInterval (class in birdears.interval)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{birdears:birdears.interval.ChromaticInterval}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.interval.}\sphinxbfcode{ChromaticInterval}}{\emph{mode}, \emph{tonic}, \emph{octave}, \emph{n\_octaves=None}, \emph{descending=None}, \emph{valid\_intervals=None}}{}
@@ -1499,7 +1585,7 @@ This method returns a dict with only the values passed to \sphinxtitleref{keys}.
 
 
 \section{birdears.logger module}
-\label{\detokenize{birdears:module-birdears.logger}}\label{\detokenize{birdears:birdears-logger-module}}\index{birdears.logger (module)}
+\label{\detokenize{birdears:birdears-logger-module}}\label{\detokenize{birdears:module-birdears.logger}}\index{birdears.logger (module)}
 This submodule exports \sphinxtitleref{logger} to log events.
 
 Logging messages which are less severe than \sphinxtitleref{lvl} will be ignored:
@@ -1540,7 +1626,7 @@ function signature with their call values and their return will be logged.
 
 
 \section{birdears.prequestion module}
-\label{\detokenize{birdears:module-birdears.prequestion}}\label{\detokenize{birdears:birdears-prequestion-module}}\index{birdears.prequestion (module)}
+\label{\detokenize{birdears:birdears-prequestion-module}}\label{\detokenize{birdears:module-birdears.prequestion}}\index{birdears.prequestion (module)}
 This module implements pre-questions’ progressions.
 
 Pre questions are chord progressions or notes played before the question is
@@ -1655,7 +1741,7 @@ when it is {\color{red}\bfseries{}{}`}\_\_call\_\_{}`ed)
 
 
 \section{birdears.questionbase module}
-\label{\detokenize{birdears:birdears-questionbase-module}}\label{\detokenize{birdears:module-birdears.questionbase}}\index{birdears.questionbase (module)}\index{QuestionBase (class in birdears.questionbase)}
+\label{\detokenize{birdears:module-birdears.questionbase}}\label{\detokenize{birdears:birdears-questionbase-module}}\index{birdears.questionbase (module)}\index{QuestionBase (class in birdears.questionbase)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{birdears:birdears.questionbase.QuestionBase}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.questionbase.}\sphinxbfcode{QuestionBase}}{\emph{mode='major'}, \emph{tonic=None}, \emph{octave=None}, \emph{descending=None}, \emph{chromatic=None}, \emph{n\_octaves=None}, \emph{valid\_intervals=None}, \emph{user\_durations=None}, \emph{prequestion\_method=None}, \emph{resolution\_method=None}, \emph{default\_durations=None}, \emph{*args}, \emph{**kwargs}}{}
@@ -1893,7 +1979,7 @@ when it is {\color{red}\bfseries{}{}`}\_\_call\_\_{}`ed)
 
 
 \section{birdears.scale module}
-\label{\detokenize{birdears:module-birdears.scale}}\label{\detokenize{birdears:birdears-scale-module}}\index{birdears.scale (module)}\index{ChromaticScale (class in birdears.scale)}
+\label{\detokenize{birdears:birdears-scale-module}}\label{\detokenize{birdears:module-birdears.scale}}\index{birdears.scale (module)}\index{ChromaticScale (class in birdears.scale)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{birdears:birdears.scale.ChromaticScale}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.scale.}\sphinxbfcode{ChromaticScale}}{\emph{tonic}, \emph{octave=None}, \emph{n\_octaves=None}, \emph{descending=None}, \emph{dont\_repeat\_tonic=None}}{}
@@ -2051,7 +2137,7 @@ Bases: \sphinxcode{object}
 
 
 \section{birdears.sequence module}
-\label{\detokenize{birdears:module-birdears.sequence}}\label{\detokenize{birdears:birdears-sequence-module}}\index{birdears.sequence (module)}\index{Sequence (class in birdears.sequence)}
+\label{\detokenize{birdears:birdears-sequence-module}}\label{\detokenize{birdears:module-birdears.sequence}}\index{birdears.sequence (module)}\index{Sequence (class in birdears.sequence)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{birdears:birdears.sequence.Sequence}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.sequence.}\sphinxbfcode{Sequence}}{\emph{elements={[}{]}}, \emph{duration=2}, \emph{delay=1.5}, \emph{pos\_delay=1}}{}
@@ -2508,6 +2594,92 @@ folder to have an ideia on how config files are made; it is simply the
 command line options written in a form \sphinxcode{toml} standard.
 
 
+\section{Keybindings}
+\label{\detokenize{index:keybindings}}
+
+\subsection{On the keybindings}
+\label{\detokenize{index:on-the-keybindings}}
+The following keyboard diagrams should give you an idea on how the
+keybindings work. Please note how the keys on the line from \sphinxcode{z}
+(\sphinxstyleemphasis{unison}) to \sphinxcode{,} (comma, \sphinxstyleemphasis{octave}) represent the notes that are
+\sphinxstyleemphasis{natural} to the mode, and the line above represent the chromatics.
+
+Also, for exercises with two octaves, the \sphinxstylestrong{uppercased keys represent
+the second octave}. For example, \sphinxcode{z} is \sphinxstyleemphasis{unison}, \sphinxcode{,} is the
+\sphinxstyleemphasis{octave}, \sphinxcode{Z} (uppercased) is the \sphinxstyleemphasis{double octave}. The same for all the other
+intervals.
+
+
+\subsection{Major (Ionian)}
+\label{\detokenize{index:major-ionian}}
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[scale=1.0]{{ionian}.png}
+\caption{This is the caption of the figure (a simple paragraph).}\label{\detokenize{index:id14}}\end{figure}
+
+
+\subsection{Dorian}
+\label{\detokenize{index:dorian}}
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[scale=1.0]{{dorian}.png}
+\caption{This is the caption of the figure (a simple paragraph).}\label{\detokenize{index:id15}}\end{figure}
+
+
+\subsection{Phrygian}
+\label{\detokenize{index:phrygian}}
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[scale=1.0]{{phrygian}.png}
+\caption{This is the caption of the figure (a simple paragraph).}\label{\detokenize{index:id16}}\end{figure}
+
+
+\subsection{Lydian}
+\label{\detokenize{index:lydian}}
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[scale=1.0]{{lydian}.png}
+\caption{This is the caption of the figure (a simple paragraph).}\label{\detokenize{index:id17}}\end{figure}
+
+
+\subsection{Mixolydian}
+\label{\detokenize{index:mixolydian}}
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[scale=1.0]{{mixolydian}.png}
+\caption{This is the caption of the figure (a simple paragraph).}\label{\detokenize{index:id18}}\end{figure}
+
+
+\subsection{Minor (Aeolian)}
+\label{\detokenize{index:minor-aeolian}}
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[scale=1.0]{{minor}.png}
+\caption{This is the caption of the figure (a simple paragraph).}\label{\detokenize{index:id19}}\end{figure}
+
+
+\subsection{Locrian}
+\label{\detokenize{index:locrian}}
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[scale=1.0]{{locrian}.png}
+\caption{This is the caption of the figure (a simple paragraph).}\label{\detokenize{index:id20}}\end{figure}
+
+
 \chapter{API}
 \label{\detokenize{index:api}}
 
@@ -2605,7 +2777,7 @@ These are the allowed keys for exercise as comprehended by birdears.
 \label{\detokenize{index:submodules}}
 
 \section{birdears.interval module}
-\label{\detokenize{index:birdears-interval-module}}\label{\detokenize{index:module-birdears.interval}}\index{birdears.interval (module)}\index{ChromaticInterval (class in birdears.interval)}
+\label{\detokenize{index:module-birdears.interval}}\label{\detokenize{index:birdears-interval-module}}\index{birdears.interval (module)}\index{ChromaticInterval (class in birdears.interval)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{index:birdears.interval.ChromaticInterval}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.interval.}\sphinxbfcode{ChromaticInterval}}{\emph{mode}, \emph{tonic}, \emph{octave}, \emph{n\_octaves=None}, \emph{descending=None}, \emph{valid\_intervals=None}}{}
@@ -2963,7 +3135,7 @@ This method returns a dict with only the values passed to \sphinxtitleref{keys}.
 
 
 \section{birdears.logger module}
-\label{\detokenize{index:module-birdears.logger}}\label{\detokenize{index:birdears-logger-module}}\index{birdears.logger (module)}
+\label{\detokenize{index:birdears-logger-module}}\label{\detokenize{index:module-birdears.logger}}\index{birdears.logger (module)}
 This submodule exports \sphinxtitleref{logger} to log events.
 
 Logging messages which are less severe than \sphinxtitleref{lvl} will be ignored:
@@ -3004,7 +3176,7 @@ function signature with their call values and their return will be logged.
 
 
 \section{birdears.prequestion module}
-\label{\detokenize{index:module-birdears.prequestion}}\label{\detokenize{index:birdears-prequestion-module}}\index{birdears.prequestion (module)}
+\label{\detokenize{index:birdears-prequestion-module}}\label{\detokenize{index:module-birdears.prequestion}}\index{birdears.prequestion (module)}
 This module implements pre-questions’ progressions.
 
 Pre questions are chord progressions or notes played before the question is
@@ -3119,7 +3291,7 @@ when it is {\color{red}\bfseries{}{}`}\_\_call\_\_{}`ed)
 
 
 \section{birdears.questionbase module}
-\label{\detokenize{index:birdears-questionbase-module}}\label{\detokenize{index:module-birdears.questionbase}}\index{birdears.questionbase (module)}\index{QuestionBase (class in birdears.questionbase)}
+\label{\detokenize{index:module-birdears.questionbase}}\label{\detokenize{index:birdears-questionbase-module}}\index{birdears.questionbase (module)}\index{QuestionBase (class in birdears.questionbase)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{index:birdears.questionbase.QuestionBase}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.questionbase.}\sphinxbfcode{QuestionBase}}{\emph{mode='major'}, \emph{tonic=None}, \emph{octave=None}, \emph{descending=None}, \emph{chromatic=None}, \emph{n\_octaves=None}, \emph{valid\_intervals=None}, \emph{user\_durations=None}, \emph{prequestion\_method=None}, \emph{resolution\_method=None}, \emph{default\_durations=None}, \emph{*args}, \emph{**kwargs}}{}
@@ -3357,7 +3529,7 @@ when it is {\color{red}\bfseries{}{}`}\_\_call\_\_{}`ed)
 
 
 \section{birdears.scale module}
-\label{\detokenize{index:module-birdears.scale}}\label{\detokenize{index:birdears-scale-module}}\index{birdears.scale (module)}\index{ChromaticScale (class in birdears.scale)}
+\label{\detokenize{index:birdears-scale-module}}\label{\detokenize{index:module-birdears.scale}}\index{birdears.scale (module)}\index{ChromaticScale (class in birdears.scale)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{index:birdears.scale.ChromaticScale}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.scale.}\sphinxbfcode{ChromaticScale}}{\emph{tonic}, \emph{octave=None}, \emph{n\_octaves=None}, \emph{descending=None}, \emph{dont\_repeat\_tonic=None}}{}
@@ -3515,7 +3687,7 @@ Bases: \sphinxcode{object}
 
 
 \section{birdears.sequence module}
-\label{\detokenize{index:module-birdears.sequence}}\label{\detokenize{index:birdears-sequence-module}}\index{birdears.sequence (module)}\index{Sequence (class in birdears.sequence)}
+\label{\detokenize{index:birdears-sequence-module}}\label{\detokenize{index:module-birdears.sequence}}\index{birdears.sequence (module)}\index{Sequence (class in birdears.sequence)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{index:birdears.sequence.Sequence}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.sequence.}\sphinxbfcode{Sequence}}{\emph{elements={[}{]}}, \emph{duration=2}, \emph{delay=1.5}, \emph{pos\_delay=1}}{}
@@ -3615,7 +3787,7 @@ Plays element \sphinxtitleref{sequence.elements{[}index{]}.}
 \label{\detokenize{index:id12}}
 
 \section{birdears.questions.harmonicinterval module}
-\label{\detokenize{index:birdears-questions-harmonicinterval-module}}\label{\detokenize{index:module-birdears.questions.harmonicinterval}}\index{birdears.questions.harmonicinterval (module)}\index{HarmonicIntervalQuestion (class in birdears.questions.harmonicinterval)}
+\label{\detokenize{index:module-birdears.questions.harmonicinterval}}\label{\detokenize{index:birdears-questions-harmonicinterval-module}}\index{birdears.questions.harmonicinterval (module)}\index{HarmonicIntervalQuestion (class in birdears.questions.harmonicinterval)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{index:birdears.questions.harmonicinterval.HarmonicIntervalQuestion}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.questions.harmonicinterval.}\sphinxbfcode{HarmonicIntervalQuestion}}{\emph{mode='major'}, \emph{tonic=None}, \emph{octave=None}, \emph{descending=None}, \emph{chromatic=None}, \emph{n\_octaves=None}, \emph{valid\_intervals=None}, \emph{user\_durations=None}, \emph{prequestion\_method='none'}, \emph{resolution\_method='nearest\_tonic'}, \emph{*args}, \emph{**kwargs}}{}
@@ -3740,7 +3912,7 @@ Checks whether the given answer is correct.
 
 
 \section{birdears.questions.instrumentaldictation module}
-\label{\detokenize{index:module-birdears.questions.instrumentaldictation}}\label{\detokenize{index:birdears-questions-instrumentaldictation-module}}\index{birdears.questions.instrumentaldictation (module)}\index{InstrumentalDictationQuestion (class in birdears.questions.instrumentaldictation)}
+\label{\detokenize{index:birdears-questions-instrumentaldictation-module}}\label{\detokenize{index:module-birdears.questions.instrumentaldictation}}\index{birdears.questions.instrumentaldictation (module)}\index{InstrumentalDictationQuestion (class in birdears.questions.instrumentaldictation)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{index:birdears.questions.instrumentaldictation.InstrumentalDictationQuestion}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{birdears.questions.instrumentaldictation.}\sphinxbfcode{InstrumentalDictationQuestion}}{\emph{mode='major'}, \emph{wait\_time=11}, \emph{n\_repeats=1}, \emph{max\_intervals=3}, \emph{n\_notes=4}, \emph{tonic=None}, \emph{octave=None}, \emph{descending=None}, \emph{chromatic=None}, \emph{n\_octaves=None}, \emph{valid\_intervals=None}, \emph{user\_durations=None}, \emph{prequestion\_method='progression\_i\_iv\_v\_i'}, \emph{resolution\_method='repeat\_only'}, \emph{*args}, \emph{**kwargs}}{}
@@ -4059,13 +4231,13 @@ Checks whether the given answer is correct.
 
 
 \chapter{birdears.interfaces package}
-\label{\detokenize{index:birdears-interfaces-package}}\label{\detokenize{index:module-birdears.interfaces}}\index{birdears.interfaces (module)}
+\label{\detokenize{index:module-birdears.interfaces}}\label{\detokenize{index:birdears-interfaces-package}}\index{birdears.interfaces (module)}
 
 \section{Submodules}
 \label{\detokenize{index:id13}}
 
 \section{birdears.interfaces.commandline module}
-\label{\detokenize{index:module-birdears.interfaces.commandline}}\label{\detokenize{index:birdears-interfaces-commandline-module}}\index{birdears.interfaces.commandline (module)}\index{CommandLine() (in module birdears.interfaces.commandline)}
+\label{\detokenize{index:birdears-interfaces-commandline-module}}\label{\detokenize{index:module-birdears.interfaces.commandline}}\index{birdears.interfaces.commandline (module)}\index{CommandLine() (in module birdears.interfaces.commandline)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{index:birdears.interfaces.commandline.CommandLine}}\pysiglinewithargsret{\sphinxcode{birdears.interfaces.commandline.}\sphinxbfcode{CommandLine}}{\emph{exercise}, \emph{**kwargs}}{}

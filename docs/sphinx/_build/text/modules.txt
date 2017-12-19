@@ -1,0 +1,40 @@
+birdears
+********
+
+* birdears package
+
+  * Subpackages
+
+    * birdears.interfaces package
+
+      * Submodules
+
+      * birdears.interfaces.commandline module
+
+    * birdears.questions package
+
+      * Submodules
+
+      * birdears.questions.harmonicinterval module
+
+      * birdears.questions.instrumentaldictation module
+
+      * birdears.questions.melodicdictation module
+
+      * birdears.questions.melodicinterval module
+
+  * Submodules
+
+  * birdears.interval module
+
+  * birdears.logger module
+
+  * birdears.prequestion module
+
+  * birdears.questionbase module
+
+  * birdears.resolution module
+
+  * birdears.scale module
+
+  * birdears.sequence module

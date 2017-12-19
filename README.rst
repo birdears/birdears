@@ -144,6 +144,16 @@ After installing just run:
 Keybindings
 -----------
 
+The following keyboard diagrams should give you an idea on how the
+keybindings work. Please note how the keys on the line from ``z``
+(*unison*) to ``,`` (comma, *octave*) represent the notes that are
+*natural* to the mode, and the line above represent the chromatics.
+
+Also, for exercises with two octaves, the **uppercased keys represent
+the second octave**. For example, ``z`` is *unison*, ``Z`` is the
+*octave*, ``,`` is the *double octave*. The same for all the other
+intervals.
+
 ionian (major)
 ~~~~~~~~~~~~~~
 

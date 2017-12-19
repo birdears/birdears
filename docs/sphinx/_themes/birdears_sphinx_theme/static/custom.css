@@ -75,3 +75,8 @@ a.reference {
     border-radius: 2px;
     /font-size: 13px;
 }
+
+div.figure {
+    border: 1px solid #ddd;
+    background-color: #eee;
+}
