@@ -27,93 +27,21 @@ time as you want to try it out.
 
 Project at GitHub.
 
-* Features
 
-* Installing birdears
+Features
+========
 
-  * Installing the dependencies
+* questions
 
-    * Arch Linux
+* pretty much configurable
 
-  * Installing birdears
+* load from config file
 
-    * In-depth installation
+* you can make your own presets
 
-* Using birdears
+* can be used interactively *(docs needed)*
 
-  * What is Functional Ear Training
-
-  * The method
-
-  * birdears modes and basic usage
-
-    * melodic
-
-    * harmonic
-
-    * dictation
-
-    * instrumental
-
-  * Loading from config/preset files
-
-    * Pre-made presets
-
-    * Creating new preset files
-
-  * Keybindings
-
-    * On the keybindings
-
-    * Major (Ionian)
-
-    * Dorian
-
-    * Phrygian
-
-    * Lydian
-
-    * Mixolydian
-
-    * Minor (Aeolian)
-
-    * Locrian
-
-* birdears package
-
-  * Subpackages
-
-    * birdears.interfaces package
-
-    * birdears.questions package
-
-  * Submodules
-
-  * birdears.interval module
-
-  * birdears.logger module
-
-  * birdears.prequestion module
-
-  * birdears.questionbase module
-
-  * birdears.resolution module
-
-  * birdears.scale module
-
-  * birdears.sequence module
-
-* birdears.questions package
-
-  * Submodules
-
-  * birdears.questions.harmonicinterval module
-
-  * birdears.questions.instrumentaldictation module
-
-  * birdears.questions.melodicdictation module
-
-  * birdears.questions.melodicinterval module
+* can be used as a library *(docs needed)*
 
 
 Installing birdears
@@ -484,50 +412,50 @@ the other intervals.
 Major (Ionian)
 ~~~~~~~~~~~~~~
 
-   [image: map to buried treasure][image]This is the caption of the
-   figure (a simple paragraph).
+   [image: birdears keyboard bindings for ionian (major)
+   mode][image]Keyboard diagram for the "--mode major" (default).
 
 
 Dorian
 ~~~~~~
 
-   [image: map to buried treasure][image]This is the caption of the
-   figure (a simple paragraph).
+   [image: birdears keyboard bindings for dorian mode][image]Keyboard
+   diagram for the "--mode dorian".
 
 
 Phrygian
 ~~~~~~~~
 
-   [image: map to buried treasure][image]This is the caption of the
-   figure (a simple paragraph).
+   [image: birdears keyboard bindings for phrygian
+   mode][image]Keyboard diagram for the "--mode phrygian".
 
 
 Lydian
 ~~~~~~
 
-   [image: map to buried treasure][image]This is the caption of the
-   figure (a simple paragraph).
+   [image: birdears keyboard bindings for lydian mode][image]Keyboard
+   diagram for the "--mode lydian".
 
 
 Mixolydian
 ~~~~~~~~~~
 
-   [image: map to buried treasure][image]This is the caption of the
-   figure (a simple paragraph).
+   [image: birdears keyboard bindings for mixolydian
+   mode][image]Keyboard diagram for the "--mode mixolydian".
 
 
 Minor (Aeolian)
 ~~~~~~~~~~~~~~~
 
-   [image: map to buried treasure][image]This is the caption of the
-   figure (a simple paragraph).
+   [image: birdears keyboard bindings for aeolian (minor)
+   mode][image]Keyboard diagram for the "--mode minor".
 
 
 Locrian
 ~~~~~~~
 
-   [image: map to buried treasure][image]This is the caption of the
-   figure (a simple paragraph).
+   [image: birdears keyboard bindings for locrian mode][image]Keyboard
+   diagram for the "--mode locrian".
 
 
 API

@@ -34,12 +34,15 @@ Project at GitHub_.
 
 .. toctree::
    :maxdepth: 3
+   :hidden:
 
    features
    installing
    using
    birdears
    birdears.questions
+
+.. include:: features.rst
 
 .. include:: installing.rst
 

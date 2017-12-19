@@ -334,61 +334,61 @@ Major (Ionian)
 
 .. figure:: _static/img/keybindings/ionian.png
   :scale: 100%
-  :alt: map to buried treasure
+  :alt: birdears keyboard bindings for ionian (major) mode
 
-  This is the caption of the figure (a simple paragraph).
+  Keyboard diagram for the ``--mode major`` (default).
 
 Dorian
 ~~~~~~
 
 .. figure:: _static/img/keybindings/dorian.png
   :scale: 100%
-  :alt: map to buried treasure
+  :alt: birdears keyboard bindings for dorian mode
 
-  This is the caption of the figure (a simple paragraph).
+  Keyboard diagram for the ``--mode dorian``.
 
 Phrygian
 ~~~~~~~~
 
 .. figure:: _static/img/keybindings/phrygian.png
   :scale: 100%
-  :alt: map to buried treasure
+  :alt: birdears keyboard bindings for phrygian mode
 
-  This is the caption of the figure (a simple paragraph).
+  Keyboard diagram for the ``--mode phrygian``.
 
 Lydian
 ~~~~~~
 
 .. figure:: _static/img/keybindings/lydian.png
   :scale: 100%
-  :alt: map to buried treasure
+  :alt: birdears keyboard bindings for lydian mode
 
-  This is the caption of the figure (a simple paragraph).
+  Keyboard diagram for the ``--mode lydian``.
 
 Mixolydian
 ~~~~~~~~~~
 
 .. figure:: _static/img/keybindings/mixolydian.png
   :scale: 100%
-  :alt: map to buried treasure
+  :alt: birdears keyboard bindings for mixolydian mode
 
-  This is the caption of the figure (a simple paragraph).
+  Keyboard diagram for the ``--mode mixolydian``.
 
 Minor (Aeolian)
 ~~~~~~~~~~~~~~~
 
 .. figure:: _static/img/keybindings/minor.png
   :scale: 100%
-  :alt: map to buried treasure
+  :alt: birdears keyboard bindings for aeolian (minor) mode
 
-  This is the caption of the figure (a simple paragraph).
+  Keyboard diagram for the ``--mode minor``.
 
 Locrian
 ~~~~~~~
 
 .. figure:: _static/img/keybindings/locrian.png
   :scale: 100%
-  :alt: map to buried treasure
+  :alt: birdears keyboard bindings for locrian mode
 
-  This is the caption of the figure (a simple paragraph).
+  Keyboard diagram for the ``--mode locrian``.
 

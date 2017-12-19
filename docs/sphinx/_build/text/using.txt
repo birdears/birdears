@@ -323,47 +323,47 @@ the other intervals.
 Major (Ionian)
 --------------
 
-   [image: map to buried treasure][image]This is the caption of the
-   figure (a simple paragraph).
+   [image: birdears keyboard bindings for ionian (major)
+   mode][image]Keyboard diagram for the "--mode major" (default).
 
 
 Dorian
 ------
 
-   [image: map to buried treasure][image]This is the caption of the
-   figure (a simple paragraph).
+   [image: birdears keyboard bindings for dorian mode][image]Keyboard
+   diagram for the "--mode dorian".
 
 
 Phrygian
 --------
 
-   [image: map to buried treasure][image]This is the caption of the
-   figure (a simple paragraph).
+   [image: birdears keyboard bindings for phrygian
+   mode][image]Keyboard diagram for the "--mode phrygian".
 
 
 Lydian
 ------
 
-   [image: map to buried treasure][image]This is the caption of the
-   figure (a simple paragraph).
+   [image: birdears keyboard bindings for lydian mode][image]Keyboard
+   diagram for the "--mode lydian".
 
 
 Mixolydian
 ----------
 
-   [image: map to buried treasure][image]This is the caption of the
-   figure (a simple paragraph).
+   [image: birdears keyboard bindings for mixolydian
+   mode][image]Keyboard diagram for the "--mode mixolydian".
 
 
 Minor (Aeolian)
 ---------------
 
-   [image: map to buried treasure][image]This is the caption of the
-   figure (a simple paragraph).
+   [image: birdears keyboard bindings for aeolian (minor)
+   mode][image]Keyboard diagram for the "--mode minor".
 
 
 Locrian
 -------
 
-   [image: map to buried treasure][image]This is the caption of the
-   figure (a simple paragraph).
+   [image: birdears keyboard bindings for locrian mode][image]Keyboard
+   diagram for the "--mode locrian".
