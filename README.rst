@@ -27,6 +27,7 @@ Versions| |Documentation Status|
       -  `In-depth installation <#in-depth-installation>`__
 
 -  `Running <#running>`__
+-  `Keybindings <#keybindings>`__
 -  `Documentation <#documentation>`__
 -  `Contributing <#contributing>`__
 
@@ -140,6 +141,68 @@ After installing just run:
 
 ``birdears --help``
 
+Keybindings
+-----------
+
+ionian (major)
+~~~~~~~~~~~~~~
+
+These are the keybindings for the **Ionian (Major) Scale**; black keys
+are the chromatic notes.
+
+.. figure:: docs/keybindings/ionian.png
+   :alt: birdears - ionian(major) keybindings
+
+   birdears - ionian(major) keybindings
+
+dorian
+~~~~~~
+
+.. figure:: docs/keybindings/dorian.png
+   :alt: birdears - dorian keybindings
+
+   birdears - dorian keybindings
+
+phrygian
+~~~~~~~~
+
+.. figure:: docs/keybindings/phrygian.png
+   :alt: birdears - phryigian keybindings
+
+   birdears - phryigian keybindings
+
+lydian
+~~~~~~
+
+.. figure:: docs/keybindings/lydian.png
+   :alt: birdears - lydian keybindings
+
+   birdears - lydian keybindings
+
+mixolydian
+~~~~~~~~~~
+
+.. figure:: docs/keybindings/mixolydian.png
+   :alt: birdears - mixolydian keybindings
+
+   birdears - mixolydian keybindings
+
+aeolian
+~~~~~~~
+
+.. figure:: docs/keybindings/minor.png
+   :alt: birdears - aeolian keybindings
+
+   birdears - aeolian keybindings
+
+locrian
+~~~~~~~
+
+.. figure:: docs/keybindings/locrian.png
+   :alt: birdears - locrian(minor) keybindings
+
+   birdears - locrian(minor) keybindings
+
 Documentation
 -------------
 
@@ -165,6 +228,9 @@ the screencast was recorded with a command similar to
 
 `ttyrec <https://aur.archlinux.org/packages/ttyrec/>`__ and
 `seq2gif <https://github.com/saitoha/seq2gif>`__
+
+keyboard layouts were generated with
+http://www.keyboard-layout-editor.com/
 
 .. |Maintenance| image:: https://img.shields.io/maintenance/yes/2017.svg?style=flat-square
    :target: https://github.com/iacchus/birdears/issues/new?title=Is+birdears+still+maintained&body=Please+file+an+issue+if+the+maintained+button+says+no
