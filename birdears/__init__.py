@@ -1,5 +1,5 @@
 """
-BirdEars provides facilities to musical ear training exercises.
+birdears provides facilities to musical ear training exercises.
 """
 
 from .logger import logger
@@ -13,6 +13,9 @@ CHROMATIC_FLAT = ('C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb',
 
 KEYS = ('C', 'C#', 'Db', 'D', 'D#', 'Eb', 'E', 'F', 'F#', 'Gb', 'G', 'G#',
         'Ab', 'A', 'A#', 'Bb', 'B')
+"""tuple: Allowed keys
+
+These are the allowed keys for exercise as comprehended by birdears."""
 
 CIRCLE_OF_FIFTHS = [
         ('C', 'G', 'D', 'A', 'E', 'B', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F'),

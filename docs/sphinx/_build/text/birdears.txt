@@ -1,7 +1,14 @@
 birdears package
 ****************
 
-BirdEars provides facilities to musical ear training exercises.
+birdears provides facilities to musical ear training exercises.
+
+birdears.KEYS = ('C', 'C#', 'Db', 'D', 'D#', 'Eb', 'E', 'F', 'F#', 'Gb', 'G', 'G#', 'Ab', 'A', 'A#', 'Bb', 'B')
+
+   *tuple* – Allowed keys
+
+   These are the allowed keys for exercise as comprehended by
+   birdears.
 
 
 Subpackages
