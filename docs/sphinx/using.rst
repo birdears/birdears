@@ -14,7 +14,7 @@ The method
 
 We can use abc language to notate music withing the documentation, ok
 
-.. code-bloxk:: abc
+.. code-block:: abc
 
   X: 1
   T: Banish Misfortune
@@ -51,36 +51,33 @@ To see the commands avaliable just invoke the command without any arguments:
 
 ::
 
-  $ birdears
   Usage: birdears  <command> [options]
   
-  birdears ─ Functional Ear Training for Musicians!
+    birdears ─ Functional Ear Training for Musicians!
   
   Options:
     --debug / --no-debug  Turns on debugging; instead you can set DEBUG=1.
     -h, --help            Show this message and exit.
-    
+  
   Commands:
     dictation     Melodic dictation
     harmonic      Harmonic interval recognition
     instrumental  Instrumental melodic time-based dictation
-    kivy          Starts birdears graphical user interface...
     load          Loads exercise from .toml config file...
     melodic       Melodic interval recognition
-    urwid         Starts birdears text user interface (using...
   
     You can use 'birdears <command> --help' to show options for a specific
     command.
   
     More info at https://github.com/iacchus/birdears
-
-
-There are five commands, which are `dictation`, `harmonic`, `instrumental` and
-`melodic` and `load`.
-
-You can play the default question for these by starting birdears with one of
-these commands, or you can check the ``--help`` for additional options for each
-of the commands, invoking this way:
+  
+    
+  There are five commands, which are `dictation`, `harmonic`, `instrumental` and
+  `melodic` and `load`.
+  
+  You can play the default question for these by starting birdears with one of
+  these commands, or you can check the ``--help`` for additional options for each
+  of the commands, invoking this way:
 
 ::
 

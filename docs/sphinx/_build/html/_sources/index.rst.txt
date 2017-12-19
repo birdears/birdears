@@ -2,7 +2,7 @@
 birdears documentation
 ######################
 
-Welcome to birdears documetation.
+Welcome to birdears documentation.
 
 ``birdears`` is a software written in Python 3 for ear training for
 musicians (musical intelligence, transcribing music, composing). It is a
@@ -14,7 +14,7 @@ It comes with four modes, or four kind of exercises, which are:
 ``melodic``, ``harmonic``, ``dictation`` and ``instrumental``.
 
 In resume, with the *melodic* mode two notes are played one after the
-other and you have to guess the interval; with the ``harmonic`` mode,
+other and you have to guess the interval; with the *harmonic* mode,
 two notes are played simoutaneously (harmonically) and you should guess
 the interval.
 

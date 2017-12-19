@@ -31,7 +31,7 @@ distribution’s package (supposing you’re on linux), then issue on terminal:
 
 ::
 
-    virtualenv -p python3 ~/.venv # use the directory venv/ for the virtualenv
+    virtualenv -p python3 ~/.venv # use the directory ~/.venv/ for the virtualenv
 
     ~/.venv/bin/activate          # activate the virtualenv; this should be done
                                   # every time you may want to run the software

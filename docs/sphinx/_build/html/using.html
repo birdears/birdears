@@ -148,6 +148,20 @@ $(document).ready(function(){
 <div class="section" id="the-method">
 <h2>The method<a class="headerlink" href="#the-method" title="Permalink to this headline">¶</a></h2>
 <p>We can use abc language to notate music withing the documentation, ok</p>
+<div class="highlight-abc"><div class="highlight"><pre><span></span>X: 1
+T: Banish Misfortune
+R: jig
+M: 6/8
+L: 1/8
+K: Dmix
+fed cAG| A2d cAG| F2D DED| FEF GFG|
+AGA cAG| AGA cde|fed cAG| Ad^c d3:|
+f2d d^cd| f2g agf| e2c cBc|e2f gfe|
+f2g agf| e2f gfe|fed cAG|Ad^c d3:|
+f2g e2f| d2e c2d|ABA GAG| F2F GED|
+c3 cAG| AGA cde| fed cAG| Ad^c d3:|
+</pre></div>
+</div>
 </div>
 <div class="section" id="birdears-modes">
 <h2>birdears modes<a class="headerlink" href="#birdears-modes" title="Permalink to this headline">¶</a></h2>
@@ -166,10 +180,9 @@ $(document).ready(function(){
 <div class="highlight-none"><div class="highlight"><pre><span></span>birdears
 </pre></div>
 </div>
-<div class="highlight-none"><div class="highlight"><pre><span></span>$ birdears
-Usage: birdears  &lt;command&gt; [options]
+<div class="highlight-none"><div class="highlight"><pre><span></span>Usage: birdears  &lt;command&gt; [options]
 
-birdears ─ Functional Ear Training for Musicians!
+  birdears ─ Functional Ear Training for Musicians!
 
 Options:
   --debug / --no-debug  Turns on debugging; instead you can set DEBUG=1.
@@ -179,22 +192,23 @@ Commands:
   dictation     Melodic dictation
   harmonic      Harmonic interval recognition
   instrumental  Instrumental melodic time-based dictation
-  kivy          Starts birdears graphical user interface...
   load          Loads exercise from .toml config file...
   melodic       Melodic interval recognition
-  urwid         Starts birdears text user interface (using...
 
   You can use &#39;birdears &lt;command&gt; --help&#39; to show options for a specific
   command.
 
   More info at https://github.com/iacchus/birdears
+
+
+There are five commands, which are `dictation`, `harmonic`, `instrumental` and
+`melodic` and `load`.
+
+You can play the default question for these by starting birdears with one of
+these commands, or you can check the ``--help`` for additional options for each
+of the commands, invoking this way:
 </pre></div>
 </div>
-<p>There are five commands, which are <cite>dictation</cite>, <cite>harmonic</cite>, <cite>instrumental</cite> and
-<cite>melodic</cite> and <cite>load</cite>.</p>
-<p>You can play the default question for these by starting birdears with one of
-these commands, or you can check the <code class="docutils literal"><span class="pre">--help</span></code> for additional options for each
-of the commands, invoking this way:</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>birdears &lt;command&gt; --help
 </pre></div>
 </div>

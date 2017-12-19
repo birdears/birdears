@@ -138,7 +138,7 @@ $(document).ready(function(){
             
   <div class="section" id="birdears-documentation">
 <h1>birdears documentation<a class="headerlink" href="#birdears-documentation" title="Permalink to this headline">¶</a></h1>
-<p>Welcome to birdears documetation.</p>
+<p>Welcome to birdears documentation.</p>
 <p><code class="docutils literal"><span class="pre">birdears</span></code> is a software written in Python 3 for ear training for
 musicians (musical intelligence, transcribing music, composing). It is a
 clone of the method used by <a class="reference external" href="https://play.google.com/store/apps/details?id=com.kaizen9.fet.android">Funcitional Ear
@@ -147,7 +147,7 @@ app for Android.</p>
 <p>It comes with four modes, or four kind of exercises, which are:
 <code class="docutils literal"><span class="pre">melodic</span></code>, <code class="docutils literal"><span class="pre">harmonic</span></code>, <code class="docutils literal"><span class="pre">dictation</span></code> and <code class="docutils literal"><span class="pre">instrumental</span></code>.</p>
 <p>In resume, with the <em>melodic</em> mode two notes are played one after the
-other and you have to guess the interval; with the <code class="docutils literal"><span class="pre">harmonic</span></code> mode,
+other and you have to guess the interval; with the <em>harmonic</em> mode,
 two notes are played simoutaneously (harmonically) and you should guess
 the interval.</p>
 <p>With the <em>dictation</em> mode, more than 2 notes are played (<em>ie</em>., a
@@ -238,7 +238,7 @@ time as you want to try it out.</p>
 an idea on how to setup one virtualenv.</p>
 <p>You should first install virtualenv (for python3) using your
 distribution’s package (supposing you’re on linux), then issue on terminal:</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>virtualenv -p python3 ~/.venv # use the directory venv/ for the virtualenv
+<div class="highlight-none"><div class="highlight"><pre><span></span>virtualenv -p python3 ~/.venv # use the directory ~/.venv/ for the virtualenv
 
 ~/.venv/bin/activate          # activate the virtualenv; this should be done
                               # every time you may want to run the software
@@ -263,6 +263,20 @@ birdears --help               # and this will run it
 <div class="section" id="the-method">
 <h3>The method<a class="headerlink" href="#the-method" title="Permalink to this headline">¶</a></h3>
 <p>We can use abc language to notate music withing the documentation, ok</p>
+<div class="highlight-abc"><div class="highlight"><pre><span></span>X: 1
+T: Banish Misfortune
+R: jig
+M: 6/8
+L: 1/8
+K: Dmix
+fed cAG| A2d cAG| F2D DED| FEF GFG|
+AGA cAG| AGA cde|fed cAG| Ad^c d3:|
+f2d d^cd| f2g agf| e2c cBc|e2f gfe|
+f2g agf| e2f gfe|fed cAG|Ad^c d3:|
+f2g e2f| d2e c2d|ABA GAG| F2F GED|
+c3 cAG| AGA cde| fed cAG| Ad^c d3:|
+</pre></div>
+</div>
 </div>
 <div class="section" id="birdears-modes">
 <h3>birdears modes<a class="headerlink" href="#birdears-modes" title="Permalink to this headline">¶</a></h3>
@@ -281,10 +295,9 @@ birdears --help               # and this will run it
 <div class="highlight-none"><div class="highlight"><pre><span></span>birdears
 </pre></div>
 </div>
-<div class="highlight-none"><div class="highlight"><pre><span></span>$ birdears
-Usage: birdears  &lt;command&gt; [options]
+<div class="highlight-none"><div class="highlight"><pre><span></span>Usage: birdears  &lt;command&gt; [options]
 
-birdears ─ Functional Ear Training for Musicians!
+  birdears ─ Functional Ear Training for Musicians!
 
 Options:
   --debug / --no-debug  Turns on debugging; instead you can set DEBUG=1.
@@ -294,22 +307,23 @@ Commands:
   dictation     Melodic dictation
   harmonic      Harmonic interval recognition
   instrumental  Instrumental melodic time-based dictation
-  kivy          Starts birdears graphical user interface...
   load          Loads exercise from .toml config file...
   melodic       Melodic interval recognition
-  urwid         Starts birdears text user interface (using...
 
   You can use &#39;birdears &lt;command&gt; --help&#39; to show options for a specific
   command.
 
   More info at https://github.com/iacchus/birdears
+
+
+There are five commands, which are `dictation`, `harmonic`, `instrumental` and
+`melodic` and `load`.
+
+You can play the default question for these by starting birdears with one of
+these commands, or you can check the ``--help`` for additional options for each
+of the commands, invoking this way:
 </pre></div>
 </div>
-<p>There are five commands, which are <cite>dictation</cite>, <cite>harmonic</cite>, <cite>instrumental</cite> and
-<cite>melodic</cite> and <cite>load</cite>.</p>
-<p>You can play the default question for these by starting birdears with one of
-these commands, or you can check the <code class="docutils literal"><span class="pre">--help</span></code> for additional options for each
-of the commands, invoking this way:</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>birdears &lt;command&gt; --help
 </pre></div>
 </div>

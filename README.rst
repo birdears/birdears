@@ -1,4 +1,4 @@
-BirdEars
+birdears
 ========
 
 |Maintenance| |Travis Build Status| |Coveralls| |Awesome Sheet Music|
@@ -40,6 +40,15 @@ Versions| |Documentation Status|
 .. raw:: html
 
    <!-- /TOC -->
+
+For the support chat, please ``/join``
+```#birdears`` <http://webchat.freenode.net/?randomnick=1&channels=%23birdears&uio=MTY9dHJ1ZSYxMT0yNDY57>`__
+channel on freenode (``chat.freenode.net/6697`` - ssl).
+
+.. figure:: use.gif
+   :alt: birdears screencast
+
+   birdears screencast
 
 Introduction
 ------------
@@ -85,12 +94,18 @@ Features
 -  pretty much configurable
 -  load from config file
 -  you can make your own presets
+-  can be used interactively *(docs needed)*
+-  can be used as a library *(docs needed)*
 
 Installing
 ----------
 
 Installing the dependencies
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``birdears`` depends only on ``python >= 3.5`` and ``sox`` (which should
+be installed by your distribution’s package manager, supposing you’re
+using linux, and which provides the ``play`` command.)
 
 Arch Linux
 ^^^^^^^^^^
@@ -115,11 +130,15 @@ distribution’s package (supposing you’re on linux), then on terminal:
 
 ::
 
-    virtualenv -p python3 venv # use the directory venv/ for the virtualenv
-    venv/bin/activate # activate the virtualenv; this should be done every 
-                      # time you may want to run the software installed here.
-    pip install birdears # this will install it
-    birdears --help # this will run it
+    virtualenv -p python3 ~/.venv # use the directory ~/.venv/ for the virtualenv
+
+    ~/.venv/bin/activate          # activate the virtualenv; this should be done
+                                  # every time you may want to run the software
+                                  # installed here.
+
+    pip3 install birdears         # this will install the software
+
+    birdears --help               # and this will run it
 
 Running
 -------
@@ -395,11 +414,24 @@ Contributing
 Those who want to contribute to this project can read
 `CONTRIBUTING.md <CONTRIBUTING.md>`__.
 
+Etc
+---
+
+the screencast was recorded with a command similar to
+
+::
+
+    COLUMNS=120 LINES=36 ttyrec
+    seq2gif -s 2 -i ttyrecord -w 120 -h 36 -o use.gif
+
+`ttyrec <https://aur.archlinux.org/packages/ttyrec/>`__ and
+`seq2gif <https://github.com/saitoha/seq2gif>`__
+
 .. |Maintenance| image:: https://img.shields.io/maintenance/yes/2017.svg?style=flat-square
    :target: https://github.com/iacchus/birdears/issues/new?title=Is+birdears+still+maintained&body=Please+file+an+issue+if+the+maintained+button+says+no
 .. |Travis Build Status| image:: https://img.shields.io/travis/iacchus/birdears.svg?style=flat-square&label=build
    :target: https://travis-ci.org/iacchus/birdears
-.. |Coveralls| image:: https://img.shields.io/coveralls/iacchus/birdears.svg?style=flat-square&label=Coveralls
+.. |Coveralls| image:: https://img.shields.io/coveralls/iacchus/birdears.svg?style=flat-square&label=coverage
    :target: https://coveralls.io/github/iacchus/birdears
 .. |Awesome Sheet Music| image:: https://img.shields.io/badge/awesome-sheet%20music-blue.svg?style=flat-square&logoWidth=14;&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAABmJLR0QA%2FwD%2FAP%2BgvaeTAAAACXBIWXMAAD2EAAA9hAHVrK90AAAAB3RJTUUH4QYVEQ4dGSq4mgAAAuVJREFUKM8FwUtoHGUAB%2FD%2F983s7CSb7s6%2BsrtJtqbEJA21llgQi4VaCL5QRKXQg6JXEUTqrfQi9CTozYPeUgrtxceh1kbEEEtBeslzTbdrup109r2zMzvZ2Xl8s9%2F4%2B5Hvfg4vOGpzqJf3aCpY%2FfTMi5OvE%2B6mdx%2Fud0YjP5PNxpiuh6X9%2F3I%2F6mzcScvT%2BvjYCUucknhkYSnvNYTvr5169YNLCEMAHKfPvZxwrBZaqoaGWn%2BNBNWlJ4dzn3147n2totckelwZhdr%2B9U%2FOvnnx0kRSgTJdhOBpIPYzSMyE7DaQJEcoFOO5lFK%2BeszcjxblGU%2BUzHosO5%2B6Ek2kQUYuupt3cXxxEoTIYN0WFDGHNnGwvVFGLJ1eXqv%2B8dzJPK%2FRhvbLKwtnzoI7BvyBjqBzCGEiC5ougAgCCJUAymHZPuYWc8J27cGV3c76jOgM9FlwjpE7APMZAscHH%2FYQsBgAhqBvYCyeREgRbm%2FV3aXixLwf6DFxqpCIDpqPQMQIjNoTBLaN9uYO7v30T9h72sHlL1fIV1%2Bvh0mBsp16na6czmUuJM5XaM%2Fo5UEp9JqGeGEO7tBHfGYW73x8kay8%2FTwRvADL02PIClw6shkxbd8sxl%2Fo0yghVl%2FvIyoL0DY30G8ZcKt7kDnDVDGHQbOFNAFZzlC4ozDiub6SofGAWsNIZWh10X7WwtODNsyeh15ZhfVYw6M%2Ft9Do%2B1jdMsPAC%2BEEHCyAy5WCT5VE%2FqDyr4rh0IZlu%2BygZg%2FdaAw2O0KTUWh%2FVXBe4kT1KVgIeAPh1rHxJBdufHsnKJXvXK7slIV61SodNI7iswVRDgnB%2FEuz8IiDvs1xs2yH1Q099oaZfyj5lkRVf4Ta4%2B69vuF6ajeodkRJ2tzroVRq4%2F5v2xiTFahd115ITn5eu23L5on3mBn5O0UNTxB2m%2FIDdZD5hiUW7qcyhd%2B%2F%2BHUNc2%2B9i8OBwFfXDo11Hfjho2t3I4tRIRoYNBAV738fRoHSSCa2GwAAAABJRU5ErkJggg%3D%3D
    :target: https://iacchus.github.io/awesome-sheet-music/

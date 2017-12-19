@@ -1,7 +1,7 @@
 birdears documentation
 **********************
 
-Welcome to birdears documetation.
+Welcome to birdears documentation.
 
 "birdears" is a software written in Python 3 for ear training for
 musicians (musical intelligence, transcribing music, composing). It is
@@ -11,7 +11,7 @@ It comes with four modes, or four kind of exercises, which are:
 "melodic", "harmonic", "dictation" and "instrumental".
 
 In resume, with the *melodic* mode two notes are played one after the
-other and you have to guess the interval; with the "harmonic" mode,
+other and you have to guess the interval; with the *harmonic* mode,
 two notes are played simoutaneously (harmonically) and you should
 guess the interval.
 
@@ -128,7 +128,7 @@ You should first install virtualenv (for python3) using your
 distribution’s package (supposing you’re on linux), then issue on
 terminal:
 
-   virtualenv -p python3 ~/.venv # use the directory venv/ for the virtualenv
+   virtualenv -p python3 ~/.venv # use the directory ~/.venv/ for the virtualenv
 
    ~/.venv/bin/activate          # activate the virtualenv; this should be done
                                  # every time you may want to run the software
@@ -153,6 +153,19 @@ The method
 ----------
 
 We can use abc language to notate music withing the documentation, ok
+
+   X: 1
+   T: Banish Misfortune
+   R: jig
+   M: 6/8
+   L: 1/8
+   K: Dmix
+   fed cAG| A2d cAG| F2D DED| FEF GFG|
+   AGA cAG| AGA cde|fed cAG| Ad^c d3:|
+   f2d d^cd| f2g agf| e2c cBc|e2f gfe|
+   f2g agf| e2f gfe|fed cAG|Ad^c d3:|
+   f2g e2f| d2e c2d|ABA GAG| F2F GED|
+   c3 cAG| AGA cde| fed cAG| Ad^c d3:|
 
 
 birdears modes
@@ -179,10 +192,9 @@ arguments:
 
    birdears
 
-   $ birdears
    Usage: birdears  <command> [options]
 
-   birdears ─ Functional Ear Training for Musicians!
+     birdears ─ Functional Ear Training for Musicians!
 
    Options:
      --debug / --no-debug  Turns on debugging; instead you can set DEBUG=1.
@@ -192,22 +204,21 @@ arguments:
      dictation     Melodic dictation
      harmonic      Harmonic interval recognition
      instrumental  Instrumental melodic time-based dictation
-     kivy          Starts birdears graphical user interface...
      load          Loads exercise from .toml config file...
      melodic       Melodic interval recognition
-     urwid         Starts birdears text user interface (using...
 
      You can use 'birdears <command> --help' to show options for a specific
      command.
 
      More info at https://github.com/iacchus/birdears
 
-There are five commands, which are *dictation*, *harmonic*,
-*instrumental* and *melodic* and *load*.
 
-You can play the default question for these by starting birdears with
-one of these commands, or you can check the "--help" for additional
-options for each of the commands, invoking this way:
+   There are five commands, which are `dictation`, `harmonic`, `instrumental` and
+   `melodic` and `load`.
+
+   You can play the default question for these by starting birdears with one of
+   these commands, or you can check the ``--help`` for additional options for each
+   of the commands, invoking this way:
 
    birdears <command> --help
 

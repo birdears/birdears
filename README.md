@@ -159,8 +159,8 @@ Options:
   -m <mode> is one of: major, dorian, phrygian, lydian, mixolydian, minor,
   locrian
 
-  -t <tonic> is one of: A, A#, Ab, B, Bb, C, C#, Cb, D, D#, Db, E, Eb, F,
-  F#, Fb, G, G#, Gb
+  -t <tonic> is one of: A, A#, Ab, B, Bb, C, C#, D, D#, Db, E, Eb, F, F#, G,
+  G#, Gb
 
   -p <prequestion_method> is one of: none, tonic_only, progression_i_iv_v_i
 
@@ -170,6 +170,11 @@ Options:
 ### harmonic
 
 #### Description
+
+In this exercise birdears will play two notes, the tonic and the interval
+harmonically, ie., both on the same time and you should reply which is the
+correct distance between the two.
+
 
 #### Command-line options
 
@@ -207,8 +212,8 @@ Options:
   -m <mode> is one of: major, dorian, phrygian, lydian, mixolydian, minor,
   locrian
 
-  -t <tonic> is one of: A, A#, Ab, B, Bb, C, C#, Cb, D, D#, Db, E, Eb, F,
-  F#, Fb, G, G#, Gb
+  -t <tonic> is one of: A, A#, Ab, B, Bb, C, C#, D, D#, Db, E, Eb, F, F#, G,
+  G#, Gb
 
   -p <prequestion_method> is one of: none, tonic_only, progression_i_iv_v_i
 
@@ -261,8 +266,8 @@ Options:
   -m <mode> is one of: major, dorian, phrygian, lydian, mixolydian, minor,
   locrian
 
-  -t <tonic> is one of: A, A#, Ab, B, Bb, C, C#, Cb, D, D#, Db, E, Eb, F,
-  F#, Fb, G, G#, Gb
+  -t <tonic> is one of: A, A#, Ab, B, Bb, C, C#, D, D#, Db, E, Eb, F, F#, G,
+  G#, Gb
 
   -p <prequestion_method> is one of: none, tonic_only, progression_i_iv_v_i
 
@@ -317,8 +322,8 @@ Options:
   -m <mode> is one of: major, dorian, phrygian, lydian, mixolydian, minor,
   locrian
 
-  -t <tonic> is one of: A, A#, Ab, B, Bb, C, C#, Cb, D, D#, Db, E, Eb, F,
-  F#, Fb, G, G#, Gb
+  -t <tonic> is one of: A, A#, Ab, B, Bb, C, C#, D, D#, Db, E, Eb, F, F#, G,
+  G#, Gb
 
   -p <prequestion_method> is one of: none, tonic_only, progression_i_iv_v_i
 
