@@ -33,7 +33,7 @@
 
 <!-- /TOC -->
 
-For the support chat, please `/join` [`#birdears`](http://webchat.freenode.net/?randomnick=1&channels=%23birdears&uio=MTY9dHJ1ZSYxMT0yNDY57) channel on freenode (chat.freenode.net/6697 - ssl).
+For the support chat, please `/join` [`#birdears`](http://webchat.freenode.net/?randomnick=1&channels=%23birdears&uio=MTY9dHJ1ZSYxMT0yNDY57) channel on freenode (`chat.freenode.net/6697` - ssl).
 
 ![birdears screencast](use.gif)
 
@@ -96,11 +96,15 @@ You should first install virtualenv (for python3) using your distribution's pack
 then on terminal:
 
 ```
-virtualenv -p python3 venv # use the directory venv/ for the virtualenv
-venv/bin/activate # activate the virtualenv; this should be done every 
-                  # time you may want to run the software installed here.
-pip install birdears # this will install it
-birdears --help # this will run it
+virtualenv -p python3 ~/.venv # use the directory ~/.venv/ for the virtualenv
+
+~/.venv/bin/activate          # activate the virtualenv; this should be done
+                              # every time you may want to run the software
+                              # installed here.
+
+pip3 install birdears         # this will install the software
+
+birdears --help               # and this will run it
 ```
 
 ## Running
