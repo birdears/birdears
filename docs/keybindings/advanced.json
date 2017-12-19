@@ -1,0 +1,312 @@
+[
+  {
+    "backcolor": "#333",
+    "css": "@import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700|Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');\n\n* {\n    font-family:  'Inconsolata', monospace;\n}\n\n/* middle center, bottom center */\n.keylabel4 *, .keylabel7 * {\n    font-family: 'Roboto Condensed', monospace !important;\n    font-weight: 900 !important;\n    color: #333;\n}\n\n/* center right, bottom left*/\n.keylabel5, .keylabel6 {\n    font-weight: bold !important;\n}\n\n/* center right */\n.keylabel5 {\n    color: #f92672 !important;\n}\n\n/* top right */\n.keylabel2 * {\n    color: #f92672 !important;\n    font-weight: 700 !important;\n    font-family: 'Roboto Condensed', monospace !important;\n    font-style: oblique;\n\n}\n\n/* front left */\n.keylabel9 * {\n    font-weight: 900 !important;\n    font-family: 'Roboto Condensed', monospace !important;\n    font-style: oblique;\n}"
+  },
+  [
+    {
+      "c": "#f0f0f0",
+      "t": "#777777"
+    },
+    "¬\n`",
+    "!\n1",
+    "\"\n2",
+    "£\n3",
+    "$\n4",
+    "%\n5",
+    "^\n6",
+    "&\n7",
+    "*\n8",
+    "(\n9",
+    ")\n0",
+    "_\n-",
+    "+\n=",
+    {
+      "c": "#dddddd",
+      "t": "#000000",
+      "fa": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2
+      ],
+      "w": 2
+    },
+    "Backspace\n\n\n\n\n\n\n\n\ndelete last note\n(dictation)",
+    {
+      "x": 0.25,
+      "c": "#cccccc",
+      "a": 0,
+      "fa": [
+        0,
+        4,
+        4,
+        0,
+        0,
+        0,
+        0,
+        4
+      ],
+      "w": 2,
+      "h": 2,
+      "l": true
+    },
+    "\nascending\nshift desc.\n\nshift asc.\n\n\ndescending"
+  ],
+  [
+    {
+      "c": "#f0f0f0",
+      "t": "#777777",
+      "a": 4,
+      "w": 1.5
+    },
+    "Tab",
+    {
+      "c": "#cccccc",
+      "t": "#000000",
+      "fa": [
+        0,
+        4,
+        4,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        2
+      ]
+    },
+    "Q\n\n\n\n\n\n\n\n\nquit",
+    {
+      "c": "#f0f0f0",
+      "t": "#777777"
+    },
+    "W",
+    "E",
+    {
+      "c": "#cccccc",
+      "t": "#000000",
+      "fa": [
+        0,
+        4,
+        4,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        2,
+        2
+      ]
+    },
+    "R\n\n\n\n\n\n\n\n\n\nrepeat question",
+    {
+      "c": "#f0f0f0",
+      "t": "#777777"
+    },
+    "T",
+    "Y",
+    "U",
+    "I",
+    "O",
+    "P",
+    {
+      "f": 3
+    },
+    "{\n[",
+    {
+      "f": 3
+    },
+    "}\n]",
+    {
+      "x": 0.25,
+      "w": 1.25,
+      "h": 2,
+      "w2": 1.5,
+      "h2": 1,
+      "x2": -0.25
+    },
+    "Enter"
+  ],
+  [
+    {
+      "c": "#cccccc",
+      "t": "#000000",
+      "w": 1.75
+    },
+    "Caps Lock\n\n\n\n\n\n\n\n\ntoggle octave",
+    {
+      "c": "#f0f0f0",
+      "t": "#777777"
+    },
+    "A",
+    {
+      "c": "#333333",
+      "t": "#ffffff",
+      "fa": [
+        0,
+        2,
+        4,
+        0,
+        0,
+        0,
+        0,
+        2
+      ]
+    },
+    "S\nm2\n\n\n\n\n\nM7",
+    "D\nM2,m3\n\n\n\n\n\nm7,M6",
+    {
+      "a": 0,
+      "fa": [
+        0,
+        2,
+        1,
+        0,
+        0,
+        0,
+        0,
+        2
+      ]
+    },
+    "F\nM3,P4\nP12,m13\n\nM12,P13\n\n\nm6,P5",
+    {
+      "a": 4
+    },
+    "G\nTT\n\n\n\n\n\nTT",
+    "H\nP5,m6\n\n\n\n\n\nP4,M3",
+    "J\nm7\n\n\n\n\n\nm3,M2",
+    "K\nM7\n\n\n\n\n\nm2",
+    {
+      "c": "#f0f0f0",
+      "t": "#777777"
+    },
+    "L",
+    {
+      "f": 3
+    },
+    ":\n;",
+    {
+      "f": 3
+    },
+    "@\n'",
+    {
+      "f": 3
+    },
+    "~\n#"
+  ],
+  [
+    {
+      "c": "#cccccc",
+      "t": "#000000",
+      "fa": [
+        0,
+        2,
+        1,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        2
+      ],
+      "w": 1.25
+    },
+    "Shift\n\n\n\n\n\n\n\n\n\nshift octave",
+    {
+      "c": "#f0f0f0",
+      "t": "#777777",
+      "f": 3
+    },
+    "|\n\\",
+    {
+      "c": "#cccccc",
+      "t": "#000000"
+    },
+    "Z\nPI\n\n\n\n\n\nP8",
+    "X\nm2,M2\n\n\n\n\n\nm7,M7",
+    "C\nm3,M3\n\n\n\n\n\nm6,M6",
+    "V\nP4,A4\n\n\n\n\n\nP5,d5",
+    "B\nP5,d5\n\n\n\n\n\nP4,A4",
+    "N\nM6,m6\n\n\n\n\n\nm3,M3",
+    "M\nM7,m7\n\n\n\n\n\nm2,M2",
+    ", <\nP8\n\n\n\n\n\nP1",
+    {
+      "c": "#f0f0f0",
+      "t": "#777777",
+      "f": 3
+    },
+    ">\n.",
+    {
+      "f": 3
+    },
+    "?\n/",
+    {
+      "c": "#cccccc",
+      "t": "#000000",
+      "fa": [
+        0,
+        2,
+        1,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        2
+      ],
+      "w": 2.75
+    },
+    "Shift\n\n\n\n\n\n\n\n\nshift octave"
+  ],
+  [
+    {
+      "c": "#f0f0f0",
+      "t": "#777777",
+      "w": 1.25
+    },
+    "Ctrl",
+    {
+      "w": 1.25
+    },
+    "Win",
+    {
+      "w": 1.25
+    },
+    "Alt",
+    {
+      "a": 7,
+      "w": 6.25
+    },
+    "",
+    {
+      "a": 4,
+      "w": 1.25
+    },
+    "AltGr",
+    {
+      "w": 1.25
+    },
+    "Win",
+    {
+      "w": 1.25
+    },
+    "Menu",
+    {
+      "w": 1.25
+    },
+    "Ctrl"
+  ]
+]
