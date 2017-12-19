@@ -144,7 +144,7 @@ KEYBOARD_INDICES = {
             'dorian':     "zsxcfvgbhnmk,SXCFVGBHNMKZ",
             'phrygian':   "zxdcfvgbnjmk,XDCFVGBNJMKZ",
             'lydian':     "zsxdcfvbhnjm,SXDCFVBHNJMZ",
-            'myxolidian': "zsxdcvgbhnmk,SXDCVGBHNMNZ",
+            'mixolydian': "zsxdcvgbhnmk,SXDCVGBHNMNZ",
             'minor':      "zsxcfvgbnjmk,SXCFVGBNJMKZ",
             'locrian':    "zxdcfvbhnjmk,XDCFVBHNJMKZ",
         },

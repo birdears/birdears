@@ -23,8 +23,7 @@
 	- [Installing birdears](#installing-birdears)
 		- [In-depth installation](#in-depth-installation)
 - [Running](#running)
-- [Example](#example)
-   - [Keybindings](#keybindings)
+- [Keybindings](#keybindings)
 - [Documentation](#documentation)
 - [Contributing](#contributing)
 
@@ -110,19 +109,38 @@ After installing just run:
 
 `birdears --help`
 
-## Example
+## Keybindings
 
-Execute
-
-```
-birdears melodic
-```
-
-### Keybindings
+### ionian (major)
 
 These are the keybindings for the **Ionian (Major) Scale**; black keys are the chromatic notes.
 
-![birdears - ionian (major) keybindings](ionian-keybindings-birdears.png)
+![birdears - ionian(major) keybindings](docs/keybindings/ionian.png)
+
+### dorian
+
+![birdears - dorian keybindings](docs/keybindings/dorian.png)
+
+### phrygian
+
+![birdears - phryigian keybindings](docs/keybindings/phrygian.png)
+
+### lydian
+
+![birdears - lydian keybindings](docs/keybindings/lydian.png)
+
+### mixolydian
+
+![birdears - mixolydian keybindings](docs/keybindings/mixolydian.png)
+
+### aeolian
+
+![birdears - aeolian keybindings](docs/keybindings/aeolian.png)
+
+### locrian
+
+![birdears - locrian(minor) keybindings](docs/keybindings/locrian.png)
+
 
 ## Documentation
 
