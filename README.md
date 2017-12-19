@@ -149,6 +149,10 @@ These are the keybindings for the **Ionian (Major) Scale**; black keys are the c
 
 ![birdears - locrian(minor) keybindings](docs/keybindings/locrian.png)
 
+## Advanced
+
+![birdears - advanced keybindings](docs/keybindings/advanced.png)
+
 
 ## Documentation
 
