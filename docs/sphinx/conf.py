@@ -61,9 +61,9 @@ napoleon_use_ivar = False
 napoleon_use_param = True
 napoleon_use_rtype = True
 
-autosummary_generate = True
+#autosummary_generate = True
 
-autodoc_default_flags = ['annotations','special-members']
+#autodoc_default_flags = ['annotations','special-members']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

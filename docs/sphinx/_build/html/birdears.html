@@ -139,7 +139,56 @@ $(document).ready(function(){
             
   <div class="section" id="module-birdears">
 <span id="birdears-package"></span><h1>3. birdears package<a class="headerlink" href="#module-birdears" title="Permalink to this headline">¶</a></h1>
-<p>birdears provides facilities to musical ear training exercises.</p>
+<p>birdears provides facilities to building musical ear training exercises.</p>
+<dl class="data">
+<dt id="birdears.CHROMATIC_FLAT">
+<code class="descclassname">birdears.</code><code class="descname">CHROMATIC_FLAT</code><em class="property"> = ('C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B')</em><a class="headerlink" href="#birdears.CHROMATIC_FLAT" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>tuple</em> – Chromatic notes names using flats.</p>
+<p>A mapping of the chromatic note names using flats.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="birdears.CHROMATIC_SHARP">
+<code class="descclassname">birdears.</code><code class="descname">CHROMATIC_SHARP</code><em class="property"> = ('C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B')</em><a class="headerlink" href="#birdears.CHROMATIC_SHARP" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>tuple</em> – Chromatic notes names using sharps.</p>
+<p>A mapping of the chromatic note namesu sing sharps</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="birdears.CHROMATIC_TYPE">
+<code class="descclassname">birdears.</code><code class="descname">CHROMATIC_TYPE</code><em class="property"> = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)</em><a class="headerlink" href="#birdears.CHROMATIC_TYPE" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>tuple</em> – A map of the chromatic chromatic scale.</p>
+<p>A map of the the semitones which compound the chromatic scale.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="birdears.CIRCLE_OF_FIFTHS">
+<code class="descclassname">birdears.</code><code class="descname">CIRCLE_OF_FIFTHS</code><em class="property"> = [('C', 'G', 'D', 'A', 'E', 'B', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F'), ('C', 'F', 'Bb', 'Eb', 'Ab', 'C#', 'F#', 'B', 'E', 'A', 'D', 'G')]</em><a class="headerlink" href="#birdears.CIRCLE_OF_FIFTHS" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>list of tuples</em> – Circle of fifths.</p>
+<p>These are the circle of fifth in both directions.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="birdears.DIATONIC_MODES">
+<code class="descclassname">birdears.</code><code class="descname">DIATONIC_MODES</code><em class="property"> = {'major': (0, 2, 4, 5, 7, 9, 11, 12), 'dorian': (0, 2, 3, 5, 7, 9, 10, 12), 'phrygian': (0, 1, 3, 5, 7, 8, 10, 12), 'lydian': (0, 2, 4, 6, 7, 9, 11, 12), 'mixolydian': (0, 2, 4, 5, 7, 9, 10, 12), 'minor': (0, 2, 3, 5, 7, 8, 10, 12), 'locrian': (0, 1, 3, 5, 6, 8, 10, 12)}</em><a class="headerlink" href="#birdears.DIATONIC_MODES" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dict of tuples</em> – A map of the diatonic scale.</p>
+<p>A mapping of the semitones which compound each of the greek modes.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="birdears.INTERVALS">
+<code class="descclassname">birdears.</code><code class="descname">INTERVALS</code><em class="property"> = ((0, 'P1', 'Perfect Unison'), (1, 'm2', 'Minor Second'), (2, 'M2', 'Major Second'), (3, 'm3', 'Minor Third'), (4, 'M3', 'Major Third'), (5, 'P4', 'Perfect Fourth'), (6, 'A4', 'Augmented Fourth'), (7, 'P5', 'Perfect Fifth'), (8, 'm6', 'Minor Sixth'), (9, 'M6', 'Major Sixth'), (10, 'm7', 'Minor Seventh'), (11, 'M7', 'Major Seventh'), (12, 'P8', 'Perfect Octave'), (13, 'A8', 'Minor Ninth'), (14, 'M9', 'Major Ninth'), (15, 'm10', 'Minor Tenth'), (16, 'M10', 'Major Tenth'), (17, 'P11', 'Perfect Eleventh'), (18, 'A11', 'Augmented Eleventh'), (19, 'P12', 'Perfect Twelfth'), (20, 'm13', 'Minor Thirteenth'), (21, 'M13', 'Major Thirteenth'), (22, 'm14', 'Minor Fourteenth'), (23, 'M14', 'Major Fourteenth'), (24, 'P15', 'Perfect Double-octave'), (25, 'A15', 'Minor Sixteenth'), (26, 'M16', 'Major Sixteenth'), (27, 'm17', 'Minor Seventeenth'), (28, 'M17', 'Major Seventeenth'), (29, 'P18', 'Perfect Eighteenth'), (30, 'A18', 'Augmented Eighteenth'), (31, 'P19', 'Perfect Nineteenth'), (32, 'm20', 'Minor Twentieth'), (33, 'M20', 'Major Twentieth'), (34, 'm21', 'Minor Twenty-first'), (35, 'M21', 'Major Twenty-first'), (36, 'P22', 'Perfect Triple-octave'))</em><a class="headerlink" href="#birdears.INTERVALS" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>tuple of tuples</em> – Data representing intervals.</p>
+<p>A tuple of tuples representing data for the intervals with format (semitones, short name, full name).</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="birdears.INTERVAL_INDEX">
+<code class="descclassname">birdears.</code><code class="descname">INTERVAL_INDEX</code><em class="property"> = {1: [0], 2: [1, 2], 3: [3, 4], 4: [5, 6], 5: [6, 7], 6: [8, 9], 7: [10, 11], 8: [12]}</em><a class="headerlink" href="#birdears.INTERVAL_INDEX" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dict of lists</em> – A mapping of semitones of each interval.</p>
+<p>A mapping of semitones which index to each interval name, major/minor, perfect, augmented/diminished</p>
+</dd></dl>
+
 <dl class="data">
 <dt id="birdears.KEYS">
 <code class="descclassname">birdears.</code><code class="descname">KEYS</code><em class="property"> = ('C', 'C#', 'Db', 'D', 'D#', 'Eb', 'E', 'F', 'F#', 'Gb', 'G', 'G#', 'Ab', 'A', 'A#', 'Bb', 'B')</em><a class="headerlink" href="#birdears.KEYS" title="Permalink to this definition">¶</a></dt>
@@ -304,11 +353,6 @@ choice, 1 is 1st, 2 is second etc.</li>
 </table>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="birdears.interval.ChromaticInterval.__module__">
-<code class="descname">__module__</code><em class="property"> = 'birdears.interval'</em><a class="headerlink" href="#birdears.interval.ChromaticInterval.__module__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
 <dl class="class">
@@ -428,37 +472,16 @@ choice, 1 is 1st, 2 is second etc.</li>
 </table>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="birdears.interval.DiatonicInterval.__module__">
-<code class="descname">__module__</code><em class="property"> = 'birdears.interval'</em><a class="headerlink" href="#birdears.interval.DiatonicInterval.__module__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
 <dl class="class">
 <dt id="birdears.interval.IntervalBase">
 <em class="property">class </em><code class="descclassname">birdears.interval.</code><code class="descname">IntervalBase</code><a class="reference internal" href="_modules/birdears/interval.html#IntervalBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.interval.IntervalBase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
-<dl class="attribute">
-<dt id="birdears.interval.IntervalBase.__dict__">
-<code class="descname">__dict__</code><em class="property"> = mappingproxy({'__module__': 'birdears.interval', '__init__': &lt;function IntervalBase.__init__&gt;, 'return_simple': &lt;function IntervalBase.return_simple&gt;, '__dict__': &lt;attribute '__dict__' of 'IntervalBase' objects&gt;, '__weakref__': &lt;attribute '__weakref__' of 'IntervalBase' objects&gt;, '__doc__': None})</em><a class="headerlink" href="#birdears.interval.IntervalBase.__dict__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="method">
 <dt id="birdears.interval.IntervalBase.__init__">
 <code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/interval.html#IntervalBase.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.interval.IntervalBase.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Base class for interval classes.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.IntervalBase.__module__">
-<code class="descname">__module__</code><em class="property"> = 'birdears.interval'</em><a class="headerlink" href="#birdears.interval.IntervalBase.__module__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.interval.IntervalBase.__weakref__">
-<code class="descname">__weakref__</code><a class="headerlink" href="#birdears.interval.IntervalBase.__weakref__" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of weak references to the object (if defined)</p>
 </dd></dl>
 
 <dl class="method">
@@ -527,11 +550,6 @@ decorator, so that they will be registered as a valid pre-question method.</p>
 the method.</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="birdears.prequestion.PreQuestion.__dict__">
-<code class="descname">__dict__</code><em class="property"> = mappingproxy({'__module__': 'birdears.prequestion', '__init__': &lt;function PreQuestion.__init__&gt;, '__call__': &lt;function PreQuestion.__call__&gt;, '__dict__': &lt;attribute '__dict__' of 'PreQuestion' objects&gt;, '__weakref__': &lt;attribute '__weakref__' of 'PreQuestion' objects&gt;, '__doc__': None})</em><a class="headerlink" href="#birdears.prequestion.PreQuestion.__dict__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="method">
 <dt id="birdears.prequestion.PreQuestion.__init__">
 <code class="descname">__init__</code><span class="sig-paren">(</span><em>method</em>, <em>question</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/prequestion.html#PreQuestion.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.prequestion.PreQuestion.__init__" title="Permalink to this definition">¶</a></dt>
@@ -550,17 +568,6 @@ progressions.</p>
 </tr>
 </tbody>
 </table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.prequestion.PreQuestion.__module__">
-<code class="descname">__module__</code><em class="property"> = 'birdears.prequestion'</em><a class="headerlink" href="#birdears.prequestion.PreQuestion.__module__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.prequestion.PreQuestion.__weakref__">
-<code class="descname">__weakref__</code><a class="headerlink" href="#birdears.prequestion.PreQuestion.__weakref__" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of weak references to the object (if defined)</p>
 </dd></dl>
 
 </dd></dl>
@@ -633,11 +640,6 @@ when it is <a href="#id5"><span class="problematic" id="id6">`</span></a>__call_
 <p>Base Class to be subclassed for Question classes.</p>
 <p>This class implements attributes and routines to be used in Question
 subclasses.</p>
-<dl class="attribute">
-<dt id="birdears.questionbase.QuestionBase.__dict__">
-<code class="descname">__dict__</code><em class="property"> = mappingproxy({'__module__': 'birdears.questionbase', '__doc__': '\n    Base Class to be subclassed for Question classes.\n\n    This class implements attributes and routines to be used in Question\n    subclasses.\n    ', '__init__': &lt;function QuestionBase.__init__&gt;, 'get_valid_semitones': &lt;function QuestionBase.get_valid_semitones&gt;, 'make_question': &lt;function QuestionBase.make_question&gt;, 'make_resolution': &lt;function QuestionBase.make_resolution&gt;, 'play_question': &lt;function QuestionBase.play_question&gt;, 'check_question': &lt;function QuestionBase.check_question&gt;, '__dict__': &lt;attribute '__dict__' of 'QuestionBase' objects&gt;, '__weakref__': &lt;attribute '__weakref__' of 'QuestionBase' objects&gt;})</em><a class="headerlink" href="#birdears.questionbase.QuestionBase.__dict__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="method">
 <dt id="birdears.questionbase.QuestionBase.__init__">
 <code class="descname">__init__</code><span class="sig-paren">(</span><em>mode='major'</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>valid_intervals=None</em>, <em>user_durations=None</em>, <em>prequestion_method=None</em>, <em>resolution_method=None</em>, <em>default_durations=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questionbase.html#QuestionBase.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questionbase.QuestionBase.__init__" title="Permalink to this definition">¶</a></dt>
@@ -694,17 +696,6 @@ each type of sequence. This is provided by the subclasses.</li>
 </tr>
 </tbody>
 </table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.questionbase.QuestionBase.__module__">
-<code class="descname">__module__</code><em class="property"> = 'birdears.questionbase'</em><a class="headerlink" href="#birdears.questionbase.QuestionBase.__module__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.questionbase.QuestionBase.__weakref__">
-<code class="descname">__weakref__</code><a class="headerlink" href="#birdears.questionbase.QuestionBase.__weakref__" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of weak references to the object (if defined)</p>
 </dd></dl>
 
 <dl class="method">
@@ -766,11 +757,6 @@ how the inverval resvolver to the tonic.</p>
 the.method.</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="birdears.resolution.Resolution.__dict__">
-<code class="descname">__dict__</code><em class="property"> = mappingproxy({'__module__': 'birdears.resolution', '__doc__': 'This class implements methods for different types of question\n    resolutions.\n\n    A resolution is an answer to a question. It aims to create a mnemonic on\n    how the inverval resvolver to the tonic.\n    ', '__init__': &lt;function Resolution.__init__&gt;, '__call__': &lt;function Resolution.__call__&gt;, '__dict__': &lt;attribute '__dict__' of 'Resolution' objects&gt;, '__weakref__': &lt;attribute '__weakref__' of 'Resolution' objects&gt;})</em><a class="headerlink" href="#birdears.resolution.Resolution.__dict__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="method">
 <dt id="birdears.resolution.Resolution.__init__">
 <code class="descname">__init__</code><span class="sig-paren">(</span><em>method</em>, <em>question</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/resolution.html#Resolution.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.resolution.Resolution.__init__" title="Permalink to this definition">¶</a></dt>
@@ -788,17 +774,6 @@ the.method.</p>
 </tr>
 </tbody>
 </table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.resolution.Resolution.__module__">
-<code class="descname">__module__</code><em class="property"> = 'birdears.resolution'</em><a class="headerlink" href="#birdears.resolution.Resolution.__module__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.resolution.Resolution.__weakref__">
-<code class="descname">__weakref__</code><a class="headerlink" href="#birdears.resolution.Resolution.__weakref__" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of weak references to the object (if defined)</p>
 </dd></dl>
 
 </dd></dl>
@@ -880,11 +855,6 @@ note (octave) to the scale.</li>
 </table>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="birdears.scale.ChromaticScale.__module__">
-<code class="descname">__module__</code><em class="property"> = 'birdears.scale'</em><a class="headerlink" href="#birdears.scale.ChromaticScale.__module__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="method">
 <dt id="birdears.scale.ChromaticScale.get_triad">
 <code class="descname">get_triad</code><span class="sig-paren">(</span><em>mode</em>, <em>index=0</em>, <em>degree=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/scale.html#ChromaticScale.get_triad"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.scale.ChromaticScale.get_triad" title="Permalink to this definition">¶</a></dt>
@@ -945,11 +915,6 @@ note (octave) to the scale.</li>
 </table>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="birdears.scale.DiatonicScale.__module__">
-<code class="descname">__module__</code><em class="property"> = 'birdears.scale'</em><a class="headerlink" href="#birdears.scale.DiatonicScale.__module__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="method">
 <dt id="birdears.scale.DiatonicScale.get_triad">
 <code class="descname">get_triad</code><span class="sig-paren">(</span><em>index=0</em>, <em>degree=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/scale.html#DiatonicScale.get_triad"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.scale.DiatonicScale.get_triad" title="Permalink to this definition">¶</a></dt>
@@ -978,27 +943,6 @@ note (octave) to the scale.</li>
 <dt id="birdears.scale.ScaleBase">
 <em class="property">class </em><code class="descclassname">birdears.scale.</code><code class="descname">ScaleBase</code><a class="reference internal" href="_modules/birdears/scale.html#ScaleBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.scale.ScaleBase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
-<dl class="attribute">
-<dt id="birdears.scale.ScaleBase.__dict__">
-<code class="descname">__dict__</code><em class="property"> = mappingproxy({'__module__': 'birdears.scale', '__init__': &lt;function ScaleBase.__init__&gt;, '_append_octave_to_scale': &lt;function ScaleBase._append_octave_to_scale&gt;, '_get_chromatic_idx': &lt;function ScaleBase._get_chromatic_idx&gt;, '_rotate_scale_by_idx': &lt;function ScaleBase._rotate_scale_by_idx&gt;, '__dict__': &lt;attribute '__dict__' of 'ScaleBase' objects&gt;, '__weakref__': &lt;attribute '__weakref__' of 'ScaleBase' objects&gt;, '__doc__': None})</em><a class="headerlink" href="#birdears.scale.ScaleBase.__dict__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="birdears.scale.ScaleBase.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/scale.html#ScaleBase.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.scale.ScaleBase.__init__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.ScaleBase.__module__">
-<code class="descname">__module__</code><em class="property"> = 'birdears.scale'</em><a class="headerlink" href="#birdears.scale.ScaleBase.__module__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.scale.ScaleBase.__weakref__">
-<code class="descname">__weakref__</code><a class="headerlink" href="#birdears.scale.ScaleBase.__weakref__" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of weak references to the object (if defined)</p>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -1014,54 +958,6 @@ note (octave) to the scale.</li>
 <code class="descname">elements</code><a class="headerlink" href="#birdears.sequence.Sequence.elements" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>array_type</em> – List of notes (strings) ou chords (list of
 strings) in this Sequence.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.sequence.Sequence.__dict__">
-<code class="descname">__dict__</code><em class="property"> = mappingproxy({'__module__': 'birdears.sequence', '__doc__': 'Register a Sequence of notes and/or chords.\n\n    Attributes:\n        elements (array_type): List of notes (strings) ou chords (list of\n            strings) in this Sequence.\n    ', '__init__': &lt;function Sequence.__init__&gt;, 'append': &lt;function Sequence.append&gt;, 'extend': &lt;function Sequence.extend&gt;, 'play': &lt;function Sequence.play&gt;, 'async_play': &lt;function Sequence.async_play&gt;, 'play_element': &lt;function Sequence.play_element&gt;, 'make_chord_progression': &lt;function Sequence.make_chord_progression&gt;, '_async_play_note': &lt;function Sequence._async_play_note&gt;, '_async_play_chord': &lt;function Sequence._async_play_chord&gt;, '_async_wait': &lt;function Sequence._async_wait&gt;, '_play_note': &lt;function Sequence._play_note&gt;, '_play_chord': &lt;function Sequence._play_chord&gt;, '_wait': &lt;function Sequence._wait&gt;, '__len__': &lt;function Sequence.__len__&gt;, '__dict__': &lt;attribute '__dict__' of 'Sequence' objects&gt;, '__weakref__': &lt;attribute '__weakref__' of 'Sequence' objects&gt;})</em><a class="headerlink" href="#birdears.sequence.Sequence.__dict__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="birdears.sequence.Sequence.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>elements=[]</em>, <em>duration=2</em>, <em>delay=1.5</em>, <em>pos_delay=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/sequence.html#Sequence.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.sequence.Sequence.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt>Inits the Sequence with an array and sets the default times for</dt>
-<dd>playing / pausing the elements.</dd>
-</dl>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>elements</strong> (<em>array_type</em>) – List of elements in this sequence.
-(notes or chords)</li>
-<li><strong>duration</strong> (<em>float</em>) – Default playing time for each element in the
-sequence.</li>
-<li><strong>delay</strong> (<em>float</em>) – Default waiting time to play the next element
-in the sequence.</li>
-<li><strong>pos_delay</strong> (<em>float</em>) – Waiting time after playing the last element
-in the sequence.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="birdears.sequence.Sequence.__len__">
-<code class="descname">__len__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/sequence.html#Sequence.__len__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.sequence.Sequence.__len__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.sequence.Sequence.__module__">
-<code class="descname">__module__</code><em class="property"> = 'birdears.sequence'</em><a class="headerlink" href="#birdears.sequence.Sequence.__module__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.sequence.Sequence.__weakref__">
-<code class="descname">__weakref__</code><a class="headerlink" href="#birdears.sequence.Sequence.__weakref__" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of weak references to the object (if defined)</p>
 </dd></dl>
 
 <dl class="method">

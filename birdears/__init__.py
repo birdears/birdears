@@ -1,5 +1,5 @@
 """
-birdears provides facilities to musical ear training exercises.
+birdears provides facilities to building musical ear training exercises.
 """
 
 from .logger import logger
@@ -8,8 +8,15 @@ DEBUG = False
 
 CHROMATIC_SHARP = ('C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#',
                    'B')
+"""tuple: Chromatic notes names using sharps.
+
+A mapping of the chromatic note namesu sing sharps"""
+
 CHROMATIC_FLAT = ('C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb',
                   'B')
+"""tuple: Chromatic notes names using flats.
+
+A mapping of the chromatic note names using flats."""
 
 KEYS = ('C', 'C#', 'Db', 'D', 'D#', 'Eb', 'E', 'F', 'F#', 'Gb', 'G', 'G#',
         'Ab', 'A', 'A#', 'Bb', 'B')
@@ -21,6 +28,9 @@ CIRCLE_OF_FIFTHS = [
         ('C', 'G', 'D', 'A', 'E', 'B', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F'),
         ('C', 'F', 'Bb', 'Eb', 'Ab', 'C#', 'F#', 'B', 'E', 'A', 'D', 'G')
     ]
+"""list of tuples: Circle of fifths.
+
+These are the circle of fifth in both directions."""
 
 INTERVALS = (
     (0, 'P1', 'Perfect Unison'),
@@ -61,8 +71,15 @@ INTERVALS = (
     (35, 'M21', 'Major Twenty-first'),
     (36, 'P22', 'Perfect Triple-octave')
 )
+"""tuple of tuples: Data representing intervals.
+
+A tuple of tuples representing data for the intervals with format (semitones, short name, full name)."""
 
 CHROMATIC_TYPE = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
+"""tuple: A map of the chromatic chromatic scale.
+
+A map of the the semitones which compound the chromatic scale."""
+
 DIATONIC_MODES = {
     'major': (0, 2, 4, 5, 7, 9, 11, 12),
     'dorian': (0, 2, 3, 5, 7, 9, 10, 12),
@@ -72,6 +89,10 @@ DIATONIC_MODES = {
     'minor': (0, 2, 3, 5, 7, 8, 10, 12),
     'locrian': (0, 1, 3, 5, 6, 8, 10, 12),
 }
+"""dict of tuples: A map of the diatonic scale.
+
+A mapping of the semitones which compound each of the greek modes.
+"""
 
 INTERVAL_INDEX = {
     1: [0],
@@ -83,6 +104,10 @@ INTERVAL_INDEX = {
     7: [10, 11],
     8: [12]
 }
+"""dict of lists: A mapping of semitones of each interval.
+
+A mapping of semitones which index to each interval name, major/minor, perfect, augmented/diminished"""
+
 # MAJOR keyboard keys (with chromatics)
 # keyindex for major and chromatic major context
 #  s d   g h j        IIb  IIIb       Vb VIb  VIIb

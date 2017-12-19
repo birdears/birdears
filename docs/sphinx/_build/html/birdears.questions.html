@@ -136,9 +136,9 @@ $(document).ready(function(){
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="module-birdears.questions">
-<span id="birdears-questions-package"></span><h1>3.1.2. birdears.questions package<a class="headerlink" href="#module-birdears.questions" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="submodules">
+  <div class="section" id="birdears-questions-package">
+<h1>3.1.2. birdears.questions package<a class="headerlink" href="#birdears-questions-package" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-birdears.questions"></span><div class="section" id="submodules">
 <h2>3.1.2.1. Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-birdears.questions.harmonicinterval">
@@ -202,11 +202,6 @@ exercise. Valid ones are registered in the
 </tbody>
 </table>
 </dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.questions.harmonicinterval.HarmonicIntervalQuestion.__module__">
-<code class="descname">__module__</code><em class="property"> = 'birdears.questions.harmonicinterval'</em><a class="headerlink" href="#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.__module__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 <dl class="method">
 <dt id="birdears.questions.harmonicinterval.HarmonicIntervalQuestion.check_question">
@@ -311,11 +306,6 @@ exercise. Valid ones are registered in the
 </table>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.__module__">
-<code class="descname">__module__</code><em class="property"> = 'birdears.questions.instrumentaldictation'</em><a class="headerlink" href="#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.__module__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="method">
 <dt id="birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.check_question">
 <code class="descname">check_question</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questions/instrumentaldictation.html#InstrumentalDictationQuestion.check_question"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.check_question" title="Permalink to this definition">¶</a></dt>
@@ -411,11 +401,6 @@ exercise. Valid ones are registered in the
 </table>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="birdears.questions.melodicdictation.MelodicDictationQuestion.__module__">
-<code class="descname">__module__</code><em class="property"> = 'birdears.questions.melodicdictation'</em><a class="headerlink" href="#birdears.questions.melodicdictation.MelodicDictationQuestion.__module__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="method">
 <dt id="birdears.questions.melodicdictation.MelodicDictationQuestion.check_question">
 <code class="descname">check_question</code><span class="sig-paren">(</span><em>user_input_keys</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questions/melodicdictation.html#MelodicDictationQuestion.check_question"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questions.melodicdictation.MelodicDictationQuestion.check_question" title="Permalink to this definition">¶</a></dt>
@@ -457,66 +442,6 @@ exercise. Valid ones are registered in the
 <em class="property">class </em><code class="descclassname">birdears.questions.melodicinterval.</code><code class="descname">MelodicIntervalQuestion</code><span class="sig-paren">(</span><em>mode='major'</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>valid_intervals=None</em>, <em>user_durations=None</em>, <em>prequestion_method='tonic_only'</em>, <em>resolution_method='nearest_tonic'</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questions/melodicinterval.html#MelodicIntervalQuestion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questions.melodicinterval.MelodicIntervalQuestion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="index.html#birdears.questionbase.QuestionBase" title="birdears.questionbase.QuestionBase"><code class="xref py py-class docutils literal"><span class="pre">birdears.questionbase.QuestionBase</span></code></a></p>
 <p>Implements a Melodic Interval test.</p>
-<dl class="method">
-<dt id="birdears.questions.melodicinterval.MelodicIntervalQuestion.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>mode='major'</em>, <em>tonic=None</em>, <em>octave=None</em>, <em>descending=None</em>, <em>chromatic=None</em>, <em>n_octaves=None</em>, <em>valid_intervals=None</em>, <em>user_durations=None</em>, <em>prequestion_method='tonic_only'</em>, <em>resolution_method='nearest_tonic'</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questions/melodicinterval.html#MelodicIntervalQuestion.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questions.melodicinterval.MelodicIntervalQuestion.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Inits the class.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>mode</strong> (<em>str</em>) – A string representing the mode of the question.
-Eg., ‘major’ or ‘minor’</li>
-<li><strong>tonic</strong> (<em>str</em>) – A string representing the tonic of the question,
-eg.: ‘C’; if omitted, it will be selected randomly.</li>
-<li><strong>octave</strong> (<em>int</em>) – A scienfic octave notation, for example, 4 for ‘C4’;
-if not present, it will be randomly chosen.</li>
-<li><strong>descending</strong> (<em>bool</em>) – Is the question direction in descending, ie.,
-intervals have lower pitch than the tonic.</li>
-<li><strong>chromatic</strong> (<em>bool</em>) – If the question can have (True) or not (False)
-chromatic intervals, ie., intervals not in the diatonic scale
-of tonic/mode.</li>
-<li><strong>n_octaves</strong> (<em>int</em>) – Maximum number of octaves of the question.</li>
-<li><strong>valid_intervals</strong> (<em>list</em>) – A list with intervals (int) valid for
-random choice, 1 is 1st, 2 is second etc. Eg. [1, 4, 5] to
-allow only tonics, fourths and fifths.</li>
-<li><strong>user_durations</strong> (<em>str</em>) – <p>A string with 9 comma-separated <cite>int</cite> or
-<cite>float`s to set the default duration for the notes played. The
-values are respectively for: pre-question duration (1st),
-pre-question delay (2nd), and pre-question pos-delay (3rd);
-question duration (4th), question delay (5th), and question
-pos-delay (6th); resolution duration (7th), resolution
-delay (8th), and resolution pos-delay (9th).
-duration is the duration in of the note in seconds; delay is
-the time to wait before playing the next note, and pos_delay is
-the time to wait after all the notes of the respective sequence
-have been played. If any of the user durations is `n</cite>, the
-default duration for the type of question will be used instead.
-Example:</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>&quot;2,0.5,1,2,n,0,2.5,n,1&quot;
-</pre></div>
-</div>
-</li>
-<li><strong>prequestion_method</strong> (<em>str</em>) – Method of playing a cadence or the
-exercise tonic before the question so to affirm the question
-musical tonic key to the ear. Valid ones are registered in the
-<cite>birdears.prequestion.PREQUESION_METHODS</cite> global dict.</li>
-<li><strong>resolution_method</strong> (<em>str</em>) – Method of playing the resolution of an
-exercise. Valid ones are registered in the
-<cite>birdears.resolution.RESOLUTION_METHODS</cite> global dict.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="birdears.questions.melodicinterval.MelodicIntervalQuestion.__module__">
-<code class="descname">__module__</code><em class="property"> = 'birdears.questions.melodicinterval'</em><a class="headerlink" href="#birdears.questions.melodicinterval.MelodicIntervalQuestion.__module__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="method">
 <dt id="birdears.questions.melodicinterval.MelodicIntervalQuestion.check_question">
 <code class="descname">check_question</code><span class="sig-paren">(</span><em>user_input_char</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questions/melodicinterval.html#MelodicIntervalQuestion.check_question"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questions.melodicinterval.MelodicIntervalQuestion.check_question" title="Permalink to this definition">¶</a></dt>
