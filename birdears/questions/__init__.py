@@ -1,1 +1,1 @@
-__all__ = ['melodicinterval', 'harmonicinterval']
+__all__ = ['melodicinterval', 'harmonicinterval', 'melodicdictation', 'instrumentaldictation']

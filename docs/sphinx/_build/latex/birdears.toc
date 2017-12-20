@@ -30,14 +30,14 @@
 \contentsline {chapter}{\numberline {5}birdears package}{19}{chapter.5}
 \contentsline {section}{\numberline {5.1}Subpackages}{19}{section.5.1}
 \contentsline {subsection}{\numberline {5.1.1}birdears.interfaces package}{19}{subsection.5.1.1}
-\contentsline {subsubsection}{Submodules}{20}{subsubsection*.12}
-\contentsline {subsubsection}{birdears.interfaces.commandline module}{20}{subsubsection*.13}
+\contentsline {subsubsection}{Submodules}{20}{subsubsection*.13}
+\contentsline {subsubsection}{birdears.interfaces.commandline module}{20}{subsubsection*.14}
 \contentsline {subsection}{\numberline {5.1.2}birdears.questions package}{20}{subsection.5.1.2}
-\contentsline {subsubsection}{Submodules}{20}{subsubsection*.21}
-\contentsline {subsubsection}{birdears.questions.harmonicinterval module}{21}{subsubsection*.22}
-\contentsline {subsubsection}{birdears.questions.instrumentaldictation module}{22}{subsubsection*.31}
-\contentsline {subsubsection}{birdears.questions.melodicdictation module}{24}{subsubsection*.39}
-\contentsline {subsubsection}{birdears.questions.melodicinterval module}{25}{subsubsection*.48}
+\contentsline {subsubsection}{Submodules}{20}{subsubsection*.22}
+\contentsline {subsubsection}{birdears.questions.harmonicinterval module}{21}{subsubsection*.23}
+\contentsline {subsubsection}{birdears.questions.instrumentaldictation module}{22}{subsubsection*.32}
+\contentsline {subsubsection}{birdears.questions.melodicdictation module}{24}{subsubsection*.40}
+\contentsline {subsubsection}{birdears.questions.melodicinterval module}{25}{subsubsection*.49}
 \contentsline {section}{\numberline {5.2}Submodules}{26}{section.5.2}
 \contentsline {section}{\numberline {5.3}birdears.interval module}{26}{section.5.3}
 \contentsline {section}{\numberline {5.4}birdears.logger module}{28}{section.5.4}
@@ -63,7 +63,7 @@
 \contentsline {subsection}{\numberline {9.3.4}instrumental}{45}{subsection.9.3.4}
 \contentsline {section}{\numberline {9.4}Loading from config/preset files}{46}{section.9.4}
 \contentsline {subsection}{\numberline {9.4.1}Pre-made presets}{46}{subsection.9.4.1}
-\contentsline {subsubsection}{Pre-made presets description}{46}{subsubsection*.122}
+\contentsline {subsubsection}{Pre-made presets description}{46}{subsubsection*.123}
 \contentsline {subsection}{\numberline {9.4.2}Creating new preset files}{46}{subsection.9.4.2}
 \contentsline {section}{\numberline {9.5}Keybindings}{46}{section.9.5}
 \contentsline {subsection}{\numberline {9.5.1}On the keybindings}{46}{subsection.9.5.1}
@@ -94,5 +94,5 @@
 \contentsline {chapter}{\numberline {13}birdears.interfaces package}{71}{chapter.13}
 \contentsline {section}{\numberline {13.1}Submodules}{71}{section.13.1}
 \contentsline {section}{\numberline {13.2}birdears.interfaces.commandline module}{71}{section.13.2}
-\contentsline {chapter}{Python Module Index}{73}{section*.233}
-\contentsline {chapter}{Index}{75}{section*.234}
+\contentsline {chapter}{Python Module Index}{73}{section*.234}
+\contentsline {chapter}{Index}{75}{section*.235}
