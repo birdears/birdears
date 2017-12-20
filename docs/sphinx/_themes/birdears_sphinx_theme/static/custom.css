@@ -80,3 +80,43 @@ div.figure {
     border: 1px solid #ddd;
     background-color: #eee;
 }
+
+
+table {
+    width: 100%;
+    max-width: 100%;
+    margin: 2em 0;
+    background-color: transparent;
+    border: 1px solid #e5e4e1 !important;
+}
+
+table th,
+table td {
+    position: relative;
+    padding: 0.5em !important;
+    line-height: 0.95em !important;
+    text-align: left;
+    border: 1px solid #e5e4e1 !important;
+}
+
+table th {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 14px !important;
+    line-height: 1.25em;
+    padding: 0.666em !important;
+    color: #000
+}
+
+table td:after {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: -1px;
+    top: -1px;
+    padding: 1px;
+    z-index: -1;
+    content: '';
+    background: #faf9f7;
+}
+
