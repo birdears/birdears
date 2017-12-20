@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>birdears.questions.melodicdictation &#8212; birdears 0.1.3 documentation</title>
+    <title>birdears.questions.melodicdictation &#8212; birdears 0.1.4 documentation</title>
     <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.1.3',
+        VERSION:     '0.1.4',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -236,10 +236,15 @@ from ..prequestion import PreQuestion
                               valid_intervals=self.valid_intervals)
                               for _ in range(max_intervals)]
 
-        self.question_phrase_intervals = [choice(question_intervals)
-                                          for _ in range(n_notes-1)]
+        # No need that it always begin with tonic
 
-        self.question_phrase = [0]
+        # self.question_phrase_intervals = [choice(question_intervals)
+        #                                  for _ in range(n_notes-1)]
+        self.question_phrase_intervals = [choice(question_intervals)
+                                          for _ in range(n_notes)]
+
+        # self.question_phrase = [0]
+        self.question_phrase = []
 
         self.question_phrase.extend([interval.semitones
                                      for interval

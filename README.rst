@@ -150,9 +150,9 @@ keybindings work. Please note how the keys on the line from ``z``
 *natural* to the mode, and the line above represent the chromatics.
 
 Also, for exercises with two octaves, the **uppercased keys represent
-the second octave**. For example, ``z`` is *unison*, ``Z`` is the
-*octave*, ``,`` is the *double octave*. The same for all the other
-intervals.
+the second octave**. For example, ``z`` is *unison*, ``,`` is the
+*octave*, ``Z`` (uppercased) is the *double octave*. The same for all
+the other intervals.
 
 ionian (major)
 ~~~~~~~~~~~~~~
@@ -212,6 +212,14 @@ locrian
    :alt: birdears - locrian(minor) keybindings
 
    birdears - locrian(minor) keybindings
+
+Advanced
+--------
+
+.. figure:: docs/keybindings/keyboard-layout.png
+   :alt: birdears - advanced keybindings
+
+   birdears - advanced keybindings
 
 Documentation
 -------------

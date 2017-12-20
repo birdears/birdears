@@ -98,10 +98,15 @@ class MelodicDictationQuestion(QuestionBase):
                               valid_intervals=self.valid_intervals)
                               for _ in range(max_intervals)]
 
-        self.question_phrase_intervals = [choice(question_intervals)
-                                          for _ in range(n_notes-1)]
+        # No need that it always begin with tonic
 
-        self.question_phrase = [0]
+        # self.question_phrase_intervals = [choice(question_intervals)
+        #                                  for _ in range(n_notes-1)]
+        self.question_phrase_intervals = [choice(question_intervals)
+                                          for _ in range(n_notes)]
+
+        # self.question_phrase = [0]
+        self.question_phrase = []
 
         self.question_phrase.extend([interval.semitones
                                      for interval

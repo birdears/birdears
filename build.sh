@@ -45,7 +45,7 @@ echo 'end..'
 
 echo 'Please remember of tagging this before pushing to GitHub for a release (ex: git tag 0.1.2; git push --tags)'
 
-read -p "Do you want to upload it to PyPI? [Yy/n]" -n 1 -r
+read -p "Do you want to upload it to PyPI? [Yy/n] " -n 1 -r
 echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
