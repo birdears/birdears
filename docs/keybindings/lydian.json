@@ -1,16 +1,21 @@
 [
   {
     "backcolor": "#666699",
+    "name": "Lydian",
     "author": "Iacchus Mercurius",
     "notes": "Test\n*ok*\n",
     "radii": "0px",
-    "css": "@import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700|Open+Sans+Condensed:300,300i,700|Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');\n\n* {\n    border-radius: 2px !important;\n    font-family: 'Inconsolata';\n}\n\n.keylabel1 {font-weight:bold;}"
+    "css": "@import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700|Open+Sans+Condensed:300,300i,700|Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');\n\n* {\n    border-radius: 2px !important;\n    font-family: 'Inconsolata';\n}\n\n.keylabel1 {font-weight:bold;}\n\n.keylabel7 > * {\n    font-family: 'Roboto Condensed', sans-serif;\n    font-weight: 900;\n    \n}"
   },
   [
     {
       "c": "#dddddd",
       "a": 5,
-      "f": 2
+      "f": 2,
+      "fa": [
+        3,
+        0
+      ]
     },
     "q\nquit birdears",
     {
@@ -25,7 +30,11 @@
       "c": "#dddddd",
       "t": "#000000",
       "a": 5,
-      "f": 2
+      "f": 2,
+      "fa": [
+        3,
+        0
+      ]
     },
     "r\nrepeat question",
     {
@@ -50,16 +59,17 @@
       "c": "#333333",
       "t": "#ffffff",
       "a": 5,
-      "f": 2
+      "f": 2,
+      "fa": [
+        3,
+        0
+      ]
     },
     "s\nminor second",
     "d\nminor third",
     {
       "f": 3,
-      "fa": [
-        2,
-        2
-      ]
+      "f2": 2
     },
     "f\nperfect fourth",
     {
@@ -72,7 +82,11 @@
     {
       "c": "#333333",
       "t": "#ffffff",
-      "a": 5
+      "a": 5,
+      "fa": [
+        3,
+        0
+      ]
     },
     "h\nminor sixth",
     "j\nminor seventh",
@@ -95,7 +109,11 @@
       "c": "#dddddd",
       "t": "#000000",
       "a": 5,
-      "f": 2
+      "f": 2,
+      "fa": [
+        3,
+        0
+      ]
     },
     "z\nperfect unisson",
     "x\nmajor second",

@@ -1,7 +1,9 @@
 [
   {
     "backcolor": "#333",
-    "css": "@import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700|Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');\n\n* {\n    font-family:  'Inconsolata', monospace;\n}\n\n/* middle center, bottom center */\n.keylabel4 *, .keylabel7 * {\n    font-family: 'Roboto Condensed', monospace !important;\n    font-weight: 900 !important;\n    color: #333;\n}\n\n/* center right, bottom left*/\n.keylabel5, .keylabel6 {\n    font-weight: bold !important;\n}\n\n/* center right */\n.keylabel5 {\n    color: #f92672 !important;\n}\n\n/* top right */\n.keylabel2 * {\n    color: #f92672 !important;\n    font-weight: 700 !important;\n    font-family: 'Roboto Condensed', monospace !important;\n    font-style: oblique;\n\n}\n\n/* front left */\n.keylabel9 * {\n    font-weight: 900 !important;\n    font-family: 'Roboto Condensed', monospace !important;\n    font-style: oblique;\n}"
+    "name": "Full─Advanced",
+    "author": "Iacchus Mercurius",
+    "css": "@import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700|Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');\n\n* {\n    font-family:  'Inconsolata', monospace;\n}\n.keylabel1 * {\n    font-family: 'Inconsolata', monospace;\n    font-weight: bold;\n}\n.keylabel1 *, .keylabel2 *,\n.keylabel4 *, .keylabel5 *, .keylabel6 *,\n.keylabel7 *, .keylabel8 * {\n    font-family: \"Roboto Condensed\", sans-serif;\n    font-size: 10px;\n    font-weight: bold;\n}\n\n/* top right */\n.keylabel2 * {\n    color: #99c !important;\n    font-style: oblique;\n    font-weight: 900;\n}\n\n.keylabel3 * {\n    font-weight: bold !important;\n    font-family: 'Inconsolata', monospace !important;\n}\n\n/* middle center, bottom center */\n.keylabel4 *, .keylabel7 * {\n    color: #333;\n}\n\n\n/* middle right */\n.keylabel5 {\n    color: #f92672 !important;\n}\n\n/* front left */\n.keylabel9 * {\n    -font-weight: 900 !important;\n    font-family: 'Roboto Condensed', monospace !important;\n    font-style: oblique;\n}"
   },
   [
     {
@@ -58,7 +60,7 @@
       "h": 2,
       "l": true
     },
-    "\nascending\nshift desc.\n\nshift asc.\n\n\ndescending"
+    "\nascending\nshift desc. (2nd octave)\n\nshift asc. (2nd octave)\n\n\ndescending"
   ],
   [
     {
@@ -93,22 +95,9 @@
     "E",
     {
       "c": "#cccccc",
-      "t": "#000000",
-      "fa": [
-        0,
-        4,
-        4,
-        0,
-        0,
-        0,
-        0,
-        4,
-        0,
-        2,
-        2
-      ]
+      "t": "#000000"
     },
-    "R\n\n\n\n\n\n\n\n\n\nrepeat question",
+    "R\n\n\n\n\n\n\n\n\nrepeat question",
     {
       "c": "#f0f0f0",
       "t": "#777777"
@@ -141,6 +130,7 @@
     {
       "c": "#cccccc",
       "t": "#000000",
+      "f": 3,
       "w": 1.75
     },
     "Caps Lock\n\n\n\n\n\n\n\n\ntoggle octave",
@@ -152,10 +142,11 @@
     {
       "c": "#333333",
       "t": "#ffffff",
+      "a": 0,
       "fa": [
         0,
         2,
-        4,
+        0,
         0,
         0,
         0,
@@ -163,10 +154,9 @@
         2
       ]
     },
-    "S\nm2\n\n\n\n\n\nM7",
-    "D\nM2,m3\n\n\n\n\n\nm7,M6",
+    "\nm2\nM14\n\nm9\n\nS\nM7",
+    "\nM2,m3\nM13\n\nm10\n\nD\nm7,M6",
     {
-      "a": 0,
       "fa": [
         0,
         2,
@@ -178,17 +168,27 @@
         2
       ]
     },
-    "F\nM3,P4\nP12,m13\n\nM12,P13\n\n\nm6,P5",
+    "\nM3,P4\nm13\n\nM10\n\nF\nm6,P5",
     {
-      "a": 4
+      "fa": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ]
     },
-    "G\nTT\n\n\n\n\n\nTT",
-    "H\nP5,m6\n\n\n\n\n\nP4,M3",
-    "J\nm7\n\n\n\n\n\nm3,M2",
-    "K\nM7\n\n\n\n\n\nm2",
+    "\nTT\nTT\n\nA11\n\nG\nTT",
+    "\nP5,m6\nM10\n\nm13\n\nH\nP4,M3",
+    "\nm7\nM9\n\nm14\n\nJ\nm3,M2",
+    "\nM7\nm9\n\nM14\n\nK\nm2",
     {
       "c": "#f0f0f0",
-      "t": "#777777"
+      "t": "#777777",
+      "a": 4
     },
     "L",
     {
@@ -211,19 +211,18 @@
       "fa": [
         0,
         2,
-        1,
+        0,
         0,
         0,
         0,
         0,
         2,
         0,
-        0,
         2
       ],
       "w": 1.25
     },
-    "Shift\n\n\n\n\n\n\n\n\n\nshift octave",
+    "Shift\n\n\n\n\n\n\n\n\nshift octave",
     {
       "c": "#f0f0f0",
       "t": "#777777",
@@ -232,38 +231,37 @@
     "|\n\\",
     {
       "c": "#cccccc",
-      "t": "#000000"
+      "t": "#000000",
+      "a": 0,
+      "f2": 0
     },
-    "Z\nPI\n\n\n\n\n\nP8",
-    "X\nm2,M2\n\n\n\n\n\nm7,M7",
-    "C\nm3,M3\n\n\n\n\n\nm6,M6",
-    "V\nP4,A4\n\n\n\n\n\nP5,d5",
-    "B\nP5,d5\n\n\n\n\n\nP4,A4",
-    "N\nM6,m6\n\n\n\n\n\nm3,M3",
-    "M\nM7,m7\n\n\n\n\n\nm2,M2",
-    ", <\nP8\n\n\n\n\n\nP1",
+    "\nPI\nP15\n\nP15\n\nZ\nP8",
+    "\nm2,M2\nm14\n\nM9\n\nX\nm7,M7",
+    "\nm3,M3\nM13,m13\n\nM10\n\nC\nm6,M6",
+    "\nP4,A4\nP12\n\nP11\n\nV\nP5,d5",
+    "\nP5,d5\nP11\n\nP12\n\nB\nP4,A4",
+    "\nM6,m6\nm10\n\nM13\n\nN\nm3,M3",
+    "\nM7,m7\nM9,m9\n\nM14\n\nM\nm2,M2",
+    "\nP8\n─\n\n─\n\n, <\nP1",
     {
       "c": "#f0f0f0",
       "t": "#777777",
-      "f": 3
+      "a": 4
     },
     ">\n.",
-    {
-      "f": 3
-    },
     "?\n/",
     {
       "c": "#cccccc",
       "t": "#000000",
       "fa": [
         0,
-        2,
-        1,
         0,
         0,
         0,
         0,
-        2,
+        0,
+        0,
+        0,
         0,
         2
       ],

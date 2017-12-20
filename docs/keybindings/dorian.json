@@ -1,30 +1,24 @@
 [
   {
     "backcolor": "#666699",
+    "name": "dorian",
     "author": "Iacchus Mercurius",
     "radii": "0px",
-    "css": "@import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700|Open+Sans+Condensed:300,300i,700|Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');\n\n* {\n    border-radius: 2px !important;\n    font-family: 'Inconsolata';\n}\n\n.keylabel1 {font-weight:bold;}"
+    "css": "@import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700|Open+Sans+Condensed:300,300i,700|Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');\n\n* {\n    border-radius: 2px !important;\n    font-family: 'Inconsolata';\n}\n\n.keylabel1 {font-weight:bold;}\n\n.keylabel7 > * {\n    font-family: 'Roboto Condensed', sans-serif;\n    font-weight: 900;\n    \n}"
   },
   [
     {
       "c": "#dddddd",
       "a": 5,
-      "fa": [
-        2,
-        2
-      ]
+      "f2": 2
     },
     "q\nquit birdears",
     {
       "c": "#eeeeee",
       "t": "#777777",
-      "a": 7,
-      "f": 3
+      "a": 7
     },
     "w",
-    {
-      "f": 3
-    },
     "e",
     {
       "c": "#dddddd",
@@ -35,35 +29,18 @@
     {
       "c": "#eeeeee",
       "t": "#777777",
-      "a": 7,
-      "f": 3
+      "a": 7
     },
     "t",
-    {
-      "f": 3
-    },
     "y",
-    {
-      "f": 3
-    },
     "u",
-    {
-      "f": 3
-    },
     "i",
-    {
-      "f": 3
-    },
     "o",
-    {
-      "f": 3
-    },
     "p"
   ],
   [
     {
-      "x": 0.5,
-      "f": 3
+      "x": 0.5
     },
     "a",
     {
@@ -75,8 +52,7 @@
     {
       "c": "#eeeeee",
       "t": "#777777",
-      "a": 7,
-      "f": 3
+      "a": 7
     },
     "d",
     {
@@ -90,8 +66,7 @@
     {
       "c": "#eeeeee",
       "t": "#777777",
-      "a": 7,
-      "f": 3
+      "a": 7
     },
     "j",
     {
@@ -103,8 +78,7 @@
     {
       "c": "#eeeeee",
       "t": "#777777",
-      "a": 7,
-      "f": 3
+      "a": 7
     },
     "l",
     {

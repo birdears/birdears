@@ -4,13 +4,16 @@
     "name": "birdears keybindings ─ ionian (major) mode",
     "author": "Iacchus Mercurius",
     "radii": "0px",
-    "css": "@import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700|Open+Sans+Condensed:300,300i,700|Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');\n\n* {\n    border-radius: 2px !important;\n    font-family: 'Inconsolata';\n}\n\n.keylabel1 {font-weight:bold;}"
+    "css": "@import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700|Open+Sans+Condensed:300,300i,700|Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');\n\n* {\n    border-radius: 2px !important;\n    font-family: 'Inconsolata';\n}\n\n.keylabel1 {\n    font-weight:bold;\n}\n.keylabel7 > * {\n    font-family: 'Roboto Condensed', sans-serif;\n    font-weight: 900;\n    \n}"
   },
   [
     {
       "c": "#dddddd",
       "a": 5,
-      "f": 2
+      "f": 2,
+      "fa": [
+        3
+      ]
     },
     "q\nquit birdears",
     {
@@ -25,7 +28,10 @@
       "c": "#dddddd",
       "t": "#000000",
       "a": 5,
-      "f": 2
+      "f": 2,
+      "fa": [
+        3
+      ]
     },
     "r\nrepeat question",
     {
@@ -50,7 +56,10 @@
       "c": "#333333",
       "t": "#ffffff",
       "a": 5,
-      "f": 2
+      "f": 2,
+      "fa": [
+        3
+      ]
     },
     "s\nminor second",
     "d\nminor third",
@@ -65,7 +74,10 @@
       "c": "#333333",
       "t": "#ffffff",
       "a": 5,
-      "f": 2
+      "f": 2,
+      "fa": [
+        3
+      ]
     },
     "g\ntritone (A4/d5)",
     "h\nminor sixth",
@@ -89,7 +101,10 @@
       "c": "#dddddd",
       "t": "#000000",
       "a": 5,
-      "f": 2
+      "f": 2,
+      "fa": [
+        3
+      ]
     },
     "z\nperfect unisson",
     "x\nmajor second",
