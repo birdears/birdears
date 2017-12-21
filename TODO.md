@@ -6,111 +6,62 @@
 
 Classes:
 
-* ~~interval~~ :tada:,
-* ~~cadence~~(Sequence can generate Progressions ✓) and
-* ~~resolution~~ ✓, maybe
-* ~~scale~~ (done :tada:.)
-
-**[maybe] Make a class for response (to be used by question.check\_question)**
+[maybe] Make a class for response (to be used by question.check\_question)
 
 ### Documentation
 
-~~Write documentation in docstrings using Google style docstrings.~~
+Method theory
 
-~~Improve `click` CLI help documentation.~~
+Music theory
+
+Presets
+
+Interactive use with Jupyter
+
+#### Installing
+
+* `git clone` repo and run with `python -m birdears` from repo's root
 
 ### Features
 
-~~Different cadences.~~ :tada: Sequence: chord progressions; PreQuestion class
+Make somehing for improvising on pre-made harmonies
 
-~~implement harmonic intervals~~ ✓
+Plugins/extensions, easy way of users extending the software by using the api,
+maybe providing frontend tools
 
-* ~~melodic dictation~~ ✓ :tada:,
-  * ~~computer~~ and
-  * ~~instrumental (time based, to be played on instrument)~~ ✓
+Track correct/wrong answers by type, mode, tonic, date etc, maybe using sqlite3
+db so that the user can track it's progress.
 
-~~bindings with argparse~~ click ✓
+Pre-chosen number of questions (20 for example.) with percent of success.
 
-MAKE SOMEHING FOR IMPROVISING ON PRE-MADE HARMONIES**
+### Prequestion Method
 
-**plugins/extensions, easy way of users extending the software by using the api,
-maybe providing frontend tools**
+I triad.
 
-~~configure it with a toml file, which will send parameters by the question
-class with a dict/config file.~~ ✓ :tada:
+### Resolution methods
 
-think on an interface, or a well written api that allows many interfaces:
+Note-\>tonic (for dictation): 1st note then tonic, 2nd note then tonic, 3th note then tonic, 4th note then tonic.
 
-* ~~cli (maybe centering things)~~ ✓;
-* **tui (urwid);**
-* **gui (kivy)**
-
-~~logging~~
-
-**improve live debugging options**
-
-*~~we need to allow less than one octave / only certain interval,
-eg.: I to IV, V to VIII etc~~* :tada: :gift: valid_intervals
-
-**track correct/wrong answers by type, mode, tonic, date etc, maybe using sqlite3
-db so that the user can track it's progress.**
-
-Question base should accept aarguments intelligently, for example, ~~`tonic` can
-be a string or a list~~, or a tuple, so he can sort one of the elements as tonic;
-~~`octave` can be int or tuple, so that the octave will be chosen randomly by that
-range~~, etc. This will give us tools to load questions from config files.
-
-~~question, resolution, pre-qestion: duration, delay and post delay should be
-configurable via options too.~~ ✓
+Notes playing along with cadence (for dictation)
 
 ### Refactoring
 
-~~change global names~~ ✓
+Encapsulate birdears.interfaces.commandline in a class.
 
-~~we should think in a better algo for melodic dictation; currently always begins
-with tonic; maybe playing a cadence with I-V-IV-I triads then choosing random
-intervals w/ or w/out tonic.~~ PreQuestion class ✓ :tada:
-
-**We should use some kind of config object to configure exercises, as they have
-an extensive number of parameters and there are more to come.**
-
-note: maybe you'd find this useful https://gist.github.com/rxaviers/7360908
-
-~~Refactor keys so that they didn't give double sharps or double flats.~~ ✓
-:tada: CIRCLE\_OF\_FIFTHS !
-
-~~Maybe refactor make\_resoltion/sequence as generator so that we can interact
-with the UI, (eg., every note played in resolution is highlighted in user
-interface.)~~ ✓ DID IT with threading.
-
-**Encapsulate birdears.interfaces.commandline in a class.**
-
-**We should use some random() method inside Interval to select some random
+We should use some random() method inside Interval to select some random
 interval or namethe class as RandomInterval. First option is best and we should
-be able to generate not random interval using Interval class.**
+be able to generate not random interval using Interval class.
 
-**Maybe register question classes in a global.**
+Maybe register question classes in a global.
 
-~~Meybe we could avoid using collections.deque to support older python 3
-versions in birdears.scale.~~ ✓
+Maybe sequence can contain sequences play(): if type==sequence, then play()
 
-~~Maybe sequence elements should be a tuple so to have each element the ability
-of handling its own duration, and delay time, this way:
-`('C4', 2, 3)` or `(['C4','E4',"G4"], 1, 2)` ... `(element, duration, delay)`~~
+GUI: we should do one widget for each type of exercise.
 
-**Maybe sequence can contain sequences play(): if type==sequence, then play()**
-
-**Refactor API so that inside an interface (eg., the GUI) we don't have stuff
-redunant to it (eg., commandline presentation on GUI when it imports the API)**
-
-**GUI: we should do one widget for each type of exercise.**
-
-**we can make sequence not musical agnostics, ie., containing only strings for notes
+We can make sequence not musical agnostics, ie., containing only strings for notes
 and chords, but alo semitones so that play() can send this for threaded UI
-callbacks.**
+callbacks.
 
 ### Etc
 
-~~Lets reserve options to `-r` to `--resolution` method  (FET-like, Repeat-only,
-Inverted-question) ans `-p` to`--pre-question` (I-IV-V-I, Tonic-Interval, etc,
-ie., tonic affirmation before question.)~~ ✓ done as planned.
+*none*

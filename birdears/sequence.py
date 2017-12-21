@@ -230,10 +230,18 @@ class Sequence:
         duration = self.duration if duration is None else duration
         delay = self.delay if delay is None else delay
 
+        double_duration = str(int(duration)*2)
+        
+        # from sox manual: fade [type] fade-in-length [stop-position(=) [fade-out-length]]
+        # TODO: this is experimental
         command = (
             "play -V1 -qn synth {duration} pluck {note}"
-            " fade l 0 {duration} 2 reverb"
+            " fade l 0 {duration} {duration} reverb"
         ).format(note=note, duration=duration)
+        # command = (
+        #    "play -V1 -qn synth {duration} pluck {note}"
+        #    " fade l 0 {duration} 2 reverb"
+        # ).format(note=note, duration=duration)
 
         subprocess.Popen(command.split())
 
@@ -257,10 +265,18 @@ class Sequence:
         for note in chord:
             chord_plucks += " pluck {} ".format(note)
 
+        double_duration = str(int(duration)*2)
+
+        # from sox manual: fade [type] fade-in-length [stop-position(=) [fade-out-length]]
+        # TODO: this is experimental
         command = (
             "play -V1 -qn synth {duration} {chord}"
-            " fade l 0 {duration} 2 reverb"
-        ).format(note=note, duration=duration, chord=chord_plucks)
+            " fade l 0 {duration} {duration} reverb"
+        ).format(chord=chord_plucks, duration=duration)
+        #command = (
+        #    "play -V1 -qn synth {duration} {chord}"
+        #    " fade l 0 {duration} 2 reverb"
+        #).format(note=note, duration=duration, chord=chord_plucks)
 
         subprocess.Popen(command.split())
 

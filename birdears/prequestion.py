@@ -83,12 +83,25 @@ def tonic_only(question, *args, **kwargs):
             when it is `__call__`ed)
     """
 
-    intervals = question.interval if not hasattr(question, 'intervals') else \
-        question.intervals
+    # intervals = question.interval if not hasattr(question, 'intervals') \
+    #        else question.intervals
+
+    # try:
+    #    intervals = question.interval
+    # except AttributeError:
+    #    intervals = question.intervals
+
+    intervals = getattr(question, 'interval', 'intervals')
+
     tonic = question.tonic
     tonic_octave = question.octave
 
-    sequence = Sequence()
+    duration = question.durations['preq']['duration']
+    delay = question.durations['preq']['delay']
+    pos_delay = question.durations['preq']['pos_delay']
+
+    sequence = Sequence(duration=duration, delay=delay,
+                        pos_delay=pos_delay)
 
     sequence_list = []
 
