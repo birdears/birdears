@@ -119,33 +119,33 @@ Also, for exercises with two octaves, the **uppercased keys represent the second
 example, `z` is *unison*, `,` is the *octave*, `Z` (uppercased) is the *double octave*. The same
 for all the other intervals.
 
-### ionian (major)
+### Ionian (Major)
 
 These are the keybindings for the **Ionian (Major) Scale**; black keys are the chromatic notes.
 
 ![birdears - ionian(major) keybindings](docs/keybindings/ionian.png)
 
-### dorian
+### Dorian
 
 ![birdears - dorian keybindings](docs/keybindings/dorian.png)
 
-### phrygian
+### Phrygian
 
 ![birdears - phryigian keybindings](docs/keybindings/phrygian.png)
 
-### lydian
+### Lydian
 
 ![birdears - lydian keybindings](docs/keybindings/lydian.png)
 
-### mixolydian
+### Mixolydian
 
 ![birdears - mixolydian keybindings](docs/keybindings/mixolydian.png)
 
-### aeolian
+### Aeolian (minor)
 
 ![birdears - aeolian keybindings](docs/keybindings/minor.png)
 
-### locrian
+### Locrian
 
 ![birdears - locrian(minor) keybindings](docs/keybindings/locrian.png)
 
@@ -154,6 +154,17 @@ These are the keybindings for the **Ionian (Major) Scale**; black keys are the c
 ![birdears - advanced keybindings](docs/keybindings/full-advanced.png)
 
 *this is still being improved*
+
+Legend for the keys on the diagram above:
+
+| Text  Format       | Scale Direction | Octave                             |
+|--------------------|-----------------|------------------------------------|
+| blue (italic)      | descending      | second octave (shift or caps lock) |
+| pink (italic)      | descending      | first octave                       |
+| black/white (bold) | ascending       | first octave                       |
+| black (italic)     | ascending       | second octave (shift or caps lock) |
+
+**White keys** are the diatonic notes, **black keys** are the chromatic ones.
 
 ## Documentation
 
