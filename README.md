@@ -159,8 +159,8 @@ Legend for the keys on the diagram above:
 
 | Text  Format       | Scale Direction | Octave                             |
 |--------------------|-----------------|------------------------------------|
-| blue (italic)      | descending      | second octave (shift or caps lock) |
-| pink (italic)      | descending      | first octave                       |
+| blue (bold italic) | descending      | second octave (shift or caps lock) |
+| pink (bold)        | descending      | first octave                       |
 | black/white (bold) | ascending       | first octave                       |
 | black (italic)     | ascending       | second octave (shift or caps lock) |
 
