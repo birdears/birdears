@@ -166,6 +166,12 @@ Legend for the keys on the diagram above:
 
 **White keys** are the diatonic notes, **black keys** are the chromatic ones.
 
+Descendent mode are usable for exercises with `-d` or `--descendent`.
+
+Chromatic keys are usable for exercises with `-c` or `--chromatic`.
+
+Second octave is usable for exercises with `-n 2` or `--n_octaves 2`
+
 ## Documentation
 
 Full documentation for this software is available at birdears [Read The Docs](https://birdears.readthedocs.io/en/latest/)
