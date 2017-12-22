@@ -65,7 +65,11 @@ class Sequence:
         # callback = print
 
         if hasattr(SEQUENCE_THREAD, 'is_alive') and SEQUENCE_THREAD.is_alive():
-            SEQUENCE_THREAD.join()
+            try:
+                SEQUENCE_THREAD.join()
+            except KeyboardInterrupt:
+                print('Ctrl+C')
+                exit(0)
 
         SEQUENCE_THREAD = Thread(target=self.async_play,
                                  kwargs={
