@@ -62,6 +62,9 @@ We can make sequence not musical agnostics, ie., containing only strings for not
 and chords, but alo semitones so that play() can send this for threaded UI
 callbacks.
 
+The API (`birdears.questions`, and `birdears.questions`) should have a clean language
+to talk to the interface (`birdears.interfaces`)
+
 ### Etc
 
 *none*
