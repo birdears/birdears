@@ -9,6 +9,8 @@ from .. import DIATONIC_MODES
 from .. import MAX_SEMITONES_RESOLVE_BELOW
 from .. import INTERVALS
 from .. import KEYBOARD_INDICES
+from .. import CHROMATIC_SHARP
+from .. import CHROMATIC_FLAT
 
 from ..scale import DiatonicScale
 
@@ -157,6 +159,15 @@ class NoteNameQuestion(QuestionBase):
 
         correct_note = self.scales['chromatic'].scale[self.interval.semitones]
 
+        if user_note in CHROMATIC_SHARP:
+            user_semitones = CHROMATIC_SHARP.index(user_note)
+        elif user_note in CHROMATIC_FLAT:
+            user_semitones = CHROMATIC_SHARP.index(user_note)
+
+        if correct_note in CHROMATIC_SHARP:
+            correct_semitones = CHROMATIC_SHARP.index(user_note)
+        elif correct_note in CHROMATIC_FLAT:
+            correct_semitones = CHROMATIC_FLAT.index(correct_note)
 
         tonic = self.scales['chromatic_pitch'].scale[0]
 
@@ -168,7 +179,7 @@ class NoteNameQuestion(QuestionBase):
         #    .scale[self.interval.semitones]
 
         # signal = '✓' if semitones == self.interval.semitones else 'x'  # u2713
-        signal = '✓' if user_note == correct_note else 'x'  # u2713
+        signal = '✓' if user_semitones == correct_semitones else 'x'  # u2713
 
         extra_response_str = """\
        “{}”
