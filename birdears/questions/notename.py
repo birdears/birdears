@@ -8,6 +8,7 @@ from ..interval import ChromaticInterval
 from .. import DIATONIC_MODES
 from .. import MAX_SEMITONES_RESOLVE_BELOW
 from .. import INTERVALS
+from .. import KEYBOARD_INDICES
 
 from ..scale import DiatonicScale
 
@@ -72,7 +73,7 @@ class NoteNameQuestion(QuestionBase):
             'resol': {'duration': 2.5, 'delay': 0.5, 'pos_delay': 1}
         }
 
-        super(MelodicIntervalQuestion, self).\
+        super(NoteNameQuestion, self).\
             __init__(mode=mode, tonic=tonic, octave=octave,
                      descending=descending, chromatic=chromatic,
                      n_octaves=n_octaves, valid_intervals=valid_intervals,
@@ -143,42 +144,57 @@ class NoteNameQuestion(QuestionBase):
 
         global INTERVALS
 
-        semitones = self.keyboard_index.index(user_input_char[0])
-
         from ..scale import ChromaticScale
-        ChromaticScale('C')
+        c_chromatic = ChromaticScale(tonic='C', n_octaves=2)
 
         keyboard_index = \
             KEYBOARD_INDICES['chromatic']['ascending']['major']
+
+        semitones = keyboard_index.index(user_input_char[0])
+
+        #input_note = self.scales['chromatic'].scale[semitones]
+        user_note = c_chromatic.scale[semitones]
+
+        correct_note = self.scales['chromatic'].scale[self.interval.semitones]
+
 
         tonic = self.scales['chromatic_pitch'].scale[0]
 
         user_interval = INTERVALS[semitones][2]
         correct_interval = INTERVALS[self.interval.semitones][2]
 
-        user_note = self.scales['chromatic_pitch'].scale[semitones]
-        correct_note = self.scales['chromatic_pitch']\
-            .scale[self.interval.semitones]
+        # user_note = self.scales['chromatic_pitch'].scale[semitones]
+        # correct_note = self.scales['chromatic_pitch']\
+        #    .scale[self.interval.semitones]
 
-        signal = '✓' if semitones == self.interval.semitones else 'x'  # u2713
+        # signal = '✓' if semitones == self.interval.semitones else 'x'  # u2713
+        signal = '✓' if user_note == correct_note else 'x'  # u2713
 
         extra_response_str = """\
-       “{}” ({}─{})
-user {} “{}” ({}─{})
+       “{}”
+user {} “{}”
 {} semitones
-""".format(correct_interval, tonic, correct_note,
-           signal, user_interval, tonic, user_note, self.interval.semitones)
+""".format(correct_note, signal, user_note, self.interval.semitones)
+
+#        extra_response_str = """\
+#        “{}” ({}─{})
+# user {} “{}” ({}─{})
+# {} semitones
+# """.format(correct_interval, tonic, correct_note,
+#            signal, user_interval, tonic, user_note, self.interval.semitones)
 
         response = dict(
             is_correct=False,
-            user_interval=user_interval,
-            correct_interval=correct_interval,
-            user_response_str=user_interval,
-            correct_response_str=correct_interval,
+            # user_interval=user_interval,
+            user_note=user_note,
+            # correct_interval=correct_interval,
+            correct_note=correct_note,
+            user_response_str=user_note,
+            correct_response_str=correct_note,
             extra_response_str=extra_response_str,
         )
 
-        if semitones == self.interval.semitones:
+        if user_note == correct_note:
             response.update({'is_correct': True})
 
         else:

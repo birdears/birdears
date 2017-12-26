@@ -201,6 +201,11 @@ def CommandLine(exercise, **kwargs):
         MYCLASS = MelodicIntervalQuestion
         dictate_notes = 1
 
+    elif exercise == 'notename':
+        from ..questions.notename import NoteNameQuestion
+        MYCLASS = NoteNameQuestion
+        dictate_notes = 1
+
     elif exercise == 'harmonic':
         from ..questions.harmonicinterval import HarmonicIntervalQuestion
         MYCLASS = HarmonicIntervalQuestion

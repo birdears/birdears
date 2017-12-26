@@ -338,7 +338,7 @@ Valid values are as follows:
 )
 
 
-@cli.command(options_metavar='[options]', epilog=melodic_epilog)
+@cli.command(options_metavar='[options]', epilog=notename_epilog)
 @click.option('-m', '--mode', type=click.Choice(VALID_MODES),
               default='major', metavar='<mode>', help="Mode of the question.")
 @click.option('-t', '--tonic', type=str, default=None, metavar='<tonic>',
@@ -365,8 +365,8 @@ Valid values are as follows:
 @click.option('-r', '--resolution_method', type=str, default='nearest_tonic',
               metavar='<resolution_method>',
               help='The name of a resolution method.')
-def melodic(*args, **kwargs):
-    """Melodic interval recognition
+def notename(*args, **kwargs):
+    """Note name by intervaç recognition
     """
 
     kwargs.update({'exercise': 'notename'})
