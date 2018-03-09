@@ -203,7 +203,11 @@ SEQUENCE_THREAD = None
         # callback = print
 
         if hasattr(SEQUENCE_THREAD, &#39;is_alive&#39;) and SEQUENCE_THREAD.is_alive():
-            SEQUENCE_THREAD.join()
+            try:
+                SEQUENCE_THREAD.join()
+            except KeyboardInterrupt:
+                print(&#39;Ctrl+C&#39;)
+                exit(0)
 
         SEQUENCE_THREAD = Thread(target=self.async_play,
                                  kwargs={
@@ -368,10 +372,19 @@ SEQUENCE_THREAD = None
         duration = self.duration if duration is None else duration
         delay = self.delay if delay is None else delay
 
+        double_duration = str(int(duration)*2)
+
+        # from sox manual: fade [type] fade-in-length \
+        #        [stop-position(=) [fade-out-length]]
+        # TODO: this is experimental
         command = (
             &quot;play -V1 -qn synth {duration} pluck {note}&quot;
-            &quot; fade l 0 {duration} 2 reverb&quot;
+            &quot; fade l 0 {duration} {duration} reverb&quot;
         ).format(note=note, duration=duration)
+        # command = (
+        #    &quot;play -V1 -qn synth {duration} pluck {note}&quot;
+        #    &quot; fade l 0 {duration} 2 reverb&quot;
+        # ).format(note=note, duration=duration)
 
         subprocess.Popen(command.split())
 
@@ -395,10 +408,19 @@ SEQUENCE_THREAD = None
         for note in chord:
             chord_plucks += &quot; pluck {} &quot;.format(note)
 
+        double_duration = str(int(duration)*2)
+
+        # from sox manual: fade [type] fade-in-length \
+        #        [stop-position(=) [fade-out-length]]
+        # TODO: this is experimental
         command = (
             &quot;play -V1 -qn synth {duration} {chord}&quot;
-            &quot; fade l 0 {duration} 2 reverb&quot;
-        ).format(note=note, duration=duration, chord=chord_plucks)
+            &quot; fade l 0 {duration} {duration} reverb&quot;
+        ).format(chord=chord_plucks, duration=duration)
+        # command = (
+        #    &quot;play -V1 -qn synth {duration} {chord}&quot;
+        #    &quot; fade l 0 {duration} 2 reverb&quot;
+        # ).format(note=note, duration=duration, chord=chord_plucks)
 
         subprocess.Popen(command.split())
 

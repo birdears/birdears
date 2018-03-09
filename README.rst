@@ -36,7 +36,7 @@ Versions| |Documentation Status|
    <!-- /TOC -->
 
 For the support chat, please ``/join``
-```#birdears`` <http://webchat.freenode.net/?randomnick=1&channels=%23birdears&uio=MTY9dHJ1ZSYxMT0yNDY57>`__
+```#birdears`` <https://webchat.freenode.net/?randomnick=1&channels=%23birdears&uio=MTY9dHJ1ZSYxMT0yNDY57>`__
 channel on freenode (``chat.freenode.net/6697`` - ssl).
 
 .. figure:: use.gif
@@ -47,7 +47,7 @@ channel on freenode (``chat.freenode.net/6697`` - ssl).
 Introduction
 ------------
 
-.. birdears-1:
+.. _birdears-1:
 
 birdears
 ~~~~~~~~
@@ -154,7 +154,7 @@ the second octave**. For example, ``z`` is *unison*, ``,`` is the
 *octave*, ``Z`` (uppercased) is the *double octave*. The same for all
 the other intervals.
 
-ionian (major)
+Ionian (Major)
 ~~~~~~~~~~~~~~
 
 These are the keybindings for the **Ionian (Major) Scale**; black keys
@@ -165,7 +165,7 @@ are the chromatic notes.
 
    birdears - ionian(major) keybindings
 
-dorian
+Dorian
 ~~~~~~
 
 .. figure:: docs/keybindings/dorian.png
@@ -173,7 +173,7 @@ dorian
 
    birdears - dorian keybindings
 
-phrygian
+Phrygian
 ~~~~~~~~
 
 .. figure:: docs/keybindings/phrygian.png
@@ -181,7 +181,7 @@ phrygian
 
    birdears - phryigian keybindings
 
-lydian
+Lydian
 ~~~~~~
 
 .. figure:: docs/keybindings/lydian.png
@@ -189,7 +189,7 @@ lydian
 
    birdears - lydian keybindings
 
-mixolydian
+Mixolydian
 ~~~~~~~~~~
 
 .. figure:: docs/keybindings/mixolydian.png
@@ -197,15 +197,15 @@ mixolydian
 
    birdears - mixolydian keybindings
 
-aeolian
-~~~~~~~
+Aeolian (minor)
+~~~~~~~~~~~~~~~
 
 .. figure:: docs/keybindings/minor.png
    :alt: birdears - aeolian keybindings
 
    birdears - aeolian keybindings
 
-locrian
+Locrian
 ~~~~~~~
 
 .. figure:: docs/keybindings/locrian.png
@@ -216,10 +216,36 @@ locrian
 Advanced
 --------
 
-.. figure:: docs/keybindings/keyboard-layout.png
+.. figure:: docs/keybindings/full-advanced.png
    :alt: birdears - advanced keybindings
 
    birdears - advanced keybindings
+
+*this is still being improved*
+
+Legend for the keys on the diagram above:
+
++--------------------+-----------------+------------------------------------+
+| Text Format        | Scale Direction | Octave                             |
++====================+=================+====================================+
+| blue (bold italic) | descending      | second octave (shift or caps lock) |
++--------------------+-----------------+------------------------------------+
+| pink (bold)        | descending      | first octave                       |
++--------------------+-----------------+------------------------------------+
+| black/white (bold) | ascending       | first octave                       |
++--------------------+-----------------+------------------------------------+
+| black (italic)     | ascending       | second octave (shift or caps lock) |
++--------------------+-----------------+------------------------------------+
+
+**White keys** are the diatonic notes, **black keys** are the chromatic
+ones.
+
+Descendent mode are usable for exercises with ``-d`` or
+``--descendent``.
+
+Chromatic keys are usable for exercises with ``-c`` or ``--chromatic``.
+
+Second octave is usable for exercises with ``-n 2`` or ``--n_octaves 2``
 
 Documentation
 -------------
@@ -250,7 +276,7 @@ the screencast was recorded with a command similar to
 keyboard layouts were generated with
 http://www.keyboard-layout-editor.com/
 
-.. |Maintenance| image:: https://img.shields.io/maintenance/yes/2017.svg?style=flat-square
+.. |Maintenance| image:: https://img.shields.io/maintenance/yes/2018.svg?style=flat-square
    :target: https://github.com/iacchus/birdears/issues/new?title=Is+birdears+still+maintained&body=Please+file+an+issue+if+the+maintained+button+says+no
 .. |Travis Build Status| image:: https://img.shields.io/travis/iacchus/birdears.svg?style=flat-square&label=build
    :target: https://travis-ci.org/iacchus/birdears

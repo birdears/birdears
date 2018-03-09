@@ -62,6 +62,7 @@ def cli(debug):
 # melodic interval
 #
 
+
 melodic_epilog = """
 In this exercise birdears will play two notes, the tonic and the interval
 melodically, ie., one after the other and you should reply which is the correct
@@ -122,6 +123,7 @@ def melodic(*args, **kwargs):
 # harmonic interval
 #
 
+
 harmonic_epilog = """
 In this exercise birdears will play two notes, the tonic and the interval
 harmonically, ie., both on the same time and you should reply which is the
@@ -181,6 +183,7 @@ def harmonic(*args, **kwargs):
 #
 # dictation
 #
+
 
 dictation_epilog = """
 In this exercise birdears will choose some random intervals and create a
@@ -319,6 +322,7 @@ def instrumental(*args, **kwargs):
 #
 # birdear's "load"
 #
+
 
 load_epilog = """
 Loads exercise from file.

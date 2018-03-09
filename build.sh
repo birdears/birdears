@@ -5,8 +5,9 @@ set -e
 
 echo 'starting..'
 
-# run pep8
-pep8 birdears --exclude=click,toml
+# run pycodestyle
+# pep8 birdears --exclude=click,toml
+pycodestyle birdears --exclude=click,toml
 
 # run tests
 coverage run --source=birdears --omit=birdears/click/**,birdears/toml/**,birdears/interfaces/gui/**,birdears/interfaces/urwid/** --module pytest --verbose tests/
