@@ -2,8 +2,6 @@
 birdears provides facilities to building musical ear training exercises.
 """
 
-from .logger import logger
-
 DEBUG = False
 
 CHROMATIC_SHARP = ('C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#',

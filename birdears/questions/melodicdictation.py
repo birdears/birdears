@@ -1,16 +1,11 @@
 from random import choice
 
+from .. import INTERVALS
+
 from ..questionbase import QuestionBase
 
 from ..interval import DiatonicInterval
 from ..interval import ChromaticInterval
-
-from .. import DIATONIC_MODES
-from .. import MAX_SEMITONES_RESOLVE_BELOW
-from .. import INTERVALS
-
-from ..scale import DiatonicScale
-from ..scale import ChromaticScale
 
 from ..sequence import Sequence
 from ..resolution import Resolution

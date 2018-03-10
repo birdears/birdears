@@ -1,13 +1,9 @@
+from .. import INTERVALS
+
 from ..questionbase import QuestionBase
 
 from ..interval import DiatonicInterval
 from ..interval import ChromaticInterval
-
-from .. import DIATONIC_MODES
-from .. import MAX_SEMITONES_RESOLVE_BELOW
-from .. import INTERVALS
-
-from ..scale import DiatonicScale
 
 from ..sequence import Sequence
 from ..resolution import Resolution
@@ -113,7 +109,6 @@ class HarmonicIntervalQuestion(QuestionBase):
 
         tonic = self.concrete_tonic
         interval = self.interval.note_and_octave
-        durations = self.durations
 
         question = Sequence([[tonic, interval]], **self.durations['quest'])
 

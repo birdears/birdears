@@ -1,3 +1,5 @@
+from .. import INTERVALS
+
 from ..logger import log_event
 
 from ..questionbase import QuestionBase
@@ -5,14 +7,9 @@ from ..questionbase import QuestionBase
 from ..interval import DiatonicInterval
 from ..interval import ChromaticInterval
 
-from .. import DIATONIC_MODES
-from .. import MAX_SEMITONES_RESOLVE_BELOW
-from .. import INTERVALS
 from .. import KEYBOARD_INDICES
 from .. import CHROMATIC_SHARP
 from .. import CHROMATIC_FLAT
-
-from ..scale import DiatonicScale
 
 from ..sequence import Sequence
 from ..resolution import Resolution
@@ -112,7 +109,6 @@ class NoteNameQuestion(QuestionBase):
 
     def make_question(self):
 
-        tonic = self.concrete_tonic
         interval = self.interval.note_and_octave
 
         question = Sequence([interval], **self.durations['quest'])
@@ -168,11 +164,6 @@ class NoteNameQuestion(QuestionBase):
             correct_semitones = CHROMATIC_SHARP.index(user_note)
         elif correct_note in CHROMATIC_FLAT:
             correct_semitones = CHROMATIC_FLAT.index(correct_note)
-
-        tonic = self.scales['chromatic_pitch'].scale[0]
-
-        user_interval = INTERVALS[semitones][2]
-        correct_interval = INTERVALS[self.interval.semitones][2]
 
         # user_note = self.scales['chromatic_pitch'].scale[semitones]
         # correct_note = self.scales['chromatic_pitch']\

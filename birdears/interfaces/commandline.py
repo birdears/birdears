@@ -1,15 +1,15 @@
-from .. import click
-
 from .. import _Getch
 
 from .. import INTERVALS
 from .. import DIATONIC_MODES
 from .. import CHROMATIC_TYPE
 
-from .. import DEBUG
+# from os import popen
+from click import get_terminal_size
 
-from os import popen
-COLS = int(popen('tput cols', 'r').read())
+# FIXME: use `click` one instead or it won't be portable
+# COLS = int(popen('tput cols', 'r').read())
+COLS, LINES = get_terminal_size()
 
 
 def center_text(text, sep=True, nl=0):
@@ -55,11 +55,6 @@ def print_response(response):
     Args:
         response (dict): A response returned by question's check_question()
     """
-
-    text_kwargs = dict(
-        user_resp=response['user_response_str'],
-        correct_resp=response['correct_response_str']
-    )
 
     # TODO: make a class for response
     if response['is_correct']:
