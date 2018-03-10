@@ -146,8 +146,12 @@ from .. import CHROMATIC_TYPE
 
 from .. import DEBUG
 
-from os import popen
-COLS = int(popen(&#39;tput cols&#39;, &#39;r&#39;).read())
+# from os import popen
+from click import get_terminal_size
+
+# FIXME: use `click` one instead or it won&#39;t be portable
+# COLS = int(popen(&#39;tput cols&#39;, &#39;r&#39;).read())
+COLS, LINES = get_terminal_size()
 
 
 <div class="viewcode-block" id="center_text"><a class="viewcode-back" href="../../../index.html#birdears.interfaces.commandline.center_text">[docs]</a>def center_text(text, sep=True, nl=0):

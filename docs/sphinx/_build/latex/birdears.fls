@@ -51,7 +51,7 @@ INPUT /usr/share/texmf-dist/tex/generic/babel-english/english.ldf
 INPUT /usr/share/texmf-dist/tex/generic/babel-english/english.ldf
 INPUT /usr/share/texmf-dist/tex/generic/babel-english/english.ldf
 INPUT /usr/share/texmf-dist/tex/generic/babel/babel.def
-INPUT /usr/share/texmf-dist/tex/generic/babel/switch.def
+INPUT /usr/share/texmf-dist/tex/generic/babel/txtbabel.def
 INPUT /usr/share/texmf-dist/tex/latex/psnfss/times.sty
 INPUT /usr/share/texmf-dist/tex/latex/psnfss/times.sty
 INPUT /usr/share/texmf-dist/tex/latex/fncychap/fncychap.sty
