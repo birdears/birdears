@@ -8,8 +8,12 @@ from .. import CHROMATIC_TYPE
 
 from .. import DEBUG
 
-from os import popen
-COLS = int(popen('tput cols', 'r').read())
+# from os import popen
+from click import get_terminal_size
+
+# FIXME: use `click` one instead or it won't be portable
+# COLS = int(popen('tput cols', 'r').read())
+COLS, LINES = get_terminal_size()
 
 
 def center_text(text, sep=True, nl=0):
