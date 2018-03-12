@@ -2,6 +2,9 @@ from . import DIATONIC_MODES
 from . import CHROMATIC_SHARP
 from . import CHROMATIC_FLAT
 
+from .pitch import Note
+from .pitch import Pitch
+
 
 class ScaleBase:
     def __init__(self):
@@ -33,8 +36,9 @@ class ScaleBase:
             if idx > 0 and note == changing_note:
                 current_octave += next_octave
 
-            scale_with_octave.append("{}{}".format(note, current_octave))
-
+            # scale_with_octave.append("{}{}".format(note, current_octave))
+            scale_with_octave.append(Pitch(note=note, octave=current_octave))
+            
         return scale_with_octave
 
     def _get_chromatic_idx(self, note):
