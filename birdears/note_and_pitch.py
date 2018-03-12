@@ -19,7 +19,7 @@ class Note:
 class Pitch(Note):
 
     def __init__(self, note, octave):
-        super(Pitch, self).__init_(note=note)
+        super(Pitch, self).__init__(note=note)
         # self.note = note
         # TODO: validate octave
         self.octave = octave

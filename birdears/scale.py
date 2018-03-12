@@ -2,8 +2,8 @@ from . import DIATONIC_MODES
 from . import CHROMATIC_SHARP
 from . import CHROMATIC_FLAT
 
-from .pitch import Note
-from .pitch import Pitch
+from .note_and_pitch import Note
+from .note_and_pitch import Pitch
 
 
 class ScaleBase:
