@@ -5,6 +5,9 @@ from .exception import InvalidNote
 from .exception import InvalidOctave
 from .exception import InvalidPitch
 
+# pitch_numeric_value = (CHROMATIC_NOTE_INDEX+1) * ((OCTAVE+1) * 12)
+# eg.: C4 = (0+1) * ((4+1)*12), 1*5 = 61
+
 class Note:
 
     def __init__(self, note='C'):

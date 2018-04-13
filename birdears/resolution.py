@@ -96,7 +96,8 @@ def nearest_tonic(question):
 
         if interval.chromatic_offset <= MAX_SEMITONES_RESOLVE_BELOW:
             begin_to_diatonic = slice(None, interval.diatonic_index + 1)
-            resolution_pitch.extend(scale_pitch.scale[begin_to_diatonic])
+            # resolution_pitch.extend(scale_pitch.scale[begin_to_diatonic])
+            resolution_pitch.extend(scale_pitch[begin_to_diatonic])
             if interval.is_chromatic:
                 resolution_pitch.append(interval.note_and_octave)
             resolution_pitch.reverse()

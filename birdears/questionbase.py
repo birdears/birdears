@@ -155,8 +155,8 @@ class QuestionBase:
         })
         self.scales = scales
 
-        self.concrete_tonic = scales['diatonic_pitch'].scale[0]
-        self.scale_size = len(scales['diatonic'].scale)
+        self.concrete_tonic = str(scales['diatonic_pitch'][0])
+        self.scale_size = len(scales['diatonic'])
 
         self.durations = default_durations
         if user_durations:

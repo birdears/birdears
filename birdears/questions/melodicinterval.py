@@ -11,6 +11,8 @@ from ..sequence import Sequence
 from ..resolution import Resolution
 from ..prequestion import PreQuestion
 
+from ..note_and_pitch import Pitch
+
 
 class MelodicIntervalQuestion(QuestionBase):
     """Implements a Melodic Interval test.
@@ -107,6 +109,9 @@ class MelodicIntervalQuestion(QuestionBase):
 
         # tonic = self.concrete_tonic
         interval = self.interval.note_and_octave
+        
+        interval = Pitch(note=self.interval.note_name,
+                         octave=int(self.interval.note_octave))
 
         question = Sequence([interval], **self.durations['quest'])
 

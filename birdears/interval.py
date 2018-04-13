@@ -9,7 +9,9 @@ from . import INTERVAL_INDEX
 
 from .scale import ChromaticScale
 
-
+# pitch_numeric_value = (CHROMATIC_NOTE_INDEX+1) * ((OCTAVE+1) * 12)
+# eg.: C4 = (0+1) * ((4+1)*12), 1*5 = 61
+ 
 class IntervalBase:
 
     def __init__(self):
@@ -127,8 +129,13 @@ class DiatonicInterval(IntervalBase):
         octaves, chromatic_offset = divmod(semitones, 12)
         distance = dict(octaves=octaves, semitones=chromatic_offset)
 
-        note_name = "{}".format(chromatic_scale.scale[semitones])
-        note_and_octave = "{}".format(chromatic_scale_pitch.scale[semitones])
+        # note_name = "{}".format(chromatic_scale.scale[semitones])
+        # note_and_octave = "{}".format(chromatic_scale_pitch.scale[semitones])
+        
+        note_name = "{}".format(chromatic_scale[semitones])
+        note_and_octave = "{}".format(chromatic_scale_pitch[semitones])
+        # FIXME: OOPS!
+        note_octave = note_and_octave[-1]
 
         diatonic_index = diatonic_mode.index(chromatic_offset)
 
@@ -146,6 +153,7 @@ class DiatonicInterval(IntervalBase):
             chromatic_offset=chromatic_offset,
             note_and_octave=note_and_octave,
             note_name=note_name,
+            note_octave=note_octave,
             semitones=semitones,
             is_chromatic=False,
             is_descending=False if not descending else True,
