@@ -20,17 +20,6 @@ class IntervalBase:
 
         pass
 
-    def return_simple(self, keys):
-        """This method returns a dict with only the values passed to `keys`.
-        """
-
-        simple_dict = dict()
-
-        for key in keys:
-            simple_dict.update({key: getattr(self, key)})
-
-        return simple_dict
-
 
 class DiatonicInterval(IntervalBase):
     """Chooses a diatonic interval for the question.

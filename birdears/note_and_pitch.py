@@ -6,7 +6,7 @@ from .exception import InvalidOctave
 from .exception import InvalidPitch
 
 # pitch_numeric_value = (CHROMATIC_NOTE_INDEX) * (OCTAVE * 12)
-# eg.: C4 = (0) + (4*12), 60 = 61
+# eg.: C4 == (0) + (4*12), == 60
 
 class Note:
 
@@ -38,8 +38,7 @@ class Note:
         elif type(compare) == Pitch and int(self) == int(compare):
             return True
         
-        else:
-            return False
+        return False
         
     def __int__(self):
         return self.pitch_class
