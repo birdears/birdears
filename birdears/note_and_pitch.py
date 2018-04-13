@@ -1,7 +1,6 @@
 from . import CHROMATIC_SHARP
 from . import CHROMATIC_FLAT
 
-
 from .exception import InvalidNote
 from .exception import InvalidOctave
 from .exception import InvalidPitch
@@ -33,6 +32,9 @@ class Note:
 # https://en.wikipedia.org/wiki/Scientific_pitch_notation
 class Pitch(Note):
 
+    duration = None
+    delay = None
+    
     def __init__(self, note='C', octave=4):
         super(Pitch, self).__init__(note=note)
 
@@ -57,6 +59,10 @@ class Pitch(Note):
                octave=self.octave)
         
 class Chord(list):
+    
+    duration = None
+    delay = None
+    
     def __init__(self, iterable):
         if not all(isinstance(element, Pitch) for element in iterable):
             raise InvalidPitch
