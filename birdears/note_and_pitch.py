@@ -5,7 +5,7 @@ from .exception import InvalidNote
 from .exception import InvalidOctave
 from .exception import InvalidPitch
 
-# pitch_numeric_value = (CHROMATIC_NOTE_INDEX+1) * ((OCTAVE+1) * 12)
+# pitch_numeric_value = (CHROMATIC_NOTE_INDEX) * (OCTAVE * 12)
 # eg.: C4 = (0+1) * ((4+1)*12), 1*5 = 61
 
 class Note:
@@ -15,6 +15,16 @@ class Note:
             self.note = note
         else:
             raise InvalidNote
+
+    # https://en.wikipedia.org/wiki/Pitch_class
+    @property            
+    def pitch_class(self):
+        if self.note in CHROMATIC_SHARP:
+            value = CHROMATIC_SHARP.index(self.note)
+        else:
+            value = CHROMATIC_FLAT.index(self.note)
+
+        return value
             
     def __eq__(self, compare):
         # TODO: think a way to compare pitchs vs strings vs notes
@@ -45,6 +55,19 @@ class Pitch(Note):
             self.octave = octave
         else:
             raise InvalidOctave
+        
+    @property
+    def pitch_number(self):
+        value = self.pitch_class + (self.octave * 12)
+        return value
+    
+    # FIXME: maybe move this somewhere else
+    def get_pitch_by_number(self, numeric, accident='sharp'):
+        octave, pitch_class  = divmod(numeric, 12)
+        note = CHROMATIC_SHARP[pitch_class] if accident == 'sharp' \
+                else CHROMATIC_FLAT[pitch_class]
+        pitch = Pitch(note=note, octave=octave)
+        return pitch
             
     def __eq__(self, compare):
         # TODO: think a way to compare pitchs vs strings vs notes
