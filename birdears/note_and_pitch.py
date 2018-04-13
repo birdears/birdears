@@ -1,20 +1,25 @@
 from . import CHROMATIC_SHARP
 from . import CHROMATIC_FLAT
 
+
+from .exception import InvalidNote
+from .exception import InvalidOctave
+from .exception import InvalidPitch
+
 class Note:
 
     def __init__(self, note='C'):
         if note in CHROMATIC_SHARP or note in CHROMATIC_FLAT:
             self.note = note
         else:
-            raise Exception('Invalid note name.')
+            raise InvalidNote
             
     def __eq__(self, compare):
         # TODO: think a way to compare pitchs vs strings vs notes
 
         if type(compare) == str and self.note == compare:
             return True
-        elif type(compare) == type(self) and self == compare:
+        elif type(compare) == Note and self == compare:
             return True
         else:
             return False
@@ -34,7 +39,7 @@ class Pitch(Note):
         if octave >= 0 and octave <= 9:
             self.octave = octave
         else:
-            raise Exception('Invalid octave number.')
+            raise InvalidOctave
             
     def __eq__(self, compare):
         # TODO: think a way to compare pitchs vs strings vs notes
@@ -50,3 +55,24 @@ class Pitch(Note):
     def __repr__(self):
         return "<Pitch '{note}{octave}'>".format(note=self.note,
                octave=self.octave)
+        
+class Chord(list):
+    def __init__(self, iterable):
+        if not all(isinstance(element, Pitch) for element in iterable):
+            raise InvalidPitch
+        # else:
+        super(Chord, self).__init__(iterable)
+    
+    def append(self, obj):
+        if not isinstance(obj, Pitch):
+            raise InvalidPitch
+        # else:    
+        super(Chord, self).append(obj)
+
+    def extend(self, iterable):
+        if not all(isinstance(element, Pitch) for element in iterable):
+            raise InvalidPitch
+        # else:    
+        super(Chord, self).extend(iterable)
+    
+    
