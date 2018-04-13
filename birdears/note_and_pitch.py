@@ -6,7 +6,7 @@ from .exception import InvalidOctave
 from .exception import InvalidPitch
 
 # pitch_numeric_value = (CHROMATIC_NOTE_INDEX) * (OCTAVE * 12)
-# eg.: C4 = (0+1) * ((4+1)*12), 1*5 = 61
+# eg.: C4 = (0) + (4*12), 60 = 61
 
 class Note:
 
@@ -29,12 +29,20 @@ class Note:
     def __eq__(self, compare):
         # TODO: think a way to compare pitchs vs strings vs notes
 
-        if type(compare) == str and self.note == compare:
+        if type(compare) == str and str(self) == compare:
             return True
-        elif type(compare) == Note and self == compare:
+        
+        elif type(compare) == Note and int(self) == int(compare):
             return True
+        
+        elif type(compare) == Pitch and int(self) == int(compare):
+            return True
+        
         else:
             return False
+        
+    def __int__(self):
+        return self.pitch_class
         
     def __str__(self):
         return str(self.note)
@@ -64,25 +72,84 @@ class Pitch(Note):
     # FIXME: maybe move this somewhere else
     def get_pitch_by_number(self, numeric, accident='sharp'):
         octave, pitch_class  = divmod(numeric, 12)
+        
         note = CHROMATIC_SHARP[pitch_class] if accident == 'sharp' \
                 else CHROMATIC_FLAT[pitch_class]
+        
         pitch = Pitch(note=note, octave=octave)
+        
         return pitch
+    
+    def distance(self, other):
+        if type(other) == Pitch:
+            return self.pitch_number - int(other)
             
     def __eq__(self, compare):
-        # TODO: think a way to compare pitchs vs strings vs notes
-        #if type(compare) == str and self.note == compare:
-        #    return True
-        #else:
-        #    return False
-        pass
+        
+        if type(compare) == int:
+            result = self.pitch_number == compare
+            
+        elif type(compare) == Pitch:
+            result = self.pitch_number == int(compare)
+            
+        elif type(compare) == Note:
+            result = self.pitch_class == int(compare)        
+        
+        else:
+            raise Exception('Invalid operand for addition.')
+        
+        return result
         
     def __str__(self):
         return "{note}{octave}".format(note=self.note, octave=self.octave)
     
+    def __int__(self):
+        return self.pitch_number
+    
     def __repr__(self):
-        return "<Pitch '{note}{octave}'>".format(note=self.note,
-               octave=self.octave)
+        return "<Pitch '{note}{octave}' ({numeric})>" \
+            .format(note=self.note, octave=self.octave,
+                    numeric=self.pitch_number)
+            
+    def __add__(self, other):
+        if type(other) == int:
+            pitch_number = self.pitch_number + other
+            pitch = Pitch().get_pitch_by_number(pitch_number)
+        else:
+            raise Exception('Invalid operand for addition.')
+        return pitch
+
+    def __iadd__(self, other):
+        if type(other) == int:
+            pitch_number = self.pitch_number + other
+            pitch = Pitch().get_pitch_by_number(pitch_number)
+        else:
+            raise Exception('Invalid operand for addition.')
+            
+        return pitch
+            
+    def __sub__(self, other):
+        if type(other) == int:
+            pitch_number = self.pitch_number - other
+            pitch = Pitch().get_pitch_by_number(pitch_number)
+        
+        #elif type(other) == Pitch:
+        #    pitch_number = self.pitch_number - int(other)
+        #    pitch = Pitch().get_pitch_by_number(pitch_number)
+        
+        else:
+            raise Exception('Invalid operand for subtraction.')
+        
+        return pitch
+    
+    def __isub__(self, other):
+        if type(other) == int:
+            pitch_number = self.pitch_number - other
+            pitch = Pitch().get_pitch_by_number(pitch_number)
+        else:
+            raise Exception('Invalid operand for subtraction.')
+            
+        return pitch
         
 class Chord(list):
     
