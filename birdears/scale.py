@@ -24,6 +24,8 @@ class ScaleBase(list):
 
         current_octave = starting_octave
 
+        # if scale doesn't have a C, on which note should we go to the upper/lower octave?
+        # TODO: need to be refactored. Maybe using the pitch number.
         if not descending:
             for closest in ['C', 'C#', 'Db']:
                 if closest in scale:

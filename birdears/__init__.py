@@ -75,7 +75,7 @@ A tuple of tuples representing data for the intervals with format
 (semitones, short name, full name)."""
 
 CHROMATIC_TYPE = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
-"""tuple: A map of the chromatic chromatic scale.
+"""tuple: A map of the chromatic scale.
 
 A map of the the semitones which compound the chromatic scale."""
 
@@ -91,13 +91,17 @@ DIATONIC_MODES = {
 
 # TODO: maybe DIATONIC_MODES could use binary notation or TONE-SEMITONE
 # notation, eg:
+#
 # binary:
+#
 #   'major': (1, 0, 1, 0, 1,1,0,1,0,1,0,1,1)
-# or:
+#   or:
 #   'major': '1010110101011'
+#
 # tone-semitone:
+#
 #   'major': (2,2,1,2,2,2,1)
-# or:
+#   or:
 #   TONE = 2
 #   SEMITONE = 1
 #   'major': (TONE, TONE, SEMITONE, TONE, TONE, TONE, SEMITONE)
