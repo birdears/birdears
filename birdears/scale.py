@@ -5,6 +5,8 @@ from . import CHROMATIC_FLAT
 from .note_and_pitch import Note
 from .note_and_pitch import Pitch
 
+from .exception import InvalidNote
+
 # https://docs.python.org/3/reference/datamodel.html#emulating-container-types
 
 class ScaleBase(list):
@@ -80,7 +82,7 @@ class DiatonicScale(ScaleBase):
         scale (array_type): The array of notes representing the scale.
     """
 
-    def __init__(self, tonic, mode=None, octave=None, n_octaves=None,
+    def __init__(self, tonic, mode='major', octave=None, n_octaves=None,
                  descending=None, dont_repeat_tonic=None):
         """Returns a diatonic scale from tonic and mode.
 
@@ -102,6 +104,7 @@ class DiatonicScale(ScaleBase):
         self.tonic = tonic
         self.mode = mode
         self.octave = octave
+        self.direction = "Ascending" if not descending else "Descending"
 
         diatonic_mode = DIATONIC_MODES[mode]
 
@@ -127,6 +130,7 @@ class DiatonicScale(ScaleBase):
         #self.scale = diatonic
         self.extend(diatonic)
 
+    # FIXME: aybe ake this a function
     def get_triad(self, index=0, degree=None):
         """Returns an array with notes from a scale's triad.
 
@@ -170,6 +174,19 @@ class DiatonicScale(ScaleBase):
 
         return triad
 
+    def __repr__(self):
+        
+        repr = "<DiatonicScale {tonic} {mode} {direction} {first}-{to} " \
+               "({octaves} octaves)>" \
+                   .format(tonic=str(self[0].note),
+                           mode=self.mode.capitalize(),
+                           direction=self.direction.capitalize(),
+                           first=str(self[0]),
+                           to=str(self[-1]), octaves=int(len(self)/8))
+        return repr
+    
+    def __str__(self):
+        return str(list(self))
 
 class ChromaticScale(ScaleBase):
     """Builds a musical chromatic scale.

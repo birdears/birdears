@@ -88,6 +88,21 @@ DIATONIC_MODES = {
     'minor': (0, 2, 3, 5, 7, 8, 10, 12),
     'locrian': (0, 1, 3, 5, 6, 8, 10, 12),
 }
+
+# TODO: maybe DIATONIC_MODES could use binary notation or TONE-SEMITONE
+# notation, eg:
+# binary:
+#   'major': (1, 0, 1, 0, 1,1,0,1,0,1,0,1,1)
+# or:
+#   'major': '1010110101011'
+# tone-semitone:
+#   'major': (2,2,1,2,2,2,1)
+# or:
+#   TONE = 2
+#   SEMITONE = 1
+#   'major': (TONE, TONE, SEMITONE, TONE, TONE, TONE, SEMITONE)
+# this way we can iterare and just sum up the Pitches' pitch_numbers
+
 """dict of tuples: A map of the diatonic scale.
 
 A mapping of the semitones which compound each of the greek modes.
