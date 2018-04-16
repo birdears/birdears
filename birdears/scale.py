@@ -1,4 +1,5 @@
 from . import DIATONIC_MODES
+from . import DIATONIC_FORMS
 from . import CHROMATIC_SHARP
 from . import CHROMATIC_FLAT
 
@@ -9,6 +10,8 @@ from .note_and_pitch import get_pitch_class
 from .note_and_pitch import get_pitch_by_number
 
 from .exception import InvalidNote
+
+from itertools import cycle
 
 # https://docs.python.org/3/reference/datamodel.html#emulating-container-types
 
@@ -57,8 +60,8 @@ class DiatonicScale(ScaleBase):
         scale (array_type): The array of notes representing the scale.
     """
 
-    def __init__(self, tonic, mode='major', octave=None, n_octaves=None,
-                 descending=None, dont_repeat_tonic=None):
+    def __init__(self, tonic='C', mode='major', octave=4, n_octaves=1,
+                 descending=False, dont_repeat_tonic=False):
         """Returns a diatonic scale from tonic and mode.
 
         Args:
@@ -85,7 +88,9 @@ class DiatonicScale(ScaleBase):
         
         repeat_tonic = not dont_repeat_tonic  # 1 or 0
 
-        diatonic_mode = DIATONIC_MODES[mode]
+        #diatonic_mode = DIATONIC_MODES[mode]
+        #diatonic_mode = DIATONIC_MODES[mode]
+        diatonic_mode = DIATONIC_FORMS[mode]
         
         mode_length = len(diatonic_mode)
 
@@ -95,18 +100,45 @@ class DiatonicScale(ScaleBase):
 
         #scale = list()
         #for degree in diatonic_mode:
-        scale = [get_pitch_by_number(tonic_pitch_num + (semitones * direction))
-                for semitones in diatonic_mode]
+        #scale = [get_pitch_by_number(tonic_pitch_num + (semitones * direction))
+        #        for semitones in diatonic_mode]
         
-        scale = [get_pitch_by_number(tonic_pitch_num + (diatonic_mode[i/diatonic_length] * direction))
-        for i in range(diatonic_length * n_octaves + repeat_tonic)]
+        #scale = [get_pitch_by_number(tonic_pitch_num + (diatonic_mode[i/diatonic_length] * direction))
+        #for i in range(diatonic_length * n_octaves + repeat_tonic)]
+        if descending:
+            # diatonic_mode = tuple(reversed(diatonic_mode))
+            diatonic_mode = diatonic_mode[::-1]
+            #del(diatonic_mode[-1])
+            #insert()
+            
+        diatonic_loop = cycle(diatonic_mode)
+        #scale = [get_pitch_by_number(tonic_pitch_num + (next(diatonic_loop)+*direction) + i)for i in range(mode_length * n_octaves + repeat_tonic)]
+        scale = list()
+        #for i in range((mode_length * n_octaves) + repeat_tonic):
+        #    distance = next(diatonic_loop)
+        #    current_octave = int(i / mode_length) * direction # asc / desc
+        #   pitch_num = tonic_pitch_num + (current_octave*12) + distance
+        #    pitch = get_pitch_by_number(pitch_num)
+        #    scale.append(pitch)
+            
+        pitch_num = int(self.tonic)
         
+        #scale.append(self.tonic)
+        for i in range((mode_length * n_octaves) + repeat_tonic):
+            step = next(diatonic_loop)
+            #octave = int(i / mode_length) * direction # asc / desc
+            
+            #pitch_num = pitch_num + distance
+            pitch_num = pitch_num + (step * direction)
+            #print(distance)
+            pitch = get_pitch_by_number(pitch_num)
+            scale.append(pitch)
         #chromatic = ChromaticScale(tonic=tonic)
 
         #diatonic = [chromatic[semitones] for semitones in diatonic_mode[:-1]]
 
-        if n_octaves:
-            diatonic = diatonic * n_octaves
+        #if n_octaves:
+        #    diatonic = diatonic * n_octaves
 
         # FIXME: check if this works on descending
         #if not dont_repeat_tonic:
