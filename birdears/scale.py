@@ -5,6 +5,7 @@ from . import CHROMATIC_FLAT
 
 from .note_and_pitch import Note
 from .note_and_pitch import Pitch
+from .note_and_pitch import Chord
 
 from .note_and_pitch import get_pitch_class
 from .note_and_pitch import get_pitch_by_number
@@ -19,38 +20,38 @@ class ScaleBase(list):
     def __init__(self):
         pass
 
-    def _append_octave_to_scale(self, scale, starting_octave, descending=None):
-        """Inserts scientific octave number to the notes on a the given scale.
-        """
-
-        next_octave = 1 if not descending else -1
-
-        scale_with_octave = []
-        changing_note = None
-
-        current_octave = starting_octave
-
-        # if scale doesn't have a C, on which note should we go to the upper/lower octave?
-        # TODO: need to be refactored. Maybe using the pitch number.
-        if not descending:
-            for closest in ['C', 'C#', 'Db']:
-                if closest in scale:
-                    changing_note = closest
-                    break
-        else:
-            for closest in ['B', 'Bb', 'A#']:
-                if closest in scale:
-                    changing_note = closest
-                    break
-
-        for idx, note in enumerate(scale):
-            if idx > 0 and note == changing_note:
-                current_octave += next_octave
-
-            # scale_with_octave.append("{}{}".format(note, current_octave))
-            scale_with_octave.append(Pitch(note=note, octave=current_octave))
-            
-        return scale_with_octave
+    #def _append_octave_to_scale(self, scale, starting_octave, descending=None):
+    #    """Inserts scientific octave number to the notes on a the given scale.
+    #    """
+    #
+    #    next_octave = 1 if not descending else -1
+    #
+    #    scale_with_octave = []
+    #    changing_note = None
+    #
+    #    current_octave = starting_octave
+    #
+    #    # if scale doesn't have a C, on which note should we go to the upper/lower octave?
+    #    # TODO: need to be refactored. Maybe using the pitch number.
+    #    if not descending:
+    #        for closest in ['C', 'C#', 'Db']:
+    #           if closest in scale:
+    #                changing_note = closest
+    #                break
+    #    else:
+    #        for closest in ['B', 'Bb', 'A#']:
+    #            if closest in scale:
+    #                changing_note = closest
+    #                break
+    #
+    #    for idx, note in enumerate(scale):
+    #        if idx > 0 and note == changing_note:
+    #            current_octave += next_octave
+    #
+    #        # scale_with_octave.append("{}{}".format(note, current_octave))
+    #        scale_with_octave.append(Pitch(note=note, octave=current_octave))
+    #        
+    #    return scale_with_octave
 
 
 class DiatonicScale(ScaleBase):
@@ -122,29 +123,13 @@ class DiatonicScale(ScaleBase):
             An array with three pitches, one for each note of the triad.
         """
 
-        #global DIATONIC_MODES
-
         tonic = self.tonic
         mode = self.mode
-        octave = self.octave
+        
+        diatonic = DiatonicScale(tonic=tonic.note, mode=mode,
+                                 octave=tonic.octave, n_octaves=2,
+                                 descending=False, dont_repeat_tonic=False)
 
-        diatonic_mode = DIATONIC_MODES[mode]
-
-        chromatic = ChromaticScale(tonic=tonic)
-
-        diatonic = [chromatic[semitones] for semitones in diatonic_mode[:-1]]
-
-        diatonic = diatonic * 2
-
-        # FIXME: check if this works on descending
-        diatonic.append(chromatic[diatonic_mode[-1]])
-
-        octave = self.octave or 4
-        diatonic = self._append_octave_to_scale(scale=diatonic,
-                                                starting_octave=octave,
-                                                descending=False)
-
-        self.scale = diatonic
         if degree:
             index = degree - 1
 
@@ -152,7 +137,9 @@ class DiatonicScale(ScaleBase):
 
         triad = [diatonic[index+note] for note in form]
 
-        return triad
+        chord = Chord(triad)
+
+        return chord
 
     def __repr__(self):
         
@@ -218,28 +205,12 @@ class ChromaticScale(ScaleBase):
             A list with three pitches (str), one for each note of the triad.
         """
 
-        global DIATONIC_MODES
-
         tonic = self.tonic
-        octave = self.octave
+        
+        diatonic = DiatonicScale(tonic=tonic.note, mode=mode,
+                                 octave=tonic.octave, n_octaves=2,
+                                 descending=False, dont_repeat_tonic=False)
 
-        diatonic_mode = DIATONIC_MODES[mode]
-
-        chromatic = ChromaticScale(tonic)
-
-        diatonic = [chromatic[semitones] for semitones in diatonic_mode[:-1]]
-
-        diatonic = diatonic * 2
-
-        # FIXME: check if this works on descending
-        diatonic.append(chromatic[diatonic_mode[-1]])
-
-        octave = self.octave or 4
-        diatonic = self._append_octave_to_scale(scale=diatonic,
-                                                starting_octave=octave,
-                                                descending=False)
-
-        self.scale = diatonic
         if degree:
             index = degree - 1
 
@@ -247,4 +218,6 @@ class ChromaticScale(ScaleBase):
 
         triad = [diatonic[index+note] for note in form]
 
-        return triad
+        chord = Chord(triad)
+
+        return chord
