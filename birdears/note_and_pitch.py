@@ -23,7 +23,7 @@ def get_pitch_number(note, octave):
     return value
 
 # FIXME: maybe move this somewhere else
-def get_pitch_by_number(self, numeric, accident='sharp'):
+def get_pitch_by_number(numeric, accident='sharp'):
     octave, pitch_class  = divmod(numeric, 12)
     
     note = CHROMATIC_SHARP[pitch_class] if accident == 'sharp' \
