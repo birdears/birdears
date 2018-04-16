@@ -171,7 +171,9 @@ class MelodicIntervalQuestion(QuestionBase):
         #user_interval = INTERVALS[semitones][2]
         #correct_interval = INTERVALS[self.interval.semitones][2]
         user_pitch = get_pitch_by_number(int(self.tonic) + user_semitones)
-        user_interval = Interval(self.tonic, self.user_pitch)
+        user_interval = Interval(self.tonic, user_pitch)['data'][2]
+        correct_pitch = self.random_pitch
+        correct_interval = Interval(self.tonic, self.random_pitch)['data'][2]
 
         #user_note = self.scales['chromatic_pitch'].scale[semitones]
         #correct_note = self.scales['chromatic_pitch']\
@@ -179,16 +181,23 @@ class MelodicIntervalQuestion(QuestionBase):
             
         # user_note = str(self.scale[user_semitones])
         user_note = str(user_interval)
+        correct_note = str(random_pitch)
 
         # signal = '✓' if semitones == self.interval.semitones else 'x' # u2713
-        signal = '✓' if user_semitones == correct_semitones else 'x'  # u2713
+        #signal = '✓' if user_semitones == correct_semitones else 'x'  # u2713
+        signal = '✓' if user_pitch == correct_pitch else 'x'  # u2713
 
         extra_response_str = """\
-       “{}” ({}─{})
-user {} “{}” ({}─{})
-{} semitones
-""".format(correct_interval, tonic, correct_note,
-           signal, user_interval, tonic, user_note, self.interval.semitones)
+       “{ci}” ({to}─{cn})
+user {si} “{ui}” ({to}─{un})
+{st} semitones
+""".format(ci=correct_interval,
+           to=tonic,
+           cn=correct_note,
+           si=signal,
+           ui=user_interval,
+           un=user_note, 
+           st=int(self.interval['semitones'])))
 
         response = dict(
             is_correct=False,
