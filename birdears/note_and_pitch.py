@@ -5,8 +5,33 @@ from .exception import InvalidNote
 from .exception import InvalidOctave
 from .exception import InvalidPitch
 
-# pitch_numeric_value = (CHROMATIC_NOTE_INDEX) * (OCTAVE * 12)
+# pitch_numeric_value = (PITCH_CLASS) + (OCTAVE * 12)
 # eg.: C4 == (0) + (4*12), == 60
+
+def get_pitch_class(note):
+    if note in CHROMATIC_SHARP:
+        pitch_class = CHROMATIC_SHARP.index(note)
+    elif note in CHROMATIC_FLAT:
+        pitch_class = CHROMATIC_FLAT.index(note)
+    else:
+        raise InvalidNote
+
+    return pitch_class
+    
+def get_pitch_number(note, octave):
+    pitch_number = get_pitch_class(note) + (octave * 12)
+    return value
+
+# FIXME: maybe move this somewhere else
+def get_pitch_by_number(self, numeric, accident='sharp'):
+    octave, pitch_class  = divmod(numeric, 12)
+    
+    note = CHROMATIC_SHARP[pitch_class] if accident == 'sharp' \
+            else CHROMATIC_FLAT[pitch_class]
+    
+    pitch = Pitch(note=note, octave=octave)
+    
+    return pitch
 
 class Note:
 

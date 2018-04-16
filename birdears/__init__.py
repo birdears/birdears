@@ -79,6 +79,19 @@ CHROMATIC_TYPE = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
 
 A map of the the semitones which compound the chromatic scale."""
 
+TONE = 2
+SEMITONE = 1
+
+DIATONIC_FORMS = {
+    'major': (TONE, TONE, SEMITONE, TONE, TONE, TONE, SEMITONE),
+    'dorian': (TONE, SEMITONE, TONE, TONE, TONE, SEMITONE, TONE),
+    'phrygian': (SEMITONE, TONE, TONE, TONE, SEMITONE, TONE, TONE),
+    'lydian': (TONE, TONE, TONE, SEMITONE, TONE, TONE, SEMITONE),
+    'mixolydian': (TONE, TONE, SEMITONE, TONE, TONE, SEMITONE, TONE),
+    'minor': (TONE, SEMITONE, TONE, TONE, SEMITONE, TONE, TONE),
+    'locrian': (SEMITONE, TONE, TONE, SEMITONE, TONE, TONE, TONE),
+}
+
 DIATONIC_MODES = {
     'major': (0, 2, 4, 5, 7, 9, 11, 12),
     'dorian': (0, 2, 3, 5, 7, 9, 10, 12),
@@ -87,6 +100,16 @@ DIATONIC_MODES = {
     'mixolydian': (0, 2, 4, 5, 7, 9, 10, 12),
     'minor': (0, 2, 3, 5, 7, 8, 10, 12),
     'locrian': (0, 1, 3, 5, 6, 8, 10, 12),
+}
+
+DIATONIC_MASK = {
+    'major': (1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1),
+    'dorian': (1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0),
+    'phrygian': (1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0),
+    'lydian': (1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1),
+    'mixolydian': (1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0),
+    'minor': (1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0),
+    'locrian': (1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0),
 }
 
 # TODO: maybe DIATONIC_MODES could use binary notation or TONE-SEMITONE
