@@ -108,8 +108,9 @@ class Sequence(list):
         scale = ChromaticScale(tonic=tonic)
 
         for degree in degrees:
-            triad = scale.get_triad(mode=mode, degree=degree)
-            chord = Chord(triad)
+            #triad = scale.get_triad(mode=mode, degree=degree)
+            chord = scale.get_triad(mode=mode, degree=degree)
+            #chord = Chord(triad)
             self.append(chord)
 
     def _play_note(self, pitch, last_element=False):

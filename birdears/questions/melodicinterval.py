@@ -15,6 +15,7 @@ from ..resolution import Resolution
 from ..prequestion import PreQuestion
 
 from ..note_and_pitch import Pitch
+from ..note_and_pitch import get_pitch_by_number
 
 
 class MelodicIntervalQuestion(QuestionBase):
@@ -127,10 +128,10 @@ class MelodicIntervalQuestion(QuestionBase):
         # tonic = self.concrete_tonic
         #interval = self.interval['note_and_octave']
         
-        interval = Pitch(note=self.interval['note_name'],
-                         octave=int(self.interval['note_octave']))
+        #interval = Pitch(note=self.interval['note_name'],
+        #                 octave=int(self.interval['note_octave']))
 
-        question = Sequence([interval], **self.durations['quest'])
+        question = Sequence([self.random_pitch], **self.durations['quest'])
 
         return question
 
@@ -159,20 +160,28 @@ class MelodicIntervalQuestion(QuestionBase):
         """Checks whether the given answer is correct.
         """
 
-        global INTERVALS
+        # global INTERVALS
 
-        semitones = self.keyboard_index.index(user_input_char[0])
+        # semitones = self.keyboard_index.index(user_input_char[0])
+        user_semitones = self.keyboard_index.index(user_input_char[0])
+        correct_semitones = abs(int(self.tonic) - int(self.random_pitch))
+        
+        #tonic = self.scales['chromatic_pitch'].scale[0]
 
-        tonic = self.scales['chromatic_pitch'].scale[0]
+        #user_interval = INTERVALS[semitones][2]
+        #correct_interval = INTERVALS[self.interval.semitones][2]
+        user_pitch = get_pitch_by_number(int(self.tonic) + user_semitones)
+        user_interval = Interval(self.tonic, self.user_pitch)
 
-        user_interval = INTERVALS[semitones][2]
-        correct_interval = INTERVALS[self.interval.semitones][2]
+        #user_note = self.scales['chromatic_pitch'].scale[semitones]
+        #correct_note = self.scales['chromatic_pitch']\
+        #    .scale[self.interval.semitones]
+            
+        # user_note = str(self.scale[user_semitones])
+        user_note = str(user_interval)
 
-        user_note = self.scales['chromatic_pitch'].scale[semitones]
-        correct_note = self.scales['chromatic_pitch']\
-            .scale[self.interval.semitones]
-
-        signal = '✓' if semitones == self.interval.semitones else 'x'  # u2713
+        # signal = '✓' if semitones == self.interval.semitones else 'x' # u2713
+        signal = '✓' if user_semitones == correct_semitones else 'x'  # u2713
 
         extra_response_str = """\
        “{}” ({}─{})
