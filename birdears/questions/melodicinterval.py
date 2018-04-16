@@ -4,8 +4,9 @@ from ..logger import log_event
 
 from ..questionbase import QuestionBase
 
-from ..interval import DiatonicInterval
-from ..interval import ChromaticInterval
+#from ..interval import DiatonicInterval
+#from ..interval import ChromaticInterval
+from ..interval import Interval
 
 from ..sequence import Sequence
 from ..resolution import Resolution
@@ -19,8 +20,8 @@ class MelodicIntervalQuestion(QuestionBase):
     """
 
     @log_event
-    def __init__(self, mode='major', tonic=None, octave=None, descending=None,
-                 chromatic=None, n_octaves=None, valid_intervals=None,
+    def __init__(self, mode='major', tonic='C', octave=4, descending=False,
+                 chromatic=False, n_octaves=1, valid_intervals=None,
                  user_durations=None, prequestion_method='tonic_only',
                  resolution_method='nearest_tonic', *args, **kwargs):
         """Inits the class.
@@ -81,26 +82,40 @@ class MelodicIntervalQuestion(QuestionBase):
 
         self.is_harmonic = False
 
+        self.tonic = Pitch(note=tonic, octave=octave)
+        
         if not chromatic:
-            self.interval = \
-                DiatonicInterval(mode=mode, tonic=self.tonic,
-                                 octave=self.octave,
-                                 n_octaves=self.n_octaves,
-                                 descending=descending,
-                                 valid_intervals=self.valid_intervals)
+            scale = DiatonicScale(tonic=tonic, mode=mode, octave=octave,
+                                  descending=descending, n_octaves=n_octaves)
         else:
-            self.interval = \
-                ChromaticInterval(mode=mode, tonic=self.tonic,
-                                  octave=self.octave,
-                                  n_octaves=self.n_octaves,
-                                  descending=descending,
-                                  valid_intervals=self.valid_intervals)
+            scale = ChromaticScale(tonic=tonic, mode=mode, octave=octave,
+                                   descending=descending, n_octaves=n_octaves)
+        
+        self.random_pitch = choice(scale)
+        
+        self.interval = Interval(self.tonic, self.random_pitch)    
+        
+        #if not chromatic:
+        #    self.interval = \
+        #        DiatonicInterval(mode=mode, tonic=self.tonic,
+        #                         octave=self.octave,
+        #                         n_octaves=self.n_octaves,
+        #                         descending=descending,
+        #                         valid_intervals=self.valid_intervals)
+        #else:
+        #    self.interval = \
+        #        ChromaticInterval(mode=mode, tonic=self.tonic,
+        #                          octave=self.octave,
+        #                          n_octaves=self.n_octaves,
+        #                          descending=descending,
+        #                          valid_intervals=self.valid_intervals)
 
         self.pre_question = self.make_pre_question(method=prequestion_method)
         self.question = self.make_question()
         self.resolution = self.make_resolution(method=resolution_method)
 
     def make_pre_question(self, method):
+        
         prequestion = PreQuestion(method=method, question=self)
 
         return prequestion()

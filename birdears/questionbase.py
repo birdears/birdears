@@ -40,8 +40,8 @@ class QuestionBase:
     subclasses.
     """
 
-    def __init__(self, mode='major', tonic=None, octave=None, descending=None,
-                 chromatic=None, n_octaves=None, valid_intervals=None,
+    def __init__(self, mode='major', tonic='C', octave=4, descending=False,
+                 chromatic=False, n_octaves=1, valid_intervals=None,
                  user_durations=None, prequestion_method=None,
                  resolution_method=None, default_durations=None,
                  *args, **kwargs):
@@ -89,7 +89,7 @@ class QuestionBase:
                 each type of sequence. This is provided by the subclasses.
         """
 
-        global KEYBOARD_INDICES, CIRCLE_OF_FIFTHS
+        # global KEYBOARD_INDICES, CIRCLE_OF_FIFTHS
 
         self.mode = mode
 
@@ -104,12 +104,17 @@ class QuestionBase:
         elif type(octave) == tuple and len(octave) == 2:
             octave = randrange(*octave)
 
+        # TODO: raise exceptions in case octave/n_octaves are invalid or
+        #       extrapolate each other
+        
         self.octave = octave
 
-        if not n_octaves:
-            self.n_octaves = 1
-        else:
-            self.n_octaves = n_octaves
+        #if not n_octaves:
+        #    self.n_octaves = 1
+        #else:
+        #    self.n_octaves = n_octaves
+            
+        self.n_octaves = n_octaves
 
         # this should go to questionbase
         if type(valid_intervals) == str:
@@ -130,33 +135,33 @@ class QuestionBase:
 
         self.tonic = tonic
 
-        diatonic_scale = DiatonicScale(tonic=tonic, mode=mode, octave=None,
-                                       descending=descending,
-                                       n_octaves=n_octaves)
+        #diatonic_scale = DiatonicScale(tonic=tonic, mode=mode, octave=None,
+        #                               descending=descending,
+        #                               n_octaves=n_octaves)
 
-        chromatic_scale = ChromaticScale(tonic=tonic, octave=None,
-                                         descending=descending,
-                                         n_octaves=n_octaves)
+        #chromatic_scale = ChromaticScale(tonic=tonic, octave=None,
+        #                                 descending=descending,
+        #                                 n_octaves=n_octaves)
 
-        diatonic_scale_pitch = DiatonicScale(tonic=tonic, mode=mode,
-                                             octave=self.octave,
-                                             descending=descending,
-                                             n_octaves=n_octaves)
+        #diatonic_scale_pitch = DiatonicScale(tonic=tonic, mode=mode,
+        #                                     octave=self.octave,
+        #                                     descending=descending,
+        #                                     n_octaves=n_octaves)
 
-        chromatic_scale_pitch = ChromaticScale(tonic=tonic, octave=self.octave,
-                                               descending=descending,
-                                               n_octaves=n_octaves)
+        #chromatic_scale_pitch = ChromaticScale(tonic=tonic, octave=self.octave,
+        #                                       descending=descending,
+        #                                       n_octaves=n_octaves)
 
-        scales = dict({
-            'diatonic': diatonic_scale,
-            'chromatic': chromatic_scale,
-            'diatonic_pitch': diatonic_scale_pitch,
-            'chromatic_pitch': chromatic_scale_pitch,
-        })
-        self.scales = scales
+        #scales = dict({
+        #    'diatonic': diatonic_scale,
+        #    'chromatic': chromatic_scale,
+        #    'diatonic_pitch': diatonic_scale_pitch,
+        #    'chromatic_pitch': chromatic_scale_pitch,
+        #})
+        #self.scales = scales
 
-        self.concrete_tonic = str(scales['diatonic_pitch'][0])
-        self.scale_size = len(scales['diatonic'])
+        #self.concrete_tonic = str(scales['diatonic_pitch'][0])
+        #self.scale_size = len(scales['diatonic'])
 
         self.durations = default_durations
         if user_durations:
