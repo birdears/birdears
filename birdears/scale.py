@@ -77,82 +77,37 @@ class DiatonicScale(ScaleBase):
 
         super(DiatonicScale, self).__init__()
 
-        global DIATONIC_MODES
+        #global DIATONIC_MODES
 
         self.tonic = Pitch(note=tonic, octave=octave)
-        
         self.mode = mode
-        #self.octave = octave
-        
         self.direction = "Ascending" if not descending else "Descending"
-        
-        repeat_tonic = not dont_repeat_tonic  # 1 or 0
 
-        #diatonic_mode = DIATONIC_MODES[mode]
-        #diatonic_mode = DIATONIC_MODES[mode]
         diatonic_mode = DIATONIC_FORMS[mode]
         
-        mode_length = len(diatonic_mode)
-
-        tonic_pitch_num = int(self.tonic)
+        form_length = len(diatonic_mode)
         
         direction = +1 if not descending else -1
-
-        #scale = list()
-        #for degree in diatonic_mode:
-        #scale = [get_pitch_by_number(tonic_pitch_num + (semitones * direction))
-        #        for semitones in diatonic_mode]
-        
-        #scale = [get_pitch_by_number(tonic_pitch_num + (diatonic_mode[i/diatonic_length] * direction))
-        #for i in range(diatonic_length * n_octaves + repeat_tonic)]
+        repeat_tonic = 0 - dont_repeat_tonic  # 0 (repeat) or -1
         if descending:
-            # diatonic_mode = tuple(reversed(diatonic_mode))
             diatonic_mode = diatonic_mode[::-1]
-            #del(diatonic_mode[-1])
-            #insert()
             
         diatonic_loop = cycle(diatonic_mode)
-        #scale = [get_pitch_by_number(tonic_pitch_num + (next(diatonic_loop)+*direction) + i)for i in range(mode_length * n_octaves + repeat_tonic)]
+
         scale = list()
-        #for i in range((mode_length * n_octaves) + repeat_tonic):
-        #    distance = next(diatonic_loop)
-        #    current_octave = int(i / mode_length) * direction # asc / desc
-        #   pitch_num = tonic_pitch_num + (current_octave*12) + distance
-        #    pitch = get_pitch_by_number(pitch_num)
-        #    scale.append(pitch)
-            
-        pitch_num = int(self.tonic)
         
-        #scale.append(self.tonic)
-        for i in range((mode_length * n_octaves) + repeat_tonic):
+        self.append(self.tonic)
+
+        pitch_num = int(self[0])
+        
+        for i in range((form_length * n_octaves) + repeat_tonic):
             step = next(diatonic_loop)
-            #octave = int(i / mode_length) * direction # asc / desc
             
-            #pitch_num = pitch_num + distance
-            pitch_num = pitch_num + (step * direction)
-            #print(distance)
+            pitch_num += step * direction
+
             pitch = get_pitch_by_number(pitch_num)
             scale.append(pitch)
-        #chromatic = ChromaticScale(tonic=tonic)
 
-        #diatonic = [chromatic[semitones] for semitones in diatonic_mode[:-1]]
-
-        #if n_octaves:
-        #    diatonic = diatonic * n_octaves
-
-        # FIXME: check if this works on descending
-        #if not dont_repeat_tonic:
-        #    diatonic.append(chromatic[diatonic_mode[-1]])
-
-        #if descending:
-        #    diatonic.reverse()
-
-        #if octave:
-        #    diatonic = self._append_octave_to_scale(scale=diatonic,
-        #                                            starting_octave=octave,
-        #                                            descending=descending)
-
-        #self.scale = diatonic
         self.extend(scale)
 
     # FIXME: aybe ake this a function
@@ -167,7 +122,7 @@ class DiatonicScale(ScaleBase):
             An array with three pitches, one for each note of the triad.
         """
 
-        global DIATONIC_MODES
+        #global DIATONIC_MODES
 
         tonic = self.tonic
         mode = self.mode
