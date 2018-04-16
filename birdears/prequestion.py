@@ -78,7 +78,7 @@ def tonic_only(question, *args, **kwargs):
     question.
 
     Args:
-        question (obj): Question object from which to generate the
+        question (object): Question object from which to generate the
             pre-question sequence. (this is provided by the `Resolution` class
             when it is `__call__`ed)
     """
@@ -91,33 +91,35 @@ def tonic_only(question, *args, **kwargs):
     # except AttributeError:
     #    intervals = question.intervals
 
-    intervals = getattr(question, 'interval', 'intervals')
+    #intervals = getattr(question, 'interval', 'intervals')
 
     tonic = question.tonic
-    tonic_octave = question.octave
+    # tonic_octave = question.octave
 
     duration = question.durations['preq']['duration']
     delay = question.durations['preq']['delay']
     pos_delay = question.durations['preq']['pos_delay']
 
-    sequence = Sequence(duration=duration, delay=delay,
+    sequence = Sequence(elements=[question.tonic], duration=duration,
+                        delay=delay,
                         pos_delay=pos_delay)
 
-    sequence_list = []
+    #sequence_list = []
 
-    if type(intervals) is not list:
-        intervals = [intervals]
+   # if type(intervals) is not list:
+   #     intervals = [intervals]
 
-    tonic_and_octave = "{}{}".format(tonic, tonic_octave)
+    #tonic_and_octave = "{}{}".format(tonic, tonic_octave)
 
-    for interval in intervals:
-        sequence.append(tonic_and_octave)
-        # if not harmonic:
-        #     sequence.extend([tonic_and_octave])
-        # else:
-        #     sequence.append([tonic_and_octave])
-
-    return sequence
+    #for interval in intervals:
+    #    #sequence.append(tonic_and_octave)
+    #    sequence.append(tonic)
+    #    # if not harmonic:
+    #    #     sequence.extend([tonic_and_octave])
+    #    # else:
+    #    #     sequence.append([tonic_and_octave])
+    #
+    #return sequence
 
 
 @register_prequestion_method

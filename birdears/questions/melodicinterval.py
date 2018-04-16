@@ -125,12 +125,6 @@ class MelodicIntervalQuestion(QuestionBase):
 
     def make_question(self):
 
-        # tonic = self.concrete_tonic
-        #interval = self.interval['note_and_octave']
-        
-        #interval = Pitch(note=self.interval['note_name'],
-        #                 octave=int(self.interval['note_octave']))
-
         question = Sequence([self.random_pitch], **self.durations['quest'])
 
         return question
@@ -160,58 +154,40 @@ class MelodicIntervalQuestion(QuestionBase):
         """Checks whether the given answer is correct.
         """
 
-        # global INTERVALS
-
-        # semitones = self.keyboard_index.index(user_input_char[0])
         user_semitones = self.keyboard_index.index(user_input_char[0])
-        correct_semitones = abs(int(self.tonic) - int(self.random_pitch))
-        
-        #tonic = self.scales['chromatic_pitch'].scale[0]
-
-        #user_interval = INTERVALS[semitones][2]
-        #correct_interval = INTERVALS[self.interval.semitones][2]
         user_pitch = get_pitch_by_number(int(self.tonic) + user_semitones)
         user_interval = Interval(self.tonic, user_pitch)['data'][2]
+        user_note = str(user_pitch)
+
+        # correct_semitones = abs(int(self.tonic) - int(self.random_pitch))
+        correct_semitones = abs(int(self.interval['semitones']))
         correct_pitch = self.random_pitch
         correct_interval = Interval(self.tonic, self.random_pitch)['data'][2]
+        correct_note = str(self.random_pitch)
 
-        #user_note = self.scales['chromatic_pitch'].scale[semitones]
-        #correct_note = self.scales['chromatic_pitch']\
-        #    .scale[self.interval.semitones]
-            
-        # user_note = str(self.scale[user_semitones])
-        user_note = str(user_interval)
-        correct_note = str(random_pitch)
+        is_correct = user_pitch == correct_pitch
 
-        # signal = '✓' if semitones == self.interval.semitones else 'x' # u2713
-        #signal = '✓' if user_semitones == correct_semitones else 'x'  # u2713
-        signal = '✓' if user_pitch == correct_pitch else 'x'  # u2713
+        signal = ('x', '✓')[is_correct]  # u2713; False==0, True==1
 
         extra_response_str = """\
        “{ci}” ({to}─{cn})
 user {si} “{ui}” ({to}─{un})
 {st} semitones
 """.format(ci=correct_interval,
-           to=tonic,
+           to=str(self.tonic),
            cn=correct_note,
            si=signal,
            ui=user_interval,
            un=user_note, 
-           st=int(self.interval['semitones'])))
-
-        response = dict(
-            is_correct=False,
-            user_interval=user_interval,
-            correct_interval=correct_interval,
-            user_response_str=user_interval,
-            correct_response_str=correct_interval,
-            extra_response_str=extra_response_str,
-        )
-
-        if semitones == self.interval.semitones:
-            response.update({'is_correct': True})
-
-        else:
-            response.update({'is_correct': False})
+           st=correct_semitones)
+        
+        response = {
+            'is_correct': is_correct,
+            'user_interval': user_interval,
+            'correct_interval': correct_interval,
+            'user_response_str': user_interval,
+            'correct_response_str': correct_interval,
+            'extra_response_str': extra_response_str,
+        }
 
         return response
