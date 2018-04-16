@@ -69,72 +69,90 @@ def nearest_tonic(question):
             when it is `__call__`ed)
     """
 
-    global DIATONIC_MODES, MAX_SEMITONES_RESOLVE_BELOW
+    # global DIATONIC_MODES, MAX_SEMITONES_RESOLVE_BELOW
 
     mode = question.mode
     tonic = question.tonic
-    if not hasattr(question, 'question_phrase_intervals'):
-        intervals = question.interval
-    else:
-        intervals = question.question_phrase_intervals
-    duration = question.durations['resol']['duration']
-    delay = question.durations['resol']['delay']
-    pos_delay = question.durations['resol']['pos_delay']
-    harmonic = question.is_harmonic
-    descending = question.is_descending
-
-    sequence_list = []
-
-    if type(intervals) is not list:
-        intervals = [intervals]
-
-    for interval in intervals:
-        resolution_pitch = []
-        scale_pitch = DiatonicScale(tonic=tonic, mode=mode,
-                                    octave=interval.interval_octave,
-                                    descending=descending)
-
-        if interval.chromatic_offset <= MAX_SEMITONES_RESOLVE_BELOW:
-            begin_to_diatonic = slice(None, interval.diatonic_index + 1)
-            # resolution_pitch.extend(scale_pitch.scale[begin_to_diatonic])
-            resolution_pitch.extend(scale_pitch[begin_to_diatonic])
-            if interval.is_chromatic:
-                resolution_pitch.append(interval.note_and_octave)
-            resolution_pitch.reverse()
-        else:
-            diatonic_to_end = slice(interval.diatonic_index, None)
-            if interval.is_chromatic:
-                resolution_pitch.append(interval.note_and_octave)
-            resolution_pitch.extend(scale_pitch.scale[diatonic_to_end])
-
-        # unisson and octave
-        if interval.semitones == 0:
-            resolution_pitch.append(scale_pitch.scale[0])
-
-        elif interval.semitones % 12 == 0:
-            # FIXME: multipe octaves
-            resolution_pitch.append("{}{}".format(tonic,
-                                    interval.tonic_octave))
-
-        if harmonic:
-            seq = [[interval.tonic_note_and_octave, x]
-                   for x in resolution_pitch]
-        else:
-            seq = resolution_pitch
-
-        seq_list = list()
-        last_el_idx = len(seq) - 1
-        for cur_el_idx, cur_el in enumerate(seq):
-            cur_delay = delay if last_el_idx != cur_el_idx else pos_delay
-            cur_tuple = (cur_el, duration, cur_delay)
-            seq_list.append(cur_tuple)
-
-        cur_delay = delay if last_el_idx != cur_el_idx else pos_delay
-        cur_tuple = (cur_el, duration, cur_delay)
-
-        sequence_list.extend(seq_list)
+    scale = question.scale
 
     return Sequence(elements=sequence_list, delay=delay, pos_delay=pos_delay)
+
+#@register_resolution_method
+#def nearest_tonic(question):
+#    """Resolution method that resolve the intervals to their nearest tonics.
+#
+#    Args:
+#        question (obj): Question object from which to generate the
+#            resolution sequence. (this is provided by the `Prequestion` class
+#            when it is `__call__`ed)
+#    """
+#
+#    global DIATONIC_MODES, MAX_SEMITONES_RESOLVE_BELOW
+#
+#    mode = question.mode
+#    tonic = question.tonic
+#    if not hasattr(question, 'question_phrase_intervals'):
+#        intervals = question.interval
+#    else:
+#        intervals = question.question_phrase_intervals
+#    duration = question.durations['resol']['duration']
+#    delay = question.durations['resol']['delay']
+#    pos_delay = question.durations['resol']['pos_delay']
+#    harmonic = question.is_harmonic
+#    descending = question.is_descending
+#
+#    sequence_list = []
+#
+#    if type(intervals) is not list:
+#        intervals = [intervals]
+#
+#    for interval in intervals:
+#        resolution_pitch = []
+#        scale_pitch = DiatonicScale(tonic=tonic, mode=mode,
+#                                    octave=interval.interval_octave,
+#                                    descending=descending)
+#
+#        if interval.chromatic_offset <= MAX_SEMITONES_RESOLVE_BELOW:
+#            begin_to_diatonic = slice(None, interval.diatonic_index + 1)
+#            # resolution_pitch.extend(scale_pitch.scale[begin_to_diatonic])
+#            resolution_pitch.extend(scale_pitch[begin_to_diatonic])
+#            if interval.is_chromatic:
+#                resolution_pitch.append(interval.note_and_octave)
+#            resolution_pitch.reverse()
+#        else:
+#            diatonic_to_end = slice(interval.diatonic_index, None)
+#            if interval.is_chromatic:
+#                resolution_pitch.append(interval.note_and_octave)
+#            resolution_pitch.extend(scale_pitch.scale[diatonic_to_end])
+#
+#        # unisson and octave
+#        if interval.semitones == 0:
+#            resolution_pitch.append(scale_pitch.scale[0])
+#
+#        elif interval.semitones % 12 == 0:
+#            # FIXME: multipe octaves
+#            resolution_pitch.append("{}{}".format(tonic,
+#                                    interval.tonic_octave))
+#
+#        if harmonic:
+#            seq = [[interval.tonic_note_and_octave, x]
+#                   for x in resolution_pitch]
+#        else:
+#            seq = resolution_pitch
+#
+#        seq_list = list()
+#        last_el_idx = len(seq) - 1
+#        for cur_el_idx, cur_el in enumerate(seq):
+#            cur_delay = delay if last_el_idx != cur_el_idx else pos_delay
+#            cur_tuple = (cur_el, duration, cur_delay)
+#            seq_list.append(cur_tuple)
+#
+#        cur_delay = delay if last_el_idx != cur_el_idx else pos_delay
+#        cur_tuple = (cur_el, duration, cur_delay)
+#
+#        sequence_list.extend(seq_list)
+#
+#    return Sequence(elements=sequence_list, delay=delay, pos_delay=pos_delay)
 
 
 @register_resolution_method

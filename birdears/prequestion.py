@@ -69,7 +69,7 @@ def none(question, *args, **kwargs):
             pre-question sequence. (this is provided by the `Resolution` class
             when it is `__call__`ed)
     """
-    return Sequence(duration=0, delay=0, pos_delay=0)
+    return Sequence(elements=[], duration=0, delay=0, pos_delay=0)
 
 
 @register_prequestion_method
@@ -83,43 +83,16 @@ def tonic_only(question, *args, **kwargs):
             when it is `__call__`ed)
     """
 
-    # intervals = question.interval if not hasattr(question, 'intervals') \
-    #        else question.intervals
-
-    # try:
-    #    intervals = question.interval
-    # except AttributeError:
-    #    intervals = question.intervals
-
-    #intervals = getattr(question, 'interval', 'intervals')
-
     tonic = question.tonic
-    # tonic_octave = question.octave
 
     duration = question.durations['preq']['duration']
     delay = question.durations['preq']['delay']
     pos_delay = question.durations['preq']['pos_delay']
 
-    sequence = Sequence(elements=[question.tonic], duration=duration,
-                        delay=delay,
-                        pos_delay=pos_delay)
+    sequence = Sequence(elements=[tonic], duration=duration,
+                        delay=delay, pos_delay=pos_delay)
 
-    #sequence_list = []
-
-   # if type(intervals) is not list:
-   #     intervals = [intervals]
-
-    #tonic_and_octave = "{}{}".format(tonic, tonic_octave)
-
-    #for interval in intervals:
-    #    #sequence.append(tonic_and_octave)
-    #    sequence.append(tonic)
-    #    # if not harmonic:
-    #    #     sequence.extend([tonic_and_octave])
-    #    # else:
-    #    #     sequence.append([tonic_and_octave])
-    #
-    #return sequence
+    return sequence
 
 
 @register_prequestion_method
@@ -135,6 +108,7 @@ def progression_i_iv_v_i(question, *args, **kwargs):
 
     tonic = question.tonic
     mode = question.mode
+    
     duration = question.durations['preq']['duration']
     delay = question.durations['preq']['delay']
     pos_delay = question.durations['preq']['pos_delay']

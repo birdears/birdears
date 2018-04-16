@@ -6,8 +6,7 @@ from ..questionbase import QuestionBase
 
 from ..scale import DiatonicScale
 from ..scale import ChromaticScale
-#from ..interval import DiatonicInterval
-#from ..interval import ChromaticInterval
+
 from ..interval import Interval
 
 from ..sequence import Sequence
