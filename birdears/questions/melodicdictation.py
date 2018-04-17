@@ -95,6 +95,8 @@ class MelodicDictationQuestion(QuestionBase):
             self.scale = ChromaticScale(tonic=tonic, mode=mode, octave=octave,
                                   n_octaves=n_octaves, descending=descending)
 
+        # FIXME: these are pitches and not intervals in reality; the distance
+        #        between them and themselves and the tonic are intervals
         question_intervals = [INTERVAL_CLASS(mode=mode, tonic=self.tonic,
                               octave=self.octave, n_octaves=self.n_octaves,
                               descending=descending,
