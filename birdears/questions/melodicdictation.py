@@ -4,8 +4,9 @@ from .. import INTERVALS
 
 from ..questionbase import QuestionBase
 
-from ..interval import DiatonicInterval
-from ..interval import ChromaticInterval
+# from ..interval import DiatonicInterval
+# from ..interval import ChromaticInterval
+from ..interval import Interval
 
 from ..sequence import Sequence
 from ..resolution import Resolution
@@ -16,9 +17,9 @@ class MelodicDictationQuestion(QuestionBase):
     """Implements a melodic dictation test.
     """
 
-    def __init__(self, mode='major', max_intervals=3, n_notes=4, tonic=None,
-                 octave=None, descending=None, chromatic=None,
-                 n_octaves=None, valid_intervals=None, user_durations=None,
+    def __init__(self, mode='major', max_intervals=3, n_notes=4, tonic='C',
+                 octave=4, descending=False, chromatic=False, n_octaves=1,
+                 valid_intervals=None, user_durations=None,
                  prequestion_method='progression_i_iv_v_i',
                  resolution_method='repeat_only', *args, **kwargs):
         """Inits the class.
@@ -82,10 +83,17 @@ class MelodicDictationQuestion(QuestionBase):
 
         self.is_harmonic = False
 
+        # if not chromatic:
+        #    INTERVAL_CLASS = DiatonicInterval
+        # else:
+        #    INTERVAL_CLASS = ChromaticInterval
+            
         if not chromatic:
-            INTERVAL_CLASS = DiatonicInterval
+            self.scale = DiatonicScale(tonic=tonic, mode=mode, octave=octave,
+                                  n_octaves=n_octaves, descending=descending)
         else:
-            INTERVAL_CLASS = ChromaticInterval
+            self.scale = ChromaticScale(tonic=tonic, mode=mode, octave=octave,
+                                  n_octaves=n_octaves, descending=descending)
 
         question_intervals = [INTERVAL_CLASS(mode=mode, tonic=self.tonic,
                               octave=self.octave, n_octaves=self.n_octaves,
