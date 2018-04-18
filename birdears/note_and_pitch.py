@@ -20,7 +20,7 @@ def get_pitch_class(note):
     
 def get_pitch_number(note, octave):
     pitch_number = get_pitch_class(note) + (octave * 12)
-    return value
+    return pitch_number
 
 # FIXME: maybe move this somewhere else
 def get_pitch_by_number(numeric, accident='sharp'):

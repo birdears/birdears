@@ -15,6 +15,7 @@ from ..sequence import Sequence
 from ..resolution import Resolution
 from ..prequestion import PreQuestion
 
+from random import choice
 
 class NoteNameQuestion(QuestionBase):
     """Implements a Note Name test.

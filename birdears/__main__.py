@@ -2,9 +2,9 @@
 
 from . import click
 
-from . import _Getch
+# from . import _Getch
 
-from . import INTERVALS
+# from . import INTERVALS
 from . import DIATONIC_MODES
 
 from .interfaces.commandline import CommandLine

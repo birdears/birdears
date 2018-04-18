@@ -13,6 +13,9 @@ from ..prequestion import PreQuestion
 
 from ..interfaces.commandline import center_text
 
+from . import CHROMATIC_TYPE
+
+from random import choice
 
 class InstrumentalDictationQuestion(QuestionBase):
     """Implements an instrumental dictation test.
@@ -21,7 +24,7 @@ class InstrumentalDictationQuestion(QuestionBase):
     def __init__(self, mode='major', wait_time=11, n_repeats=1,
                  max_intervals=3, n_notes=4, tonic=None, octave=None,
                  descending=None, chromatic=None, n_octaves=None,
-                 valid_intervals=None, user_durations=None,
+                 valid_intervals=CHROMATIC_TYPE, user_durations=None,
                  prequestion_method='progression_i_iv_v_i',
                  resolution_method='repeat_only', *args, **kwargs):
         """Inits the class.

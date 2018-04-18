@@ -12,6 +12,9 @@ from ..sequence import Sequence
 from ..resolution import Resolution
 from ..prequestion import PreQuestion
 
+from . import CHROMATIC_TYPE
+
+from random import choice
 
 class MelodicDictationQuestion(QuestionBase):
     """Implements a melodic dictation test.
@@ -19,7 +22,7 @@ class MelodicDictationQuestion(QuestionBase):
 
     def __init__(self, mode='major', max_intervals=3, n_notes=4, tonic='C',
                  octave=4, descending=False, chromatic=False, n_octaves=1,
-                 valid_intervals=None, user_durations=None,
+                 valid_intervals=CHROMATIC_TYPE, user_durations=None,
                  prequestion_method='progression_i_iv_v_i',
                  resolution_method='repeat_only', *args, **kwargs):
         """Inits the class.

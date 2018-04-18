@@ -1,13 +1,13 @@
-from . import DIATONIC_MODES
+# from . import DIATONIC_MODES
 from . import DIATONIC_FORMS
-from . import CHROMATIC_SHARP
-from . import CHROMATIC_FLAT
+# from . import CHROMATIC_SHARP
+# from . import CHROMATIC_FLAT
 
-from .note_and_pitch import Note
+# from .note_and_pitch import Note
 from .note_and_pitch import Pitch
 from .note_and_pitch import Chord
 
-from .note_and_pitch import get_pitch_class
+# from .note_and_pitch import get_pitch_class
 from .note_and_pitch import get_pitch_by_number
 
 from .exception import InvalidNote
@@ -177,7 +177,7 @@ class ChromaticScale(ScaleBase):
 
         super(ChromaticScale, self).__init__()
 
-        global CHROMATIC_SHARP, CHROMATIC_FLAT
+        # global CHROMATIC_SHARP, CHROMATIC_FLAT
 
         self.tonic = Pitch(tonic, octave)
 

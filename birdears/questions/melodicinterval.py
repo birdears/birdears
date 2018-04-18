@@ -3,6 +3,7 @@ from .. import INTERVALS
 from ..logger import log_event
 
 from ..questionbase import QuestionBase
+from ..questionbase import valid_pitches
 
 from ..scale import DiatonicScale
 from ..scale import ChromaticScale
@@ -16,6 +17,9 @@ from ..prequestion import PreQuestion
 from ..note_and_pitch import Pitch
 from ..note_and_pitch import get_pitch_by_number
 
+from . import CHROMATIC_TYPE
+
+from random import choice
 
 class MelodicIntervalQuestion(QuestionBase):
     """Implements a Melodic Interval test.
@@ -23,7 +27,7 @@ class MelodicIntervalQuestion(QuestionBase):
 
     @log_event
     def __init__(self, mode='major', tonic='C', octave=4, descending=False,
-                 chromatic=False, n_octaves=1, valid_intervals=None,
+                 chromatic=False, n_octaves=1, valid_intervals=CHROMATIC_TYPE,
                  user_durations=None, prequestion_method='tonic_only',
                  resolution_method='nearest_tonic', *args, **kwargs):
         """Inits the class.
@@ -93,7 +97,8 @@ class MelodicIntervalQuestion(QuestionBase):
             scale = ChromaticScale(tonic=tonic, mode=mode, octave=octave,
                                    descending=descending, n_octaves=n_octaves)
         
-        self.random_pitch = choice(scale)
+        self.valid_pitches = valid_pitches(scale, valid_intervals)
+        self.random_pitch = choice(self.valid_pitches)
         
         self.interval = Interval(self.tonic, self.random_pitch)    
         

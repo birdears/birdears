@@ -17,13 +17,17 @@ from ..note_and_pitch import Chord
 from ..note_and_pitch import Pitch
 from ..note_and_pitch import get_pitch_by_number
 
+from . import CHROMATIC_TYPE
+
+from random import choice
+
 
 class HarmonicIntervalQuestion(QuestionBase):
     """Implements a Harmonic Interval test.
     """
 
     def __init__(self, mode='major', tonic='C', octave=4, descending=False,
-                 chromatic=False, n_octaves=1, valid_intervals=None,
+                 chromatic=False, n_octaves=1, valid_intervals=CHROMATIC_TYPE,
                  user_durations=None, prequestion_method='none',
                  resolution_method='nearest_tonic', *args, **kwargs):
         """Inits the class.
