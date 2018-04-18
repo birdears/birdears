@@ -1,11 +1,12 @@
-from random import choice
-
-from .. import INTERVALS
+from .. import CHROMATIC_TYPE
 
 from ..questionbase import QuestionBase
+from ..questionbase import get_valid_pitches
 
-from ..interval import DiatonicInterval
-from ..interval import ChromaticInterval
+from ..interval import Interval
+
+from ..scale import DiatonicScale
+from ..scale import ChromaticScale
 
 from ..sequence import Sequence
 from ..resolution import Resolution
@@ -13,9 +14,8 @@ from ..prequestion import PreQuestion
 
 from ..interfaces.commandline import center_text
 
-from . import CHROMATIC_TYPE
-
-from random import choice
+from random import choices
+from random import sample
 
 class InstrumentalDictationQuestion(QuestionBase):
     """Implements an instrumental dictation test.
@@ -96,34 +96,22 @@ class InstrumentalDictationQuestion(QuestionBase):
         self.n_repeats = n_repeats
 
         if not chromatic:
-            INTERVAL_CLASS = DiatonicInterval
+            self.scale = DiatonicScale(tonic=tonic, mode=mode, octave=octave,
+                                       n_octaves=n_octaves,
+                                       descending=descending)
         else:
-            INTERVAL_CLASS = ChromaticInterval
+            self.scale = ChromaticScale(tonic=tonic, octave=octave,
+                                  n_octaves=n_octaves, descending=descending)
 
-        question_intervals = [INTERVAL_CLASS(mode=mode, tonic=self.tonic,
-                              octave=self.octave, n_octaves=self.n_octaves,
-                              descending=descending,
-                              valid_intervals=self.valid_intervals)
-                              for _ in range(max_intervals)]
+        self.valid_pitches = get_valid_pitches(self.scale, valid_intervals)
+        
+        choose_from_pitches = sample(self.valid_pitches, max_intervals)
 
-        # No need that it always begin with tonic
+        self.random_pitches = choices(choose_from_pitches, n_notes)
 
-        # self.question_phrase_intervals = [choice(question_intervals)
-        #                                  for _ in range(n_notes-1)]
-        self.question_phrase_intervals = [choice(question_intervals)
-                                          for _ in range(n_notes)]
-
-        # self.question_phrase = [0]
-        self.question_phrase = []
-
-        self.question_phrase.extend([interval.semitones
-                                     for interval
-                                     in self.question_phrase_intervals])
-
-        # self.pre_question = self.make_pre_question(method='none')
         self.pre_question =\
             self.make_pre_question(method=prequestion_method)
-        self.question = self.make_question(self.question_phrase)
+        self.question = self.make_question()
         self.resolution = self.make_resolution(method=resolution_method)
 
     def make_pre_question(self, method):
@@ -131,9 +119,8 @@ class InstrumentalDictationQuestion(QuestionBase):
 
         return prequestion()
 
-    def make_question(self, phrase_semitones):
-        return Sequence([self.scales['chromatic_pitch'].scale[n]
-                        for n in phrase_semitones], **self.durations['quest'])
+    def make_question(self):
+        return Sequence(self.random_pitches, **self.durations['quest'])
 
     def make_resolution(self, method):
 
@@ -163,10 +150,19 @@ class InstrumentalDictationQuestion(QuestionBase):
 
         global INTERVALS
 
-        intervals_str = "".join([INTERVALS[s][1].center(7)
-                                for s in self.question_phrase])
-        notes_str = "".join([self.scales['chromatic_pitch'].scale[s].center(7)
-                            for s in self.question_phrase])
+        #intervals_str = "".join([interval['data'][1].center(STR_OFFSET)
+        #                             for interval in user_intervals])
+        
+        intervals_str = "".join([Interval(self.tonic, pitch)['data'][1]
+                            for pitch in self.random_pitches]).center(7)
+        
+        notes_str = "".join([str(pitch) for pitch in self.random_pitches])\
+                        .center(7)
+    
+        # intervals_str = "".join([INTERVALS[s][1].center(7)
+        #                        for s in self.question_phrase])
+        # notes_str = "".join([self.scales['chromatic_pitch'].scale[s].center(7)
+        #                    for s in self.question_phrase])
 
         correct_response_str = """\
 The intervals and notes of this question:

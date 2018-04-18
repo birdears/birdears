@@ -36,7 +36,7 @@ def register_question_class(f, *args, **kwargs):
     return decorator
 
 # values for valid_semitones list can be Interval objects or int's (semitones)
-def valid_pitches(scale, valid_semitones=CHROMATIC_TYPE):
+def get_valid_pitches(scale, valid_semitones=CHROMATIC_TYPE):
     tonic_pitch = scale[0]
     
     valid_scale = list()
