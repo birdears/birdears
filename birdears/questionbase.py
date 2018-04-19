@@ -14,6 +14,7 @@ from .interval import Interval
 
 # from .scale import DiatonicScale
 # from .scale import ChromaticScale
+from .note_and_pitch import Pitch
 
 from functools import wraps
 
@@ -41,10 +42,20 @@ def get_valid_pitches(scale, valid_semitones=CHROMATIC_TYPE):
     
     valid_scale = list()
     
+    if isinstance(valid_semitones, tuple):
+        pass
+    elif isinstance(valid_semitones, list):
+        pass
+    elif isinstance(valid_semitones, str):
+        valid_semitones = tuple(valid_semitones.replace(' ','').split(','))
+    else:
+        raise Exception('Incorrect type for valid_semitones')
+    
     for pitch in scale:
+
         chromatic_offset = Interval(tonic_pitch, pitch) \
                             ['distance']['semitones']
-                            
+
         if chromatic_offset in valid_semitones:
             valid_scale.append(pitch)
         
@@ -148,14 +159,16 @@ class QuestionBase:
         self.keyboard_index = \
             KEYBOARD_INDICES['chromatic'][direction][self.mode]
 
-        #if not tonic:
-        #    tonic = choice(CIRCLE_OF_FIFTHS[randrange(2)])
-        #elif type(tonic) == list:
-        #    tonic = choice(tonic)
         if not tonic:
+            tonic = choice(CIRCLE_OF_FIFTHS[randrange(2)])
+        elif isinstance(tonic, list):
+            tonic = choice(tonic)
+        elif isinstance(tonic, str):
+            pass
+        else:
             raise Exception('Tonic is invalid')
             
-        self.tonic = tonic
+        self.tonic = Pitch(note=tonic, octave=self.octave)
 
         #diatonic_scale = DiatonicScale(tonic=tonic, mode=mode, octave=None,
         #                               descending=descending,

@@ -96,12 +96,14 @@ def print_question(question):
     keyboard = question.keyboard_index
 
     if not question.is_chromatic:
-        scale = list(question.scales['diatonic'].scale)
+        # scale = list(question.scales['diatonic'].scale)
+        scale = question.scale
 
         mode = list(DIATONIC_MODES[question.mode])
         scale_index = list(mode)
     else:
-        scale = list(question.scales['chromatic'].scale)
+        # scale = list(question.scales['chromatic'].scale)
+        scale = list(question.scale)
 
         mode = list(CHROMATIC_TYPE)
         scale_index = list(mode)
@@ -118,9 +120,9 @@ def print_question(question):
     intervals = [INTERVALS[i][1] for i in scale_index]
     keys = [keyboard[i] for i in scale_index]
 
-    scale_str = " ".join(map(lambda x: x.ljust(3), scale))
-    intervals_str = " ".join(map(lambda x: x.ljust(3), intervals))
-    keys_str = " ".join(map(lambda x: x.ljust(3), keys))
+    scale_str = " ".join(map(lambda x: str(x).ljust(3), scale))
+    intervals_str = " ".join(map(lambda x: str(x).ljust(3), intervals))
+    keys_str = " ".join(map(lambda x: str(x).ljust(3), keys))
 
     text_kwargs = dict(
         tonic=question.tonic,

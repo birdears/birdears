@@ -1,5 +1,7 @@
 from . import MAX_SEMITONES_RESOLVE_BELOW
 
+from .interval import Interval
+
 from .scale import DiatonicScale
 from .scale import ChromaticScale
 
@@ -101,17 +103,21 @@ def nearest_tonic(question):
     
     semitones = interval['distance']['semitones']
     
-    direction = -1 if semitones <= MAX_SEMITONES_RESOLVE_BELOW else +1
+    direction = -1 if (semitones <= MAX_SEMITONES_RESOLVE_BELOW) else 1
     
     resolution = []
     
-    if random_pitch not in scale:  # random_pitch is chromatic
+    if random_pitch not in scale_random_pitch:  # random_pitch is chromatic
         resolution.append(random_pitch)
         #  next ones above or below are in the diatonic for sure, then:
         nearest_diatonic_pitch = \
             get_pitch_by_number(int(random_pitch)+direction)
     else:
         nearest_diatonic_pitch = random_pitch  # random_pitch is diatonic
+        
+    print(str(random_pitch))
+    print(str(nearest_diatonic_pitch))
+    print(int(random_pitch))
     
     nearest_tonic_index = 0 if semitones <= MAX_SEMITONES_RESOLVE_BELOW else -1
     nearest_tonic_pitch = scale_random_pitch[nearest_tonic_index]
@@ -120,6 +126,8 @@ def nearest_tonic(question):
     
     nearest_diatonic_pitch_index = \
         scale_random_pitch.index(nearest_diatonic_pitch)
+    
+    random_pitch_index = nearest_diatonic_pitch_index
     
     ohslice = slice(min(tonic_index, random_pitch_index), max(tonic_index,
                     nearest_diatonic_pitch_index)+1)
