@@ -159,17 +159,18 @@ class QuestionBase:
         self.keyboard_index = \
             KEYBOARD_INDICES['chromatic'][direction][self.mode]
 
-        if not tonic:
-            tonic = choice(CIRCLE_OF_FIFTHS[randrange(2)])
-        elif isinstance(tonic, list):
-            tonic = choice(tonic)
-        elif isinstance(tonic, str):
-            pass
-        else:
-            raise Exception('Tonic is invalid')
+        #if not tonic:
+        #    tonic = choice(CIRCLE_OF_FIFTHS[randrange(2)])
+        #elif isinstance(tonic, list):
+        #    tonic = choice(tonic)
+        #elif isinstance(tonic, str):
+        #    pass
+        #else:
+        #    raise Exception('Tonic is invalid')
             
-        self.tonic = Pitch(note=tonic, octave=self.octave)
-
+        # self.tonic = Pitch(note=tonic, octave=self.octave)
+        self.tonic_pitch = Pitch(note=tonic, octave=self.octave)
+        self.tonic_str = str(self.tonic_pitch)
         #diatonic_scale = DiatonicScale(tonic=tonic, mode=mode, octave=None,
         #                               descending=descending,
         #                               n_octaves=n_octaves)
