@@ -150,31 +150,21 @@ class InstrumentalDictationQuestion(QuestionBase):
 
         This currently doesn't applies to instrumental dictation questions.
         """
-
-        global INTERVALS
-
-        #intervals_str = "".join([interval['data'][1].center(STR_OFFSET)
-        #                             for interval in user_intervals])
         
-        intervals_str = "".join([Interval(self.tonic_pitch, pitch)['data'][1]
+        intervals = " ".join([Interval(self.tonic_pitch, pitch)['data'][1]
                             for pitch in self.random_pitches]).center(7)
         
-        notes_str = "".join([str(pitch) for pitch in self.random_pitches])\
+        notes = " ".join([str(pitch) for pitch in self.random_pitches]) \
                         .center(7)
-    
-        # intervals_str = "".join([INTERVALS[s][1].center(7)
-        #                        for s in self.question_phrase])
-        # notes_str = "".join([self.scales['chromatic_pitch'].scale[s].center(7)
-        #                    for s in self.question_phrase])
 
         correct_response_str = """\
 The intervals and notes of this question:
 
 {intervals}
 {notes}
-""".format(**dict(intervals=intervals_str, notes=notes_str))
+""".format(**dict(intervals=intervals, notes=notes))
         response = {
-            'correct_semitones': self.question_phrase,
+            'correct_semitones': self.random_pitches,
             'correct_response_str': correct_response_str
         }
 

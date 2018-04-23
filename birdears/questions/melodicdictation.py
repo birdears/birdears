@@ -140,7 +140,7 @@ class MelodicDictationQuestion(QuestionBase):
 
         STR_OFFSET = 5
 
-        tonic_pitch_number = self.tonic.pitch_number
+        tonic_pitch_number = self.tonic_pitch.pitch_number
         
         user_semitones = [self.keyboard_index.index(s)
                                 for s in user_input_keys]
@@ -148,10 +148,10 @@ class MelodicDictationQuestion(QuestionBase):
         user_pitches = [get_pitch_by_number(tonic_pitch_number + semitones) 
                         for semitones in user_semitones]
         
-        correct_intervals = [Interval(self.tonic, pitch) 
+        correct_intervals = [Interval(self.tonic_pitch, pitch) 
                             for pitch in self.random_pitches]
         
-        user_intervals = [Interval(self.tonic, pitch)
+        user_intervals = [Interval(self.tonic_pitch, pitch)
                           for pitch in user_pitches]
 
         user_response_str = "".join([interval['data'][1].center(STR_OFFSET)
@@ -159,11 +159,6 @@ class MelodicDictationQuestion(QuestionBase):
         
         correct_response_str = "".join([interval['data'][1].center(STR_OFFSET)
                                         for interval in correct_intervals])        
-        # user_response_str = 
-        #user_response_str = "".join([INTERVALS[s][1].center(STR_OFFSET)
-        #                             for s in user_semitones])
-        #correct_response_str = "".join([INTERVALS[s][1].center(STR_OFFSET)
-         #                               for s in self.random_pitches])
 
         correct_semitones = list()
         correct_wrong_str = str()
