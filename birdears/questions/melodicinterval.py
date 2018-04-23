@@ -92,7 +92,6 @@ class MelodicIntervalQuestion(QuestionBase):
         ## self.tonic inited by base class
         #self.tonic_pitch = Pitch(note=self.tonic, octave=self.octave)
         #self.tonic_str = str(self.tonic_pitch)
-        print(self.tonic_str)
         if not chromatic:
             self.scale = DiatonicScale(tonic=self.tonic_str, mode=mode,
                                        octave=self.octave,
@@ -107,22 +106,7 @@ class MelodicIntervalQuestion(QuestionBase):
         self.valid_pitches = get_valid_pitches(self.scale, valid_intervals)
         self.random_pitch = choice(self.valid_pitches)
         
-        self.interval = Interval(self.tonic_pitch, self.random_pitch)    
-        
-        #if not chromatic:
-        #    self.interval = \
-        #        DiatonicInterval(mode=mode, tonic=self.tonic,
-        #                         octave=self.octave,
-        #                         n_octaves=self.n_octaves,
-        #                         descending=descending,
-        #                         valid_intervals=self.valid_intervals)
-        #else:
-        #    self.interval = \
-        #        ChromaticInterval(mode=mode, tonic=self.tonic,
-        #                          octave=self.octave,
-        #                          n_octaves=self.n_octaves,
-        #                          descending=descending,
-        #                          valid_intervals=self.valid_intervals)
+        self.interval = Interval(self.tonic_pitch, self.random_pitch)
 
         self.pre_question = self.make_pre_question(method=prequestion_method)
         self.question = self.make_question()

@@ -20,40 +20,6 @@ class ScaleBase(list):
     def __init__(self):
         pass
 
-    #def _append_octave_to_scale(self, scale, starting_octave, descending=None):
-    #    """Inserts scientific octave number to the notes on a the given scale.
-    #    """
-    #
-    #    next_octave = 1 if not descending else -1
-    #
-    #    scale_with_octave = []
-    #    changing_note = None
-    #
-    #    current_octave = starting_octave
-    #
-    #    # if scale doesn't have a C, on which note should we go to the upper/lower octave?
-    #    # TODO: need to be refactored. Maybe using the pitch number.
-    #    if not descending:
-    #        for closest in ['C', 'C#', 'Db']:
-    #           if closest in scale:
-    #                changing_note = closest
-    #                break
-    #    else:
-    #        for closest in ['B', 'Bb', 'A#']:
-    #            if closest in scale:
-    #                changing_note = closest
-    #                break
-    #
-    #    for idx, note in enumerate(scale):
-    #        if idx > 0 and note == changing_note:
-    #            current_octave += next_octave
-    #
-    #        # scale_with_octave.append("{}{}".format(note, current_octave))
-    #        scale_with_octave.append(Pitch(note=note, octave=current_octave))
-    #        
-    #    return scale_with_octave
-
-
 class DiatonicScale(ScaleBase):
     """Builds a musical diatonic scale.
 

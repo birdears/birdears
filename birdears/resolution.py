@@ -78,8 +78,18 @@ def nearest_tonic(question):
 
     # mode = question.mode
     tonic_pitch = question.tonic_pitch
+    
+    #if hasattr(question, 'random_pitch'):
+    #    random_pitch = tuple(question.random_pitch)
+    #else:
+    #    random_pitch = tuple(question.random_pitches)
+    if hasattr(question, 'random_pitches'):
+        raise Exception('NEAREST_TONIC FOR MULTIPLE PITCHES IS STILL TO BE' \
+                        'IMPLEMENTED')    
+    random_pitch = tuple(question.random_pitch)
+        
     scale = question.scale
-    random_pitch = question.random_pitch
+    
 
     duration = question.durations['resol']['duration']
     delay = question.durations['resol']['delay']
@@ -96,7 +106,8 @@ def nearest_tonic(question):
     
     # lets create an scale with same tonic, in the octave of the random_pitch
     scale_random_pitch = DiatonicScale(tonic=tonic_pitch.note,
-                                       octave=random_pitch.octave, n_octaves=1)
+                                       octave=random_pitch.octave,
+                                       n_octaves=1)
      
     
     interval = Interval(tonic_pitch, random_pitch)
@@ -114,10 +125,6 @@ def nearest_tonic(question):
             get_pitch_by_number(int(random_pitch)+direction)
     else:
         nearest_diatonic_pitch = random_pitch  # random_pitch is diatonic
-        
-    print(str(random_pitch))
-    print(str(nearest_diatonic_pitch))
-    print(int(random_pitch))
     
     nearest_tonic_index = 0 if semitones <= MAX_SEMITONES_RESOLVE_BELOW else -1
     nearest_tonic_pitch = scale_random_pitch[nearest_tonic_index]
@@ -158,7 +165,7 @@ def repeat_only(question):
             resolution sequence. (this is provided by the `Prequestion` class
             when it is `__call__`ed)
     """
-    elements = question.question.elements
+    elements = tuple(question.question)
     
     duration = question.durations['resol']['duration']
     delay = question.durations['resol']['delay']

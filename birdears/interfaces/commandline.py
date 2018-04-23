@@ -92,21 +92,6 @@ def print_question(question):
     Args:
         question (obj): A Question class with the question to be printed.
     """
-
-    #keyboard = tuple(question.keyboard_index)
-
-    #if not question.is_chromatic:
-    #    # scale = list(question.scales['diatonic'].scale)
-    #    scale = question.scale
-
-    #    mode = list(DIATONIC_MODES[question.mode])
-    #    scale_index = list(mode)
-    #else:
-    #    # scale = list(question.scales['chromatic'].scale)
-    #    scale = list(question.scale)
-
-    #   mode = list(CHROMATIC_TYPE)
-    #   scale_index = list(mode)
     
     direction = -1 if question.is_descending else +1
     
@@ -124,22 +109,6 @@ def print_question(question):
     #notes = "".join([str(pitch.note).ljust(4) for pitch in scale][::direction])
     intervals = "".join([str(INTERVALS[step][1]).ljust(4) for step in network][::direction])
     keys = "".join([str(keyboard_map[step]).ljust(4) for step in network][::direction])
-
-    #for o in range(1, question.n_octaves):
-    #    scale_index.extend([x + (12*o) for x in mode[1:]])
-
-    ## FIXME: bug with descending n_octaves=2
-    #if question.is_descending:
-    #    highest = max(scale_index)
-    #    scale_index = [highest - x for x in scale_index]
-    #    scale = reversed(scale)
-
-    #intervals = [INTERVALS[i][1] for i in scale_index]
-    #keys = [keyboard[i] for i in scale_index]
-
-    #scale_str = " ".join(map(lambda x: str(x).ljust(3), scale))
-    #intervals_str = " ".join(map(lambda x: str(x).ljust(3), intervals))
-    #keys_str = " ".join(map(lambda x: str(x).ljust(3), keys))
 
     text_kwargs = dict(
         tonic=question.tonic_str,

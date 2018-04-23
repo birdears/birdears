@@ -105,9 +105,12 @@ class InstrumentalDictationQuestion(QuestionBase):
 
         self.valid_pitches = get_valid_pitches(self.scale, valid_intervals)
         
-        choose_from_pitches = sample(self.valid_pitches, max_intervals)
+        # how many different intervals from all valid ones?
+        random_choose_from_pitches = sample(self.valid_pitches, max_intervals)
 
-        self.random_pitches = choices(choose_from_pitches, n_notes)
+        # the pitches per se
+        self.random_pitches = choices(population=random_choose_from_pitches,
+                                      k=n_notes)
 
         self.pre_question =\
             self.make_pre_question(method=prequestion_method)
@@ -153,7 +156,7 @@ class InstrumentalDictationQuestion(QuestionBase):
         #intervals_str = "".join([interval['data'][1].center(STR_OFFSET)
         #                             for interval in user_intervals])
         
-        intervals_str = "".join([Interval(self.tonic, pitch)['data'][1]
+        intervals_str = "".join([Interval(self.tonic_pitch, pitch)['data'][1]
                             for pitch in self.random_pitches]).center(7)
         
         notes_str = "".join([str(pitch) for pitch in self.random_pitches])\

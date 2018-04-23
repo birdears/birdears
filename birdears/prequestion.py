@@ -83,13 +83,13 @@ def tonic_only(question, *args, **kwargs):
             when it is `__call__`ed)
     """
 
-    tonic = question.tonic_pitch
+    tonic_pitch = question.tonic_pitch
 
     duration = question.durations['preq']['duration']
     delay = question.durations['preq']['delay']
     pos_delay = question.durations['preq']['pos_delay']
 
-    sequence = Sequence(elements=[tonic], duration=duration,
+    sequence = Sequence(elements=[tonic_pitch], duration=duration,
                         delay=delay, pos_delay=pos_delay)
 
     return sequence
@@ -97,8 +97,8 @@ def tonic_only(question, *args, **kwargs):
 
 @register_prequestion_method
 def progression_i_iv_v_i(question, *args, **kwargs):
-    """Pre-question method that play's a chord progression with triad chords built
-    on the grades I, IV, V the I of the question key.
+    """Pre-question method that play's a chord progression with triad chords
+    built on the grades I, IV, V the I of the question key.
 
     Args:
         question (obj): Question object from which to generate the
@@ -106,7 +106,8 @@ def progression_i_iv_v_i(question, *args, **kwargs):
             when it is `__call__`ed)
     """
 
-    tonic = question.tonic
+    tonic_pitch = question.tonic_pitch
+    tonic_str = question.tonic_str
     mode = question.mode
     
     duration = question.durations['preq']['duration']
@@ -118,6 +119,7 @@ def progression_i_iv_v_i(question, *args, **kwargs):
     sequence = Sequence(duration=duration, delay=delay,
                         pos_delay=pos_delay)
 
-    sequence.make_chord_progression(tonic=tonic, mode=mode, degrees=degrees)
+    sequence.make_chord_progression(tonic=tonic_str, mode=mode,
+                                    degrees=degrees)
 
     return sequence

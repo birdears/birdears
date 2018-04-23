@@ -78,36 +78,37 @@ class HarmonicIntervalQuestion(QuestionBase):
             'resol': {'duration': 2.5, 'delay': 0.5, 'pos_delay': 1}
         }
 
-        super(HarmonicIntervalQuestion,
-              self).__init__(mode=mode, tonic=tonic, octave=octave,
-                             descending=descending, chromatic=chromatic,
-                             n_octaves=n_octaves,
-                             valid_intervals=valid_intervals,
-                             user_durations=user_durations,
-                             prequestion_method=prequestion_method,
-                             resolution_method=resolution_method,
-                             default_durations=default_durations,
-                             *args, **kwargs)
+        super(HarmonicIntervalQuestion, self).\
+            __init__(mode=mode, user_tonic=tonic, octave=octave,
+                     descending=descending, chromatic=chromatic,
+                     n_octaves=n_octaves, valid_intervals=valid_intervals,
+                     user_durations=user_durations,
+                     prequestion_method=prequestion_method,
+                     resolution_method=resolution_method,
+                     default_durations=default_durations, *args, **kwargs)
 
-        self.is_harmonic = True
+        self.is_harmonic = False
 
-        # tonic = self.tonic
-
-        self.tonic = Pitch(note=tonic, octave=octave)
-        
+        ## self.tonic inited by base class
+        #self.tonic_pitch = Pitch(note=self.tonic, octave=self.octave)
+        #self.tonic_str = str(self.tonic_pitch)
         if not chromatic:
-            scale = DiatonicScale(tonic=tonic, mode=mode, octave=octave,
-                                  descending=descending, n_octaves=n_octaves)
+            self.scale = DiatonicScale(tonic=self.tonic_str, mode=mode,
+                                       octave=self.octave,
+                                       descending=descending,
+                                       n_octaves=n_octaves)
         else:
-            scale = ChromaticScale(tonic=tonic, octave=octave,
-                                   descending=descending, n_octaves=n_octaves)
+            self.scale = ChromaticScale(tonic=self.tonic_str,
+                                        octave=self.octave,
+                                        descending=descending,
+                                        n_octaves=n_octaves)
         
         # self.random_pitch = choice(scale)
-        self.valid_pitches = get_valid_pitches(scale, valid_intervals)
+        self.valid_pitches = get_valid_pitches(self.scale, valid_intervals)
         self.random_pitch = choice(self.valid_pitches)
         
-        self.interval = Interval(self.tonic, self.random_pitch)    
-        
+        self.interval = Interval(self.tonic_pitch, self.random_pitch)
+
         self.pre_question = self.make_pre_question(method=prequestion_method)
         self.question = self.make_question()
         self.resolution = self.make_resolution(method=resolution_method)
@@ -119,7 +120,7 @@ class HarmonicIntervalQuestion(QuestionBase):
 
     def make_question(self):
 
-        harmonic_interval = Chord([self.tonic, self.random_pitch])
+        harmonic_interval = Chord([self.tonic_pitch, self.random_pitch])
         question = Sequence([harmonic_interval], **self.durations['quest'])
 
         return question
@@ -140,7 +141,8 @@ class HarmonicIntervalQuestion(QuestionBase):
         thread.join()
 
     def check_question(self, user_input_char):
-        """Checks whether the given answer is correct."""
+        """Checks whether the given answer is correct.
+        """
 
         user_semitones = self.keyboard_index.index(user_input_char[0])
         user_pitch = get_pitch_by_number(int(self.tonic) + user_semitones)

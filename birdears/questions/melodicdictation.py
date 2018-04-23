@@ -98,9 +98,10 @@ class MelodicDictationQuestion(QuestionBase):
 
         self.valid_pitches = get_valid_pitches(self.scale, valid_intervals)
         
-        choose_from_pitches = sample(self.valid_pitches, max_intervals)
+        random_choose_from_pitches = sample(self.valid_pitches, max_intervals)
         
-        self.random_pitches = choices(choose_from_pitches, n_notes)
+        self.random_pitches = choices(population=random_choose_from_pitches,
+                                      k=n_notes)
 
         self.pre_question =\
             self.make_pre_question(method=prequestion_method)
