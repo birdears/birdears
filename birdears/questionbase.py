@@ -171,6 +171,7 @@ class QuestionBase:
         # self.tonic = Pitch(note=tonic, octave=self.octave)
         self.tonic_pitch = Pitch(note=tonic, octave=self.octave)
         self.tonic_str = str(self.tonic_pitch.note)
+        self.tonic_pitch_str = str(self.tonic_pitch)
         #diatonic_scale = DiatonicScale(tonic=tonic, mode=mode, octave=None,
         #                               descending=descending,
         #                               n_octaves=n_octaves)
