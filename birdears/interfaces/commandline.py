@@ -125,7 +125,7 @@ def print_question(question):
     keys_str = " ".join(map(lambda x: str(x).ljust(3), keys))
 
     text_kwargs = dict(
-        tonic=question.tonic,
+        tonic=question.tonic_str,
         mode=question.mode,
         chroma=question.is_chromatic,
         desc=question.is_descending,

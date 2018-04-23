@@ -88,7 +88,7 @@ Valid values are as follows:
 @cli.command(options_metavar='[options]', epilog=melodic_epilog)
 @click.option('-m', '--mode', type=click.Choice(VALID_MODES),
               default='major', metavar='<mode>', help="Mode of the question.")
-@click.option('-t', '--tonic', type=str, default=None, metavar='<tonic>',
+@click.option('-t', '--tonic', type=str, default='C', metavar='<tonic>',
               help='Tonic of the question.')
 @click.option('-o', '--octave', type=click.IntRange(2, 5), default=None,
               metavar='<octave>',

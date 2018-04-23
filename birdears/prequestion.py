@@ -83,7 +83,7 @@ def tonic_only(question, *args, **kwargs):
             when it is `__call__`ed)
     """
 
-    tonic = question.tonic
+    tonic = question.tonic_pitch
 
     duration = question.durations['preq']['duration']
     delay = question.durations['preq']['delay']

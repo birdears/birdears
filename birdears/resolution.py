@@ -77,7 +77,7 @@ def nearest_tonic(question):
     # global DIATONIC_MODES, MAX_SEMITONES_RESOLVE_BELOW
 
     # mode = question.mode
-    tonic_pitch = question.tonic
+    tonic_pitch = question.tonic_pitch
     scale = question.scale
     random_pitch = question.random_pitch
 
