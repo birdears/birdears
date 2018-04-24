@@ -1,4 +1,4 @@
-from random import choices
+from random import choice
 from random import sample
 
 from .. import CHROMATIC_TYPE
@@ -100,8 +100,10 @@ class MelodicDictationQuestion(QuestionBase):
 
         random_choose_from_pitches = sample(self.valid_pitches, max_intervals)
 
-        self.random_pitches = choices(population=random_choose_from_pitches,
-                                      k=n_notes)
+        # self.random_pitches = choices(population=random_choose_from_pitches,
+        #                              k=n_notes)
+        self.random_pitches = [choice(random_choose_from_pitches) for note \
+                               in range(n_notes)]
 
         self.pre_question = \
             self.make_pre_question(method=prequestion_method)
