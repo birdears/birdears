@@ -23,8 +23,8 @@ class InstrumentalDictationQuestion(QuestionBase):
     """
 
     def __init__(self, mode='major', wait_time=11, n_repeats=1,
-                 max_intervals=3, n_notes=4, tonic=None, octave=None,
-                 descending=None, chromatic=None, n_octaves=None,
+                 max_intervals=3, n_notes=4, tonic='C', octave=4,
+                 descending=False, chromatic=False, n_octaves=1,
                  valid_intervals=CHROMATIC_TYPE, user_durations=None,
                  prequestion_method='progression_i_iv_v_i',
                  resolution_method='repeat_only', *args, **kwargs):

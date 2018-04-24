@@ -1,12 +1,11 @@
-import itertools
 from random import choice
 
 from birdears import KEYS
 from birdears.questions.instrumentaldictation \
     import InstrumentalDictationQuestion
 
+
 def test_instrumentaldictationclass():
-    global KEYS
 
     mode = choice(['major', 'minor'])
     max_intervals = choice([2, 3, 4])
