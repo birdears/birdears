@@ -88,11 +88,11 @@ class MelodicDictationQuestion(QuestionBase):
         self.is_harmonic = False
 
         if not chromatic:
-            self.scale = DiatonicScale(tonic=tonic, mode=mode, octave=octave,
-                                       n_octaves=n_octaves,
+            self.scale = DiatonicScale(tonic=self.tonic_str, mode=mode,
+                                       octave=octave, n_octaves=n_octaves,
                                        descending=descending)
         else:
-            self.scale = ChromaticScale(tonic=tonic, octave=octave,
+            self.scale = ChromaticScale(tonic=self.tonic_str, octave=octave,
                                         n_octaves=n_octaves,
                                         descending=descending)
 
@@ -103,7 +103,7 @@ class MelodicDictationQuestion(QuestionBase):
         self.random_pitches = choices(population=random_choose_from_pitches,
                                       k=n_notes)
 
-        self.pre_question =\
+        self.pre_question = \
             self.make_pre_question(method=prequestion_method)
 
         self.question = self.make_question(self.random_pitches)
@@ -114,7 +114,7 @@ class MelodicDictationQuestion(QuestionBase):
 
         return prequestion()
 
-    def make_question(self, phrase_semitones):
+    def make_question(self):
         return Sequence(self.random_pitches, **self.durations['quest'])
 
     def make_resolution(self, method):

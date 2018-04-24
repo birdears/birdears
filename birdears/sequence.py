@@ -5,6 +5,7 @@ import subprocess
 import time
 
 from .scale import ChromaticScale
+
 from .note_and_pitch import Pitch
 from .note_and_pitch import Chord
 

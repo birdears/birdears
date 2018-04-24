@@ -13,18 +13,18 @@ from functools import wraps
 QUESTION_CLASSES = {}
 
 
-def register_question_class(f, *args, **kwargs):
+def register_question_class(function, *args, **kwargs):
     """Decorator for question classes.
 
     Classes decorated with this decorator will be registered in the
     `QUESTION_CLASSES` global.
     """
 
-    @wraps(f)
+    @wraps(function)
     def decorator(*args, **kwargs):
-        return f(*args, **kwargs)
+        return function(*args, **kwargs)
 
-    QUESTION_CLASSES.update({f.__name__: f})
+    QUESTION_CLASSES.update({function.__name__: function})
 
     return decorator
 
@@ -120,9 +120,9 @@ class QuestionBase:
         # self.octave = octave if octave else randrange(3, 5)
         if not octave:
             octave = randrange(3, 5)
-        elif type(octave) == list:
+        elif isinstance(octave, list):
             octave = choice(octave)
-        elif type(octave) == tuple and len(octave) == 2:
+        elif isinstance(octave, tuple) and len(octave) == 2:
             octave = randrange(*octave)
 
         # TODO: raise exceptions in case octave/n_octaves are invalid or
@@ -138,6 +138,9 @@ class QuestionBase:
         self.keyboard_index = \
             KEYBOARD_INDICES['chromatic'][direction][self.mode]
 
+        if isinstance(tonic, list) or isinstance(tonic, tuple):
+            tonic = choice(tonic)
+            
         self.tonic_pitch = Pitch(note=tonic, octave=self.octave)
         self.tonic_str = str(self.tonic_pitch.note)
         self.tonic_pitch_str = str(self.tonic_pitch)

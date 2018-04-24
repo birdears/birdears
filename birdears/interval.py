@@ -1,3 +1,6 @@
+from . import INTERVALS
+
+
 class Interval(dict):
     """Chooses a diatonic interval for the question.
 
@@ -41,11 +44,10 @@ class Interval(dict):
             pitch_b (str): Second `Pitch` object to be measured.
         """
 
-        
         descending = True if int(pitch_b) < int(pitch_a) else False
-        
-        semitones = int(pitch_b) - int(pitch_a)
-        
+
+        semitones = abs(int(pitch_b) - int(pitch_a))
+
         self.update({
             'tonic_octave': pitch_a.octave,
             'tonic_note_and_octave': str(pitch_a),
