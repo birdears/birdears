@@ -33,12 +33,12 @@ from logging.config import dictConfig
 
 logging.getLogger(__name__).addHandler(logging.NullHandler())
 
-log_format = """\
-%(levelname)s:%(filename)s,%(lineno)s:%(funcName)s() %(message)s\
-"""
+# log_format = """\
+# %(levelname)s:%(filename)s,%(lineno)s:%(funcName)s() %(message)s\
+# """
 
 log_format = """\
-%(levelname)-8s:%(filename)s,%(lineno)s:%(funcName)s() %(message)s\
+%(levelname)-8s:%(filename)s,%(lineno)s:%(funcName)s()\n\t%(message)s\
 """
 
 date_format = '%Y/%m/%d,%H:%M:%S'
