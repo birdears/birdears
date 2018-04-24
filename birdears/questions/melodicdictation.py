@@ -1,3 +1,6 @@
+from random import choices
+from random import sample
+
 from .. import CHROMATIC_TYPE
 
 from ..questionbase import QuestionBase
@@ -12,9 +15,6 @@ from ..note_and_pitch import get_pitch_by_number
 from ..sequence import Sequence
 from ..resolution import Resolution
 from ..prequestion import PreQuestion
-
-from random import choices
-from random import sample
 
 
 class MelodicDictationQuestion(QuestionBase):
@@ -138,7 +138,7 @@ class MelodicDictationQuestion(QuestionBase):
 
         # global INTERVALS
 
-        STR_OFFSET = 5
+        string_offset = 5
 
         tonic_pitch_number = self.tonic_pitch.pitch_number
 
@@ -154,11 +154,12 @@ class MelodicDictationQuestion(QuestionBase):
         user_intervals = [Interval(self.tonic_pitch, pitch)
                           for pitch in user_pitches]
 
-        user_response_str = "".join([interval['data'][1].center(STR_OFFSET)
+        user_response_str = "".join([interval['data'][1].center(string_offset)
                                      for interval in user_intervals])
 
-        correct_response_str = "".join([interval['data'][1].center(STR_OFFSET)
-                                        for interval in correct_intervals])
+        correct_response_str = "".join([interval['data'][1]
+                                       .center(string_offset)
+                                       for interval in correct_intervals])
 
         correct_semitones = list()
         correct_wrong_str = str()
@@ -166,10 +167,10 @@ class MelodicDictationQuestion(QuestionBase):
         for position, correct_pitch in enumerate(self.random_pitches):
             if correct_pitch == user_pitches[position]:
                 correct_semitones.append(True)
-                correct_wrong_str += "✓".center(STR_OFFSET)  # u2713
+                correct_wrong_str += "✓".center(string_offset)  # u2713
             else:
                 correct_semitones.append(False)
-                correct_wrong_str += "x".center(STR_OFFSET)
+                correct_wrong_str += "x".center(string_offset)
 
         extra_response_str = """\
 {}
