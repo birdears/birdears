@@ -102,7 +102,7 @@ class MelodicDictationQuestion(QuestionBase):
 
         # self.random_pitches = choices(population=random_choose_from_pitches,
         #                              k=n_notes)
-        self.random_pitches = [choice(random_choose_from_pitches) for note \
+        self.random_pitches = [choice(random_choose_from_pitches) for note
                                in range(n_notes)]
 
         self.pre_question = \

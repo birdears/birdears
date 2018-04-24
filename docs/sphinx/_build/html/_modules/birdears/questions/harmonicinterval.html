@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>birdears.questions.harmonicinterval &#8212; birdears 0.1.4 documentation</title>
     <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../../',
-        VERSION:     '0.1.4',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
@@ -126,8 +118,7 @@ $(document).ready(function(){
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
@@ -136,28 +127,36 @@ $(document).ready(function(){
           <div class="body" role="main">
             
   <h1>Source code for birdears.questions.harmonicinterval</h1><div class="highlight"><pre>
-<span></span>from ..questionbase import QuestionBase
+<span></span># from .. import INTERVALS
 
-from ..interval import DiatonicInterval
-from ..interval import ChromaticInterval
+from .. import CHROMATIC_TYPE
 
-from .. import DIATONIC_MODES
-from .. import MAX_SEMITONES_RESOLVE_BELOW
-from .. import INTERVALS
+from ..logger import log_event
+
+from ..questionbase import QuestionBase
+from ..questionbase import get_valid_pitches
 
 from ..scale import DiatonicScale
+from ..scale import ChromaticScale
+
+from ..interval import Interval
 
 from ..sequence import Sequence
 from ..resolution import Resolution
 from ..prequestion import PreQuestion
+
+from ..note_and_pitch import Chord
+from ..note_and_pitch import get_pitch_by_number
+
+from random import choice
 
 
 <div class="viewcode-block" id="HarmonicIntervalQuestion"><a class="viewcode-back" href="../../../index.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion">[docs]</a>class HarmonicIntervalQuestion(QuestionBase):
     &quot;&quot;&quot;Implements a Harmonic Interval test.
     &quot;&quot;&quot;
 
-<div class="viewcode-block" id="HarmonicIntervalQuestion.__init__"><a class="viewcode-back" href="../../../index.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.__init__">[docs]</a>    def __init__(self, mode=&#39;major&#39;, tonic=None, octave=None, descending=None,
-                 chromatic=None, n_octaves=None, valid_intervals=None,
+<div class="viewcode-block" id="HarmonicIntervalQuestion.__init__"><a class="viewcode-back" href="../../../index.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.__init__">[docs]</a>    def __init__(self, mode=&#39;major&#39;, tonic=&#39;C&#39;, octave=4, descending=False,
+                 chromatic=False, n_octaves=1, valid_intervals=CHROMATIC_TYPE,
                  user_durations=None, prequestion_method=&#39;none&#39;,
                  resolution_method=&#39;nearest_tonic&#39;, *args, **kwargs):
         &quot;&quot;&quot;Inits the class.
@@ -207,36 +206,32 @@ from ..prequestion import PreQuestion
             &#39;resol&#39;: {&#39;duration&#39;: 2.5, &#39;delay&#39;: 0.5, &#39;pos_delay&#39;: 1}
         }
 
-        super(HarmonicIntervalQuestion,
-              self).__init__(mode=mode, tonic=tonic, octave=octave,
-                             descending=descending, chromatic=chromatic,
-                             n_octaves=n_octaves,
-                             valid_intervals=valid_intervals,
-                             user_durations=user_durations,
-                             prequestion_method=prequestion_method,
-                             resolution_method=resolution_method,
-                             default_durations=default_durations,
-                             *args, **kwargs)
+        super(HarmonicIntervalQuestion, self).\
+            __init__(mode=mode, user_tonic=tonic, octave=octave,
+                     descending=descending, chromatic=chromatic,
+                     n_octaves=n_octaves, valid_intervals=valid_intervals,
+                     user_durations=user_durations,
+                     prequestion_method=prequestion_method,
+                     resolution_method=resolution_method,
+                     default_durations=default_durations, *args, **kwargs)
 
-        self.is_harmonic = True
-
-        # tonic = self.tonic
+        self.is_harmonic = False
 
         if not chromatic:
-            self.interval = \
-                DiatonicInterval(mode=mode, tonic=self.tonic,
-                                 octave=self.octave,
-                                 n_octaves=n_octaves,
-                                 descending=descending,
-                                 valid_intervals=self.valid_intervals)
-
+            self.scale = DiatonicScale(tonic=self.tonic_str, mode=mode,
+                                       octave=self.octave,
+                                       descending=descending,
+                                       n_octaves=n_octaves)
         else:
-            self.interval = \
-                ChromaticInterval(mode=mode, tonic=self.tonic,
-                                  octave=self.octave,
-                                  n_octaves=n_octaves,
-                                  descending=descending,
-                                  valid_intervals=self.valid_intervals)
+            self.scale = ChromaticScale(tonic=self.tonic_str,
+                                        octave=self.octave,
+                                        descending=descending,
+                                        n_octaves=n_octaves)
+
+        self.valid_pitches = get_valid_pitches(self.scale, valid_intervals)
+        self.random_pitch = choice(self.valid_pitches)
+
+        self.interval = Interval(self.tonic_pitch, self.random_pitch)
 
         self.pre_question = self.make_pre_question(method=prequestion_method)
         self.question = self.make_question()
@@ -249,11 +244,8 @@ from ..prequestion import PreQuestion
 
 <div class="viewcode-block" id="HarmonicIntervalQuestion.make_question"><a class="viewcode-back" href="../../../index.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.make_question">[docs]</a>    def make_question(self):
 
-        tonic = self.concrete_tonic
-        interval = self.interval.note_and_octave
-        durations = self.durations
-
-        question = Sequence([[tonic, interval]], **self.durations[&#39;quest&#39;])
+        harmonic_interval = Chord([self.tonic_pitch, self.random_pitch])
+        question = Sequence([harmonic_interval], **self.durations[&#39;quest&#39;])
 
         return question</div>
 
@@ -273,44 +265,46 @@ from ..prequestion import PreQuestion
         thread.join()</div>
 
 <div class="viewcode-block" id="HarmonicIntervalQuestion.check_question"><a class="viewcode-back" href="../../../index.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.check_question">[docs]</a>    def check_question(self, user_input_char):
-        &quot;&quot;&quot;Checks whether the given answer is correct.&quot;&quot;&quot;
+        &quot;&quot;&quot;Checks whether the given answer is correct.
+        &quot;&quot;&quot;
 
-        global INTERVALS
+        user_semitones = self.keyboard_index.index(user_input_char[0])
+        user_pitch = get_pitch_by_number(int(self.tonic_pitch)
+                                         + user_semitones)
+        user_interval = Interval(self.tonic_pitch, user_pitch)[&#39;data&#39;][2]
+        user_note = str(user_pitch)
 
-        semitones = self.keyboard_index.index(user_input_char[0])
+        # correct_semitones = abs(int(self.tonic) - int(self.random_pitch))
+        correct_semitones = abs(int(self.interval[&#39;semitones&#39;]))
+        correct_pitch = self.random_pitch
+        correct_interval = Interval(self.tonic_pitch,
+                                    self.random_pitch)[&#39;data&#39;][2]
+        correct_note = str(self.random_pitch)
 
-        tonic = self.scales[&#39;chromatic_pitch&#39;].scale[0]
+        is_correct = user_pitch == correct_pitch
 
-        user_interval = INTERVALS[semitones][2]
-        correct_interval = INTERVALS[self.interval.semitones][2]
-
-        user_note = self.scales[&#39;chromatic_pitch&#39;].scale[semitones]
-        correct_note = self.scales[&#39;chromatic_pitch&#39;]\
-            .scale[self.interval.semitones]
-
-        signal = &#39;✓&#39; if semitones == self.interval.semitones else &#39;x&#39;  # u2713
+        signal = (&#39;x&#39;, &#39;✓&#39;)[is_correct]  # u2713; False==0, True==1
 
         extra_response_str = &quot;&quot;&quot;\
-       “{}” ({}─{})
-user {} “{}” ({}─{})
-{} semitones
-&quot;&quot;&quot;.format(correct_interval, tonic, correct_note,
-           signal, user_interval, tonic, user_note, self.interval.semitones)
+       “{ci}” ({to}─{cn})
+user {si} “{ui}” ({to}─{un})
+{st} semitones
+&quot;&quot;&quot;.format(ci=correct_interval,
+           to=str(self.tonic_pitch),
+           cn=correct_note,
+           si=signal,
+           ui=user_interval,
+           un=user_note,
+           st=correct_semitones)
 
-        response = dict(
-            is_correct=False,
-            user_interval=user_interval,
-            correct_interval=correct_interval,
-            user_response_str=user_interval,
-            correct_response_str=correct_interval,
-            extra_response_str=extra_response_str,
-        )
-
-        if semitones == self.interval.semitones:
-            response.update({&#39;is_correct&#39;: True})
-
-        else:
-            response.update({&#39;is_correct&#39;: False})
+        response = {
+            &#39;is_correct&#39;: is_correct,
+            &#39;user_interval&#39;: user_interval,
+            &#39;correct_interval&#39;: correct_interval,
+            &#39;user_response_str&#39;: user_interval,
+            &#39;correct_response_str&#39;: correct_interval,
+            &#39;extra_response_str&#39;: extra_response_str,
+        }
 
         return response</div></div>
 </pre></div>
@@ -330,12 +324,14 @@ user {} “{}” ({}─{})
 </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -346,7 +342,7 @@ user {} “{}” ({}─{})
       &copy;2017, Iacchus Mercurius.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
     </div>

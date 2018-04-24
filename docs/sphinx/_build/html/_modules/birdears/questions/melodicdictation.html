@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>birdears.questions.melodicdictation &#8212; birdears 0.1.4 documentation</title>
     <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../../',
-        VERSION:     '0.1.4',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
@@ -126,8 +118,7 @@ $(document).ready(function(){
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
@@ -137,18 +128,18 @@ $(document).ready(function(){
             
   <h1>Source code for birdears.questions.melodicdictation</h1><div class="highlight"><pre>
 <span></span>from random import choice
+from random import sample
+
+from .. import CHROMATIC_TYPE
 
 from ..questionbase import QuestionBase
-
-from ..interval import DiatonicInterval
-from ..interval import ChromaticInterval
-
-from .. import DIATONIC_MODES
-from .. import MAX_SEMITONES_RESOLVE_BELOW
-from .. import INTERVALS
+from ..questionbase import get_valid_pitches
 
 from ..scale import DiatonicScale
 from ..scale import ChromaticScale
+
+from ..interval import Interval
+from ..note_and_pitch import get_pitch_by_number
 
 from ..sequence import Sequence
 from ..resolution import Resolution
@@ -159,9 +150,9 @@ from ..prequestion import PreQuestion
     &quot;&quot;&quot;Implements a melodic dictation test.
     &quot;&quot;&quot;
 
-<div class="viewcode-block" id="MelodicDictationQuestion.__init__"><a class="viewcode-back" href="../../../index.html#birdears.questions.melodicdictation.MelodicDictationQuestion.__init__">[docs]</a>    def __init__(self, mode=&#39;major&#39;, max_intervals=3, n_notes=4, tonic=None,
-                 octave=None, descending=None, chromatic=None,
-                 n_octaves=None, valid_intervals=None, user_durations=None,
+<div class="viewcode-block" id="MelodicDictationQuestion.__init__"><a class="viewcode-back" href="../../../index.html#birdears.questions.melodicdictation.MelodicDictationQuestion.__init__">[docs]</a>    def __init__(self, mode=&#39;major&#39;, max_intervals=3, n_notes=4, tonic=&#39;C&#39;,
+                 octave=4, descending=False, chromatic=False, n_octaves=1,
+                 valid_intervals=CHROMATIC_TYPE, user_durations=None,
                  prequestion_method=&#39;progression_i_iv_v_i&#39;,
                  resolution_method=&#39;repeat_only&#39;, *args, **kwargs):
         &quot;&quot;&quot;Inits the class.
@@ -226,34 +217,27 @@ from ..prequestion import PreQuestion
         self.is_harmonic = False
 
         if not chromatic:
-            INTERVAL_CLASS = DiatonicInterval
+            self.scale = DiatonicScale(tonic=self.tonic_str, mode=mode,
+                                       octave=octave, n_octaves=n_octaves,
+                                       descending=descending)
         else:
-            INTERVAL_CLASS = ChromaticInterval
+            self.scale = ChromaticScale(tonic=self.tonic_str, octave=octave,
+                                        n_octaves=n_octaves,
+                                        descending=descending)
 
-        question_intervals = [INTERVAL_CLASS(mode=mode, tonic=self.tonic,
-                              octave=self.octave, n_octaves=self.n_octaves,
-                              descending=descending,
-                              valid_intervals=self.valid_intervals)
-                              for _ in range(max_intervals)]
+        self.valid_pitches = get_valid_pitches(self.scale, valid_intervals)
 
-        # No need that it always begin with tonic
+        random_choose_from_pitches = sample(self.valid_pitches, max_intervals)
 
-        # self.question_phrase_intervals = [choice(question_intervals)
-        #                                  for _ in range(n_notes-1)]
-        self.question_phrase_intervals = [choice(question_intervals)
-                                          for _ in range(n_notes)]
+        # self.random_pitches = choices(population=random_choose_from_pitches,
+        #                              k=n_notes)
+        self.random_pitches = [choice(random_choose_from_pitches) for note
+                               in range(n_notes)]
 
-        # self.question_phrase = [0]
-        self.question_phrase = []
-
-        self.question_phrase.extend([interval.semitones
-                                     for interval
-                                     in self.question_phrase_intervals])
-
-        self.pre_question =\
+        self.pre_question = \
             self.make_pre_question(method=prequestion_method)
-        # self.pre_question = self.make_pre_question(method=&#39;none&#39;)
-        self.question = self.make_question(self.question_phrase)
+
+        self.question = self.make_question()
         self.resolution = self.make_resolution(method=resolution_method)</div>
 
 <div class="viewcode-block" id="MelodicDictationQuestion.make_pre_question"><a class="viewcode-back" href="../../../index.html#birdears.questions.melodicdictation.MelodicDictationQuestion.make_pre_question">[docs]</a>    def make_pre_question(self, method):
@@ -261,9 +245,8 @@ from ..prequestion import PreQuestion
 
         return prequestion()</div>
 
-<div class="viewcode-block" id="MelodicDictationQuestion.make_question"><a class="viewcode-back" href="../../../index.html#birdears.questions.melodicdictation.MelodicDictationQuestion.make_question">[docs]</a>    def make_question(self, phrase_semitones):
-        return Sequence([self.scales[&#39;chromatic_pitch&#39;].scale[n]
-                        for n in phrase_semitones], **self.durations[&#39;quest&#39;])</div>
+<div class="viewcode-block" id="MelodicDictationQuestion.make_question"><a class="viewcode-back" href="../../../index.html#birdears.questions.melodicdictation.MelodicDictationQuestion.make_question">[docs]</a>    def make_question(self):
+        return Sequence(self.random_pitches, **self.durations[&#39;quest&#39;])</div>
 
 <div class="viewcode-block" id="MelodicDictationQuestion.make_resolution"><a class="viewcode-back" href="../../../index.html#birdears.questions.melodicdictation.MelodicDictationQuestion.make_resolution">[docs]</a>    def make_resolution(self, method):
 
@@ -284,49 +267,59 @@ from ..prequestion import PreQuestion
 <div class="viewcode-block" id="MelodicDictationQuestion.check_question"><a class="viewcode-back" href="../../../index.html#birdears.questions.melodicdictation.MelodicDictationQuestion.check_question">[docs]</a>    def check_question(self, user_input_keys):
         &quot;&quot;&quot;Checks whether the given answer is correct.&quot;&quot;&quot;
 
-        global INTERVALS
+        # global INTERVALS
 
-        STR_OFFSET = 5
+        string_offset = 5
 
-        user_input_semitones = [self.keyboard_index.index(s)
-                                for s in user_input_keys]
+        tonic_pitch_number = self.tonic_pitch.pitch_number
 
-        user_response_str = &quot;&quot;.join([INTERVALS[s][1].center(STR_OFFSET)
-                                     for s in user_input_semitones])
-        correct_response_str = &quot;&quot;.join([INTERVALS[s][1].center(STR_OFFSET)
-                                        for s in self.question_phrase])
+        user_semitones = [self.keyboard_index.index(s)
+                          for s in user_input_keys]
+
+        user_pitches = [get_pitch_by_number(tonic_pitch_number + semitones)
+                        for semitones in user_semitones]
+
+        correct_intervals = [Interval(self.tonic_pitch, pitch)
+                             for pitch in self.random_pitches]
+
+        user_intervals = [Interval(self.tonic_pitch, pitch)
+                          for pitch in user_pitches]
+
+        user_response_str = &quot;&quot;.join([interval[&#39;data&#39;][1].center(string_offset)
+                                     for interval in user_intervals])
+
+        correct_response_str = &quot;&quot;.join([interval[&#39;data&#39;][1]
+                                       .center(string_offset)
+                                       for interval in correct_intervals])
 
         correct_semitones = list()
         correct_wrong_str = str()
 
-        for i, s in enumerate(self.question_phrase):
-            if self.question_phrase[i] == user_input_semitones[i]:
+        for position, correct_pitch in enumerate(self.random_pitches):
+            if correct_pitch == user_pitches[position]:
                 correct_semitones.append(True)
-                correct_wrong_str += &quot;✓&quot;.center(STR_OFFSET)  # u2713
+                correct_wrong_str += &quot;✓&quot;.center(string_offset)  # u2713
             else:
                 correct_semitones.append(False)
-                correct_wrong_str += &quot;x&quot;.center(STR_OFFSET)
+                correct_wrong_str += &quot;x&quot;.center(string_offset)
 
         extra_response_str = &quot;&quot;&quot;\
 {}
 {}
 &quot;&quot;&quot;.format(correct_wrong_str, correct_response_str)
 
-        response = dict(
-            is_correct=False,
-            user_input=user_input_keys,
-            user_semitones=user_input_semitones,
-            question_semitones=self.question_phrase,
-            correct_semitones=correct_semitones,
-            user_response_str=user_response_str,
-            correct_response_str=correct_response_str,
-            extra_response_str=extra_response_str,
-        )
+        is_correct = user_pitches == self.random_pitches
 
-        if user_input_semitones == self.question_phrase:
-            response.update({&#39;is_correct&#39;: True})
-        else:
-            response.update({&#39;is_correct&#39;: False})
+        response = {
+            &#39;is_correct&#39;: is_correct,
+            &#39;user_input&#39;: user_input_keys,
+            &#39;user_semitones&#39;: user_semitones,
+            &#39;question_semitones&#39;: self.random_pitches,
+            &#39;correct_semitones&#39;: correct_semitones,
+            &#39;user_response_str&#39;: user_response_str,
+            &#39;correct_response_str&#39;: correct_response_str,
+            &#39;extra_response_str&#39;: extra_response_str
+        }
 
         return response</div></div>
 </pre></div>
@@ -346,12 +339,14 @@ from ..prequestion import PreQuestion
 </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -362,7 +357,7 @@ from ..prequestion import PreQuestion
       &copy;2017, Iacchus Mercurius.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
     </div>

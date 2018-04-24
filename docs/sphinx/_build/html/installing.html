@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Installing birdears &#8212; birdears 0.1.4 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.1.4',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
@@ -128,8 +120,7 @@ $(document).ready(function(){
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
@@ -143,7 +134,7 @@ $(document).ready(function(){
 <h2>Installing the dependencies<a class="headerlink" href="#installing-the-dependencies" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="arch-linux">
 <h3>Arch Linux<a class="headerlink" href="#arch-linux" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-none"><div class="highlight"><pre><span></span>sudo pacman -Syu sox python python-pip
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo pacman -Syu sox python python-pip
 </pre></div>
 </div>
 </div>
@@ -151,7 +142,7 @@ $(document).ready(function(){
 <div class="section" id="id1">
 <h2>Installing birdears<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>To install,simple do this command with pip3</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>pip3 install --user --upgrade --no-cache-dir birdears
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>pip3 install --user --upgrade --no-cache-dir birdears
 </pre></div>
 </div>
 <div class="section" id="in-depth-installation">
@@ -160,7 +151,7 @@ $(document).ready(function(){
 an idea on how to setup one virtualenv.</p>
 <p>You should first install virtualenv (for python3) using your
 distribution’s package (supposing you’re on linux), then issue on terminal:</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>virtualenv -p python3 ~/.venv # use the directory ~/.venv/ for the virtualenv
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>virtualenv -p python3 ~/.venv # use the directory ~/.venv/ for the virtualenv
 
 source ~/.venv/bin/activate   # activate the virtualenv; this should be done
                               # every time you may want to run the software
@@ -213,12 +204,14 @@ birdears --help               # and this will run it
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -229,7 +222,7 @@ birdears --help               # and this will run it
       &copy;2017, Iacchus Mercurius.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |

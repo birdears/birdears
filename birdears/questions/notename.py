@@ -21,6 +21,7 @@ from ..prequestion import PreQuestion
 
 from random import choice
 
+
 class NoteNameQuestion(QuestionBase):
     """Implements a Note Name test.
     """
@@ -158,13 +159,9 @@ class NoteNameQuestion(QuestionBase):
 
         user_semitones = keyboard_index.index(user_input_char[0])
 
-        # input_note = self.scales['chromatic'].scale[semitones]
-        # user_note = c_chromatic.scale[semitones]
         user_pitch = c_chromatic[user_semitones]
         user_note = user_pitch.note
 
-        # correct_note = self.scales['chromatic'].scale[self.interval.semitones]
-        # correct_note = question_tone_chromatic[self.interval.semitones]
         correct_semitones = abs(int(self.tonic_pitch) - int(self.random_pitch))
         correct_note = self.random_pitch.note
 
@@ -178,11 +175,6 @@ class NoteNameQuestion(QuestionBase):
         elif correct_note in CHROMATIC_FLAT:
             correct_semitones = CHROMATIC_FLAT.index(correct_note)
 
-        # user_note = self.scales['chromatic_pitch'].scale[semitones]
-        # correct_note = self.scales['chromatic_pitch']\
-        #    .scale[self.interval.semitones]
-
-        # signal = '✓' if semitones == self.interval.semitones else 'x'  # u2713
         signal = '✓' if user_semitones == correct_semitones else 'x'  # u2713
 
         extra_response_str = """\
@@ -190,13 +182,6 @@ class NoteNameQuestion(QuestionBase):
 user {} “{}”
 {} semitones
 """.format(correct_note, signal, user_note, self.interval['semitones'])
-
-#        extra_response_str = """\
-#        “{}” ({}─{})
-# user {} “{}” ({}─{})
-# {} semitones
-# """.format(correct_interval, tonic, correct_note,
-#            signal, user_interval, tonic, user_note, self.interval.semitones)
 
         response = dict(
             is_correct=False,

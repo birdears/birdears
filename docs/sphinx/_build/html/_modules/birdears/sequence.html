@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>birdears.sequence &#8212; birdears 0.1.4 documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '0.1.4',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
@@ -126,8 +118,7 @@ $(document).ready(function(){
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
@@ -144,10 +135,15 @@ import time
 
 from .scale import ChromaticScale
 
+from .note_and_pitch import Pitch
+from .note_and_pitch import Chord
+
+from .exception import InvalidSequenceElement
+
 SEQUENCE_THREAD = None
 
 
-<div class="viewcode-block" id="Sequence"><a class="viewcode-back" href="../../index.html#birdears.sequence.Sequence">[docs]</a>class Sequence:
+<div class="viewcode-block" id="Sequence"><a class="viewcode-back" href="../../index.html#birdears.sequence.Sequence">[docs]</a>class Sequence(list):
     &quot;&quot;&quot;Register a Sequence of notes and/or chords.
 
     Attributes:
@@ -162,7 +158,7 @@ SEQUENCE_THREAD = None
 
         Args:
             elements (array_type): List of elements in this sequence.
-                (notes or chords)
+                (Pitch&#39;es and/or Chord&#39;s)
             duration (float): Default playing time for each element in the
                 sequence.
             delay (float): Default waiting time to play the next element
@@ -171,36 +167,19 @@ SEQUENCE_THREAD = None
                 in the sequence.
         &quot;&quot;&quot;
 
+        if not all(isinstance(element, (Pitch, Chord))
+                   for element in elements):
+            raise InvalidSequenceElement
+
+        super(Sequence, self).__init__(elements)
+
         self.duration = duration
         self.delay = delay
         self.pos_delay = pos_delay
 
-        self.elements = list(elements)
-
-        self.index = 0
-        self.last_idx = len(self.elements) - 1
-
-<div class="viewcode-block" id="Sequence.append"><a class="viewcode-back" href="../../index.html#birdears.sequence.Sequence.append">[docs]</a>    @log_event
-    def append(self, elements):
-        &quot;&quot;&quot;Appends `elements` to Sequence.elements
-
-        Args:
-            elements (array_type): Elements to be appended to the class.
-        &quot;&quot;&quot;
-        self.elements.append(elements)</div>
-
-<div class="viewcode-block" id="Sequence.extend"><a class="viewcode-back" href="../../index.html#birdears.sequence.Sequence.extend">[docs]</a>    def extend(self, elements):
-        &quot;&quot;&quot;Extends Sequence.elements with `elements`.
-
-        Args:
-            elements (array_type): elements extend the class with.
-        &quot;&quot;&quot;
-        self.elements.extend(elements)</div>
-
 <div class="viewcode-block" id="Sequence.play"><a class="viewcode-back" href="../../index.html#birdears.sequence.Sequence.play">[docs]</a>    @log_event
-    def play(self, callback=None, end_callback=None):
+    def play(self):
         global SEQUENCE_THREAD
-        # callback = print
 
         if hasattr(SEQUENCE_THREAD, &#39;is_alive&#39;) and SEQUENCE_THREAD.is_alive():
             try:
@@ -209,77 +188,40 @@ SEQUENCE_THREAD = None
                 print(&#39;Ctrl+C&#39;)
                 exit(0)
 
-        SEQUENCE_THREAD = Thread(target=self.async_play,
-                                 kwargs={
-                                    &#39;callback&#39;: callback,
-                                    &#39;end_callback&#39;: end_callback
-                                 })
-
+        # TODO: later we should passa callback and end_callback here so the
+        # thread can talk to user interfaces, cli/tui/gui etc
+        SEQUENCE_THREAD = Thread(target=self.async_play)
         SEQUENCE_THREAD.start()
 
+        # FIXME: is this really needed? it is a global
         return SEQUENCE_THREAD</div>
 
 <div class="viewcode-block" id="Sequence.async_play"><a class="viewcode-back" href="../../index.html#birdears.sequence.Sequence.async_play">[docs]</a>    @log_event
-    def async_play(self, callback, end_callback):
+    def async_play(self):
         &quot;&quot;&quot;Plays the Sequence elements of notes and/or chords and wait for
         `Sequence.pos_delay` seconds.
         &quot;&quot;&quot;
 
-        last_idx = len(self.elements) - 1
+        for element in self:
 
-        for cur_idx, element in enumerate(self.elements):
+            # is the current element to be played the last of the sequence?
+            # because if it is the last, we will supress it&#39;s  playing delay
+            # and will use the Sequence.pos_delay
+            is_last = element is self[-1]
 
-            is_last = False if cur_idx != last_idx else True
-
-            # lets leave the last element&#39;s delay for pos_delay:
-            delay = self.delay if not is_last else 0
-
-            if type(element) == tuple:
-                el, duration, delay = element
+            if type(element) == Pitch:
+                self._play_note(element, last_element=is_last)
+            elif type(element) == Chord:
+                self._play_chord(element, last_element=is_last)
             else:
-                el = element
+                raise InvalidSequenceElement
 
-            current_data = dict(
-                index=cur_idx,
-                element=el,
-                delay=delay,
-                is_last=is_last,
-            )
-
-            if callback:
-                callback(current_data)
-
-            if type(el) == str:
-                self._play_note(el, delay=delay)
-            elif type(el) == list:
-                self._play_chord(el, delay=delay)
+            # TODO we should later get the element information and pass via a
+            # dict to Sequence._async_play()&#39;s callback so it can inform the
+            # user interfaces on the status of the element current being played
 
         if self.pos_delay:
-            self._wait(self.pos_delay)
-
-        if end_callback:
-            end_callback()</div>
-
-<div class="viewcode-block" id="Sequence.play_element"><a class="viewcode-back" href="../../index.html#birdears.sequence.Sequence.play_element">[docs]</a>    def play_element(self, index):
-        &quot;&quot;&quot;Plays element `sequence.elements[index].`
-        &quot;&quot;&quot;
-
-        element = self.elements[index]
-
-        delay = self.delay
-
-        if type(element) == tuple:
-            el, duration, delay = element
-        else:
-            el = element
-
-        if type(el) == str:
-            self._play_note(el, delay=delay)
-        elif type(el) == list:
-            self._play_chord(el, delay=delay)</div>
-
-        #  if self.pos_delay:
-        #     self._wait(self.pos_delay)
+            self._wait(self.pos_delay)</div>
 
     # FIXME: implement octave here:
 <div class="viewcode-block" id="Sequence.make_chord_progression"><a class="viewcode-back" href="../../index.html#birdears.sequence.Sequence.make_chord_progression">[docs]</a>    def make_chord_progression(self, tonic, mode, degrees):
@@ -295,136 +237,65 @@ SEQUENCE_THREAD = None
         scale = ChromaticScale(tonic=tonic)
 
         for degree in degrees:
-            triad = scale.get_triad(mode=mode, degree=degree)
-            self.elements.append(triad)</div>
+            chord = scale.get_triad(mode=mode, degree=degree)
+            self.append(chord)</div>
 
-    def _async_play_note(self, note, duration=None, delay=None):
+    @log_event
+    def _play_note(self, pitch, last_element=False):
         &quot;&quot;&quot;Plays a note.
 
         Args:
-            note (str): The note and octave to be played. Eg.: &#39;C4&#39;
+            note (Pitch): The note and octave to be played. Eg.: &#39;C4&#39;
             duration (float): Duration of the note in seconds.
             delay (float): Delay after the note in seconds.
         &quot;&quot;&quot;
 
         # requires sox to be installed
 
-        duration = self.duration if duration is None else duration
-        delay = self.delay if delay is None else delay
+        duration = pitch.duration or self.duration
+        delay = pitch.delay or self.delay
 
-        command = (
-            &quot;play -V1 -qn synth {duration} pluck {note}&quot;
-            &quot; fade l 0 {duration} 2 reverb&quot;
-        ).format(note=note, duration=duration)
+        # from sox manual: fade [type] fade-in-length [stop-position(=)
+        # [fade-out-length]]
 
-        subprocess.Popen(command.split())
-
-        if delay:
-            self._wait(delay)
-
-    def _async_play_chord(self, chord, duration=None, delay=None):
-        &quot;&quot;&quot;Plays a chord.
-
-        Args:
-            chord (array_type): An array of pitches (notes and octaves)
-                to be played, representing a chord. Eg.: [&#39;C4&#39;, &#39;Eb4&#39;, &#39;G5&#39;]
-            duration (float): Duration of the chord in seconds.
-            delay (float): Delay after the chord in seconds.
-        &quot;&quot;&quot;
-
-        duration = self.duration if duration is None else duration
-        delay = self.delay if delay is None else delay
-
-        chord_plucks = str()
-        for note in chord:
-            chord_plucks += &quot; pluck {} &quot;.format(note)
-
-        command = (
-            &quot;play -V1 -qn synth {duration} {chord}&quot;
-            &quot; fade l 0 {duration} 2 reverb&quot;
-        ).format(note=note, duration=duration, chord=chord_plucks)
-
-        subprocess.Popen(command.split())
-
-        if delay:
-            self._wait(delay)
-
-    def _async_wait(self, seconds):
-        &quot;&quot;&quot;Waits, ie., stops execution for some time.
-
-        Args:
-            seconds (float): Seconds to wait.
-        &quot;&quot;&quot;
-
-        time.sleep(seconds)
-
-    def _play_note(self, note, duration=None, delay=None):
-        &quot;&quot;&quot;Plays a note.
-
-        Args:
-            note (str): The note and octave to be played. Eg.: &#39;C4&#39;
-            duration (float): Duration of the note in seconds.
-            delay (float): Delay after the note in seconds.
-        &quot;&quot;&quot;
-
-        # requires sox to be installed
-
-        duration = self.duration if duration is None else duration
-        delay = self.delay if delay is None else delay
-
-        double_duration = str(int(duration)*2)
-
-        # from sox manual: fade [type] fade-in-length \
-        #        [stop-position(=) [fade-out-length]]
-        # TODO: this is experimental
+        # FIXME: this is experimental, revert to the old code if it is the case
         command = (
             &quot;play -V1 -qn synth {duration} pluck {note}&quot;
             &quot; fade l 0 {duration} {duration} reverb&quot;
-        ).format(note=note, duration=duration)
-        # command = (
-        #    &quot;play -V1 -qn synth {duration} pluck {note}&quot;
-        #    &quot; fade l 0 {duration} 2 reverb&quot;
-        # ).format(note=note, duration=duration)
+        ).format(note=str(pitch), duration=duration)
 
         subprocess.Popen(command.split())
 
-        if delay:
+        if not last_element:
             self._wait(delay)
 
-    def _play_chord(self, chord, duration=None, delay=None):
+    @log_event
+    def _play_chord(self, chord, last_element=False):
         &quot;&quot;&quot;Plays a chord.
 
         Args:
-            chord (array_type): An array of pitches (notes and octaves)
+            chord (Chord): An array of pitches (notes and octaves)
                 to be played, representing a chord. Eg.: [&#39;C4&#39;, &#39;Eb4&#39;, &#39;G5&#39;]
             duration (float): Duration of the chord in seconds.
             delay (float): Delay after the chord in seconds.
         &quot;&quot;&quot;
 
-        duration = self.duration if duration is None else duration
-        delay = self.delay if delay is None else delay
+        duration = chord.duration or self.duration
+        delay = chord.delay or self.delay
 
         chord_plucks = str()
         for note in chord:
             chord_plucks += &quot; pluck {} &quot;.format(note)
 
-        double_duration = str(int(duration)*2)
-
-        # from sox manual: fade [type] fade-in-length \
-        #        [stop-position(=) [fade-out-length]]
-        # TODO: this is experimental
+        # FIXME: this is experimental, revert to the old code if it is the case
         command = (
             &quot;play -V1 -qn synth {duration} {chord}&quot;
             &quot; fade l 0 {duration} {duration} reverb&quot;
         ).format(chord=chord_plucks, duration=duration)
-        # command = (
-        #    &quot;play -V1 -qn synth {duration} {chord}&quot;
-        #    &quot; fade l 0 {duration} 2 reverb&quot;
-        # ).format(note=note, duration=duration, chord=chord_plucks)
 
         subprocess.Popen(command.split())
 
-        if delay:
+        if not last_element:
             self._wait(delay)
 
     def _wait(self, seconds):
@@ -434,10 +305,7 @@ SEQUENCE_THREAD = None
             seconds (float): Seconds to wait.
         &quot;&quot;&quot;
 
-        time.sleep(seconds)
-
-    def __len__(self):
-        return len(self.elements)</div>
+        time.sleep(seconds)</div>
 </pre></div>
 
           </div>
@@ -455,12 +323,14 @@ SEQUENCE_THREAD = None
 </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -471,7 +341,7 @@ SEQUENCE_THREAD = None
       &copy;2017, Iacchus Mercurius.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
     </div>

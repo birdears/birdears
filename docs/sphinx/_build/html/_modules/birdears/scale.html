@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>birdears.scale &#8212; birdears 0.1.4 documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '0.1.4',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
@@ -126,8 +118,7 @@ $(document).ready(function(){
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
@@ -136,74 +127,20 @@ $(document).ready(function(){
           <div class="body" role="main">
             
   <h1>Source code for birdears.scale</h1><div class="highlight"><pre>
-<span></span>from . import DIATONIC_MODES
-from . import CHROMATIC_SHARP
-from . import CHROMATIC_FLAT
+<span></span>from . import DIATONIC_FORMS
+
+from .note_and_pitch import Pitch
+from .note_and_pitch import Chord
+from .note_and_pitch import get_pitch_by_number
+
+from itertools import cycle
+
+# https://docs.python.org/3/reference/datamodel.html#emulating-container-types
 
 
-<div class="viewcode-block" id="ScaleBase"><a class="viewcode-back" href="../../index.html#birdears.scale.ScaleBase">[docs]</a>class ScaleBase:
+<div class="viewcode-block" id="ScaleBase"><a class="viewcode-back" href="../../index.html#birdears.scale.ScaleBase">[docs]</a>class ScaleBase(list):
     def __init__(self):
-        pass
-
-    def _append_octave_to_scale(self, scale, starting_octave, descending=None):
-        &quot;&quot;&quot;Inserts scientific octave number to the notes on a the given scale.
-        &quot;&quot;&quot;
-
-        next_octave = 1 if not descending else -1
-
-        scale_with_octave = []
-        changing_note = None
-
-        current_octave = starting_octave
-
-        if not descending:
-            for closest in [&#39;C&#39;, &#39;C#&#39;, &#39;Db&#39;]:
-                if closest in scale:
-                    changing_note = closest
-                    break
-        else:
-            for closest in [&#39;B&#39;, &#39;Bb&#39;, &#39;A#&#39;]:
-                if closest in scale:
-                    changing_note = closest
-                    break
-
-        for idx, note in enumerate(scale):
-            if idx &gt; 0 and note == changing_note:
-                current_octave += next_octave
-
-            scale_with_octave.append(&quot;{}{}&quot;.format(note, current_octave))
-
-        return scale_with_octave
-
-    def _get_chromatic_idx(self, note):
-        &quot;&quot;&quot;Gets the chromatic index, ie., the distance in semitones of a given
-        note from C.
-        &quot;&quot;&quot;
-
-        global CHROMATIC_SHARP, CHROMATIC_FLAT
-
-        if note in CHROMATIC_SHARP:
-            note_index = CHROMATIC_SHARP.index(note)
-        elif note in CHROMATIC_FLAT:
-            note_index = CHROMATIC_FLAT.index(note)
-        else:
-            raise InvalidNote
-
-        return note_index
-
-    def _rotate_scale_by_idx(self, index, scale):
-        &quot;&quot;&quot;Rotates chromatic C scale to generate another chromatic based on
-        index number of the tonic.
-        &quot;&quot;&quot;
-
-        idx_to_end = slice(index, None)
-        begin_to_idx = slice(None, index)
-
-        rotated_scale = []
-        rotated_scale.extend(scale[idx_to_end])
-        rotated_scale.extend(scale[begin_to_idx])
-
-        return rotated_scale</div>
+        pass</div>
 
 
 <div class="viewcode-block" id="DiatonicScale"><a class="viewcode-back" href="../../index.html#birdears.scale.DiatonicScale">[docs]</a>class DiatonicScale(ScaleBase):
@@ -213,8 +150,8 @@ from . import CHROMATIC_FLAT
         scale (array_type): The array of notes representing the scale.
     &quot;&quot;&quot;
 
-<div class="viewcode-block" id="DiatonicScale.__init__"><a class="viewcode-back" href="../../index.html#birdears.scale.DiatonicScale.__init__">[docs]</a>    def __init__(self, tonic, mode=None, octave=None, n_octaves=None,
-                 descending=None, dont_repeat_tonic=None):
+<div class="viewcode-block" id="DiatonicScale.__init__"><a class="viewcode-back" href="../../index.html#birdears.scale.DiatonicScale.__init__">[docs]</a>    def __init__(self, tonic=&#39;C&#39;, mode=&#39;major&#39;, octave=4, n_octaves=1,
+                 descending=False, dont_repeat_tonic=False):
         &quot;&quot;&quot;Returns a diatonic scale from tonic and mode.
 
         Args:
@@ -230,35 +167,38 @@ from . import CHROMATIC_FLAT
 
         super(DiatonicScale, self).__init__()
 
-        global DIATONIC_MODES
-
-        self.tonic = tonic
+        self.tonic = Pitch(note=tonic, octave=octave)
         self.mode = mode
-        self.octave = octave
+        self.direction = &quot;Ascending&quot; if not descending else &quot;Descending&quot;
 
-        diatonic_mode = DIATONIC_MODES[mode]
+        diatonic_mode = DIATONIC_FORMS[mode]
 
-        chromatic = ChromaticScale(tonic=tonic).scale
+        form_length = len(diatonic_mode)
 
-        diatonic = [chromatic[semitones] for semitones in diatonic_mode[:-1]]
-
-        if n_octaves:
-            diatonic = diatonic * n_octaves
-
-        # FIXME: check if this works on descending
-        if not dont_repeat_tonic:
-            diatonic.append(chromatic[diatonic_mode[-1]])
-
+        direction = +1 if not descending else -1
+        repeat_tonic = 0 - dont_repeat_tonic  # 0 (repeat) or -1
         if descending:
-            diatonic.reverse()
+            diatonic_mode = diatonic_mode[::-1]
 
-        if octave:
-            diatonic = self._append_octave_to_scale(scale=diatonic,
-                                                    starting_octave=octave,
-                                                    descending=descending)
+        diatonic_loop = cycle(diatonic_mode)
 
-        self.scale = diatonic</div>
+        scale = list()
 
+        self.append(self.tonic)
+
+        pitch_num = int(self[0])
+
+        for i in range((form_length * n_octaves) + repeat_tonic):
+            step = next(diatonic_loop)
+
+            pitch_num += step * direction
+
+            pitch = get_pitch_by_number(pitch_num)
+            scale.append(pitch)
+
+        self.extend(scale)</div>
+
+    # FIXME: aybe ake this a function
 <div class="viewcode-block" id="DiatonicScale.get_triad"><a class="viewcode-back" href="../../index.html#birdears.scale.DiatonicScale.get_triad">[docs]</a>    def get_triad(self, index=0, degree=None):
         &quot;&quot;&quot;Returns an array with notes from a scale&#39;s triad.
 
@@ -270,29 +210,13 @@ from . import CHROMATIC_FLAT
             An array with three pitches, one for each note of the triad.
         &quot;&quot;&quot;
 
-        global DIATONIC_MODES
-
         tonic = self.tonic
         mode = self.mode
-        octave = self.octave
 
-        diatonic_mode = DIATONIC_MODES[mode]
+        diatonic = DiatonicScale(tonic=tonic.note, mode=mode,
+                                 octave=tonic.octave, n_octaves=2,
+                                 descending=False, dont_repeat_tonic=False)
 
-        chromatic = ChromaticScale(tonic=tonic).scale
-
-        diatonic = [chromatic[semitones] for semitones in diatonic_mode[:-1]]
-
-        diatonic = diatonic * 2
-
-        # FIXME: check if this works on descending
-        diatonic.append(chromatic[diatonic_mode[-1]])
-
-        octave = self.octave or 4
-        diatonic = self._append_octave_to_scale(scale=diatonic,
-                                                starting_octave=octave,
-                                                descending=False)
-
-        self.scale = diatonic
         if degree:
             index = degree - 1
 
@@ -300,7 +224,23 @@ from . import CHROMATIC_FLAT
 
         triad = [diatonic[index+note] for note in form]
 
-        return triad</div></div>
+        chord = Chord(triad)
+
+        return chord</div>
+
+    def __repr__(self):
+
+        repr = &quot;&lt;DiatonicScale {tonic} {mode} {direction} {first}-{to} &quot; \
+               &quot;({octaves} octaves)&gt;&quot; \
+                   .format(tonic=str(self[0].note),
+                           mode=self.mode.capitalize(),
+                           direction=self.direction.capitalize(),
+                           first=str(self[0]),
+                           to=str(self[-1]), octaves=int(len(self)/8))
+        return repr
+
+    def __str__(self):
+        return str(list(self))</div>
 
 
 <div class="viewcode-block" id="ChromaticScale"><a class="viewcode-back" href="../../index.html#birdears.scale.ChromaticScale">[docs]</a>class ChromaticScale(ScaleBase):
@@ -310,8 +250,8 @@ from . import CHROMATIC_FLAT
         scale (array_type): The array of notes representing the scale.
     &quot;&quot;&quot;
 
-<div class="viewcode-block" id="ChromaticScale.__init__"><a class="viewcode-back" href="../../index.html#birdears.scale.ChromaticScale.__init__">[docs]</a>    def __init__(self, tonic, octave=None, n_octaves=None, descending=None,
-                 dont_repeat_tonic=None):
+<div class="viewcode-block" id="ChromaticScale.__init__"><a class="viewcode-back" href="../../index.html#birdears.scale.ChromaticScale.__init__">[docs]</a>    def __init__(self, tonic=&#39;C&#39;, octave=4, n_octaves=1, descending=False,
+                 dont_repeat_tonic=False):
         &quot;&quot;&quot;Returns a chromatic scale from tonic.
 
         Args:
@@ -325,40 +265,19 @@ from . import CHROMATIC_FLAT
 
         super(ChromaticScale, self).__init__()
 
-        global CHROMATIC_SHARP, CHROMATIC_FLAT
+        # global CHROMATIC_SHARP, CHROMATIC_FLAT
 
-        self.tonic = tonic
-        self.octave = octave
+        self.tonic = Pitch(tonic, octave)
 
-        tonic_index = self._get_chromatic_idx(tonic)
+        direction = +1 if not descending else -1
 
-        if tonic == &#39;F&#39; or &#39;b&#39; in tonic:
-            notes = list(CHROMATIC_FLAT)
-        else:
-            notes = list(CHROMATIC_SHARP)
+        tonic_pitch_num = int(self.tonic)
+        repeat_tonic = not dont_repeat_tonic  # 1 or 0
 
-        notes = self._rotate_scale_by_idx(tonic_index, notes)
+        scale = [get_pitch_by_number(tonic_pitch_num + (i*direction))
+                 for i in range((12 * n_octaves) + repeat_tonic)]
 
-        # notes.rotate(-(tonic_index))
-
-        if n_octaves:
-            chromatic = notes * n_octaves
-        else:
-            chromatic = notes
-
-        # FIXME: check if this works on descending
-        if not dont_repeat_tonic:
-            chromatic.append(chromatic[0])
-
-        if descending:
-            chromatic.reverse()
-
-        if octave:
-            chromatic = self._append_octave_to_scale(scale=chromatic,
-                                                     starting_octave=octave,
-                                                     descending=descending)
-
-        self.scale = chromatic</div>
+        self.extend(scale)</div>
 
 <div class="viewcode-block" id="ChromaticScale.get_triad"><a class="viewcode-back" href="../../index.html#birdears.scale.ChromaticScale.get_triad">[docs]</a>    def get_triad(self, mode, index=0, degree=None):
         &quot;&quot;&quot;Returns an array with notes from a scale&#39;s triad.
@@ -372,28 +291,12 @@ from . import CHROMATIC_FLAT
             A list with three pitches (str), one for each note of the triad.
         &quot;&quot;&quot;
 
-        global DIATONIC_MODES
-
         tonic = self.tonic
-        octave = self.octave
 
-        diatonic_mode = DIATONIC_MODES[mode]
+        diatonic = DiatonicScale(tonic=tonic.note, mode=mode,
+                                 octave=tonic.octave, n_octaves=2,
+                                 descending=False, dont_repeat_tonic=False)
 
-        chromatic = ChromaticScale(tonic).scale
-
-        diatonic = [chromatic[semitones] for semitones in diatonic_mode[:-1]]
-
-        diatonic = diatonic * 2
-
-        # FIXME: check if this works on descending
-        diatonic.append(chromatic[diatonic_mode[-1]])
-
-        octave = self.octave or 4
-        diatonic = self._append_octave_to_scale(scale=diatonic,
-                                                starting_octave=octave,
-                                                descending=False)
-
-        self.scale = diatonic
         if degree:
             index = degree - 1
 
@@ -401,7 +304,9 @@ from . import CHROMATIC_FLAT
 
         triad = [diatonic[index+note] for note in form]
 
-        return triad</div></div>
+        chord = Chord(triad)
+
+        return chord</div></div>
 </pre></div>
 
           </div>
@@ -419,12 +324,14 @@ from . import CHROMATIC_FLAT
 </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -435,7 +342,7 @@ from . import CHROMATIC_FLAT
       &copy;2017, Iacchus Mercurius.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
     </div>

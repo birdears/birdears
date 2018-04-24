@@ -119,6 +119,8 @@ INPUT /usr/share/texmf-dist/tex/latex/capt-of/capt-of.sty
 INPUT /usr/share/texmf-dist/tex/latex/capt-of/capt-of.sty
 INPUT /usr/share/texmf-dist/tex/latex/needspace/needspace.sty
 INPUT /usr/share/texmf-dist/tex/latex/needspace/needspace.sty
+INPUT /usr/share/texmf-dist/tex/latex/carlisle/remreset.sty
+INPUT /usr/share/texmf-dist/tex/latex/carlisle/remreset.sty
 INPUT sphinxhighlight.sty
 INPUT sphinxhighlight.sty
 INPUT /usr/share/texmf-dist/tex/latex/oberdiek/kvoptions.sty
@@ -279,7 +281,10 @@ INPUT /usr/share/texmf-dist/fonts/tfm/adobe/courier/pcrr8r.tfm
 INPUT /usr/share/texmf-dist/tex/latex/psnfss/ts1pcr.fd
 INPUT /usr/share/texmf-dist/tex/latex/psnfss/ts1pcr.fd
 INPUT /usr/share/texmf-dist/fonts/tfm/adobe/courier/pcrr8c.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/adobe/times/ptmr8t.tfm
 INPUT /usr/share/texmf-dist/fonts/vf/adobe/courier/pcrr8c.vf
+INPUT /usr/share/texmf-dist/fonts/vf/adobe/times/ptmr8t.vf
+INPUT /usr/share/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
 INPUT ionian.png
 INPUT ./ionian.png
 INPUT ./ionian.png

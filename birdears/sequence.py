@@ -135,7 +135,6 @@ class Sequence(list):
             " fade l 0 {duration} {duration} reverb"
         ).format(note=str(pitch), duration=duration)
 
-
         subprocess.Popen(command.split())
 
         if not last_element:

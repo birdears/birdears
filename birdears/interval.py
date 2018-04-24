@@ -58,7 +58,7 @@ class Interval(dict):
             'note_octave': pitch_b.octave,
             'semitones': semitones,
             'is_descending': descending,
-            'distance': {'octaves': int(semitones/12),
-                         'semitones': int(semitones%12)},
+            'distance': {'octaves': int(semitones / 12),
+                         'semitones': int(semitones % 12)},
             'data': INTERVALS[semitones],
         })

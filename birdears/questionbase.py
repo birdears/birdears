@@ -140,7 +140,7 @@ class QuestionBase:
 
         if isinstance(tonic, list) or isinstance(tonic, tuple):
             tonic = choice(tonic)
-            
+
         self.tonic_pitch = Pitch(note=tonic, octave=self.octave)
         self.tonic_str = str(self.tonic_pitch.note)
         self.tonic_pitch_str = str(self.tonic_pitch)

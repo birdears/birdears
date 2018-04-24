@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>birdears.interfaces.commandline &#8212; birdears 0.1.4 documentation</title>
     <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../../',
-        VERSION:     '0.1.4',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
@@ -126,8 +118,7 @@ $(document).ready(function(){
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
@@ -136,18 +127,14 @@ $(document).ready(function(){
           <div class="body" role="main">
             
   <h1>Source code for birdears.interfaces.commandline</h1><div class="highlight"><pre>
-<span></span>from .. import click
-
-from .. import _Getch
+<span></span>from .. import _Getch
 
 from .. import INTERVALS
 from .. import DIATONIC_MODES
 from .. import CHROMATIC_TYPE
 
-from .. import DEBUG
-
 # from os import popen
-from click import get_terminal_size
+from ..click import get_terminal_size
 
 # FIXME: use `click` one instead or it won&#39;t be portable
 # COLS = int(popen(&#39;tput cols&#39;, &#39;r&#39;).read())
@@ -198,11 +185,6 @@ COLS, LINES = get_terminal_size()
         response (dict): A response returned by question&#39;s check_question()
     &quot;&quot;&quot;
 
-    text_kwargs = dict(
-        user_resp=response[&#39;user_response_str&#39;],
-        correct_resp=response[&#39;correct_response_str&#39;]
-    )
-
     # TODO: make a class for response
     if response[&#39;is_correct&#39;]:
         response_text = &quot;Correct!&quot;
@@ -240,44 +222,35 @@ COLS, LINES = get_terminal_size()
         question (obj): A Question class with the question to be printed.
     &quot;&quot;&quot;
 
-    keyboard = question.keyboard_index
+    direction = -1 if question.is_descending else +1
 
-    if not question.is_chromatic:
-        scale = list(question.scales[&#39;diatonic&#39;].scale)
+    scale = question.scale
+    # mode = question.mode
 
-        mode = list(DIATONIC_MODES[question.mode])
-        scale_index = list(mode)
-    else:
-        scale = list(question.scales[&#39;chromatic&#39;].scale)
+    tonic = scale[0]
+    network = [abs(int(tonic) - int(note)) for note in scale]
+    # keyboard_map = KEYBOARD_INDICES[&#39;chromatic&#39;][&#39;ascending&#39;][&#39;major&#39;]
+    keyboard_map = tuple(question.keyboard_index)
 
-        mode = list(CHROMATIC_TYPE)
-        scale_index = list(mode)
+    # should we show the octaves here? why not?
 
-    for o in range(1, question.n_octaves):
-        scale_index.extend([x + (12*o) for x in mode[1:]])
+    notes = &quot;&quot;.join([str(pitch).ljust(4) for pitch in scale][::direction])
+    # notes = &quot;&quot;.join([str(pitch.note).ljust(4) \
+    # for pitch in scale][::direction])
+    intervals = &quot;&quot;.join([str(INTERVALS[step][1]).ljust(4)
+                         for step in network][::direction])
+    keys = &quot;&quot;.join([str(keyboard_map[step]).ljust(4)
+                    for step in network][::direction])
 
-    # FIXME: bug with descending n_octaves=2
-    if question.is_descending:
-        highest = max(scale_index)
-        scale_index = [highest - x for x in scale_index]
-        scale = reversed(scale)
-
-    intervals = [INTERVALS[i][1] for i in scale_index]
-    keys = [keyboard[i] for i in scale_index]
-
-    scale_str = &quot; &quot;.join(map(lambda x: x.ljust(3), scale))
-    intervals_str = &quot; &quot;.join(map(lambda x: x.ljust(3), intervals))
-    keys_str = &quot; &quot;.join(map(lambda x: x.ljust(3), keys))
-
-    text_kwargs = dict(
-        tonic=question.tonic,
-        mode=question.mode,
-        chroma=question.is_chromatic,
-        desc=question.is_descending,
-        scale=scale_str,
-        intervals=intervals_str,
-        keyboard=keys_str,
-    )
+    text_kwargs = {
+        &#39;tonic&#39;: question.tonic_str,
+        &#39;mode&#39;: question.mode,
+        &#39;chroma&#39;: question.is_chromatic,
+        &#39;desc&#39;: question.is_descending,
+        &#39;scale&#39;: notes,
+        &#39;intervals&#39;: intervals,
+        &#39;keyboard&#39;: keys,
+    }
 
     question_text = &quot;&quot;&quot;\
 
@@ -341,6 +314,11 @@ Keyboard  {keyboard}
     elif exercise == &#39;melodic&#39;:
         from ..questions.melodicinterval import MelodicIntervalQuestion
         MYCLASS = MelodicIntervalQuestion
+        dictate_notes = 1
+
+    elif exercise == &#39;notename&#39;:
+        from ..questions.notename import NoteNameQuestion
+        MYCLASS = NoteNameQuestion
         dictate_notes = 1
 
     elif exercise == &#39;harmonic&#39;:
@@ -421,12 +399,14 @@ Keyboard  {keyboard}
 </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -437,7 +417,7 @@ Keyboard  {keyboard}
       &copy;2017, Iacchus Mercurius.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
     </div>
