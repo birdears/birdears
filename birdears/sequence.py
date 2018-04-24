@@ -46,7 +46,7 @@ class Sequence(list):
         self.duration = duration
         self.delay = delay
         self.pos_delay = pos_delay
-        
+
     @log_event
     def play(self):
         global SEQUENCE_THREAD
@@ -85,14 +85,13 @@ class Sequence(list):
                 self._play_chord(element, last_element=is_last)
             else:
                 raise InvalidSequenceElement
-                
+
             # TODO we should later get the element information and pass via a
             # dict to Sequence._async_play()'s callback so it can inform the
             # user interfaces on the status of the element current being played
-            
+
         if self.pos_delay:
             self._wait(self.pos_delay)
-
 
     # FIXME: implement octave here:
     def make_chord_progression(self, tonic, mode, degrees):
@@ -108,9 +107,7 @@ class Sequence(list):
         scale = ChromaticScale(tonic=tonic)
 
         for degree in degrees:
-            #triad = scale.get_triad(mode=mode, degree=degree)
             chord = scale.get_triad(mode=mode, degree=degree)
-            #chord = Chord(triad)
             self.append(chord)
 
     def _play_note(self, pitch, last_element=False):
@@ -129,7 +126,7 @@ class Sequence(list):
 
         # from sox manual: fade [type] fade-in-length [stop-position(=)
         # [fade-out-length]]
-        
+
         # FIXME: this is experimental, revert to the old code if it is the case
         command = (
             "play -V1 -qn synth {duration} pluck {note}"
@@ -153,11 +150,11 @@ class Sequence(list):
 
         duration = chord.duration or self.duration
         delay = chord.delay or self.delay
-        
+
         chord_plucks = str()
         for note in chord:
             chord_plucks += " pluck {} ".format(note)
-        
+
         # FIXME: this is experimental, revert to the old code if it is the case
         command = (
             "play -V1 -qn synth {duration} {chord}"
@@ -177,4 +174,3 @@ class Sequence(list):
         """
 
         time.sleep(seconds)
-        

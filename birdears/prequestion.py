@@ -106,10 +106,10 @@ def progression_i_iv_v_i(question, *args, **kwargs):
             when it is `__call__`ed)
     """
 
-    tonic_pitch = question.tonic_pitch
+    # tonic_pitch = question.tonic_pitch
     tonic_str = question.tonic_str
     mode = question.mode
-    
+
     duration = question.durations['preq']['duration']
     delay = question.durations['preq']['delay']
     pos_delay = question.durations['preq']['pos_delay']

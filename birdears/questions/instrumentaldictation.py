@@ -17,6 +17,7 @@ from ..interfaces.commandline import center_text
 from random import choices
 from random import sample
 
+
 class InstrumentalDictationQuestion(QuestionBase):
     """Implements an instrumental dictation test.
     """
@@ -101,10 +102,11 @@ class InstrumentalDictationQuestion(QuestionBase):
                                        descending=descending)
         else:
             self.scale = ChromaticScale(tonic=tonic, octave=octave,
-                                  n_octaves=n_octaves, descending=descending)
+                                        n_octaves=n_octaves,
+                                        descending=descending)
 
         self.valid_pitches = get_valid_pitches(self.scale, valid_intervals)
-        
+
         # how many different intervals from all valid ones?
         random_choose_from_pitches = sample(self.valid_pitches, max_intervals)
 
@@ -150,12 +152,12 @@ class InstrumentalDictationQuestion(QuestionBase):
 
         This currently doesn't applies to instrumental dictation questions.
         """
-        
+
         intervals = " ".join([Interval(self.tonic_pitch, pitch)['data'][1]
-                            for pitch in self.random_pitches]).center(7)
-        
+                             for pitch in self.random_pitches]).center(7)
+
         notes = " ".join([str(pitch) for pitch in self.random_pitches]) \
-                        .center(7)
+                .center(7)
 
         correct_response_str = """\
 The intervals and notes of this question:

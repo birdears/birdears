@@ -3,7 +3,6 @@ from . import MAX_SEMITONES_RESOLVE_BELOW
 from .interval import Interval
 
 from .scale import DiatonicScale
-from .scale import ChromaticScale
 
 from .sequence import Sequence
 
@@ -74,50 +73,39 @@ def nearest_tonic(question):
             when it is `__call__`ed)
     """
 
-    # global DIATONIC_MODES, MAX_SEMITONES_RESOLVE_BELOW
-
-    # mode = question.mode
     tonic_pitch = question.tonic_pitch
-    
-    #if hasattr(question, 'random_pitch'):
+
+    # if hasattr(question, 'random_pitch'):
     #    random_pitch = tuple(question.random_pitch)
-    #else:
+    # else:
     #    random_pitch = tuple(question.random_pitches)
+    #
+    # TODO:
     if hasattr(question, 'random_pitches'):
-        raise Exception('NEAREST_TONIC FOR MULTIPLE PITCHES IS STILL TO BE' \
-                        'IMPLEMENTED')    
-    random_pitch = tuple(question.random_pitch)
-        
-    scale = question.scale
-    
+        raise Exception('NEAREST_TONIC FOR MULTIPLE PITCHES IS STILL TO BE'
+                        'IMPLEMENTED')
+    random_pitch = question.random_pitch
 
     duration = question.durations['resol']['duration']
     delay = question.durations['resol']['delay']
     pos_delay = question.durations['resol']['pos_delay']
-    
+
     # this function will receive: tonic, scale and random_pitch (which may be
     # chromatic, ie., not in `scale`)
 
-    # scale = DiatonicScale(tonic='C', mode='major', octave=4, n_octaves=2,
-    # descending=True) # this comes from Jupyter testing
-    
-    #tonic_pitch = scale[0]
-    #random_pitch = choice(scale)
-    
     # lets create an scale with same tonic, in the octave of the random_pitch
     scale_random_pitch = DiatonicScale(tonic=tonic_pitch.note,
                                        octave=random_pitch.octave,
                                        n_octaves=1)
-     
-    
+
     interval = Interval(tonic_pitch, random_pitch)
-    
+
     semitones = interval['distance']['semitones']
-    
+
     direction = -1 if (semitones <= MAX_SEMITONES_RESOLVE_BELOW) else 1
-    
+
     resolution = []
-    
+
     if random_pitch not in scale_random_pitch:  # random_pitch is chromatic
         resolution.append(random_pitch)
         #  next ones above or below are in the diatonic for sure, then:
@@ -125,30 +113,30 @@ def nearest_tonic(question):
             get_pitch_by_number(int(random_pitch)+direction)
     else:
         nearest_diatonic_pitch = random_pitch  # random_pitch is diatonic
-    
+
     nearest_tonic_index = 0 if semitones <= MAX_SEMITONES_RESOLVE_BELOW else -1
     nearest_tonic_pitch = scale_random_pitch[nearest_tonic_index]
-    
+
     tonic_index = scale_random_pitch.index(nearest_tonic_pitch)
-    
+
     nearest_diatonic_pitch_index = \
         scale_random_pitch.index(nearest_diatonic_pitch)
-    
+
     random_pitch_index = nearest_diatonic_pitch_index
-    
+
     ohslice = slice(min(tonic_index, random_pitch_index), max(tonic_index,
                     nearest_diatonic_pitch_index)+1)
-        
+
     resolution = scale_random_pitch[ohslice][::direction]
-    
+
     if question.is_harmonic:
         resolution_harmonic = []
-        
+
         for item in resolution:
-            resolution_harmonic.append(Chord(tonic, item))
-        
+            resolution_harmonic.append(Chord(tonic_pitch, item))
+
         resolution = resolution_harmonic
-    
+
     # resolution
     return Sequence(elements=resolution, duration=duration, delay=delay,
                     pos_delay=pos_delay)
@@ -166,7 +154,7 @@ def repeat_only(question):
             when it is `__call__`ed)
     """
     elements = tuple(question.question)
-    
+
     duration = question.durations['resol']['duration']
     delay = question.durations['resol']['delay']
     pos_delay = question.durations['resol']['pos_delay']

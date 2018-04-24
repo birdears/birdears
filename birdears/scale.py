@@ -1,24 +1,18 @@
-# from . import DIATONIC_MODES
 from . import DIATONIC_FORMS
-# from . import CHROMATIC_SHARP
-# from . import CHROMATIC_FLAT
 
-# from .note_and_pitch import Note
 from .note_and_pitch import Pitch
 from .note_and_pitch import Chord
-
-# from .note_and_pitch import get_pitch_class
 from .note_and_pitch import get_pitch_by_number
-
-from .exception import InvalidNote
 
 from itertools import cycle
 
 # https://docs.python.org/3/reference/datamodel.html#emulating-container-types
 
+
 class ScaleBase(list):
     def __init__(self):
         pass
+
 
 class DiatonicScale(ScaleBase):
     """Builds a musical diatonic scale.
@@ -44,32 +38,30 @@ class DiatonicScale(ScaleBase):
 
         super(DiatonicScale, self).__init__()
 
-        #global DIATONIC_MODES
-
         self.tonic = Pitch(note=tonic, octave=octave)
         self.mode = mode
         self.direction = "Ascending" if not descending else "Descending"
 
         diatonic_mode = DIATONIC_FORMS[mode]
-        
+
         form_length = len(diatonic_mode)
-        
+
         direction = +1 if not descending else -1
         repeat_tonic = 0 - dont_repeat_tonic  # 0 (repeat) or -1
         if descending:
             diatonic_mode = diatonic_mode[::-1]
-            
+
         diatonic_loop = cycle(diatonic_mode)
 
         scale = list()
-        
+
         self.append(self.tonic)
 
         pitch_num = int(self[0])
-        
+
         for i in range((form_length * n_octaves) + repeat_tonic):
             step = next(diatonic_loop)
-            
+
             pitch_num += step * direction
 
             pitch = get_pitch_by_number(pitch_num)
@@ -91,7 +83,7 @@ class DiatonicScale(ScaleBase):
 
         tonic = self.tonic
         mode = self.mode
-        
+
         diatonic = DiatonicScale(tonic=tonic.note, mode=mode,
                                  octave=tonic.octave, n_octaves=2,
                                  descending=False, dont_repeat_tonic=False)
@@ -108,7 +100,7 @@ class DiatonicScale(ScaleBase):
         return chord
 
     def __repr__(self):
-        
+
         repr = "<DiatonicScale {tonic} {mode} {direction} {first}-{to} " \
                "({octaves} octaves)>" \
                    .format(tonic=str(self[0].note),
@@ -117,9 +109,10 @@ class DiatonicScale(ScaleBase):
                            first=str(self[0]),
                            to=str(self[-1]), octaves=int(len(self)/8))
         return repr
-    
+
     def __str__(self):
         return str(list(self))
+
 
 class ChromaticScale(ScaleBase):
     """Builds a musical chromatic scale.
@@ -148,16 +141,14 @@ class ChromaticScale(ScaleBase):
         self.tonic = Pitch(tonic, octave)
 
         direction = +1 if not descending else -1
-        
+
         tonic_pitch_num = int(self.tonic)
         repeat_tonic = not dont_repeat_tonic  # 1 or 0
-        
-        scale = [get_pitch_by_number(tonic_pitch_num + (i*direction)) 
-                for i in range((12 * n_octaves) + repeat_tonic)]
-            
-        
-        self.extend(scale)
 
+        scale = [get_pitch_by_number(tonic_pitch_num + (i*direction))
+                 for i in range((12 * n_octaves) + repeat_tonic)]
+
+        self.extend(scale)
 
     def get_triad(self, mode, index=0, degree=None):
         """Returns an array with notes from a scale's triad.
@@ -172,7 +163,7 @@ class ChromaticScale(ScaleBase):
         """
 
         tonic = self.tonic
-        
+
         diatonic = DiatonicScale(tonic=tonic.note, mode=mode,
                                  octave=tonic.octave, n_octaves=2,
                                  descending=False, dont_repeat_tonic=False)

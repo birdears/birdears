@@ -1,15 +1,3 @@
-from random import choice
-
-from . import DIATONIC_MODES
-
-from . import CHROMATIC_TYPE
-from . import INTERVALS
-from . import MAX_SEMITONES_RESOLVE_BELOW
-from . import INTERVAL_INDEX
-
-from .scale import ChromaticScale
-
- 
 class Interval(dict):
     """Chooses a diatonic interval for the question.
 

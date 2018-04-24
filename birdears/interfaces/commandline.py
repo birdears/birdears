@@ -92,33 +92,36 @@ def print_question(question):
     Args:
         question (obj): A Question class with the question to be printed.
     """
-    
+
     direction = -1 if question.is_descending else +1
-    
+
     scale = question.scale
-    mode = question.mode
-    
+    # mode = question.mode
+
     tonic = scale[0]
     network = [abs(int(tonic) - int(note)) for note in scale]
     # keyboard_map = KEYBOARD_INDICES['chromatic']['ascending']['major']
     keyboard_map = tuple(question.keyboard_index)
 
     # should we show the octaves here? why not?
-    
-    notes = "".join([str(pitch).ljust(4) for pitch in scale][::direction])
-    #notes = "".join([str(pitch.note).ljust(4) for pitch in scale][::direction])
-    intervals = "".join([str(INTERVALS[step][1]).ljust(4) for step in network][::direction])
-    keys = "".join([str(keyboard_map[step]).ljust(4) for step in network][::direction])
 
-    text_kwargs = dict(
-        tonic=question.tonic_str,
-        mode=question.mode,
-        chroma=question.is_chromatic,
-        desc=question.is_descending,
-        scale=notes,
-        intervals=intervals,
-        keyboard=keys,
-    )
+    notes = "".join([str(pitch).ljust(4) for pitch in scale][::direction])
+    # notes = "".join([str(pitch.note).ljust(4) \
+    # for pitch in scale][::direction])
+    intervals = "".join([str(INTERVALS[step][1]).ljust(4)
+                         for step in network][::direction])
+    keys = "".join([str(keyboard_map[step]).ljust(4)
+                    for step in network][::direction])
+
+    text_kwargs = {
+        'tonic': question.tonic_str,
+        'mode': question.mode,
+        'chroma': question.is_chromatic,
+        'desc': question.is_descending,
+        'scale': notes,
+        'intervals': intervals,
+        'keyboard': keys,
+    }
 
     question_text = """\
 

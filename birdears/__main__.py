@@ -2,9 +2,6 @@
 
 from . import click
 
-# from . import _Getch
-
-# from . import INTERVALS
 from . import DIATONIC_MODES
 
 from .interfaces.commandline import CommandLine
@@ -18,7 +15,6 @@ from .resolution import RESOLUTION_METHODS
 
 CTX_SETTINGS = dict(
     help_option_names=['-h', '--help'],
-    # max_content_width=click.get_terminal_size()[0],
     max_content_width=80,
 )
 
@@ -58,6 +54,7 @@ def cli(debug):
 
         logger.setLevel(logging.DEBUG)
         logger.debug('debug is on.')
+
 
 #
 # melodic interval
@@ -118,6 +115,7 @@ def melodic(*args, **kwargs):
 
     kwargs.update({'exercise': 'melodic'})
     CommandLine(**kwargs)
+
 
 #
 # harmonic interval
@@ -182,6 +180,7 @@ def harmonic(*args, **kwargs):
 #
 # dictation
 #
+
 
 dictation_epilog = """
 In this exercise birdears will choose some random intervals and create a
@@ -317,6 +316,7 @@ def instrumental(*args, **kwargs):
     kwargs.update({'exercise': 'instrumental'})
     CommandLine(**kwargs)
 
+
 notename_epilog = """
 In this exercise birdears will play two notes, the tonic and the interval
 melodically, ie., one after the other and you should reply which is the correct
@@ -372,6 +372,8 @@ def notename(*args, **kwargs):
 
     kwargs.update({'exercise': 'notename'})
     CommandLine(**kwargs)
+
+
 #
 # birdear's "load"
 #

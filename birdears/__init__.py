@@ -2,7 +2,7 @@
 birdears provides facilities to building musical ear training exercises.
 """
 
-DEBUG = False
+# DEBUG = False
 
 CHROMATIC_SHARP = ('C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#',
                    'B')
@@ -112,7 +112,7 @@ DIATONIC_MODES = {
 #    'mixolydian': (0, 2, 4, 5, 7, 9, 10, 12),
 #    'minor': (0, 2, 3, 5, 7, 8, 10, 12),
 #    'locrian': (0, 1, 3, 5, 6, 8, 10, 12),
-#}
+# }
 
 DIATONIC_MASK = {
     'major': (1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1),
