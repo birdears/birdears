@@ -106,7 +106,7 @@ class MelodicDictationQuestion(QuestionBase):
         self.pre_question = \
             self.make_pre_question(method=prequestion_method)
 
-        self.question = self.make_question(self.random_pitches)
+        self.question = self.make_question()
         self.resolution = self.make_resolution(method=resolution_method)
 
     def make_pre_question(self, method):

@@ -132,11 +132,11 @@ class QuestionBase:
 
         self.n_octaves = n_octaves
 
-        direction = 'ascending' if not self.is_descending else 'descending'
+        direction = 'ascending' if (not self.is_descending) else 'descending'
 
         # FIXME: maybe this should go to __main__
         self.keyboard_index = \
-            KEYBOARD_INDICES['chromatic'][direction][self.mode]
+            tuple(KEYBOARD_INDICES['chromatic'][direction][self.mode])
 
         if isinstance(tonic, list) or isinstance(tonic, tuple):
             tonic = choice(tonic)

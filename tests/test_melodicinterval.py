@@ -1,20 +1,24 @@
-import itertools
+from random import choice
 
-from birdears import KEYS
+from birdears import CHROMATIC_SHARP
+from birdears import CHROMATIC_FLAT
+
 from birdears.questions.melodicinterval import MelodicIntervalQuestion
 
 # def __init__(self, mode='major', tonic=None, octave=None, descending=None,
 #                chromatic=None, n_octaves=None, *args, **kwargs):
 
 def test_melodicintervalclass():
-    global KEYS
 
-    mode = ['major', 'minor']
-    tonic = KEYS
-    octave = [3, 4, 5]
-    descending = [False, True]
-    chromatic = [False, True]
-    n_octaves = [1, 2]
+    keys = list(CHROMATIC_SHARP)
+    keys.extend(CHROMATIC_FLAT)
+
+    mode = choice(['major', 'minor'])
+    tonic = choice(keys)
+    octave = choice([3, 4, 5])
+    descending = choice([False, True])
+    chromatic = choice([False, True])
+    n_octaves = choice([1, 2])
 
     for i in range(20):
         a = MelodicIntervalQuestion(mode=mode, tonic=tonic, octave=octave,

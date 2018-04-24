@@ -19,7 +19,8 @@ def test_melodicintervalclass():
         a = MelodicDictationQuestion(mode=mode, max_intervals=max_intervals,
                                      n_notes=n_notes, tonic=tonic,
                                      octave=octave, descending=descending,
-                                     chromatic=chromatic, n_octaves=n_octaves)
+                                     chromatic=chromatic, n_octaves=n_octaves,
+                                     prequestion_method='none')
 
 # why not guess some interval
         a.check_question(['z', 'x', 'x', 'Z'])

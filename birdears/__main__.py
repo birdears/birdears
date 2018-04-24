@@ -306,7 +306,7 @@ Valid values are as follows:
 @click.option('-p', '--prequestion_method', type=str,
               default='progression_i_iv_v_i', metavar='<prequestion_method>',
               help='The name of a pre-question method.')
-@click.option('-r', '--resolution_method', type=str, default='nearest_tonic',
+@click.option('-r', '--resolution_method', type=str, default='repeat_only',
               metavar='<resolution_method>',
               help='The name of a resolution method.')
 def instrumental(*args, **kwargs):
