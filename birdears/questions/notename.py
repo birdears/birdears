@@ -3,13 +3,17 @@ from .. import INTERVALS
 from ..logger import log_event
 
 from ..questionbase import QuestionBase
+from ..questionbase import get_valid_pitches
 
-from ..interval import DiatonicInterval
-from ..interval import ChromaticInterval
+from ..scale import DiatonicScale
+from ..scale import ChromaticScale
+
+from ..interval import Interval
 
 from .. import KEYBOARD_INDICES
 from .. import CHROMATIC_SHARP
 from .. import CHROMATIC_FLAT
+from .. import CHROMATIC_TYPE
 
 from ..sequence import Sequence
 from ..resolution import Resolution
@@ -22,8 +26,8 @@ class NoteNameQuestion(QuestionBase):
     """
 
     @log_event
-    def __init__(self, mode='major', tonic=None, octave=None, descending=None,
-                 chromatic=None, n_octaves=None, valid_intervals=None,
+    def __init__(self, mode='major', tonic='C', octave=4, descending=False,
+                 chromatic=False, n_octaves=1, valid_intervals=CHROMATIC_TYPE,
                  user_durations=None, prequestion_method='tonic_only',
                  resolution_method='nearest_tonic', *args, **kwargs):
         """Inits the class.
@@ -85,34 +89,34 @@ class NoteNameQuestion(QuestionBase):
         self.is_harmonic = False
 
         if not chromatic:
-            self.interval = \
-                DiatonicInterval(mode=mode, tonic=self.tonic,
-                                 octave=self.octave,
-                                 n_octaves=self.n_octaves,
-                                 descending=descending,
-                                 valid_intervals=self.valid_intervals)
+            self.scale = DiatonicScale(tonic=self.tonic_str, mode=mode,
+                                       octave=self.octave,
+                                       descending=descending,
+                                       n_octaves=n_octaves)
         else:
-            self.interval = \
-                ChromaticInterval(mode=mode, tonic=self.tonic,
-                                  octave=self.octave,
-                                  n_octaves=self.n_octaves,
-                                  descending=descending,
-                                  valid_intervals=self.valid_intervals)
+            self.scale = ChromaticScale(tonic=self.tonic_str,
+                                        octave=self.octave,
+                                        descending=descending,
+                                        n_octaves=n_octaves)
+
+        self.valid_pitches = get_valid_pitches(self.scale, valid_intervals)
+        self.random_pitch = choice(self.valid_pitches)
+
+        self.interval = Interval(self.tonic_pitch, self.random_pitch)
 
         self.pre_question = self.make_pre_question(method=prequestion_method)
         self.question = self.make_question()
         self.resolution = self.make_resolution(method=resolution_method)
 
     def make_pre_question(self, method):
+
         prequestion = PreQuestion(method=method, question=self)
 
         return prequestion()
 
     def make_question(self):
 
-        interval = self.interval.note_and_octave
-
-        question = Sequence([interval], **self.durations['quest'])
+        question = Sequence([self.random_pitch], **self.durations['quest'])
 
         return question
 
@@ -145,16 +149,24 @@ class NoteNameQuestion(QuestionBase):
 
         from ..scale import ChromaticScale
         c_chromatic = ChromaticScale(tonic='C', n_octaves=2)
+        # question_tone_chromatic = ChromaticScale(tonic=self.tonic_str,
+        #                                         octave=self.octave,
+        #                                         n_octaves = self.n_octaves)
 
         keyboard_index = \
             KEYBOARD_INDICES['chromatic']['ascending']['major']
 
-        semitones = keyboard_index.index(user_input_char[0])
+        user_semitones = keyboard_index.index(user_input_char[0])
 
-        #input_note = self.scales['chromatic'].scale[semitones]
-        user_note = c_chromatic.scale[semitones]
+        # input_note = self.scales['chromatic'].scale[semitones]
+        # user_note = c_chromatic.scale[semitones]
+        user_pitch = c_chromatic[user_semitones]
+        user_note = user_pitch.note
 
-        correct_note = self.scales['chromatic'].scale[self.interval.semitones]
+        # correct_note = self.scales['chromatic'].scale[self.interval.semitones]
+        # correct_note = question_tone_chromatic[self.interval.semitones]
+        correct_semitones = abs(int(self.tonic_pitch) - int(self.random_pitch))
+        correct_note = self.random_pitch.note
 
         if user_note in CHROMATIC_SHARP:
             user_semitones = CHROMATIC_SHARP.index(user_note)
@@ -177,7 +189,7 @@ class NoteNameQuestion(QuestionBase):
        “{}”
 user {} “{}”
 {} semitones
-""".format(correct_note, signal, user_note, self.interval.semitones)
+""".format(correct_note, signal, user_note, self.interval['semitones'])
 
 #        extra_response_str = """\
 #        “{}” ({}─{})

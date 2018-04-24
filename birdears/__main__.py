@@ -344,9 +344,9 @@ Valid values are as follows:
 @cli.command(options_metavar='[options]', epilog=notename_epilog)
 @click.option('-m', '--mode', type=click.Choice(VALID_MODES),
               default='major', metavar='<mode>', help="Mode of the question.")
-@click.option('-t', '--tonic', type=str, default=None, metavar='<tonic>',
+@click.option('-t', '--tonic', type=str, default='C', metavar='<tonic>',
               help='Tonic of the question.')
-@click.option('-o', '--octave', type=click.IntRange(2, 5), default=None,
+@click.option('-o', '--octave', type=click.IntRange(2, 5), default=4,
               metavar='<octave>',
               help="Octave of the question.")
 @click.option('-d', '--descending', is_flag=True,
@@ -355,7 +355,7 @@ Valid values are as follows:
               help='If chosen, question has chromatic notes.')
 @click.option('-n', '--n_octaves', type=click.IntRange(1, 2), default=1,
               metavar='<n max>', help='Maximum number of octaves.')
-@click.option('-v', '--valid_intervals', type=str, default=None,
+@click.option('-v', '--valid_intervals', type=str, default=CHROMATIC_TYPE,
               metavar='<1,2,..>', help='A comma-separated list without spaces\
               of valid scale degrees to be chosen for the question.')
 @click.option('-q', '--user_durations', type=str, default=None,
