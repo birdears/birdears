@@ -111,6 +111,7 @@ class Sequence(list):
             chord = scale.get_triad(mode=mode, degree=degree)
             self.append(chord)
 
+    @log_event
     def _play_note(self, pitch, last_element=False):
         """Plays a note.
 
@@ -134,11 +135,13 @@ class Sequence(list):
             " fade l 0 {duration} {duration} reverb"
         ).format(note=str(pitch), duration=duration)
 
+
         subprocess.Popen(command.split())
 
         if not last_element:
             self._wait(delay)
 
+    @log_event
     def _play_chord(self, chord, last_element=False):
         """Plays a chord.
 

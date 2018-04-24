@@ -37,6 +37,10 @@ log_format = """\
 %(levelname)s:%(filename)s,%(lineno)s:%(funcName)s() %(message)s\
 """
 
+log_format = """\
+%(levelname)-8s:%(filename)s,%(lineno)s:%(funcName)s() %(message)s\
+"""
+
 date_format = '%Y/%m/%d,%H:%M:%S'
 
 logging_config = dict(
