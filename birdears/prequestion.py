@@ -69,7 +69,7 @@ def none(question, *args, **kwargs):
             pre-question sequence. (this is provided by the `Resolution` class
             when it is `__call__`ed)
     """
-    return Sequence(duration=0, delay=0, pos_delay=0)
+    return Sequence(elements=[], duration=0, delay=0, pos_delay=0)
 
 
 @register_prequestion_method
@@ -78,52 +78,27 @@ def tonic_only(question, *args, **kwargs):
     question.
 
     Args:
-        question (obj): Question object from which to generate the
+        question (object): Question object from which to generate the
             pre-question sequence. (this is provided by the `Resolution` class
             when it is `__call__`ed)
     """
 
-    # intervals = question.interval if not hasattr(question, 'intervals') \
-    #        else question.intervals
-
-    # try:
-    #    intervals = question.interval
-    # except AttributeError:
-    #    intervals = question.intervals
-
-    intervals = getattr(question, 'interval', 'intervals')
-
-    tonic = question.tonic
-    tonic_octave = question.octave
+    tonic_pitch = question.tonic_pitch
 
     duration = question.durations['preq']['duration']
     delay = question.durations['preq']['delay']
     pos_delay = question.durations['preq']['pos_delay']
 
-    sequence = Sequence(duration=duration, delay=delay,
-                        pos_delay=pos_delay)
-
-    sequence_list = []
-
-    if type(intervals) is not list:
-        intervals = [intervals]
-
-    tonic_and_octave = "{}{}".format(tonic, tonic_octave)
-
-    for interval in intervals:
-        sequence.append(tonic_and_octave)
-        # if not harmonic:
-        #     sequence.extend([tonic_and_octave])
-        # else:
-        #     sequence.append([tonic_and_octave])
+    sequence = Sequence(elements=[tonic_pitch], duration=duration,
+                        delay=delay, pos_delay=pos_delay)
 
     return sequence
 
 
 @register_prequestion_method
 def progression_i_iv_v_i(question, *args, **kwargs):
-    """Pre-question method that play's a chord progression with triad chords built
-    on the grades I, IV, V the I of the question key.
+    """Pre-question method that play's a chord progression with triad chords
+    built on the grades I, IV, V the I of the question key.
 
     Args:
         question (obj): Question object from which to generate the
@@ -131,8 +106,10 @@ def progression_i_iv_v_i(question, *args, **kwargs):
             when it is `__call__`ed)
     """
 
-    tonic = question.tonic
+    # tonic_pitch = question.tonic_pitch
+    tonic_str = question.tonic_str
     mode = question.mode
+
     duration = question.durations['preq']['duration']
     delay = question.durations['preq']['delay']
     pos_delay = question.durations['preq']['pos_delay']
@@ -142,6 +119,7 @@ def progression_i_iv_v_i(question, *args, **kwargs):
     sequence = Sequence(duration=duration, delay=delay,
                         pos_delay=pos_delay)
 
-    sequence.make_chord_progression(tonic=tonic, mode=mode, degrees=degrees)
+    sequence.make_chord_progression(tonic=tonic_str, mode=mode,
+                                    degrees=degrees)
 
     return sequence

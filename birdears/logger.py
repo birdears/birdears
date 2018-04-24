@@ -106,6 +106,4 @@ def log_event(f, *args, **kwargs):
 
         return f(*args, **kwargs)
 
-    # RESOLUTION_METHODS.update({f.__name__: f})
-
     return decorator

@@ -2,9 +2,7 @@
 birdears provides facilities to building musical ear training exercises.
 """
 
-from .logger import logger
-
-DEBUG = False
+# DEBUG = False
 
 CHROMATIC_SHARP = ('C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#',
                    'B')
@@ -76,20 +74,74 @@ INTERVALS = (
 A tuple of tuples representing data for the intervals with format
 (semitones, short name, full name)."""
 
-CHROMATIC_TYPE = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
-"""tuple: A map of the chromatic chromatic scale.
+CHROMATIC_TYPE = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
+# CHROMATIC_TYPE = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
+"""tuple: A map of the chromatic scale.
 
 A map of the the semitones which compound the chromatic scale."""
 
-DIATONIC_MODES = {
-    'major': (0, 2, 4, 5, 7, 9, 11, 12),
-    'dorian': (0, 2, 3, 5, 7, 9, 10, 12),
-    'phrygian': (0, 1, 3, 5, 7, 8, 10, 12),
-    'lydian': (0, 2, 4, 6, 7, 9, 11, 12),
-    'mixolydian': (0, 2, 4, 5, 7, 9, 10, 12),
-    'minor': (0, 2, 3, 5, 7, 8, 10, 12),
-    'locrian': (0, 1, 3, 5, 6, 8, 10, 12),
+TONIC = 0
+TONE = 2
+SEMITONE = 1
+
+DIATONIC_FORMS = {
+    'major': (TONE, TONE, SEMITONE, TONE, TONE, TONE, SEMITONE),
+    'dorian': (TONE, SEMITONE, TONE, TONE, TONE, SEMITONE, TONE),
+    'phrygian': (SEMITONE, TONE, TONE, TONE, SEMITONE, TONE, TONE),
+    'lydian': (TONE, TONE, TONE, SEMITONE, TONE, TONE, SEMITONE),
+    'mixolydian': (TONE, TONE, SEMITONE, TONE, TONE, SEMITONE, TONE),
+    'minor': (TONE, SEMITONE, TONE, TONE, SEMITONE, TONE, TONE),
+    'locrian': (SEMITONE, TONE, TONE, SEMITONE, TONE, TONE, TONE),
 }
+
+DIATONIC_MODES = {
+    'major': (0, 2, 4, 5, 7, 9, 11),
+    'dorian': (0, 2, 3, 5, 7, 9, 10),
+    'phrygian': (0, 1, 3, 5, 7, 8, 10),
+    'lydian': (0, 2, 4, 6, 7, 9, 11),
+    'mixolydian': (0, 2, 4, 5, 7, 9, 10),
+    'minor': (0, 2, 3, 5, 7, 8, 10),
+    'locrian': (0, 1, 3, 5, 6, 8, 10),
+}
+
+# DIATONIC_MODES = {
+#    'major': (0, 2, 4, 5, 7, 9, 11, 12),
+#    'dorian': (0, 2, 3, 5, 7, 9, 10, 12),
+#    'phrygian': (0, 1, 3, 5, 7, 8, 10, 12),
+#    'lydian': (0, 2, 4, 6, 7, 9, 11, 12),
+#    'mixolydian': (0, 2, 4, 5, 7, 9, 10, 12),
+#    'minor': (0, 2, 3, 5, 7, 8, 10, 12),
+#    'locrian': (0, 1, 3, 5, 6, 8, 10, 12),
+# }
+
+DIATONIC_MASK = {
+    'major': (1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1),
+    'dorian': (1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0),
+    'phrygian': (1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0),
+    'lydian': (1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1),
+    'mixolydian': (1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0),
+    'minor': (1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0),
+    'locrian': (1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0),
+}
+
+# TODO: maybe DIATONIC_MODES could use binary notation or TONE-SEMITONE
+# notation, eg:
+#
+# binary:
+#
+#   'major': (1, 0, 1, 0, 1,1,0,1,0,1,0,1,1)
+#   or:
+#   'major': '1010110101011'
+#
+# tone-semitone:
+#
+#   'major': (2,2,1,2,2,2,1)
+#   or:
+#   TONE = 2
+#   SEMITONE = 1
+#   'major': (TONE, TONE, SEMITONE, TONE, TONE, TONE, SEMITONE)
+# this way we can iterare and just sum up the Pitches' pitch_numbers
+
 """dict of tuples: A map of the diatonic scale.
 
 A mapping of the semitones which compound each of the greek modes.

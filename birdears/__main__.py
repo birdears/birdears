@@ -2,22 +2,19 @@
 
 from . import click
 
-from . import _Getch
-
-from . import INTERVALS
 from . import DIATONIC_MODES
 
 from .interfaces.commandline import CommandLine
 
 from . import CHROMATIC_SHARP
 from . import CHROMATIC_FLAT
+from . import CHROMATIC_TYPE
 
 from .prequestion import PREQUESTION_METHODS
 from .resolution import RESOLUTION_METHODS
 
 CTX_SETTINGS = dict(
     help_option_names=['-h', '--help'],
-    # max_content_width=click.get_terminal_size()[0],
     max_content_width=80,
 )
 
@@ -58,6 +55,7 @@ def cli(debug):
         logger.setLevel(logging.DEBUG)
         logger.debug('debug is on.')
 
+
 #
 # melodic interval
 #
@@ -88,7 +86,7 @@ Valid values are as follows:
 @cli.command(options_metavar='[options]', epilog=melodic_epilog)
 @click.option('-m', '--mode', type=click.Choice(VALID_MODES),
               default='major', metavar='<mode>', help="Mode of the question.")
-@click.option('-t', '--tonic', type=str, default=None, metavar='<tonic>',
+@click.option('-t', '--tonic', type=str, default='C', metavar='<tonic>',
               help='Tonic of the question.')
 @click.option('-o', '--octave', type=click.IntRange(2, 5), default=None,
               metavar='<octave>',
@@ -99,12 +97,12 @@ Valid values are as follows:
               help='If chosen, question has chromatic notes.')
 @click.option('-n', '--n_octaves', type=click.IntRange(1, 2), default=1,
               metavar='<n max>', help='Maximum number of octaves.')
-@click.option('-v', '--valid_intervals', type=str, default=None,
+@click.option('-v', '--valid_intervals', type=str, default=CHROMATIC_TYPE,
               metavar='<1,2,..>', help='A comma-separated list without spaces\
               of valid scale degrees to be chosen for the question.')
 @click.option('-q', '--user_durations', type=str, default=None,
               metavar='<1,0.5,n..>', help='A comma-separated list without\
-              spaces with PRECISLY 9 floating values. Or \'n\' for default\
+              spaces with PRECISELY 9 floating values. Or \'n\' for default\
               duration.')
 @click.option('-p', '--prequestion_method', type=str, default='tonic_only',
               metavar='<prequestion_method>',
@@ -118,6 +116,7 @@ def melodic(*args, **kwargs):
 
     kwargs.update({'exercise': 'melodic'})
     CommandLine(**kwargs)
+
 
 #
 # harmonic interval
@@ -149,7 +148,7 @@ Valid values are as follows:
 @cli.command(options_metavar='[options]', epilog=harmonic_epilog)
 @click.option('-m', '--mode', metavar='<mode>', type=click.Choice(VALID_MODES),
               default='major', help="Mode of the question.")
-@click.option('-t', '--tonic', type=str, default=None, metavar='<note>',
+@click.option('-t', '--tonic', type=str, default='C', metavar='<note>',
               help='Tonic of the question.')
 @click.option('-o', '--octave', type=click.IntRange(2, 5), default=None,
               metavar='<octave>',
@@ -158,14 +157,14 @@ Valid values are as follows:
               help='Whether the question interval is descending.')
 @click.option('-c', '--chromatic', is_flag=True,
               help='If chosen, question has chromatic notes.')
-@click.option('-n', '--n_octaves', type=click.IntRange(1, 2), default=None,
+@click.option('-n', '--n_octaves', type=click.IntRange(1, 2), default=1,
               metavar='<n max>', help='Maximum number of octaves.')
-@click.option('-v', '--valid_intervals', type=str, default=None,
+@click.option('-v', '--valid_intervals', type=str, default=CHROMATIC_TYPE,
               metavar='<1,2,..>', help='A comma-separated list without spaces\
               of valid scale degrees to be chosen for the question.')
 @click.option('-q', '--user_durations', type=str, default=None,
               metavar='<1,0.5,n..>', help='A comma-separated list without\
-              spaces with PRECISLY 9 floating values. Or \'n\' for default\
+              spaces with PRECISELY 9 floating values. Or \'n\' for default\
               duration.')
 @click.option('-p', '--prequestion_method', type=str, default='none',
               metavar='<prequestion_method>',
@@ -217,23 +216,23 @@ Valid values are as follows:
 @click.option('-x', '--n_notes', type=click.IntRange(3, 10), default=4,
               metavar='<n notes>',
               help='Number of notes for the dictation.')
-@click.option('-t', '--tonic', type=str, default=None, metavar='<note>',
+@click.option('-t', '--tonic', type=str, default='C', metavar='<note>',
               help='Tonic of the question.')
-@click.option('-o', '--octave', type=click.IntRange(2, 5), default=None,
+@click.option('-o', '--octave', type=click.IntRange(2, 5), default=4,
               metavar='<octave>',
               help="Octave of the question.")
 @click.option('-d', '--descending', is_flag=True,
               help='Wether the question interval is descending.')
 @click.option('-c', '--chromatic', is_flag=True,
               help='If chosen, question has chromatic notes.')
-@click.option('-n', '--n_octaves', type=click.IntRange(1, 2), default=None,
+@click.option('-n', '--n_octaves', type=click.IntRange(1, 2), default=1,
               metavar='<n max>', help='Maximum number of octaves.')
-@click.option('-v', '--valid_intervals', type=str, default=None,
+@click.option('-v', '--valid_intervals', type=str, default=CHROMATIC_TYPE,
               metavar='<1,2,..>', help='A comma-separated list without spaces\
               of valid scale degrees to be chosen for the question.')
 @click.option('-q', '--user_durations', type=str, default=None,
               metavar='<1,0.5,n..>', help='A comma-separated list without\
-              spaces with PRECISLY 9 floating values. Or \'n\' for default\
+              spaces with PRECISELY 9 floating values. Or \'n\' for default\
               duration.')
 @click.option('-p', '--prequestion_method', type=str,
               default='progression_i_iv_v_i', metavar='<prequestion_method>',
@@ -289,27 +288,27 @@ Valid values are as follows:
 @click.option('-x', '--n_notes', type=click.IntRange(3, 10), default=4,
               metavar='<n notes>',
               help='Number of notes for the dictation.')
-@click.option('-t', '--tonic', type=str, default=None, metavar='<note>',
+@click.option('-t', '--tonic', type=str, default='C', metavar='<note>',
               help='Tonic of the question.')
-@click.option('-o', '--octave', type=click.IntRange(2, 5), default=None,
+@click.option('-o', '--octave', type=click.IntRange(2, 5), default=4,
               metavar='<octave>', help="Octave of the question.")
 @click.option('-d', '--descending', is_flag=True,
               help='Wether the question interval is descending.')
 @click.option('-c', '--chromatic', is_flag=True,
               help='If chosen, question has chromatic notes.')
-@click.option('-n', '--n_octaves', type=click.IntRange(1, 2), default=None,
+@click.option('-n', '--n_octaves', type=click.IntRange(1, 2), default=1,
               metavar='<n max>', help='Maximum number of octaves.')
-@click.option('-v', '--valid_intervals', type=str, default=None,
+@click.option('-v', '--valid_intervals', type=str, default=CHROMATIC_TYPE,
               metavar='<1,2,..>', help='A comma-separated list without spaces\
               of valid scale degrees to be chosen for the question.')
 @click.option('-q', '--user_durations', type=str, default=None,
               metavar='<1,0.5,n..>', help='A comma-separated list without\
-              spaces with PRECISLY 9 floating values. Or \'n\' for default\
+              spaces with PRECISELY 9 floating values. Or \'n\' for default\
               duration.')
 @click.option('-p', '--prequestion_method', type=str,
               default='progression_i_iv_v_i', metavar='<prequestion_method>',
               help='The name of a pre-question method.')
-@click.option('-r', '--resolution_method', type=str, default='nearest_tonic',
+@click.option('-r', '--resolution_method', type=str, default='repeat_only',
               metavar='<resolution_method>',
               help='The name of a resolution method.')
 def instrumental(*args, **kwargs):
@@ -318,6 +317,64 @@ def instrumental(*args, **kwargs):
 
     kwargs.update({'exercise': 'instrumental'})
     CommandLine(**kwargs)
+
+
+notename_epilog = """
+In this exercise birdears will play two notes, the tonic and the interval
+melodically, ie., one after the other and you should reply which is the correct
+name of the second note.
+
+Valid values are as follows:
+
+-m <mode> is one of: {valid_modes}
+
+-t <tonic> is one of: {valid_tonics}
+
+-p <prequestion_method> is one of: {valid_prequestion_methods}
+
+-r <resolution_method> is one of: {valid_resolution_methods}
+""".format(
+    valid_modes=valid_modes,
+    valid_tonics=valid_tonics,
+    valid_resolution_methods=valid_resolution_methods,
+    valid_prequestion_methods=valid_prequestion_methods,
+)
+
+
+@cli.command(options_metavar='[options]', epilog=notename_epilog)
+@click.option('-m', '--mode', type=click.Choice(VALID_MODES),
+              default='major', metavar='<mode>', help="Mode of the question.")
+@click.option('-t', '--tonic', type=str, default=None, metavar='<tonic>',
+              help='Tonic of the question.')
+@click.option('-o', '--octave', type=click.IntRange(2, 5), default=None,
+              metavar='<octave>',
+              help="Octave of the question.")
+@click.option('-d', '--descending', is_flag=True,
+              help='Whether the question interval is descending.')
+@click.option('-c', '--chromatic', is_flag=True,
+              help='If chosen, question has chromatic notes.')
+@click.option('-n', '--n_octaves', type=click.IntRange(1, 2), default=1,
+              metavar='<n max>', help='Maximum number of octaves.')
+@click.option('-v', '--valid_intervals', type=str, default=None,
+              metavar='<1,2,..>', help='A comma-separated list without spaces\
+              of valid scale degrees to be chosen for the question.')
+@click.option('-q', '--user_durations', type=str, default=None,
+              metavar='<1,0.5,n..>', help='A comma-separated list without\
+              spaces with PRECISLY 9 floating values. Or \'n\' for default\
+              duration.')
+@click.option('-p', '--prequestion_method', type=str, default='tonic_only',
+              metavar='<prequestion_method>',
+              help='The name of a pre-question method.')
+@click.option('-r', '--resolution_method', type=str, default='nearest_tonic',
+              metavar='<resolution_method>',
+              help='The name of a resolution method.')
+def notename(*args, **kwargs):
+    """Note name by intervaç recognition
+    """
+
+    kwargs.update({'exercise': 'notename'})
+    CommandLine(**kwargs)
+
 
 #
 # birdear's "load"

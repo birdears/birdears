@@ -6,10 +6,15 @@ import time
 
 from .scale import ChromaticScale
 
+from .note_and_pitch import Pitch
+from .note_and_pitch import Chord
+
+from .exception import InvalidSequenceElement
+
 SEQUENCE_THREAD = None
 
 
-class Sequence:
+class Sequence(list):
     """Register a Sequence of notes and/or chords.
 
     Attributes:
@@ -24,7 +29,7 @@ class Sequence:
 
         Args:
             elements (array_type): List of elements in this sequence.
-                (notes or chords)
+                (Pitch'es and/or Chord's)
             duration (float): Default playing time for each element in the
                 sequence.
             delay (float): Default waiting time to play the next element
@@ -33,36 +38,19 @@ class Sequence:
                 in the sequence.
         """
 
+        if not all(isinstance(element, (Pitch, Chord))
+                   for element in elements):
+            raise InvalidSequenceElement
+
+        super(Sequence, self).__init__(elements)
+
         self.duration = duration
         self.delay = delay
         self.pos_delay = pos_delay
 
-        self.elements = list(elements)
-
-        self.index = 0
-        self.last_idx = len(self.elements) - 1
-
     @log_event
-    def append(self, elements):
-        """Appends `elements` to Sequence.elements
-
-        Args:
-            elements (array_type): Elements to be appended to the class.
-        """
-        self.elements.append(elements)
-
-    def extend(self, elements):
-        """Extends Sequence.elements with `elements`.
-
-        Args:
-            elements (array_type): elements extend the class with.
-        """
-        self.elements.extend(elements)
-
-    @log_event
-    def play(self, callback=None, end_callback=None):
+    def play(self):
         global SEQUENCE_THREAD
-        # callback = print
 
         if hasattr(SEQUENCE_THREAD, 'is_alive') and SEQUENCE_THREAD.is_alive():
             try:
@@ -71,77 +59,40 @@ class Sequence:
                 print('Ctrl+C')
                 exit(0)
 
-        SEQUENCE_THREAD = Thread(target=self.async_play,
-                                 kwargs={
-                                    'callback': callback,
-                                    'end_callback': end_callback
-                                 })
-
+        # TODO: later we should passa callback and end_callback here so the
+        # thread can talk to user interfaces, cli/tui/gui etc
+        SEQUENCE_THREAD = Thread(target=self.async_play)
         SEQUENCE_THREAD.start()
 
+        # FIXME: is this really needed? it is a global
         return SEQUENCE_THREAD
 
     @log_event
-    def async_play(self, callback, end_callback):
+    def async_play(self):
         """Plays the Sequence elements of notes and/or chords and wait for
         `Sequence.pos_delay` seconds.
         """
 
-        last_idx = len(self.elements) - 1
+        for element in self:
 
-        for cur_idx, element in enumerate(self.elements):
+            # is the current element to be played the last of the sequence?
+            # because if it is the last, we will supress it's  playing delay
+            # and will use the Sequence.pos_delay
+            is_last = element is self[-1]
 
-            is_last = False if cur_idx != last_idx else True
-
-            # lets leave the last element's delay for pos_delay:
-            delay = self.delay if not is_last else 0
-
-            if type(element) == tuple:
-                el, duration, delay = element
+            if type(element) == Pitch:
+                self._play_note(element, last_element=is_last)
+            elif type(element) == Chord:
+                self._play_chord(element, last_element=is_last)
             else:
-                el = element
+                raise InvalidSequenceElement
 
-            current_data = dict(
-                index=cur_idx,
-                element=el,
-                delay=delay,
-                is_last=is_last,
-            )
-
-            if callback:
-                callback(current_data)
-
-            if type(el) == str:
-                self._play_note(el, delay=delay)
-            elif type(el) == list:
-                self._play_chord(el, delay=delay)
+            # TODO we should later get the element information and pass via a
+            # dict to Sequence._async_play()'s callback so it can inform the
+            # user interfaces on the status of the element current being played
 
         if self.pos_delay:
             self._wait(self.pos_delay)
-
-        if end_callback:
-            end_callback()
-
-    def play_element(self, index):
-        """Plays element `sequence.elements[index].`
-        """
-
-        element = self.elements[index]
-
-        delay = self.delay
-
-        if type(element) == tuple:
-            el, duration, delay = element
-        else:
-            el = element
-
-        if type(el) == str:
-            self._play_note(el, delay=delay)
-        elif type(el) == list:
-            self._play_chord(el, delay=delay)
-
-        #  if self.pos_delay:
-        #     self._wait(self.pos_delay)
 
     # FIXME: implement octave here:
     def make_chord_progression(self, tonic, mode, degrees):
@@ -157,136 +108,63 @@ class Sequence:
         scale = ChromaticScale(tonic=tonic)
 
         for degree in degrees:
-            triad = scale.get_triad(mode=mode, degree=degree)
-            self.elements.append(triad)
+            chord = scale.get_triad(mode=mode, degree=degree)
+            self.append(chord)
 
-    def _async_play_note(self, note, duration=None, delay=None):
+    def _play_note(self, pitch, last_element=False):
         """Plays a note.
 
         Args:
-            note (str): The note and octave to be played. Eg.: 'C4'
+            note (Pitch): The note and octave to be played. Eg.: 'C4'
             duration (float): Duration of the note in seconds.
             delay (float): Delay after the note in seconds.
         """
 
         # requires sox to be installed
 
-        duration = self.duration if duration is None else duration
-        delay = self.delay if delay is None else delay
+        duration = pitch.duration or self.duration
+        delay = pitch.delay or self.delay
 
-        command = (
-            "play -V1 -qn synth {duration} pluck {note}"
-            " fade l 0 {duration} 2 reverb"
-        ).format(note=note, duration=duration)
+        # from sox manual: fade [type] fade-in-length [stop-position(=)
+        # [fade-out-length]]
 
-        subprocess.Popen(command.split())
-
-        if delay:
-            self._wait(delay)
-
-    def _async_play_chord(self, chord, duration=None, delay=None):
-        """Plays a chord.
-
-        Args:
-            chord (array_type): An array of pitches (notes and octaves)
-                to be played, representing a chord. Eg.: ['C4', 'Eb4', 'G5']
-            duration (float): Duration of the chord in seconds.
-            delay (float): Delay after the chord in seconds.
-        """
-
-        duration = self.duration if duration is None else duration
-        delay = self.delay if delay is None else delay
-
-        chord_plucks = str()
-        for note in chord:
-            chord_plucks += " pluck {} ".format(note)
-
-        command = (
-            "play -V1 -qn synth {duration} {chord}"
-            " fade l 0 {duration} 2 reverb"
-        ).format(note=note, duration=duration, chord=chord_plucks)
-
-        subprocess.Popen(command.split())
-
-        if delay:
-            self._wait(delay)
-
-    def _async_wait(self, seconds):
-        """Waits, ie., stops execution for some time.
-
-        Args:
-            seconds (float): Seconds to wait.
-        """
-
-        time.sleep(seconds)
-
-    def _play_note(self, note, duration=None, delay=None):
-        """Plays a note.
-
-        Args:
-            note (str): The note and octave to be played. Eg.: 'C4'
-            duration (float): Duration of the note in seconds.
-            delay (float): Delay after the note in seconds.
-        """
-
-        # requires sox to be installed
-
-        duration = self.duration if duration is None else duration
-        delay = self.delay if delay is None else delay
-
-        double_duration = str(int(duration)*2)
-
-        # from sox manual: fade [type] fade-in-length \
-        #        [stop-position(=) [fade-out-length]]
-        # TODO: this is experimental
+        # FIXME: this is experimental, revert to the old code if it is the case
         command = (
             "play -V1 -qn synth {duration} pluck {note}"
             " fade l 0 {duration} {duration} reverb"
-        ).format(note=note, duration=duration)
-        # command = (
-        #    "play -V1 -qn synth {duration} pluck {note}"
-        #    " fade l 0 {duration} 2 reverb"
-        # ).format(note=note, duration=duration)
+        ).format(note=str(pitch), duration=duration)
 
         subprocess.Popen(command.split())
 
-        if delay:
+        if not last_element:
             self._wait(delay)
 
-    def _play_chord(self, chord, duration=None, delay=None):
+    def _play_chord(self, chord, last_element=False):
         """Plays a chord.
 
         Args:
-            chord (array_type): An array of pitches (notes and octaves)
+            chord (Chord): An array of pitches (notes and octaves)
                 to be played, representing a chord. Eg.: ['C4', 'Eb4', 'G5']
             duration (float): Duration of the chord in seconds.
             delay (float): Delay after the chord in seconds.
         """
 
-        duration = self.duration if duration is None else duration
-        delay = self.delay if delay is None else delay
+        duration = chord.duration or self.duration
+        delay = chord.delay or self.delay
 
         chord_plucks = str()
         for note in chord:
             chord_plucks += " pluck {} ".format(note)
 
-        double_duration = str(int(duration)*2)
-
-        # from sox manual: fade [type] fade-in-length \
-        #        [stop-position(=) [fade-out-length]]
-        # TODO: this is experimental
+        # FIXME: this is experimental, revert to the old code if it is the case
         command = (
             "play -V1 -qn synth {duration} {chord}"
             " fade l 0 {duration} {duration} reverb"
         ).format(chord=chord_plucks, duration=duration)
-        # command = (
-        #    "play -V1 -qn synth {duration} {chord}"
-        #    " fade l 0 {duration} 2 reverb"
-        # ).format(note=note, duration=duration, chord=chord_plucks)
 
         subprocess.Popen(command.split())
 
-        if delay:
+        if not last_element:
             self._wait(delay)
 
     def _wait(self, seconds):
@@ -297,6 +175,3 @@ class Sequence:
         """
 
         time.sleep(seconds)
-
-    def __len__(self):
-        return len(self.elements)

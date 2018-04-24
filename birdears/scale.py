@@ -1,71 +1,17 @@
-from . import DIATONIC_MODES
-from . import CHROMATIC_SHARP
-from . import CHROMATIC_FLAT
+from . import DIATONIC_FORMS
+
+from .note_and_pitch import Pitch
+from .note_and_pitch import Chord
+from .note_and_pitch import get_pitch_by_number
+
+from itertools import cycle
+
+# https://docs.python.org/3/reference/datamodel.html#emulating-container-types
 
 
-class ScaleBase:
+class ScaleBase(list):
     def __init__(self):
         pass
-
-    def _append_octave_to_scale(self, scale, starting_octave, descending=None):
-        """Inserts scientific octave number to the notes on a the given scale.
-        """
-
-        next_octave = 1 if not descending else -1
-
-        scale_with_octave = []
-        changing_note = None
-
-        current_octave = starting_octave
-
-        if not descending:
-            for closest in ['C', 'C#', 'Db']:
-                if closest in scale:
-                    changing_note = closest
-                    break
-        else:
-            for closest in ['B', 'Bb', 'A#']:
-                if closest in scale:
-                    changing_note = closest
-                    break
-
-        for idx, note in enumerate(scale):
-            if idx > 0 and note == changing_note:
-                current_octave += next_octave
-
-            scale_with_octave.append("{}{}".format(note, current_octave))
-
-        return scale_with_octave
-
-    def _get_chromatic_idx(self, note):
-        """Gets the chromatic index, ie., the distance in semitones of a given
-        note from C.
-        """
-
-        global CHROMATIC_SHARP, CHROMATIC_FLAT
-
-        if note in CHROMATIC_SHARP:
-            note_index = CHROMATIC_SHARP.index(note)
-        elif note in CHROMATIC_FLAT:
-            note_index = CHROMATIC_FLAT.index(note)
-        else:
-            raise InvalidNote
-
-        return note_index
-
-    def _rotate_scale_by_idx(self, index, scale):
-        """Rotates chromatic C scale to generate another chromatic based on
-        index number of the tonic.
-        """
-
-        idx_to_end = slice(index, None)
-        begin_to_idx = slice(None, index)
-
-        rotated_scale = []
-        rotated_scale.extend(scale[idx_to_end])
-        rotated_scale.extend(scale[begin_to_idx])
-
-        return rotated_scale
 
 
 class DiatonicScale(ScaleBase):
@@ -75,8 +21,8 @@ class DiatonicScale(ScaleBase):
         scale (array_type): The array of notes representing the scale.
     """
 
-    def __init__(self, tonic, mode=None, octave=None, n_octaves=None,
-                 descending=None, dont_repeat_tonic=None):
+    def __init__(self, tonic='C', mode='major', octave=4, n_octaves=1,
+                 descending=False, dont_repeat_tonic=False):
         """Returns a diatonic scale from tonic and mode.
 
         Args:
@@ -92,35 +38,38 @@ class DiatonicScale(ScaleBase):
 
         super(DiatonicScale, self).__init__()
 
-        global DIATONIC_MODES
-
-        self.tonic = tonic
+        self.tonic = Pitch(note=tonic, octave=octave)
         self.mode = mode
-        self.octave = octave
+        self.direction = "Ascending" if not descending else "Descending"
 
-        diatonic_mode = DIATONIC_MODES[mode]
+        diatonic_mode = DIATONIC_FORMS[mode]
 
-        chromatic = ChromaticScale(tonic=tonic).scale
+        form_length = len(diatonic_mode)
 
-        diatonic = [chromatic[semitones] for semitones in diatonic_mode[:-1]]
-
-        if n_octaves:
-            diatonic = diatonic * n_octaves
-
-        # FIXME: check if this works on descending
-        if not dont_repeat_tonic:
-            diatonic.append(chromatic[diatonic_mode[-1]])
-
+        direction = +1 if not descending else -1
+        repeat_tonic = 0 - dont_repeat_tonic  # 0 (repeat) or -1
         if descending:
-            diatonic.reverse()
+            diatonic_mode = diatonic_mode[::-1]
 
-        if octave:
-            diatonic = self._append_octave_to_scale(scale=diatonic,
-                                                    starting_octave=octave,
-                                                    descending=descending)
+        diatonic_loop = cycle(diatonic_mode)
 
-        self.scale = diatonic
+        scale = list()
 
+        self.append(self.tonic)
+
+        pitch_num = int(self[0])
+
+        for i in range((form_length * n_octaves) + repeat_tonic):
+            step = next(diatonic_loop)
+
+            pitch_num += step * direction
+
+            pitch = get_pitch_by_number(pitch_num)
+            scale.append(pitch)
+
+        self.extend(scale)
+
+    # FIXME: aybe ake this a function
     def get_triad(self, index=0, degree=None):
         """Returns an array with notes from a scale's triad.
 
@@ -132,29 +81,13 @@ class DiatonicScale(ScaleBase):
             An array with three pitches, one for each note of the triad.
         """
 
-        global DIATONIC_MODES
-
         tonic = self.tonic
         mode = self.mode
-        octave = self.octave
 
-        diatonic_mode = DIATONIC_MODES[mode]
+        diatonic = DiatonicScale(tonic=tonic.note, mode=mode,
+                                 octave=tonic.octave, n_octaves=2,
+                                 descending=False, dont_repeat_tonic=False)
 
-        chromatic = ChromaticScale(tonic=tonic).scale
-
-        diatonic = [chromatic[semitones] for semitones in diatonic_mode[:-1]]
-
-        diatonic = diatonic * 2
-
-        # FIXME: check if this works on descending
-        diatonic.append(chromatic[diatonic_mode[-1]])
-
-        octave = self.octave or 4
-        diatonic = self._append_octave_to_scale(scale=diatonic,
-                                                starting_octave=octave,
-                                                descending=False)
-
-        self.scale = diatonic
         if degree:
             index = degree - 1
 
@@ -162,7 +95,23 @@ class DiatonicScale(ScaleBase):
 
         triad = [diatonic[index+note] for note in form]
 
-        return triad
+        chord = Chord(triad)
+
+        return chord
+
+    def __repr__(self):
+
+        repr = "<DiatonicScale {tonic} {mode} {direction} {first}-{to} " \
+               "({octaves} octaves)>" \
+                   .format(tonic=str(self[0].note),
+                           mode=self.mode.capitalize(),
+                           direction=self.direction.capitalize(),
+                           first=str(self[0]),
+                           to=str(self[-1]), octaves=int(len(self)/8))
+        return repr
+
+    def __str__(self):
+        return str(list(self))
 
 
 class ChromaticScale(ScaleBase):
@@ -172,8 +121,8 @@ class ChromaticScale(ScaleBase):
         scale (array_type): The array of notes representing the scale.
     """
 
-    def __init__(self, tonic, octave=None, n_octaves=None, descending=None,
-                 dont_repeat_tonic=None):
+    def __init__(self, tonic='C', octave=4, n_octaves=1, descending=False,
+                 dont_repeat_tonic=False):
         """Returns a chromatic scale from tonic.
 
         Args:
@@ -187,40 +136,19 @@ class ChromaticScale(ScaleBase):
 
         super(ChromaticScale, self).__init__()
 
-        global CHROMATIC_SHARP, CHROMATIC_FLAT
+        # global CHROMATIC_SHARP, CHROMATIC_FLAT
 
-        self.tonic = tonic
-        self.octave = octave
+        self.tonic = Pitch(tonic, octave)
 
-        tonic_index = self._get_chromatic_idx(tonic)
+        direction = +1 if not descending else -1
 
-        if tonic == 'F' or 'b' in tonic:
-            notes = list(CHROMATIC_FLAT)
-        else:
-            notes = list(CHROMATIC_SHARP)
+        tonic_pitch_num = int(self.tonic)
+        repeat_tonic = not dont_repeat_tonic  # 1 or 0
 
-        notes = self._rotate_scale_by_idx(tonic_index, notes)
+        scale = [get_pitch_by_number(tonic_pitch_num + (i*direction))
+                 for i in range((12 * n_octaves) + repeat_tonic)]
 
-        # notes.rotate(-(tonic_index))
-
-        if n_octaves:
-            chromatic = notes * n_octaves
-        else:
-            chromatic = notes
-
-        # FIXME: check if this works on descending
-        if not dont_repeat_tonic:
-            chromatic.append(chromatic[0])
-
-        if descending:
-            chromatic.reverse()
-
-        if octave:
-            chromatic = self._append_octave_to_scale(scale=chromatic,
-                                                     starting_octave=octave,
-                                                     descending=descending)
-
-        self.scale = chromatic
+        self.extend(scale)
 
     def get_triad(self, mode, index=0, degree=None):
         """Returns an array with notes from a scale's triad.
@@ -234,28 +162,12 @@ class ChromaticScale(ScaleBase):
             A list with three pitches (str), one for each note of the triad.
         """
 
-        global DIATONIC_MODES
-
         tonic = self.tonic
-        octave = self.octave
 
-        diatonic_mode = DIATONIC_MODES[mode]
+        diatonic = DiatonicScale(tonic=tonic.note, mode=mode,
+                                 octave=tonic.octave, n_octaves=2,
+                                 descending=False, dont_repeat_tonic=False)
 
-        chromatic = ChromaticScale(tonic).scale
-
-        diatonic = [chromatic[semitones] for semitones in diatonic_mode[:-1]]
-
-        diatonic = diatonic * 2
-
-        # FIXME: check if this works on descending
-        diatonic.append(chromatic[diatonic_mode[-1]])
-
-        octave = self.octave or 4
-        diatonic = self._append_octave_to_scale(scale=diatonic,
-                                                starting_octave=octave,
-                                                descending=False)
-
-        self.scale = diatonic
         if degree:
             index = degree - 1
 
@@ -263,4 +175,6 @@ class ChromaticScale(ScaleBase):
 
         triad = [diatonic[index+note] for note in form]
 
-        return triad
+        chord = Chord(triad)
+
+        return chord

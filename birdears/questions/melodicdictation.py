@@ -1,16 +1,16 @@
-from random import choice
+from random import choices
+from random import sample
+
+from .. import CHROMATIC_TYPE
 
 from ..questionbase import QuestionBase
-
-from ..interval import DiatonicInterval
-from ..interval import ChromaticInterval
-
-from .. import DIATONIC_MODES
-from .. import MAX_SEMITONES_RESOLVE_BELOW
-from .. import INTERVALS
+from ..questionbase import get_valid_pitches
 
 from ..scale import DiatonicScale
 from ..scale import ChromaticScale
+
+from ..interval import Interval
+from ..note_and_pitch import get_pitch_by_number
 
 from ..sequence import Sequence
 from ..resolution import Resolution
@@ -21,9 +21,9 @@ class MelodicDictationQuestion(QuestionBase):
     """Implements a melodic dictation test.
     """
 
-    def __init__(self, mode='major', max_intervals=3, n_notes=4, tonic=None,
-                 octave=None, descending=None, chromatic=None,
-                 n_octaves=None, valid_intervals=None, user_durations=None,
+    def __init__(self, mode='major', max_intervals=3, n_notes=4, tonic='C',
+                 octave=4, descending=False, chromatic=False, n_octaves=1,
+                 valid_intervals=CHROMATIC_TYPE, user_durations=None,
                  prequestion_method='progression_i_iv_v_i',
                  resolution_method='repeat_only', *args, **kwargs):
         """Inits the class.
@@ -88,34 +88,25 @@ class MelodicDictationQuestion(QuestionBase):
         self.is_harmonic = False
 
         if not chromatic:
-            INTERVAL_CLASS = DiatonicInterval
+            self.scale = DiatonicScale(tonic=self.tonic_str, mode=mode,
+                                       octave=octave, n_octaves=n_octaves,
+                                       descending=descending)
         else:
-            INTERVAL_CLASS = ChromaticInterval
+            self.scale = ChromaticScale(tonic=self.tonic_str, octave=octave,
+                                        n_octaves=n_octaves,
+                                        descending=descending)
 
-        question_intervals = [INTERVAL_CLASS(mode=mode, tonic=self.tonic,
-                              octave=self.octave, n_octaves=self.n_octaves,
-                              descending=descending,
-                              valid_intervals=self.valid_intervals)
-                              for _ in range(max_intervals)]
+        self.valid_pitches = get_valid_pitches(self.scale, valid_intervals)
 
-        # No need that it always begin with tonic
+        random_choose_from_pitches = sample(self.valid_pitches, max_intervals)
 
-        # self.question_phrase_intervals = [choice(question_intervals)
-        #                                  for _ in range(n_notes-1)]
-        self.question_phrase_intervals = [choice(question_intervals)
-                                          for _ in range(n_notes)]
+        self.random_pitches = choices(population=random_choose_from_pitches,
+                                      k=n_notes)
 
-        # self.question_phrase = [0]
-        self.question_phrase = []
-
-        self.question_phrase.extend([interval.semitones
-                                     for interval
-                                     in self.question_phrase_intervals])
-
-        self.pre_question =\
+        self.pre_question = \
             self.make_pre_question(method=prequestion_method)
-        # self.pre_question = self.make_pre_question(method='none')
-        self.question = self.make_question(self.question_phrase)
+
+        self.question = self.make_question()
         self.resolution = self.make_resolution(method=resolution_method)
 
     def make_pre_question(self, method):
@@ -123,9 +114,8 @@ class MelodicDictationQuestion(QuestionBase):
 
         return prequestion()
 
-    def make_question(self, phrase_semitones):
-        return Sequence([self.scales['chromatic_pitch'].scale[n]
-                        for n in phrase_semitones], **self.durations['quest'])
+    def make_question(self):
+        return Sequence(self.random_pitches, **self.durations['quest'])
 
     def make_resolution(self, method):
 
@@ -146,48 +136,58 @@ class MelodicDictationQuestion(QuestionBase):
     def check_question(self, user_input_keys):
         """Checks whether the given answer is correct."""
 
-        global INTERVALS
+        # global INTERVALS
 
-        STR_OFFSET = 5
+        string_offset = 5
 
-        user_input_semitones = [self.keyboard_index.index(s)
-                                for s in user_input_keys]
+        tonic_pitch_number = self.tonic_pitch.pitch_number
 
-        user_response_str = "".join([INTERVALS[s][1].center(STR_OFFSET)
-                                     for s in user_input_semitones])
-        correct_response_str = "".join([INTERVALS[s][1].center(STR_OFFSET)
-                                        for s in self.question_phrase])
+        user_semitones = [self.keyboard_index.index(s)
+                          for s in user_input_keys]
+
+        user_pitches = [get_pitch_by_number(tonic_pitch_number + semitones)
+                        for semitones in user_semitones]
+
+        correct_intervals = [Interval(self.tonic_pitch, pitch)
+                             for pitch in self.random_pitches]
+
+        user_intervals = [Interval(self.tonic_pitch, pitch)
+                          for pitch in user_pitches]
+
+        user_response_str = "".join([interval['data'][1].center(string_offset)
+                                     for interval in user_intervals])
+
+        correct_response_str = "".join([interval['data'][1]
+                                       .center(string_offset)
+                                       for interval in correct_intervals])
 
         correct_semitones = list()
         correct_wrong_str = str()
 
-        for i, s in enumerate(self.question_phrase):
-            if self.question_phrase[i] == user_input_semitones[i]:
+        for position, correct_pitch in enumerate(self.random_pitches):
+            if correct_pitch == user_pitches[position]:
                 correct_semitones.append(True)
-                correct_wrong_str += "✓".center(STR_OFFSET)  # u2713
+                correct_wrong_str += "✓".center(string_offset)  # u2713
             else:
                 correct_semitones.append(False)
-                correct_wrong_str += "x".center(STR_OFFSET)
+                correct_wrong_str += "x".center(string_offset)
 
         extra_response_str = """\
 {}
 {}
 """.format(correct_wrong_str, correct_response_str)
 
-        response = dict(
-            is_correct=False,
-            user_input=user_input_keys,
-            user_semitones=user_input_semitones,
-            question_semitones=self.question_phrase,
-            correct_semitones=correct_semitones,
-            user_response_str=user_response_str,
-            correct_response_str=correct_response_str,
-            extra_response_str=extra_response_str,
-        )
+        is_correct = user_pitches == self.random_pitches
 
-        if user_input_semitones == self.question_phrase:
-            response.update({'is_correct': True})
-        else:
-            response.update({'is_correct': False})
+        response = {
+            'is_correct': is_correct,
+            'user_input': user_input_keys,
+            'user_semitones': user_semitones,
+            'question_semitones': self.random_pitches,
+            'correct_semitones': correct_semitones,
+            'user_response_str': user_response_str,
+            'correct_response_str': correct_response_str,
+            'extra_response_str': extra_response_str
+        }
 
         return response

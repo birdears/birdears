@@ -4,6 +4,7 @@ from birdears.questions.melodicinterval import MelodicIntervalQuestion
 from birdears.questions.instrumentaldictation \
     import InstrumentalDictationQuestion
 
+
 def test_centertext():
     commandline.center_text('test')
 
@@ -52,6 +53,7 @@ def test_printresponse():
     resp = a.check_question('x')
     commandline.print_response(resp)
     assert(a)
+
 
 def test_instrumental_print():
 

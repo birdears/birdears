@@ -1,34 +1,30 @@
-# from .. import INTERVALS
-
-from .. import CHROMATIC_TYPE
+from .. import INTERVALS
 
 from ..logger import log_event
 
 from ..questionbase import QuestionBase
-from ..questionbase import get_valid_pitches
 
-from ..scale import DiatonicScale
-from ..scale import ChromaticScale
+from ..interval import DiatonicInterval
+from ..interval import ChromaticInterval
 
-from ..interval import Interval
+from .. import KEYBOARD_INDICES
+from .. import CHROMATIC_SHARP
+from .. import CHROMATIC_FLAT
 
 from ..sequence import Sequence
 from ..resolution import Resolution
 from ..prequestion import PreQuestion
 
-from ..note_and_pitch import Chord
-from ..note_and_pitch import get_pitch_by_number
-
 from random import choice
 
-
-class HarmonicIntervalQuestion(QuestionBase):
-    """Implements a Harmonic Interval test.
+class NoteNameQuestion(QuestionBase):
+    """Implements a Note Name test.
     """
 
-    def __init__(self, mode='major', tonic='C', octave=4, descending=False,
-                 chromatic=False, n_octaves=1, valid_intervals=CHROMATIC_TYPE,
-                 user_durations=None, prequestion_method='none',
+    @log_event
+    def __init__(self, mode='major', tonic=None, octave=None, descending=None,
+                 chromatic=None, n_octaves=None, valid_intervals=None,
+                 user_durations=None, prequestion_method='tonic_only',
                  resolution_method='nearest_tonic', *args, **kwargs):
         """Inits the class.
 
@@ -72,13 +68,13 @@ class HarmonicIntervalQuestion(QuestionBase):
         """
 
         default_durations = {
-            'preq': {'duration': 3, 'delay': 0.5, 'pos_delay': 1},
-            'quest': {'duration': 3, 'delay': 0.5, 'pos_delay': 0},
+            'preq': {'duration': 2, 'delay': 0.5, 'pos_delay': 1},
+            'quest': {'duration': 2, 'delay': 0.5, 'pos_delay': 0},
             'resol': {'duration': 2.5, 'delay': 0.5, 'pos_delay': 1}
         }
 
-        super(HarmonicIntervalQuestion, self).\
-            __init__(mode=mode, user_tonic=tonic, octave=octave,
+        super(NoteNameQuestion, self).\
+            __init__(mode=mode, tonic=tonic, octave=octave,
                      descending=descending, chromatic=chromatic,
                      n_octaves=n_octaves, valid_intervals=valid_intervals,
                      user_durations=user_durations,
@@ -89,20 +85,19 @@ class HarmonicIntervalQuestion(QuestionBase):
         self.is_harmonic = False
 
         if not chromatic:
-            self.scale = DiatonicScale(tonic=self.tonic_str, mode=mode,
-                                       octave=self.octave,
-                                       descending=descending,
-                                       n_octaves=n_octaves)
+            self.interval = \
+                DiatonicInterval(mode=mode, tonic=self.tonic,
+                                 octave=self.octave,
+                                 n_octaves=self.n_octaves,
+                                 descending=descending,
+                                 valid_intervals=self.valid_intervals)
         else:
-            self.scale = ChromaticScale(tonic=self.tonic_str,
-                                        octave=self.octave,
-                                        descending=descending,
-                                        n_octaves=n_octaves)
-
-        self.valid_pitches = get_valid_pitches(self.scale, valid_intervals)
-        self.random_pitch = choice(self.valid_pitches)
-
-        self.interval = Interval(self.tonic_pitch, self.random_pitch)
+            self.interval = \
+                ChromaticInterval(mode=mode, tonic=self.tonic,
+                                  octave=self.octave,
+                                  n_octaves=self.n_octaves,
+                                  descending=descending,
+                                  valid_intervals=self.valid_intervals)
 
         self.pre_question = self.make_pre_question(method=prequestion_method)
         self.question = self.make_question()
@@ -115,8 +110,9 @@ class HarmonicIntervalQuestion(QuestionBase):
 
     def make_question(self):
 
-        harmonic_interval = Chord([self.tonic_pitch, self.random_pitch])
-        question = Sequence([harmonic_interval], **self.durations['quest'])
+        interval = self.interval.note_and_octave
+
+        question = Sequence([interval], **self.durations['quest'])
 
         return question
 
@@ -128,10 +124,16 @@ class HarmonicIntervalQuestion(QuestionBase):
         return resolution
 
     def play_question(self):
+        # Other threads can call a thread’s join() method. This blocks the
+        # calling thread until the thread whose join() method is called is
+        # terminated.
+        # https://docs.python.org/3/library/threading.html#thread-objects
+
         self.pre_question.play()
         self.question.play()
 
     def play_resolution(self):
+
         thread = self.resolution.play()
         thread.join()
 
@@ -139,42 +141,66 @@ class HarmonicIntervalQuestion(QuestionBase):
         """Checks whether the given answer is correct.
         """
 
-        user_semitones = self.keyboard_index.index(user_input_char[0])
-        user_pitch = get_pitch_by_number(int(self.tonic_pitch)
-                                         + user_semitones)
-        user_interval = Interval(self.tonic_pitch, user_pitch)['data'][2]
-        user_note = str(user_pitch)
+        global INTERVALS
 
-        # correct_semitones = abs(int(self.tonic) - int(self.random_pitch))
-        correct_semitones = abs(int(self.interval['semitones']))
-        correct_pitch = self.random_pitch
-        correct_interval = Interval(self.tonic_pitch,
-                                    self.random_pitch)['data'][2]
-        correct_note = str(self.random_pitch)
+        from ..scale import ChromaticScale
+        c_chromatic = ChromaticScale(tonic='C', n_octaves=2)
 
-        is_correct = user_pitch == correct_pitch
+        keyboard_index = \
+            KEYBOARD_INDICES['chromatic']['ascending']['major']
 
-        signal = ('x', '✓')[is_correct]  # u2713; False==0, True==1
+        semitones = keyboard_index.index(user_input_char[0])
+
+        #input_note = self.scales['chromatic'].scale[semitones]
+        user_note = c_chromatic.scale[semitones]
+
+        correct_note = self.scales['chromatic'].scale[self.interval.semitones]
+
+        if user_note in CHROMATIC_SHARP:
+            user_semitones = CHROMATIC_SHARP.index(user_note)
+        elif user_note in CHROMATIC_FLAT:
+            user_semitones = CHROMATIC_SHARP.index(user_note)
+
+        if correct_note in CHROMATIC_SHARP:
+            correct_semitones = CHROMATIC_SHARP.index(user_note)
+        elif correct_note in CHROMATIC_FLAT:
+            correct_semitones = CHROMATIC_FLAT.index(correct_note)
+
+        # user_note = self.scales['chromatic_pitch'].scale[semitones]
+        # correct_note = self.scales['chromatic_pitch']\
+        #    .scale[self.interval.semitones]
+
+        # signal = '✓' if semitones == self.interval.semitones else 'x'  # u2713
+        signal = '✓' if user_semitones == correct_semitones else 'x'  # u2713
 
         extra_response_str = """\
-       “{ci}” ({to}─{cn})
-user {si} “{ui}” ({to}─{un})
-{st} semitones
-""".format(ci=correct_interval,
-           to=str(self.tonic_pitch),
-           cn=correct_note,
-           si=signal,
-           ui=user_interval,
-           un=user_note,
-           st=correct_semitones)
+       “{}”
+user {} “{}”
+{} semitones
+""".format(correct_note, signal, user_note, self.interval.semitones)
 
-        response = {
-            'is_correct': is_correct,
-            'user_interval': user_interval,
-            'correct_interval': correct_interval,
-            'user_response_str': user_interval,
-            'correct_response_str': correct_interval,
-            'extra_response_str': extra_response_str,
-        }
+#        extra_response_str = """\
+#        “{}” ({}─{})
+# user {} “{}” ({}─{})
+# {} semitones
+# """.format(correct_interval, tonic, correct_note,
+#            signal, user_interval, tonic, user_note, self.interval.semitones)
+
+        response = dict(
+            is_correct=False,
+            # user_interval=user_interval,
+            user_note=user_note,
+            # correct_interval=correct_interval,
+            correct_note=correct_note,
+            user_response_str=user_note,
+            correct_response_str=correct_note,
+            extra_response_str=extra_response_str,
+        )
+
+        if user_note == correct_note:
+            response.update({'is_correct': True})
+
+        else:
+            response.update({'is_correct': False})
 
         return response

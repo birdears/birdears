@@ -1,12 +1,8 @@
-from .. import click
-
 from .. import _Getch
 
 from .. import INTERVALS
 from .. import DIATONIC_MODES
 from .. import CHROMATIC_TYPE
-
-from .. import DEBUG
 
 # from os import popen
 from click import get_terminal_size
@@ -60,11 +56,6 @@ def print_response(response):
         response (dict): A response returned by question's check_question()
     """
 
-    text_kwargs = dict(
-        user_resp=response['user_response_str'],
-        correct_resp=response['correct_response_str']
-    )
-
     # TODO: make a class for response
     if response['is_correct']:
         response_text = "Correct!"
@@ -102,44 +93,35 @@ def print_question(question):
         question (obj): A Question class with the question to be printed.
     """
 
-    keyboard = question.keyboard_index
+    direction = -1 if question.is_descending else +1
 
-    if not question.is_chromatic:
-        scale = list(question.scales['diatonic'].scale)
+    scale = question.scale
+    # mode = question.mode
 
-        mode = list(DIATONIC_MODES[question.mode])
-        scale_index = list(mode)
-    else:
-        scale = list(question.scales['chromatic'].scale)
+    tonic = scale[0]
+    network = [abs(int(tonic) - int(note)) for note in scale]
+    # keyboard_map = KEYBOARD_INDICES['chromatic']['ascending']['major']
+    keyboard_map = tuple(question.keyboard_index)
 
-        mode = list(CHROMATIC_TYPE)
-        scale_index = list(mode)
+    # should we show the octaves here? why not?
 
-    for o in range(1, question.n_octaves):
-        scale_index.extend([x + (12*o) for x in mode[1:]])
+    notes = "".join([str(pitch).ljust(4) for pitch in scale][::direction])
+    # notes = "".join([str(pitch.note).ljust(4) \
+    # for pitch in scale][::direction])
+    intervals = "".join([str(INTERVALS[step][1]).ljust(4)
+                         for step in network][::direction])
+    keys = "".join([str(keyboard_map[step]).ljust(4)
+                    for step in network][::direction])
 
-    # FIXME: bug with descending n_octaves=2
-    if question.is_descending:
-        highest = max(scale_index)
-        scale_index = [highest - x for x in scale_index]
-        scale = reversed(scale)
-
-    intervals = [INTERVALS[i][1] for i in scale_index]
-    keys = [keyboard[i] for i in scale_index]
-
-    scale_str = " ".join(map(lambda x: x.ljust(3), scale))
-    intervals_str = " ".join(map(lambda x: x.ljust(3), intervals))
-    keys_str = " ".join(map(lambda x: x.ljust(3), keys))
-
-    text_kwargs = dict(
-        tonic=question.tonic,
-        mode=question.mode,
-        chroma=question.is_chromatic,
-        desc=question.is_descending,
-        scale=scale_str,
-        intervals=intervals_str,
-        keyboard=keys_str,
-    )
+    text_kwargs = {
+        'tonic': question.tonic_str,
+        'mode': question.mode,
+        'chroma': question.is_chromatic,
+        'desc': question.is_descending,
+        'scale': notes,
+        'intervals': intervals,
+        'keyboard': keys,
+    }
 
     question_text = """\
 
@@ -203,6 +185,11 @@ def CommandLine(exercise, **kwargs):
     elif exercise == 'melodic':
         from ..questions.melodicinterval import MelodicIntervalQuestion
         MYCLASS = MelodicIntervalQuestion
+        dictate_notes = 1
+
+    elif exercise == 'notename':
+        from ..questions.notename import NoteNameQuestion
+        MYCLASS = NoteNameQuestion
         dictate_notes = 1
 
     elif exercise == 'harmonic':

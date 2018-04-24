@@ -1,19 +1,22 @@
+from .. import CHROMATIC_TYPE
+
 from ..logger import log_event
 
 from ..questionbase import QuestionBase
-
-from ..interval import DiatonicInterval
-from ..interval import ChromaticInterval
-
-from .. import DIATONIC_MODES
-from .. import MAX_SEMITONES_RESOLVE_BELOW
-from .. import INTERVALS
+from ..questionbase import get_valid_pitches
 
 from ..scale import DiatonicScale
+from ..scale import ChromaticScale
+
+from ..interval import Interval
 
 from ..sequence import Sequence
 from ..resolution import Resolution
 from ..prequestion import PreQuestion
+
+from ..note_and_pitch import get_pitch_by_number
+
+from random import choice
 
 
 class MelodicIntervalQuestion(QuestionBase):
@@ -21,8 +24,8 @@ class MelodicIntervalQuestion(QuestionBase):
     """
 
     @log_event
-    def __init__(self, mode='major', tonic=None, octave=None, descending=None,
-                 chromatic=None, n_octaves=None, valid_intervals=None,
+    def __init__(self, mode='major', tonic='C', octave=4, descending=False,
+                 chromatic=False, n_octaves=1, valid_intervals=CHROMATIC_TYPE,
                  user_durations=None, prequestion_method='tonic_only',
                  resolution_method='nearest_tonic', *args, **kwargs):
         """Inits the class.
@@ -73,7 +76,7 @@ class MelodicIntervalQuestion(QuestionBase):
         }
 
         super(MelodicIntervalQuestion, self).\
-            __init__(mode=mode, tonic=tonic, octave=octave,
+            __init__(mode=mode, user_tonic=tonic, octave=octave,
                      descending=descending, chromatic=chromatic,
                      n_octaves=n_octaves, valid_intervals=valid_intervals,
                      user_durations=user_durations,
@@ -84,35 +87,34 @@ class MelodicIntervalQuestion(QuestionBase):
         self.is_harmonic = False
 
         if not chromatic:
-            self.interval = \
-                DiatonicInterval(mode=mode, tonic=self.tonic,
-                                 octave=self.octave,
-                                 n_octaves=self.n_octaves,
-                                 descending=descending,
-                                 valid_intervals=self.valid_intervals)
+            self.scale = DiatonicScale(tonic=self.tonic_str, mode=mode,
+                                       octave=self.octave,
+                                       descending=descending,
+                                       n_octaves=n_octaves)
         else:
-            self.interval = \
-                ChromaticInterval(mode=mode, tonic=self.tonic,
-                                  octave=self.octave,
-                                  n_octaves=self.n_octaves,
-                                  descending=descending,
-                                  valid_intervals=self.valid_intervals)
+            self.scale = ChromaticScale(tonic=self.tonic_str,
+                                        octave=self.octave,
+                                        descending=descending,
+                                        n_octaves=n_octaves)
+
+        self.valid_pitches = get_valid_pitches(self.scale, valid_intervals)
+        self.random_pitch = choice(self.valid_pitches)
+
+        self.interval = Interval(self.tonic_pitch, self.random_pitch)
 
         self.pre_question = self.make_pre_question(method=prequestion_method)
         self.question = self.make_question()
         self.resolution = self.make_resolution(method=resolution_method)
 
     def make_pre_question(self, method):
+
         prequestion = PreQuestion(method=method, question=self)
 
         return prequestion()
 
     def make_question(self):
 
-        tonic = self.concrete_tonic
-        interval = self.interval.note_and_octave
-
-        question = Sequence([interval], **self.durations['quest'])
+        question = Sequence([self.random_pitch], **self.durations['quest'])
 
         return question
 
@@ -141,41 +143,41 @@ class MelodicIntervalQuestion(QuestionBase):
         """Checks whether the given answer is correct.
         """
 
-        global INTERVALS
+        user_semitones = self.keyboard_index.index(user_input_char[0])
+        user_pitch = get_pitch_by_number(int(self.tonic_pitch) +
+                                         user_semitones)
+        user_interval = Interval(self.tonic_pitch, user_pitch)['data'][2]
+        user_note = str(user_pitch)
 
-        semitones = self.keyboard_index.index(user_input_char[0])
+        correct_semitones = abs(int(self.interval['semitones']))
+        correct_pitch = self.random_pitch
+        correct_interval = Interval(self.tonic_pitch,
+                                    self.random_pitch)['data'][2]
+        correct_note = str(self.random_pitch)
 
-        tonic = self.scales['chromatic_pitch'].scale[0]
+        is_correct = user_pitch == correct_pitch
 
-        user_interval = INTERVALS[semitones][2]
-        correct_interval = INTERVALS[self.interval.semitones][2]
-
-        user_note = self.scales['chromatic_pitch'].scale[semitones]
-        correct_note = self.scales['chromatic_pitch']\
-            .scale[self.interval.semitones]
-
-        signal = '✓' if semitones == self.interval.semitones else 'x'  # u2713
+        signal = ('x', '✓')[is_correct]  # u2713; False==0, True==1
 
         extra_response_str = """\
-       “{}” ({}─{})
-user {} “{}” ({}─{})
-{} semitones
-""".format(correct_interval, tonic, correct_note,
-           signal, user_interval, tonic, user_note, self.interval.semitones)
+       “{ci}” ({to}─{cn})
+user {si} “{ui}” ({to}─{un})
+{st} semitones
+""".format(ci=correct_interval,
+           to=str(self.tonic_pitch),
+           cn=correct_note,
+           si=signal,
+           ui=user_interval,
+           un=user_note,
+           st=correct_semitones)
 
-        response = dict(
-            is_correct=False,
-            user_interval=user_interval,
-            correct_interval=correct_interval,
-            user_response_str=user_interval,
-            correct_response_str=correct_interval,
-            extra_response_str=extra_response_str,
-        )
-
-        if semitones == self.interval.semitones:
-            response.update({'is_correct': True})
-
-        else:
-            response.update({'is_correct': False})
+        response = {
+            'is_correct': is_correct,
+            'user_interval': user_interval,
+            'correct_interval': correct_interval,
+            'user_response_str': user_interval,
+            'correct_response_str': correct_interval,
+            'extra_response_str': extra_response_str,
+        }
 
         return response
