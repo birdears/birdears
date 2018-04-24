@@ -5,7 +5,7 @@ from .. import DIATONIC_MODES
 from .. import CHROMATIC_TYPE
 
 # from os import popen
-from click import get_terminal_size
+from ..click import get_terminal_size
 
 # FIXME: use `click` one instead or it won't be portable
 # COLS = int(popen('tput cols', 'r').read())
