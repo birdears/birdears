@@ -93,14 +93,15 @@ def nearest_tonic(question):
     # this function will receive: tonic, scale and random_pitch (which may be
     # chromatic, ie., not in `scale`)
 
+    interval = Interval(tonic_pitch, random_pitch)
+
+    semitones = interval['distance']['semitones']
+    # is_descending = interval['is_descending']
+
     # lets create an scale with same tonic, in the octave of the random_pitch
     scale_random_pitch = DiatonicScale(tonic=tonic_pitch.note,
                                        octave=random_pitch.octave,
                                        n_octaves=1)
-
-    interval = Interval(tonic_pitch, random_pitch)
-
-    semitones = interval['distance']['semitones']
 
     direction = -1 if (semitones <= MAX_SEMITONES_RESOLVE_BELOW) else 1
 
@@ -129,6 +130,18 @@ def nearest_tonic(question):
 
     resolution = scale_random_pitch[ohslice][::direction]
 
+    # is it chromatic?
+    if random_pitch not in scale_random_pitch:
+        # then it resolves down
+        # if semitones <= MAX_SEMITONES_RESOLVE_BELOW:
+        #     resolution.append(random_pitch)
+        # else:
+        resolution.insert(0, random_pitch)
+
+    if len(resolution) == 1:
+        resolution.append(tonic_pitch)
+        # resolution.insert(0, random_pitch)
+
     if question.is_harmonic:
         resolution_harmonic = []
 
@@ -136,6 +149,7 @@ def nearest_tonic(question):
             resolution_harmonic.append(Chord(tonic_pitch, item))
 
         resolution = resolution_harmonic
+    print(resolution)
 
     # resolution
     return Sequence(elements=resolution, duration=duration, delay=delay,

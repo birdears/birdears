@@ -1,8 +1,12 @@
 from . import INTERVALS
 
 
+def get_interval_by_semitones(semitones):
+    # TODO: PLEASE WRITE ME
+    pass
+
 class Interval(dict):
-    """Chooses a diatonic interval for the question.
+    """This class represents the interval between two pitches..
 
     Attributes:
         tonic_octave (int): Scientific octave for the tonic. For example, if
