@@ -132,7 +132,7 @@ class QuestionBase:
 
         self.n_octaves = n_octaves
 
-        direction = 'ascending' if (not self.is_descending) else 'descending'
+        direction = 'descending' if descending else 'ascending'
 
         # FIXME: maybe this should go to __main__
         self.keyboard_index = \

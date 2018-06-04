@@ -96,6 +96,11 @@ class MelodicIntervalQuestion(QuestionBase):
                                         octave=self.octave,
                                         descending=descending,
                                         n_octaves=n_octaves)
+            
+        self.chromatic_scale = ChromaticScale(tonic=self.tonic_str,
+                                              octave=self.octave,
+                                              descending=descending,
+                                              n_octaves=n_octaves)
 
         self.valid_pitches = get_valid_pitches(self.scale, valid_intervals)
         self.random_pitch = choice(self.valid_pitches)
@@ -144,8 +149,15 @@ class MelodicIntervalQuestion(QuestionBase):
         """
 
         user_semitones = self.keyboard_index.index(user_input_char[0])
+        #print(user_semitones)
+        user_semitones_plus_diretion = user_semitones * -1 \
+                                        if self.is_descending else +1
+        
         user_pitch = get_pitch_by_number(int(self.tonic_pitch) +
-                                         user_semitones)
+                                         user_semitones_plus_diretion)
+        #print(self.scale)
+        #user_pitch = self.chromatic_scale[user_semitones]
+        
         user_interval = Interval(self.tonic_pitch, user_pitch)['data'][2]
         user_note = str(user_pitch)
 
@@ -155,6 +167,9 @@ class MelodicIntervalQuestion(QuestionBase):
                                     self.random_pitch)['data'][2]
         correct_note = str(self.random_pitch)
 
+        print('user_pitch', user_pitch)
+        print('correct_pitch', correct_pitch)
+        
         is_correct = user_pitch == correct_pitch
 
         signal = ('x', '✓')[is_correct]  # u2713; False==0, True==1
