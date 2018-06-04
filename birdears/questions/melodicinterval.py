@@ -96,7 +96,12 @@ class MelodicIntervalQuestion(QuestionBase):
                                         octave=self.octave,
                                         descending=descending,
                                         n_octaves=n_octaves)
-            
+
+        self.diatonic_scale = DiatonicScale(tonic=self.tonic_str, mode=mode,
+                                            octave=self.octave,
+                                            descending=descending,
+                                            n_octaves=n_octaves)
+
         self.chromatic_scale = ChromaticScale(tonic=self.tonic_str,
                                               octave=self.octave,
                                               descending=descending,

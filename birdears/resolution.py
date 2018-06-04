@@ -89,7 +89,7 @@ def nearest_tonic(question):
     duration = question.durations['resol']['duration']
     delay = question.durations['resol']['delay']
     pos_delay = question.durations['resol']['pos_delay']
-    
+
     is_descending = question.is_descending
 
     # this function will receive: tonic, scale and random_pitch (which may be
@@ -114,7 +114,8 @@ def nearest_tonic(question):
     #                                   octave=octave_pitch.octave,
     #                                   n_octaves=1, descending=is_descending)
 
-    scale_random_pitch = question.scale
+    # scale_random_pitch = question.scale
+    scale_random_pitch = question.diatonic_scale
 
     direction = -1 if (semitones <= MAX_SEMITONES_RESOLVE_BELOW) else 1
 
@@ -164,7 +165,8 @@ def nearest_tonic(question):
             resolution_harmonic.append(Chord(tonic_pitch, item))
 
         resolution = resolution_harmonic
-    # print(resolution)
+
+    print(resolution)
 
     # resolution
     return Sequence(elements=resolution, duration=duration, delay=delay,
