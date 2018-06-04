@@ -107,12 +107,14 @@ def nearest_tonic(question):
     # is_descending = interval['is_descending']
 
     # lets create an scale with same tonic, in the octave of the random_pitch
-    octave_pitch = get_pitch_by_number(int(random_pitch)+12) \
-       if is_descending else random_pitch
+    # octave_pitch = get_pitch_by_number(int(random_pitch)-12) \
+    #   if is_descending else random_pitch
 
-    scale_random_pitch = DiatonicScale(tonic=tonic_pitch.note,
-                                       octave=octave_pitch.octave,
-                                       n_octaves=1, descending=is_descending)
+    #  scale_random_pitch = DiatonicScale(tonic=tonic_pitch.note,
+    #                                   octave=octave_pitch.octave,
+    #                                   n_octaves=1, descending=is_descending)
+
+    scale_random_pitch = question.scale
 
     direction = -1 if (semitones <= MAX_SEMITONES_RESOLVE_BELOW) else 1
 
@@ -162,7 +164,7 @@ def nearest_tonic(question):
             resolution_harmonic.append(Chord(tonic_pitch, item))
 
         resolution = resolution_harmonic
-    #print(resolution)
+    # print(resolution)
 
     # resolution
     return Sequence(elements=resolution, duration=duration, delay=delay,
