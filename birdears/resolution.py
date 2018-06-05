@@ -90,7 +90,7 @@ def nearest_tonic(question):
     delay = question.durations['resol']['delay']
     pos_delay = question.durations['resol']['pos_delay']
 
-    is_descending = question.is_descending
+    # is_descending = question.is_descending
 
     # this function will receive: tonic, scale and random_pitch (which may be
     # chromatic, ie., not in `scale`)
@@ -98,40 +98,39 @@ def nearest_tonic(question):
     interval = Interval(tonic_pitch, random_pitch)
 
     # debug
-    #print(random_pitch)
-    #print(tonic_pitch)
-    #print(interval)
+    # print(random_pitch)
+    # print(tonic_pitch)
+    # print(interval)
     # print()
 
     semitones = interval['distance']['semitones']
-    # is_descending = interval['is_descending']
 
-    # lets create an scale with same tonic, in the octave of the random_pitch
-    # octave_pitch = get_pitch_by_number(int(random_pitch)-12) \
-    #   if is_descending else random_pitch
-
-    #  scale_random_pitch = DiatonicScale(tonic=tonic_pitch.note,
-    #                                   octave=octave_pitch.octave,
-    #                                   n_octaves=1, descending=is_descending)
-
-    # scale_random_pitch = question.scale
     scale_random_pitch = question.diatonic_scale
 
     direction = -1 if (semitones <= MAX_SEMITONES_RESOLVE_BELOW) else 1
+    # invert `direction` signal if descending:
+    pitch_direction = (direction * -1) if question.is_descending else direction
 
     resolution = []
 
     if random_pitch not in scale_random_pitch:  # random_pitch is chromatic
         resolution.append(random_pitch)
-        #  next ones above or below are in the diatonic for sure, then:
+        #  next ones above or below are in the diatonic for sure, then, so we
+        #  add one semitone and we will have the next diatonic degree:
         nearest_diatonic_pitch = \
-            get_pitch_by_number(int(random_pitch)+direction)
+            get_pitch_by_number(int(random_pitch) + pitch_direction)
     else:
         nearest_diatonic_pitch = random_pitch  # random_pitch is diatonic
 
-    nearest_tonic_index = 0 if semitones <= MAX_SEMITONES_RESOLVE_BELOW else -1
-    nearest_tonic_pitch = scale_random_pitch[nearest_tonic_index]
-
+    # FIXME:
+    resolve_direction = -1 if semitones <= MAX_SEMITONES_RESOLVE_BELOW else +1
+    
+    #nearest_tonic_index = 0 if semitones <= MAX_SEMITONES_RESOLVE_BELOW else -1
+    #nearest_tonic_pitch = scale_random_pitch[nearest_tonic_index]
+    nearest_tonic_pitch = get_pitch_by_number(int(random_pitch) +
+                                             (semitones*resolve_direction))
+    #print(int(random_pitch))
+    nearest_tonic_index = scale_random_pitch.index(nearest_tonic_pitch)
     # print('scale random pitch:', scale_random_pitch)
 
     tonic_index = scale_random_pitch.index(nearest_tonic_pitch)
@@ -141,8 +140,10 @@ def nearest_tonic(question):
 
     random_pitch_index = nearest_diatonic_pitch_index
 
-    ohslice = slice(min(tonic_index, random_pitch_index), max(tonic_index,
-                    nearest_diatonic_pitch_index)+1)
+    ohslice = slice(min(tonic_index, random_pitch_index),
+                    max(tonic_index, nearest_diatonic_pitch_index)+1)
+
+    print(ohslice)
 
     resolution = scale_random_pitch[ohslice][::direction]
 

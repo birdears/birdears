@@ -154,9 +154,9 @@ class MelodicIntervalQuestion(QuestionBase):
         """
 
         user_semitones = self.keyboard_index.index(user_input_char[0])
-        #print(user_semitones)
-        user_semitones_plus_diretion = user_semitones * -1 \
-                                        if self.is_descending else +1
+        print(user_semitones)
+        user_semitones_plus_diretion = \
+          (user_semitones * -1) if self.is_descending else (user_semitones)
         
         user_pitch = get_pitch_by_number(int(self.tonic_pitch) +
                                          user_semitones_plus_diretion)
