@@ -158,13 +158,11 @@ class HarmonicIntervalQuestion(QuestionBase):
 
         user_semitones = self.keyboard_index.index(user_input_char[0])
         user_semitones_plus_diretion = \
-          (user_semitones * -1) if self.is_descending else (user_semitones)
-        
+            (user_semitones * -1) if self.is_descending else (user_semitones)
+
         user_pitch = get_pitch_by_number(int(self.tonic_pitch) +
                                          user_semitones_plus_diretion)
-        #print(self.scale)
-        #user_pitch = self.chromatic_scale[user_semitones]
-        
+
         user_interval = Interval(self.tonic_pitch, user_pitch)['data'][2]
         user_note = str(user_pitch)
 

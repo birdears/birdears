@@ -5,6 +5,7 @@ def get_interval_by_semitones(semitones):
     # TODO: PLEASE WRITE ME
     pass
 
+
 class Interval(dict):
     """This class represents the interval between two pitches..
 

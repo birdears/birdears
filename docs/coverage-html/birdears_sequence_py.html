@@ -324,12 +324,12 @@
 <p id="t73" class="pln"><span class="str">        `Sequence.pos_delay` seconds.</span><span class="strut">&nbsp;</span></p>
 <p id="t74" class="pln"><span class="str">        """</span><span class="strut">&nbsp;</span></p>
 <p id="t75" class="pln"><span class="strut">&nbsp;</span></p>
-<p id="t76" class="stm run hide_run">        <span class="key">for</span> <span class="nam">element</span> <span class="key">in</span> <span class="nam">self</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
+<p id="t76" class="stm run hide_run">        <span class="key">for</span> <span class="nam">index</span><span class="op">,</span> <span class="nam">element</span> <span class="key">in</span> <span class="nam">enumerate</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
 <p id="t77" class="pln"><span class="strut">&nbsp;</span></p>
 <p id="t78" class="pln">            <span class="com"># is the current element to be played the last of the sequence?</span><span class="strut">&nbsp;</span></p>
 <p id="t79" class="pln">            <span class="com"># because if it is the last, we will supress it's  playing delay</span><span class="strut">&nbsp;</span></p>
 <p id="t80" class="pln">            <span class="com"># and will use the Sequence.pos_delay</span><span class="strut">&nbsp;</span></p>
-<p id="t81" class="stm run hide_run">            <span class="nam">is_last</span> <span class="op">=</span> <span class="nam">element</span> <span class="key">is</span> <span class="nam">self</span><span class="op">[</span><span class="op">-</span><span class="num">1</span><span class="op">]</span><span class="strut">&nbsp;</span></p>
+<p id="t81" class="stm run hide_run">            <span class="nam">is_last</span> <span class="op">=</span> <span class="op">(</span><span class="nam">index</span> <span class="op">==</span> <span class="nam">len</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span> <span class="op">-</span> <span class="num">1</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t82" class="pln"><span class="strut">&nbsp;</span></p>
 <p id="t83" class="stm run hide_run">            <span class="key">if</span> <span class="nam">type</span><span class="op">(</span><span class="nam">element</span><span class="op">)</span> <span class="op">==</span> <span class="nam">Pitch</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
 <p id="t84" class="stm run hide_run">                <span class="nam">self</span><span class="op">.</span><span class="nam">_play_note</span><span class="op">(</span><span class="nam">element</span><span class="op">,</span> <span class="nam">last_element</span><span class="op">=</span><span class="nam">is_last</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
@@ -438,7 +438,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v4.5.1</a>,
-            created at 2018-04-24 11:44
+            created at 2018-06-06 09:28
         </p>
     </div>
 </div>

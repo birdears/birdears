@@ -78,8 +78,7 @@ class Sequence(list):
             # is the current element to be played the last of the sequence?
             # because if it is the last, we will supress it's  playing delay
             # and will use the Sequence.pos_delay
-            is_last = (index == len(self)-1)
-            
+            is_last = (index == len(self) - 1)
 
             if type(element) == Pitch:
                 self._play_note(element, last_element=is_last)

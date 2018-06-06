@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>birdears.resolution &#8212; birdears 0.1.4 documentation</title>
+    <title>birdears.resolution &#8212; birdears 0.2.1 documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <script type="text/javascript" src="../../_static/documentation_options.js"></script>
@@ -222,49 +222,59 @@ def nearest_tonic(question):
     # this function will receive: tonic, scale and random_pitch (which may be
     # chromatic, ie., not in `scale`)
 
-    # lets create an scale with same tonic, in the octave of the random_pitch
-    scale_random_pitch = DiatonicScale(tonic=tonic_pitch.note,
-                                       octave=random_pitch.octave,
-                                       n_octaves=1)
+    semitones = (int(random_pitch) - int(tonic_pitch)) % 12
 
-    interval = Interval(tonic_pitch, random_pitch)
+    scale_random_pitch = question.diatonic_scale
 
-    semitones = interval[&#39;distance&#39;][&#39;semitones&#39;]
-
-    direction = -1 if (semitones &lt;= MAX_SEMITONES_RESOLVE_BELOW) else 1
+    direction = -1 if (semitones &lt;= MAX_SEMITONES_RESOLVE_BELOW) else +1
+    # invert `direction` signal if descending:
+    pitch_direction = (direction * -1) if question.is_descending else direction
 
     resolution = []
 
     if random_pitch not in scale_random_pitch:  # random_pitch is chromatic
         resolution.append(random_pitch)
-        #  next ones above or below are in the diatonic for sure, then:
+        # if this note is chromatic then the
+        # next ones above or below are in the diatonic for sure, so we
+        # add one semitone and we will have the next diatonic degree:
         nearest_diatonic_pitch = \
-            get_pitch_by_number(int(random_pitch)+direction)
+            get_pitch_by_number(int(random_pitch) + direction)
     else:
         nearest_diatonic_pitch = random_pitch  # random_pitch is diatonic
 
-    nearest_tonic_index = 0 if semitones &lt;= MAX_SEMITONES_RESOLVE_BELOW else -1
-    nearest_tonic_pitch = scale_random_pitch[nearest_tonic_index]
+    resolve_mask = 0 if semitones &lt;= MAX_SEMITONES_RESOLVE_BELOW else 12
 
-    tonic_index = scale_random_pitch.index(nearest_tonic_pitch)
+    nearest_tonic_pitch = get_pitch_by_number(int(random_pitch) +
+                                              (resolve_mask-semitones))
+
+    nearest_tonic_index = scale_random_pitch.index(nearest_tonic_pitch)
 
     nearest_diatonic_pitch_index = \
         scale_random_pitch.index(nearest_diatonic_pitch)
 
     random_pitch_index = nearest_diatonic_pitch_index
 
-    ohslice = slice(min(tonic_index, random_pitch_index), max(tonic_index,
-                    nearest_diatonic_pitch_index)+1)
+    ohslice = slice(min(nearest_tonic_index, random_pitch_index),
+                    max(nearest_tonic_index, nearest_diatonic_pitch_index)+1)
 
-    resolution = scale_random_pitch[ohslice][::direction]
+    resolution = scale_random_pitch[ohslice][::pitch_direction]
+
+    # is it chromatic?
+    if random_pitch not in scale_random_pitch:
+        resolution.insert(0, random_pitch)
+
+    if len(resolution) == 1:
+        resolution.append(tonic_pitch)
 
     if question.is_harmonic:
         resolution_harmonic = []
 
         for item in resolution:
-            resolution_harmonic.append(Chord(tonic_pitch, item))
+            resolution_harmonic.append(Chord([tonic_pitch, item]))
 
         resolution = resolution_harmonic
+
+    print(resolution)
 
     # resolution
     return Sequence(elements=resolution, duration=duration, delay=delay,
@@ -324,7 +334,7 @@ def repeat_only(question):
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2017, Iacchus Mercurius.
+      &copy;2017-2018, Iacchus Mercurius.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.2</a>

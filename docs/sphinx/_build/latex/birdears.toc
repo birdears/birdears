@@ -41,7 +41,7 @@
 \contentsline {section}{\numberline {5.2}Submodules}{27}{section.5.2}
 \contentsline {section}{\numberline {5.3}birdears.interval module}{27}{section.5.3}
 \contentsline {section}{\numberline {5.4}birdears.logger module}{28}{section.5.4}
-\contentsline {section}{\numberline {5.5}birdears.prequestion module}{28}{section.5.5}
+\contentsline {section}{\numberline {5.5}birdears.prequestion module}{29}{section.5.5}
 \contentsline {section}{\numberline {5.6}birdears.questionbase module}{30}{section.5.6}
 \contentsline {section}{\numberline {5.7}birdears.resolution module}{31}{section.5.7}
 \contentsline {section}{\numberline {5.8}birdears.scale module}{32}{section.5.8}
@@ -63,7 +63,7 @@
 \contentsline {subsection}{\numberline {9.3.4}instrumental}{45}{subsection.9.3.4}
 \contentsline {section}{\numberline {9.4}Loading from config/preset files}{46}{section.9.4}
 \contentsline {subsection}{\numberline {9.4.1}Pre-made presets}{46}{subsection.9.4.1}
-\contentsline {subsubsection}{Pre-made presets description}{46}{subsubsection*.103}
+\contentsline {subsubsection}{Pre-made presets description}{46}{subsubsection*.104}
 \contentsline {subsection}{\numberline {9.4.2}Creating new preset files}{46}{subsection.9.4.2}
 \contentsline {section}{\numberline {9.5}Keybindings}{46}{section.9.5}
 \contentsline {subsection}{\numberline {9.5.1}On the keybindings}{46}{subsection.9.5.1}
@@ -94,5 +94,5 @@
 \contentsline {chapter}{\numberline {13}birdears.interfaces package}{69}{chapter.13}
 \contentsline {section}{\numberline {13.1}Submodules}{69}{section.13.1}
 \contentsline {section}{\numberline {13.2}birdears.interfaces.commandline module}{69}{section.13.2}
-\contentsline {chapter}{Python Module Index}{71}{section*.196}
-\contentsline {chapter}{Index}{73}{section*.197}
+\contentsline {chapter}{Python Module Index}{71}{section*.198}
+\contentsline {chapter}{Index}{73}{section*.199}

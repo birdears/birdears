@@ -63,9 +63,10 @@
 \indexentry{distance (birdears.interval.Interval attribute)|hyperpage}{27}
 \indexentry{data (birdears.interval.Interval attribute)|hyperpage}{28}
 \indexentry{\_\_init\_\_() (birdears.interval.Interval method)|hyperpage}{28}
+\indexentry{get\_interval\_by\_semitones() (in module birdears.interval)|hyperpage}{28}
 \indexentry{birdears.logger (module)|hyperpage}{28}
 \indexentry{log\_event() (in module birdears.logger)|hyperpage}{28}
-\indexentry{birdears.prequestion (module)|hyperpage}{28}
+\indexentry{birdears.prequestion (module)|hyperpage}{29}
 \indexentry{PreQuestion (class in birdears.prequestion)|hyperpage}{29}
 \indexentry{\_\_call\_\_() (birdears.prequestion.PreQuestion method)|hyperpage}{29}
 \indexentry{\_\_init\_\_() (birdears.prequestion.PreQuestion method)|hyperpage}{29}
@@ -127,12 +128,13 @@
 \indexentry{distance (birdears.interval.Interval attribute)|hyperpage}{54}
 \indexentry{data (birdears.interval.Interval attribute)|hyperpage}{54}
 \indexentry{\_\_init\_\_() (birdears.interval.Interval method)|hyperpage}{54}
+\indexentry{get\_interval\_by\_semitones() (in module birdears.interval)|hyperpage}{55}
 \indexentry{birdears.logger (module)|hyperpage}{55}
 \indexentry{log\_event() (in module birdears.logger)|hyperpage}{55}
 \indexentry{birdears.prequestion (module)|hyperpage}{55}
 \indexentry{PreQuestion (class in birdears.prequestion)|hyperpage}{55}
 \indexentry{\_\_call\_\_() (birdears.prequestion.PreQuestion method)|hyperpage}{55}
-\indexentry{\_\_init\_\_() (birdears.prequestion.PreQuestion method)|hyperpage}{55}
+\indexentry{\_\_init\_\_() (birdears.prequestion.PreQuestion method)|hyperpage}{56}
 \indexentry{none() (in module birdears.prequestion)|hyperpage}{56}
 \indexentry{progression\_i\_iv\_v\_i() (in module birdears.prequestion)|hyperpage}{56}
 \indexentry{register\_prequestion\_method() (in module birdears.prequestion)|hyperpage}{56}

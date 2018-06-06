@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>birdears.questions.instrumentaldictation &#8212; birdears 0.1.4 documentation</title>
+    <title>birdears.questions.instrumentaldictation &#8212; birdears 0.2.1 documentation</title>
     <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <script type="text/javascript" src="../../../_static/documentation_options.js"></script>
@@ -256,6 +256,7 @@ from random import sample
         return prequestion()</div>
 
 <div class="viewcode-block" id="InstrumentalDictationQuestion.make_question"><a class="viewcode-back" href="../../../index.html#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.make_question">[docs]</a>    def make_question(self):
+        print(self.random_pitches)
         return Sequence(self.random_pitches, **self.durations[&#39;quest&#39;])</div>
 
 <div class="viewcode-block" id="InstrumentalDictationQuestion.make_resolution"><a class="viewcode-back" href="../../../index.html#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.make_resolution">[docs]</a>    def make_resolution(self, method):
@@ -334,7 +335,7 @@ The intervals and notes of this question:
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2017, Iacchus Mercurius.
+      &copy;2017-2018, Iacchus Mercurius.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.2</a>

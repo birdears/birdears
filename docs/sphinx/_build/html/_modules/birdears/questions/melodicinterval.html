@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>birdears.questions.melodicinterval &#8212; birdears 0.1.4 documentation</title>
+    <title>birdears.questions.melodicinterval &#8212; birdears 0.2.1 documentation</title>
     <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <script type="text/javascript" src="../../../_static/documentation_options.js"></script>
@@ -226,6 +226,16 @@ from random import choice
                                         descending=descending,
                                         n_octaves=n_octaves)
 
+        self.diatonic_scale = DiatonicScale(tonic=self.tonic_str, mode=mode,
+                                            octave=self.octave,
+                                            descending=descending,
+                                            n_octaves=n_octaves)
+
+        self.chromatic_scale = ChromaticScale(tonic=self.tonic_str,
+                                              octave=self.octave,
+                                              descending=descending,
+                                              n_octaves=n_octaves)
+
         self.valid_pitches = get_valid_pitches(self.scale, valid_intervals)
         self.random_pitch = choice(self.valid_pitches)
 
@@ -273,8 +283,12 @@ from random import choice
         &quot;&quot;&quot;
 
         user_semitones = self.keyboard_index.index(user_input_char[0])
+        user_semitones_plus_diretion = \
+            (user_semitones * -1) if self.is_descending else (user_semitones)
+
         user_pitch = get_pitch_by_number(int(self.tonic_pitch) +
-                                         user_semitones)
+                                         user_semitones_plus_diretion)
+
         user_interval = Interval(self.tonic_pitch, user_pitch)[&#39;data&#39;][2]
         user_note = str(user_pitch)
 
@@ -342,7 +356,7 @@ user {si} “{ui}” ({to}─{un})
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2017, Iacchus Mercurius.
+      &copy;2017-2018, Iacchus Mercurius.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.2</a>

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>birdears package &#8212; birdears 0.1.4 documentation</title>
+    <title>birdears package &#8212; birdears 0.2.1 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" src="_static/documentation_options.js"></script>
@@ -218,7 +218,7 @@ perfect, augmented/diminished</p>
 <dt id="birdears.interval.Interval">
 <em class="property">class </em><code class="descclassname">birdears.interval.</code><code class="descname">Interval</code><span class="sig-paren">(</span><em>pitch_a</em>, <em>pitch_b</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/interval.html#Interval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.interval.Interval" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
-<p>Chooses a diatonic interval for the question.</p>
+<p>This class represents the interval between two pitches..</p>
 <dl class="attribute">
 <dt id="birdears.interval.Interval.tonic_octave">
 <code class="descname">tonic_octave</code><a class="headerlink" href="#birdears.interval.Interval.tonic_octave" title="Permalink to this definition">¶</a></dt>
@@ -326,6 +326,11 @@ interval, for example, if tonic is C4 and interval is G5:</p>
 </dd></dl>
 
 </dd></dl>
+
+<dl class="function">
+<dt id="birdears.interval.get_interval_by_semitones">
+<code class="descclassname">birdears.interval.</code><code class="descname">get_interval_by_semitones</code><span class="sig-paren">(</span><em>semitones</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/interval.html#get_interval_by_semitones"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.interval.get_interval_by_semitones" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </div>
 <div class="section" id="module-birdears.logger">
@@ -885,7 +890,7 @@ of each triad.</li>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2017, Iacchus Mercurius.
+      &copy;2017-2018, Iacchus Mercurius.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.2</a>
