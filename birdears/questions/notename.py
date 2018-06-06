@@ -100,6 +100,16 @@ class NoteNameQuestion(QuestionBase):
                                         descending=descending,
                                         n_octaves=n_octaves)
 
+        self.diatonic_scale = DiatonicScale(tonic=self.tonic_str, mode=mode,
+                                            octave=self.octave,
+                                            descending=descending,
+                                            n_octaves=n_octaves)
+
+        self.chromatic_scale = ChromaticScale(tonic=self.tonic_str,
+                                              octave=self.octave,
+                                              descending=descending,
+                                              n_octaves=n_octaves)
+
         self.valid_pitches = get_valid_pitches(self.scale, valid_intervals)
         self.random_pitch = choice(self.valid_pitches)
 
