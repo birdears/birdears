@@ -89,7 +89,7 @@ def nearest_tonic(question):
     duration = question.durations['resol']['duration']
     delay = question.durations['resol']['delay']
     pos_delay = question.durations['resol']['pos_delay']
-    
+
     # this function will receive: tonic, scale and random_pitch (which may be
     # chromatic, ie., not in `scale`)
 
@@ -131,20 +131,24 @@ def nearest_tonic(question):
     print('correct pitch:', random_pitch)
     nearest_tonic_index = scale_random_pitch.index(nearest_tonic_pitch)
     # print('scale random pitch:', scale_random_pitch)
+    print('nearest_tonic_index:', nearest_tonic_index)
 
-    tonic_index = scale_random_pitch.index(nearest_tonic_pitch)
+    #tonic_index = scale_random_pitch.index(nearest_tonic_pitch)
 
     nearest_diatonic_pitch_index = \
         scale_random_pitch.index(nearest_diatonic_pitch)
 
     random_pitch_index = nearest_diatonic_pitch_index
 
-    ohslice = slice(min(tonic_index, random_pitch_index),
-                    max(tonic_index, nearest_diatonic_pitch_index)+1)
+    ohslice = slice(min(nearest_tonic_index, random_pitch_index),
+                    max(nearest_tonic_index, nearest_diatonic_pitch_index)+1)
+    
+    # ohslice = slice(min(tonic_index, random_pitch_index),
+    #                max(tonic_index, nearest_diatonic_pitch_index)+1)
 
     print(ohslice)
 
-    resolution = scale_random_pitch[ohslice][::direction]
+    resolution = scale_random_pitch[ohslice][::pitch_direction]
     # resolution = scale_random_pitch[ohslice]
 
     # is it chromatic?
