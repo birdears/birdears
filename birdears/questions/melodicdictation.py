@@ -127,6 +127,7 @@ class MelodicDictationQuestion(QuestionBase):
         return resolution
 
     def play_question(self):
+        print(self.question)
         self.pre_question.play()
         self.question.play()
 

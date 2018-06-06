@@ -93,7 +93,6 @@ def nearest_tonic(question):
     # this function will receive: tonic, scale and random_pitch (which may be
     # chromatic, ie., not in `scale`)
 
-    # negative is descending
     semitones = (int(random_pitch) - int(tonic_pitch)) % 12
 
     scale_random_pitch = question.diatonic_scale
@@ -111,8 +110,6 @@ def nearest_tonic(question):
         # add one semitone and we will have the next diatonic degree:
         nearest_diatonic_pitch = \
             get_pitch_by_number(int(random_pitch) + direction)
-            # get_pitch_by_number(int(random_pitch) + pitch_direction)
-
     else:
         nearest_diatonic_pitch = random_pitch  # random_pitch is diatonic
 
