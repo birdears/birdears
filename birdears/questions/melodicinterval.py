@@ -154,7 +154,6 @@ class MelodicIntervalQuestion(QuestionBase):
         """
 
         user_semitones = self.keyboard_index.index(user_input_char[0])
-        print(user_semitones)
         user_semitones_plus_diretion = \
           (user_semitones * -1) if self.is_descending else (user_semitones)
         
@@ -172,9 +171,6 @@ class MelodicIntervalQuestion(QuestionBase):
                                     self.random_pitch)['data'][2]
         correct_note = str(self.random_pitch)
 
-        print('user_pitch', user_pitch)
-        print('correct_pitch', correct_pitch)
-        
         is_correct = user_pitch == correct_pitch
 
         signal = ('x', '✓')[is_correct]  # u2713; False==0, True==1

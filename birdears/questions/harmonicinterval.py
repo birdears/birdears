@@ -86,7 +86,7 @@ class HarmonicIntervalQuestion(QuestionBase):
                      resolution_method=resolution_method,
                      default_durations=default_durations, *args, **kwargs)
 
-        self.is_harmonic = False
+        self.is_harmonic = True
 
         if not chromatic:
             self.scale = DiatonicScale(tonic=self.tonic_str, mode=mode,
@@ -99,6 +99,16 @@ class HarmonicIntervalQuestion(QuestionBase):
                                         descending=descending,
                                         n_octaves=n_octaves)
 
+        self.diatonic_scale = DiatonicScale(tonic=self.tonic_str, mode=mode,
+                                            octave=self.octave,
+                                            descending=descending,
+                                            n_octaves=n_octaves)
+
+        self.chromatic_scale = ChromaticScale(tonic=self.tonic_str,
+                                              octave=self.octave,
+                                              descending=descending,
+                                              n_octaves=n_octaves)
+
         self.valid_pitches = get_valid_pitches(self.scale, valid_intervals)
         self.random_pitch = choice(self.valid_pitches)
 
@@ -109,6 +119,7 @@ class HarmonicIntervalQuestion(QuestionBase):
         self.resolution = self.make_resolution(method=resolution_method)
 
     def make_pre_question(self, method):
+
         prequestion = PreQuestion(method=method, question=self)
 
         return prequestion()
@@ -128,10 +139,16 @@ class HarmonicIntervalQuestion(QuestionBase):
         return resolution
 
     def play_question(self):
+        # Other threads can call a thread’s join() method. This blocks the
+        # calling thread until the thread whose join() method is called is
+        # terminated.
+        # https://docs.python.org/3/library/threading.html#thread-objects
+
         self.pre_question.play()
         self.question.play()
 
     def play_resolution(self):
+
         thread = self.resolution.play()
         thread.join()
 
@@ -140,12 +157,17 @@ class HarmonicIntervalQuestion(QuestionBase):
         """
 
         user_semitones = self.keyboard_index.index(user_input_char[0])
-        user_pitch = get_pitch_by_number(int(self.tonic_pitch)
-                                         + user_semitones)
+        user_semitones_plus_diretion = \
+          (user_semitones * -1) if self.is_descending else (user_semitones)
+        
+        user_pitch = get_pitch_by_number(int(self.tonic_pitch) +
+                                         user_semitones_plus_diretion)
+        #print(self.scale)
+        #user_pitch = self.chromatic_scale[user_semitones]
+        
         user_interval = Interval(self.tonic_pitch, user_pitch)['data'][2]
         user_note = str(user_pitch)
 
-        # correct_semitones = abs(int(self.tonic) - int(self.random_pitch))
         correct_semitones = abs(int(self.interval['semitones']))
         correct_pitch = self.random_pitch
         correct_interval = Interval(self.tonic_pitch,
