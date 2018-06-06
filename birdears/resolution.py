@@ -89,22 +89,22 @@ def nearest_tonic(question):
     duration = question.durations['resol']['duration']
     delay = question.durations['resol']['delay']
     pos_delay = question.durations['resol']['pos_delay']
-
-    # is_descending = question.is_descending
-
+    
     # this function will receive: tonic, scale and random_pitch (which may be
     # chromatic, ie., not in `scale`)
 
     interval = Interval(tonic_pitch, random_pitch)
 
-    # debug
-    # print(random_pitch)
-    # print(tonic_pitch)
-    # print(interval)
-    # print()
 
-    semitones = interval['distance']['semitones']
 
+    #semitones = interval['distance']['semitones']
+    # negative is descending
+    semitones = (int(random_pitch) - int(tonic_pitch)) % 12
+
+    semitones_signaled = semitones * -1 \
+                            if (int(random_pitch) < int(tonic_pitch)) \
+                            else semitones
+                            
     scale_random_pitch = question.diatonic_scale
 
     direction = -1 if (semitones <= MAX_SEMITONES_RESOLVE_BELOW) else 1
@@ -123,12 +123,13 @@ def nearest_tonic(question):
         nearest_diatonic_pitch = random_pitch  # random_pitch is diatonic
 
     # FIXME:
-    resolve_direction = -1 if semitones <= MAX_SEMITONES_RESOLVE_BELOW else +1
-    
-    #nearest_tonic_index = 0 if semitones <= MAX_SEMITONES_RESOLVE_BELOW else -1
-    #nearest_tonic_pitch = scale_random_pitch[nearest_tonic_index]
+    resolve_direction = 1 if semitones <= MAX_SEMITONES_RESOLVE_BELOW else -1
+
     nearest_tonic_pitch = get_pitch_by_number(int(random_pitch) +
-                                             (semitones*resolve_direction))
+                                              (semitones_signaled*resolve_direction))
+    print(random_pitch, semitones, resolve_direction)
+    print('nearest t pitch:', nearest_tonic_pitch)
+    print('semitones signaled', semitones_signaled)
     #print(int(random_pitch))
     nearest_tonic_index = scale_random_pitch.index(nearest_tonic_pitch)
     # print('scale random pitch:', scale_random_pitch)
@@ -149,15 +150,10 @@ def nearest_tonic(question):
 
     # is it chromatic?
     if random_pitch not in scale_random_pitch:
-        # then it resolves down
-        # if semitones <= MAX_SEMITONES_RESOLVE_BELOW:
-        #     resolution.append(random_pitch)
-        # else:
         resolution.insert(0, random_pitch)
 
     if len(resolution) == 1:
         resolution.append(tonic_pitch)
-        # resolution.insert(0, random_pitch)
 
     if question.is_harmonic:
         resolution_harmonic = []
