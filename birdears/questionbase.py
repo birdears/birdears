@@ -49,8 +49,6 @@ def get_valid_pitches(scale, valid_semitones=CHROMATIC_TYPE):
 
         chromatic_offset = \
             abs(int(tonic_pitch) - int(pitch))
-            # Interval(tonic_pitch, pitch)['distance']['semitones']
-            # abs(int(tonic_pitch) - int(pitch))
 
         if chromatic_offset in valid_semitones:
             valid_scale.append(pitch)

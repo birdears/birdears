@@ -169,14 +169,15 @@ QUESTION_CLASSES = {}
     elif isinstance(valid_semitones, list):
         pass
     elif isinstance(valid_semitones, str):
-        valid_semitones = tuple(valid_semitones.replace(&#39; &#39;, &#39;&#39;).split(&#39;,&#39;))
+        valid_list = valid_semitones.replace(&#39; &#39;, &#39;&#39;).split(&#39;,&#39;)
+        valid_semitones = tuple(map(lambda x: int(x)-1, valid_list))
     else:
         raise Exception(&#39;Incorrect type for valid_semitones&#39;)
 
     for pitch in scale:
 
         chromatic_offset = \
-            Interval(tonic_pitch, pitch)[&#39;distance&#39;][&#39;semitones&#39;]
+            abs(int(tonic_pitch) - int(pitch))
 
         if chromatic_offset in valid_semitones:
             valid_scale.append(pitch)
