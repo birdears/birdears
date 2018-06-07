@@ -98,9 +98,7 @@ class MelodicDictationQuestion(QuestionBase):
 
         self.valid_pitches = get_valid_pitches(self.scale, valid_intervals)
 
-        random_choose_from_pitches = sample(self.valid_pitches, max_intervals)
-
-        self.random_pitches = [choice(random_choose_from_pitches) for note
+        self.random_pitches = [choice(self.valid_pitches) for note
                                in range(n_notes)]
 
         self.pre_question = \

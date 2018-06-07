@@ -40,14 +40,17 @@ def get_valid_pitches(scale, valid_semitones=CHROMATIC_TYPE):
     elif isinstance(valid_semitones, list):
         pass
     elif isinstance(valid_semitones, str):
-        valid_semitones = tuple(valid_semitones.replace(' ', '').split(','))
+        valid_list = valid_semitones.replace(' ', '').split(',')
+        valid_semitones = tuple(map(lambda x: int(x)-1, valid_list))
     else:
         raise Exception('Incorrect type for valid_semitones')
 
     for pitch in scale:
 
         chromatic_offset = \
-            Interval(tonic_pitch, pitch)['distance']['semitones']
+            abs(int(tonic_pitch) - int(pitch))
+            # Interval(tonic_pitch, pitch)['distance']['semitones']
+            # abs(int(tonic_pitch) - int(pitch))
 
         if chromatic_offset in valid_semitones:
             valid_scale.append(pitch)
