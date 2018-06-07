@@ -229,8 +229,6 @@ from ..prequestion import PreQuestion
 
         random_choose_from_pitches = sample(self.valid_pitches, max_intervals)
 
-        # self.random_pitches = choices(population=random_choose_from_pitches,
-        #                              k=n_notes)
         self.random_pitches = [choice(random_choose_from_pitches) for note
                                in range(n_notes)]
 
@@ -256,7 +254,6 @@ from ..prequestion import PreQuestion
         return resolution</div>
 
 <div class="viewcode-block" id="MelodicDictationQuestion.play_question"><a class="viewcode-back" href="../../../index.html#birdears.questions.melodicdictation.MelodicDictationQuestion.play_question">[docs]</a>    def play_question(self):
-        print(self.question)
         self.pre_question.play()
         self.question.play()</div>
 

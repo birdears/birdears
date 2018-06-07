@@ -100,8 +100,6 @@ class MelodicDictationQuestion(QuestionBase):
 
         random_choose_from_pitches = sample(self.valid_pitches, max_intervals)
 
-        # self.random_pitches = choices(population=random_choose_from_pitches,
-        #                              k=n_notes)
         self.random_pitches = [choice(random_choose_from_pitches) for note
                                in range(n_notes)]
 
@@ -127,7 +125,6 @@ class MelodicDictationQuestion(QuestionBase):
         return resolution
 
     def play_question(self):
-        print(self.question)
         self.pre_question.play()
         self.question.play()
 

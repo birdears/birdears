@@ -12,7 +12,7 @@ What is Functional Ear Training
 The method
 ----------
 
-We can use abc language to notate music withing the documentation, ok
+We can use abc language to notate music within the documentation, ok
 
 .. code-block:: abc
 
