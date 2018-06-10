@@ -121,7 +121,6 @@ class InstrumentalDictationQuestion(QuestionBase):
         return prequestion()
 
     def make_question(self):
-        print(self.random_pitches)
         return Sequence(self.random_pitches, **self.durations['quest'])
 
     def make_resolution(self, method):

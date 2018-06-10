@@ -290,7 +290,13 @@ def repeat_only(question):
             resolution sequence. (this is provided by the `Prequestion` class
             when it is `__call__`ed)
     &quot;&quot;&quot;
-    elements = tuple(question.question)
+
+    elements = list()
+    if hasattr(question, &#39;random_pitches&#39;):
+        elements.extend(question.random_pitches)
+    else:
+        elements.append(question.random_pitch)
+        elements.append(question.tonic_pitch)
 
     duration = question.durations[&#39;resol&#39;][&#39;duration&#39;]
     delay = question.durations[&#39;resol&#39;][&#39;delay&#39;]

@@ -8,7 +8,7 @@
     
     
     <meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
-    <title>Coverage for birdears/resolution.py: 97%</title>
+    <title>Coverage for birdears/resolution.py: 94%</title>
     <link rel="stylesheet" href="style.css" type="text/css">
     
     <script type="text/javascript" src="jquery.min.js"></script>
@@ -24,15 +24,15 @@
 <div id="header">
     <div class="content">
         <h1>Coverage for <b>birdears/resolution.py</b> :
-            <span class="pc_cov">97%</span>
+            <span class="pc_cov">94%</span>
         </h1>
 
         <img id="keyboard_icon" src="keybd_closed.png" alt="Show keyboard shortcuts" />
 
         <h2 class="stats">
-            60 statements &nbsp;
-            <span class="run hide_run shortkey_r button_toggle_run">58 run</span>
-            <span class="mis shortkey_m button_toggle_mis">2 missing</span>
+            64 statements &nbsp;
+            <span class="run hide_run shortkey_r button_toggle_run">60 run</span>
+            <span class="mis shortkey_m button_toggle_mis">4 missing</span>
             <span class="exc shortkey_x button_toggle_exc">0 excluded</span>
 
             
@@ -230,16 +230,22 @@
 <p id="n161" class="pln"><a href="#n161">161</a></p>
 <p id="n162" class="pln"><a href="#n162">162</a></p>
 <p id="n163" class="pln"><a href="#n163">163</a></p>
-<p id="n164" class="stm run hide_run"><a href="#n164">164</a></p>
-<p id="n165" class="pln"><a href="#n165">165</a></p>
+<p id="n164" class="pln"><a href="#n164">164</a></p>
+<p id="n165" class="stm run hide_run"><a href="#n165">165</a></p>
 <p id="n166" class="stm run hide_run"><a href="#n166">166</a></p>
 <p id="n167" class="stm run hide_run"><a href="#n167">167</a></p>
-<p id="n168" class="stm run hide_run"><a href="#n168">168</a></p>
-<p id="n169" class="pln"><a href="#n169">169</a></p>
-<p id="n170" class="stm run hide_run"><a href="#n170">170</a></p>
+<p id="n168" class="pln"><a href="#n168">168</a></p>
+<p id="n169" class="stm mis"><a href="#n169">169</a></p>
+<p id="n170" class="stm mis"><a href="#n170">170</a></p>
 <p id="n171" class="pln"><a href="#n171">171</a></p>
-<p id="n172" class="pln"><a href="#n172">172</a></p>
+<p id="n172" class="stm run hide_run"><a href="#n172">172</a></p>
 <p id="n173" class="stm run hide_run"><a href="#n173">173</a></p>
+<p id="n174" class="stm run hide_run"><a href="#n174">174</a></p>
+<p id="n175" class="pln"><a href="#n175">175</a></p>
+<p id="n176" class="stm run hide_run"><a href="#n176">176</a></p>
+<p id="n177" class="pln"><a href="#n177">177</a></p>
+<p id="n178" class="pln"><a href="#n178">178</a></p>
+<p id="n179" class="stm run hide_run"><a href="#n179">179</a></p>
 
             </td>
             <td class="text">
@@ -406,16 +412,22 @@
 <p id="t161" class="pln"><span class="str">            resolution sequence. (this is provided by the `Prequestion` class</span><span class="strut">&nbsp;</span></p>
 <p id="t162" class="pln"><span class="str">            when it is `__call__`ed)</span><span class="strut">&nbsp;</span></p>
 <p id="t163" class="pln"><span class="str">    """</span><span class="strut">&nbsp;</span></p>
-<p id="t164" class="stm run hide_run">    <span class="nam">elements</span> <span class="op">=</span> <span class="nam">tuple</span><span class="op">(</span><span class="nam">question</span><span class="op">.</span><span class="nam">question</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t165" class="pln"><span class="strut">&nbsp;</span></p>
-<p id="t166" class="stm run hide_run">    <span class="nam">duration</span> <span class="op">=</span> <span class="nam">question</span><span class="op">.</span><span class="nam">durations</span><span class="op">[</span><span class="str">'resol'</span><span class="op">]</span><span class="op">[</span><span class="str">'duration'</span><span class="op">]</span><span class="strut">&nbsp;</span></p>
-<p id="t167" class="stm run hide_run">    <span class="nam">delay</span> <span class="op">=</span> <span class="nam">question</span><span class="op">.</span><span class="nam">durations</span><span class="op">[</span><span class="str">'resol'</span><span class="op">]</span><span class="op">[</span><span class="str">'delay'</span><span class="op">]</span><span class="strut">&nbsp;</span></p>
-<p id="t168" class="stm run hide_run">    <span class="nam">pos_delay</span> <span class="op">=</span> <span class="nam">question</span><span class="op">.</span><span class="nam">durations</span><span class="op">[</span><span class="str">'resol'</span><span class="op">]</span><span class="op">[</span><span class="str">'pos_delay'</span><span class="op">]</span><span class="strut">&nbsp;</span></p>
-<p id="t169" class="pln"><span class="strut">&nbsp;</span></p>
-<p id="t170" class="stm run hide_run">    <span class="nam">sequence_list</span> <span class="op">=</span> <span class="nam">Sequence</span><span class="op">(</span><span class="nam">elements</span><span class="op">,</span> <span class="nam">duration</span><span class="op">=</span><span class="nam">duration</span><span class="op">,</span> <span class="nam">delay</span><span class="op">=</span><span class="nam">delay</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
-<p id="t171" class="pln">                             <span class="nam">pos_delay</span><span class="op">=</span><span class="nam">pos_delay</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t172" class="pln"><span class="strut">&nbsp;</span></p>
-<p id="t173" class="stm run hide_run">    <span class="key">return</span> <span class="nam">sequence_list</span><span class="strut">&nbsp;</span></p>
+<p id="t164" class="pln"><span class="strut">&nbsp;</span></p>
+<p id="t165" class="stm run hide_run">    <span class="nam">elements</span> <span class="op">=</span> <span class="nam">list</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t166" class="stm run hide_run">    <span class="key">if</span> <span class="nam">hasattr</span><span class="op">(</span><span class="nam">question</span><span class="op">,</span> <span class="str">'random_pitches'</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
+<p id="t167" class="stm run hide_run">        <span class="nam">elements</span><span class="op">.</span><span class="nam">extend</span><span class="op">(</span><span class="nam">question</span><span class="op">.</span><span class="nam">random_pitches</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t168" class="pln">    <span class="key">else</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
+<p id="t169" class="stm mis">        <span class="nam">elements</span><span class="op">.</span><span class="nam">append</span><span class="op">(</span><span class="nam">question</span><span class="op">.</span><span class="nam">random_pitch</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t170" class="stm mis">        <span class="nam">elements</span><span class="op">.</span><span class="nam">append</span><span class="op">(</span><span class="nam">question</span><span class="op">.</span><span class="nam">tonic_pitch</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t171" class="pln"><span class="strut">&nbsp;</span></p>
+<p id="t172" class="stm run hide_run">    <span class="nam">duration</span> <span class="op">=</span> <span class="nam">question</span><span class="op">.</span><span class="nam">durations</span><span class="op">[</span><span class="str">'resol'</span><span class="op">]</span><span class="op">[</span><span class="str">'duration'</span><span class="op">]</span><span class="strut">&nbsp;</span></p>
+<p id="t173" class="stm run hide_run">    <span class="nam">delay</span> <span class="op">=</span> <span class="nam">question</span><span class="op">.</span><span class="nam">durations</span><span class="op">[</span><span class="str">'resol'</span><span class="op">]</span><span class="op">[</span><span class="str">'delay'</span><span class="op">]</span><span class="strut">&nbsp;</span></p>
+<p id="t174" class="stm run hide_run">    <span class="nam">pos_delay</span> <span class="op">=</span> <span class="nam">question</span><span class="op">.</span><span class="nam">durations</span><span class="op">[</span><span class="str">'resol'</span><span class="op">]</span><span class="op">[</span><span class="str">'pos_delay'</span><span class="op">]</span><span class="strut">&nbsp;</span></p>
+<p id="t175" class="pln"><span class="strut">&nbsp;</span></p>
+<p id="t176" class="stm run hide_run">    <span class="nam">sequence_list</span> <span class="op">=</span> <span class="nam">Sequence</span><span class="op">(</span><span class="nam">elements</span><span class="op">,</span> <span class="nam">duration</span><span class="op">=</span><span class="nam">duration</span><span class="op">,</span> <span class="nam">delay</span><span class="op">=</span><span class="nam">delay</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
+<p id="t177" class="pln">                             <span class="nam">pos_delay</span><span class="op">=</span><span class="nam">pos_delay</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t178" class="pln"><span class="strut">&nbsp;</span></p>
+<p id="t179" class="stm run hide_run">    <span class="key">return</span> <span class="nam">sequence_list</span><span class="strut">&nbsp;</span></p>
 
             </td>
         </tr>
@@ -426,7 +438,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v4.5.1</a>,
-            created at 2018-06-06 09:43
+            created at 2018-06-10 02:14
         </p>
     </div>
 </div>
