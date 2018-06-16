@@ -213,7 +213,7 @@ Valid values are as follows:
 @click.option('-i', '--max_intervals', type=click.IntRange(2, 12), default=3,
               metavar='<n max>',
               help='Max random intervals for the dictation.')
-@click.option('-x', '--n_notes', type=click.IntRange(3, 10), default=4,
+@click.option('-x', '--n_notes', type=click.IntRange(2, 10), default=4,
               metavar='<n notes>',
               help='Number of notes for the dictation.')
 @click.option('-t', '--tonic', type=str, default='C', metavar='<note>',
@@ -285,7 +285,7 @@ Valid values are as follows:
 @click.option('-i', '--max_intervals', type=click.IntRange(2, 12), default=3,
               metavar='<n max>',
               help='Max random intervals for the dictation.')
-@click.option('-x', '--n_notes', type=click.IntRange(3, 10), default=4,
+@click.option('-x', '--n_notes', type=click.IntRange(2, 10), default=4,
               metavar='<n notes>',
               help='Number of notes for the dictation.')
 @click.option('-t', '--tonic', type=str, default='C', metavar='<note>',
