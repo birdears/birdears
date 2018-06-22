@@ -145,7 +145,7 @@ class QuestionBase:
         elif isinstance(tonic, str) and ',' in tonic:
             tonic.replace(' ', '')
             tonic = choice(tonic.split(','))
-        elif isinstance(tonic, str) and 'R' in tonic:
+        elif isinstance(tonic, str) and ('R' in tonic or 'r' in tonic):
             tonic = choice(KEYS)
 
         self.tonic_pitch = Pitch(note=tonic, octave=self.octave)

@@ -97,11 +97,11 @@ class InstrumentalDictationQuestion(QuestionBase):
         self.n_repeats = n_repeats
 
         if not chromatic:
-            self.scale = DiatonicScale(tonic=tonic, mode=mode, octave=octave,
+            self.scale = DiatonicScale(tonic=self.tonic_str, mode=mode, octave=octave,
                                        n_octaves=n_octaves,
                                        descending=descending)
         else:
-            self.scale = ChromaticScale(tonic=tonic, octave=octave,
+            self.scale = ChromaticScale(tonic=self.tonic_str, octave=octave,
                                         n_octaves=n_octaves,
                                         descending=descending)
 
