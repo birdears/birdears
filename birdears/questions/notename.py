@@ -89,29 +89,29 @@ class NoteNameQuestion(QuestionBase):
 
         self.is_harmonic = False
 
-        if not chromatic:
-            self.scale = DiatonicScale(tonic=self.tonic_str, mode=mode,
-                                       octave=self.octave,
-                                       descending=descending,
-                                       n_octaves=n_octaves)
-        else:
-            self.scale = ChromaticScale(tonic=self.tonic_str,
-                                        octave=self.octave,
-                                        descending=descending,
-                                        n_octaves=n_octaves)
+        # if not chromatic:
+        #    self.scale = DiatonicScale(tonic=self.tonic_str, mode=mode,
+        #                               octave=self.octave,
+        #                               descending=descending,
+        #                               n_octaves=n_octaves)
+        #else:
+        #    self.scale = ChromaticScale(tonic=self.tonic_str,
+        #                                octave=self.octave,
+        #                                descending=descending,
+        #                                n_octaves=n_octaves)
 
-        self.diatonic_scale = DiatonicScale(tonic=self.tonic_str, mode=mode,
-                                            octave=self.octave,
-                                            descending=descending,
-                                            n_octaves=n_octaves)
+        #self.diatonic_scale = DiatonicScale(tonic=self.tonic_str, mode=mode,
+        #                                    octave=self.octave,
+        #                                    descending=descending,
+        #                                    n_octaves=n_octaves)
 
-        self.chromatic_scale = ChromaticScale(tonic=self.tonic_str,
-                                              octave=self.octave,
-                                              descending=descending,
-                                              n_octaves=n_octaves)
+        #self.chromatic_scale = ChromaticScale(tonic=self.tonic_str,
+        #                                      octave=self.octave,
+        #                                      descending=descending,
+        #                                      n_octaves=n_octaves)
 
-        self.valid_pitches = get_valid_pitches(self.scale, self.allowed_intervals)
-        self.random_pitch = choice(self.valid_pitches)
+        #self.valid_pitches = get_valid_pitches(self.scale, self.allowed_intervals)
+        self.random_pitch = choice(self.allowed_pitches)
 
         self.interval = Interval(self.tonic_pitch, self.random_pitch)
 
