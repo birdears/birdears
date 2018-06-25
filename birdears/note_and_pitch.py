@@ -38,6 +38,9 @@ def get_pitch_by_number(numeric, accident='sharp'):
 
 
 def get_abs_chromatic_offset(pitch1, pitch2):
+    if not all(isinstance(element, Pitch) for element in [pitch1, pitch2]):
+        raise InvalidPitch
+
     offset = abs(int(pitch1) - int(pitch2)) % 12
 
     return offset
@@ -103,17 +106,6 @@ class Pitch(Note):
     def pitch_number(self):
         value = self.pitch_class + (self.octave * 12)
         return value
-
-    # FIXME: maybe move this somewhere else
-    def get_pitch_by_number(self, numeric, accident='sharp'):
-        octave, pitch_class = divmod(numeric, 12)
-
-        note = CHROMATIC_SHARP[pitch_class] if accident == 'sharp' \
-            else CHROMATIC_FLAT[pitch_class]
-
-        pitch = Pitch(note=note, octave=octave)
-
-        return pitch
 
     def distance(self, other):
         if type(other) == Pitch:
