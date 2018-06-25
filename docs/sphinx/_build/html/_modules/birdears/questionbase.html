@@ -202,8 +202,6 @@ QUESTION_CLASSES = {}
         if chromatic_offset in valid_semitones:
             valid_scale.append(pitch)
 
-    print(valid_scale)
-
     return valid_scale</div>
 
 
@@ -293,7 +291,7 @@ QUESTION_CLASSES = {}
         if isinstance(tonic, list) or isinstance(tonic, tuple):
             tonic = choice(tonic)
         elif isinstance(tonic, str) and &#39;,&#39; in tonic:
-            tonic.replace(&#39; &#39;, &#39;&#39;)
+            tonic = tonic.replace(&#39; &#39;, &#39;&#39;)
             tonic = choice(tonic.split(&#39;,&#39;))
         elif isinstance(tonic, str) and (&#39;R&#39; in tonic or &#39;r&#39; in tonic):
             tonic = choice(KEYS)
