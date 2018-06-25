@@ -52,7 +52,7 @@ class Note:
         if note in CHROMATIC_SHARP or note in CHROMATIC_FLAT:
             self.note = note
         else:
-            raise InvalidNote
+            raise InvalidNote()
 
     # https://en.wikipedia.org/wiki/Pitch_class
     @property

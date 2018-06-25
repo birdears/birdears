@@ -139,10 +139,16 @@ class QuestionBase:
         self.is_chromatic = chromatic
 
         # self.octave = octave if octave else randrange(3, 5)
-        if isinstance(octave, int) and (octave >= 3 and octave <= 6):
+        if isinstance(octave, str) and any(el in octave for el in ('R', 'r')):
+            self.octave = randrange(3, 6)
+        elif isinstance(octave, str) and ',' in octave:
+            octave = octave.replace(' ', '')
+            octave = choice(octave.split(','))
+            self.octave = int(octave)
+        elif isinstance(octave, int) and (octave >= 3 and octave <= 6):
             self.octave = octave
         elif isinstance(octave, list):
-            self.octave = choice(octave)
+            self.octave = int(choice(octave))
         elif isinstance(octave, tuple) and len(octave) == 2:
             self.octave = randrange(*octave)
         # if not octave:
