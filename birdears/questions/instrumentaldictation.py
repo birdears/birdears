@@ -1,12 +1,10 @@
+from random import choice
+
 from .. import CHROMATIC_TYPE
 
 from ..questionbase import QuestionBase
-from ..questionbase import get_valid_pitches
 
 from ..interval import Interval
-
-from ..scale import DiatonicScale
-from ..scale import ChromaticScale
 
 from ..sequence import Sequence
 from ..resolution import Resolution
@@ -14,14 +12,10 @@ from ..prequestion import PreQuestion
 
 from ..interfaces.commandline import center_text
 
-from random import choice
-from random import sample
-
 
 class InstrumentalDictationQuestion(QuestionBase):
     """Implements an instrumental dictation test.
     """
-
     def __init__(self, mode='major', wait_time=11, n_repeats=1,
                  max_intervals=3, n_notes=4, tonic='C', octave=4,
                  descending=False, chromatic=False, n_octaves=1,

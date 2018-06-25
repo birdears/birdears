@@ -88,7 +88,7 @@ Valid values are as follows:
               default='major', metavar='<mode>', help="Mode of the question.")
 @click.option('-t', '--tonic', type=str, default='C', metavar='<tonic>',
               help='Tonic of the question.')
-@click.option('-o', '--octave', type=click.IntRange(2, 5), default=None,
+@click.option('-o', '--octave', type=click.IntRange(3, 6), default=None,
               metavar='<octave>',
               help="Octave of the question.")
 @click.option('-d', '--descending', is_flag=True,
@@ -150,7 +150,7 @@ Valid values are as follows:
               default='major', help="Mode of the question.")
 @click.option('-t', '--tonic', type=str, default='C', metavar='<note>',
               help='Tonic of the question.')
-@click.option('-o', '--octave', type=click.IntRange(2, 5), default=None,
+@click.option('-o', '--octave', type=click.IntRange(3, 6), default=None,
               metavar='<octave>',
               help="Octave of the question.")
 @click.option('-d', '--descending', is_flag=True,
@@ -218,7 +218,7 @@ Valid values are as follows:
               help='Number of notes for the dictation.')
 @click.option('-t', '--tonic', type=str, default='C', metavar='<note>',
               help='Tonic of the question.')
-@click.option('-o', '--octave', type=click.IntRange(2, 5), default=4,
+@click.option('-o', '--octave', type=click.IntRange(3, 6), default=4,
               metavar='<octave>',
               help="Octave of the question.")
 @click.option('-d', '--descending', is_flag=True,
@@ -290,7 +290,7 @@ Valid values are as follows:
               help='Number of notes for the dictation.')
 @click.option('-t', '--tonic', type=str, default='C', metavar='<note>',
               help='Tonic of the question.')
-@click.option('-o', '--octave', type=click.IntRange(2, 5), default=4,
+@click.option('-o', '--octave', type=click.IntRange(3, 6), default=4,
               metavar='<octave>', help="Octave of the question.")
 @click.option('-d', '--descending', is_flag=True,
               help='Wether the question interval is descending.')
@@ -346,7 +346,7 @@ Valid values are as follows:
               default='major', metavar='<mode>', help="Mode of the question.")
 @click.option('-t', '--tonic', type=str, default='C', metavar='<tonic>',
               help='Tonic of the question.')
-@click.option('-o', '--octave', type=click.IntRange(2, 5), default=4,
+@click.option('-o', '--octave', type=click.IntRange(3, 6), default=4,
               metavar='<octave>',
               help="Octave of the question.")
 @click.option('-d', '--descending', is_flag=True,

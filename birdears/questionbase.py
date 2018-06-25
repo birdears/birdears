@@ -6,7 +6,7 @@ from . import CHROMATIC_TYPE
 from . import KEYS
 from . import DEGREE_INDEX
 
-from .interval import Interval
+# from .interval import Interval
 
 from .note_and_pitch import Pitch
 
@@ -139,17 +139,20 @@ class QuestionBase:
         self.is_chromatic = chromatic
 
         # self.octave = octave if octave else randrange(3, 5)
-        if not octave:
-            octave = randrange(3, 5)
+        if isinstance(octave, int) and (octave >= 3 and octave <= 6):
+            self.octave = octave
         elif isinstance(octave, list):
-            octave = choice(octave)
+            self.octave = choice(octave)
         elif isinstance(octave, tuple) and len(octave) == 2:
-            octave = randrange(*octave)
+            self.octave = randrange(*octave)
+        # if not octave:
+        else:
+            self.octave = randrange(3, 6)
 
         # TODO: raise exceptions in case octave/n_octaves are invalid or
         #       extrapolate each other
 
-        self.octave = octave
+        # self.octave = octave
 
         self.n_octaves = n_octaves
 

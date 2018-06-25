@@ -1,13 +1,8 @@
 from random import choice
-from random import sample
 
 from .. import CHROMATIC_TYPE
 
 from ..questionbase import QuestionBase
-from ..questionbase import get_valid_pitches
-
-from ..scale import DiatonicScale
-from ..scale import ChromaticScale
 
 from ..interval import Interval
 from ..note_and_pitch import get_pitch_by_number

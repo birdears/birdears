@@ -3,10 +3,6 @@ from .. import CHROMATIC_TYPE
 from ..logger import log_event
 
 from ..questionbase import QuestionBase
-from ..questionbase import get_valid_pitches
-
-from ..scale import DiatonicScale
-from ..scale import ChromaticScale
 
 from ..interval import Interval
 

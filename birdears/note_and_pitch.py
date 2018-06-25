@@ -37,6 +37,12 @@ def get_pitch_by_number(numeric, accident='sharp'):
     return pitch
 
 
+def get_abs_chromatic_offset(pitch1, pitch2):
+    offset = abs(int(pitch1) - int(pitch2)) % 12
+
+    return offset
+
+
 class Note:
 
     def __init__(self, note='C'):
