@@ -3,11 +3,12 @@
 \indexentry{CHROMATIC\_SHARP (in module birdears)|hyperpage}{19}
 \indexentry{CHROMATIC\_TYPE (in module birdears)|hyperpage}{19}
 \indexentry{CIRCLE\_OF\_FIFTHS (in module birdears)|hyperpage}{19}
+\indexentry{DEGREE\_INDEX (in module birdears)|hyperpage}{19}
 \indexentry{DIATONIC\_MASK (in module birdears)|hyperpage}{19}
 \indexentry{INTERVALS (in module birdears)|hyperpage}{19}
 \indexentry{INTERVAL\_INDEX (in module birdears)|hyperpage}{19}
 \indexentry{KEYS (in module birdears)|hyperpage}{19}
-\indexentry{birdears.interfaces (module)|hyperpage}{19}
+\indexentry{birdears.interfaces (module)|hyperpage}{20}
 \indexentry{birdears.interfaces.commandline (module)|hyperpage}{20}
 \indexentry{CommandLine() (in module birdears.interfaces.commandline)|hyperpage}{20}
 \indexentry{center\_text() (in module birdears.interfaces.commandline)|hyperpage}{20}
@@ -111,6 +112,7 @@
 \indexentry{CHROMATIC\_SHARP (in module birdears)|hyperpage}{53}
 \indexentry{CHROMATIC\_TYPE (in module birdears)|hyperpage}{53}
 \indexentry{CIRCLE\_OF\_FIFTHS (in module birdears)|hyperpage}{53}
+\indexentry{DEGREE\_INDEX (in module birdears)|hyperpage}{53}
 \indexentry{DIATONIC\_MASK (in module birdears)|hyperpage}{53}
 \indexentry{INTERVALS (in module birdears)|hyperpage}{53}
 \indexentry{INTERVAL\_INDEX (in module birdears)|hyperpage}{53}

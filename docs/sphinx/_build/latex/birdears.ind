@@ -24,7 +24,7 @@
   \indexspace
   \bigletter B
   \item birdears (module), \hyperpage{19}, \hyperpage{53}
-  \item birdears.interfaces (module), \hyperpage{19}, \hyperpage{69}
+  \item birdears.interfaces (module), \hyperpage{20}, \hyperpage{69}
   \item birdears.interfaces.commandline (module), \hyperpage{20}, \hyperpage{69}
   \item birdears.interval (module), \hyperpage{27}, \hyperpage{54}
   \item birdears.logger (module), \hyperpage{28}, \hyperpage{55}
@@ -63,6 +63,7 @@
   \indexspace
   \bigletter D
   \item data (birdears.interval.Interval attribute), \hyperpage{28}, \hyperpage{54}
+  \item DEGREE\_INDEX (in module birdears), \hyperpage{19}, \hyperpage{53}
   \item diatonic\_index (birdears.interval.Interval attribute), \hyperpage{27}, \hyperpage{54}
   \item DIATONIC\_MASK (in module birdears), \hyperpage{19}, \hyperpage{53}
   \item DiatonicScale (class in birdears.scale), \hyperpage{32}, \hyperpage{59}

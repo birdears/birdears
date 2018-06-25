@@ -55,7 +55,7 @@
 
 
 \title{birdears Documentation}
-\date{Jun 16, 2018}
+\date{Jun 25, 2018}
 \release{0.2.1}
 \author{Iacchus Mercurius}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -103,7 +103,7 @@ Download the PDF version of this book. Clicking \sphinxhref{https://github.com/i
 
 
 \chapter{Support}
-\label{\detokenize{community:support}}\label{\detokenize{community:birdears-documentation}}\label{\detokenize{community::doc}}
+\label{\detokenize{community:birdears-documentation}}\label{\detokenize{community::doc}}\label{\detokenize{community:support}}
 If you need help you can get in touch via IRC or file an issue on any matter regarding birdears at Github.
 
 
@@ -227,7 +227,7 @@ birdears \PYGZhy{}\PYGZhy{}help               \PYGZsh{} and this will run it
 
 
 \chapter{Using birdears}
-\label{\detokenize{using::doc}}\label{\detokenize{using:using-birdears}}
+\label{\detokenize{using:using-birdears}}\label{\detokenize{using::doc}}
 
 \section{What is Functional Ear Training}
 \label{\detokenize{using:what-is-functional-ear-training}}
@@ -646,7 +646,7 @@ intervals.
 
 
 \chapter{birdears package}
-\label{\detokenize{birdears:module-birdears}}\label{\detokenize{birdears:birdears-package}}\label{\detokenize{birdears::doc}}\index{birdears (module)}
+\label{\detokenize{birdears:birdears-package}}\label{\detokenize{birdears:module-birdears}}\label{\detokenize{birdears::doc}}\index{birdears (module)}
 birdears provides facilities to building musical ear training exercises.
 \index{CHROMATIC\_FLAT (in module birdears)}
 
@@ -685,6 +685,17 @@ A map of the the semitones which compound the chromatic scale.
 \sphinxstyleemphasis{list of tuples} \textendash{} Circle of fifths.
 
 These are the circle of fifth in both directions.
+
+\end{fulllineitems}
+
+\index{DEGREE\_INDEX (in module birdears)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{birdears:birdears.DEGREE_INDEX}}\pysigline{\sphinxcode{\sphinxupquote{birdears.}}\sphinxbfcode{\sphinxupquote{DEGREE\_INDEX}}\sphinxbfcode{\sphinxupquote{ = \{'i': {[}0{]}, 'ii': {[}1, 2{]}, 'iii': {[}3, 4{]}, 'iv': {[}5, 6{]}, 'v': {[}6, 7{]}, 'vi': {[}8, 9{]}, 'vii': {[}10, 11{]}, 'viii': {[}12{]}\}}}}
+\sphinxstyleemphasis{dict of lists} \textendash{} A mapping of semitones of each degree.
+
+A mapping of semitones which index to each degree roman numeral, major/minor,
+perfect, augmented/diminished
 
 \end{fulllineitems}
 
@@ -742,7 +753,7 @@ These are the allowed keys for exercise as comprehended by birdears.
 \label{\detokenize{birdears.interfaces:submodules}}
 
 \subsubsection{birdears.interfaces.commandline module}
-\label{\detokenize{birdears.interfaces:module-birdears.interfaces.commandline}}\label{\detokenize{birdears.interfaces:birdears-interfaces-commandline-module}}\index{birdears.interfaces.commandline (module)}\index{CommandLine() (in module birdears.interfaces.commandline)}
+\label{\detokenize{birdears.interfaces:birdears-interfaces-commandline-module}}\label{\detokenize{birdears.interfaces:module-birdears.interfaces.commandline}}\index{birdears.interfaces.commandline (module)}\index{CommandLine() (in module birdears.interfaces.commandline)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{birdears.interfaces:birdears.interfaces.commandline.CommandLine}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{birdears.interfaces.commandline.}}\sphinxbfcode{\sphinxupquote{CommandLine}}}{\emph{exercise}, \emph{**kwargs}}{}
@@ -849,7 +860,7 @@ Prints the formatted response.
 
 
 \subsection{birdears.questions package}
-\label{\detokenize{birdears.questions:birdears-questions-package}}\label{\detokenize{birdears.questions:module-birdears.questions}}\label{\detokenize{birdears.questions::doc}}\index{birdears.questions (module)}
+\label{\detokenize{birdears.questions:module-birdears.questions}}\label{\detokenize{birdears.questions:birdears-questions-package}}\label{\detokenize{birdears.questions::doc}}\index{birdears.questions (module)}
 
 \subsubsection{Submodules}
 \label{\detokenize{birdears.questions:submodules}}
@@ -1638,7 +1649,7 @@ when it is {\color{red}\bfseries{}{}`}\_\_call\_\_{}`ed)
 
 
 \section{birdears.questionbase module}
-\label{\detokenize{birdears:module-birdears.questionbase}}\label{\detokenize{birdears:birdears-questionbase-module}}\index{birdears.questionbase (module)}\index{QuestionBase (class in birdears.questionbase)}
+\label{\detokenize{birdears:birdears-questionbase-module}}\label{\detokenize{birdears:module-birdears.questionbase}}\index{birdears.questionbase (module)}\index{QuestionBase (class in birdears.questionbase)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{birdears:birdears.questionbase.QuestionBase}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{birdears.questionbase.}}\sphinxbfcode{\sphinxupquote{QuestionBase}}}{\emph{mode='major'}, \emph{tonic='C'}, \emph{octave=4}, \emph{descending=False}, \emph{chromatic=False}, \emph{n\_octaves=1}, \emph{valid\_intervals=(0}, \emph{1}, \emph{2}, \emph{3}, \emph{4}, \emph{5}, \emph{6}, \emph{7}, \emph{8}, \emph{9}, \emph{10}, \emph{11)}, \emph{user\_durations=None}, \emph{prequestion\_method=None}, \emph{resolution\_method=None}, \emph{default\_durations=None}, \emph{*args}, \emph{**kwargs}}{}
@@ -1766,7 +1777,7 @@ This method should be overwritten by the question subclasses.
 \index{get\_valid\_pitches() (in module birdears.questionbase)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{birdears:birdears.questionbase.get_valid_pitches}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{birdears.questionbase.}}\sphinxbfcode{\sphinxupquote{get\_valid\_pitches}}}{\emph{scale}, \emph{valid\_semitones=(0}, \emph{1}, \emph{2}, \emph{3}, \emph{4}, \emph{5}, \emph{6}, \emph{7}, \emph{8}, \emph{9}, \emph{10}, \emph{11)}}{}
+\phantomsection\label{\detokenize{birdears:birdears.questionbase.get_valid_pitches}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{birdears.questionbase.}}\sphinxbfcode{\sphinxupquote{get\_valid\_pitches}}}{\emph{scale}, \emph{valid\_intervals=(0}, \emph{1}, \emph{2}, \emph{3}, \emph{4}, \emph{5}, \emph{6}, \emph{7}, \emph{8}, \emph{9}, \emph{10}, \emph{11)}}{}
 \end{fulllineitems}
 
 \index{register\_question\_class() (in module birdears.questionbase)}
@@ -1783,7 +1794,7 @@ Classes decorated with this decorator will be registered in the
 
 
 \section{birdears.resolution module}
-\label{\detokenize{birdears:module-birdears.resolution}}\label{\detokenize{birdears:birdears-resolution-module}}\index{birdears.resolution (module)}\index{Resolution (class in birdears.resolution)}
+\label{\detokenize{birdears:birdears-resolution-module}}\label{\detokenize{birdears:module-birdears.resolution}}\index{birdears.resolution (module)}\index{Resolution (class in birdears.resolution)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{birdears:birdears.resolution.Resolution}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{birdears.resolution.}}\sphinxbfcode{\sphinxupquote{Resolution}}}{\emph{method}, \emph{question}}{}
@@ -2033,7 +2044,7 @@ Bases: \sphinxcode{\sphinxupquote{list}}
 
 
 \section{birdears.sequence module}
-\label{\detokenize{birdears:module-birdears.sequence}}\label{\detokenize{birdears:birdears-sequence-module}}\index{birdears.sequence (module)}\index{Sequence (class in birdears.sequence)}
+\label{\detokenize{birdears:birdears-sequence-module}}\label{\detokenize{birdears:module-birdears.sequence}}\index{birdears.sequence (module)}\index{Sequence (class in birdears.sequence)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{birdears:birdears.sequence.Sequence}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{birdears.sequence.}}\sphinxbfcode{\sphinxupquote{Sequence}}}{\emph{elements={[}{]}}, \emph{duration=2}, \emph{delay=1.5}, \emph{pos\_delay=1}}{}
@@ -2639,7 +2650,7 @@ intervals.
 \label{\detokenize{index:api}}
 
 \chapter{birdears package}
-\label{\detokenize{index:module-birdears}}\label{\detokenize{index:birdears-package}}\index{birdears (module)}
+\label{\detokenize{index:birdears-package}}\label{\detokenize{index:module-birdears}}\index{birdears (module)}
 birdears provides facilities to building musical ear training exercises.
 \index{CHROMATIC\_FLAT (in module birdears)}
 
@@ -2678,6 +2689,17 @@ A map of the the semitones which compound the chromatic scale.
 \sphinxstyleemphasis{list of tuples} \textendash{} Circle of fifths.
 
 These are the circle of fifth in both directions.
+
+\end{fulllineitems}
+
+\index{DEGREE\_INDEX (in module birdears)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{index:birdears.DEGREE_INDEX}}\pysigline{\sphinxcode{\sphinxupquote{birdears.}}\sphinxbfcode{\sphinxupquote{DEGREE\_INDEX}}\sphinxbfcode{\sphinxupquote{ = \{'i': {[}0{]}, 'ii': {[}1, 2{]}, 'iii': {[}3, 4{]}, 'iv': {[}5, 6{]}, 'v': {[}6, 7{]}, 'vi': {[}8, 9{]}, 'vii': {[}10, 11{]}, 'viii': {[}12{]}\}}}}
+\sphinxstyleemphasis{dict of lists} \textendash{} A mapping of semitones of each degree.
+
+A mapping of semitones which index to each degree roman numeral, major/minor,
+perfect, augmented/diminished
 
 \end{fulllineitems}
 
@@ -3041,7 +3063,7 @@ when it is {\color{red}\bfseries{}{}`}\_\_call\_\_{}`ed)
 
 
 \section{birdears.questionbase module}
-\label{\detokenize{index:module-birdears.questionbase}}\label{\detokenize{index:birdears-questionbase-module}}\index{birdears.questionbase (module)}\index{QuestionBase (class in birdears.questionbase)}
+\label{\detokenize{index:birdears-questionbase-module}}\label{\detokenize{index:module-birdears.questionbase}}\index{birdears.questionbase (module)}\index{QuestionBase (class in birdears.questionbase)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{index:birdears.questionbase.QuestionBase}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{birdears.questionbase.}}\sphinxbfcode{\sphinxupquote{QuestionBase}}}{\emph{mode='major'}, \emph{tonic='C'}, \emph{octave=4}, \emph{descending=False}, \emph{chromatic=False}, \emph{n\_octaves=1}, \emph{valid\_intervals=(0}, \emph{1}, \emph{2}, \emph{3}, \emph{4}, \emph{5}, \emph{6}, \emph{7}, \emph{8}, \emph{9}, \emph{10}, \emph{11)}, \emph{user\_durations=None}, \emph{prequestion\_method=None}, \emph{resolution\_method=None}, \emph{default\_durations=None}, \emph{*args}, \emph{**kwargs}}{}
@@ -3169,7 +3191,7 @@ This method should be overwritten by the question subclasses.
 \index{get\_valid\_pitches() (in module birdears.questionbase)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{index:birdears.questionbase.get_valid_pitches}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{birdears.questionbase.}}\sphinxbfcode{\sphinxupquote{get\_valid\_pitches}}}{\emph{scale}, \emph{valid\_semitones=(0}, \emph{1}, \emph{2}, \emph{3}, \emph{4}, \emph{5}, \emph{6}, \emph{7}, \emph{8}, \emph{9}, \emph{10}, \emph{11)}}{}
+\phantomsection\label{\detokenize{index:birdears.questionbase.get_valid_pitches}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{birdears.questionbase.}}\sphinxbfcode{\sphinxupquote{get\_valid\_pitches}}}{\emph{scale}, \emph{valid\_intervals=(0}, \emph{1}, \emph{2}, \emph{3}, \emph{4}, \emph{5}, \emph{6}, \emph{7}, \emph{8}, \emph{9}, \emph{10}, \emph{11)}}{}
 \end{fulllineitems}
 
 \index{register\_question\_class() (in module birdears.questionbase)}
@@ -3186,7 +3208,7 @@ Classes decorated with this decorator will be registered in the
 
 
 \section{birdears.resolution module}
-\label{\detokenize{index:module-birdears.resolution}}\label{\detokenize{index:birdears-resolution-module}}\index{birdears.resolution (module)}\index{Resolution (class in birdears.resolution)}
+\label{\detokenize{index:birdears-resolution-module}}\label{\detokenize{index:module-birdears.resolution}}\index{birdears.resolution (module)}\index{Resolution (class in birdears.resolution)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{index:birdears.resolution.Resolution}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{birdears.resolution.}}\sphinxbfcode{\sphinxupquote{Resolution}}}{\emph{method}, \emph{question}}{}
@@ -3436,7 +3458,7 @@ Bases: \sphinxcode{\sphinxupquote{list}}
 
 
 \section{birdears.sequence module}
-\label{\detokenize{index:module-birdears.sequence}}\label{\detokenize{index:birdears-sequence-module}}\index{birdears.sequence (module)}\index{Sequence (class in birdears.sequence)}
+\label{\detokenize{index:birdears-sequence-module}}\label{\detokenize{index:module-birdears.sequence}}\index{birdears.sequence (module)}\index{Sequence (class in birdears.sequence)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{index:birdears.sequence.Sequence}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{birdears.sequence.}}\sphinxbfcode{\sphinxupquote{Sequence}}}{\emph{elements={[}{]}}, \emph{duration=2}, \emph{delay=1.5}, \emph{pos\_delay=1}}{}
@@ -3979,7 +4001,7 @@ This method should be overwritten by the question subclasses.
 \label{\detokenize{index:id13}}
 
 \section{birdears.interfaces.commandline module}
-\label{\detokenize{index:module-birdears.interfaces.commandline}}\label{\detokenize{index:birdears-interfaces-commandline-module}}\index{birdears.interfaces.commandline (module)}\index{CommandLine() (in module birdears.interfaces.commandline)}
+\label{\detokenize{index:birdears-interfaces-commandline-module}}\label{\detokenize{index:module-birdears.interfaces.commandline}}\index{birdears.interfaces.commandline (module)}\index{CommandLine() (in module birdears.interfaces.commandline)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{index:birdears.interfaces.commandline.CommandLine}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{birdears.interfaces.commandline.}}\sphinxbfcode{\sphinxupquote{CommandLine}}}{\emph{exercise}, \emph{**kwargs}}{}

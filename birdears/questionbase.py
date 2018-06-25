@@ -63,7 +63,7 @@ def get_valid_pitches(scale, valid_intervals=CHROMATIC_TYPE):
         else:
             print('Warning: invalid `valid_interval`: ', item)
             continue
-        
+
     for pitch in scale:
 
         # this will work with multple octaves
@@ -195,7 +195,7 @@ class QuestionBase:
                                               n_octaves=n_octaves)
 
         self.allowed_pitches = \
-                get_valid_pitches(self.scale, valid_intervals=valid_intervals)
+            get_valid_pitches(self.scale, valid_intervals=valid_intervals)
 
         self.durations = default_durations
         if user_durations:

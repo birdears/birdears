@@ -11,14 +11,6 @@ INPUT /usr/share/texmf-dist/tex/latex/base/size10.clo
 INPUT /usr/share/texmf-dist/tex/latex/base/size10.clo
 INPUT /usr/share/texmf-dist/tex/latex/base/inputenc.sty
 INPUT /usr/share/texmf-dist/tex/latex/base/inputenc.sty
-INPUT /usr/share/texmf-dist/tex/latex/base/utf8.def
-INPUT /usr/share/texmf-dist/tex/latex/base/utf8.def
-INPUT /usr/share/texmf-dist/tex/latex/base/t1enc.dfu
-INPUT /usr/share/texmf-dist/tex/latex/base/t1enc.dfu
-INPUT /usr/share/texmf-dist/tex/latex/base/ot1enc.dfu
-INPUT /usr/share/texmf-dist/tex/latex/base/ot1enc.dfu
-INPUT /usr/share/texmf-dist/tex/latex/base/omsenc.dfu
-INPUT /usr/share/texmf-dist/tex/latex/base/omsenc.dfu
 INPUT /usr/share/texmf-dist/tex/latex/cmap/cmap.sty
 INPUT /usr/share/texmf-dist/tex/latex/cmap/cmap.sty
 INPUT /usr/share/texmf-dist/tex/latex/base/fontenc.sty

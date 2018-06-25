@@ -96,17 +96,6 @@ class InstrumentalDictationQuestion(QuestionBase):
         self.wait_time = wait_time
         self.n_repeats = n_repeats
 
-        # if not chromatic:
-        #    self.scale = DiatonicScale(tonic=self.tonic_str, mode=mode, octave=octave,
-        #                               n_octaves=n_octaves,
-        #                               descending=descending)
-        # else:
-        #    self.scale = ChromaticScale(tonic=self.tonic_str, octave=octave,
-        #                                n_octaves=n_octaves,
-        #                                descending=descending)
-
-        #self.valid_pitches = get_valid_pitches(self.scale, self.allowed_intervals)
-
         self.random_pitches = [choice(self.allowed_pitches) for note
                                in range(n_notes)]
 
