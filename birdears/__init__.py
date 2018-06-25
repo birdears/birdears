@@ -160,6 +160,22 @@ INTERVAL_INDEX = {
 A mapping of semitones which index to each interval name, major/minor,
 perfect, augmented/diminished"""
 
+DEGREE_INDEX = {
+    'i': [0],
+    'ii': [1, 2],
+    'iii': [3, 4],
+    'iv': [5, 6],
+    'v': [6, 7],
+    'vi': [8, 9],
+    'vii': [10, 11],
+    'viii': [12]
+}
+"""dict of lists: A mapping of semitones of each degree.
+
+A mapping of semitones which index to each degree roman numeral, major/minor,
+perfect, augmented/diminished"""
+
+
 # MAJOR keyboard keys (with chromatics)
 # keyindex for major and chromatic major context
 #  s d   g h j        IIb  IIIb       Vb VIb  VIIb

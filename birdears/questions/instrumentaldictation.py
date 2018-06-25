@@ -105,7 +105,7 @@ class InstrumentalDictationQuestion(QuestionBase):
                                         n_octaves=n_octaves,
                                         descending=descending)
 
-        self.valid_pitches = get_valid_pitches(self.scale, valid_intervals)
+        self.valid_pitches = get_valid_pitches(self.scale, self.allowed_intervals)
 
         self.random_pitches = [choice(self.valid_pitches) for note
                                in range(n_notes)]

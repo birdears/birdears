@@ -4,10 +4,14 @@ from random import choice
 from . import KEYBOARD_INDICES
 from . import CHROMATIC_TYPE
 from . import KEYS
+from . import DEGREE_INDEX
 
 from .interval import Interval
 
 from .note_and_pitch import Pitch
+
+from .scale import DiatonicScale
+from .scale import ChromaticScale
 
 from functools import wraps
 
@@ -31,28 +35,45 @@ def register_question_class(function, *args, **kwargs):
 
 
 # values for valid_semitones list can be Interval objects or int's (semitones)
-def get_valid_pitches(scale, valid_semitones=CHROMATIC_TYPE):
+def get_valid_pitches(scale, valid_intervals=CHROMATIC_TYPE):
     tonic_pitch = scale[0]
 
     valid_scale = list()
 
-    if isinstance(valid_semitones, tuple):
-        pass
-    elif isinstance(valid_semitones, list):
-        pass
-    elif isinstance(valid_semitones, str):
-        valid_list = valid_semitones.replace(' ', '').split(',')
-        valid_semitones = tuple(map(lambda x: int(x)-1, valid_list))
+    if isinstance(valid_intervals, tuple):
+        valid_list = list(map(lambda x: str(x), valid_intervals))
+    elif isinstance(valid_intervals, list):
+        valid_list = list(map(lambda x: str(x), valid_intervals))
+    elif isinstance(valid_intervals, str):
+        valid_list = valid_intervals.replace(' ', '').split(',')
     else:
         raise Exception('Incorrect type for valid_semitones')
 
+    valid_semitones = list()
+
+    for item in valid_list:
+
+        # 'i', 'ii' etc...
+        if item.lower() in DEGREE_INDEX:
+            valid_semitones.extend(DEGREE_INDEX[item.lower()])
+        # 0, 1, 2 etc...
+        elif item.isdecimal():
+            valid_semitones.append(int(item))
+        # something else
+        else:
+            print('Warning: invalid `valid_interval`: ', item)
+            continue
+        
     for pitch in scale:
 
+        # this will work with multple octaves
         chromatic_offset = \
-            abs(int(tonic_pitch) - int(pitch))
+            abs(int(tonic_pitch) - int(pitch)) % 12
 
         if chromatic_offset in valid_semitones:
             valid_scale.append(pitch)
+
+    print(valid_scale)
 
     return valid_scale
 
@@ -151,6 +172,30 @@ class QuestionBase:
         self.tonic_pitch = Pitch(note=tonic, octave=self.octave)
         self.tonic_str = str(self.tonic_pitch.note)
         self.tonic_pitch_str = str(self.tonic_pitch)
+
+        if not chromatic:
+            self.scale = DiatonicScale(tonic=self.tonic_str, mode=mode,
+                                       octave=self.octave,
+                                       descending=descending,
+                                       n_octaves=n_octaves)
+        else:
+            self.scale = ChromaticScale(tonic=self.tonic_str,
+                                        octave=self.octave,
+                                        descending=descending,
+                                        n_octaves=n_octaves)
+
+        self.diatonic_scale = DiatonicScale(tonic=self.tonic_str, mode=mode,
+                                            octave=self.octave,
+                                            descending=descending,
+                                            n_octaves=n_octaves)
+
+        self.chromatic_scale = ChromaticScale(tonic=self.tonic_str,
+                                              octave=self.octave,
+                                              descending=descending,
+                                              n_octaves=n_octaves)
+
+        self.allowed_pitches = \
+                get_valid_pitches(self.scale, valid_intervals=valid_intervals)
 
         self.durations = default_durations
         if user_durations:

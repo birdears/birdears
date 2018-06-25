@@ -110,7 +110,7 @@ class NoteNameQuestion(QuestionBase):
                                               descending=descending,
                                               n_octaves=n_octaves)
 
-        self.valid_pitches = get_valid_pitches(self.scale, valid_intervals)
+        self.valid_pitches = get_valid_pitches(self.scale, self.allowed_intervals)
         self.random_pitch = choice(self.valid_pitches)
 
         self.interval = Interval(self.tonic_pitch, self.random_pitch)

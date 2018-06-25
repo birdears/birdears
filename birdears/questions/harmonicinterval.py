@@ -80,7 +80,7 @@ class HarmonicIntervalQuestion(QuestionBase):
         super(HarmonicIntervalQuestion, self).\
             __init__(mode=mode, tonic=tonic, octave=octave,
                      descending=descending, chromatic=chromatic,
-                     n_octaves=n_octaves, valid_intervals=valid_intervals,
+                     n_octaves=n_octaves, valid_intervals=self.allowed_intervals,
                      user_durations=user_durations,
                      prequestion_method=prequestion_method,
                      resolution_method=resolution_method,
