@@ -162,7 +162,7 @@ class QuestionBase:
         if isinstance(tonic, list) or isinstance(tonic, tuple):
             tonic = choice(tonic)
         elif isinstance(tonic, str) and ',' in tonic:
-            tonic.replace(' ', '')
+            tonic = tonic.replace(' ', '')
             tonic = choice(tonic.split(','))
         elif isinstance(tonic, str) and ('R' in tonic or 'r' in tonic):
             tonic = choice(KEYS)
