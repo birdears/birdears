@@ -73,8 +73,6 @@ def get_valid_pitches(scale, valid_intervals=CHROMATIC_TYPE):
         if chromatic_offset in valid_semitones:
             valid_scale.append(pitch)
 
-    print(valid_scale)
-
     return valid_scale
 
 
