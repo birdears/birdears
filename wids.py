@@ -42,7 +42,7 @@ class KeyboardButton(urwid.Padding):
         super(KeyboardButton, self).__init__(w=box, *args, **kwargs)
         
 class Keyboard(urwid.Filler):
-    def __init__(self, tonic='G', *args, **kwargs):
+    def __init__(self, tonic='F#', show_octave=True, *args, **kwargs):
         
         if tonic in KEYS:
             scale = CHROMATIC_SHARP if tonic in CHROMATIC_SHARP else CHROMATIC_FLAT
@@ -63,6 +63,7 @@ class Keyboard(urwid.Filler):
             chromatic_keys.append(('weight', 0.5, urwid.BoxAdapter(urwid.SolidFill('#'),height=1)))
         
         first_chromatic = [note for note in key_scale if len(note) == 2][0]
+        last_chromatic = [note for note in key_scale if len(note) == 2][-1]
         
         for idx, note in enumerate(key_scale):
             
@@ -76,19 +77,35 @@ class Keyboard(urwid.Filler):
             else:
                 diatonic_keys.append(KeyboardButton(note))
                 
+        if show_octave:
+            if is_chromatic(tonic):
+                if KEY_PADS[tonic] == 1:
+                    chromatic_keys.append(('weight', 1, urwid.BoxAdapter(urwid.SolidFill('x'),height=1)))
+                chromatic_keys.append(('weight', 1, KeyboardButton(tonic)))
+            else:
+                diatonic_keys.append(KeyboardButton(tonic))
+                
         if is_key_chromatic:
-            weight = 0.5 + KEY_PADS[first_chromatic]
-            chromatic_keys.append(('weight', weight, urwid.BoxAdapter(urwid.SolidFill('-'),height=1)))
+            if not show_octave:
+                weight = 0.5 + KEY_PADS[first_chromatic] + (int(show_octave)/2)
+                chromatic_keys.append(('weight', weight, urwid.BoxAdapter(urwid.SolidFill('-'),height=1)))
+            else:
+                weight = 0.5 #+ KEY_PADS[first_chromatic] + (int(show_octave)/2)
+                diatonic_keys.append(('weight', weight, urwid.BoxAdapter(urwid.SolidFill('-'),height=1)))
             
         else:
             
             if KEY_PADS[first_chromatic]:
-                weight = (KEY_PADS[first_chromatic]/2)
+                weight = (KEY_PADS[first_chromatic]/2) + int(show_octave)
                 chromatic_keys.append(('weight', weight, urwid.BoxAdapter(urwid.SolidFill('-'),height=1)))
             
             if not KEY_PADS[first_chromatic]:
-                weight = 0.5 + KEY_PADS[first_chromatic]
-                diatonic_keys.append(('weight', weight, urwid.BoxAdapter(urwid.SolidFill('-'),height=1)))
+                if not show_octave:
+                    weight = 0.5 + KEY_PADS[first_chromatic] + int(show_octave)
+                    diatonic_keys.append(('weight', weight, urwid.BoxAdapter(urwid.SolidFill('-'),height=1)))
+                else:
+                    weight = 0.5 #+ KEY_PADS[first_chromatic] + int(show_octave)
+                    chromatic_keys.append(('weight', weight, urwid.BoxAdapter(urwid.SolidFill('-'),height=1)))
 
         chromatic = urwid.Columns(widget_list=chromatic_keys, dividechars=1)
         diatonic = urwid.Columns(widget_list=diatonic_keys, dividechars=1)
