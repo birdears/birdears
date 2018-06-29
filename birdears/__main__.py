@@ -5,6 +5,7 @@ from . import click
 from . import DIATONIC_MODES
 
 from .interfaces.commandline import CommandLine
+from .interfaces.urwid import TextUserInterface
 
 from . import CHROMATIC_SHARP
 from . import CHROMATIC_FLAT
@@ -45,12 +46,14 @@ valid_resolution_methods = ", ".join(VALID_RESOLUTION_METHODS)
 @click.option('--debug/--no-debug',
               help='Turns on debugging; instead you can set DEBUG=1.',
               default=False, envvar='DEBUG')
-@click.option('--urwid',
-              help='Turns on debugging; instead you can set DEBUG=1.',
-              default=False, envvar='DEBUG')
-def cli(debug):
+@click.option('--urwid/--no-urwid',
+              help='Uses urwid as interface.',
+              default=False, envvar='URWID')
+def cli(debug, urwid):
     """birdears ─ Functional Ear Training for Musicians!"""
 
+    global INTERFACE
+    
     if debug:
         from .logger import logger
         from .logger import logging
@@ -61,7 +64,7 @@ def cli(debug):
         logger.debug('debug is on.')
 
     if urwid:
-        INTERFACE = TUI
+        INTERFACE = TextUserInterface
     else:
         INTERFACE = CommandLine
 
@@ -387,8 +390,9 @@ def notename(*args, **kwargs):
     """
 
     kwargs.update({'exercise': 'notename'})
-    CommandLine(**kwargs)
-
+    # CommandLine(**kwargs)
+    INTERFACE(**kwargs)
+    
 
 #
 # birdear's "load"

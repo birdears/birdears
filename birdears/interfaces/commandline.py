@@ -1,5 +1,9 @@
 from .. import _Getch
 
+from .. import KEYS
+from .. import CHROMATIC_SHARP
+from .. import CHROMATIC_FLAT
+
 from .. import INTERVALS
 from .. import DIATONIC_MODES
 from .. import CHROMATIC_TYPE
