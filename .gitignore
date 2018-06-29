@@ -1,6 +1,9 @@
 # vim swap 
 *.swp
 
+# kate swap
+*.kate-swp
+
 .birdears
 .pytest_cache/
 
