@@ -22,6 +22,8 @@ VALID_MODES = tuple(DIATONIC_MODES.keys())
 VALID_PREQUESTION_METHODS = tuple(PREQUESTION_METHODS.keys())
 VALID_RESOLUTION_METHODS = tuple(RESOLUTION_METHODS.keys())
 
+INTERFACE = False
+
 main_epilog = """
 You can use 'birdears <command> --help' to show options for a specific command.
 
@@ -43,6 +45,9 @@ valid_resolution_methods = ", ".join(VALID_RESOLUTION_METHODS)
 @click.option('--debug/--no-debug',
               help='Turns on debugging; instead you can set DEBUG=1.',
               default=False, envvar='DEBUG')
+@click.option('--urwid',
+              help='Turns on debugging; instead you can set DEBUG=1.',
+              default=False, envvar='DEBUG')
 def cli(debug):
     """birdears ─ Functional Ear Training for Musicians!"""
 
@@ -55,6 +60,10 @@ def cli(debug):
         logger.setLevel(logging.DEBUG)
         logger.debug('debug is on.')
 
+    if urwid:
+        INTERFACE = TUI
+    else:
+        INTERFACE = CommandLine
 
 #
 # melodic interval
