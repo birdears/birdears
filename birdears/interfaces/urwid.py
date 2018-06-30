@@ -123,13 +123,14 @@ class TextUserInterface(urwid.Frame):
         thread = threading.Thread(target=self.question.play_question)
         thread.start()
         self.draw(self.question)
+        #self.question.play_question()
         #thread = self.question.pre_question.play()
         #thread.join()
         #thread = self.question.question.play()
         #thread.join()
         
-        loop = urwid.MainLoop(self)
-        loop.run()
+        #loop = urwid.MainLoop(self)
+        #loop.run()
         
     def keypress(self, size, key):
         #print(size, key)

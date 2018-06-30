@@ -32,7 +32,11 @@ def load_interface(*args, **kwargs):
     global INTERFACE
     
     if INTERFACE == 'urwid':
-        TextUserInterface(*args, **kwargs)
+        from .interfaces.urwid import urwid
+
+        tui = TextUserInterface(*args, **kwargs)
+        loop = urwid.MainLoop(tui)
+        loop.run()
         
     else:
         CommandLine(*args, **kwargs)
