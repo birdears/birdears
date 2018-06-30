@@ -18,24 +18,6 @@ from functools import wraps
 QUESTION_CLASSES = {}
 
 
-#def register_question_class(function, *args, **kwargs):
-    #"""Decorator for question classes.
-
-    #Classes decorated with this decorator will be registered in the
-    #`QUESTION_CLASSES` global.
-    #"""
-
-    #global QUESTION_CLASSES
-    
-    #@wraps(function)
-    #def decorator(*args, **kwargs):
-        #return function(*args, **kwargs)
-
-    #QUESTION_CLASSES.update({function.__name__: function})
-
-    #return decorator
-
-    
 def register_question_class(cls, *args, **kwargs):
     """Decorator for question classes.
 
@@ -46,7 +28,9 @@ def register_question_class(cls, *args, **kwargs):
     global QUESTION_CLASSES
     
     QUESTION_CLASSES.update({cls.name: cls})
+    
     return cls
+
 
 # values for valid_semitones list can be Interval objects or int's (semitones)
 def get_valid_pitches(scale, valid_intervals=CHROMATIC_TYPE):

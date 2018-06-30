@@ -27,8 +27,15 @@ VALID_RESOLUTION_METHODS = tuple(RESOLUTION_METHODS.keys())
 
 INTERFACE = False
 
-def load_interface():
-    pass
+def load_interface(*args, **kwargs):
+    
+    global INTERFACE
+    
+    if INTERFACE == 'urwid':
+        TextUserInterface(*args, **kwargs)
+        
+    else:
+        CommandLine(*args, **kwargs)
 
 main_epilog = """
 You can use 'birdears <command> --help' to show options for a specific command.
@@ -69,9 +76,9 @@ def cli(debug, urwid):
         logger.debug('debug is on.')
 
     if urwid:
-        INTERFACE = TextUserInterface
+        INTERFACE = 'urwid'
     else:
-        INTERFACE = CommandLine
+        INTERFACE = 'commandline'
 
 #
 # melodic interval
@@ -390,13 +397,15 @@ Valid values are as follows:
 @click.option('-r', '--resolution_method', type=str, default='nearest_tonic',
               metavar='<resolution_method>',
               help='The name of a resolution method.')
-def notename(*args, **kwargs):
+@click.pass_context
+def notename(ctx, *args, **kwargs):
     """Note name by intervaç recognition
     """
 
+    #print(ctx.obj)
     kwargs.update({'exercise': 'notename'})
     # CommandLine(**kwargs)
-    INTERFACE(**kwargs)
+    load_interface(*args, **kwargs)
     
 
 #

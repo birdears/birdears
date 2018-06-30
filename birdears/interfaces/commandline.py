@@ -178,6 +178,8 @@ def CommandLine(exercise, **kwargs):
 
     if exercise in QUESTION_CLASSES:
         QUESTION_CLASS = QUESTION_CLASSES[exercise]
+    else:
+        raise Exception("Oops!", QUESTION_CLASSES)
         
     if 'n_notes' in kwargs:
         dictate_notes = kwargs['n_notes']
