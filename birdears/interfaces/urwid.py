@@ -4,14 +4,7 @@ from .. import KEYS
 from .. import CHROMATIC_SHARP
 from .. import CHROMATIC_FLAT
 
-#KEYS = ('C', 'C#', 'Db', 'D', 'D#', 'Eb', 'E', 'F', 'F#', 'Gb', 'G', 'G#',
-#        'Ab', 'A', 'A#', 'Bb', 'B')
-
-#CHROMATIC_SHARP = ('C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#',
-#                   'B')
-
-#CHROMATIC_FLAT = ('C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb',
-#                  'B')
+from ..questionbase import QUESTION_CLASSES
 
 KEY_PADS = {
     'C#': 1,
@@ -27,6 +20,7 @@ KEY_PADS = {
 }
 
 SPACE_CHAR = ' '
+
 def is_chromatic(key):
     if len(key) == 2:
         return True
@@ -44,7 +38,6 @@ class KeyboardButton(urwid.Padding):
         super(KeyboardButton, self).__init__(w=box, *args, **kwargs)
         
 class Keyboard(urwid.Filler):
-    # def __init__(self, tonic='C', show_octave=True, *args, **kwargs):
     def __init__(self, tonic, show_octave=True, *args, **kwargs):
         
         if tonic in KEYS:
@@ -52,9 +45,6 @@ class Keyboard(urwid.Filler):
             idx = scale.index(tonic)
             key_scale = scale[idx:] + scale[:idx]
             
-            
-        print(key_scale)
-        
         chromatic_keys = list()
         diatonic_keys = list()
 
@@ -66,7 +56,7 @@ class Keyboard(urwid.Filler):
             chromatic_keys.append(('weight', 0.5, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=1)))
         
         first_chromatic = [note for note in key_scale if len(note) == 2][0]
-        last_chromatic = [note for note in key_scale if len(note) == 2][-1]
+        # last_chromatic = [note for note in key_scale if len(note) == 2][-1]
         
         for idx, note in enumerate(key_scale):
             
@@ -124,98 +114,74 @@ class TextUserInterface(urwid.Frame):
 
     def __init__(self, exercise, *args, **kwargs):
 
-        header = urwid.Text('hey pal')
-        footer = urwid.Text('footers')
-
-
-        keyboard = Keyboard()
+        self.question = self.create_question(exercise=exercise, **kwargs)
         
-        top_widget = urwid.Filler(urwid.LineBox(urwid.Text('test1')))
-        bottom_widget = urwid.Filler(urwid.LineBox(urwid.Text('test2')))
+        self.input_keys = list()
         
-        #frame_elements = [(3, top_widget), (3, keyboard), (3, bottom_widget)]
-        frame_elements = [top_widget, keyboard, bottom_widget]
-        #frame_elements = [keyboard]
+        self.draw(self.question)
+        self.question.play_question()
+        #thread = self.question.pre_question.play()
+        #thread.join()
+        #thread = self.question.question.play()
+        #thread.join()
         
-        frame_body = urwid.Pile(widget_list=frame_elements)
-        frame_body_pad = urwid.Padding(frame_body, align='center', width=('relative', 60))
-
-
-        # super(TextUserInterfaceWidget, self).__init__(body=frame_body_pad, header=header, footer=footer, *args, **kwargs)
-        super(TextUserInterface, self).__init__(body=frame_body_pad, header=header, footer=footer)
-
-        if exercise == 'dictation':
-            from ..questions.melodicdictation import MelodicDictationQuestion
-            dictate_notes = kwargs['n_notes']
-            MYCLASS = MelodicDictationQuestion
-
-        elif exercise == 'instrumental':
-            from ..questions.instrumentaldictation \
-                import InstrumentalDictationQuestion
-
-            dictate_notes = kwargs['n_notes']
-            MYCLASS = InstrumentalDictationQuestion
-
-        elif exercise == 'melodic':
-            from ..questions.melodicinterval import MelodicIntervalQuestion
-            MYCLASS = MelodicIntervalQuestion
-            dictate_notes = 1
-
-        elif exercise == 'notename':
-            from ..questions.notename import NoteNameQuestion
-            MYCLASS = NoteNameQuestion
-            dictate_notes = 1
-
-        elif exercise == 'harmonic':
-            from ..questions.harmonicinterval import HarmonicIntervalQuestion
-            MYCLASS = HarmonicIntervalQuestion
-            dictate_notes = 1
-            
-        question = MYCLASS(**kwargs)
-                
-        
-        #keyb = Keyboard()
-        #fill = urwid.Filler(txt, 'top')
-        #pad = urwid.Padding(keyb, align='center', width=('relative', 60))
-        #wid = TextUserInterfaceWidget()
         loop = urwid.MainLoop(self)
         loop.run()
-
-#def TextUserInterface(exercise, *args, **kwargs):
-    
-    #if exercise == 'dictation':
-        #from ..questions.melodicdictation import MelodicDictationQuestion
-        #dictate_notes = kwargs['n_notes']
-        #MYCLASS = MelodicDictationQuestion
-
-    #elif exercise == 'instrumental':
-        #from ..questions.instrumentaldictation \
-            #import InstrumentalDictationQuestion
-
-        #dictate_notes = kwargs['n_notes']
-        #MYCLASS = InstrumentalDictationQuestion
-
-    #elif exercise == 'melodic':
-        #from ..questions.melodicinterval import MelodicIntervalQuestion
-        #MYCLASS = MelodicIntervalQuestion
-        #dictate_notes = 1
-
-    #elif exercise == 'notename':
-        #from ..questions.notename import NoteNameQuestion
-        #MYCLASS = NoteNameQuestion
-        #dictate_notes = 1
-
-    #elif exercise == 'harmonic':
-        #from ..questions.harmonicinterval import HarmonicIntervalQuestion
-        #MYCLASS = HarmonicIntervalQuestion
-        #dictate_notes = 1
         
-    #question = MYCLASS(**kwargs)
+    def keypress(self, size, key):
+        #print(size, key)
+        if key in self.question.keyboard_index and key != ' ': # space char
+            self.input_keys.append(key)
+
+            #if exercise == 'dictation':
+            #    input_str = make_input_str(input_keys, question.keyboard_index)
+            #    #print(input_str, end='')
+
+            #if len(input_keys) == dictate_notes:
+
+            response = self.question.check_question(self.input_keys)
+            #print_response(response)
+
+            self.question.play_resolution()
+
+                #new_question_bit = True
+        elif key in ('R', 'r'):
+            self.question.play_question()
+        elif key in ('Q', 'q'):
+            raise urwid.ExitMainLoop()
+        else:
+            pass
+        
+        #self.keyboard = Keyboard(tonic='D')
+        
+    def create_question(self, exercise, **kwargs):
+        
+        if exercise in QUESTION_CLASSES:
+            QUESTION_CLASS = QUESTION_CLASSES[exercise]
+        else:
+            raise Exception("Oops!", QUESTION_CLASSES)
             
-    
-    ##keyb = Keyboard()
-    ##fill = urwid.Filler(txt, 'top')
-    ##pad = urwid.Padding(keyb, align='center', width=('relative', 60))
-    #wid = TextUserInterfaceWidget()
-    #loop = urwid.MainLoop(wid)
-    #loop.run()
+        if 'n_notes' in kwargs:
+            dictate_notes = kwargs['n_notes']
+        else:
+            dictate_notes = 1
+        
+        return QUESTION_CLASS(**kwargs)
+        
+    def draw(self, question):
+        
+        self.header = urwid.Text('hey pal')
+        self.footer = urwid.Text('footers')
+
+        self.keyboard = Keyboard(tonic='C')
+        self.keyboard = Keyboard(question.tonic_str)
+        
+        self.top_widget = urwid.Filler(urwid.LineBox(urwid.Text('test1')))
+        self.bottom_widget = urwid.Filler(urwid.LineBox(urwid.Text('test2')))
+        
+        self.frame_elements = [self.top_widget, self.keyboard, self.bottom_widget]
+        
+        self.frame_body = urwid.Pile(widget_list=self.frame_elements)
+        self.frame_body_pad = urwid.Padding(self.frame_body, align='center', width=('relative', 60))
+
+        super(TextUserInterface, self).__init__(body=self.frame_body_pad, header=self.header, footer=self.footer)
