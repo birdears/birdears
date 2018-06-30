@@ -118,8 +118,11 @@ class TextUserInterface(urwid.Frame):
         
         self.input_keys = list()
         
+        import threading
+
+        thread = threading.Thread(target=self.question.play_question)
+        thread.start()
         self.draw(self.question)
-        self.question.play_question()
         #thread = self.question.pre_question.play()
         #thread.join()
         #thread = self.question.question.play()
