@@ -14,6 +14,8 @@ from . import CHROMATIC_TYPE
 from .prequestion import PREQUESTION_METHODS
 from .resolution import RESOLUTION_METHODS
 
+from .questions import *
+
 CTX_SETTINGS = dict(
     help_option_names=['-h', '--help'],
     max_content_width=80,
@@ -24,6 +26,9 @@ VALID_PREQUESTION_METHODS = tuple(PREQUESTION_METHODS.keys())
 VALID_RESOLUTION_METHODS = tuple(RESOLUTION_METHODS.keys())
 
 INTERFACE = False
+
+def load_interface():
+    pass
 
 main_epilog = """
 You can use 'birdears <command> --help' to show options for a specific command.

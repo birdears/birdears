@@ -3,6 +3,7 @@ from random import choice
 from .. import CHROMATIC_TYPE
 
 from ..questionbase import QuestionBase
+from ..questionbase import register_question_class
 
 from ..interval import Interval
 from ..note_and_pitch import get_pitch_by_number
@@ -11,11 +12,13 @@ from ..sequence import Sequence
 from ..resolution import Resolution
 from ..prequestion import PreQuestion
 
-
+@register_question_class
 class MelodicDictationQuestion(QuestionBase):
     """Implements a melodic dictation test.
     """
 
+    name = 'dictation'
+    
     def __init__(self, mode='major', max_intervals=3, n_notes=4, tonic='C',
                  octave=4, descending=False, chromatic=False, n_octaves=1,
                  valid_intervals=CHROMATIC_TYPE, user_durations=None,

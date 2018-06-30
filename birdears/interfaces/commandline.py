@@ -8,6 +8,8 @@ from .. import INTERVALS
 from .. import DIATONIC_MODES
 from .. import CHROMATIC_TYPE
 
+from ..questionbase import QUESTION_CLASSES
+
 # from os import popen
 from ..click import get_terminal_size
 
@@ -174,33 +176,14 @@ def CommandLine(exercise, **kwargs):
             questions.
     """
 
-    if exercise == 'dictation':
-        from ..questions.melodicdictation import MelodicDictationQuestion
+    if exercise in QUESTION_CLASSES:
+        QUESTION_CLASS = QUESTION_CLASSES[exercise]
+        
+    if 'n_notes' in kwargs:
         dictate_notes = kwargs['n_notes']
-        MYCLASS = MelodicDictationQuestion
-
-    elif exercise == 'instrumental':
-        from ..questions.instrumentaldictation \
-            import InstrumentalDictationQuestion
-
-        dictate_notes = kwargs['n_notes']
-        MYCLASS = InstrumentalDictationQuestion
-
-    elif exercise == 'melodic':
-        from ..questions.melodicinterval import MelodicIntervalQuestion
-        MYCLASS = MelodicIntervalQuestion
+    else:
         dictate_notes = 1
-
-    elif exercise == 'notename':
-        from ..questions.notename import NoteNameQuestion
-        MYCLASS = NoteNameQuestion
-        dictate_notes = 1
-
-    elif exercise == 'harmonic':
-        from ..questions.harmonicinterval import HarmonicIntervalQuestion
-        MYCLASS = HarmonicIntervalQuestion
-        dictate_notes = 1
-
+        
     getch = _Getch()
 
     new_question_bit = True
@@ -211,7 +194,7 @@ def CommandLine(exercise, **kwargs):
             new_question_bit = False
 
             input_keys = []
-            question = MYCLASS(**kwargs)
+            question = QUESTION_CLASS(**kwargs)
 
             print_question(question)
             question.play_question()

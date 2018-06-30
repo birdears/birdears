@@ -1,6 +1,7 @@
 from ..logger import log_event
 
 from ..questionbase import QuestionBase
+from ..questionbase import register_question_class
 
 from ..interval import Interval
 
@@ -15,11 +16,13 @@ from ..prequestion import PreQuestion
 
 from random import choice
 
-
+@register_question_class
 class NoteNameQuestion(QuestionBase):
     """Implements a Note Name test.
     """
 
+    name = 'notename'
+    
     @log_event
     def __init__(self, mode='major', tonic='C', octave=4, descending=False,
                  chromatic=False, n_octaves=1, valid_intervals=CHROMATIC_TYPE,

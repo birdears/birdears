@@ -3,6 +3,7 @@ from .. import CHROMATIC_TYPE
 from ..logger import log_event
 
 from ..questionbase import QuestionBase
+from ..questionbase import register_question_class
 
 from ..interval import Interval
 
@@ -15,11 +16,13 @@ from ..note_and_pitch import get_pitch_by_number
 
 from random import choice
 
-
+@register_question_class
 class HarmonicIntervalQuestion(QuestionBase):
     """Implements a Harmonic Interval test.
     """
 
+    name = 'harmonic'
+    
     def __init__(self, mode='major', tonic='C', octave=4, descending=False,
                  chromatic=False, n_octaves=1, valid_intervals=CHROMATIC_TYPE,
                  user_durations=None, prequestion_method='none',
