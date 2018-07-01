@@ -50,6 +50,10 @@ class Sequence(list):
 
     @log_event
     def play(self, callback=None, end_callback=None):
+        
+        self.callback = callback
+        self.end_callback = end_callback
+        
         global SEQUENCE_THREAD
 
         if hasattr(SEQUENCE_THREAD, 'is_alive') and SEQUENCE_THREAD.is_alive():
@@ -61,7 +65,7 @@ class Sequence(list):
 
         # TODO: later we should passa callback and end_callback here so the
         # thread can talk to user interfaces, cli/tui/gui etc
-        SEQUENCE_THREAD = Thread(target=self.async_play, kwargs={'callback': callback, 'end_callback': end_callback})
+        SEQUENCE_THREAD = Thread(target=self.async_play, kwargs={'callback': self.callback, 'end_callback': self.end_callback})
         SEQUENCE_THREAD.start()
 
         return SEQUENCE_THREAD
@@ -81,6 +85,11 @@ class Sequence(list):
             
             if callback:
                 callback(element)
+                #cb_thread = Thread(target=self.callback, args=[element])
+                #cb_thread.start()
+                #cb_thread.join()
+                #callback(element)
+                #SEQUENCE_THREAD.join()
 
             if type(element) == Pitch:
                 self._play_note(element, last_element=is_last)
@@ -88,6 +97,7 @@ class Sequence(list):
                 self._play_chord(element, last_element=is_last)
             else:
                 raise InvalidSequenceElement
+            
 
             # TODO we should later get the element information and pass via a
             # dict to Sequence._async_play()'s callback so it can inform the
@@ -180,5 +190,5 @@ class Sequence(list):
         Args:
             seconds (float): Seconds to wait.
         """
-
+        
         time.sleep(seconds)

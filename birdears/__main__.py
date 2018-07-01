@@ -1,11 +1,12 @@
 "__Main__ docs are here."
 
+import urwid
+
 from . import click
 
 from . import DIATONIC_MODES
 
 from .interfaces.commandline import CommandLine
-from .interfaces.urwid import TextUserInterface
 
 from . import CHROMATIC_SHARP
 from . import CHROMATIC_FLAT
@@ -29,19 +30,23 @@ INTERFACE = False
 
 def load_interface(*args, **kwargs):
     
-    global INTERFACE
-    
     if INTERFACE == 'urwid':
-        from .interfaces.urwid import urwid
+       # from .interfaces.urwid import urwid
 
+        from .interfaces.urwid import TextUserInterface
         palette = [
             ('default', 'default', 'default'),
             ('highlight', 'black', 'light gray')
             ]
         
-        tui = TextUserInterface(*args, **kwargs)
+        a = []
+        tui = TextUserInterface(a=a, *args, **kwargs)
         
+        #loop = urwid.MainLoop(tui, palette)
+        #loop.run()
+        #global loop
         loop = urwid.MainLoop(tui, palette)
+        a.append(loop)
         loop.run()
         
     else:
