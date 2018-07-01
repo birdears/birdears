@@ -41,29 +41,14 @@ class KeyboardButton(urwid.Padding):
         super(KeyboardButton, self).__init__(w=self.box, *args, **kwargs)
         
     def highlight(self, state=False):
-        #print('were in highlight: ', state)
+        print('were in highlight: ', state)
         if not state:
-            #self.attr.set_attr_map({'highlight': 'default'})
-            #self.attr.render(('pack', None))
-            #self.attr.render((3,))
-            #self.original_widget.set_attr_map({'highlight': 'default'})
-            #self.original_widget = urwid.AttrMap(w=self.pad, attr_map='default')
-            #self.attr = urwid.AttrMap(w=self.box, attr_map='default')
             self.attr = urwid.AttrMap(w=self.pad, attr_map='default')
             self.box = urwid.LineBox(self.attr)
-            #self.original_widget = urwid.LineBox(self.attr)
-            #self.original_widget = self.box
-            #self.original_widget = urwid.LineBox(self.attr)
             self.original_widget = self.box
         else:
-            #self.attr.set_attr_map({'default': 'highlight'})
-            #self.attr.render(size=('pack', None))
-            #self.attr.render((3,))
-            #self.original_widget.set_attr_map({'highlight': 'default'})
-            #self.original_widget = urwid.AttrMap(w=self.pad, attr_map='highlight')
             self.attr = urwid.AttrMap(w=self.pad, attr_map='highlight')
             self.box = urwid.LineBox(self.attr)
-            
             self.original_widget = self.box
         
 class Keyboard(urwid.Filler):
@@ -143,13 +128,15 @@ class Keyboard(urwid.Filler):
         
         super(Keyboard, self).__init__(body=box, min_height=6, *args, **kwargs)
     
-    def highlight_key(self, note):
-        #print('were in highlight_key')
+    def highlight_key(self, note, *args, **kwargs):
+        print('were in highlight_key: ', note.note)
         for key, button in self.key_index.items():
             #from pprint import pprint
-            state = key==note
+            state = key==note.note
             if 'KeyboardButton' in str(type(button)):
                 button.highlight(state=state)
+            else:
+                button[2].highlight(state=state)
         
 
 
@@ -194,8 +181,9 @@ class TextUserInterface(urwid.Frame):
             #print_response(response)
 
             kwargs = {
-                'callback': None,
-                'end_callback': None
+                'callback': self.frame_body.contents[1][0].highlight_key,
+                #'end_callback': self.frame_body.contents[1][0].highlight_key,
+                'end_callback': None,
             }
             
             thread = threading.Thread(target=self.question.play_resolution, kwargs=kwargs)
