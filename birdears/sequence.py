@@ -49,7 +49,7 @@ class Sequence(list):
         self.pos_delay = pos_delay
 
     @log_event
-    def play(self):
+    def play(self, callback=None, end_callback=None):
         global SEQUENCE_THREAD
 
         if hasattr(SEQUENCE_THREAD, 'is_alive') and SEQUENCE_THREAD.is_alive():
@@ -61,14 +61,14 @@ class Sequence(list):
 
         # TODO: later we should passa callback and end_callback here so the
         # thread can talk to user interfaces, cli/tui/gui etc
-        SEQUENCE_THREAD = Thread(target=self.async_play)
+        SEQUENCE_THREAD = Thread(target=self.async_play, kwargs={'callback': callback, 'end_callback': end_callback})
         SEQUENCE_THREAD.start()
 
         # FIXME: is this really needed? it is a global
         return SEQUENCE_THREAD
 
     @log_event
-    def async_play(self):
+    def async_play(self, callback, end_callback):
         """Plays the Sequence elements of notes and/or chords and wait for
         `Sequence.pos_delay` seconds.
         """
@@ -79,6 +79,9 @@ class Sequence(list):
             # because if it is the last, we will supress it's  playing delay
             # and will use the Sequence.pos_delay
             is_last = (index == len(self) - 1)
+            
+            if callback:
+                callback(element)
 
             if type(element) == Pitch:
                 self._play_note(element, last_element=is_last)
@@ -93,6 +96,9 @@ class Sequence(list):
 
         if self.pos_delay:
             self._wait(self.pos_delay)
+            
+        if end_callback:
+            end_callback()
 
     # FIXME: implement octave here:
     def make_chord_progression(self, tonic, mode, degrees):

@@ -1,3 +1,4 @@
+import threading
 import urwid
 
 from .. import KEYS
@@ -118,9 +119,12 @@ class TextUserInterface(urwid.Frame):
         
         self.input_keys = list()
         
-        import threading
-
-        thread = threading.Thread(target=self.question.play_question)
+        kwargs = {
+            'callback': None,
+            'end_callback': None
+        }
+        
+        thread = threading.Thread(target=self.question.play_question, kwargs=kwargs)
         thread.start()
         self.draw(self.question)
         #self.question.play_question()
@@ -133,7 +137,7 @@ class TextUserInterface(urwid.Frame):
         #loop.run()
         
     def keypress(self, size, key):
-        #print(size, key)
+        
         if key in self.question.keyboard_index and key != ' ': # space char
             self.input_keys.append(key)
 
@@ -146,9 +150,17 @@ class TextUserInterface(urwid.Frame):
             response = self.question.check_question(self.input_keys)
             #print_response(response)
 
-            self.question.play_resolution()
+            kwargs = {
+                'callback': None,
+                'end_callback': None
+            }
+            
+            thread = threading.Thread(target=self.question.play_resolution, kwargs=kwargs)
+            thread.start()
+            # self.question.play_resolution()
 
-                #new_question_bit = True
+        elif key in ('T', 't'):
+            self.frame_body.contents[1] = (urwid.Text('hey'), ('pack', None))
         elif key in ('R', 'r'):
             self.question.play_question()
         elif key in ('Q', 'q'):
@@ -180,7 +192,7 @@ class TextUserInterface(urwid.Frame):
         self.keyboard = Keyboard(tonic='C')
         self.keyboard = Keyboard(question.tonic_str)
         
-        self.top_widget = urwid.Filler(urwid.LineBox(urwid.Text('test1')))
+        self.top_widget = urwid.Filler(urwid.LineBox(urwid.Text('test1\nok')))
         self.bottom_widget = urwid.Filler(urwid.LineBox(urwid.Text('test2')))
         
         self.frame_elements = [self.top_widget, self.keyboard, self.bottom_widget]

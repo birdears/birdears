@@ -113,18 +113,18 @@ class NoteNameQuestion(QuestionBase):
 
         return resolution
 
-    def play_question(self):
+    def play_question(self, callback=None, end_callback=None):
         # Other threads can call a thread’s join() method. This blocks the
         # calling thread until the thread whose join() method is called is
         # terminated.
         # https://docs.python.org/3/library/threading.html#thread-objects
 
-        self.pre_question.play()
-        self.question.play()
+        self.pre_question.play(callback=callback, end_callback=end_callback)
+        self.question.play(callback=callback, end_callback=end_callback)
 
-    def play_resolution(self):
+    def play_resolution(self, callback=None, end_callback=None):
 
-        thread = self.resolution.play()
+        thread = self.resolution.play(callback=callback, end_callback=end_callback)
         thread.join()
 
     def check_question(self, user_input_char):
