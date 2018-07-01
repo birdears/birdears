@@ -64,7 +64,6 @@ class Sequence(list):
         SEQUENCE_THREAD = Thread(target=self.async_play, kwargs={'callback': callback, 'end_callback': end_callback})
         SEQUENCE_THREAD.start()
 
-        # FIXME: is this really needed? it is a global
         return SEQUENCE_THREAD
 
     @log_event

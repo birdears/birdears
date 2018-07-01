@@ -34,8 +34,14 @@ def load_interface(*args, **kwargs):
     if INTERFACE == 'urwid':
         from .interfaces.urwid import urwid
 
+        palette = [
+            ('default', 'default', 'default'),
+            ('highlight', 'black', 'light gray')
+            ]
+        
         tui = TextUserInterface(*args, **kwargs)
-        loop = urwid.MainLoop(tui)
+        
+        loop = urwid.MainLoop(tui, palette)
         loop.run()
         
     else:

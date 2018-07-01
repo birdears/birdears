@@ -29,17 +29,48 @@ def is_chromatic(key):
 
 class KeyboardButton(urwid.Padding):
     def __init__(self, top="", middle="", bottom="", *args, **kwargs):
-        text = [urwid.Text(str(item)) for item in [top, middle, bottom]]
-        lines = urwid.Pile(text)
-        fill = urwid.Filler(lines)
-        adapter = urwid.BoxAdapter(fill, height=3)
-        pad = urwid.Padding(adapter)
-        box = urwid.LineBox(pad)
+        self.text = [urwid.Text(str(item)) for item in [top, middle, bottom]]
+        self.lines = urwid.Pile(self.text)
+        self.fill = urwid.Filler(self.lines)
+        self.adapter = urwid.BoxAdapter(self.fill, height=3)
+        self.pad = urwid.Padding(self.adapter)
+        self.attr = urwid.AttrMap(w=self.pad, attr_map='default')
+        self.box = urwid.LineBox(self.attr)
+        # self.attr = urwid.AttrMap(w=self.box, attr_map='default')
         
-        super(KeyboardButton, self).__init__(w=box, *args, **kwargs)
+        super(KeyboardButton, self).__init__(w=self.box, *args, **kwargs)
+        
+    def highlight(self, state=False):
+        #print('were in highlight: ', state)
+        if not state:
+            #self.attr.set_attr_map({'highlight': 'default'})
+            #self.attr.render(('pack', None))
+            #self.attr.render((3,))
+            #self.original_widget.set_attr_map({'highlight': 'default'})
+            #self.original_widget = urwid.AttrMap(w=self.pad, attr_map='default')
+            #self.attr = urwid.AttrMap(w=self.box, attr_map='default')
+            self.attr = urwid.AttrMap(w=self.pad, attr_map='default')
+            self.box = urwid.LineBox(self.attr)
+            #self.original_widget = urwid.LineBox(self.attr)
+            #self.original_widget = self.box
+            #self.original_widget = urwid.LineBox(self.attr)
+            self.original_widget = self.box
+        else:
+            #self.attr.set_attr_map({'default': 'highlight'})
+            #self.attr.render(size=('pack', None))
+            #self.attr.render((3,))
+            #self.original_widget.set_attr_map({'highlight': 'default'})
+            #self.original_widget = urwid.AttrMap(w=self.pad, attr_map='highlight')
+            self.attr = urwid.AttrMap(w=self.pad, attr_map='highlight')
+            self.box = urwid.LineBox(self.attr)
+            
+            self.original_widget = self.box
         
 class Keyboard(urwid.Filler):
     def __init__(self, tonic, show_octave=True, *args, **kwargs):
+        
+        self.key_index = {}
+        
         
         if tonic in KEYS:
             scale = CHROMATIC_SHARP if tonic in CHROMATIC_SHARP else CHROMATIC_FLAT
@@ -67,17 +98,20 @@ class Keyboard(urwid.Filler):
                     chromatic_keys.append(('weight', 1, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=1)))
                     
                 chromatic_keys.append(('weight', 1, KeyboardButton(note)))
-            
+                self.key_index.update({note: chromatic_keys[-1]})
             else:
                 diatonic_keys.append(KeyboardButton(note))
+                self.key_index.update({note: diatonic_keys[-1]})
                 
         if show_octave:
             if is_chromatic(tonic):
                 if KEY_PADS[tonic] == 1:
                     chromatic_keys.append(('weight', 1, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=1)))
                 chromatic_keys.append(('weight', 1, KeyboardButton(tonic)))
+                self.key_index.update({note: chromatic_keys[-1]})
             else:
                 diatonic_keys.append(KeyboardButton(tonic))
+                self.key_index.update({note: diatonic_keys[-1]})
                 
         if is_key_chromatic:
             if not show_octave:
@@ -108,6 +142,14 @@ class Keyboard(urwid.Filler):
         box = urwid.LineBox(keyboard)
         
         super(Keyboard, self).__init__(body=box, min_height=6, *args, **kwargs)
+    
+    def highlight_key(self, note):
+        #print('were in highlight_key')
+        for key, button in self.key_index.items():
+            #from pprint import pprint
+            state = key==note
+            if 'KeyboardButton' in str(type(button)):
+                button.highlight(state=state)
         
 
 
@@ -126,6 +168,7 @@ class TextUserInterface(urwid.Frame):
         
         thread = threading.Thread(target=self.question.play_question, kwargs=kwargs)
         thread.start()
+        #self.question.play_question()
         self.draw(self.question)
         #self.question.play_question()
         #thread = self.question.pre_question.play()
@@ -160,7 +203,10 @@ class TextUserInterface(urwid.Frame):
             # self.question.play_resolution()
 
         elif key in ('T', 't'):
-            self.frame_body.contents[1] = (urwid.Text('hey'), ('pack', None))
+            # self.frame_body.contents[1] = (urwid.Text('hey'), ('pack', None))
+            #print(self.frame_body.contents[1][0].key_index)
+            #print(self.frame_body.contents)
+            self.frame_body.contents[1][0].highlight_key('C')
         elif key in ('R', 'r'):
             self.question.play_question()
         elif key in ('Q', 'q'):
