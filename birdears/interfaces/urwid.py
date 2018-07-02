@@ -43,24 +43,43 @@ class KeyboardButton(urwid.Padding):
         lines = urwid.Pile(text)
         fill = urwid.Filler(lines)
         adapter = urwid.BoxAdapter(fill, height=3)
-        self.pad = urwid.Padding(adapter)
-        ##attr = urwid.AttrMap(w=self.pad)
-        box = urwid.LineBox(self.pad)
+        pad = urwid.Padding(adapter)
+        attr = urwid.AttrMap(w=pad, attr_map={None: 'default'})
+        #box = urwid.LineBox(self.attr)
+        #box = urwid.LineBox(self.pad)
         
-        super(KeyboardButton, self).__init__(w=box, *args, **kwargs)
+        super(KeyboardButton, self).__init__(w=attr, *args, **kwargs)
         
     def highlight(self, state=False):
         #print('were in highlight: ', state)
         
         if not state:
-            attr = urwid.AttrMap(w=self.pad, attr_map='default')
-            self.original_widget = urwid.LineBox(attr)
+            #self.attr.set_attr_map({'highlight', 'default'})
+            #self.original_widget.set_attr_map({'highlight', 'default'})
+            if type(self.original_widget) != dict:
+                self.original_widget.set_attr_map({None: 'default'})
+            else:
+                self.original_widget.set_attr_map('default')
+            #self.original_widget.set_attr_map('default')
+            #print(type(self.original_widget))
+            #self.base_widget.set_attr_map({None, 'highlight'})
+            #attr = urwid.AttrMap(w=self.pad, attr_map='default')
+            #self.original_widget = urwid.LineBox(attr)
             #self.original_widget = attr
         else:
             #print('highlighting')
-            attr = urwid.AttrMap(w=self.pad, attr_map='highlight')
-            self.original_widget = urwid.LineBox(attr)
+            #attr = urwid.AttrMap(w=self.pad, attr_map='highlight')
+            #self.original_widget = urwid.LineBox(attr)
             #self.original_widget = attr
+            #self.attr.set_attr_map({'default', 'highlight'})
+            if type(self.original_widget) != dict:
+                self.original_widget.set_attr_map({None: 'highlight'})
+            else:
+                self.original_widget.set_attr_map('highlight')
+            #self.original_widget.set_attr_map({'default', 'highlight'})
+            #print(type(self.original_widget))
+            #self.base_widget.set_attr_map({None, 'highlight'})
+            #self[0].set_attr_map({None, 'highlight'})
          
         #print(dir(self))
         #loop.draw_screen()

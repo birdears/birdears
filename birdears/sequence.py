@@ -90,7 +90,8 @@ class Sequence(list):
                 #callback(element)
                 if hasattr(cb_thread, 'is_alive') and cb_thread.is_alive():
                     try:
-                        cb_thread.join()
+                        #cb_thread.join()
+                        pass
                     except KeyboardInterrupt:
                         print('Ctrl+C')
                         exit(0)
