@@ -39,12 +39,15 @@ class KeyboardButton(urwid.Padding):
         #self.attr = urwid.AttrMap(w=self.pad, attr_map='default')
         #self.box = urwid.LineBox(self.attr)
         # self.attr = urwid.AttrMap(w=self.box, attr_map='default')
-        text = [urwid.Text(str(item)) for item in [top, middle, bottom]]
-        lines = urwid.Pile(text)
-        fill = urwid.Filler(lines)
+        #text = [urwid.Text(str(item)) for item in [top, middle, bottom]]
+        #self.text = [('pack', urwid.Text(str(item))) for item in [top, middle, bottom]]
+        #lines = urwid.Pile(self.text)
+        text = urwid.Text("{}\n{}\n{}".format(top, middle, bottom))
+        #fill = urwid.Filler(lines)
+        fill = urwid.Filler(text)
         adapter = urwid.BoxAdapter(fill, height=3)
         pad = urwid.Padding(adapter)
-        attr = urwid.AttrMap(w=pad, attr_map={None: 'default'})
+        attr = urwid.AttrMap(w=pad, attr_map='default')
         #box = urwid.LineBox(self.attr)
         #box = urwid.LineBox(self.pad)
         
@@ -53,36 +56,8 @@ class KeyboardButton(urwid.Padding):
     def highlight(self, state=False):
         #print('were in highlight: ', state)
         
-        if not state:
-            #self.attr.set_attr_map({'highlight', 'default'})
-            #self.original_widget.set_attr_map({'highlight', 'default'})
-            if type(self.original_widget) != dict:
-                self.original_widget.set_attr_map({None: 'default'})
-            else:
-                self.original_widget.set_attr_map('default')
-            #self.original_widget.set_attr_map('default')
-            #print(type(self.original_widget))
-            #self.base_widget.set_attr_map({None, 'highlight'})
-            #attr = urwid.AttrMap(w=self.pad, attr_map='default')
-            #self.original_widget = urwid.LineBox(attr)
-            #self.original_widget = attr
-        else:
-            #print('highlighting')
-            #attr = urwid.AttrMap(w=self.pad, attr_map='highlight')
-            #self.original_widget = urwid.LineBox(attr)
-            #self.original_widget = attr
-            #self.attr.set_attr_map({'default', 'highlight'})
-            if type(self.original_widget) != dict:
-                self.original_widget.set_attr_map({None: 'highlight'})
-            else:
-                self.original_widget.set_attr_map('highlight')
-            #self.original_widget.set_attr_map({'default', 'highlight'})
-            #print(type(self.original_widget))
-            #self.base_widget.set_attr_map({None, 'highlight'})
-            #self[0].set_attr_map({None, 'highlight'})
-         
-        #print(dir(self))
-        #loop.draw_screen()
+        attr_map = {None: 'default' if not state else 'highlight'}
+        self.original_widget.set_attr_map(attr_map=attr_map)
         
 class Keyboard(urwid.Filler):
     def __init__(self, tonic, show_octave=True, main_loop=None, *args, **kwargs):
@@ -216,14 +191,13 @@ class TextUserInterface(urwid.Frame):
         self.draw(self.question)
         
         kwargs = {
-            #'callback': None,
             'callback': self.frame_body.contents[1][0].highlight_key,
             'end_callback': self.frame_body.contents[1][0].highlight_key
         }
         
         self.thread = threading.Thread(target=self.question.play_question, kwargs=kwargs)
-        #thread = threading.Thread(target=self.question.pre_question.play, kwargs=kwargs)
         self.thread.start()
+        #thread = threading.Thread(target=self.question.pre_question.play, kwargs=kwargs)
         #self.thread.join()
         #self.question.play_question(callback=self.frame_body.contents[1][0].highlight_key,
         #    end_callback=self.frame_body.contents[1][0].highlight_key)
@@ -256,7 +230,14 @@ class TextUserInterface(urwid.Frame):
             #self.frame_body.contents[1][0].highlight_key('C')
             self.a[0].draw_screen()
         elif key in ('R', 'r'):
-            self.question.play_question()
+            kwargs = {
+                'callback': self.frame_body.contents[1][0].highlight_key,
+                'end_callback': self.frame_body.contents[1][0].highlight_key
+            }
+            
+            self.thread = threading.Thread(target=self.question.play_question, kwargs=kwargs)
+            self.thread.start()
+            #self.question.play_question()
         elif key in ('Q', 'q'):
             raise urwid.ExitMainLoop()
         else:
@@ -277,18 +258,6 @@ class TextUserInterface(urwid.Frame):
         return QUESTION_CLASS(**kwargs)
         
     def draw(self, question):
-        #self.header = urwid.Text('hey pal')
-        #self.footer = urwid.Text('footers')
-
-        #self.keyboard = Keyboard(question.tonic_str)
-        
-        #self.top_widget = urwid.Filler(urwid.LineBox(urwid.Text('test1\nok')))
-        #self.bottom_widget = urwid.Filler(urwid.LineBox(urwid.Text('test2')))
-        
-        #self.frame_elements = [self.top_widget, self.keyboard, self.bottom_widget]
-        
-        #self.frame_body = urwid.Pile(widget_list=self.frame_elements)
-        #self.frame_body_pad = urwid.Padding(self.frame_body, align='center', width=('relative', 60))
         
         keyboard = Keyboard(tonic=question.tonic_str, main_loop=self.a)
         
