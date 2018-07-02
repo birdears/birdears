@@ -22,7 +22,8 @@ KEY_PADS = {
     'Bb': 0
 }
 
-SPACE_CHAR = ' '
+SPACE_CHAR = 'x'
+FILL_HEIGHT = 3
 
 def is_chromatic(key):
     if len(key) == 2:
@@ -45,7 +46,7 @@ class KeyboardButton(urwid.Padding):
         text = urwid.Text("{}\n{}\n{}".format(top, middle, bottom))
         #fill = urwid.Filler(lines)
         fill = urwid.Filler(text)
-        adapter = urwid.BoxAdapter(fill, height=3)
+        adapter = urwid.BoxAdapter(fill, height=1)
         pad = urwid.Padding(adapter)
         attr = urwid.AttrMap(w=pad, attr_map='default')
         #box = urwid.LineBox(self.attr)
@@ -78,9 +79,9 @@ class Keyboard(urwid.Filler):
         is_key_chromatic = is_chromatic(tonic)
         
         if is_key_chromatic:
-            diatonic_keys.append(('weight', 0.5, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=1)))
+            diatonic_keys.append(('weight', 0.5, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=FILL_HEIGHT)))
         else:
-            chromatic_keys.append(('weight', 0.5, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=1)))
+            chromatic_keys.append(('weight', 0.5, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=FILL_HEIGHT)))
         
         first_chromatic = [note for note in key_scale if len(note) == 2][0]
         # last_chromatic = [note for note in key_scale if len(note) == 2][-1]
@@ -90,7 +91,7 @@ class Keyboard(urwid.Filler):
             if is_chromatic(note):
                 
                 if KEY_PADS[note] == 1 and note != first_chromatic:
-                    chromatic_keys.append(('weight', 1, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=1)))
+                    chromatic_keys.append(('weight', 1, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=FILL_HEIGHT)))
                     
                 chromatic_keys.append(('weight', 1, KeyboardButton(note)))
                 self.key_index.update({note: chromatic_keys[-1]})
@@ -101,7 +102,7 @@ class Keyboard(urwid.Filler):
         if show_octave:
             if is_chromatic(tonic):
                 if KEY_PADS[tonic] == 1:
-                    chromatic_keys.append(('weight', 1, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=1)))
+                    chromatic_keys.append(('weight', 1, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=FILL_HEIGHT)))
                 chromatic_keys.append(('weight', 1, KeyboardButton(tonic)))
                 self.key_index.update({note: chromatic_keys[-1]})
             else:
@@ -111,24 +112,24 @@ class Keyboard(urwid.Filler):
         if is_key_chromatic:
             if not show_octave:
                 weight = 0.5 + KEY_PADS[first_chromatic] + (int(show_octave)/2)
-                chromatic_keys.append(('weight', weight, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=1)))
+                chromatic_keys.append(('weight', weight, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=FILL_HEIGHT)))
             else:
                 weight = 0.5 #+ KEY_PADS[first_chromatic] + (int(show_octave)/2)
-                diatonic_keys.append(('weight', weight, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=1)))
+                diatonic_keys.append(('weight', weight, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=FILL_HEIGHT)))
             
         else:
             
             if KEY_PADS[first_chromatic]:
                 weight = (KEY_PADS[first_chromatic]/2) + int(show_octave)
-                chromatic_keys.append(('weight', weight, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=1)))
+                chromatic_keys.append(('weight', weight, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=FILL_HEIGHT)))
             
             if not KEY_PADS[first_chromatic]:
                 if not show_octave:
                     weight = 0.5 + KEY_PADS[first_chromatic] + int(show_octave)
-                    diatonic_keys.append(('weight', weight, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=1)))
+                    diatonic_keys.append(('weight', weight, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=FILL_HEIGHT)))
                 else:
                     weight = 0.5 #+ KEY_PADS[first_chromatic] + int(show_octave)
-                    chromatic_keys.append(('weight', weight, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=1)))
+                    chromatic_keys.append(('weight', weight, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=FILL_HEIGHT)))
 
         chromatic = urwid.Columns(widget_list=chromatic_keys, dividechars=1)
         diatonic = urwid.Columns(widget_list=diatonic_keys, dividechars=1)
@@ -136,7 +137,8 @@ class Keyboard(urwid.Filler):
         keyboard = urwid.Pile([chromatic, diatonic])
         box = urwid.LineBox(keyboard)
         
-        super(Keyboard, self).__init__(body=box, min_height=6, *args, **kwargs)
+        super(Keyboard, self).__init__(body=box, min_height=10, *args, **kwargs)
+        #super(Keyboard, self).__init__(body=box, *args, **kwargs)
     
     #def highlight_key(self, note=None, *args, **kwargs):
     def highlight_key(self, note=None):
@@ -150,6 +152,7 @@ class Keyboard(urwid.Filler):
                 
         for key, button in self.key_index.items():
             #from pprint import pprint
+                    
             state =  hasattr(note, 'note') and key==note.note
             
             if 'KeyboardButton' in str(type(button)):
@@ -159,6 +162,9 @@ class Keyboard(urwid.Filler):
             #print(key, button, state)
             #if hasattr(note, 'note'):
             #    print(note.note)
+            
+            #if self.main_loop[0].screen._started:
+            #    self.main_loop[0].draw_screen()
             if self.main_loop[0].screen._started:
                 self.main_loop[0].draw_screen()
             ##print(dir(self.main_loop[0].screen))
@@ -167,10 +173,9 @@ class Keyboard(urwid.Filler):
 
 class TextUserInterface(urwid.Frame):
 
-    def __init__(self, exercise, a, *args, **kwargs):
+    def __init__(self, exercise, loop_wrapper, *args, **kwargs):
 
-        self.a = a
-        
+        self.loop = loop_wrapper
         header = urwid.Text('hey pal')
         footer = urwid.Text('footers')
         loading = urwid.Text('loading...')
@@ -228,7 +233,7 @@ class TextUserInterface(urwid.Frame):
 
         elif key in ('T', 't'):
             #self.frame_body.contents[1][0].highlight_key('C')
-            self.a[0].draw_screen()
+            self.loop.draw_screen()
         elif key in ('R', 'r'):
             kwargs = {
                 'callback': self.frame_body.contents[1][0].highlight_key,
@@ -259,7 +264,7 @@ class TextUserInterface(urwid.Frame):
         
     def draw(self, question):
         
-        keyboard = Keyboard(tonic=question.tonic_str, main_loop=self.a)
+        keyboard = Keyboard(tonic=question.tonic_str, main_loop=self.loop)
         
         top_widget = urwid.Filler(urwid.LineBox(urwid.Text('test1\nok')))
         bottom_widget = urwid.Filler(urwid.LineBox(urwid.Text('test2')))

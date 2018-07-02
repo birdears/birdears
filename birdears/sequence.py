@@ -52,9 +52,6 @@ class Sequence(list):
     @log_event
     def play(self, callback=None, end_callback=None):
         
-        self.callback = callback
-        self.end_callback = end_callback
-        
         global SEQUENCE_THREAD
 
         if hasattr(SEQUENCE_THREAD, 'is_alive') and SEQUENCE_THREAD.is_alive():
@@ -66,7 +63,7 @@ class Sequence(list):
 
         # TODO: later we should passa callback and end_callback here so the
         # thread can talk to user interfaces, cli/tui/gui etc
-        SEQUENCE_THREAD = Thread(target=self.async_play, kwargs={'callback': self.callback, 'end_callback': self.end_callback})
+        SEQUENCE_THREAD = Thread(target=self.async_play, kwargs={'callback': callback, 'end_callback': end_callback})
         SEQUENCE_THREAD.start()
 
         return SEQUENCE_THREAD
@@ -78,6 +75,7 @@ class Sequence(list):
         """
         
         global cb_thread
+        global SEQUENCE_THREAD
 
         for index, element in enumerate(self):
 
@@ -88,16 +86,20 @@ class Sequence(list):
             
             if callback:
                 #callback(element)
-                if hasattr(cb_thread, 'is_alive') and cb_thread.is_alive():
-                    try:
+
+                #if hasattr(cb_thread, 'is_alive') and cb_thread.is_alive():
+                    #try:
                         #cb_thread.join()
-                        pass
-                    except KeyboardInterrupt:
-                        print('Ctrl+C')
-                        exit(0)
+                        ###pass
+                    #except:
+                        #pass
+                    ##except KeyboardInterrupt:
+                        ##print('Ctrl+C')
+                        ##exit(0)
+                        
                 cb_thread = Thread(target=callback, args=[element])
                 cb_thread.start()
-                #cb_thread.join()
+                cb_thread.join()
                 #callback(element)
                 #SEQUENCE_THREAD.join()
 

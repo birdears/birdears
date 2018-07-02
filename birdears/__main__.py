@@ -39,14 +39,14 @@ def load_interface(*args, **kwargs):
             ('highlight', 'black', 'light gray')
             ]
         
-        a = []
-        tui = TextUserInterface(a=a, *args, **kwargs)
+        wrapper = []
+        tui = TextUserInterface(loop_wrapper=wrapper, *args, **kwargs)
         
         #loop = urwid.MainLoop(tui, palette)
         #loop.run()
         #global loop
         loop = urwid.MainLoop(tui, palette)
-        a.append(loop)
+        wrapper.append(loop)
         loop.run()
         
     else:
