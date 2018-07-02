@@ -165,7 +165,9 @@ class Keyboard(urwid.Filler):
             #print(key, button, state)
             #if hasattr(note, 'note'):
             #    print(note.note)
-            self.main_loop[0].draw_screen()
+            if self.main_loop[0].screen._started:
+                self.main_loop[0].draw_screen()
+            ##print(dir(self.main_loop[0].screen))
         
 
 

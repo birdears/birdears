@@ -12,6 +12,7 @@ from .note_and_pitch import Chord
 from .exception import InvalidSequenceElement
 
 SEQUENCE_THREAD = None
+cb_thread = None
 
 
 class Sequence(list):
@@ -75,6 +76,8 @@ class Sequence(list):
         """Plays the Sequence elements of notes and/or chords and wait for
         `Sequence.pos_delay` seconds.
         """
+        
+        global cb_thread
 
         for index, element in enumerate(self):
 
@@ -84,9 +87,15 @@ class Sequence(list):
             is_last = (index == len(self) - 1)
             
             if callback:
-                callback(element)
-                #cb_thread = Thread(target=self.callback, args=[element])
-                #cb_thread.start()
+                #callback(element)
+                if hasattr(cb_thread, 'is_alive') and cb_thread.is_alive():
+                    try:
+                        cb_thread.join()
+                    except KeyboardInterrupt:
+                        print('Ctrl+C')
+                        exit(0)
+                cb_thread = Thread(target=callback, args=[element])
+                cb_thread.start()
                 #cb_thread.join()
                 #callback(element)
                 #SEQUENCE_THREAD.join()
