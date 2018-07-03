@@ -27,6 +27,11 @@ KEY_PADS = {
 SPACE_CHAR = ' '
 FILL_HEIGHT = 3
 
+def Pad(weight=1):
+    return ('weight',
+            weight,
+            urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR), height=FILL_HEIGHT))
+            
 def is_chromatic(key):
     if len(key) == 2:
         return True
@@ -76,18 +81,9 @@ class Keyboard(urwid.Filler):
         is_key_chromatic = is_chromatic(key=tonic_str)
 
         # start (left) padding
-        if is_key_chromatic:
-            diatonic_keys.append(('weight', 0.5, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=FILL_HEIGHT)))
-        else:
-            chromatic_keys.append(('weight', 0.5, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=FILL_HEIGHT)))
+        first_pad = diatonic_keys if is_key_chromatic else chromatic_keys
+        first_pad.append(Pad(weight=0.5))
 
-        #first_chromatic = [pitch.note for pitch in key_scale if len(pitch.note) == 2][0]
-        
-        #for pitch in key_scale:
-            #if len(pitch.note) == 2:
-                #first_chromatic = pitch
-                #break
-            
         first_chromatic = [pitch for pitch in key_scale if len(pitch.note) == 2][0]
 
         for pitch in key_scale:
@@ -98,7 +94,7 @@ class Keyboard(urwid.Filler):
             if is_chromatic(pitch.note):
 
                 if KEY_PADS[note_str] == 1 and (pitch is not first_chromatic):
-                    chromatic_keys.append(('weight', 1, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=FILL_HEIGHT)))
+                    chromatic_keys.append(Pad(weight=1))
 
                 chromatic_keys.append(KeyboardButton(pitch=pitch))
                 
@@ -113,7 +109,7 @@ class Keyboard(urwid.Filler):
             
             if is_chromatic(tonic_str):
                 if KEY_PADS[tonic_str] == 1:
-                    chromatic_keys.append(('weight', 1, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=FILL_HEIGHT)))
+                    chromatic_keys.append(Pad(weight=1))
                 chromatic_keys.append(KeyboardButton(pitch=octave_pitch))
             else:
                 diatonic_keys.append(KeyboardButton(pitch=octave_pitch))
@@ -122,24 +118,24 @@ class Keyboard(urwid.Filler):
         if is_key_chromatic:
             if not show_octave:
                 weight = 0.5 + KEY_PADS[first_chromatic.note] + (int(show_octave)/2)
-                chromatic_keys.append(('weight', weight, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=FILL_HEIGHT)))
+                chromatic_keys.append(Pad(weight=weight))
             else:
                 weight = 0.5 #+ KEY_PADS[first_chromatic] + (int(show_octave)/2)
-                diatonic_keys.append(('weight', weight, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=FILL_HEIGHT)))
+                diatonic_keys.append(Pad(weight=weight))
 
         else:
 
             if KEY_PADS[first_chromatic.note]:
                 weight = (KEY_PADS[first_chromatic.note]/2) + int(show_octave)
-                chromatic_keys.append(('weight', weight, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=FILL_HEIGHT)))
+                chromatic_keys.append(Pad(weight=weight))
 
             if not KEY_PADS[first_chromatic.note]:
                 if not show_octave:
                     weight = 0.5 + KEY_PADS[first_chromatic.note] + int(show_octave)
-                    diatonic_keys.append(('weight', weight, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=FILL_HEIGHT)))
+                    diatonic_keys.append(Pad(weight=weight))
                 else:
                     weight = 0.5 #+ KEY_PADS[first_chromatic] + int(show_octave)
-                    chromatic_keys.append(('weight', weight, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=FILL_HEIGHT)))
+                    chromatic_keys.append(Pad(weight=weight))
 
         self.key_index = {item.pitch_str: item
                           for item in chromatic_keys+diatonic_keys
@@ -161,7 +157,8 @@ class Keyboard(urwid.Filler):
 
         for key, button in self.key_index.items():
 
-            state =  hasattr(pitch, 'note') and key==str(pitch)
+            #state =  hasattr(pitch, 'note') and key==str(pitch)
+            state = (key == str(pitch))
             button.highlight(state=state)
             
         self.main_loop[0].draw_screen()
