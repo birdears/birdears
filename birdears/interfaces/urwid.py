@@ -68,6 +68,8 @@ class Keyboard(urwid.Filler):
         
         self.key_index = {}
         
+        self.highlighted_keys = list()
+        
         tonic_pitch = scale[0]
         tonic_str = scale[0].note
 
@@ -126,12 +128,57 @@ class Keyboard(urwid.Filler):
         
         super(Keyboard, self).__init__(body=box, min_height=10, *args, **kwargs)
 
-    def highlight_key(self, pitch=None):
+    def highlight_key(self, element=None):
 
-        for key, button in self.key_index.items():
+        for highlighted in self.highlighted_keys:
+            self.key_index[highlighted].highlight(state=False)
+            self.highlighted_keys.remove(highlighted)
+            
+        if type(element).__name__ == "Pitch":
+            #with open('dbg_pipe', 'w') as pipe:
+            #    pipe.write(str(type(element).__name__))
+            pitch = element
+            pitch_str = str(pitch)
+            
+            # turn off other highlighted keys
+            #for highlighted in self.highlighted_keys:
+            #    self.key_index[highlighted].highlight(state=False)
+            #    self.highlighted_keys.remove(highlighted)
+                
+            if pitch_str in self.key_index:
+                self.key_index[pitch_str].highlight(state=True)
+                self.highlighted_keys.append(pitch_str)
+            
+        elif type(element).__name__ == "Chord":
+            chord = element
+            
+            # turn off other highlighted keys
+            #for highlighted in self.highlighted_keys:
+            #    self.key_index[highlighted].highlight(state=False)
+            #    self.highlighted_keys.remove(highlighted)
+                
+            for pitch in chord:
+                chord_pitch_str = str(pitch)
+                
+                if chord_pitch_str in self.key_index:
+                    self.key_index[chord_pitch_str].highlight(state=True)
+                    self.highlighted_keys.append(chord_pitch_str)
+            
+        else:
+            pass
+        #elif type(element).__name__ == "NoneType":
+            # turn off all highlighted keys when 'element' == 'None'
+            #for highlighted in self.highlighted_keys:
+            #    self.highlighted_keys.remove(highlighted)
+            #    self.key_index[highlighted].highlight(state=False)
+            
+        #elif type(element).__name__ == "Chord":
+         
+        # FIXME: think on a better solution for this loop
+        #for key, button in self.key_index.items():
 
-            state = (key == str(pitch))
-            button.highlight(state=state)
+        #    state = (key == str(pitch))
+        #    button.highlight(state=state)
             
         if len(self.main_loop) > 0:
             self.main_loop[0].draw_screen()
@@ -141,6 +188,7 @@ class TextUserInterface(urwid.Frame):
 
     def __init__(self, exercise, loop_wrapper, *args, **kwargs):
 
+        
         self.loop = loop_wrapper
         header = urwid.Text('hey pal')
         footer = urwid.Text('footers')

@@ -112,7 +112,7 @@ class Sequence(list):
                 except KeyboardInterrupt:
                     print('Ctrl+C')
                     exit(0)
-            #cb_thread.join()
+            cb_thread.join()
 
             # TODO we should later get the element information and pass via a
             # dict to Sequence._async_play()'s callback so it can inform the
@@ -123,6 +123,12 @@ class Sequence(list):
 
         if end_callback:
             #end_callback()
+            if hasattr(cb_thread, 'is_alive') and cb_thread.is_alive():
+                try:
+                    cb_thread.join()
+                except KeyboardInterrupt:
+                    print('Ctrl+C')
+                    exit(0)
             cb_thread = Thread(target=end_callback)
             cb_thread.start()
             cb_thread.join()
