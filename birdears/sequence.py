@@ -51,7 +51,7 @@ class Sequence(list):
 
     @log_event
     def play(self, callback=None, end_callback=None):
-        
+
         global SEQUENCE_THREAD
 
         if hasattr(SEQUENCE_THREAD, 'is_alive') and SEQUENCE_THREAD.is_alive():
@@ -73,7 +73,7 @@ class Sequence(list):
         """Plays the Sequence elements of notes and/or chords and wait for
         `Sequence.pos_delay` seconds.
         """
-        
+
         global cb_thread
         global SEQUENCE_THREAD
 
@@ -83,23 +83,24 @@ class Sequence(list):
             # because if it is the last, we will supress it's  playing delay
             # and will use the Sequence.pos_delay
             is_last = (index == len(self) - 1)
-            
+
             if callback:
                 #callback(element)
 
-                #if hasattr(cb_thread, 'is_alive') and cb_thread.is_alive():
-                    #try:
-                        #cb_thread.join()
+                if hasattr(cb_thread, 'is_alive') and cb_thread.is_alive():
+                    try:
+                        cb_thread.join()
                         ###pass
                     #except:
                         #pass
-                    ##except KeyboardInterrupt:
-                        ##print('Ctrl+C')
-                        ##exit(0)
-                        
-                cb_thread = Thread(target=callback, args=[element])
-                cb_thread.start()
-                cb_thread.join()
+                    except KeyboardInterrupt:
+                        print('Ctrl+C')
+                        #exit(0)
+                if callback:
+                    cb_thread = Thread(target=callback, args=[element])
+                    cb_thread.start()
+                    #cb_thread.join()
+
                 #callback(element)
                 #SEQUENCE_THREAD.join()
 
@@ -109,7 +110,7 @@ class Sequence(list):
                 self._play_chord(element, last_element=is_last)
             else:
                 raise InvalidSequenceElement
-            
+
 
             # TODO we should later get the element information and pass via a
             # dict to Sequence._async_play()'s callback so it can inform the
@@ -117,7 +118,7 @@ class Sequence(list):
 
         if self.pos_delay:
             self._wait(self.pos_delay)
-            
+
         if end_callback:
             end_callback()
 
@@ -202,5 +203,5 @@ class Sequence(list):
         Args:
             seconds (float): Seconds to wait.
         """
-        
+
         time.sleep(seconds)
