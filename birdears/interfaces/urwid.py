@@ -149,20 +149,17 @@ class Keyboard(urwid.Filler):
             #if self.main_loop[0].screen._started:
             #    self.main_loop[0].draw_screen()
             
-        from ..sequence import cb_thread
-        if hasattr(cb_thread, 'is_alive') and cb_thread.is_alive():
-            try:
-                cb_thread.join()
-            except:
-                pass
+        #from ..sequence import cb_thread
+        #if hasattr(cb_thread, 'is_alive') and cb_thread.is_alive():
+        #    try:
+        #        cb_thread.join()
+        #    except:
+        #        pass
         
-        import time
-        while(not self.main_loop[0].screen._started):
-            time.sleep(0.0001)
+        #import time
+        #while(not self.main_loop[0].screen._started):
+        #    time.sleep(0.0001)
         self.main_loop[0].draw_screen()
-
-            ##print(dir(self.main_loop[0].screen))
-
 
 
 class TextUserInterface(urwid.Frame):
