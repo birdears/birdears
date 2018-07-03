@@ -28,11 +28,15 @@ def get_pitch_number(note, octave):
 def get_pitch_by_number(numeric, accident='sharp'):
 
     octave, pitch_class = divmod(numeric, 12)
+    
+    if accident == 'sharp':
+        note = CHROMATIC_SHARP[pitch_class]
+    elif accident == 'flat':
+        note = CHROMATIC_FLAT[pitch_class]
+    else:
+        raise Exception('accident should be \'sharp\' or \'flat\'')
 
-    note = CHROMATIC_SHARP[pitch_class] if accident == 'sharp' \
-        else CHROMATIC_FLAT[pitch_class]
-
-    pitch = Pitch(note=note, octave=octave)
+    pitch = Pitch(note=note, octave=octave, accident=accident)
 
     return pitch
 
@@ -48,11 +52,17 @@ def get_abs_chromatic_offset(pitch1, pitch2):
 
 class Note:
 
-    def __init__(self, note='C'):
+    def __init__(self, note='C', accident='sharp'):
+        
         if note in CHROMATIC_SHARP or note in CHROMATIC_FLAT:
             self.note = note
         else:
             raise InvalidNote()
+        
+        if accident in ('sharp', 'flat'):
+            self.accident = accident
+        else:
+            raise Exception('\'accident\' should be \'sharp\' or \'flat\'')
 
     # https://en.wikipedia.org/wiki/Pitch_class
     @property
@@ -94,14 +104,19 @@ class Pitch(Note):
     duration = None
     delay = None
 
-    def __init__(self, note='C', octave=4):
-        super(Pitch, self).__init__(note=note)
+    def __init__(self, note='C', octave=4, accident='sharp'):
+        super(Pitch, self).__init__(note=note, accident=accident)
 
         if octave >= 0 and octave <= 9:
             self.octave = octave
         else:
             raise InvalidOctave
 
+        #if accident in ('sharp', 'flat'):
+        #    self.accident = accident
+        #else:
+        #    raise Exception('\'accident\' should be \'sharp\' or \'flat\'')
+        
     @property
     def pitch_number(self):
         value = self.pitch_class + (self.octave * 12)

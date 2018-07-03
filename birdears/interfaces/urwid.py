@@ -103,7 +103,8 @@ class Keyboard(urwid.Filler):
 
         if show_octave:
             
-            octave_pitch = get_pitch_by_number(int(tonic_pitch) + 12)
+            octave_pitch = get_pitch_by_number(numeric=int(tonic_pitch) + 12,
+                                               accident=tonic_pitch.accident)
             octave_pitch_str = str(octave_pitch)
             octave_note_str = octave_pitch.note
             
@@ -148,13 +149,15 @@ class Keyboard(urwid.Filler):
         box = urwid.LineBox(keyboard)
         
         #print(self.key_index)
-        #with open('dbg_pipe', 'w') as pipe:
-        #    pipe.write('\n'+str(self.key_index)+'\n\n')
+        with open('dbg_pipe', 'w') as pipe:
+            pipe.write(str(self.scale))
 
         super(Keyboard, self).__init__(body=box, min_height=10, *args, **kwargs)
 
     def highlight_key(self, pitch=None):
 
+        with open('dbg_pipe', 'w') as pipe:
+            pipe.write('\n\nYA!! '+str(pitch)+'\n\n')
         for key, button in self.key_index.items():
 
             #state =  hasattr(pitch, 'note') and key==str(pitch)
