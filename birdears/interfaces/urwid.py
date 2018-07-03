@@ -60,7 +60,6 @@ class KeyboardButton(urwid.Padding):
         
 class Keyboard(urwid.Filler):
     
-    #def __init__(self, scale, show_octave=True, main_loop=None, *args, **kwargs):
     def __init__(self, scale, main_loop=None, *args, **kwargs):
 
         self.main_loop = main_loop
@@ -125,10 +124,6 @@ class Keyboard(urwid.Filler):
         keyboard = urwid.Pile([chromatic, diatonic])
         box = urwid.LineBox(keyboard)
         
-        #print(self.key_index)
-        #with open('dbg_pipe', 'w') as pipe:
-        #    pipe.write(str(self.scale))
-
         super(Keyboard, self).__init__(body=box, min_height=10, *args, **kwargs)
 
     def highlight_key(self, pitch=None):
@@ -140,97 +135,6 @@ class Keyboard(urwid.Filler):
             
         if len(self.main_loop) > 0:
             self.main_loop[0].draw_screen()
-
-#class Keyboard(urwid.Filler):
-    #def __init__(self, tonic, show_octave=True, main_loop=None, *args, **kwargs):
-
-        #self.key_index = {}
-
-        ##if main_loop:
-        #self.main_loop = main_loop
-
-        #if tonic in KEYS:
-            #scale = CHROMATIC_SHARP if tonic in CHROMATIC_SHARP else CHROMATIC_FLAT
-            #idx = scale.index(tonic)
-            #key_scale = scale[idx:] + scale[:idx]
-
-        #chromatic_keys = list()
-        #diatonic_keys = list()
-
-        #is_key_chromatic = is_chromatic(tonic)
-
-        #if is_key_chromatic:
-            #diatonic_keys.append(('weight', 0.5, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=FILL_HEIGHT)))
-        #else:
-            #chromatic_keys.append(('weight', 0.5, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=FILL_HEIGHT)))
-
-        #first_chromatic = [note for note in key_scale if len(note) == 2][0]
-
-        #for idx, note in enumerate(key_scale):
-
-            #if is_chromatic(note):
-
-                #if KEY_PADS[note] == 1 and note != first_chromatic:
-                    #chromatic_keys.append(('weight', 1, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=FILL_HEIGHT)))
-
-                #chromatic_keys.append(('weight', 1, KeyboardButton(note)))
-                #self.key_index.update({note: chromatic_keys[-1]})
-            #else:
-                #diatonic_keys.append(KeyboardButton(note))
-                #self.key_index.update({note: diatonic_keys[-1]})
-
-        #if show_octave:
-            #if is_chromatic(tonic):
-                #if KEY_PADS[tonic] == 1:
-                    #chromatic_keys.append(('weight', 1, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=FILL_HEIGHT)))
-                #chromatic_keys.append(('weight', 1, KeyboardButton(tonic)))
-                #self.key_index.update({note: chromatic_keys[-1]})
-            #else:
-                #diatonic_keys.append(KeyboardButton(tonic))
-                #self.key_index.update({note: diatonic_keys[-1]})
-
-        #if is_key_chromatic:
-            #if not show_octave:
-                #weight = 0.5 + KEY_PADS[first_chromatic] + (int(show_octave)/2)
-                #chromatic_keys.append(('weight', weight, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=FILL_HEIGHT)))
-            #else:
-                #weight = 0.5 #+ KEY_PADS[first_chromatic] + (int(show_octave)/2)
-                #diatonic_keys.append(('weight', weight, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=FILL_HEIGHT)))
-
-        #else:
-
-            #if KEY_PADS[first_chromatic]:
-                #weight = (KEY_PADS[first_chromatic]/2) + int(show_octave)
-                #chromatic_keys.append(('weight', weight, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=FILL_HEIGHT)))
-
-            #if not KEY_PADS[first_chromatic]:
-                #if not show_octave:
-                    #weight = 0.5 + KEY_PADS[first_chromatic] + int(show_octave)
-                    #diatonic_keys.append(('weight', weight, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=FILL_HEIGHT)))
-                #else:
-                    #weight = 0.5 #+ KEY_PADS[first_chromatic] + int(show_octave)
-                    #chromatic_keys.append(('weight', weight, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=FILL_HEIGHT)))
-
-        #chromatic = urwid.Columns(widget_list=chromatic_keys, dividechars=1)
-        #diatonic = urwid.Columns(widget_list=diatonic_keys, dividechars=1)
-
-        #keyboard = urwid.Pile([chromatic, diatonic])
-        #box = urwid.LineBox(keyboard)
-
-        #super(Keyboard, self).__init__(body=box, min_height=10, *args, **kwargs)
-
-    #def highlight_key(self, note=None):
-
-        #for key, button in self.key_index.items():
-
-            #state =  hasattr(note, 'note') and key==note.note
-
-            #if 'KeyboardButton' in str(type(button)):
-                #button.highlight(state=state)
-            #else:
-                #button[2].highlight(state=state)
-            
-        #self.main_loop[0].draw_screen()
 
 
 class TextUserInterface(urwid.Frame):
@@ -266,7 +170,7 @@ class TextUserInterface(urwid.Frame):
         self.thread.start()
         self.thread.join()
 
-        # self.question.play_question()
+        #self.question.play_question(**kwargs)
 
     def keypress(self, size, key):
 
@@ -289,7 +193,6 @@ class TextUserInterface(urwid.Frame):
             # self.question.play_resolution()
 
         elif key in ('T', 't'):
-            #self.frame_body.contents[1][0].highlight_key('C')
             self.loop[0].draw_screen()
             
         elif key in ('R', 'r'):
