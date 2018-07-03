@@ -41,6 +41,7 @@ class DiatonicScale(ScaleBase):
         self.tonic = Pitch(note=tonic, octave=octave)
         self.mode = mode
         self.direction = "Ascending" if not descending else "Descending"
+        self.n_octaves = n_octaves
 
         diatonic_mode = DIATONIC_FORMS[mode]
 
@@ -140,6 +141,8 @@ class ChromaticScale(ScaleBase):
         # global CHROMATIC_SHARP, CHROMATIC_FLAT
 
         self.tonic = Pitch(tonic, octave)
+        self.direction = "Ascending" if not descending else "Descending"
+        self.n_octaves = n_octaves
 
         direction = +1 if not descending else -1
 

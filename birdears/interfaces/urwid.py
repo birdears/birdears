@@ -7,8 +7,6 @@ from .. import CHROMATIC_FLAT
 
 from ..questionbase import QUESTION_CLASSES
 
-#from ..sequence import SEQUENCE_THREAD
-
 from ..note_and_pitch import get_pitch_by_number
 
 KEY_PADS = {
@@ -38,6 +36,7 @@ def is_chromatic(key):
     return False
 
 class KeyboardButton(urwid.Padding):
+    
     def __init__(self, top="", middle="", bottom="", pitch=None, *args, **kwargs):
         
         self.pitch = pitch
@@ -61,7 +60,8 @@ class KeyboardButton(urwid.Padding):
         
 class Keyboard(urwid.Filler):
     
-    def __init__(self, scale, show_octave=True, main_loop=None, *args, **kwargs):
+    #def __init__(self, scale, show_octave=True, main_loop=None, *args, **kwargs):
+    def __init__(self, scale, main_loop=None, *args, **kwargs):
 
         self.main_loop = main_loop
 
@@ -72,8 +72,7 @@ class Keyboard(urwid.Filler):
         tonic_pitch = scale[0]
         tonic_str = scale[0].note
 
-        key_scale = [pitch for pitch in scale[0:12]]
-        #print(key_scale)
+        key_scale = [pitch for pitch in scale]
         
         chromatic_keys = list()
         diatonic_keys = list()
@@ -101,42 +100,20 @@ class Keyboard(urwid.Filler):
             else:
                 diatonic_keys.append(KeyboardButton(pitch=pitch))
 
-        if show_octave:
-            
-            octave_pitch = get_pitch_by_number(numeric=int(tonic_pitch) + 12,
-                                               accident=tonic_pitch.accident)
-            octave_pitch_str = str(octave_pitch)
-            octave_note_str = octave_pitch.note
-            
-            if is_chromatic(tonic_str):
-                if KEY_PADS[tonic_str] == 1:
-                    chromatic_keys.append(Pad(weight=1))
-                chromatic_keys.append(KeyboardButton(pitch=octave_pitch))
-            else:
-                diatonic_keys.append(KeyboardButton(pitch=octave_pitch))
-
         # end (right) padding:
         if is_key_chromatic:
-            if not show_octave:
-                weight = 0.5 + KEY_PADS[first_chromatic.note] + (int(show_octave)/2)
-                chromatic_keys.append(Pad(weight=weight))
-            else:
-                weight = 0.5 #+ KEY_PADS[first_chromatic] + (int(show_octave)/2)
-                diatonic_keys.append(Pad(weight=weight))
+            weight = 0.5 #+ KEY_PADS[first_chromatic] + (int(show_octave)/2)
+            diatonic_keys.append(Pad(weight=weight))
 
         else:
 
             if KEY_PADS[first_chromatic.note]:
-                weight = (KEY_PADS[first_chromatic.note]/2) + int(show_octave)
+                weight = (KEY_PADS[first_chromatic.note]/2) + 1 #+ int(show_octave)
                 chromatic_keys.append(Pad(weight=weight))
 
             if not KEY_PADS[first_chromatic.note]:
-                if not show_octave:
-                    weight = 0.5 + KEY_PADS[first_chromatic.note] + int(show_octave)
-                    diatonic_keys.append(Pad(weight=weight))
-                else:
-                    weight = 0.5 #+ KEY_PADS[first_chromatic] + int(show_octave)
-                    chromatic_keys.append(Pad(weight=weight))
+                weight = 0.5
+                chromatic_keys.append(Pad(weight=weight))
 
         self.key_index = {item.pitch_str: item
                           for item in chromatic_keys+diatonic_keys
@@ -149,22 +126,20 @@ class Keyboard(urwid.Filler):
         box = urwid.LineBox(keyboard)
         
         #print(self.key_index)
-        with open('dbg_pipe', 'w') as pipe:
-            pipe.write(str(self.scale))
+        #with open('dbg_pipe', 'w') as pipe:
+        #    pipe.write(str(self.scale))
 
         super(Keyboard, self).__init__(body=box, min_height=10, *args, **kwargs)
 
     def highlight_key(self, pitch=None):
 
-        with open('dbg_pipe', 'w') as pipe:
-            pipe.write('\n\nYA!! '+str(pitch)+'\n\n')
         for key, button in self.key_index.items():
 
-            #state =  hasattr(pitch, 'note') and key==str(pitch)
             state = (key == str(pitch))
             button.highlight(state=state)
             
-        self.main_loop[0].draw_screen()
+        if len(self.main_loop) > 0:
+            self.main_loop[0].draw_screen()
 
 #class Keyboard(urwid.Filler):
     #def __init__(self, tonic, show_octave=True, main_loop=None, *args, **kwargs):
@@ -315,7 +290,7 @@ class TextUserInterface(urwid.Frame):
 
         elif key in ('T', 't'):
             #self.frame_body.contents[1][0].highlight_key('C')
-            self.loop.draw_screen()
+            self.loop[0].draw_screen()
             
         elif key in ('R', 'r'):
             kwargs = {
