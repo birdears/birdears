@@ -32,25 +32,11 @@ def is_chromatic(key):
 
 class KeyboardButton(urwid.Padding):
     def __init__(self, top="", middle="", bottom="", *args, **kwargs):
-        #self.text = [urwid.Text(str(item)) for item in [top, middle, bottom]]
-        #self.lines = urwid.Pile(self.text)
-        #self.fill = urwid.Filler(self.lines)
-        #self.adapter = urwid.BoxAdapter(self.fill, height=3)
-        #self.pad = urwid.Padding(self.adapter)
-        #self.attr = urwid.AttrMap(w=self.pad, attr_map='default')
-        #self.box = urwid.LineBox(self.attr)
-        # self.attr = urwid.AttrMap(w=self.box, attr_map='default')
-        #text = [urwid.Text(str(item)) for item in [top, middle, bottom]]
-        #self.text = [('pack', urwid.Text(str(item))) for item in [top, middle, bottom]]
-        #lines = urwid.Pile(self.text)
         text = urwid.Text("{}\n{}\n{}".format(top, middle, bottom))
-        #fill = urwid.Filler(lines)
         fill = urwid.Filler(text)
         adapter = urwid.BoxAdapter(fill, height=3)
         pad = urwid.Padding(adapter)
         attr = urwid.AttrMap(w=pad, attr_map='default')
-        #box = urwid.LineBox(self.attr)
-        #box = urwid.LineBox(self.pad)
 
         super(KeyboardButton, self).__init__(w=attr, *args, **kwargs)
 
@@ -59,8 +45,6 @@ class KeyboardButton(urwid.Padding):
 
         attr_map = {None: 'default' if not state else 'highlight'}
         self.original_widget.set_attr_map(attr_map=attr_map)
-        #if main_loop[0].screen._started:
-        #    main_loop[0].draw_screen()
 
 class Keyboard(urwid.Filler):
     def __init__(self, tonic, show_octave=True, main_loop=None, *args, **kwargs):
@@ -86,7 +70,6 @@ class Keyboard(urwid.Filler):
             chromatic_keys.append(('weight', 0.5, urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR),height=FILL_HEIGHT)))
 
         first_chromatic = [note for note in key_scale if len(note) == 2][0]
-        # last_chromatic = [note for note in key_scale if len(note) == 2][-1]
 
         for idx, note in enumerate(key_scale):
 
@@ -140,9 +123,7 @@ class Keyboard(urwid.Filler):
         box = urwid.LineBox(keyboard)
 
         super(Keyboard, self).__init__(body=box, min_height=10, *args, **kwargs)
-        #super(Keyboard, self).__init__(body=box, *args, **kwargs)
 
-    #def highlight_key(self, note=None, *args, **kwargs):
     def highlight_key(self, note=None):
         #print('we are in highlight_key: ', note.note)
         #print(self.key_index)
@@ -167,6 +148,7 @@ class Keyboard(urwid.Filler):
 
             #if self.main_loop[0].screen._started:
             #    self.main_loop[0].draw_screen()
+            
         from ..sequence import cb_thread
         if hasattr(cb_thread, 'is_alive') and cb_thread.is_alive():
             try:
@@ -212,8 +194,10 @@ class TextUserInterface(urwid.Frame):
             'end_callback': self.frame_body.contents[1][0].highlight_key
         }
 
+        #self.question.play_question(self.frame_body.contents[1][0].highlight_key,self.frame_body.contents[1][0].highlight_key)
         self.thread = threading.Thread(target=self.question.play_question, kwargs=kwargs)
         self.thread.start()
+        self.thread.join()
         #thread = threading.Thread(target=self.question.pre_question.play, kwargs=kwargs)
         #self.thread.join()
         #self.question.play_question(callback=self.frame_body.contents[1][0].highlight_key,
