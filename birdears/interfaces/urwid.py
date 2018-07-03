@@ -211,12 +211,13 @@ class TextUserInterface(urwid.Frame):
 
         kwargs = {
             'callback': self.frame_body.contents[1][0].highlight_key,
-            'end_callback': self.frame_body.contents[1][0].highlight_key
+            'end_callback': self.frame_body.contents[1][0].highlight_key,
+            'ui_obj': self
         }
 
         self.thread = threading.Thread(target=self.question.play_question, kwargs=kwargs)
         self.thread.start()
-        self.thread.join()
+        #self.thread.join()
 
         #self.question.play_question(**kwargs)
 
@@ -231,11 +232,12 @@ class TextUserInterface(urwid.Frame):
             kwargs = {
                 'callback': self.frame_body.contents[1][0].highlight_key,
                 'end_callback': self.frame_body.contents[1][0].highlight_key,
+                'ui_obj': self
             }
 
-            thread = threading.Thread(target=self.question.play_resolution, kwargs=kwargs)
-            thread.start()
-            thread.join()
+            self.thread = threading.Thread(target=self.question.play_resolution, kwargs=kwargs)
+            self.thread.start()
+            self.thread.join()
 
             self.run_question()
             # self.question.play_resolution()
@@ -246,7 +248,8 @@ class TextUserInterface(urwid.Frame):
         elif key in ('R', 'r'):
             kwargs = {
                 'callback': self.frame_body.contents[1][0].highlight_key,
-                'end_callback': self.frame_body.contents[1][0].highlight_key
+                'end_callback': self.frame_body.contents[1][0].highlight_key,
+                'ui_obj': self
             }
 
             self.thread = threading.Thread(target=self.question.play_question, kwargs=kwargs)
