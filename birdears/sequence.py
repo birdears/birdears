@@ -85,7 +85,6 @@ class Sequence(list):
             is_last = (index == len(self) - 1)
 
             if callback:
-                #callback(element)
 
                 #if hasattr(cb_thread, 'is_alive') and cb_thread.is_alive():
                     #try:
@@ -94,10 +93,8 @@ class Sequence(list):
                         #print('Ctrl+C')
                         #exit(0)
                         
-                #if callback:
                 cb_thread = Thread(target=callback, args=[element])
                 cb_thread.start()
-                    #cb_thread.join()
 
                 #callback(element)
                 #SEQUENCE_THREAD.join()
@@ -108,8 +105,14 @@ class Sequence(list):
                 self._play_chord(element, last_element=is_last)
             else:
                 raise InvalidSequenceElement
-
-            cb_thread.join()
+            
+            if hasattr(cb_thread, 'is_alive') and cb_thread.is_alive():
+                try:
+                    cb_thread.join()
+                except KeyboardInterrupt:
+                    print('Ctrl+C')
+                    exit(0)
+            #cb_thread.join()
 
             # TODO we should later get the element information and pass via a
             # dict to Sequence._async_play()'s callback so it can inform the
