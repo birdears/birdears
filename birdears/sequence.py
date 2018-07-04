@@ -90,19 +90,8 @@ class Sequence(list):
 
             if callback:
 
-                #if hasattr(cb_thread, 'is_alive') and cb_thread.is_alive():
-                #    try:
-                #        cb_thread.join()
-                #    except KeyboardInterrupt:
-                #        print('Ctrl+C')
-                #        exit(0)
-                        
                 cb_thread = Thread(target=callback, args=[element])
                 cb_thread.start()
-
-                #cb_thread.join()
-                #callback(element)
-                #SEQUENCE_THREAD.join()
 
             if type(element) == Pitch:
                 self._play_note(element, last_element=is_last)
@@ -111,14 +100,7 @@ class Sequence(list):
             else:
                 raise InvalidSequenceElement
             
-            #if hasattr(cb_thread, 'is_alive') and cb_thread.is_alive():
-                #try:
-                    #cb_thread.join()
-                #except KeyboardInterrupt:
-                    #print('Ctrl+C')
-                    #exit(0)
-            
-            cb_thread.join()
+            #cb_thread.join()
             
             # TODO we should later get the element information and pass via a
             # dict to Sequence._async_play()'s callback so it can inform the
@@ -129,18 +111,12 @@ class Sequence(list):
 
         if end_callback:
             #end_callback()
-            if hasattr(cb_thread, 'is_alive') and cb_thread.is_alive():
-                try:
-                    cb_thread.join()
-                except KeyboardInterrupt:
-                    print('Ctrl+C')
-                    exit(0)
             cb_thread = Thread(target=end_callback)
             cb_thread.start()
             #cb_thread.join()
 
     # FIXME: implement octave here:
-    def make_chord_progression(self, tonic, mode, degrees):
+    def make_chord_progression(self, tonic_pitch, mode, degrees):
         """Appends triad chord(s) to the Sequence.
 
         Args:
@@ -150,7 +126,9 @@ class Sequence(list):
                 of each triad.
         """
 
-        scale = ChromaticScale(tonic=tonic)
+        tonic_str = tonic_pitch.note
+        octave = tonic_pitch.octave
+        scale = ChromaticScale(tonic=tonic_str, octave=octave)
 
         for degree in degrees:
             chord = scale.get_triad(mode=mode, degree=degree)

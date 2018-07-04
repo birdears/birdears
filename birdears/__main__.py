@@ -49,7 +49,6 @@ def load_interface(*args, **kwargs):
         #loop = urwid.MainLoop(tui, palette)
         #wrapper.append(loop)
         #loop.run()
-        
     else:
         CommandLine(*args, **kwargs)
 

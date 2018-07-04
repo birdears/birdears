@@ -106,8 +106,7 @@ def progression_i_iv_v_i(question, *args, **kwargs):
             when it is `__call__`ed)
     """
 
-    # tonic_pitch = question.tonic_pitch
-    tonic_str = question.tonic_str
+    tonic_pitch = question.tonic_pitch
     mode = question.mode
 
     duration = question.durations['preq']['duration']
@@ -119,7 +118,7 @@ def progression_i_iv_v_i(question, *args, **kwargs):
     sequence = Sequence(duration=duration, delay=delay,
                         pos_delay=pos_delay)
 
-    sequence.make_chord_progression(tonic=tonic_str, mode=mode,
+    sequence.make_chord_progression(tonic_pitch=tonic_pitch, mode=mode,
                                     degrees=degrees)
 
     return sequence
