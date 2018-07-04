@@ -53,7 +53,8 @@ class KeyboardButton(urwid.Padding):
         fill = urwid.Filler(text)
         adapter = urwid.BoxAdapter(fill, height=3)
         pad = urwid.Padding(adapter)
-        attr = urwid.AttrMap(w=pad, attr_map='default')
+        box = urwid.LineBox(pad)
+        attr = urwid.AttrMap(w=box, attr_map='default')
 
         super(KeyboardButton, self).__init__(w=attr, *args, **kwargs)
 
@@ -180,10 +181,12 @@ class TextUserInterfaceWidget(urwid.Frame):
 
 class QuestionWidget(urwid.Padding):
     
-    def __init__(self, keyboard, *args, **kwargs):
+    def __init__(self, top_widget, keyboard, bottom_widget, *args, **kwargs):
         
-        top_widget = urwid.Filler(urwid.LineBox(urwid.Text('test1\nok')))
-        bottom_widget = urwid.Filler(urwid.LineBox(urwid.Text('test2')))
+        ##top_widget = urwid.Filler(urwid.LineBox(urwid.Text('test1\nok')))
+        ##bottom_widget = urwid.Filler(urwid.LineBox(urwid.Text('test2')))
+        top_widget = urwid.Filler(urwid.LineBox(top_widget))
+        bottom_widget = urwid.Filler(urwid.LineBox(bottom_widget))
 
         frame_elements = [top_widget, keyboard, bottom_widget]
         frame_body = urwid.Pile(widget_list=frame_elements)
@@ -197,6 +200,9 @@ class TextUserInterface:
         
         self.exercise = exercise
         self.arguments = kwargs
+        
+        self.correct = 0
+        self.wrong = 0
         
         palette = [
             ('default', 'default', 'default'),
@@ -216,10 +222,8 @@ class TextUserInterface:
                 if new_question:
                     self.run_question()
                     new_question = False
-                #wat=self.loop.screen.get_available_raw_input()
+                self.loop.screen.get_available_raw_input()
                 user_input = self.loop.screen.get_input()[0]
-                #D(wat, 2)
-                D(user_input, 2)
                 if user_input in self.question.keyboard_index and user_input != ' ': # space char
                     self.check_question(user_input)
                     new_question = True
@@ -231,12 +235,20 @@ class TextUserInterface:
         answer = self.question.check_question(user_input_char=user_input)
         D(answer, 2)
         
+        if answer['is_correct']:
+            self.correct += 1
+        else:
+            self.wrong += 1
+            
+            
         kwargs = {
             'callback': self.tui_widget['body'].contents[1][0].highlight_key,
             'end_callback': self.tui_widget['body'].contents[1][0].highlight_key,
         }
 
         self.question.play_resolution(**kwargs)
+        
+        return answer
         
     def create_question(self, exercise, **kwargs):
 
@@ -266,47 +278,40 @@ class TextUserInterface:
             'end_callback': self.tui_widget['body'].contents[1][0].highlight_key,
         }
 
-        #self.thread = threading.Thread(target=self.question.play_question, kwargs=kwargs)
-        #self.thread.start()
-        #self.thread.join()
-
         self.question.play_question(**kwargs)
 
     def draw(self, question):
 
         keyboard = Keyboard(scale=question.chromatic_scale, main_loop=self.loop)
-
-        self.question_widget = QuestionWidget(keyboard=keyboard)
+        
+        
+        top_variables = {
+            'tonic': self.question.tonic_str + (' (random)' if any(el in self.arguments['tonic'] for el in ('r', 'R')) else ''),
+            'descending': self.question.is_descending,
+            'chromatic': self.question.is_chromatic,
+        }
+        
+        top_text = """
+Tonic: {tonic}
+Descending: {descending} Chromatic: {chromatic}
+        """.format(**top_variables)
+        top_widget = urwid.Text(top_text)
+        
+        bottom_text = """
+Answers: +{correct} / -{incorrect}
+""".format(correct=self.correct, incorrect=self.wrong)
+        bottom_widget = urwid.Text(bottom_text)
+        
+        self.question_widget = QuestionWidget(top_widget=top_widget, keyboard=keyboard, bottom_widget=bottom_widget)
         
         self.tui_widget.contents.update({'body': (self.question_widget, None)})
-        #if len(self.loop) > 0:
         
         with LOCK:
             self.loop.draw_screen()
 
     def keypress(self, key):
 
-        if key in self.question.keyboard_index and key != ' ': # space char
-            self.input_keys.append(key)
-
-            response = self.question.check_question(self.input_keys)
-            #print_response(response)
-
-            kwargs = {
-                'callback': self.tui_widget['body'].contents[1][0].highlight_key,
-                'end_callback': self.tui_widget['body'].contents[1][0].highlight_key,
-            }
-
-            #self.thread = threading.Thread(target=self.question.play_resolution, kwargs=kwargs)
-            #self.thread.start()
-            #self.thread.join()
-
-            self.question.play_resolution(**kwargs)
-            
-            #self.run_question()
-            # self.question.play_resolution()
-
-        elif key in ('T', 't'):
+        if key in ('T', 't'):
             with LOCK:
                 self.loop.screen.clear()
                 self.loop.draw_screen()
@@ -317,9 +322,6 @@ class TextUserInterface:
                 'end_callback': self.tui_widget['body'].contents[1][0].highlight_key,
             }
 
-            #self.thread = threading.Thread(target=self.question.play_question, kwargs=kwargs)
-            #self.thread.start()
-            #self.thread.join()
             self.question.play_question(**kwargs)
             
         elif key in ('Q', 'q'):

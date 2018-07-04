@@ -109,13 +109,23 @@ class MelodicDictationQuestion(QuestionBase):
 
         return resolution
 
-    def play_question(self):
-        self.pre_question.play()
-        self.question.play()
+    def play_question(self, callback=None, end_callback=None,
+                           *args, **kwargs):
+        # Other threads can call a thread’s join() method. This blocks the
+        # calling thread until the thread whose join() method is called is
+        # terminated.
+        # https://docs.python.org/3/library/threading.html#thread-objects
 
-    def play_resolution(self):
+        self.pre_question.play(callback=callback, end_callback=end_callback,
+                               *args, **kwargs)
+        self.question.play(callback=callback, end_callback=end_callback,
+                           *args, **kwargs)
 
-        thread = self.resolution.play()
+    def play_resolution(self, callback=None, end_callback=None,
+                           *args, **kwargs):
+
+        thread = self.resolution.play(callback=callback, end_callback=end_callback,
+                                      *args, **kwargs)
         thread.join()
 
     def check_question(self, user_input_keys):

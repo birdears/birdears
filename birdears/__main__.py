@@ -155,7 +155,8 @@ def melodic(*args, **kwargs):
     """
 
     kwargs.update({'exercise': 'melodic'})
-    CommandLine(**kwargs)
+    #CommandLine(**kwargs)
+    load_interface(*args, **kwargs)
 
 
 #
@@ -218,7 +219,8 @@ def harmonic(*args, **kwargs):
     """
 
     kwargs.update({'exercise': 'harmonic'})
-    CommandLine(**kwargs)
+    #CommandLine(**kwargs)
+    load_interface(*args, **kwargs)
 
 #
 # dictation
@@ -287,7 +289,8 @@ def dictation(*args, **kwargs):
     """
 
     kwargs.update({'exercise': 'dictation'})
-    CommandLine(**kwargs)
+    #CommandLine(**kwargs)
+    load_interface(*args, **kwargs)
 
 
 #
@@ -359,7 +362,8 @@ def instrumental(*args, **kwargs):
     """
 
     kwargs.update({'exercise': 'instrumental'})
-    CommandLine(**kwargs)
+    #CommandLine(**kwargs)
+    load_interface(*args, **kwargs)
 
 
 notename_epilog = """
@@ -412,8 +416,9 @@ Valid values are as follows:
 @click.option('-r', '--resolution_method', type=str, default='nearest_tonic',
               metavar='<resolution_method>',
               help='The name of a resolution method.')
-@click.pass_context
-def notename(ctx, *args, **kwargs):
+#@click.pass_context
+#def notename(ctx, *args, **kwargs):
+def notename(*args, **kwargs):
     """Note name by intervaç recognition
     """
 
@@ -444,7 +449,8 @@ def load(filename, *args, **kwargs):
     toml_file_str = filename.read()
     config_dict = toml.loads(toml_file_str)
 
-    CommandLine(**config_dict)
+    #CommandLine(**config_dict)
+    load_interface(*args, **kwargs)
 
 
 if __name__ == "__main__":

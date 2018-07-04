@@ -118,11 +118,14 @@ class InstrumentalDictationQuestion(QuestionBase):
 
         return resolution
 
-    def play_question(self):
+    def play_question(self, callback=None, end_callback=None,
+                           *args, **kwargs):
 
         for r in range(self.n_repeats):
-            self.pre_question.play()
-            self.question.play()
+            self.pre_question.play(callback=callback, end_callback=end_callback,
+                               *args, **kwargs)
+            self.question.play(callback=callback, end_callback=end_callback,
+                           *args, **kwargs)
 
             for i in range(self.wait_time):
                 time_left = str(self.wait_time - i).rjust(3)

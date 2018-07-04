@@ -100,7 +100,15 @@ class Sequence(list):
             else:
                 raise InvalidSequenceElement
             
-            cb_thread.join()
+            #if hasattr(cb_thread, 'is_alive') and cb_thread.is_alive():
+            if hasattr(cb_thread, 'is_alive'):
+                try:
+                    cb_thread.join()
+                except KeyboardInterrupt:
+                    print('Ctrl+C')
+                    exit(0)
+            
+            #cb_thread.join()
             
             # TODO we should later get the element information and pass via a
             # dict to Sequence._async_play()'s callback so it can inform the
