@@ -9,6 +9,8 @@ from ..questionbase import QUESTION_CLASSES
 
 from ..note_and_pitch import get_pitch_by_number
 
+from .. import D
+        
 KEY_PADS = {
     'C#': 1,
     'Db': 1,
@@ -132,8 +134,6 @@ class Keyboard(urwid.Filler):
 
     def highlight_key(self, element=None):
 
-        from .. import D
-        
         with LOCK:
                 
             for key in self.key_index.values():
@@ -205,11 +205,38 @@ class TextUserInterface:
         
         self.tui_widget = TextUserInterfaceWidget(*args, **kwargs)
         
-        self.loop = urwid.MainLoop(widget=self.tui_widget, palette=palette, unhandled_input=self.keypress)
+        #self.loop = urwid.MainLoop(widget=self.tui_widget, palette=palette, unhandled_input=self.keypress)
+        self.loop = urwid.MainLoop(widget=self.tui_widget, palette=palette)
         
         with self.loop.start():
+            
+            new_question = True
+        
             while(True):
-                self.run_question()
+                if new_question:
+                    self.run_question()
+                    new_question = False
+                #wat=self.loop.screen.get_available_raw_input()
+                user_input = self.loop.screen.get_input()[0]
+                #D(wat, 2)
+                D(user_input, 2)
+                if user_input in self.question.keyboard_index and user_input != ' ': # space char
+                    self.check_question(user_input)
+                    new_question = True
+                else:
+                    self.keypress(user_input[0])
+                
+    def check_question(self, user_input):
+        
+        answer = self.question.check_question(user_input_char=user_input)
+        D(answer, 2)
+        
+        kwargs = {
+            'callback': self.tui_widget['body'].contents[1][0].highlight_key,
+            'end_callback': self.tui_widget['body'].contents[1][0].highlight_key,
+        }
+
+        self.question.play_resolution(**kwargs)
         
     def create_question(self, exercise, **kwargs):
 
@@ -266,9 +293,8 @@ class TextUserInterface:
             #print_response(response)
 
             kwargs = {
-                'callback': self.frame_body.contents[1][0].highlight_key,
-                'end_callback': self.frame_body.contents[1][0].highlight_key,
-                'ui_obj': self
+                'callback': self.tui_widget['body'].contents[1][0].highlight_key,
+                'end_callback': self.tui_widget['body'].contents[1][0].highlight_key,
             }
 
             #self.thread = threading.Thread(target=self.question.play_resolution, kwargs=kwargs)
@@ -277,24 +303,24 @@ class TextUserInterface:
 
             self.question.play_resolution(**kwargs)
             
-            self.run_question()
+            #self.run_question()
             # self.question.play_resolution()
 
         elif key in ('T', 't'):
             with LOCK:
-                self.loop[0].draw_screen()
+                self.loop.screen.clear()
+                self.loop.draw_screen()
             
         elif key in ('R', 'r'):
             kwargs = {
-                'callback': self.frame_body.contents[1][0].highlight_key,
-                'end_callback': self.frame_body.contents[1][0].highlight_key,
-                'ui_obj': self
+                'callback': self.tui_widget['body'].contents[1][0].highlight_key,
+                'end_callback': self.tui_widget['body'].contents[1][0].highlight_key,
             }
 
-            self.thread = threading.Thread(target=self.question.play_question, kwargs=kwargs)
-            self.thread.start()
-            self.thread.join()
-            #self.question.play_question()
+            #self.thread = threading.Thread(target=self.question.play_question, kwargs=kwargs)
+            #self.thread.start()
+            #self.thread.join()
+            self.question.play_question(**kwargs)
             
         elif key in ('Q', 'q'):
             raise urwid.ExitMainLoop()

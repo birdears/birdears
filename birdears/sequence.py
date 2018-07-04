@@ -100,7 +100,7 @@ class Sequence(list):
             else:
                 raise InvalidSequenceElement
             
-            #cb_thread.join()
+            cb_thread.join()
             
             # TODO we should later get the element information and pass via a
             # dict to Sequence._async_play()'s callback so it can inform the
