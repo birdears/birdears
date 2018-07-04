@@ -81,7 +81,7 @@ class InstrumentalDictationQuestion(QuestionBase):
         }
 
         super(InstrumentalDictationQuestion, self).\
-            __init__(mode=mode, tonic=tonic, octave=octave,
+            __init__(mode=mode, n_notes=n_notes, tonic=tonic, octave=octave,
                      descending=descending, chromatic=chromatic,
                      n_octaves=n_octaves, valid_intervals=valid_intervals,
                      user_durations=user_durations,

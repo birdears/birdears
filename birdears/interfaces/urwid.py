@@ -222,18 +222,24 @@ class TextUserInterface:
                 if new_question:
                     self.run_question()
                     new_question = False
+                    
                 self.loop.screen.get_available_raw_input()
                 user_input = self.loop.screen.get_input()[0]
+                
                 if user_input in self.question.keyboard_index and user_input != ' ': # space char
-                    self.check_question(user_input)
-                    new_question = True
+                    self.input_keys.append(user_input)
+                    if len(self.input_keys) == self.question.n_notes:
+                        answer = self.input_keys if self.question.n_notes > 1 else user_input 
+                        D(answer,2)
+                        self.check_question(answer)
+                        new_question = True
                 else:
                     self.keypress(user_input[0])
                 
     def check_question(self, user_input):
         
-        answer = self.question.check_question(user_input_char=user_input)
-        D(answer, 2)
+        #answer = self.question.check_question(user_input_char=user_input)
+        answer = self.question.check_question(user_input)
         
         if answer['is_correct']:
             self.correct += 1
@@ -257,18 +263,13 @@ class TextUserInterface:
         else:
             raise Exception("Oops!", QUESTION_CLASSES)
 
-        if 'n_notes' in kwargs:
-            dictate_notes = kwargs['n_notes']
-        else:
-            dictate_notes = 1
-
         return QUESTION_CLASS(**kwargs)
 
 
     def run_question(self):
 
         self.question = self.create_question(exercise=self.exercise, **self.arguments)
-
+        D(self.question.n_notes)
         self.input_keys = list()
 
         self.draw(self.question)
@@ -326,5 +327,8 @@ Answers: +{correct} / -{incorrect}
             
         elif key in ('Q', 'q'):
             raise urwid.ExitMainLoop()
+        elif key == 'backspace':
+            if self.input_keys > 0:
+                self.input_keys.pop()
         else:
             pass
