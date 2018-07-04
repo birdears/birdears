@@ -34,20 +34,21 @@ def load_interface(*args, **kwargs):
        # from .interfaces.urwid import urwid
 
         from .interfaces.urwid import TextUserInterface
-        palette = [
-            ('default', 'default', 'default'),
-            ('highlight', 'black', 'light gray')
-            ]
+        tui = TextUserInterface(**kwargs)
+        #palette = [
+        #    ('default', 'default', 'default'),
+        #    ('highlight', 'black', 'light gray')
+        #    ]
         
-        wrapper = []
-        tui = TextUserInterface(loop_wrapper=wrapper, *args, **kwargs)
+        #wrapper = []
+        #tui = TextUserInterface(loop_wrapper=wrapper, *args, **kwargs)
         
         #loop = urwid.MainLoop(tui, palette)
         #loop.run()
         #global loop
-        loop = urwid.MainLoop(tui, palette)
-        wrapper.append(loop)
-        loop.run()
+        #loop = urwid.MainLoop(tui, palette)
+        #wrapper.append(loop)
+        #loop.run()
         
     else:
         CommandLine(*args, **kwargs)

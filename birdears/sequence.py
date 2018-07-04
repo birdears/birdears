@@ -100,6 +100,7 @@ class Sequence(list):
                 cb_thread = Thread(target=callback, args=[element])
                 cb_thread.start()
 
+                #cb_thread.join()
                 #callback(element)
                 #SEQUENCE_THREAD.join()
 
@@ -110,14 +111,15 @@ class Sequence(list):
             else:
                 raise InvalidSequenceElement
             
-            if hasattr(cb_thread, 'is_alive') and cb_thread.is_alive():
-                try:
-                    cb_thread.join()
-                except KeyboardInterrupt:
-                    print('Ctrl+C')
-                    exit(0)
+            #if hasattr(cb_thread, 'is_alive') and cb_thread.is_alive():
+                #try:
+                    #cb_thread.join()
+                #except KeyboardInterrupt:
+                    #print('Ctrl+C')
+                    #exit(0)
+            
             cb_thread.join()
-
+            
             # TODO we should later get the element information and pass via a
             # dict to Sequence._async_play()'s callback so it can inform the
             # user interfaces on the status of the element current being played
@@ -135,7 +137,7 @@ class Sequence(list):
                     exit(0)
             cb_thread = Thread(target=end_callback)
             cb_thread.start()
-            cb_thread.join()
+            #cb_thread.join()
 
     # FIXME: implement octave here:
     def make_chord_progression(self, tonic, mode, degrees):

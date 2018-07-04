@@ -134,11 +134,18 @@ class Keyboard(urwid.Filler):
             self.key_index[highlighted].highlight(state=False)
             self.highlighted_keys.remove(highlighted)
             
+        #if len(self.main_loop) > 0:
+        #self.main_loop[0].draw_screen()
+        self.main_loop.draw_screen()
+            
+        #from .. import D
+        #D(self.highlighted_keys,2)
+        
         if type(element).__name__ == "Pitch":
             #with open('dbg_pipe', 'w') as pipe:
             #    pipe.write(str(type(element).__name__))
-            pitch = element
-            pitch_str = str(pitch)
+            #pitch = element
+            pitch_str = str(element)
             
             # turn off other highlighted keys
             #for highlighted in self.highlighted_keys:
@@ -157,12 +164,14 @@ class Keyboard(urwid.Filler):
             #    self.key_index[highlighted].highlight(state=False)
             #    self.highlighted_keys.remove(highlighted)
                 
-            for pitch in chord:
+            for pitch in element:
                 chord_pitch_str = str(pitch)
                 
                 if chord_pitch_str in self.key_index:
                     self.key_index[chord_pitch_str].highlight(state=True)
                     self.highlighted_keys.append(chord_pitch_str)
+                #self.key_index[chord_pitch_str].highlight(state=True)
+                #self.highlighted_keys.append(chord_pitch_str)
             
         else:
             pass
@@ -180,48 +189,229 @@ class Keyboard(urwid.Filler):
         #    state = (key == str(pitch))
         #    button.highlight(state=state)
             
-        if len(self.main_loop) > 0:
-            self.main_loop[0].draw_screen()
+        #if len(self.main_loop) > 0:
+            #if not self.main_loop[0].screen._started:
+                #thr = threading.current_thread()
+                #thr.join()
+            
+        #     self.main_loop[0].draw_screen()
+        # FIXME
+        #if len(self.main_loop) > 0:
+        #self.main_loop[0].draw_screen()
+        self.main_loop.draw_screen()
 
 
-class TextUserInterface(urwid.Frame):
+class TextUserInterfaceWidget(urwid.Frame):
 
-    def __init__(self, exercise, loop_wrapper, *args, **kwargs):
+    #def __init__(self, exercise, tui, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
 
         
-        self.loop = loop_wrapper
+        #self.main_loop = tui.loop
+        
+        #self.loop = loop_wrapper
         header = urwid.Text('hey pal')
         footer = urwid.Text('footers')
         loading = urwid.Text('loading...')
+        
         adapter = urwid.Filler(loading)
 
-        super(TextUserInterface, self).__init__(body=adapter, header=header, footer=footer)
-        self.exercise = exercise
-        self.kwargs = kwargs
+        super(TextUserInterfaceWidget, self).__init__(body=adapter, header=header, footer=footer)
+        #self.exercise = exercise
+        #self.kwargs = kwargs
 
-        self.run_question()
+        #self.run_question()
+
+    #def run_question(self):
+
+        #self.question = self.create_question(exercise=self.exercise, **self.kwargs)
+
+        #self.input_keys = list()
+
+        #self.draw(self.question)
+
+        #kwargs = {
+            #'callback': self.frame_body.contents[1][0].highlight_key,
+            #'end_callback': self.frame_body.contents[1][0].highlight_key,
+            #'ui_obj': self
+        #}
+
+        ##self.thread = threading.Thread(target=self.question.play_question, kwargs=kwargs)
+        ##self.thread.start()
+        ##self.thread.join()
+
+        #self.question.play_question(**kwargs)
+
+    ##def keypress(self, size, key):
+
+        #if key in self.question.keyboard_index and key != ' ': # space char
+            #self.input_keys.append(key)
+
+            #response = self.question.check_question(self.input_keys)
+            ##print_response(response)
+
+            #kwargs = {
+                #'callback': self.frame_body.contents[1][0].highlight_key,
+                #'end_callback': self.frame_body.contents[1][0].highlight_key,
+                #'ui_obj': self
+            #}
+
+            ##self.thread = threading.Thread(target=self.question.play_resolution, kwargs=kwargs)
+            ##self.thread.start()
+            ##self.thread.join()
+
+            #self.question.play_resolution(**kwargs)
+            
+            #self.run_question()
+            ## self.question.play_resolution()
+
+        #elif key in ('T', 't'):
+            #self.loop[0].draw_screen()
+            
+        #elif key in ('R', 'r'):
+            #kwargs = {
+                #'callback': self.frame_body.contents[1][0].highlight_key,
+                #'end_callback': self.frame_body.contents[1][0].highlight_key,
+                #'ui_obj': self
+            #}
+
+            #self.thread = threading.Thread(target=self.question.play_question, kwargs=kwargs)
+            #self.thread.start()
+            #self.thread.join()
+            ##self.question.play_question()
+            
+        #elif key in ('Q', 'q'):
+            #raise urwid.ExitMainLoop()
+        #else:
+            #pass
+
+    #def create_question(self, exercise, **kwargs):
+
+        #if exercise in QUESTION_CLASSES:
+            #QUESTION_CLASS = QUESTION_CLASSES[exercise]
+        #else:
+            #raise Exception("Oops!", QUESTION_CLASSES)
+
+        #if 'n_notes' in kwargs:
+            #dictate_notes = kwargs['n_notes']
+        #else:
+            #dictate_notes = 1
+
+        #return QUESTION_CLASS(**kwargs)
+
+    #def draw(self, question):
+
+        #keyboard = Keyboard(scale=question.chromatic_scale, main_loop=self.loop)
+
+        #top_widget = urwid.Filler(urwid.LineBox(urwid.Text('test1\nok')))
+        #bottom_widget = urwid.Filler(urwid.LineBox(urwid.Text('test2')))
+
+        #frame_elements = [top_widget, keyboard, bottom_widget]
+
+        #self.frame_body = urwid.Pile(widget_list=frame_elements)
+        #self.frame_body_pad = urwid.Padding(self.frame_body, align='center', width=('relative', 60))
+
+        #self.contents.update({'body': (self.frame_body_pad, None)})
+
+class QuestionWidget(urwid.Padding):
+    
+    def __init__(self, keyboard, *args, **kwargs):
+        
+        top_widget = urwid.Filler(urwid.LineBox(urwid.Text('test1\nok')))
+        bottom_widget = urwid.Filler(urwid.LineBox(urwid.Text('test2')))
+
+        frame_elements = [top_widget, keyboard, bottom_widget]
+
+        frame_body = urwid.Pile(widget_list=frame_elements)
+        #frame_body_pad = urwid.Padding(self.)
+        super(QuestionWidget, self).__init__(frame_body, align='center', width=('relative', 60))
+    
+
+class TextUserInterface:
+    
+    def __init__(self, exercise, *args, **kwargs):
+        
+        self.exercise = exercise
+        self.arguments = kwargs
+        
+        #from .interfaces.urwid import TextUserInterface
+        palette = [
+            ('default', 'default', 'default'),
+            ('highlight', 'black', 'light gray')
+            ]
+        
+        #wrapper = []
+        self.tui_widget = TextUserInterfaceWidget(*args, **kwargs)
+        
+        self.loop = urwid.MainLoop(widget=self.tui_widget, palette=palette, unhandled_input=self.keypress)
+        #wrapper.append(loop)
+        #self.loop.run()
+        
+        from .. import D
+        D('hello')
+        
+        #while(True):
+        with self.loop.start():
+            self.run_question()
+        
+    def create_question(self, exercise, **kwargs):
+
+        if exercise in QUESTION_CLASSES:
+            QUESTION_CLASS = QUESTION_CLASSES[exercise]
+        else:
+            raise Exception("Oops!", QUESTION_CLASSES)
+
+        if 'n_notes' in kwargs:
+            dictate_notes = kwargs['n_notes']
+        else:
+            dictate_notes = 1
+
+        return QUESTION_CLASS(**kwargs)
+
 
     def run_question(self):
 
-        self.question = self.create_question(exercise=self.exercise, **self.kwargs)
+        self.question = self.create_question(exercise=self.exercise, **self.arguments)
 
         self.input_keys = list()
 
         self.draw(self.question)
 
         kwargs = {
-            'callback': self.frame_body.contents[1][0].highlight_key,
-            'end_callback': self.frame_body.contents[1][0].highlight_key,
-            'ui_obj': self
+            'callback': self.tui_widget['body'].contents[1][0].highlight_key,
+            'end_callback': self.tui_widget['body'].contents[1][0].highlight_key,
+            #'callback': self.frame_body.contents[1][0].highlight_key,
+            #'end_callback': self.frame_body.contents[1][0].highlight_key,
+            #'ui_obj': self
         }
 
-        self.thread = threading.Thread(target=self.question.play_question, kwargs=kwargs)
-        self.thread.start()
+        #self.thread = threading.Thread(target=self.question.play_question, kwargs=kwargs)
+        #self.thread.start()
         #self.thread.join()
 
-        #self.question.play_question(**kwargs)
+        self.question.play_question(**kwargs)
 
-    def keypress(self, size, key):
+    def draw(self, question):
+
+        # keyboard = Keyboard(tonic=question.tonic_str, main_loop=self.loop)
+        keyboard = Keyboard(scale=question.chromatic_scale, main_loop=self.loop)
+
+        #top_widget = urwid.Filler(urwid.LineBox(urwid.Text('test1\nok')))
+        #bottom_widget = urwid.Filler(urwid.LineBox(urwid.Text('test2')))
+
+        #frame_elements = [top_widget, keyboard, bottom_widget]
+
+        #frame_body = urwid.Pile(widget_list=frame_elements)
+        #frame_body_pad = urwid.Padding(self.frame_body, align='center', width=('relative', 60))
+
+        self.question_widget = QuestionWidget(keyboard=keyboard)
+        
+        self.tui_widget.contents.update({'body': (self.question_widget, None)})
+        #if len(self.loop) > 0:
+        
+        self.loop.draw_screen()
+
+    def keypress(self, key):
 
         if key in self.question.keyboard_index and key != ' ': # space char
             self.input_keys.append(key)
@@ -235,10 +425,12 @@ class TextUserInterface(urwid.Frame):
                 'ui_obj': self
             }
 
-            self.thread = threading.Thread(target=self.question.play_resolution, kwargs=kwargs)
-            self.thread.start()
-            self.thread.join()
+            #self.thread = threading.Thread(target=self.question.play_resolution, kwargs=kwargs)
+            #self.thread.start()
+            #self.thread.join()
 
+            self.question.play_resolution(**kwargs)
+            
             self.run_question()
             # self.question.play_resolution()
 
@@ -261,32 +453,3 @@ class TextUserInterface(urwid.Frame):
             raise urwid.ExitMainLoop()
         else:
             pass
-
-    def create_question(self, exercise, **kwargs):
-
-        if exercise in QUESTION_CLASSES:
-            QUESTION_CLASS = QUESTION_CLASSES[exercise]
-        else:
-            raise Exception("Oops!", QUESTION_CLASSES)
-
-        if 'n_notes' in kwargs:
-            dictate_notes = kwargs['n_notes']
-        else:
-            dictate_notes = 1
-
-        return QUESTION_CLASS(**kwargs)
-
-    def draw(self, question):
-
-        # keyboard = Keyboard(tonic=question.tonic_str, main_loop=self.loop)
-        keyboard = Keyboard(scale=question.chromatic_scale, main_loop=self.loop)
-
-        top_widget = urwid.Filler(urwid.LineBox(urwid.Text('test1\nok')))
-        bottom_widget = urwid.Filler(urwid.LineBox(urwid.Text('test2')))
-
-        frame_elements = [top_widget, keyboard, bottom_widget]
-
-        self.frame_body = urwid.Pile(widget_list=frame_elements)
-        self.frame_body_pad = urwid.Padding(self.frame_body, align='center', width=('relative', 60))
-
-        self.contents.update({'body': (self.frame_body_pad, None)})

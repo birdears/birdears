@@ -121,7 +121,7 @@ class NoteNameQuestion(QuestionBase):
 
         self.pre_question.play(callback=callback, end_callback=end_callback,
                                *args, **kwargs)
-        kwargs['ui_obj'].thread.join()
+        #kwargs['ui_obj'].thread.join()
         self.question.play(callback=callback, end_callback=end_callback,
                            *args, **kwargs)
 
