@@ -228,13 +228,15 @@ class TextUserInterface:
                 
                 if user_input in self.question.keyboard_index and user_input != ' ': # space char
                     self.input_keys.append(user_input)
+                    self.tui_widget.contents['body'][0].original_widget.contents[0] = (urwid.Text(str(self.input_keys)),('pack',None))
+                    self._draw_screen()
                     if len(self.input_keys) == self.question.n_notes:
                         answer = self.input_keys if self.question.n_notes > 1 else user_input 
                         D(answer,2)
                         self.check_question(answer)
                         new_question = True
                 else:
-                    self.keypress(user_input[0])
+                    self.keypress(user_input[0] if type(user_input) == list else user_input)
                 
     def check_question(self, user_input):
         
@@ -272,7 +274,7 @@ class TextUserInterface:
         D(self.question.n_notes)
         self.input_keys = list()
 
-        self.draw(self.question)
+        self.draw()
 
         kwargs = {
             'callback': self.tui_widget['body'].contents[1][0].highlight_key,
@@ -281,9 +283,9 @@ class TextUserInterface:
 
         self.question.play_question(**kwargs)
 
-    def draw(self, question):
+    def draw(self):
 
-        keyboard = Keyboard(scale=question.chromatic_scale, main_loop=self.loop)
+        keyboard = Keyboard(scale=self.question.chromatic_scale, main_loop=self.loop)
         
         
         top_variables = {
@@ -311,6 +313,8 @@ Answers: +{correct} / -{incorrect}
             self.loop.draw_screen()
 
     def keypress(self, key):
+        
+        D(key)
 
         if key in ('T', 't'):
             with LOCK:
@@ -327,8 +331,15 @@ Answers: +{correct} / -{incorrect}
             
         elif key in ('Q', 'q'):
             raise urwid.ExitMainLoop()
+        
         elif key == 'backspace':
-            if self.input_keys > 0:
+            if len(self.input_keys) > 0:
                 self.input_keys.pop()
+            self._draw_screen()
         else:
             pass
+        
+    def _draw_screen(self):
+        with LOCK:
+            self.loop.screen.clear()
+            self.loop.draw_screen()
