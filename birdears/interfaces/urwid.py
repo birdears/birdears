@@ -225,20 +225,25 @@ class TextUserInterface:
                     new_question = False
                     
                 self.loop.screen.get_available_raw_input()
-                user_input = self.loop.screen.get_input()[0]
-                
-                if user_input in self.question.keyboard_index and user_input != ' ': # space char
-                    self.input_keys.append(user_input)
-                    #self.tui_widget.contents['body'][0].original_widget.contents[0] = (urwid.Text(str(self.input_keys)),('pack',None))
-                    self.update_input_wid()
-                    #self._draw_screen()
-                    if len(self.input_keys) == self.question.n_notes:
-                        answer = self.input_keys if self.question.n_notes > 1 else user_input 
-                        #D(answer,2)
-                        self.check_question(answer)
-                        new_question = True
+                # FIXME: please refactor
+                if self.question.name != 'instrumental':
+                    user_input = self.loop.screen.get_input()[0]
+                    
+                    if user_input in self.question.keyboard_index and user_input != ' ': # space char
+                        self.input_keys.append(user_input)
+                        #self.tui_widget.contents['body'][0].original_widget.contents[0] = (urwid.Text(str(self.input_keys)),('pack',None))
+                        self.update_input_wid()
+                        #self._draw_screen()
+                        if len(self.input_keys) == self.question.n_notes:
+                            answer = self.input_keys if self.question.n_notes > 1 else user_input 
+                            #D(answer,2)
+                            self.check_question(answer)
+                            new_question = True
+                    else:
+                        self.keypress(user_input[0] if type(user_input) == list else user_input)
+                # instruental doesn't take input
                 else:
-                    self.keypress(user_input[0] if type(user_input) == list else user_input)
+                    new_question = True
                 
     def check_question(self, user_input):
         
