@@ -151,7 +151,6 @@ class Keyboard(urwid.Filler):
                 # D(self.highlighted_keys,2)
             
         elif type(element).__name__ == "Chord":
-            #chord = element
             
             for pitch in element:
                 chord_pitch_str = str(pitch)
@@ -220,29 +219,57 @@ class TextUserInterface:
             new_question = True
         
             while(True):
+                
                 if new_question:
+                
                     self.run_question()
                     new_question = False
                     
+                #user_input = self.loop.screen.get_available_raw_input()[0]
                 self.loop.screen.get_available_raw_input()
+                
                 # FIXME: please refactor
                 if self.question.name != 'instrumental':
+                    
                     user_input = self.loop.screen.get_input()[0]
                     
+                    # these inputs are answers to the exercise 
                     if user_input in self.question.keyboard_index and user_input != ' ': # space char
+                        
                         self.input_keys.append(user_input)
-                        #self.tui_widget.contents['body'][0].original_widget.contents[0] = (urwid.Text(str(self.input_keys)),('pack',None))
                         self.update_input_wid()
-                        #self._draw_screen()
+                        
                         if len(self.input_keys) == self.question.n_notes:
+                            
                             answer = self.input_keys if self.question.n_notes > 1 else user_input 
-                            #D(answer,2)
                             self.check_question(answer)
+                            
                             new_question = True
+                            
+                    # these inputs are commands to birdears 
                     else:
                         self.keypress(user_input[0] if type(user_input) == list else user_input)
-                # instruental doesn't take input
+                        
+                # instrumental doesn't take input
                 else:
+                    for r in range(self.question.n_repeats):
+                        self.question.play_question()
+                        ####self.question.pre_question.play(callback=callback, end_callback=end_callback,
+                                        ####*args, **kwargs)
+                        ####self.question.question.play(callback=callback, end_callback=end_callback,
+                                    ####*args, **kwargs)
+
+                        for i in range(self.question.wait_time):
+                            time_left = str(self.question.wait_time - i).rjust(3)
+                            text = '{} seconds remaining...'.format(time_left)
+                            #print(center_text(text, sep=False), end='')
+                            with LOCK:
+                                self.question.question._wait(1)
+                            
+                            user_input = self.loop.screen.get_available_raw_input()
+                            if user_input:
+                                self.keypress(user_input[0] if type(user_input) == list else user_input)
+                    
                     new_question = True
                 
     def check_question(self, user_input):
@@ -278,7 +305,7 @@ class TextUserInterface:
     def run_question(self):
 
         self.question = self.create_question(exercise=self.exercise, **self.arguments)
-        D(self.question.n_notes)
+        #D(self.question.n_notes)
         self.input_keys = list()
 
         self.draw()
@@ -333,7 +360,7 @@ Descending: {descending} Chromatic: {chromatic}\
 
     def keypress(self, key):
         
-        D(key)
+        #D(key)
 
         if key in ('T', 't'):
             with LOCK:

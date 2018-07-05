@@ -52,6 +52,9 @@ def load_interface(*args, **kwargs):
     else:
         CommandLine(*args, **kwargs)
 
+def get_interface():
+    return INTERFACE
+
 main_epilog = """
 You can use 'birdears <command> --help' to show options for a specific command.
 

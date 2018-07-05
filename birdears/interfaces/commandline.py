@@ -199,9 +199,20 @@ def CommandLine(exercise, **kwargs):
             question = QUESTION_CLASS(**kwargs)
 
             print_question(question)
-            question.play_question()
+            
+            if not exercise == 'instrumental':
+                question.play_question()
 
-        if exercise == 'instrumental':
+        if exercise == 'instrumental': 
+            for r in range(question.n_repeats):
+                question.play_question()
+
+            for i in range(question.wait_time):
+                time_left = str(question.wait_time - i).rjust(3)
+                text = '{} seconds remaining...'.format(time_left)
+                print(center_text(text, sep=False), end='')
+                question.question._wait(1)
+
             response = question.check_question()
             print_instrumental(response)
 
