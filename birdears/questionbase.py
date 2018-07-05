@@ -18,6 +18,22 @@ from functools import wraps
 QUESTION_CLASSES = {}
 
 
+class DictCallback(dict):
+    
+    callback = None
+    
+    callback_args = list()
+    callback_kwargs = dict()
+    
+    #def __init__(self, **kwargs):
+    #    super(DictCallback, self).__init__(self, *args, **kwargs)
+        
+    def __setitem__(self, *args, **kwargs):
+        super(DictCallback, self).__setitem__(self, *args, **kwargs)
+        
+        if self.callback:
+            self.callback(*self.args, **self.callback_kwargs)
+        
 def register_question_class(cls, *args, **kwargs):
     """Decorator for question classes.
 
@@ -132,6 +148,8 @@ class QuestionBase:
                 each type of sequence. This is provided by the subclasses.
         """
 
+        self.display = DictCallback({'main_display': str()})
+        
         self.mode = mode
 
         self.is_descending = descending

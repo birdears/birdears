@@ -140,10 +140,10 @@ class Keyboard(urwid.Filler):
 
     def highlight_key(self, element=None):
 
-        #with LOCK:
+        with LOCK:
                 
-        for key in self.key_index.values():
-            key.highlight(state=False)
+            for key in self.key_index.values():
+                key.highlight(state=False)
             
         if type(element).__name__ == "Pitch":
             
@@ -176,8 +176,16 @@ class TextUserInterfaceWidget(urwid.Frame):
 
         ##header = urwid.AttrMap(urwid.Padding(urwid.Text(('header', 'hey pal'))), 'header')
         ##footer = urwid.AttrMap(urwid.Padding(urwid.Text(('footer', 'footers'))), 'footer')
+        self.footer_left = urwid.Text('footers')
+        self.footer_right = urwid.Text('--', align='right')
         header = urwid.AttrMap(urwid.Padding(urwid.Text('hey pal')), 'header')
-        footer = urwid.AttrMap(urwid.Padding(urwid.Text('footers')), 'footer')
+        footer = urwid.AttrMap(
+                        urwid.Padding(
+                            
+                            urwid.Columns(widget_list = 
+                            [ self.footer_left,
+                            self.footer_right ])
+                ), 'footer')
         loading = urwid.Text('loading...')
         
         adapter = urwid.Filler(loading)
@@ -191,10 +199,6 @@ class QuestionWidget(urwid.Padding):
         
         top_widget = urwid.Filler(urwid.LineBox(top_widget))
         bottom_widget = urwid.Filler(urwid.LineBox(bottom_widget))
-        #top_widget = urwid.LineBox(top_widget)
-        #bottom_widget = urwid.LineBox(bottom_widget)
-        #top_widget = urwid.Filler(urwid.LineBox(top_widget), height=('relative', 100))
-        #bottom_widget = urwid.Filler(urwid.LineBox(bottom_widget), height=('relative', 100))
 
         frame_elements = [top_widget, keyboard, bottom_widget]
         frame_body = urwid.Pile(widget_list=frame_elements)
@@ -217,15 +221,13 @@ class TextUserInterface:
             ('highlight', 'black', 'light gray'),
             ('header', 'light gray', 'dark blue','','#fff','#336'),
             ('footer', 'light gray', 'dark blue','','#fff','#336'),
-            ##('header', '#669', 'light gray'),
-            ##('footer', '#669', 'light gray'),
             ]
         
         self.tui_widget = TextUserInterfaceWidget(*args, **kwargs)
         
-        #self.loop = urwid.MainLoop(widget=self.tui_widget, palette=palette, unhandled_input=self.keypress)
         self.loop = urwid.MainLoop(widget=self.tui_widget, palette=palette)
         self.loop.screen.set_terminal_properties(colors=256)
+        
         with self.loop.start():
             
             new_question = True
@@ -237,12 +239,13 @@ class TextUserInterface:
                     self.run_question()
                     new_question = False
                     
-                #user_input = self.loop.screen.get_available_raw_input()[0]
                 self.loop.screen.get_available_raw_input()
                 
                 # FIXME: please refactor
                 if self.question.name != 'instrumental':
                     
+                    #with LOCK:
+                    #user_input = self.loop.screen.get_input()[0]
                     user_input = self.loop.screen.get_input()[0]
                     
                     # these inputs are answers to the exercise 
@@ -282,7 +285,6 @@ class TextUserInterface:
                 
     def check_question(self, user_input):
         
-        #answer = self.question.check_question(user_input_char=user_input)
         answer = self.question.check_question(user_input)
         
         # TODO: UPDATE DISPLAY BEFORE play_resolution
@@ -291,10 +293,15 @@ class TextUserInterface:
         else:
             self.wrong += 1
             
-            
+        answers_text = "Answers: +{correct} / -{incorrect} ".\
+            format(correct=self.correct, incorrect=self.wrong)
+        #self.input_wid = urwid.Text('')
+        self.tui_widget.footer_right.set_text(answers_text)
+        self._draw_screen()
+        
         kwargs = {
-            'callback': self.tui_widget['body'].contents[1][0].highlight_key,
-            'end_callback': self.tui_widget['body'].contents[1][0].highlight_key,
+            'callback': self.keyboard.highlight_key,
+            'end_callback': self.keyboard.highlight_key,
         }
 
         self.question.play_resolution(**kwargs)
@@ -320,8 +327,8 @@ class TextUserInterface:
         self.draw()
 
         kwargs = {
-            'callback': self.tui_widget['body'].contents[1][0].highlight_key,
-            'end_callback': self.tui_widget['body'].contents[1][0].highlight_key,
+            'callback': self.keyboard.highlight_key,
+            'end_callback': self.keyboard.highlight_key,
         }
 
         self.question.play_question(**kwargs)
@@ -336,10 +343,8 @@ class TextUserInterface:
             
     def draw(self):
 
-        #keyboard = Keyboard(scale=self.question.chromatic_scale, main_loop=self.loop)
-        keyboard = Keyboard(scale=self.question.chromatic_scale, main_loop=self.loop, 
+        self.keyboard = Keyboard(scale=self.question.chromatic_scale, main_loop=self.loop, 
                             keyboard_index=self.question.keyboard_index)
-        
         
         top_variables = {
             'tonic': self.question.tonic_str + (' (random)' if any(el in self.arguments['tonic'] for el in ('r', 'R')) else ''),
@@ -353,26 +358,22 @@ Descending: {descending} Chromatic: {chromatic}\
         """.format(**top_variables)
         top_widget = urwid.Text(top_text)
         
-        ###bottom_text = """
-        ###Answers: +{correct} / -{incorrect}
-        ###""".format(correct=self.correct, incorrect=self.wrong)
-        answers_text = "Answers: +{correct} / -{incorrect} ".\
-            format(correct=self.correct, incorrect=self.wrong)
         self.input_wid = urwid.Text('')
-        bottom_widget = urwid.Columns(widget_list=[self.input_wid,
-                                                   urwid.Text(markup=answers_text, align='right')])
+        bottom_widget = urwid.Text('please write me!!!')
         
-        self.question_widget = QuestionWidget(top_widget=top_widget, keyboard=keyboard, bottom_widget=bottom_widget)
+        self.question_widget = QuestionWidget(top_widget=top_widget, keyboard=self.keyboard, bottom_widget=bottom_widget)
         
         self.tui_widget.contents.update({'body': (self.question_widget, None)})
+        
+        answers_text = "Answers: +{correct} / -{incorrect} ".\
+            format(correct=self.correct, incorrect=self.wrong)
+        self.tui_widget.footer_right.set_text(answers_text)
         
         with LOCK:
             self.loop.draw_screen()
 
     def keypress(self, key):
         
-        #D(key)
-
         if key in ('T', 't'):
             with LOCK:
                 self.loop.screen.clear()
@@ -380,8 +381,8 @@ Descending: {descending} Chromatic: {chromatic}\
             
         elif key in ('R', 'r'):
             kwargs = {
-                'callback': self.tui_widget['body'].contents[1][0].highlight_key,
-                'end_callback': self.tui_widget['body'].contents[1][0].highlight_key,
+                'callback': self.keyboard.highlight_key,
+                'end_callback': self.keyboard.highlight_key,
             }
 
             self.question.play_question(**kwargs)
@@ -397,5 +398,5 @@ Descending: {descending} Chromatic: {chromatic}\
         
     def _draw_screen(self):
         with LOCK:
-            self.loop.screen.clear()
+            #self.loop.screen.clear()
             self.loop.draw_screen()
