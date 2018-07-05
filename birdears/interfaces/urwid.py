@@ -66,7 +66,7 @@ class KeyboardButton(urwid.Padding):
         
 class Keyboard(urwid.Filler):
     
-    def __init__(self, scale, main_loop=None, *args, **kwargs):
+    def __init__(self, scale, main_loop=None, keyboard_index=None, *args, **kwargs):
 
         self.main_loop = main_loop
 
@@ -92,20 +92,24 @@ class Keyboard(urwid.Filler):
 
         first_chromatic = [pitch for pitch in key_scale if len(pitch.note) == 2][0]
 
-        for pitch in key_scale:
+        for index, pitch in enumerate(key_scale):
             
             pitch_str = str(pitch)
             note_str = pitch.note
+            
+            letter = keyboard_index[index]
+            bottom_text = letter
+            middle_text = INTERVALS[keyboard_index.index(letter)][1]
             
             if is_chromatic(pitch.note):
 
                 if KEY_PADS[note_str] == 1 and (pitch is not first_chromatic):
                     chromatic_keys.append(Pad(weight=1))
 
-                chromatic_keys.append(KeyboardButton(pitch=pitch))
+                chromatic_keys.append(KeyboardButton(pitch=pitch, middle=middle_text, bottom=bottom_text))
                 
             else:
-                diatonic_keys.append(KeyboardButton(pitch=pitch))
+                diatonic_keys.append(KeyboardButton(pitch=pitch, middle=middle_text, bottom=bottom_text))
 
         # end (right) padding:
         if is_key_chromatic:
@@ -136,10 +140,10 @@ class Keyboard(urwid.Filler):
 
     def highlight_key(self, element=None):
 
-        with LOCK:
+        #with LOCK:
                 
-            for key in self.key_index.values():
-                key.highlight(state=False)
+        for key in self.key_index.values():
+            key.highlight(state=False)
             
         if type(element).__name__ == "Pitch":
             
@@ -170,8 +174,10 @@ class TextUserInterfaceWidget(urwid.Frame):
 
     def __init__(self, *args, **kwargs):
 
-        header = urwid.Text('hey pal')
-        footer = urwid.Text('footers')
+        ##header = urwid.AttrMap(urwid.Padding(urwid.Text(('header', 'hey pal'))), 'header')
+        ##footer = urwid.AttrMap(urwid.Padding(urwid.Text(('footer', 'footers'))), 'footer')
+        header = urwid.AttrMap(urwid.Padding(urwid.Text('hey pal')), 'header')
+        footer = urwid.AttrMap(urwid.Padding(urwid.Text('footers')), 'footer')
         loading = urwid.Text('loading...')
         
         adapter = urwid.Filler(loading)
@@ -183,10 +189,12 @@ class QuestionWidget(urwid.Padding):
     
     def __init__(self, top_widget, keyboard, bottom_widget, *args, **kwargs):
         
-        ##top_widget = urwid.Filler(urwid.LineBox(urwid.Text('test1\nok')))
-        ##bottom_widget = urwid.Filler(urwid.LineBox(urwid.Text('test2')))
         top_widget = urwid.Filler(urwid.LineBox(top_widget))
         bottom_widget = urwid.Filler(urwid.LineBox(bottom_widget))
+        #top_widget = urwid.LineBox(top_widget)
+        #bottom_widget = urwid.LineBox(bottom_widget)
+        #top_widget = urwid.Filler(urwid.LineBox(top_widget), height=('relative', 100))
+        #bottom_widget = urwid.Filler(urwid.LineBox(bottom_widget), height=('relative', 100))
 
         frame_elements = [top_widget, keyboard, bottom_widget]
         frame_body = urwid.Pile(widget_list=frame_elements)
@@ -206,14 +214,18 @@ class TextUserInterface:
         
         palette = [
             ('default', 'default', 'default'),
-            ('highlight', 'black', 'light gray')
+            ('highlight', 'black', 'light gray'),
+            ('header', 'light gray', 'dark blue','','#fff','#336'),
+            ('footer', 'light gray', 'dark blue','','#fff','#336'),
+            ##('header', '#669', 'light gray'),
+            ##('footer', '#669', 'light gray'),
             ]
         
         self.tui_widget = TextUserInterfaceWidget(*args, **kwargs)
         
         #self.loop = urwid.MainLoop(widget=self.tui_widget, palette=palette, unhandled_input=self.keypress)
         self.loop = urwid.MainLoop(widget=self.tui_widget, palette=palette)
-        
+        self.loop.screen.set_terminal_properties(colors=256)
         with self.loop.start():
             
             new_question = True
@@ -254,10 +266,6 @@ class TextUserInterface:
                 else:
                     for r in range(self.question.n_repeats):
                         self.question.play_question()
-                        ####self.question.pre_question.play(callback=callback, end_callback=end_callback,
-                                        ####*args, **kwargs)
-                        ####self.question.question.play(callback=callback, end_callback=end_callback,
-                                    ####*args, **kwargs)
 
                         for i in range(self.question.wait_time):
                             time_left = str(self.question.wait_time - i).rjust(3)
@@ -277,6 +285,7 @@ class TextUserInterface:
         #answer = self.question.check_question(user_input_char=user_input)
         answer = self.question.check_question(user_input)
         
+        # TODO: UPDATE DISPLAY BEFORE play_resolution
         if answer['is_correct']:
             self.correct += 1
         else:
@@ -327,7 +336,9 @@ class TextUserInterface:
             
     def draw(self):
 
-        keyboard = Keyboard(scale=self.question.chromatic_scale, main_loop=self.loop)
+        #keyboard = Keyboard(scale=self.question.chromatic_scale, main_loop=self.loop)
+        keyboard = Keyboard(scale=self.question.chromatic_scale, main_loop=self.loop, 
+                            keyboard_index=self.question.keyboard_index)
         
         
         top_variables = {

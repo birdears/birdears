@@ -37,20 +37,6 @@ def load_interface(*args, **kwargs):
 
         from .interfaces.urwid import TextUserInterface
         tui = TextUserInterface(**kwargs)
-        #palette = [
-        #    ('default', 'default', 'default'),
-        #    ('highlight', 'black', 'light gray')
-        #    ]
-        
-        #wrapper = []
-        #tui = TextUserInterface(loop_wrapper=wrapper, *args, **kwargs)
-        
-        #loop = urwid.MainLoop(tui, palette)
-        #loop.run()
-        #global loop
-        #loop = urwid.MainLoop(tui, palette)
-        #wrapper.append(loop)
-        #loop.run()
     else:
         CommandLine(*args, **kwargs)
 
@@ -75,7 +61,6 @@ valid_resolution_methods = ", ".join(VALID_RESOLUTION_METHODS)
 @click.option('--debug/--no-debug',
               help='Turns on debugging; instead you can set DEBUG=1.',
               default=False, envvar='DEBUG')
-#@click.option('--urwid/--no-urwid',
 @click.option('--urwid/--no-urwid',
               help='Uses urwid as interface.',
               default=False, envvar='URWID')
@@ -84,8 +69,7 @@ valid_resolution_methods = ", ".join(VALID_RESOLUTION_METHODS)
               default=False, envvar='CLI')
 def cli(debug, urwid, cli):
     """birdears ─ Functional Ear Training for Musicians!"""
-    D(urwid)
-    D(cli)
+    
     global INTERFACE
     
     if debug:
@@ -136,7 +120,6 @@ Valid values are as follows:
               default='major', metavar='<mode>', help="Mode of the question.")
 @click.option('-t', '--tonic', type=str, default='C', metavar='<tonic>',
               help='Tonic of the question.')
-# @click.option('-o', '--octave', type=click.IntRange(3, 6), default=None,
 @click.option('-o', '--octave', type=str, default='4',
               metavar='<octave>',
               help="Octave of the question.")
@@ -164,7 +147,6 @@ def melodic(*args, **kwargs):
     """
 
     kwargs.update({'exercise': 'melodic'})
-    #CommandLine(**kwargs)
     load_interface(*args, **kwargs)
 
 
@@ -200,7 +182,6 @@ Valid values are as follows:
               default='major', help="Mode of the question.")
 @click.option('-t', '--tonic', type=str, default='C', metavar='<note>',
               help='Tonic of the question.')
-# @click.option('-o', '--octave', type=click.IntRange(3, 6), default=None,
 @click.option('-o', '--octave', type=str, default='4',
               metavar='<octave>',
               help="Octave of the question.")
@@ -228,7 +209,6 @@ def harmonic(*args, **kwargs):
     """
 
     kwargs.update({'exercise': 'harmonic'})
-    #CommandLine(**kwargs)
     load_interface(*args, **kwargs)
 
 #
@@ -270,7 +250,6 @@ Valid values are as follows:
               help='Number of notes for the dictation.')
 @click.option('-t', '--tonic', type=str, default='C', metavar='<note>',
               help='Tonic of the question.')
-#@click.option('-o', '--octave', type=click.IntRange(3, 6), default=4,
 @click.option('-o', '--octave', type=str, default='4',
               metavar='<octave>',
               help="Octave of the question.")
@@ -298,7 +277,6 @@ def dictation(*args, **kwargs):
     """
 
     kwargs.update({'exercise': 'dictation'})
-    #CommandLine(**kwargs)
     load_interface(*args, **kwargs)
 
 
@@ -344,7 +322,6 @@ Valid values are as follows:
               help='Number of notes for the dictation.')
 @click.option('-t', '--tonic', type=str, default='C', metavar='<note>',
               help='Tonic of the question.')
-#@click.option('-o', '--octave', type=click.IntRange(3, 6), default=4,
 @click.option('-o', '--octave', type=str, default='4',
               metavar='<octave>', help="Octave of the question.")
 @click.option('-d', '--descending', is_flag=True,
@@ -371,7 +348,6 @@ def instrumental(*args, **kwargs):
     """
 
     kwargs.update({'exercise': 'instrumental'})
-    #CommandLine(**kwargs)
     load_interface(*args, **kwargs)
 
 
@@ -402,7 +378,6 @@ Valid values are as follows:
               default='major', metavar='<mode>', help="Mode of the question.")
 @click.option('-t', '--tonic', type=str, default='C', metavar='<tonic>',
               help='Tonic of the question.')
-#@click.option('-o', '--octave', type=click.IntRange(3, 6), default=4,
 @click.option('-o', '--octave', type=str, default='4',
               metavar='<octave>',
               help="Octave of the question.")
@@ -425,15 +400,11 @@ Valid values are as follows:
 @click.option('-r', '--resolution_method', type=str, default='nearest_tonic',
               metavar='<resolution_method>',
               help='The name of a resolution method.')
-#@click.pass_context
-#def notename(ctx, *args, **kwargs):
 def notename(*args, **kwargs):
     """Note name by intervaç recognition
     """
 
-    #print(ctx.obj)
     kwargs.update({'exercise': 'notename'})
-    # CommandLine(**kwargs)
     load_interface(*args, **kwargs)
     
 
@@ -458,7 +429,6 @@ def load(filename, *args, **kwargs):
     toml_file_str = filename.read()
     config_dict = toml.loads(toml_file_str)
 
-    #CommandLine(**config_dict)
     load_interface(*args, **kwargs)
 
 
