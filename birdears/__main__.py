@@ -17,6 +17,8 @@ from .resolution import RESOLUTION_METHODS
 
 from .questions import *
 
+from . import D
+
 CTX_SETTINGS = dict(
     help_option_names=['-h', '--help'],
     max_content_width=80,
@@ -52,9 +54,6 @@ def load_interface(*args, **kwargs):
     else:
         CommandLine(*args, **kwargs)
 
-def get_interface():
-    return INTERFACE
-
 main_epilog = """
 You can use 'birdears <command> --help' to show options for a specific command.
 
@@ -76,12 +75,17 @@ valid_resolution_methods = ", ".join(VALID_RESOLUTION_METHODS)
 @click.option('--debug/--no-debug',
               help='Turns on debugging; instead you can set DEBUG=1.',
               default=False, envvar='DEBUG')
+#@click.option('--urwid/--no-urwid',
 @click.option('--urwid/--no-urwid',
               help='Uses urwid as interface.',
               default=False, envvar='URWID')
-def cli(debug, urwid):
+@click.option('--cli/--no-cli',
+              help='Uses command line as interface.',
+              default=False, envvar='CLI')
+def cli(debug, urwid, cli):
     """birdears ─ Functional Ear Training for Musicians!"""
-
+    D(urwid)
+    D(cli)
     global INTERFACE
     
     if debug:
@@ -95,8 +99,10 @@ def cli(debug, urwid):
 
     if urwid:
         INTERFACE = 'urwid'
-    else:
+    elif cli:
         INTERFACE = 'commandline'
+    else:
+        INTERFACE = 'urwid'
 
 #
 # melodic interval
