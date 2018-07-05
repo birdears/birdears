@@ -4,6 +4,7 @@ import urwid
 from .. import KEYS
 from .. import CHROMATIC_SHARP
 from .. import CHROMATIC_FLAT
+from .. import INTERVALS
 
 from ..questionbase import QUESTION_CLASSES
 
@@ -228,11 +229,12 @@ class TextUserInterface:
                 
                 if user_input in self.question.keyboard_index and user_input != ' ': # space char
                     self.input_keys.append(user_input)
-                    self.tui_widget.contents['body'][0].original_widget.contents[0] = (urwid.Text(str(self.input_keys)),('pack',None))
-                    self._draw_screen()
+                    #self.tui_widget.contents['body'][0].original_widget.contents[0] = (urwid.Text(str(self.input_keys)),('pack',None))
+                    self.update_input_wid()
+                    #self._draw_screen()
                     if len(self.input_keys) == self.question.n_notes:
                         answer = self.input_keys if self.question.n_notes > 1 else user_input 
-                        D(answer,2)
+                        #D(answer,2)
                         self.check_question(answer)
                         new_question = True
                 else:
@@ -283,6 +285,14 @@ class TextUserInterface:
 
         self.question.play_question(**kwargs)
 
+    def update_input_wid(self):
+        key_index = self.question.keyboard_index
+        
+        input_list = [INTERVALS[key_index.index(key)][1] for key in self.input_keys]
+        input_display = " ".join(input_list)
+        self.input_wid.set_text(input_display)
+        self._draw_screen()
+            
     def draw(self):
 
         keyboard = Keyboard(scale=self.question.chromatic_scale, main_loop=self.loop)
@@ -294,16 +304,20 @@ class TextUserInterface:
             'chromatic': self.question.is_chromatic,
         }
         
-        top_text = """
+        top_text = """\
 Tonic: {tonic}
-Descending: {descending} Chromatic: {chromatic}
+Descending: {descending} Chromatic: {chromatic}\
         """.format(**top_variables)
         top_widget = urwid.Text(top_text)
         
-        bottom_text = """
-Answers: +{correct} / -{incorrect}
-""".format(correct=self.correct, incorrect=self.wrong)
-        bottom_widget = urwid.Text(bottom_text)
+        ###bottom_text = """
+        ###Answers: +{correct} / -{incorrect}
+        ###""".format(correct=self.correct, incorrect=self.wrong)
+        answers_text = "Answers: +{correct} / -{incorrect} ".\
+            format(correct=self.correct, incorrect=self.wrong)
+        self.input_wid = urwid.Text('')
+        bottom_widget = urwid.Columns(widget_list=[self.input_wid,
+                                                   urwid.Text(markup=answers_text, align='right')])
         
         self.question_widget = QuestionWidget(top_widget=top_widget, keyboard=keyboard, bottom_widget=bottom_widget)
         
@@ -334,8 +348,7 @@ Answers: +{correct} / -{incorrect}
         
         elif key == 'backspace':
             if len(self.input_keys) > 0:
-                self.input_keys.pop()
-            self._draw_screen()
+                self.update_input_wid()
         else:
             pass
         
