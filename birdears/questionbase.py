@@ -25,14 +25,22 @@ class DictCallback(dict):
     callback_args = list()
     callback_kwargs = dict()
     
-    #def __init__(self, **kwargs):
-    #    super(DictCallback, self).__init__(self, *args, **kwargs)
+    def __init__(self, other=None, **kwargs):
+        #super(DictCallback, self).__init__(self, other, **kwargs)
+        super(DictCallback, self).__init__()
+        self.update(other)
         
-    def __setitem__(self, *args, **kwargs):
-        super(DictCallback, self).__setitem__(self, *args, **kwargs)
+    def __setitem__(self, key, value):
+        super(DictCallback, self).__setitem__(self, key, value)
         
         if self.callback:
-            self.callback(*self.args, **self.callback_kwargs)
+            self.callback(*self.callback_args, **self.callback_kwargs)
+            
+    def update(self, other=None):
+        super(DictCallback, self).update(other)
+        
+        if self.callback:
+            self.callback(*self.callback_args, **self.callback_kwargs)
         
 def register_question_class(cls, *args, **kwargs):
     """Decorator for question classes.

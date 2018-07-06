@@ -195,12 +195,19 @@ class TextUserInterfaceWidget(urwid.Frame):
 
 class QuestionWidget(urwid.Padding):
     
-    def __init__(self, top_widget, keyboard, bottom_widget, *args, **kwargs):
+    def __init__(self, top_widget=None, keyboard=None, bottom_widget=None, *args, **kwargs):
         
-        top_widget = urwid.Filler(urwid.LineBox(top_widget))
-        bottom_widget = urwid.Filler(urwid.LineBox(bottom_widget))
+        self.top_widget = urwid.Filler(urwid.LineBox(top_widget))
+        
+        if not top_widget:
+            self.question_text = urwid.Text('..')
+            self.top_widget = urwid.Filler(urwid.LineBox(self.display_text))
+            
+        if not bottom_widget:
+            self.display_text = urwid.Text('-')
+            self.bottom_widget = urwid.Filler(urwid.LineBox(self.display_text))
 
-        frame_elements = [top_widget, keyboard, bottom_widget]
+        frame_elements = [self.top_widget, keyboard, self.bottom_widget]
         frame_body = urwid.Pile(widget_list=frame_elements)
         
         super(QuestionWidget, self).__init__(frame_body, align='center', width=('relative', 60))
@@ -252,7 +259,7 @@ class TextUserInterface:
                     if user_input in self.question.keyboard_index and user_input != ' ': # space char
                         
                         self.input_keys.append(user_input)
-                        self.update_input_wid()
+                        #self.update_input_wid()
                         
                         if len(self.input_keys) == self.question.n_notes:
                             
@@ -321,10 +328,11 @@ class TextUserInterface:
     def run_question(self):
 
         self.question = self.create_question(exercise=self.exercise, **self.arguments)
+        self.question.display.callback = self.update_question_display
         #D(self.question.n_notes)
         self.input_keys = list()
 
-        self.draw()
+        self.draw_question()
 
         kwargs = {
             'callback': self.keyboard.highlight_key,
@@ -332,16 +340,24 @@ class TextUserInterface:
         }
 
         self.question.play_question(**kwargs)
-
-    def update_input_wid(self):
-        key_index = self.question.keyboard_index
         
-        input_list = [INTERVALS[key_index.index(key)][1] for key in self.input_keys]
-        input_display = " ".join(input_list)
-        self.input_wid.set_text(input_display)
+    def update_question_display(self):
+        text = str()
+        # FIXME
+        for value in self.question.display.values():
+            text += value
+        self.question_widget.display_text.set_text(str(text))
         self._draw_screen()
+
+    #######def update_input_wid(self):
+        #######key_index = self.question.keyboard_index
+        
+        #######input_list = [INTERVALS[key_index.index(key)][1] for key in self.input_keys]
+        #######input_display = " ".join(input_list)
+        #######self.input_wid.set_text(input_display)
+        #######self._draw_screen()
             
-    def draw(self):
+    def draw_question(self):
 
         self.keyboard = Keyboard(scale=self.question.chromatic_scale, main_loop=self.loop, 
                             keyboard_index=self.question.keyboard_index)
@@ -356,12 +372,14 @@ class TextUserInterface:
 Tonic: {tonic}
 Descending: {descending} Chromatic: {chromatic}\
         """.format(**top_variables)
+        
         top_widget = urwid.Text(top_text)
         
-        self.input_wid = urwid.Text('')
-        bottom_widget = urwid.Text('please write me!!!')
+        #self.input_wid = urwid.Text('')
+        #bottom_widget = urwid.Text('please write me!!!')
         
-        self.question_widget = QuestionWidget(top_widget=top_widget, keyboard=self.keyboard, bottom_widget=bottom_widget)
+        #self.question_widget = QuestionWidget(top_widget=top_widget, keyboard=self.keyboard, bottom_widget=bottom_widget)
+        self.question_widget = QuestionWidget(top_widget=top_widget, keyboard=self.keyboard)
         
         self.tui_widget.contents.update({'body': (self.question_widget, None)})
         
@@ -392,7 +410,8 @@ Descending: {descending} Chromatic: {chromatic}\
         
         elif key == 'backspace':
             if len(self.input_keys) > 0:
-                self.update_input_wid()
+                #self.update_input_wid()
+                pass
         else:
             pass
         
