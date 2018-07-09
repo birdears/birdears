@@ -249,7 +249,8 @@ class TextUserInterface:
                     self.run_question()
                     new_question = False
                 
-                for i in range(self.question.n_input_notes): #etc
+                #for i in range(self.question.n_input_notes): #etc
+                while len(self.input_keys) < self.question.n_input_notes: #etc
                     input_key = self.loop.screen.get_input()[0]
                     #user_input = self.loop.screen.get_input()
                     D(input_key)
@@ -393,6 +394,7 @@ Descending: {descending} Chromatic: {chromatic}\
         
         elif key == 'backspace':
             if len(self.input_keys) > 0:
+                self.input_keys.remove(self.input_keys[-1])
                 #self.update_input_wid()
                 pass
         else:
