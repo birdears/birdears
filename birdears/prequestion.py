@@ -106,7 +106,13 @@ def progression_i_iv_v_i(question, *args, **kwargs):
             when it is `__call__`ed)
     """
 
-    tonic_pitch = question.tonic_pitch
+    #tonic_pitch = question.tonic_pitch
+    #is_scale_descending = question
+    tonic = 0 if not question.scale.is_descending else -1
+    
+    tonic_pitch = question.scale[tonic]
+    from . import D
+    D(question.scale)
     mode = question.mode
 
     duration = question.durations['preq']['duration']

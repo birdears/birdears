@@ -260,15 +260,19 @@ class TextUserInterface:
                         self.input_keys.append(input_key)
                         #self.update_input_wid()
                         
-                        if len(self.input_keys) == self.question.n_notes:
+                        ####if len(self.input_keys) == self.question.n_notes:
                             
-                            answer = self.input_keys if self.question.n_notes > 1 else user_input 
-                            self.check_question(answer)
+                            ####answer = self.input_keys if self.question.n_notes > 1 else user_input 
+                            ####self.check_question(answer)
                             
                     # these inputs are commands to birdears 
                     else:
                         self.keypress(input_key)
                     
+                #answer = self.input_keys if self.question.n_notes > 1 else user_input 
+                answer = self.input_keys
+                self.check_question(self.input_keys)
+                
                 new_question = True
                 
                 
@@ -397,7 +401,7 @@ Descending: {descending} Chromatic: {chromatic}\
     def _draw_screen(self):
         with LOCK:
             
-            raw_inpt = self.loop.screen.get_available_raw_input()
+            raw_inpt = list(set(self.loop.screen.get_available_raw_input()))
             for item in raw_inpt:
                 self.keypress(chr(item))
                 
