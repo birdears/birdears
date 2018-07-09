@@ -275,10 +275,10 @@ class TextUserInterface:
         # TODO: UPDATE DISPLAY BEFORE play_resolution
         if answer['is_correct']:
             self.correct += 1
-            self.question.display['main_loop'] = 'Correct!'
+            self.question.display['main_display'] = 'Correct!'
         else:
             self.wrong += 1
-            self.question.display['main_loop'] = 'Incorrect!'
+        self.question.display['main_display'] = 'Incorrect!'
             
         answers_text = "Answers: +{correct} / -{incorrect} ".\
             format(correct=self.correct, incorrect=self.wrong)
@@ -320,6 +320,15 @@ class TextUserInterface:
 
         self.question.play_question(**kwargs)
         
+    # TYPES OF DISPLAYS:
+    #
+    # input_keys (transformed into intervals or notes)
+    # str() (displayed literally, overwriting)
+    # str() (showing now lines, deleting old ones)
+    # list() of str() (showing each str() on a new line)
+    # etc
+    # Maybe this chould well be an widget feeded by the display dict
+    
     def update_question_display(self):
         text = str()
         # FIXME
