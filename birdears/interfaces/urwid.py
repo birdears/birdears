@@ -10,6 +10,8 @@ from ..questionbase import QUESTION_CLASSES
 
 from ..note_and_pitch import get_pitch_by_number
 
+from ..scale import ChromaticScale
+
 from .. import D
         
 KEY_PADS = {
@@ -330,7 +332,6 @@ class TextUserInterface:
         else:
             raise Exception("Oops!", QUESTION_CLASSES)
 
-        #self.question = self.create_question(exercise=self.exercise, **self.arguments)
         self.question = QUESTION_CLASS(**kwargs)
         self.question.display.callback = self.update_question_display
         
@@ -380,7 +381,14 @@ class TextUserInterface:
         
     def draw_question(self):
 
-        self.keyboard = Keyboard(scale=self.question.chromatic_scale, main_loop=self.loop, 
+        if self.exercise != 'notename':
+            scale = self.question.chromatic_scale
+        else:
+            scale = ChromaticScale(tonic='C', octave=self.question.octave,
+                                    descending=self.question.is_descending,
+                                    n_octaves=self.question.n_octaves)
+            
+        self.keyboard = Keyboard(scale=scale, main_loop=self.loop, 
                             keyboard_index=self.question.keyboard_index)
         
         top_variables = {
