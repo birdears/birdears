@@ -125,6 +125,7 @@ class InstrumentalDictationQuestion(QuestionBase):
                            *args, **kwargs):
 
         for r in range(self.n_repeats):
+            self.display.update({'main_display': 'Listen to the tonality.'})
             self.pre_question.play(callback=callback, end_callback=end_callback,
                                     *args, **kwargs)
             self.question.play(callback=callback, end_callback=end_callback,
@@ -134,7 +135,7 @@ class InstrumentalDictationQuestion(QuestionBase):
                 time_left = str(self.wait_time - i).rjust(3)
                 text = '{} seconds remaining...'.format(time_left)
                 # self.display.update({'main_display': 'what is the interval?'})
-                self.display.update({'main_display': text})
+                self.display.update({'counter': text})
 
                 #print(center_text(text, sep=False), end='')
                 self.question._wait(1)
