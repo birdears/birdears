@@ -94,6 +94,9 @@ class InstrumentalDictationQuestion(QuestionBase):
         self.wait_time = wait_time
         self.n_repeats = n_repeats
 
+        # instrumental doesn't take input
+        self.n_input_notes = 0
+        
         self.random_pitches = [choice(self.allowed_pitches) for note
                                in range(n_notes)]
 

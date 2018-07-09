@@ -248,6 +248,7 @@ class TextUserInterface:
                     
                 self.loop.screen.get_available_raw_input()
                 
+                # for i in range(self.question.n_input_notes): #etc
                 # FIXME: please refactor
                 if self.question.name != 'instrumental':
                     
@@ -349,14 +350,6 @@ class TextUserInterface:
         self.question_widget.display_text.set_text(str(text))
         self._draw_screen()
 
-    #######def update_input_wid(self):
-        #######key_index = self.question.keyboard_index
-        
-        #######input_list = [INTERVALS[key_index.index(key)][1] for key in self.input_keys]
-        #######input_display = " ".join(input_list)
-        #######self.input_wid.set_text(input_display)
-        #######self._draw_screen()
-            
     def draw_question(self):
 
         self.keyboard = Keyboard(scale=self.question.chromatic_scale, main_loop=self.loop, 

@@ -168,6 +168,8 @@ class QuestionBase:
                 self.n_notes = kwargs['n_notes']
         except KeyError:
             self.n_notes = 1
+        
+        self.n_input_notes = int(self.n_notes)
 
         # self.octave = octave if octave else randrange(3, 5)
         if isinstance(octave, str) and any(el in octave for el in ('R', 'r')):
