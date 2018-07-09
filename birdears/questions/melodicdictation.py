@@ -116,10 +116,12 @@ class MelodicDictationQuestion(QuestionBase):
         # terminated.
         # https://docs.python.org/3/library/threading.html#thread-objects
 
+        self.display.update({'main_display': 'Listen to the tonality...'})
         self.pre_question.play(callback=callback, end_callback=end_callback,
                                *args, **kwargs)
         self.question.play(callback=callback, end_callback=end_callback,
                            *args, **kwargs)
+        self.display.update({'main_display': 'Now, please type the intervals you\'ve heard.'})
 
     def play_resolution(self, callback=None, end_callback=None,
                            *args, **kwargs):

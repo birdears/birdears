@@ -207,49 +207,37 @@ class QuestionWidget(urwid.Padding):
             self.question_text = urwid.Text('..')
             self.top_widget = urwid.Filler(urwid.LineBox(self.display_text))
             
-        display_wids = list()
+        self.display_widget = self.draw_display(question_display=display)
         
-        if display:
-            for key, value in display.items():
-                self.display[key] = urwid.Text(value)
-                display_wids.append(urwid.Filler(urwid.LineBox(self.display[key])))
-                #self.display_text = urwid.Text(value)
-                #self.bottom_widget = urwid.Filler(urwid.LineBox(self.display_text))
-
-        elif not bottom_widget:
-            #self.display_text = urwid.Text('-')
-            text = urwid.Text('-')
-            self.display = urwid.Filler(urwid.LineBox(text))
-
-        # FIXME: remove this when display is working
-        elif bottom_widget:
-            self.display = bottom_widget
-            
-        D(self.display.values())
-        frame_elements = [self.top_widget, keyboard]
-        frame_elements.extend(display_wids)
+        frame_elements = [self.top_widget, self.keyboard, self.display_widget]
         frame_body = urwid.Pile(widget_list=frame_elements)
         
         super(QuestionWidget, self).__init__(frame_body, align='center', width=('relative', 60))
     
-    def redraw_display(self, display):
+    def redraw_display(self, question_display):
         
-        display_wids = list()
-        self.display = dict()
+        self.display_widget = self.draw_display(question_display)
         
-        for key, value in display.items():
-            
-            self.display[key] = urwid.Text(value)
-            display_wids.append(urwid.Filler(urwid.LineBox(self.display[key])))
-            
-        frame_elements = [self.top_widget, self.keyboard]
-        frame_elements.extend(display_wids)
-        
+        frame_elements = [self.top_widget, self.keyboard, self.display_widget]
         frame_body = urwid.Pile(widget_list=frame_elements)
         
         self.original_widget = frame_body
-        #super(QuestionWidget, self).__init__(frame_body, align='center', width=('relative', 60))
+        
+    def draw_display(self, question_display):
+        
+        self.display = dict()
+        display_wids = list()
 
+        for key, value in question_display.items():
+            self.display[key] = urwid.Text(value)
+            display_wids.append(urwid.LineBox(self.display[key]))
+
+        display_widget = urwid.Filler(urwid.Pile(widget_list=display_wids))
+        
+        return display_widget
+        
+        
+        
 class TextUserInterface:
     
     def __init__(self, exercise, *args, **kwargs):
@@ -269,7 +257,6 @@ class TextUserInterface:
         
         self.tui_widget = TextUserInterfaceWidget(*args, **kwargs)
         
-        #self.loop = urwid.MainLoop(widget=self.tui_widget, palette=palette, unhandled_input=self.keypress)
         self.loop = urwid.MainLoop(widget=self.tui_widget, palette=palette)
         self.loop.screen.set_terminal_properties(colors=256)
         
@@ -293,6 +280,8 @@ class TextUserInterface:
                     if input_key in self.question.keyboard_index and input_key != ' ': # space char
                         
                         self.input_keys.append(input_key)
+                        if self.question.n_input_notes > 1:
+                            self.update_input_display()
                         #self.update_input_wid()
                         
                     # these inputs are commands to birdears 
@@ -320,7 +309,7 @@ class TextUserInterface:
             
         answers_text = "Answers: +{correct} / -{incorrect} ".\
             format(correct=self.correct, incorrect=self.wrong)
-        #self.input_wid = urwid.Text('')
+        
         self.tui_widget.footer_right.set_text(answers_text)
         self._draw_screen()
         
@@ -379,7 +368,17 @@ class TextUserInterface:
             
         #self.question_widget.display_text.set_text(str(text))
         self._draw_screen()
+        
+    def update_input_display(self):
 
+        #input_display = self.question.display['input_display']
+        
+        keyboard_index = self.question.keyboard_index
+        
+        intervals = [INTERVALS[keyboard_index.index(item)][1] for item in self.input_keys]
+        intervals_str = " ".join(intervals)
+        self.question.display.update({'input_display': intervals_str})
+        
     def draw_question(self):
 
         self.keyboard = Keyboard(scale=self.question.chromatic_scale, main_loop=self.loop, 
