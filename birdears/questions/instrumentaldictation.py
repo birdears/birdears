@@ -124,19 +124,7 @@ class InstrumentalDictationQuestion(QuestionBase):
     def play_question(self, callback=None, end_callback=None,
                            *args, **kwargs):
 
-        #from ..__main__ import get_interface
-        ##global INTERFACE
-        #print(get_interface())
-        #INTERFACE = get_interface()
-        #if INTERFACE == 'commandline':
-
-        #for r in range(self.n_repeats):
-        ####self.pre_question.play(callback=callback, end_callback=end_callback,
-                        ####*args, **kwargs)
-        ####self.question.play(callback=callback, end_callback=end_callback,
-                    ####*args, **kwargs)
         for r in range(self.n_repeats):
-            #self.question.play_question()
             self.pre_question.play(callback=callback, end_callback=end_callback,
                                     *args, **kwargs)
             self.question.play(callback=callback, end_callback=end_callback,
@@ -145,26 +133,13 @@ class InstrumentalDictationQuestion(QuestionBase):
             for i in range(self.wait_time):
                 time_left = str(self.wait_time - i).rjust(3)
                 text = '{} seconds remaining...'.format(time_left)
+                # self.display.update({'main_display': 'what is the interval?'})
+                self.display.update({'main_display': text})
+
                 #print(center_text(text, sep=False), end='')
                 self.question._wait(1)
+                
 
-        #####for i in range(self.wait_time):
-            #####time_left = str(self.wait_time - i).rjust(3)
-            #####text = '{} seconds remaining...'.format(time_left)
-            #####print(center_text(text, sep=False), end='')
-            #####self.question._wait(1)
-
-        ###########for r in range(self.n_repeats):
-            ###########self.pre_question.play(callback=callback, end_callback=end_callback,
-                            ###########*args, **kwargs)
-            ###########self.question.play(callback=callback, end_callback=end_callback,
-                        ###########*args, **kwargs)
-
-            ###########for i in range(self.wait_time):
-                ###########time_left = str(self.wait_time - i).rjust(3)
-                ###########text = '{} seconds remaining...'.format(time_left)
-                ###########print(center_text(text, sep=False), end='')
-                ###########self.question._wait(1)
 
     def check_question(self):
         """Checks whether the given answer is correct.
