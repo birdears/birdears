@@ -11,7 +11,7 @@ class DictCallback(dict):
         self.update(other)
         
     def __setitem__(self, key, value):
-        super(DictCallback, self).__setitem__(self, key, value)
+        super(DictCallback, self).__setitem__(key, value)
         
         if self.callback:
             self.callback(*self.callback_args, **self.callback_kwargs)
