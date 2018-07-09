@@ -119,10 +119,13 @@ class NoteNameQuestion(QuestionBase):
         # terminated.
         # https://docs.python.org/3/library/threading.html#thread-objects
 
+        self.display.update({'main_display': 'The tonic is {tonic}. Press the key representing the second note.'.format(tonic=self.tonic_str)})
         self.pre_question.play(callback=callback, end_callback=end_callback,
                                *args, **kwargs)
         #kwargs['ui_obj'].thread.join()
-        self.question.play(callback=callback, end_callback=end_callback,
+        ##self.question.play(callback=callback, end_callback=end_callback,
+                           ##*args, **kwargs)
+        self.question.play(callback=None, end_callback=None,
                            *args, **kwargs)
 
     def play_resolution(self, callback=None, end_callback=None, *args,
