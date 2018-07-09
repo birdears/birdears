@@ -235,8 +235,6 @@ class TextUserInterface:
         #self.loop = urwid.MainLoop(widget=self.tui_widget, palette=palette, unhandled_input=self.keypress)
         self.loop = urwid.MainLoop(widget=self.tui_widget, palette=palette)
         self.loop.screen.set_terminal_properties(colors=256)
-        #self.loop.screen.hook_event_loop(self.loop.event_loop, self.keypress)
-        #self.loop.screen.set_input_timeouts(None)
         
         with self.loop.start():
             
@@ -252,8 +250,7 @@ class TextUserInterface:
                 #for i in range(self.question.n_input_notes): #etc
                 while len(self.input_keys) < self.question.n_input_notes: #etc
                     input_key = self.loop.screen.get_input()[0]
-                    #user_input = self.loop.screen.get_input()
-                    D(input_key)
+                    #D(input_keys)
                     
                     # these inputs are answers to the exercise 
                     if input_key in self.question.keyboard_index and input_key != ' ': # space char
@@ -261,16 +258,10 @@ class TextUserInterface:
                         self.input_keys.append(input_key)
                         #self.update_input_wid()
                         
-                        ####if len(self.input_keys) == self.question.n_notes:
-                            
-                            ####answer = self.input_keys if self.question.n_notes > 1 else user_input 
-                            ####self.check_question(answer)
-                            
                     # these inputs are commands to birdears 
                     else:
                         self.keypress(input_key)
                     
-                #answer = self.input_keys if self.question.n_notes > 1 else user_input 
                 answer = self.input_keys
                 self.check_question(self.input_keys)
                 
@@ -284,8 +275,10 @@ class TextUserInterface:
         # TODO: UPDATE DISPLAY BEFORE play_resolution
         if answer['is_correct']:
             self.correct += 1
+            self.question.display['main_loop'] = 'Correct!'
         else:
             self.wrong += 1
+            self.question.display['main_loop'] = 'Incorrect!'
             
         answers_text = "Answers: +{correct} / -{incorrect} ".\
             format(correct=self.correct, incorrect=self.wrong)
@@ -316,7 +309,6 @@ class TextUserInterface:
 
         self.question = self.create_question(exercise=self.exercise, **self.arguments)
         self.question.display.callback = self.update_question_display
-        #D(self.question.n_notes)
         self.input_keys = list()
 
         self.draw_question()
@@ -346,6 +338,17 @@ class TextUserInterface:
             'descending': self.question.is_descending,
             'chromatic': self.question.is_chromatic,
         }
+        
+        # eg.:
+        #
+        # Melodic Dictation
+        # Key: C Major Descending scale
+        # Octaves: 2
+        # Chromatics: True
+        # Number of notes: 4
+        #
+        # C Chromatic Descending scale
+        # 1 octave
         
         top_text = """\
 Tonic: {tonic}
@@ -402,10 +405,9 @@ Descending: {descending} Chromatic: {chromatic}\
         
     def _draw_screen(self):
         with LOCK:
+            #self.loop.screen.clear()
+            self.loop.draw_screen()
             
             raw_inpt = list(set(self.loop.screen.get_available_raw_input()))
             for item in raw_inpt:
                 self.keypress(chr(item))
-                
-            #self.loop.screen.clear()
-            self.loop.draw_screen()
