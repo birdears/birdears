@@ -131,10 +131,22 @@ class InstrumentalDictationQuestion(QuestionBase):
         #if INTERFACE == 'commandline':
 
         #for r in range(self.n_repeats):
-        self.pre_question.play(callback=callback, end_callback=end_callback,
-                        *args, **kwargs)
-        self.question.play(callback=callback, end_callback=end_callback,
-                    *args, **kwargs)
+        ####self.pre_question.play(callback=callback, end_callback=end_callback,
+                        ####*args, **kwargs)
+        ####self.question.play(callback=callback, end_callback=end_callback,
+                    ####*args, **kwargs)
+        for r in range(self.n_repeats):
+            #self.question.play_question()
+            self.pre_question.play(callback=callback, end_callback=end_callback,
+                                    *args, **kwargs)
+            self.question.play(callback=callback, end_callback=end_callback,
+                                *args, **kwargs)
+
+            for i in range(self.wait_time):
+                time_left = str(self.wait_time - i).rjust(3)
+                text = '{} seconds remaining...'.format(time_left)
+                #print(center_text(text, sep=False), end='')
+                self.question._wait(1)
 
         #####for i in range(self.wait_time):
             #####time_left = str(self.wait_time - i).rjust(3)

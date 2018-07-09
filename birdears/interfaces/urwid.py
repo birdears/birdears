@@ -248,12 +248,7 @@ class TextUserInterface:
                     
                 self.loop.screen.get_available_raw_input()
                 
-                # for i in range(self.question.n_input_notes): #etc
-                # FIXME: please refactor
-                if self.question.name != 'instrumental':
-                    
-                    #with LOCK:
-                    #user_input = self.loop.screen.get_input()[0]
+                for i in range(self.question.n_input_notes): #etc
                     user_input = self.loop.screen.get_input()[0]
                     
                     # these inputs are answers to the exercise 
@@ -273,17 +268,41 @@ class TextUserInterface:
                     else:
                         self.keypress(user_input[0] if type(user_input) == list else user_input)
                         
+                # FIXME: please refactor
+                ######################if self.question.name != 'instrumental':
+                    
+                    #######################with LOCK:
+                    #######################user_input = self.loop.screen.get_input()[0]
+                    ######################user_input = self.loop.screen.get_input()[0]
+                    
+                    ####################### these inputs are answers to the exercise 
+                    ######################if user_input in self.question.keyboard_index and user_input != ' ': # space char
+                        
+                        ######################self.input_keys.append(user_input)
+                        #######################self.update_input_wid()
+                        
+                        ######################if len(self.input_keys) == self.question.n_notes:
+                            
+                            ######################answer = self.input_keys if self.question.n_notes > 1 else user_input 
+                            ######################self.check_question(answer)
+                            
+                            ######################new_question = True
+                            
+                    ####################### these inputs are commands to birdears 
+                    ######################else:
+                        ######################self.keypress(user_input[0] if type(user_input) == list else user_input)
+                        
                 # instrumental doesn't take input
                 else:
-                    for r in range(self.question.n_repeats):
-                        self.question.play_question()
+                    #########for r in range(self.question.n_repeats):
+                        #########self.question.play_question()
 
-                        for i in range(self.question.wait_time):
-                            time_left = str(self.question.wait_time - i).rjust(3)
-                            text = '{} seconds remaining...'.format(time_left)
-                            #print(center_text(text, sep=False), end='')
-                            with LOCK:
-                                self.question.question._wait(1)
+                        #########for i in range(self.question.wait_time):
+                            #########time_left = str(self.question.wait_time - i).rjust(3)
+                            #########text = '{} seconds remaining...'.format(time_left)
+                            ##########print(center_text(text, sep=False), end='')
+                            #########with LOCK:
+                                #########self.question.question._wait(1)
                             
                             user_input = self.loop.screen.get_available_raw_input()
                             if user_input:
