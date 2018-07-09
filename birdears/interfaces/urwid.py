@@ -268,6 +268,7 @@ class TextUserInterface:
                 
                 if new_question:
                 
+                    self.create_question(self.exercise, **self.arguments)
                     self.run_question()
                     new_question = False
                 
@@ -329,16 +330,18 @@ class TextUserInterface:
         else:
             raise Exception("Oops!", QUESTION_CLASSES)
 
-        return QUESTION_CLASS(**kwargs)
+        #self.question = self.create_question(exercise=self.exercise, **self.arguments)
+        self.question = QUESTION_CLASS(**kwargs)
+        self.question.display.callback = self.update_question_display
+        
+        self.input_keys = list()
+        
+        self.draw_question()
+        
+        #return QUESTION_CLASS(**kwargs)
 
 
     def run_question(self):
-
-        self.question = self.create_question(exercise=self.exercise, **self.arguments)
-        self.question.display.callback = self.update_question_display
-        self.input_keys = list()
-
-        self.draw_question()
 
         kwargs = {
             'callback': self.keyboard.highlight_key,
@@ -357,8 +360,7 @@ class TextUserInterface:
     # Maybe this chould well be an widget feeded by the display dict
     
     def update_question_display(self):
-        text = str()
-        # FIXME
+        
         for key, value in self.question.display.items():
             
             if key not in self.question_widget.display:
@@ -366,17 +368,14 @@ class TextUserInterface:
             
             self.question_widget.display[key].set_text(value)
             
-        #self.question_widget.display_text.set_text(str(text))
         self._draw_screen()
         
     def update_input_display(self):
 
-        #input_display = self.question.display['input_display']
-        
         keyboard_index = self.question.keyboard_index
         
         intervals = [INTERVALS[keyboard_index.index(item)][1] for item in self.input_keys]
-        intervals_str = " ".join(intervals)
+        intervals_str = " - ".join(intervals)
         self.question.display.update({'input_display': intervals_str})
         
     def draw_question(self):
@@ -436,12 +435,13 @@ Descending: {descending} Chromatic: {chromatic}\
                 self.loop.draw_screen()
             
         elif key in ('R', 'r'):
-            kwargs = {
-                'callback': self.keyboard.highlight_key,
-                'end_callback': self.keyboard.highlight_key,
-            }
+            self.run_question()
+            ######kwargs = {
+                ######'callback': self.keyboard.highlight_key,
+                ######'end_callback': self.keyboard.highlight_key,
+            ######}
 
-            self.question.play_question(**kwargs)
+            ######self.question.play_question(**kwargs)
             
         elif key in ('Q', 'q'):
             raise urwid.ExitMainLoop()
