@@ -13,34 +13,36 @@ from .note_and_pitch import Pitch
 from .scale import DiatonicScale
 from .scale import ChromaticScale
 
+from .utils import DictCallback
+
 from functools import wraps
 
 QUESTION_CLASSES = {}
 
 
-class DictCallback(dict):
+#######################class DictCallback(dict):
     
-    callback = None
+    #######################callback = None
     
-    callback_args = list()
-    callback_kwargs = dict()
+    #######################callback_args = list()
+    #######################callback_kwargs = dict()
     
-    def __init__(self, other=None, **kwargs):
-        #super(DictCallback, self).__init__(self, other, **kwargs)
-        super(DictCallback, self).__init__()
-        self.update(other)
+    #######################def __init__(self, other=None, **kwargs):
+        ########################super(DictCallback, self).__init__(self, other, **kwargs)
+        #######################super(DictCallback, self).__init__()
+        #######################self.update(other)
         
-    def __setitem__(self, key, value):
-        super(DictCallback, self).__setitem__(self, key, value)
+    #######################def __setitem__(self, key, value):
+        #######################super(DictCallback, self).__setitem__(self, key, value)
         
-        if self.callback:
-            self.callback(*self.callback_args, **self.callback_kwargs)
+        #######################if self.callback:
+            #######################self.callback(*self.callback_args, **self.callback_kwargs)
             
-    def update(self, other=None):
-        super(DictCallback, self).update(other)
+    #######################def update(self, other=None):
+        #######################super(DictCallback, self).update(other)
         
-        if self.callback:
-            self.callback(*self.callback_args, **self.callback_kwargs)
+        #######################if self.callback:
+            #######################self.callback(*self.callback_args, **self.callback_kwargs)
         
 def register_question_class(cls, *args, **kwargs):
     """Decorator for question classes.

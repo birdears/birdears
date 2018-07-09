@@ -232,8 +232,11 @@ class TextUserInterface:
         
         self.tui_widget = TextUserInterfaceWidget(*args, **kwargs)
         
+        #self.loop = urwid.MainLoop(widget=self.tui_widget, palette=palette, unhandled_input=self.keypress)
         self.loop = urwid.MainLoop(widget=self.tui_widget, palette=palette)
         self.loop.screen.set_terminal_properties(colors=256)
+        #self.loop.screen.hook_event_loop(self.loop.event_loop, self.keypress)
+        #self.loop.screen.set_input_timeouts(None)
         
         with self.loop.start():
             
@@ -245,16 +248,16 @@ class TextUserInterface:
                 
                     self.run_question()
                     new_question = False
-                    
-                #self.loop.screen.get_available_raw_input()
                 
                 for i in range(self.question.n_input_notes): #etc
-                    user_input = self.loop.screen.get_input()[0]
+                    input_key = self.loop.screen.get_input()[0]
+                    #user_input = self.loop.screen.get_input()
+                    D(input_key)
                     
                     # these inputs are answers to the exercise 
-                    if user_input in self.question.keyboard_index and user_input != ' ': # space char
+                    if input_key in self.question.keyboard_index and input_key != ' ': # space char
                         
-                        self.input_keys.append(user_input)
+                        self.input_keys.append(input_key)
                         #self.update_input_wid()
                         
                         if len(self.input_keys) == self.question.n_notes:
@@ -262,17 +265,12 @@ class TextUserInterface:
                             answer = self.input_keys if self.question.n_notes > 1 else user_input 
                             self.check_question(answer)
                             
-                            new_question = True
-                            
                     # these inputs are commands to birdears 
                     else:
-                        self.keypress(user_input[0] if type(user_input) == list else user_input)
-                        
-                user_input = self.loop.screen.get_available_raw_input()
-                if user_input:
-                    self.keypress(user_input[0] if type(user_input) == list else user_input)
+                        self.keypress(input_key)
                     
                 new_question = True
+                
                 
     def check_question(self, user_input):
         
@@ -359,14 +357,19 @@ Descending: {descending} Chromatic: {chromatic}\
         
         self.tui_widget.contents.update({'body': (self.question_widget, None)})
         
-        answers_text = "Answers: +{correct} / -{incorrect} ".\
-            format(correct=self.correct, incorrect=self.wrong)
+        if self.question.n_input_notes > 0:
+            answers_text = "Answers: +{correct} / -{incorrect} ".\
+                format(correct=self.correct, incorrect=self.wrong)
+        else:
+            answers_text = "(Question type doesn't takes answer)"
         self.tui_widget.footer_right.set_text(answers_text)
         
         with LOCK:
             self.loop.draw_screen()
 
     def keypress(self, key):
+        
+        #D(key)
         
         if key in ('T', 't'):
             with LOCK:
@@ -393,5 +396,10 @@ Descending: {descending} Chromatic: {chromatic}\
         
     def _draw_screen(self):
         with LOCK:
+            
+            raw_inpt = self.loop.screen.get_available_raw_input()
+            for item in raw_inpt:
+                self.keypress(chr(item))
+                
             #self.loop.screen.clear()
             self.loop.draw_screen()
