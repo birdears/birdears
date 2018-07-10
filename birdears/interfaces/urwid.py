@@ -247,6 +247,7 @@ class TextUserInterface:
         self.exercise = exercise
         self.arguments = kwargs
         
+        self.counter = 0
         self.correct = 0
         self.wrong = 0
         
@@ -270,6 +271,7 @@ class TextUserInterface:
                 
                 if new_question:
                 
+                    self.counter += 1
                     self.create_question(self.exercise, **self.arguments)
                     self.run_question()
                     new_question = False
@@ -413,11 +415,6 @@ class TextUserInterface:
         # C Chromatic Descending scale
         # 1 octave
         
-        ####top_text = """\
-####Tonic: {tonic}
-####Descending: {descending} Chromatic: {chromatic}\
-        ####""".format(**top_variables)
-        
         top_text = "Key: {tonic} {mode} {random}({n_octaves} {octaves_str})\n" \
                     "Descending: {descending}\n" \
                     "Chromatic: {chromatic}\n" \
@@ -426,10 +423,6 @@ class TextUserInterface:
                 
         top_widget = urwid.Text(top_text)
         
-        #self.input_wid = urwid.Text('')
-        #bottom_widget = urwid.Text('please write me!!!')
-        
-        #self.question_widget = QuestionWidget(top_widget=top_widget, keyboard=self.keyboard, bottom_widget=bottom_widget)
         self.question_widget = QuestionWidget(top_widget=top_widget, keyboard=self.keyboard, display=self.question.display)
         
         self.tui_widget.contents.update({'body': (self.question_widget, None)})
