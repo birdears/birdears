@@ -15,14 +15,14 @@ from ..note_and_pitch import get_pitch_by_number
 
 from random import choice
 
+
 @register_question_class
 class MelodicIntervalQuestion(QuestionBase):
     """Implements a Melodic Interval test.
     """
 
     name = 'melodic'
-    
-    #@log_event
+
     def __init__(self, mode='major', tonic='C', octave=4, descending=False,
                  chromatic=False, n_octaves=1, valid_intervals=CHROMATIC_TYPE,
                  user_durations=None, prequestion_method='tonic_only',
@@ -113,7 +113,7 @@ class MelodicIntervalQuestion(QuestionBase):
         return resolution
 
     def play_question(self, callback=None, end_callback=None,
-                           *args, **kwargs):
+                      *args, **kwargs):
         # Other threads can call a thread’s join() method. This blocks the
         # calling thread until the thread whose join() method is called is
         # terminated.
@@ -127,9 +127,10 @@ class MelodicIntervalQuestion(QuestionBase):
         self.display.update({'main_display': 'What is the interval?'})
 
     def play_resolution(self, callback=None, end_callback=None,
-                           *args, **kwargs):
+                        *args, **kwargs):
 
-        thread = self.resolution.play(callback=callback, end_callback=end_callback,
+        thread = self.resolution.play(callback=callback,
+                                      end_callback=end_callback,
                                       *args, **kwargs)
         thread.join()
 

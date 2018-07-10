@@ -12,13 +12,14 @@ from ..sequence import Sequence
 from ..resolution import Resolution
 from ..prequestion import PreQuestion
 
+
 @register_question_class
 class MelodicDictationQuestion(QuestionBase):
     """Implements a melodic dictation test.
     """
 
     name = 'dictation'
-    
+
     def __init__(self, mode='major', max_intervals=3, n_notes=4, tonic='C',
                  octave=4, descending=False, chromatic=False, n_octaves=1,
                  valid_intervals=CHROMATIC_TYPE, user_durations=None,
@@ -109,8 +110,7 @@ class MelodicDictationQuestion(QuestionBase):
 
         return resolution
 
-    def play_question(self, callback=None, end_callback=None,
-                           *args, **kwargs):
+    def play_question(self, callback=None, end_callback=None, *args, **kwargs):
         # Other threads can call a thread’s join() method. This blocks the
         # calling thread until the thread whose join() method is called is
         # terminated.
@@ -121,12 +121,14 @@ class MelodicDictationQuestion(QuestionBase):
                                *args, **kwargs)
         self.question.play(callback=callback, end_callback=end_callback,
                            *args, **kwargs)
-        self.display.update({'main_display': 'Now, please type the intervals you\'ve heard.'})
+        self.display.update({'main_display': ('Now, please type the intervals'
+                                              'you\'ve heard.')})
 
     def play_resolution(self, callback=None, end_callback=None,
-                           *args, **kwargs):
+                        *args, **kwargs):
 
-        thread = self.resolution.play(callback=callback, end_callback=end_callback,
+        thread = self.resolution.play(callback=callback,
+                                      end_callback=end_callback,
                                       *args, **kwargs)
         thread.join()
 

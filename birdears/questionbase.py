@@ -30,15 +30,15 @@ def register_question_class(cls, *args, **kwargs):
     """
 
     global QUESTION_CLASSES
-    
+
     QUESTION_CLASSES.update({cls.name: cls})
-    
+
     return cls
 
 
 # values for valid_semitones list can be Interval objects or int's (semitones)
 def get_valid_pitches(scale, valid_intervals=CHROMATIC_TYPE):
-    
+
     tonic_pitch = scale[0]
 
     valid_scale = list()
@@ -137,21 +137,21 @@ class QuestionBase:
         """
 
         self.display = DictCallback({'main_display': str()})
-        
+
         if isinstance(mode, str) and any(el == mode for el in ('R', 'r')):
             mode = choice(list(DIATONIC_FORMS))
-        
+
         self.mode = mode
 
         self.is_descending = descending
         self.is_chromatic = chromatic
-        
+
         try:
             if kwargs['n_notes']:
                 self.n_notes = kwargs['n_notes']
         except KeyError:
             self.n_notes = 1
-        
+
         self.n_input_notes = int(self.n_notes)
 
         # self.octave = octave if octave else randrange(3, 5)
@@ -219,8 +219,10 @@ class QuestionBase:
 
         self.allowed_pitches = \
             get_valid_pitches(self.scale, valid_intervals=valid_intervals)
-        
-        self.allowed_intervals = [INTERVALS[abs(int(self.tonic_pitch)-int(pitch))][1] for pitch in self.allowed_pitches]
+
+        self.allowed_intervals = \
+            [INTERVALS[abs(int(self.tonic_pitch)-int(pitch))][1]
+             for pitch in self.allowed_pitches]
 
         self.durations = default_durations
         if user_durations:

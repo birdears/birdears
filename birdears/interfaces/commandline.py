@@ -180,12 +180,12 @@ def CommandLine(exercise, **kwargs):
         QUESTION_CLASS = QUESTION_CLASSES[exercise]
     else:
         raise Exception("Oops!", QUESTION_CLASSES)
-        
+
     if 'n_notes' in kwargs:
         dictate_notes = kwargs['n_notes']
     else:
         dictate_notes = 1
-        
+
     getch = _Getch()
 
     new_question_bit = True
@@ -199,11 +199,11 @@ def CommandLine(exercise, **kwargs):
             question = QUESTION_CLASS(**kwargs)
 
             print_question(question)
-            
+
             if not exercise == 'instrumental':
                 question.play_question()
 
-        if exercise == 'instrumental': 
+        if exercise == 'instrumental':
             for r in range(question.n_repeats):
                 question.play_question()
 

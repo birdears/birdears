@@ -66,7 +66,8 @@ class DiatonicScale(ScaleBase):
 
             pitch_num += step * direction
 
-            accident = 'flat' if (('b' in tonic) or (tonic == 'F')) else 'sharp'
+            accident = ('flat' if (('b' in tonic) or (tonic == 'F'))
+                        else 'sharp')
             pitch = get_pitch_by_number(numeric=pitch_num, accident=accident)
             scale.append(pitch)
 
@@ -152,7 +153,7 @@ class ChromaticScale(ScaleBase):
         repeat_tonic = not dont_repeat_tonic  # 1 or 0
 
         accident = 'flat' if (('b' in tonic) or (tonic == 'F')) else 'sharp'
-        
+
         scale = [get_pitch_by_number(numeric=tonic_pitch_num + (i*direction),
                                      accident=accident)
                  for i in range((12 * n_octaves) + repeat_tonic)]

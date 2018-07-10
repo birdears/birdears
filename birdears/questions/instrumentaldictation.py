@@ -13,13 +13,14 @@ from ..prequestion import PreQuestion
 
 from ..interfaces.commandline import center_text
 
+
 @register_question_class
 class InstrumentalDictationQuestion(QuestionBase):
     """Implements an instrumental dictation test.
     """
-    
+
     name = 'instrumental'
-    
+
     def __init__(self, mode='major', wait_time=11, n_repeats=1,
                  max_intervals=3, n_notes=4, tonic='C', octave=4,
                  descending=False, chromatic=False, n_octaves=1,
@@ -96,7 +97,7 @@ class InstrumentalDictationQuestion(QuestionBase):
 
         # instrumental doesn't take input
         self.n_input_notes = 0
-        
+
         self.random_pitches = [choice(self.allowed_pitches) for note
                                in range(n_notes)]
 
@@ -122,25 +123,23 @@ class InstrumentalDictationQuestion(QuestionBase):
         return resolution
 
     def play_question(self, callback=None, end_callback=None,
-                           *args, **kwargs):
+                      *args, **kwargs):
 
         for r in range(self.n_repeats):
             self.display.update({'main_display': 'Listen to the tonality.'})
-            self.pre_question.play(callback=callback, end_callback=end_callback,
-                                    *args, **kwargs)
+            self.pre_question.play(callback=callback,
+                                   end_callback=end_callback,
+                                   *args, **kwargs)
             self.question.play(callback=callback, end_callback=end_callback,
-                                *args, **kwargs)
+                               *args, **kwargs)
 
             for i in range(self.wait_time):
                 time_left = str(self.wait_time - i).rjust(3)
                 text = '{} seconds remaining...'.format(time_left)
-                # self.display.update({'main_display': 'what is the interval?'})
                 self.display.update({'counter': text})
 
-                #print(center_text(text, sep=False), end='')
+                # print(center_text(text, sep=False), end='')
                 self.question._wait(1)
-                
-
 
     def check_question(self):
         """Checks whether the given answer is correct.

@@ -1,1 +1,1 @@
-__all__ = ['commandline']
+__all__ = ['commandline', 'urwid']

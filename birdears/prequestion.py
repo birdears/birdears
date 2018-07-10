@@ -106,8 +106,8 @@ def progression_i_iv_v_i(question, *args, **kwargs):
             when it is `__call__`ed)
     """
 
-    #tonic_pitch = question.tonic_pitch
-    #is_scale_descending = question
+    # tonic_pitch = question.tonic_pitch
+    # is_scale_descending = question
     tonic_index = 0 if not question.scale.is_descending else -1
     tonic_pitch = question.scale[tonic_index]
     mode = question.mode

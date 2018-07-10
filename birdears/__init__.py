@@ -2,11 +2,14 @@
 birdears provides facilities to building musical ear training exercises.
 """
 
+
 def D(data, nlines=0):
-    lb = '\n' * nlines 
+
+    lb = '\n' * nlines
     with open('dbg_pipe', 'w') as debug_pipe:
         debug_pipe.write(str(data) + lb)
-        
+
+
 CHROMATIC_SHARP = ('C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#',
                    'B')
 """tuple: Chromatic notes names using sharps.

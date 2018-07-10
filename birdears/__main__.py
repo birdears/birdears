@@ -24,23 +24,22 @@ CTX_SETTINGS = dict(
     max_content_width=80,
 )
 
-VALID_MODES = tuple(DIATONIC_MODES)+ ('r', 'R')
-#VALID_MODES += ('r', 'R')
+VALID_MODES = tuple(DIATONIC_MODES) + ('r', 'R')
 
 VALID_PREQUESTION_METHODS = tuple(PREQUESTION_METHODS.keys())
 VALID_RESOLUTION_METHODS = tuple(RESOLUTION_METHODS.keys())
 
 INTERFACE = False
 
-def load_interface(*args, **kwargs):
-    
-    if INTERFACE == 'urwid':
-       # from .interfaces.urwid import urwid
 
+def load_interface(*args, **kwargs):
+
+    if INTERFACE == 'urwid':
         from .interfaces.urwid import TextUserInterface
         tui = TextUserInterface(**kwargs)
     else:
         CommandLine(*args, **kwargs)
+
 
 main_epilog = """
 You can use 'birdears <command> --help' to show options for a specific command.
@@ -71,9 +70,9 @@ valid_resolution_methods = ", ".join(VALID_RESOLUTION_METHODS)
               default=False, envvar='CLI')
 def cli(debug, urwid, cli):
     """birdears ─ Functional Ear Training for Musicians!"""
-    
+
     global INTERFACE
-    
+
     if debug:
         from .logger import logger
         from .logger import logging
@@ -408,7 +407,7 @@ def notename(*args, **kwargs):
 
     kwargs.update({'exercise': 'notename'})
     load_interface(*args, **kwargs)
-    
+
 
 #
 # birdear's "load"
