@@ -178,7 +178,7 @@ class TextUserInterfaceWidget(urwid.Frame):
 
         ##header = urwid.AttrMap(urwid.Padding(urwid.Text(('header', 'hey pal'))), 'header')
         ##footer = urwid.AttrMap(urwid.Padding(urwid.Text(('footer', 'footers'))), 'footer')
-        self.footer_left = urwid.Text('footers')
+        self.footer_left = urwid.Text('r - Repeat question; q - Quit')
         self.footer_right = urwid.Text('--', align='right')
         header = urwid.AttrMap(urwid.Padding(urwid.Text('hey pal')), 'header')
         footer = urwid.AttrMap(
@@ -376,7 +376,7 @@ class TextUserInterface:
         keyboard_index = self.question.keyboard_index
         
         intervals = [INTERVALS[keyboard_index.index(item)][1] for item in self.input_keys]
-        intervals_str = " - ".join(intervals)
+        intervals_str = " ".join(intervals)
         self.question.display.update({'input_display': intervals_str})
         
     def draw_question(self):
@@ -457,7 +457,7 @@ Descending: {descending} Chromatic: {chromatic}\
         elif key == 'backspace':
             if len(self.input_keys) > 0:
                 self.input_keys.remove(self.input_keys[-1])
-                #self.update_input_wid()
+                self.update_input_display()
                 pass
         else:
             pass
