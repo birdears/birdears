@@ -5,6 +5,8 @@ from . import KEYBOARD_INDICES
 from . import CHROMATIC_TYPE
 from . import KEYS
 from . import DEGREE_INDEX
+from . import INTERVALS
+from . import DIATONIC_FORMS
 
 # from .interval import Interval
 
@@ -20,30 +22,6 @@ from functools import wraps
 QUESTION_CLASSES = {}
 
 
-#######################class DictCallback(dict):
-    
-    #######################callback = None
-    
-    #######################callback_args = list()
-    #######################callback_kwargs = dict()
-    
-    #######################def __init__(self, other=None, **kwargs):
-        ########################super(DictCallback, self).__init__(self, other, **kwargs)
-        #######################super(DictCallback, self).__init__()
-        #######################self.update(other)
-        
-    #######################def __setitem__(self, key, value):
-        #######################super(DictCallback, self).__setitem__(self, key, value)
-        
-        #######################if self.callback:
-            #######################self.callback(*self.callback_args, **self.callback_kwargs)
-            
-    #######################def update(self, other=None):
-        #######################super(DictCallback, self).update(other)
-        
-        #######################if self.callback:
-            #######################self.callback(*self.callback_args, **self.callback_kwargs)
-        
 def register_question_class(cls, *args, **kwargs):
     """Decorator for question classes.
 
@@ -160,6 +138,9 @@ class QuestionBase:
 
         self.display = DictCallback({'main_display': str()})
         
+        if isinstance(mode, str) and any(el == mode for el in ('R', 'r')):
+            mode = choice(list(DIATONIC_FORMS))
+        
         self.mode = mode
 
         self.is_descending = descending
@@ -238,6 +219,8 @@ class QuestionBase:
 
         self.allowed_pitches = \
             get_valid_pitches(self.scale, valid_intervals=valid_intervals)
+        
+        self.allowed_intervals = [INTERVALS[abs(int(self.tonic_pitch)-int(pitch))][1] for pitch in self.allowed_pitches]
 
         self.durations = default_durations
         if user_durations:

@@ -24,7 +24,9 @@ CTX_SETTINGS = dict(
     max_content_width=80,
 )
 
-VALID_MODES = tuple(DIATONIC_MODES.keys())
+VALID_MODES = tuple(DIATONIC_MODES)+ ('r', 'R')
+#VALID_MODES += ('r', 'R')
+
 VALID_PREQUESTION_METHODS = tuple(PREQUESTION_METHODS.keys())
 VALID_RESOLUTION_METHODS = tuple(RESOLUTION_METHODS.keys())
 

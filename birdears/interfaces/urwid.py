@@ -392,9 +392,14 @@ class TextUserInterface:
                             keyboard_index=self.question.keyboard_index)
         
         top_variables = {
-            'tonic': self.question.tonic_str + (' (random)' if any(el in self.arguments['tonic'] for el in ('r', 'R')) else ''),
+            'tonic': self.question.tonic_str,
+            'mode': self.question.mode.capitalize(),
+            'random': ('(random) ' if any(el in self.arguments['tonic'] for el in ('r', 'R')) else ''),
             'descending': self.question.is_descending,
             'chromatic': self.question.is_chromatic,
+            'n_octaves': self.question.n_octaves,
+            'octaves_str': ('octave' if self.question.n_octaves == 1 else 'octaves'),
+            'intervals': ", ".join(self.question.allowed_intervals)
         }
         
         # eg.:
@@ -408,11 +413,17 @@ class TextUserInterface:
         # C Chromatic Descending scale
         # 1 octave
         
-        top_text = """\
-Tonic: {tonic}
-Descending: {descending} Chromatic: {chromatic}\
-        """.format(**top_variables)
+        ####top_text = """\
+####Tonic: {tonic}
+####Descending: {descending} Chromatic: {chromatic}\
+        ####""".format(**top_variables)
         
+        top_text = "Key: {tonic} {mode} {random}({n_octaves} {octaves_str})\n" \
+                    "Descending: {descending}\n" \
+                    "Chromatic: {chromatic}\n" \
+                    "Intervals: {intervals}" \
+                    .format(**top_variables)
+                
         top_widget = urwid.Text(top_text)
         
         #self.input_wid = urwid.Text('')
@@ -435,8 +446,6 @@ Descending: {descending} Chromatic: {chromatic}\
 
     def keypress(self, key):
         
-        #D(key)
-        
         if key in ('T', 't'):
             with LOCK:
                 self.loop.screen.clear()
@@ -444,12 +453,6 @@ Descending: {descending} Chromatic: {chromatic}\
             
         elif key in ('R', 'r'):
             self.run_question()
-            ######kwargs = {
-                ######'callback': self.keyboard.highlight_key,
-                ######'end_callback': self.keyboard.highlight_key,
-            ######}
-
-            ######self.question.play_question(**kwargs)
             
         elif key in ('Q', 'q'):
             raise urwid.ExitMainLoop()
