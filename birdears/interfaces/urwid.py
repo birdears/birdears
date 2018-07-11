@@ -156,8 +156,11 @@ class Keyboard(urwid.Filler):
 
         with LOCK:
 
-            for key in self.key_index.values():
-                key.highlight(state=False)
+            # for key in self.key_index.values():
+            for key in self.highlighted_keys:
+                # key.highlight(state=False)
+                self.key_index[key].highlight(state=False)
+                self.highlighted_keys.remove(key)
 
         if type(element).__name__ == "Pitch":
 
@@ -187,7 +190,9 @@ class TextUserInterfaceWidget(urwid.Frame):
 
         self.footer_left = urwid.Text('r - Repeat question; q - Quit')
         self.footer_right = urwid.Text('--', align='right')
-        header = urwid.AttrMap(urwid.Padding(urwid.Text('hey pal')), 'header')
+        header = urwid.AttrMap(urwid.Padding(urwid.Text('birdears ─ Functional'
+                                                        ' Ear Training')),
+                               'header')
         footer = urwid.AttrMap(urwid.Padding(urwid.Columns(widget_list=[
                             self.footer_left, self.footer_right])), 'footer')
         loading = urwid.Text('loading...')
