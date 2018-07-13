@@ -169,7 +169,7 @@ def make_input_str(user_input, keyboard_index):
 
 class CommandLine:
 
-    def __init__(self, exercise, **kwargs):
+    def __init__(self, exercise=None, *args, **kwargs):
         """This function implements the birdears loop for command line.
 
         Args:
@@ -181,77 +181,85 @@ class CommandLine:
         if exercise in QUESTION_CLASSES:
             QUESTION_CLASS = QUESTION_CLASSES[exercise]
         else:
-            raise Exception("Oops!", QUESTION_CLASSES)
+            # raise Exception("Oops!", QUESTION_CLASSES)
+            raise Exception("Invalid `exercise` value:", exercise)
+        
+        self.exercise = exercise
 
         if 'n_notes' in kwargs:
-            dictate_notes = kwargs['n_notes']
+            self.dictate_notes = kwargs['n_notes']
         else:
-            dictate_notes = 1
+            self.dictate_notes = 1
 
         getch = _Getch()
 
-        new_question_bit = True
+        self.new_question_bit = True
 
         while True:
-            if new_question_bit is True:
+            if self.new_question_bit is True:
 
-                new_question_bit = False
+                self.new_question_bit = False
 
-                input_keys = []
-                question = QUESTION_CLASS(**kwargs)
+                self.input_keys = list()
+                self.question = QUESTION_CLASS(**kwargs)
 
-                print_question(question)
+                print_question(self.question)
 
-                if not exercise == 'instrumental':
-                    question.play_question()
+                if not self.exercise == 'instrumental':
+                    self.question.play_question()
 
-            if exercise == 'instrumental':
-                for r in range(question.n_repeats):
-                    question.play_question()
+            if self.exercise == 'instrumental':
+                for r in range(self.question.n_repeats):
+                    self.question.play_question()
 
-                for i in range(question.wait_time):
-                    time_left = str(question.wait_time - i).rjust(3)
+                for i in range(self.question.wait_time):
+                    time_left = str(self.question.wait_time - i).rjust(3)
                     text = '{} seconds remaining...'.format(time_left)
                     print(center_text(text, sep=False), end='')
-                    question.question._wait(1)
+                    self.question.question._wait(1)
 
-                response = question.check_question()
+                response = self.question.check_question()
                 print_instrumental(response)
 
-                new_question_bit = True
+                self.new_question_bit = True
 
                 continue
 
             user_input = getch()
+            self.process_key(user_input)
 
-            if user_input in question.keyboard_index and user_input != ' ':  # spc
+    def process_key(self, user_input):
+        
+        if user_input in self.question.keyboard_index and user_input != ' ':  # spc
 
-                input_keys.append(user_input)
+            self.input_keys.append(user_input)
 
-                if exercise == 'dictation':
-                    input_str = make_input_str(input_keys, question.keyboard_index)
-                    print(input_str, end='')
+            if self.exercise == 'dictation':
+                input_str = make_input_str(self.input_keys, self.question.keyboard_index)
+                print(input_str, end='')
 
-                if len(input_keys) == dictate_notes:
+            # FIXME: use self.question.n_notes instead
+            if len(self.input_keys) == self.dictate_notes:
 
-                    response = question.check_question(input_keys)
-                    print_response(response)
+                response = self.question.check_question(self.input_keys)
+                print_response(response)
 
-                    question.play_resolution()
+                self.question.play_resolution()
 
-                    new_question_bit = True
+                self.new_question_bit = True
 
-            # backspace
-            elif user_input == '\x7f':
-                if(len(input_keys) > 0) and exercise == 'dictation':
-                    del(input_keys[-1])
-                    input_str = make_input_str(input_keys, question.keyboard_index)
-                    print(input_str, end='')
+        # backspace
+        elif user_input == '\x7f':
+            # FIXME: use self.question.n_input_notes instead
+            if(len(self.input_keys) > 0) and self.exercise == 'dictation':
+                del(self.input_keys[-1])
+                input_str = make_input_str(self.input_keys, self.question.keyboard_index)
+                print(input_str, end='')
 
-            # q/Q - quit
-            elif user_input in ('q', 'Q'):
-                exit(0)
+        # q/Q - quit
+        elif user_input in ('q', 'Q'):
+            exit(0)
 
-            # r - repeat interval
-            elif user_input in ('r', 'R'):
-                question.play_question()
+        # r - repeat interval
+        elif user_input in ('r', 'R'):
+            self.question.play_question()

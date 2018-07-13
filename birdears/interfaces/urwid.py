@@ -252,7 +252,7 @@ class QuestionWidget(urwid.Padding):
 
 class TextUserInterface:
 
-    def __init__(self, exercise, *args, **kwargs):
+    def __init__(self, exercise=None, *args, **kwargs):
 
         self.exercise = exercise
         self.arguments = kwargs

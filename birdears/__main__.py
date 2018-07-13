@@ -38,7 +38,7 @@ def load_interface(*args, **kwargs):
         from .interfaces.urwid import TextUserInterface
         tui = TextUserInterface(**kwargs)
     else:
-        CommandLine(*args, **kwargs)
+        cli = CommandLine(*args, **kwargs)
 
 
 main_epilog = """
@@ -430,7 +430,7 @@ def load(filename, *args, **kwargs):
     toml_file_str = filename.read()
     config_dict = toml.loads(toml_file_str)
 
-    load_interface(*args, **kwargs)
+    load_interface(*args, **kwargs, **config_dict)
 
 
 if __name__ == "__main__":
