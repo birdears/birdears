@@ -121,7 +121,7 @@ class MelodicDictationQuestion(QuestionBase):
                                *args, **kwargs)
         self.question.play(callback=callback, end_callback=end_callback,
                            *args, **kwargs)
-        self.display.update({'main_display': ('Now, please type the intervals'
+        self.display.update({'main_display': ('Now, please type the intervals '
                                               'you\'ve heard.')})
 
     def play_resolution(self, callback=None, end_callback=None,

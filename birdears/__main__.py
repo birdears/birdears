@@ -1,6 +1,6 @@
 "__Main__ docs are here."
 
-import urwid
+from . import urwid
 
 from . import click
 
