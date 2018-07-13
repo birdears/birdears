@@ -339,7 +339,7 @@ class TextUserInterface:
         if exercise in QUESTION_CLASSES:
             QUESTION_CLASS = QUESTION_CLASSES[exercise]
         else:
-            raise Exception("Oops!", QUESTION_CLASSES)
+            raise Exception("Invalid `exercise` value:", exercise)
 
         self.question = QUESTION_CLASS(**kwargs)
         self.question.display.callback = self.update_question_display
