@@ -31,7 +31,7 @@ Features:
 """
 
 
-import urwid
+from .. import urwid
 from ..urwid.wimp import SelectableIcon
 
 
