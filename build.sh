@@ -10,8 +10,10 @@ echo 'starting..'
 pycodestyle birdears --exclude=click,toml,urwid
 
 # run tests
-coverage run --source=birdears --omit=birdears/urwid/**,birdears/click/**,birdears/toml/**,birdears/interfaces/gui/**,birdears/interfaces/urwid/** --module pytest --verbose tests/
-coverage html --omit='*birdears/urwid/*','*birdears/click/*','*birdears/toml/*','*birdears/interfaces/gui/*','*birdears/interfaces/urwid/*' -d docs/coverage-html/
+# coverage run --source=birdears --omit=birdears/urwid/**,birdears/click/**,birdears/toml/**,birdears/interfaces/gui/**,birdears/interfaces/urwid/** --module pytest --verbose tests/
+# coverage html --omit='*birdears/urwid/*','*birdears/click/*','*birdears/toml/*','*birdears/interfaces/gui/*','*birdears/interfaces/urwid/*' -d docs/coverage-html/
+coverage run --source=birdears --omit=birdears/urwid/**,birdears/click/**,birdears/toml/**,birdears/interfaces/gui/** --module pytest --verbose tests/
+coverage html --omit='*birdears/urwid/*','*birdears/click/*','*birdears/toml/*','*birdears/interfaces/gui/*' -d docs/coverage-html/
 
 # remove pypi builds
 rm -rf birdears.egg-info/
