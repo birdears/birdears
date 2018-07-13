@@ -22,16 +22,16 @@
 
 from __future__ import division, print_function
 
-from urwid.compat import with_metaclass
-from urwid.util import decompose_tagmarkup, get_encoding_mode
-from urwid.canvas import CompositeCanvas, CanvasJoin, TextCanvas, \
+from ..urwid.compat import with_metaclass
+from ..urwid.util import decompose_tagmarkup, get_encoding_mode
+from ..urwid.canvas import CompositeCanvas, CanvasJoin, TextCanvas, \
     CanvasCombine, SolidCanvas
-from urwid.widget import WidgetMeta, Widget, BOX, FIXED, FLOW, \
+from ..urwid.widget import WidgetMeta, Widget, BOX, FIXED, FLOW, \
     nocache_widget_render, nocache_widget_render_instance, fixed_size, \
     WidgetWrap, Divider, SolidFill, Text, CENTER, CLIP
-from urwid.container import Pile, Columns
-from urwid.display_common import AttrSpec
-from urwid.decoration import WidgetDecoration
+from ..urwid.container import Pile, Columns
+from ..urwid.display_common import AttrSpec
+from ..urwid.decoration import WidgetDecoration
 
 
 class BigText(Widget):

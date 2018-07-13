@@ -28,9 +28,9 @@ try:
 except ImportError:
     pass # windows
 
-from urwid.util import StoppingContext, int_scale
-from urwid import signals
-from urwid.compat import B, bytes3, xrange, with_metaclass
+from ..urwid.util import StoppingContext, int_scale
+from ..urwid import signals
+from ..urwid.compat import B, bytes3, xrange, with_metaclass
 
 # for replacing unprintable bytes with '?'
 UNPRINTABLE_TRANS_TABLE = B("?") * 32 + bytes3(list(xrange(32,256)))

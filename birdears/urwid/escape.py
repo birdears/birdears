@@ -29,11 +29,11 @@ Terminal Escape Sequences for input and display
 import re
 
 try:
-    from urwid import str_util
+    from ..urwid import str_util
 except ImportError:
-    from urwid import old_str_util as str_util
+    from ..urwid import old_str_util as str_util
 
-from urwid.compat import bytes, bytes3
+from ..urwid.compat import bytes, bytes3
 
 within_double_byte = str_util.within_double_byte
 

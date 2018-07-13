@@ -25,9 +25,9 @@ from __future__ import division, print_function
 HTML PRE-based UI implementation
 """
 
-from urwid import util
-from urwid.main_loop import ExitMainLoop
-from urwid.display_common import AttrSpec, BaseScreen
+from ..urwid import util
+from ..urwid.main_loop import ExitMainLoop
+from ..urwid.display_common import AttrSpec, BaseScreen
 
 
 # replace control characters with ?'s

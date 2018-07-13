@@ -22,7 +22,7 @@
 from __future__ import division, print_function
 
 from inspect import getargspec
-from urwid.compat import PYTHON3, bytes
+from ..urwid.compat import PYTHON3, bytes
 
 def split_repr(self):
     """

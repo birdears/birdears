@@ -22,8 +22,8 @@
 
 from __future__ import division, print_function
 
-from urwid import escape
-from urwid.compat import bytes, text_type, text_types
+from ..urwid import escape
+from ..urwid.compat import bytes, text_type, text_types
 
 import codecs
 

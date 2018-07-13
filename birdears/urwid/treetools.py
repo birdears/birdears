@@ -32,7 +32,7 @@ Features:
 
 
 import urwid
-from urwid.wimp import SelectableIcon
+from ..urwid.wimp import SelectableIcon
 
 
 class TreeWidgetError(RuntimeError):

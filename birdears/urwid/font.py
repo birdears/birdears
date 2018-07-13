@@ -22,10 +22,10 @@
 
 from __future__ import division, print_function
 
-from urwid.escape import SAFE_ASCII_DEC_SPECIAL_RE
-from urwid.util import apply_target_encoding, str_util
-from urwid.canvas import TextCanvas
-from urwid.compat import text_type
+from ..urwid.escape import SAFE_ASCII_DEC_SPECIAL_RE
+from ..urwid.util import apply_target_encoding, str_util
+from ..urwid.canvas import TextCanvas
+from ..urwid.compat import text_type
 
 
 def separate_glyphs(gdata, height):

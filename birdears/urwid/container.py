@@ -22,17 +22,17 @@
 from __future__ import division, print_function
 
 from itertools import chain, repeat
-from urwid.compat import xrange
+from ..urwid.compat import xrange
 
-from urwid.util import is_mouse_press
-from urwid.widget import (Widget, Divider, FLOW, FIXED, PACK, BOX, WidgetWrap,
+from ..urwid.util import is_mouse_press
+from ..urwid.widget import (Widget, Divider, FLOW, FIXED, PACK, BOX, WidgetWrap,
     GIVEN, WEIGHT, LEFT, RIGHT, RELATIVE, TOP, BOTTOM, CLIP, RELATIVE_100)
-from urwid.decoration import (Padding, Filler, calculate_left_right_padding,
+from ..urwid.decoration import (Padding, Filler, calculate_left_right_padding,
     calculate_top_bottom_filler, normalize_align, normalize_width,
     normalize_valign, normalize_height, simplify_align, simplify_width,
     simplify_valign, simplify_height)
-from urwid.monitored_list import MonitoredList, MonitoredFocusList
-from urwid.canvas import (CompositeCanvas, CanvasOverlay, CanvasCombine,
+from ..urwid.monitored_list import MonitoredList, MonitoredFocusList
+from ..urwid.canvas import (CompositeCanvas, CanvasOverlay, CanvasCombine,
     SolidCanvas, CanvasJoin)
 
 

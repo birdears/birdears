@@ -21,7 +21,7 @@
 
 from __future__ import division, print_function
 
-from urwid.compat import PYTHON3, xrange
+from ..urwid.compat import PYTHON3, xrange
 
 
 def _call_modified(fn):

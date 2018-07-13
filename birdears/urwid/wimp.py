@@ -21,17 +21,17 @@
 
 from __future__ import division, print_function
 
-from urwid.widget import (Text, WidgetWrap, delegate_to_widget_mixin, BOX,
+from ..urwid.widget import (Text, WidgetWrap, delegate_to_widget_mixin, BOX,
     FLOW)
-from urwid.canvas import CompositeCanvas
-from urwid.signals import connect_signal
-from urwid.container import Columns, Overlay
-from urwid.util import is_mouse_press
-from urwid.text_layout import calc_coords
-from urwid.signals import disconnect_signal # doctests
-from urwid.split_repr import python3_repr
-from urwid.decoration import WidgetDecoration
-from urwid.command_map import ACTIVATE
+from ..urwid.canvas import CompositeCanvas
+from ..urwid.signals import connect_signal
+from ..urwid.container import Columns, Overlay
+from ..urwid.util import is_mouse_press
+from ..urwid.text_layout import calc_coords
+from ..urwid.signals import disconnect_signal # doctests
+from ..urwid.split_repr import python3_repr
+from ..urwid.decoration import WidgetDecoration
+from ..urwid.command_map import ACTIVATE
 
 class SelectableIcon(Text):
     _selectable = True
