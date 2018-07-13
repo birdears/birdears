@@ -401,8 +401,9 @@ class TextUserInterface:
         top_variables = {
             'tonic': self.question.tonic_str,
             'mode': self.question.mode.capitalize(),
-            'random': ('(random) ' if any(el in self.arguments['tonic']
-                                          for el in ('r', 'R')) else ''),
+            'random': ('(random) ' if ('tonic' in self.arguments and
+                                       any(el in self.arguments['tonic']
+                                       for el in ('r', 'R'))) else ''),
             'descending': self.question.is_descending,
             'chromatic': self.question.is_chromatic,
             'n_octaves': self.question.n_octaves,
