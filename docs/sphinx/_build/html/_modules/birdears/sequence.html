@@ -141,6 +141,7 @@ from .note_and_pitch import Chord
 from .exception import InvalidSequenceElement
 
 SEQUENCE_THREAD = None
+cb_thread = None
 
 
 <div class="viewcode-block" id="Sequence"><a class="viewcode-back" href="../../index.html#birdears.sequence.Sequence">[docs]</a>class Sequence(list):
@@ -178,7 +179,8 @@ SEQUENCE_THREAD = None
         self.pos_delay = pos_delay
 
 <div class="viewcode-block" id="Sequence.play"><a class="viewcode-back" href="../../index.html#birdears.sequence.Sequence.play">[docs]</a>    @log_event
-    def play(self):
+    def play(self, callback=None, end_callback=None, *args, **kwargs):
+
         global SEQUENCE_THREAD
 
         if hasattr(SEQUENCE_THREAD, &#39;is_alive&#39;) and SEQUENCE_THREAD.is_alive():
@@ -190,17 +192,23 @@ SEQUENCE_THREAD = None
 
         # TODO: later we should passa callback and end_callback here so the
         # thread can talk to user interfaces, cli/tui/gui etc
-        SEQUENCE_THREAD = Thread(target=self.async_play)
+        SEQUENCE_THREAD = Thread(target=self.async_play,
+                                 kwargs={&#39;callback&#39;: callback,
+                                         &#39;end_callback&#39;: end_callback,
+                                         &#39;args&#39;: args,
+                                         &#39;kwargs&#39;: kwargs})
         SEQUENCE_THREAD.start()
 
-        # FIXME: is this really needed? it is a global
         return SEQUENCE_THREAD</div>
 
 <div class="viewcode-block" id="Sequence.async_play"><a class="viewcode-back" href="../../index.html#birdears.sequence.Sequence.async_play">[docs]</a>    @log_event
-    def async_play(self):
+    def async_play(self, callback, end_callback, args, kwargs):
         &quot;&quot;&quot;Plays the Sequence elements of notes and/or chords and wait for
         `Sequence.pos_delay` seconds.
         &quot;&quot;&quot;
+
+        global cb_thread
+        global SEQUENCE_THREAD
 
         for index, element in enumerate(self):
 
@@ -209,6 +217,11 @@ SEQUENCE_THREAD = None
             # and will use the Sequence.pos_delay
             is_last = (index == len(self) - 1)
 
+            if callback:
+
+                cb_thread = Thread(target=callback, args=[element])
+                cb_thread.start()
+
             if type(element) == Pitch:
                 self._play_note(element, last_element=is_last)
             elif type(element) == Chord:
@@ -216,15 +229,26 @@ SEQUENCE_THREAD = None
             else:
                 raise InvalidSequenceElement
 
+            if hasattr(cb_thread, &#39;is_alive&#39;):
+                try:
+                    cb_thread.join()
+                except KeyboardInterrupt:
+                    print(&#39;Ctrl+C&#39;)
+                    exit(0)
+
             # TODO we should later get the element information and pass via a
             # dict to Sequence._async_play()&#39;s callback so it can inform the
             # user interfaces on the status of the element current being played
 
         if self.pos_delay:
-            self._wait(self.pos_delay)</div>
+            self._wait(self.pos_delay)
+
+        if end_callback:
+            cb_thread = Thread(target=end_callback)
+            cb_thread.start()</div>
 
     # FIXME: implement octave here:
-<div class="viewcode-block" id="Sequence.make_chord_progression"><a class="viewcode-back" href="../../index.html#birdears.sequence.Sequence.make_chord_progression">[docs]</a>    def make_chord_progression(self, tonic, mode, degrees):
+<div class="viewcode-block" id="Sequence.make_chord_progression"><a class="viewcode-back" href="../../index.html#birdears.sequence.Sequence.make_chord_progression">[docs]</a>    def make_chord_progression(self, tonic_pitch, mode, degrees):
         &quot;&quot;&quot;Appends triad chord(s) to the Sequence.
 
         Args:
@@ -234,7 +258,9 @@ SEQUENCE_THREAD = None
                 of each triad.
         &quot;&quot;&quot;
 
-        scale = ChromaticScale(tonic=tonic)
+        tonic_str = tonic_pitch.note
+        octave = tonic_pitch.octave
+        scale = ChromaticScale(tonic=tonic_str, octave=octave)
 
         for degree in degrees:
             chord = scale.get_triad(mode=mode, degree=degree)
@@ -317,6 +343,8 @@ SEQUENCE_THREAD = None
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
   <li><a href="../index.html">Module code</a><ul>
+  <li><a href="../birdears.html">birdears</a><ul>
+  </ul></li>
   </ul></li>
   </ul></li>
 </ul>

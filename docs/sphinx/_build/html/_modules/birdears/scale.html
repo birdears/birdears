@@ -170,6 +170,8 @@ from itertools import cycle
         self.tonic = Pitch(note=tonic, octave=octave)
         self.mode = mode
         self.direction = &quot;Ascending&quot; if not descending else &quot;Descending&quot;
+        self.is_descending = descending
+        self.n_octaves = n_octaves
 
         diatonic_mode = DIATONIC_FORMS[mode]
 
@@ -193,7 +195,9 @@ from itertools import cycle
 
             pitch_num += step * direction
 
-            pitch = get_pitch_by_number(pitch_num)
+            accident = (&#39;flat&#39; if ((&#39;b&#39; in tonic) or (tonic == &#39;F&#39;))
+                        else &#39;sharp&#39;)
+            pitch = get_pitch_by_number(numeric=pitch_num, accident=accident)
             scale.append(pitch)
 
         self.extend(scale)</div>
@@ -268,13 +272,19 @@ from itertools import cycle
         # global CHROMATIC_SHARP, CHROMATIC_FLAT
 
         self.tonic = Pitch(tonic, octave)
+        self.direction = &quot;Ascending&quot; if not descending else &quot;Descending&quot;
+        self.is_descending = descending
+        self.n_octaves = n_octaves
 
         direction = +1 if not descending else -1
 
         tonic_pitch_num = int(self.tonic)
         repeat_tonic = not dont_repeat_tonic  # 1 or 0
 
-        scale = [get_pitch_by_number(tonic_pitch_num + (i*direction))
+        accident = &#39;flat&#39; if ((&#39;b&#39; in tonic) or (tonic == &#39;F&#39;)) else &#39;sharp&#39;
+
+        scale = [get_pitch_by_number(numeric=tonic_pitch_num + (i*direction),
+                                     accident=accident)
                  for i in range((12 * n_octaves) + repeat_tonic)]
 
         self.extend(scale)</div>
@@ -318,6 +328,8 @@ from itertools import cycle
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
   <li><a href="../index.html">Module code</a><ul>
+  <li><a href="../birdears.html">birdears</a><ul>
+  </ul></li>
   </ul></li>
   </ul></li>
 </ul>

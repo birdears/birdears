@@ -134,37 +134,40 @@ from . import KEYBOARD_INDICES
 from . import CHROMATIC_TYPE
 from . import KEYS
 from . import DEGREE_INDEX
+from . import INTERVALS
+from . import DIATONIC_FORMS
 
-from .interval import Interval
+# from .interval import Interval
 
 from .note_and_pitch import Pitch
 
 from .scale import DiatonicScale
 from .scale import ChromaticScale
 
+from .utils import DictCallback
+
 from functools import wraps
 
 QUESTION_CLASSES = {}
 
 
-<div class="viewcode-block" id="register_question_class"><a class="viewcode-back" href="../../index.html#birdears.questionbase.register_question_class">[docs]</a>def register_question_class(function, *args, **kwargs):
+<div class="viewcode-block" id="register_question_class"><a class="viewcode-back" href="../../index.html#birdears.questionbase.register_question_class">[docs]</a>def register_question_class(cls, *args, **kwargs):
     &quot;&quot;&quot;Decorator for question classes.
 
     Classes decorated with this decorator will be registered in the
     `QUESTION_CLASSES` global.
     &quot;&quot;&quot;
 
-    @wraps(function)
-    def decorator(*args, **kwargs):
-        return function(*args, **kwargs)
+    global QUESTION_CLASSES
 
-    QUESTION_CLASSES.update({function.__name__: function})
+    QUESTION_CLASSES.update({cls.name: cls})
 
-    return decorator</div>
+    return cls</div>
 
 
 # values for valid_semitones list can be Interval objects or int&#39;s (semitones)
 <div class="viewcode-block" id="get_valid_pitches"><a class="viewcode-back" href="../../index.html#birdears.questionbase.get_valid_pitches">[docs]</a>def get_valid_pitches(scale, valid_intervals=CHROMATIC_TYPE):
+
     tonic_pitch = scale[0]
 
     valid_scale = list()
@@ -262,23 +265,45 @@ QUESTION_CLASSES = {}
                 each type of sequence. This is provided by the subclasses.
         &quot;&quot;&quot;
 
+        self.display = DictCallback({&#39;main_display&#39;: str()})
+
+        if isinstance(mode, str) and any(el == mode for el in (&#39;R&#39;, &#39;r&#39;)):
+            mode = choice(list(DIATONIC_FORMS))
+
         self.mode = mode
 
         self.is_descending = descending
         self.is_chromatic = chromatic
 
+        try:
+            if kwargs[&#39;n_notes&#39;]:
+                self.n_notes = kwargs[&#39;n_notes&#39;]
+        except KeyError:
+            self.n_notes = 1
+
+        self.n_input_notes = int(self.n_notes)
+
         # self.octave = octave if octave else randrange(3, 5)
-        if not octave:
-            octave = randrange(3, 5)
+        if isinstance(octave, str) and any(el in octave for el in (&#39;R&#39;, &#39;r&#39;)):
+            self.octave = randrange(3, 6)
+        elif isinstance(octave, str) and &#39;,&#39; in octave:
+            octave = octave.replace(&#39; &#39;, &#39;&#39;)
+            octave = choice(octave.split(&#39;,&#39;))
+            self.octave = int(octave)
+        elif isinstance(octave, int) and (octave &gt;= 3 and octave &lt;= 6):
+            self.octave = octave
         elif isinstance(octave, list):
-            octave = choice(octave)
+            self.octave = int(choice(octave))
         elif isinstance(octave, tuple) and len(octave) == 2:
-            octave = randrange(*octave)
+            self.octave = randrange(*octave)
+        # if not octave:
+        else:
+            self.octave = randrange(3, 6)
 
         # TODO: raise exceptions in case octave/n_octaves are invalid or
         #       extrapolate each other
 
-        self.octave = octave
+        # self.octave = octave
 
         self.n_octaves = n_octaves
 
@@ -323,6 +348,10 @@ QUESTION_CLASSES = {}
 
         self.allowed_pitches = \
             get_valid_pitches(self.scale, valid_intervals=valid_intervals)
+
+        self.allowed_intervals = \
+            [INTERVALS[abs(int(self.tonic_pitch)-int(pitch))][1]
+             for pitch in self.allowed_pitches]
 
         self.durations = default_durations
         if user_durations:
@@ -381,6 +410,8 @@ QUESTION_CLASSES = {}
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
   <li><a href="../index.html">Module code</a><ul>
+  <li><a href="../birdears.html">birdears</a><ul>
+  </ul></li>
   </ul></li>
   </ul></li>
 </ul>

@@ -129,9 +129,15 @@ $(document).ready(function(){
   <h1>Source code for birdears.interfaces.commandline</h1><div class="highlight"><pre>
 <span></span>from .. import _Getch
 
+from .. import KEYS
+from .. import CHROMATIC_SHARP
+from .. import CHROMATIC_FLAT
+
 from .. import INTERVALS
 from .. import DIATONIC_MODES
 from .. import CHROMATIC_TYPE
+
+from ..questionbase import QUESTION_CLASSES
 
 # from os import popen
 from ..click import get_terminal_size
@@ -290,89 +296,99 @@ Keyboard  {keyboard}
     return input_str</div>
 
 
-<div class="viewcode-block" id="CommandLine"><a class="viewcode-back" href="../../../index.html#birdears.interfaces.commandline.CommandLine">[docs]</a>def CommandLine(exercise, **kwargs):
-    &quot;&quot;&quot;This function implements the birdears loop for command line.
+<div class="viewcode-block" id="CommandLine"><a class="viewcode-back" href="../../../index.html#birdears.interfaces.commandline.CommandLine">[docs]</a>class CommandLine:
 
-    Args:
-        exercise (str): The question name.
-        **kwargs (kwargs): FIXME: The kwargs can contain options for specific
-            questions.
-    &quot;&quot;&quot;
+<div class="viewcode-block" id="CommandLine.__init__"><a class="viewcode-back" href="../../../index.html#birdears.interfaces.commandline.CommandLine.__init__">[docs]</a>    def __init__(self, exercise=None, *args, **kwargs):
+        &quot;&quot;&quot;This function implements the birdears loop for command line.
 
-    if exercise == &#39;dictation&#39;:
-        from ..questions.melodicdictation import MelodicDictationQuestion
-        dictate_notes = kwargs[&#39;n_notes&#39;]
-        MYCLASS = MelodicDictationQuestion
+        Args:
+            exercise (str): The question name.
+            **kwargs (kwargs): FIXME: The kwargs can contain options for specific
+                questions.
+        &quot;&quot;&quot;
 
-    elif exercise == &#39;instrumental&#39;:
-        from ..questions.instrumentaldictation \
-            import InstrumentalDictationQuestion
+        if exercise in QUESTION_CLASSES:
+            QUESTION_CLASS = QUESTION_CLASSES[exercise]
+        else:
+            raise Exception(&quot;Invalid `exercise` value:&quot;, exercise)
+        
+        self.exercise = exercise
 
-        dictate_notes = kwargs[&#39;n_notes&#39;]
-        MYCLASS = InstrumentalDictationQuestion
+        ####if &#39;n_notes&#39; in kwargs:
+            ####self.dictate_notes = kwargs[&#39;n_notes&#39;]
+        ####else:
+            ####self.dictate_notes = 1
 
-    elif exercise == &#39;melodic&#39;:
-        from ..questions.melodicinterval import MelodicIntervalQuestion
-        MYCLASS = MelodicIntervalQuestion
-        dictate_notes = 1
+        getch = _Getch()
 
-    elif exercise == &#39;notename&#39;:
-        from ..questions.notename import NoteNameQuestion
-        MYCLASS = NoteNameQuestion
-        dictate_notes = 1
+        self.new_question_bit = True
 
-    elif exercise == &#39;harmonic&#39;:
-        from ..questions.harmonicinterval import HarmonicIntervalQuestion
-        MYCLASS = HarmonicIntervalQuestion
-        dictate_notes = 1
+        while True:
+            if self.new_question_bit is True:
 
-    getch = _Getch()
+                self.new_question_bit = False
 
-    new_question_bit = True
+                self.input_keys = list()
+                self.question = QUESTION_CLASS(**kwargs)
 
-    while True:
-        if new_question_bit is True:
+                print_question(self.question)
 
-            new_question_bit = False
+                if not self.exercise == &#39;instrumental&#39;:
+                    self.question.play_question()
 
-            input_keys = []
-            question = MYCLASS(**kwargs)
+            if self.exercise == &#39;instrumental&#39;:
+                for r in range(self.question.n_repeats):
+                    self.question.play_question()
 
-            print_question(question)
-            question.play_question()
+                for i in range(self.question.wait_time):
+                    time_left = str(self.question.wait_time - i).rjust(3)
+                    text = &#39;{} seconds remaining...&#39;.format(time_left)
+                    print(center_text(text, sep=False), end=&#39;&#39;)
+                    self.question.question._wait(1)
 
-        if exercise == &#39;instrumental&#39;:
-            response = question.check_question()
-            print_instrumental(response)
+                response = self.question.check_question()
+                print_instrumental(response)
 
-            new_question_bit = True
+                self.new_question_bit = True
 
-            continue
+                continue
 
-        user_input = getch()
+            user_input = getch()
+            self.process_key(user_input)</div>
 
-        if user_input in question.keyboard_index and user_input != &#39; &#39;:  # spc
+<div class="viewcode-block" id="CommandLine.process_key"><a class="viewcode-back" href="../../../index.html#birdears.interfaces.commandline.CommandLine.process_key">[docs]</a>    def process_key(self, user_input):
+        
+        if user_input in self.question.keyboard_index and user_input != &#39; &#39;:  # spc
 
-            input_keys.append(user_input)
+            self.input_keys.append(user_input)
 
-            if exercise == &#39;dictation&#39;:
-                input_str = make_input_str(input_keys, question.keyboard_index)
+            ###if self.exercise == &#39;dictation&#39;:
+                ###input_str = make_input_str(self.input_keys, self.question.keyboard_index)
+                ###print(input_str, end=&#39;&#39;)
+            if self.question.n_input_notes &gt; 1:
+                input_str = make_input_str(self.input_keys,
+                                           self.question.keyboard_index)
                 print(input_str, end=&#39;&#39;)
 
-            if len(input_keys) == dictate_notes:
+            # FIXME: use self.question.n_notes instead
+            #if len(self.input_keys) == self.dictate_notes:
+            if len(self.input_keys) == self.question.n_notes:
 
-                response = question.check_question(input_keys)
+                response = self.question.check_question(self.input_keys)
                 print_response(response)
 
-                question.play_resolution()
+                self.question.play_resolution()
 
-                new_question_bit = True
+                self.new_question_bit = True
 
         # backspace
         elif user_input == &#39;\x7f&#39;:
-            if(len(input_keys) &gt; 0) and exercise == &#39;dictation&#39;:
-                del(input_keys[-1])
-                input_str = make_input_str(input_keys, question.keyboard_index)
+            # FIXME: use self.question.n_input_notes instead
+            #if(len(self.input_keys) &gt; 0) and self.exercise == &#39;dictation&#39;:
+            if(len(self.input_keys) &gt; 0) and (self.question.n_input_notes &gt; 1):
+                del(self.input_keys[-1])
+                input_str = make_input_str(self.input_keys,
+                                           self.question.keyboard_index)
                 print(input_str, end=&#39;&#39;)
 
         # q/Q - quit
@@ -381,7 +397,7 @@ Keyboard  {keyboard}
 
         # r - repeat interval
         elif user_input in (&#39;r&#39;, &#39;R&#39;):
-            question.play_question()</div>
+            self.question.play_question()</div></div>
 </pre></div>
 
           </div>
@@ -393,6 +409,8 @@ Keyboard  {keyboard}
 <ul>
   <li><a href="../../../index.html">Documentation overview</a><ul>
   <li><a href="../../index.html">Module code</a><ul>
+  <li><a href="../../birdears.html">birdears</a><ul>
+  </ul></li>
   </ul></li>
   </ul></li>
 </ul>

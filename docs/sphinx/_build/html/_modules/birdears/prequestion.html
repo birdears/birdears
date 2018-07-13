@@ -236,7 +236,9 @@ def progression_i_iv_v_i(question, *args, **kwargs):
     &quot;&quot;&quot;
 
     # tonic_pitch = question.tonic_pitch
-    tonic_str = question.tonic_str
+    # is_scale_descending = question
+    tonic_index = 0 if not question.scale.is_descending else -1
+    tonic_pitch = question.scale[tonic_index]
     mode = question.mode
 
     duration = question.durations[&#39;preq&#39;][&#39;duration&#39;]
@@ -248,7 +250,7 @@ def progression_i_iv_v_i(question, *args, **kwargs):
     sequence = Sequence(duration=duration, delay=delay,
                         pos_delay=pos_delay)
 
-    sequence.make_chord_progression(tonic=tonic_str, mode=mode,
+    sequence.make_chord_progression(tonic_pitch=tonic_pitch, mode=mode,
                                     degrees=degrees)
 
     return sequence</div>
@@ -263,6 +265,8 @@ def progression_i_iv_v_i(question, *args, **kwargs):
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
   <li><a href="../index.html">Module code</a><ul>
+  <li><a href="../birdears.html">birdears</a><ul>
+  </ul></li>
   </ul></li>
   </ul></li>
 </ul>

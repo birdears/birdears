@@ -30,17 +30,17 @@
 \contentsline {chapter}{\numberline {5}birdears package}{19}{chapter.5}
 \contentsline {section}{\numberline {5.1}Subpackages}{20}{section.5.1}
 \contentsline {subsection}{\numberline {5.1.1}birdears.interfaces package}{20}{subsection.5.1.1}
-\contentsline {subsubsection}{Submodules}{20}{subsubsection*.13}
-\contentsline {subsubsection}{birdears.interfaces.commandline module}{20}{subsubsection*.14}
-\contentsline {subsection}{\numberline {5.1.2}birdears.questions package}{20}{subsection.5.1.2}
-\contentsline {subsubsection}{Submodules}{20}{subsubsection*.21}
-\contentsline {subsubsection}{birdears.questions.harmonicinterval module}{21}{subsubsection*.22}
-\contentsline {subsubsection}{birdears.questions.instrumentaldictation module}{23}{subsubsection*.31}
-\contentsline {subsubsection}{birdears.questions.melodicdictation module}{25}{subsubsection*.39}
-\contentsline {subsubsection}{birdears.questions.melodicinterval module}{26}{subsubsection*.48}
-\contentsline {section}{\numberline {5.2}Submodules}{27}{section.5.2}
-\contentsline {section}{\numberline {5.3}birdears.interval module}{27}{section.5.3}
-\contentsline {section}{\numberline {5.4}birdears.logger module}{28}{section.5.4}
+\contentsline {subsubsection}{Submodules}{20}{subsubsection*.14}
+\contentsline {subsubsection}{birdears.interfaces.commandline module}{20}{subsubsection*.15}
+\contentsline {subsection}{\numberline {5.1.2}birdears.questions package}{21}{subsection.5.1.2}
+\contentsline {subsubsection}{Submodules}{21}{subsubsection*.24}
+\contentsline {subsubsection}{birdears.questions.harmonicinterval module}{21}{subsubsection*.25}
+\contentsline {subsubsection}{birdears.questions.instrumentaldictation module}{23}{subsubsection*.35}
+\contentsline {subsubsection}{birdears.questions.melodicdictation module}{25}{subsubsection*.44}
+\contentsline {subsubsection}{birdears.questions.melodicinterval module}{26}{subsubsection*.54}
+\contentsline {section}{\numberline {5.2}Submodules}{28}{section.5.2}
+\contentsline {section}{\numberline {5.3}birdears.interval module}{28}{section.5.3}
+\contentsline {section}{\numberline {5.4}birdears.logger module}{29}{section.5.4}
 \contentsline {section}{\numberline {5.5}birdears.prequestion module}{29}{section.5.5}
 \contentsline {section}{\numberline {5.6}birdears.questionbase module}{30}{section.5.6}
 \contentsline {section}{\numberline {5.7}birdears.resolution module}{31}{section.5.7}
@@ -63,7 +63,7 @@
 \contentsline {subsection}{\numberline {9.3.4}instrumental}{45}{subsection.9.3.4}
 \contentsline {section}{\numberline {9.4}Loading from config/preset files}{46}{section.9.4}
 \contentsline {subsection}{\numberline {9.4.1}Pre-made presets}{46}{subsection.9.4.1}
-\contentsline {subsubsection}{Pre-made presets description}{46}{subsubsection*.105}
+\contentsline {subsubsection}{Pre-made presets description}{46}{subsubsection*.113}
 \contentsline {subsection}{\numberline {9.4.2}Creating new preset files}{46}{subsection.9.4.2}
 \contentsline {section}{\numberline {9.5}Keybindings}{46}{section.9.5}
 \contentsline {subsection}{\numberline {9.5.1}On the keybindings}{46}{subsection.9.5.1}
@@ -90,9 +90,9 @@
 \contentsline {section}{\numberline {12.2}birdears.questions.harmonicinterval module}{61}{section.12.2}
 \contentsline {section}{\numberline {12.3}birdears.questions.instrumentaldictation module}{63}{section.12.3}
 \contentsline {section}{\numberline {12.4}birdears.questions.melodicdictation module}{65}{section.12.4}
-\contentsline {section}{\numberline {12.5}birdears.questions.melodicinterval module}{66}{section.12.5}
+\contentsline {section}{\numberline {12.5}birdears.questions.melodicinterval module}{67}{section.12.5}
 \contentsline {chapter}{\numberline {13}birdears.interfaces package}{69}{chapter.13}
 \contentsline {section}{\numberline {13.1}Submodules}{69}{section.13.1}
 \contentsline {section}{\numberline {13.2}birdears.interfaces.commandline module}{69}{section.13.2}
-\contentsline {chapter}{Python Module Index}{71}{section*.200}
-\contentsline {chapter}{Index}{73}{section*.201}
+\contentsline {chapter}{Python Module Index}{71}{section*.216}
+\contentsline {chapter}{Index}{73}{section*.217}

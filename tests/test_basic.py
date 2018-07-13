@@ -111,8 +111,10 @@ def test_sequenceclass_extend():
 
 
 def test_sequenceclass_makeprogression():
+    pitch = Pitch(note='A', octave=4)
+
     sequence = Sequence()
-    sequence.make_chord_progression(tonic='A', mode='minor',
+    sequence.make_chord_progression(tonic_pitch=pitch, mode='minor',
                                     degrees=[1, 4, 5, 1])
 
     assert(sequence)

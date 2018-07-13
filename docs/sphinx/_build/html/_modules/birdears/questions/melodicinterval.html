@@ -132,10 +132,7 @@ $(document).ready(function(){
 from ..logger import log_event
 
 from ..questionbase import QuestionBase
-from ..questionbase import get_valid_pitches
-
-from ..scale import DiatonicScale
-from ..scale import ChromaticScale
+from ..questionbase import register_question_class
 
 from ..interval import Interval
 
@@ -148,12 +145,14 @@ from ..note_and_pitch import get_pitch_by_number
 from random import choice
 
 
-<div class="viewcode-block" id="MelodicIntervalQuestion"><a class="viewcode-back" href="../../../index.html#birdears.questions.melodicinterval.MelodicIntervalQuestion">[docs]</a>class MelodicIntervalQuestion(QuestionBase):
+<div class="viewcode-block" id="MelodicIntervalQuestion"><a class="viewcode-back" href="../../../index.html#birdears.questions.melodicinterval.MelodicIntervalQuestion">[docs]</a>@register_question_class
+class MelodicIntervalQuestion(QuestionBase):
     &quot;&quot;&quot;Implements a Melodic Interval test.
     &quot;&quot;&quot;
 
-    @log_event
-    def __init__(self, mode=&#39;major&#39;, tonic=&#39;C&#39;, octave=4, descending=False,
+    name = &#39;melodic&#39;
+
+<div class="viewcode-block" id="MelodicIntervalQuestion.__init__"><a class="viewcode-back" href="../../../index.html#birdears.questions.melodicinterval.MelodicIntervalQuestion.__init__">[docs]</a>    def __init__(self, mode=&#39;major&#39;, tonic=&#39;C&#39;, octave=4, descending=False,
                  chromatic=False, n_octaves=1, valid_intervals=CHROMATIC_TYPE,
                  user_durations=None, prequestion_method=&#39;tonic_only&#39;,
                  resolution_method=&#39;nearest_tonic&#39;, *args, **kwargs):
@@ -221,7 +220,7 @@ from random import choice
 
         self.pre_question = self.make_pre_question(method=prequestion_method)
         self.question = self.make_question()
-        self.resolution = self.make_resolution(method=resolution_method)
+        self.resolution = self.make_resolution(method=resolution_method)</div>
 
 <div class="viewcode-block" id="MelodicIntervalQuestion.make_pre_question"><a class="viewcode-back" href="../../../index.html#birdears.questions.melodicinterval.MelodicIntervalQuestion.make_pre_question">[docs]</a>    def make_pre_question(self, method):
 
@@ -242,18 +241,26 @@ from random import choice
 
         return resolution</div>
 
-<div class="viewcode-block" id="MelodicIntervalQuestion.play_question"><a class="viewcode-back" href="../../../index.html#birdears.questions.melodicinterval.MelodicIntervalQuestion.play_question">[docs]</a>    def play_question(self):
+<div class="viewcode-block" id="MelodicIntervalQuestion.play_question"><a class="viewcode-back" href="../../../index.html#birdears.questions.melodicinterval.MelodicIntervalQuestion.play_question">[docs]</a>    def play_question(self, callback=None, end_callback=None,
+                      *args, **kwargs):
         # Other threads can call a thread’s join() method. This blocks the
         # calling thread until the thread whose join() method is called is
         # terminated.
         # https://docs.python.org/3/library/threading.html#thread-objects
 
-        self.pre_question.play()
-        self.question.play()</div>
+        self.display.update({&#39;main_display&#39;: &#39;Listen to the tonality.&#39;})
+        self.pre_question.play(callback=callback, end_callback=end_callback,
+                               *args, **kwargs)
+        self.question.play(callback=callback, end_callback=end_callback,
+                           *args, **kwargs)
+        self.display.update({&#39;main_display&#39;: &#39;What is the interval?&#39;})</div>
 
-<div class="viewcode-block" id="MelodicIntervalQuestion.play_resolution"><a class="viewcode-back" href="../../../index.html#birdears.questions.melodicinterval.MelodicIntervalQuestion.play_resolution">[docs]</a>    def play_resolution(self):
+<div class="viewcode-block" id="MelodicIntervalQuestion.play_resolution"><a class="viewcode-back" href="../../../index.html#birdears.questions.melodicinterval.MelodicIntervalQuestion.play_resolution">[docs]</a>    def play_resolution(self, callback=None, end_callback=None,
+                        *args, **kwargs):
 
-        thread = self.resolution.play()
+        thread = self.resolution.play(callback=callback,
+                                      end_callback=end_callback,
+                                      *args, **kwargs)
         thread.join()</div>
 
 <div class="viewcode-block" id="MelodicIntervalQuestion.check_question"><a class="viewcode-back" href="../../../index.html#birdears.questions.melodicinterval.MelodicIntervalQuestion.check_question">[docs]</a>    def check_question(self, user_input_char):
@@ -313,6 +320,8 @@ user {si} “{ui}” ({to}─{un})
 <ul>
   <li><a href="../../../index.html">Documentation overview</a><ul>
   <li><a href="../../index.html">Module code</a><ul>
+  <li><a href="../../birdears.html">birdears</a><ul>
+  </ul></li>
   </ul></li>
   </ul></li>
 </ul>

@@ -24,7 +24,7 @@ def test_cli_melodic(monkeypatch):
     def mockreturn():
         return lambda: keys.pop() # quits
 
-    sys_argv = ['PYTEST_ARGV0', 'melodic']
+    sys_argv = ['PYTEST_ARGV0', '--cli', 'melodic']
 
     monkeypatch.setattr('birdears.interfaces.commandline._Getch', mockreturn)
     monkeypatch.setattr('sys.argv', sys_argv)
@@ -44,7 +44,7 @@ def test_cli_harmonic(monkeypatch):
     def mockreturn():
         return lambda: keys.pop() # quits
 
-    sys_argv = ['PYTEST_ARGV0', 'harmonic']
+    sys_argv = ['PYTEST_ARGV0', '--cli', 'harmonic']
 
     monkeypatch.setattr('sys.argv', sys_argv)
     monkeypatch.setattr('birdears.interfaces.commandline._Getch', mockreturn)
@@ -61,7 +61,7 @@ def test_cli_dictation(monkeypatch):
     def mockreturn():
         return lambda: 'q' # quits
 
-    sys_argv = ['PYTEST_ARGV0', 'dictation']
+    sys_argv = ['PYTEST_ARGV0', '--cli', 'dictation']
 
     monkeypatch.setattr('sys.argv', sys_argv)
     monkeypatch.setattr('birdears.interfaces.commandline._Getch', mockreturn)
@@ -85,7 +85,7 @@ def test_cli_dictation_repeat_and_backspace(monkeypatch):
     def mockreturn():
         return lambda: keys.pop() # quits
 
-    sys_argv = ['PYTEST_ARGV0', 'dictation', '-x', '4']
+    sys_argv = ['PYTEST_ARGV0', '--cli', 'dictation', '-x', '4']
 
     monkeypatch.setattr('sys.argv', sys_argv)
     monkeypatch.setattr('birdears.interfaces.commandline._Getch', mockreturn)
@@ -106,7 +106,7 @@ def test_cli_instrumental(monkeypatch):
 
         return keys.pop()
 
-    sys_argv = ['PYTEST_ARGV0', 'instrumental', '-w', '3']
+    sys_argv = ['PYTEST_ARGV0', '--cli', 'instrumental', '-w', '3']
 
     monkeypatch.setattr('sys.argv', sys_argv)
     monkeypatch.setattr('birdears.interfaces.commandline.print_instrumental',

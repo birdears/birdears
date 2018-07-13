@@ -82,10 +82,10 @@ def cli(debug, urwid, cli):
         logger.setLevel(logging.DEBUG)
         logger.debug('debug is on.')
 
-    if urwid:
-        INTERFACE = 'urwid'
-    elif cli:
+    if cli:
         INTERFACE = 'commandline'
+    elif urwid:
+        INTERFACE = 'urwid'
     else:
         INTERFACE = 'urwid'
 

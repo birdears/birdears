@@ -627,6 +627,11 @@ intervals.</p>
 <p>These are the circle of fifth in both directions.</p>
 </dd></dl>
 
+<dl class="function">
+<dt id="birdears.D">
+<code class="descclassname">birdears.</code><code class="descname">D</code><span class="sig-paren">(</span><em>data</em>, <em>nlines=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears.html#D"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.D" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="data">
 <dt id="birdears.DEGREE_INDEX">
 <code class="descclassname">birdears.</code><code class="descname">DEGREE_INDEX</code><em class="property"> = {'i': [0], 'ii': [1, 2], 'iii': [3, 4], 'iv': [5, 6], 'v': [6, 7], 'vi': [8, 9], 'vii': [10, 11], 'viii': [12]}</em><a class="headerlink" href="#birdears.DEGREE_INDEX" title="Permalink to this definition">¶</a></dt>
@@ -1047,7 +1052,7 @@ each type of sequence. This is provided by the subclasses.</li>
 
 <dl class="function">
 <dt id="birdears.questionbase.register_question_class">
-<code class="descclassname">birdears.questionbase.</code><code class="descname">register_question_class</code><span class="sig-paren">(</span><em>function</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questionbase.html#register_question_class"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questionbase.register_question_class" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">birdears.questionbase.</code><code class="descname">register_question_class</code><span class="sig-paren">(</span><em>cls</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questionbase.html#register_question_class"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questionbase.register_question_class" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorator for question classes.</p>
 <p>Classes decorated with this decorator will be registered in the
 <cite>QUESTION_CLASSES</cite> global.</p>
@@ -1277,14 +1282,14 @@ strings) in this Sequence.</p>
 
 <dl class="method">
 <dt id="birdears.sequence.Sequence.async_play">
-<code class="descname">async_play</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/sequence.html#Sequence.async_play"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.sequence.Sequence.async_play" title="Permalink to this definition">¶</a></dt>
+<code class="descname">async_play</code><span class="sig-paren">(</span><em>callback</em>, <em>end_callback</em>, <em>args</em>, <em>kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/sequence.html#Sequence.async_play"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.sequence.Sequence.async_play" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plays the Sequence elements of notes and/or chords and wait for
 <cite>Sequence.pos_delay</cite> seconds.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="birdears.sequence.Sequence.make_chord_progression">
-<code class="descname">make_chord_progression</code><span class="sig-paren">(</span><em>tonic</em>, <em>mode</em>, <em>degrees</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/sequence.html#Sequence.make_chord_progression"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.sequence.Sequence.make_chord_progression" title="Permalink to this definition">¶</a></dt>
+<code class="descname">make_chord_progression</code><span class="sig-paren">(</span><em>tonic_pitch</em>, <em>mode</em>, <em>degrees</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/sequence.html#Sequence.make_chord_progression"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.sequence.Sequence.make_chord_progression" title="Permalink to this definition">¶</a></dt>
 <dd><p>Appends triad chord(s) to the Sequence.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1304,7 +1309,7 @@ of each triad.</li>
 
 <dl class="method">
 <dt id="birdears.sequence.Sequence.play">
-<code class="descname">play</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/sequence.html#Sequence.play"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.sequence.Sequence.play" title="Permalink to this definition">¶</a></dt>
+<code class="descname">play</code><span class="sig-paren">(</span><em>callback=None</em>, <em>end_callback=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/sequence.html#Sequence.play"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.sequence.Sequence.play" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1401,15 +1406,20 @@ exercise. Valid ones are registered in the
 <dd><p>This method should be overwritten by the question subclasses.</p>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="birdears.questions.harmonicinterval.HarmonicIntervalQuestion.name">
+<code class="descname">name</code><em class="property"> = 'harmonic'</em><a class="headerlink" href="#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="birdears.questions.harmonicinterval.HarmonicIntervalQuestion.play_question">
-<code class="descname">play_question</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questions/harmonicinterval.html#HarmonicIntervalQuestion.play_question"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.play_question" title="Permalink to this definition">¶</a></dt>
+<code class="descname">play_question</code><span class="sig-paren">(</span><em>callback=None</em>, <em>end_callback=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questions/harmonicinterval.html#HarmonicIntervalQuestion.play_question"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.play_question" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method should be overwritten by the question subclasses.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="birdears.questions.harmonicinterval.HarmonicIntervalQuestion.play_resolution">
-<code class="descname">play_resolution</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questions/harmonicinterval.html#HarmonicIntervalQuestion.play_resolution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.play_resolution" title="Permalink to this definition">¶</a></dt>
+<code class="descname">play_resolution</code><span class="sig-paren">(</span><em>callback=None</em>, <em>end_callback=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questions/harmonicinterval.html#HarmonicIntervalQuestion.play_resolution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.play_resolution" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1508,9 +1518,14 @@ exercise. Valid ones are registered in the
 <dd><p>This method should be overwritten by the question subclasses.</p>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.name">
+<code class="descname">name</code><em class="property"> = 'instrumental'</em><a class="headerlink" href="#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.play_question">
-<code class="descname">play_question</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questions/instrumentaldictation.html#InstrumentalDictationQuestion.play_question"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.play_question" title="Permalink to this definition">¶</a></dt>
+<code class="descname">play_question</code><span class="sig-paren">(</span><em>callback=None</em>, <em>end_callback=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questions/instrumentaldictation.html#InstrumentalDictationQuestion.play_question"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.play_question" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method should be overwritten by the question subclasses.</p>
 </dd></dl>
 
@@ -1605,15 +1620,20 @@ exercise. Valid ones are registered in the
 <dd><p>This method should be overwritten by the question subclasses.</p>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="birdears.questions.melodicdictation.MelodicDictationQuestion.name">
+<code class="descname">name</code><em class="property"> = 'dictation'</em><a class="headerlink" href="#birdears.questions.melodicdictation.MelodicDictationQuestion.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="birdears.questions.melodicdictation.MelodicDictationQuestion.play_question">
-<code class="descname">play_question</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questions/melodicdictation.html#MelodicDictationQuestion.play_question"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questions.melodicdictation.MelodicDictationQuestion.play_question" title="Permalink to this definition">¶</a></dt>
+<code class="descname">play_question</code><span class="sig-paren">(</span><em>callback=None</em>, <em>end_callback=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questions/melodicdictation.html#MelodicDictationQuestion.play_question"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questions.melodicdictation.MelodicDictationQuestion.play_question" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method should be overwritten by the question subclasses.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="birdears.questions.melodicdictation.MelodicDictationQuestion.play_resolution">
-<code class="descname">play_resolution</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questions/melodicdictation.html#MelodicDictationQuestion.play_resolution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questions.melodicdictation.MelodicDictationQuestion.play_resolution" title="Permalink to this definition">¶</a></dt>
+<code class="descname">play_resolution</code><span class="sig-paren">(</span><em>callback=None</em>, <em>end_callback=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questions/melodicdictation.html#MelodicDictationQuestion.play_resolution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questions.melodicdictation.MelodicDictationQuestion.play_resolution" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1626,6 +1646,61 @@ exercise. Valid ones are registered in the
 <em class="property">class </em><code class="descclassname">birdears.questions.melodicinterval.</code><code class="descname">MelodicIntervalQuestion</code><span class="sig-paren">(</span><em>mode='major'</em>, <em>tonic='C'</em>, <em>octave=4</em>, <em>descending=False</em>, <em>chromatic=False</em>, <em>n_octaves=1</em>, <em>valid_intervals=(0</em>, <em>1</em>, <em>2</em>, <em>3</em>, <em>4</em>, <em>5</em>, <em>6</em>, <em>7</em>, <em>8</em>, <em>9</em>, <em>10</em>, <em>11)</em>, <em>user_durations=None</em>, <em>prequestion_method='tonic_only'</em>, <em>resolution_method='nearest_tonic'</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questions/melodicinterval.html#MelodicIntervalQuestion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questions.melodicinterval.MelodicIntervalQuestion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#birdears.questionbase.QuestionBase" title="birdears.questionbase.QuestionBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">birdears.questionbase.QuestionBase</span></code></a></p>
 <p>Implements a Melodic Interval test.</p>
+<dl class="method">
+<dt id="birdears.questions.melodicinterval.MelodicIntervalQuestion.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>mode='major'</em>, <em>tonic='C'</em>, <em>octave=4</em>, <em>descending=False</em>, <em>chromatic=False</em>, <em>n_octaves=1</em>, <em>valid_intervals=(0</em>, <em>1</em>, <em>2</em>, <em>3</em>, <em>4</em>, <em>5</em>, <em>6</em>, <em>7</em>, <em>8</em>, <em>9</em>, <em>10</em>, <em>11)</em>, <em>user_durations=None</em>, <em>prequestion_method='tonic_only'</em>, <em>resolution_method='nearest_tonic'</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questions/melodicinterval.html#MelodicIntervalQuestion.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questions.melodicinterval.MelodicIntervalQuestion.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inits the class.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>mode</strong> (<em>str</em>) – A string representing the mode of the question.
+Eg., ‘major’ or ‘minor’</li>
+<li><strong>tonic</strong> (<em>str</em>) – A string representing the tonic of the question,
+eg.: ‘C’; if omitted, it will be selected randomly.</li>
+<li><strong>octave</strong> (<em>int</em>) – A scienfic octave notation, for example, 4 for ‘C4’;
+if not present, it will be randomly chosen.</li>
+<li><strong>descending</strong> (<em>bool</em>) – Is the question direction in descending, ie.,
+intervals have lower pitch than the tonic.</li>
+<li><strong>chromatic</strong> (<em>bool</em>) – If the question can have (True) or not (False)
+chromatic intervals, ie., intervals not in the diatonic scale
+of tonic/mode.</li>
+<li><strong>n_octaves</strong> (<em>int</em>) – Maximum number of octaves of the question.</li>
+<li><strong>valid_intervals</strong> (<em>list</em>) – A list with intervals (int) valid for
+random choice, 1 is 1st, 2 is second etc. Eg. [1, 4, 5] to
+allow only tonics, fourths and fifths.</li>
+<li><strong>user_durations</strong> (<em>str</em>) – <p>A string with 9 comma-separated <cite>int</cite> or
+<cite>float`s to set the default duration for the notes played. The
+values are respectively for: pre-question duration (1st),
+pre-question delay (2nd), and pre-question pos-delay (3rd);
+question duration (4th), question delay (5th), and question
+pos-delay (6th); resolution duration (7th), resolution
+delay (8th), and resolution pos-delay (9th).
+duration is the duration in of the note in seconds; delay is
+the time to wait before playing the next note, and pos_delay is
+the time to wait after all the notes of the respective sequence
+have been played. If any of the user durations is `n</cite>, the
+default duration for the type of question will be used instead.
+Example:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&quot;2,0.5,1,2,n,0,2.5,n,1&quot;
+</pre></div>
+</div>
+</li>
+<li><strong>prequestion_method</strong> (<em>str</em>) – Method of playing a cadence or the
+exercise tonic before the question so to affirm the question
+musical tonic key to the ear. Valid ones are registered in the
+<cite>birdears.prequestion.PREQUESION_METHODS</cite> global dict.</li>
+<li><strong>resolution_method</strong> (<em>str</em>) – Method of playing the resolution of an
+exercise. Valid ones are registered in the
+<cite>birdears.resolution.RESOLUTION_METHODS</cite> global dict.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <dl class="method">
 <dt id="birdears.questions.melodicinterval.MelodicIntervalQuestion.check_question">
 <code class="descname">check_question</code><span class="sig-paren">(</span><em>user_input_char</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questions/melodicinterval.html#MelodicIntervalQuestion.check_question"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questions.melodicinterval.MelodicIntervalQuestion.check_question" title="Permalink to this definition">¶</a></dt>
@@ -1649,15 +1724,20 @@ exercise. Valid ones are registered in the
 <dd><p>This method should be overwritten by the question subclasses.</p>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="birdears.questions.melodicinterval.MelodicIntervalQuestion.name">
+<code class="descname">name</code><em class="property"> = 'melodic'</em><a class="headerlink" href="#birdears.questions.melodicinterval.MelodicIntervalQuestion.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="birdears.questions.melodicinterval.MelodicIntervalQuestion.play_question">
-<code class="descname">play_question</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questions/melodicinterval.html#MelodicIntervalQuestion.play_question"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questions.melodicinterval.MelodicIntervalQuestion.play_question" title="Permalink to this definition">¶</a></dt>
+<code class="descname">play_question</code><span class="sig-paren">(</span><em>callback=None</em>, <em>end_callback=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questions/melodicinterval.html#MelodicIntervalQuestion.play_question"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questions.melodicinterval.MelodicIntervalQuestion.play_question" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method should be overwritten by the question subclasses.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="birdears.questions.melodicinterval.MelodicIntervalQuestion.play_resolution">
-<code class="descname">play_resolution</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questions/melodicinterval.html#MelodicIntervalQuestion.play_resolution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questions.melodicinterval.MelodicIntervalQuestion.play_resolution" title="Permalink to this definition">¶</a></dt>
+<code class="descname">play_resolution</code><span class="sig-paren">(</span><em>callback=None</em>, <em>end_callback=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questions/melodicinterval.html#MelodicIntervalQuestion.play_resolution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questions.melodicinterval.MelodicIntervalQuestion.play_resolution" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1671,9 +1751,13 @@ exercise. Valid ones are registered in the
 </div>
 <div class="section" id="module-birdears.interfaces.commandline">
 <span id="birdears-interfaces-commandline-module"></span><h3>birdears.interfaces.commandline module<a class="headerlink" href="#module-birdears.interfaces.commandline" title="Permalink to this headline">¶</a></h3>
-<dl class="function">
+<dl class="class">
 <dt id="birdears.interfaces.commandline.CommandLine">
-<code class="descclassname">birdears.interfaces.commandline.</code><code class="descname">CommandLine</code><span class="sig-paren">(</span><em>exercise</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/interfaces/commandline.html#CommandLine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.interfaces.commandline.CommandLine" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">birdears.interfaces.commandline.</code><code class="descname">CommandLine</code><span class="sig-paren">(</span><em>exercise=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/interfaces/commandline.html#CommandLine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.interfaces.commandline.CommandLine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="birdears.interfaces.commandline.CommandLine.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>exercise=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/interfaces/commandline.html#CommandLine.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.interfaces.commandline.CommandLine.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function implements the birdears loop for command line.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1688,6 +1772,13 @@ questions.</li>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="method">
+<dt id="birdears.interfaces.commandline.CommandLine.process_key">
+<code class="descname">process_key</code><span class="sig-paren">(</span><em>user_input</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/interfaces/commandline.html#CommandLine.process_key"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.interfaces.commandline.CommandLine.process_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="function">

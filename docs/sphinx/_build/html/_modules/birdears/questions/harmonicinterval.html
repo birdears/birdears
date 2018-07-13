@@ -127,17 +127,12 @@ $(document).ready(function(){
           <div class="body" role="main">
             
   <h1>Source code for birdears.questions.harmonicinterval</h1><div class="highlight"><pre>
-<span></span># from .. import INTERVALS
-
-from .. import CHROMATIC_TYPE
+<span></span>from .. import CHROMATIC_TYPE
 
 from ..logger import log_event
 
 from ..questionbase import QuestionBase
-from ..questionbase import get_valid_pitches
-
-from ..scale import DiatonicScale
-from ..scale import ChromaticScale
+from ..questionbase import register_question_class
 
 from ..interval import Interval
 
@@ -151,9 +146,12 @@ from ..note_and_pitch import get_pitch_by_number
 from random import choice
 
 
-<div class="viewcode-block" id="HarmonicIntervalQuestion"><a class="viewcode-back" href="../../../index.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion">[docs]</a>class HarmonicIntervalQuestion(QuestionBase):
+<div class="viewcode-block" id="HarmonicIntervalQuestion"><a class="viewcode-back" href="../../../index.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion">[docs]</a>@register_question_class
+class HarmonicIntervalQuestion(QuestionBase):
     &quot;&quot;&quot;Implements a Harmonic Interval test.
     &quot;&quot;&quot;
+
+    name = &#39;harmonic&#39;
 
 <div class="viewcode-block" id="HarmonicIntervalQuestion.__init__"><a class="viewcode-back" href="../../../index.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.__init__">[docs]</a>    def __init__(self, mode=&#39;major&#39;, tonic=&#39;C&#39;, octave=4, descending=False,
                  chromatic=False, n_octaves=1, valid_intervals=CHROMATIC_TYPE,
@@ -245,18 +243,26 @@ from random import choice
 
         return resolution</div>
 
-<div class="viewcode-block" id="HarmonicIntervalQuestion.play_question"><a class="viewcode-back" href="../../../index.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.play_question">[docs]</a>    def play_question(self):
+<div class="viewcode-block" id="HarmonicIntervalQuestion.play_question"><a class="viewcode-back" href="../../../index.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.play_question">[docs]</a>    def play_question(self, callback=None, end_callback=None,
+                      *args, **kwargs):
         # Other threads can call a thread’s join() method. This blocks the
         # calling thread until the thread whose join() method is called is
         # terminated.
         # https://docs.python.org/3/library/threading.html#thread-objects
 
-        self.pre_question.play()
-        self.question.play()</div>
+        self.display.update({&#39;main_display&#39;: &#39;Listen to the tonality.&#39;})
+        self.pre_question.play(callback=callback, end_callback=end_callback,
+                               *args, **kwargs)
+        self.question.play(callback=callback, end_callback=end_callback,
+                           *args, **kwargs)
+        self.display.update({&#39;main_display&#39;: &#39;What is the interval?&#39;})</div>
 
-<div class="viewcode-block" id="HarmonicIntervalQuestion.play_resolution"><a class="viewcode-back" href="../../../index.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.play_resolution">[docs]</a>    def play_resolution(self):
+<div class="viewcode-block" id="HarmonicIntervalQuestion.play_resolution"><a class="viewcode-back" href="../../../index.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.play_resolution">[docs]</a>    def play_resolution(self, callback=None, end_callback=None,
+                        *args, **kwargs):
 
-        thread = self.resolution.play()
+        thread = self.resolution.play(callback=callback,
+                                      end_callback=end_callback,
+                                      *args, **kwargs)
         thread.join()</div>
 
 <div class="viewcode-block" id="HarmonicIntervalQuestion.check_question"><a class="viewcode-back" href="../../../index.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.check_question">[docs]</a>    def check_question(self, user_input_char):
@@ -316,6 +322,8 @@ user {si} “{ui}” ({to}─{un})
 <ul>
   <li><a href="../../../index.html">Documentation overview</a><ul>
   <li><a href="../../index.html">Module code</a><ul>
+  <li><a href="../../birdears.html">birdears</a><ul>
+  </ul></li>
   </ul></li>
   </ul></li>
 </ul>

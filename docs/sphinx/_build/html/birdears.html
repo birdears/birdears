@@ -159,6 +159,11 @@ $(document).ready(function(){
 <p>These are the circle of fifth in both directions.</p>
 </dd></dl>
 
+<dl class="function">
+<dt id="birdears.D">
+<code class="descclassname">birdears.</code><code class="descname">D</code><span class="sig-paren">(</span><em>data</em>, <em>nlines=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears.html#D"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.D" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="data">
 <dt id="birdears.DEGREE_INDEX">
 <code class="descclassname">birdears.</code><code class="descname">DEGREE_INDEX</code><em class="property"> = {'i': [0], 'ii': [1, 2], 'iii': [3, 4], 'iv': [5, 6], 'v': [6, 7], 'vi': [8, 9], 'vii': [10, 11], 'viii': [12]}</em><a class="headerlink" href="#birdears.DEGREE_INDEX" title="Permalink to this definition">¶</a></dt>
@@ -579,7 +584,7 @@ each type of sequence. This is provided by the subclasses.</li>
 
 <dl class="function">
 <dt id="birdears.questionbase.register_question_class">
-<code class="descclassname">birdears.questionbase.</code><code class="descname">register_question_class</code><span class="sig-paren">(</span><em>function</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questionbase.html#register_question_class"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questionbase.register_question_class" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">birdears.questionbase.</code><code class="descname">register_question_class</code><span class="sig-paren">(</span><em>cls</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/questionbase.html#register_question_class"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.questionbase.register_question_class" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorator for question classes.</p>
 <p>Classes decorated with this decorator will be registered in the
 <cite>QUESTION_CLASSES</cite> global.</p>
@@ -809,14 +814,14 @@ strings) in this Sequence.</p>
 
 <dl class="method">
 <dt id="birdears.sequence.Sequence.async_play">
-<code class="descname">async_play</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/sequence.html#Sequence.async_play"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.sequence.Sequence.async_play" title="Permalink to this definition">¶</a></dt>
+<code class="descname">async_play</code><span class="sig-paren">(</span><em>callback</em>, <em>end_callback</em>, <em>args</em>, <em>kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/sequence.html#Sequence.async_play"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.sequence.Sequence.async_play" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plays the Sequence elements of notes and/or chords and wait for
 <cite>Sequence.pos_delay</cite> seconds.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="birdears.sequence.Sequence.make_chord_progression">
-<code class="descname">make_chord_progression</code><span class="sig-paren">(</span><em>tonic</em>, <em>mode</em>, <em>degrees</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/sequence.html#Sequence.make_chord_progression"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.sequence.Sequence.make_chord_progression" title="Permalink to this definition">¶</a></dt>
+<code class="descname">make_chord_progression</code><span class="sig-paren">(</span><em>tonic_pitch</em>, <em>mode</em>, <em>degrees</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/sequence.html#Sequence.make_chord_progression"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.sequence.Sequence.make_chord_progression" title="Permalink to this definition">¶</a></dt>
 <dd><p>Appends triad chord(s) to the Sequence.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -836,7 +841,7 @@ of each triad.</li>
 
 <dl class="method">
 <dt id="birdears.sequence.Sequence.play">
-<code class="descname">play</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/sequence.html#Sequence.play"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.sequence.Sequence.play" title="Permalink to this definition">¶</a></dt>
+<code class="descname">play</code><span class="sig-paren">(</span><em>callback=None</em>, <em>end_callback=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/birdears/sequence.html#Sequence.play"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#birdears.sequence.Sequence.play" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>

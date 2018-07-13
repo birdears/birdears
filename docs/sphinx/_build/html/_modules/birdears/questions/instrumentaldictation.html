@@ -127,15 +127,14 @@ $(document).ready(function(){
           <div class="body" role="main">
             
   <h1>Source code for birdears.questions.instrumentaldictation</h1><div class="highlight"><pre>
-<span></span>from .. import CHROMATIC_TYPE
+<span></span>from random import choice
+
+from .. import CHROMATIC_TYPE
 
 from ..questionbase import QuestionBase
-from ..questionbase import get_valid_pitches
+from ..questionbase import register_question_class
 
 from ..interval import Interval
-
-from ..scale import DiatonicScale
-from ..scale import ChromaticScale
 
 from ..sequence import Sequence
 from ..resolution import Resolution
@@ -143,13 +142,13 @@ from ..prequestion import PreQuestion
 
 from ..interfaces.commandline import center_text
 
-from random import choice
-from random import sample
 
-
-<div class="viewcode-block" id="InstrumentalDictationQuestion"><a class="viewcode-back" href="../../../index.html#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion">[docs]</a>class InstrumentalDictationQuestion(QuestionBase):
+<div class="viewcode-block" id="InstrumentalDictationQuestion"><a class="viewcode-back" href="../../../index.html#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion">[docs]</a>@register_question_class
+class InstrumentalDictationQuestion(QuestionBase):
     &quot;&quot;&quot;Implements an instrumental dictation test.
     &quot;&quot;&quot;
+
+    name = &#39;instrumental&#39;
 
 <div class="viewcode-block" id="InstrumentalDictationQuestion.__init__"><a class="viewcode-back" href="../../../index.html#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.__init__">[docs]</a>    def __init__(self, mode=&#39;major&#39;, wait_time=11, n_repeats=1,
                  max_intervals=3, n_notes=4, tonic=&#39;C&#39;, octave=4,
@@ -212,7 +211,7 @@ from random import sample
         }
 
         super(InstrumentalDictationQuestion, self).\
-            __init__(mode=mode, tonic=tonic, octave=octave,
+            __init__(mode=mode, n_notes=n_notes, tonic=tonic, octave=octave,
                      descending=descending, chromatic=chromatic,
                      n_octaves=n_octaves, valid_intervals=valid_intervals,
                      user_durations=user_durations,
@@ -224,6 +223,9 @@ from random import sample
 
         self.wait_time = wait_time
         self.n_repeats = n_repeats
+
+        # instrumental doesn&#39;t take input
+        self.n_input_notes = 0
 
         self.random_pitches = [choice(self.allowed_pitches) for note
                                in range(n_notes)]
@@ -249,16 +251,23 @@ from random import sample
 
         return resolution</div>
 
-<div class="viewcode-block" id="InstrumentalDictationQuestion.play_question"><a class="viewcode-back" href="../../../index.html#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.play_question">[docs]</a>    def play_question(self):
+<div class="viewcode-block" id="InstrumentalDictationQuestion.play_question"><a class="viewcode-back" href="../../../index.html#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.play_question">[docs]</a>    def play_question(self, callback=None, end_callback=None,
+                      *args, **kwargs):
 
         for r in range(self.n_repeats):
-            self.pre_question.play()
-            self.question.play()
+            self.display.update({&#39;main_display&#39;: &#39;Listen to the tonality.&#39;})
+            self.pre_question.play(callback=callback,
+                                   end_callback=end_callback,
+                                   *args, **kwargs)
+            self.question.play(callback=callback, end_callback=end_callback,
+                               *args, **kwargs)
 
             for i in range(self.wait_time):
                 time_left = str(self.wait_time - i).rjust(3)
                 text = &#39;{} seconds remaining...&#39;.format(time_left)
-                print(center_text(text, sep=False), end=&#39;&#39;)
+                self.display.update({&#39;counter&#39;: text})
+
+                # print(center_text(text, sep=False), end=&#39;&#39;)
                 self.question._wait(1)</div>
 
 <div class="viewcode-block" id="InstrumentalDictationQuestion.check_question"><a class="viewcode-back" href="../../../index.html#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.check_question">[docs]</a>    def check_question(self):
@@ -296,6 +305,8 @@ The intervals and notes of this question:
 <ul>
   <li><a href="../../../index.html">Documentation overview</a><ul>
   <li><a href="../../index.html">Module code</a><ul>
+  <li><a href="../../birdears.html">birdears</a><ul>
+  </ul></li>
   </ul></li>
   </ul></li>
 </ul>
