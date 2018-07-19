@@ -1,6 +1,8 @@
 from random import randrange
 from random import choice
 
+from . import D
+
 from . import KEYBOARD_INDICES
 from . import CHROMATIC_TYPE
 from . import KEYS
@@ -11,6 +13,7 @@ from . import DIATONIC_FORMS
 # from .interval import Interval
 
 from .note_and_pitch import Pitch
+from .note_and_pitch import get_pitch_by_number
 
 from .scale import DiatonicScale
 from .scale import ChromaticScale
@@ -216,6 +219,20 @@ class QuestionBase:
                                               octave=self.octave,
                                               descending=descending,
                                               n_octaves=n_octaves)
+
+        self.tonic_accident = ('flat' if (('b' in self.tonic_str)
+                               or (self.tonic_str == 'F'))
+                               else 'sharp')
+
+        if self.is_descending:
+            self.lowest_tonic_pitch = \
+                get_pitch_by_number(int(self.tonic_pitch)
+                                    - (self.n_octaves * 12),
+                                    accident=self.tonic_accident)
+        else:
+            self.lowest_tonic_pitch = self.tonic_pitch
+
+        #D(self.lowest_tonic_pitch)
 
         self.allowed_pitches = \
             get_valid_pitches(self.scale, valid_intervals=valid_intervals)

@@ -389,11 +389,17 @@ class TextUserInterface:
     def draw_question(self):
 
         if self.exercise != 'notename':
-            scale = self.question.chromatic_scale
+            scale = \
+                ChromaticScale(tonic=self.question.lowest_tonic_pitch.note,
+                               octave=self.question.lowest_tonic_pitch.octave,
+                               descending=False,
+                               n_octaves=self.question.n_octaves)
         else:
-            scale = ChromaticScale(tonic='C', octave=self.question.octave,
-                                   descending=self.question.is_descending,
-                                   n_octaves=self.question.n_octaves)
+            scale = \
+                ChromaticScale(tonic='C',
+                               octave=self.question.lowest_tonic_pitch.octave)
+                               #descending=False,
+                               #n_octaves=self.question.n_octaves)
 
         self.keyboard = Keyboard(scale=scale, main_loop=self.loop,
                                  keyboard_index=self.question.keyboard_index)
