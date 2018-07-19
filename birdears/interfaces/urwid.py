@@ -73,8 +73,8 @@ class KeyboardButton(urwid.Padding):
 
 class Keyboard(urwid.Filler):
 
-    def __init__(self, scale, main_loop=None, keyboard_index=None, *args,
-                 **kwargs):
+    def __init__(self, scale, question_tonic_pitch, main_loop=None,
+                 keyboard_index=None, *args, **kwargs):
 
         self.main_loop = main_loop
 
@@ -106,7 +106,10 @@ class Keyboard(urwid.Filler):
             pitch_str = str(pitch)
             note_str = pitch.note
 
-            letter = keyboard_index[index]
+            _idx = abs(int(question_tonic_pitch) - int(pitch))
+
+            letter = keyboard_index[_idx]
+            #letter = keyboard_index[index]
             bottom_text = letter
             middle_text = INTERVALS[keyboard_index.index(letter)][1]
 
@@ -401,8 +404,11 @@ class TextUserInterface:
                                #descending=False,
                                #n_octaves=self.question.n_octaves)
 
-        self.keyboard = Keyboard(scale=scale, main_loop=self.loop,
-                                 keyboard_index=self.question.keyboard_index)
+        self.keyboard = \
+            Keyboard(scale=scale,
+                     question_tonic_pitch=self.question.tonic_pitch,
+                     main_loop=self.loop,
+                     keyboard_index=self.question.keyboard_index)
 
         top_variables = {
             'tonic': self.question.tonic_str,
