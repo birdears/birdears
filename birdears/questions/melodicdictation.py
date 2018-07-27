@@ -119,7 +119,8 @@ class MelodicDictationQuestion(QuestionBase):
         self.display.update({'main_display': 'Listen to the tonality...'})
         self.pre_question.play(callback=callback, end_callback=end_callback,
                                *args, **kwargs)
-        self.question.play(callback=callback, end_callback=end_callback,
+        # self.question.play(callback=callback, end_callback=end_callback,
+        self.question.play(callback=None, end_callback=end_callback,
                            *args, **kwargs)
         self.display.update({'main_display': ('Now, please type the intervals '
                                               'you\'ve heard.')})

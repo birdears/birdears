@@ -128,7 +128,7 @@ class NoteNameQuestion(QuestionBase):
 
         self.pre_question.play(callback=callback, end_callback=end_callback,
                                *args, **kwargs)
-        self.question.play(callback=None, end_callback=None,
+        self.question.play(callback=None, end_callback=end_callback,
                            *args, **kwargs)
 
     def play_resolution(self, callback=None, end_callback=None, *args,

@@ -130,7 +130,8 @@ class InstrumentalDictationQuestion(QuestionBase):
             self.pre_question.play(callback=callback,
                                    end_callback=end_callback,
                                    *args, **kwargs)
-            self.question.play(callback=callback, end_callback=end_callback,
+            # self.question.play(callback=callback, end_callback=end_callback,
+            self.question.play(callback=None, end_callback=end_callback,
                                *args, **kwargs)
 
             for i in range(self.wait_time):

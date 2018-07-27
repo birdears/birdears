@@ -359,6 +359,7 @@ class TextUserInterface:
         }
 
         self.question.play_question(**kwargs)
+        self.keyboard.highlight_key(element=None)
 
     # TYPES OF DISPLAYS:
     #
