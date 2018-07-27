@@ -77,6 +77,7 @@ class Note:
     def __eq__(self, compare):
         # TODO: think a way to compare pitchs vs strings vs notes
 
+        # FIXME: we should use isinstance() here
         if type(compare) == str and str(self) == compare:
             return True
 
@@ -85,6 +86,7 @@ class Note:
 
         elif type(compare) == Pitch and int(self) == int(compare):
             return True
+
 
         return False
 
@@ -118,24 +120,27 @@ class Pitch(Note):
         return value
 
     def distance(self, other):
-        if type(other) == Pitch:
+        if isinstance(other, (Pitch, int)):
             return self.pitch_number - int(other)
 
     def __eq__(self, compare):
 
-        if type(compare) == int:
-            result = self.pitch_number == compare
-
-        elif type(compare) == Pitch:
-            result = self.pitch_number == int(compare)
-
-        elif type(compare) == Note:
-            result = self.pitch_class == int(compare)
-
+        if isinstance(compare, (Note, Pitch, int)):
+            return self.pitch_number == int(compare)
         else:
-            raise Exception('Invalid operand for addition.')
+            raise Exception('Invalid operand for comparison.')
 
-        return result
+    def __gt__(self, other):
+        return self.pitch_number > int(other)
+
+    def __ge__(self, other):
+        return self.pitch_number >= int(other)
+
+    def __lt__(self, other):
+        return self.pitch_number < int(other)
+
+    def __le__(self, other):
+        return self.pitch_number <= int(other)
 
     def __str__(self):
         return "{note}{octave}".format(note=self.note, octave=self.octave)
@@ -149,39 +154,40 @@ class Pitch(Note):
                     numeric=self.pitch_number)
 
     def __add__(self, other):
-        if type(other) == int:
-            pitch_number = self.pitch_number + other
-            pitch = Pitch().get_pitch_by_number(pitch_number)
-        else:
-            raise Exception('Invalid operand for addition.')
-        return pitch
+
+        if isinstance(other, int):
+            result = self.pitch_number + int(other)
+
+        return get_pitch_by_number(result, accident=self.accident)
 
     def __iadd__(self, other):
-        if type(other) == int:
-            pitch_number = self.pitch_number + other
-            pitch = Pitch().get_pitch_by_number(pitch_number)
-        else:
-            raise Exception('Invalid operand for addition.')
 
-        return pitch
+        if isinstance(other, int):
+            result = self.pitch_number + int(other)
+
+        return get_pitch_by_number(result, accident=self.accident)
+
+        # if isinstance(other, int):
+        #    pitch_number = self.pitch_number + other
+        #    pitch = Pitch().get_pitch_by_number(pitch_number)
+        #else:
+        #    raise Exception('Invalid operand for addition.')
+
+        #return pitch
 
     def __sub__(self, other):
-        if type(other) == int:
-            pitch_number = self.pitch_number - other
-            pitch = Pitch().get_pitch_by_number(pitch_number)
-        else:
-            raise Exception('Invalid operand for subtraction.')
 
-        return pitch
+        if isinstance(other, int):
+            result = self.pitch_number - int(other)
+
+            return get_pitch_by_number(result, accident=self.accident)
 
     def __isub__(self, other):
-        if type(other) == int:
-            pitch_number = self.pitch_number - other
-            pitch = Pitch().get_pitch_by_number(pitch_number)
-        else:
-            raise Exception('Invalid operand for subtraction.')
 
-        return pitch
+        if isinstance(other, int):
+            result = self.pitch_number - int(other)
+
+            return get_pitch_by_number(result, accident=self.accident)
 
 
 class Chord(list):
