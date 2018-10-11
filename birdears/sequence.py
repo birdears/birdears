@@ -157,7 +157,7 @@ class Sequence(list):
 
         # FIXME: this is experimental, revert to the old code if it is the case
         command = (
-            "play -V1 -qn synth {duration} pluck {note}"
+            "sox -V1 -qn -d synth {duration} pluck {note}"
             " fade l 0 {duration} {duration} reverb"
         ).format(note=str(pitch), duration=duration)
 
@@ -186,7 +186,7 @@ class Sequence(list):
 
         # FIXME: this is experimental, revert to the old code if it is the case
         command = (
-            "play -V1 -qn synth {duration} {chord}"
+            "sox -V1 -qn -d synth {duration} {chord}"
             " fade l 0 {duration} {duration} reverb"
         ).format(chord=chord_plucks, duration=duration)
 
