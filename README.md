@@ -31,10 +31,15 @@
 
 For the support chat, please `/join` [`#birdears`](https://webchat.freenode.net/?randomnick=1&channels=%23birdears&uio=MTY9dHJ1ZSYxMT0yNDY57) channel on freenode (`chat.freenode.net/6697` - ssl).
 
+### TUI
+
+![screenshot](screen-20190211-163428-BRT.png)
+
+### CLI
+
 ![birdears screencast](use.gif)
 
 ## Introduction
-
 
 ### birdears
 
