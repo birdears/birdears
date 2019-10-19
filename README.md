@@ -22,6 +22,7 @@
 		- [Arch Linux](#arch-linux)
 	- [Installing birdears](#installing-birdears)
 		- [In-depth installation](#in-depth-installation)
+		- [Alternative installation: Cloning this Repository](#alternative-installation-cloning-this-repository)
 - [Running](#running)
 - [Keybindings](#keybindings)
 - [Documentation](#documentation)
@@ -108,7 +109,7 @@ pip3 install birdears         # this will install the software
 birdears --help               # and this will run it
 ```
 
-#### Alternative Installation: cloning the repo
+#### Alternative installation: Cloning this Repository
 
 This way you can have the mainline version of `birdears`, which sometimes takes time to be updated to `pip`.
 
