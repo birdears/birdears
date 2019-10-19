@@ -108,6 +108,43 @@ pip3 install birdears         # this will install the software
 birdears --help               # and this will run it
 ```
 
+#### Alternative Installation: cloning the repo
+
+This way you can have the mainline version of `birdears`, which sometimes takes time to be updated to `pip`.
+
+1. Install `python3` and `sox` for your linux distribution.
+
+2. Clone the repository:
+
+```
+git clone https://github.com/iacchus/birdears.git birdears-root
+```
+
+3. Set the PYTHONPATH environment variable to the directory you cloned `birdears`
+
+*first example:*
+
+```
+export PYTHONPATH='/home/YOUR\_USERNAME/my-git-repos/birdears-root'
+python -m birdears
+```
+
+*second example:*
+
+```
+PYTHONPATH='/home/YOUR\_USERNAME/my-git-repos/birdears-root' python -m birdears
+```
+
+**tip:**
+
+You can also add an *alias* to your `.bashrc` to simplify this
+
+```
+alias birdears="PYTHONPATH='/home/YOUR\_USERNAME/my-git-repos/birdears-root' python -m birdears"
+```
+
+**explantion**: the `PYTHONPATH` environment varible will make the birdears module be executed from that especified directory, having preemptiessness even if there is already another version installed via `pip`.
+
 ## Running
 
 After installing just run:
