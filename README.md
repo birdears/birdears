@@ -144,7 +144,7 @@ You can also add an *alias* to your `.bashrc` to simplify this
 alias birdears="PYTHONPATH='/home/YOUR\_USERNAME/my-git-repos/birdears-root' python -m birdears"
 ```
 
-**explantion**: the `PYTHONPATH` environment varible will make the birdears module be executed from that especified directory, having preemptiessness even if there is already another version installed via `pip`.
+**explantion**: the `PYTHONPATH` environment varible will make the birdears module be executed from that especified directory, having preemptiness even if there is already another version installed via `pip`.
 
 ## Running
 
