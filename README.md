@@ -117,23 +117,25 @@ This way you can have the mainline version of `birdears`, which sometimes takes 
 
 2. Clone the repository:
 
+*ex. cloning it ro a directory named `birdears-root`*
+
 ```
 git clone https://github.com/iacchus/birdears.git birdears-root
 ```
 
-3. Set the PYTHONPATH environment variable to the directory you cloned `birdears`
+3. Set the `PYTHONPATH` environment variable to the directory you cloned `birdears`
 
 *first example:*
 
 ```
-export PYTHONPATH='/home/YOUR\_USERNAME/my-git-repos/birdears-root'
+export PYTHONPATH='/home/YOUR_USERNAME/my-git-repos/birdears-root'
 python -m birdears
 ```
 
 *second example:*
 
 ```
-PYTHONPATH='/home/YOUR\_USERNAME/my-git-repos/birdears-root' python -m birdears
+PYTHONPATH='/home/YOUR_USERNAME/my-git-repos/birdears-root' python -m birdears
 ```
 
 **tip:**
@@ -141,7 +143,7 @@ PYTHONPATH='/home/YOUR\_USERNAME/my-git-repos/birdears-root' python -m birdears
 You can also add an *alias* to your `.bashrc` to simplify this
 
 ```
-alias birdears="PYTHONPATH='/home/YOUR\_USERNAME/my-git-repos/birdears-root' python -m birdears"
+alias birdears="PYTHONPATH='/home/YOUR_USERNAME/my-git-repos/birdears-root' python -m birdears"
 ```
 
 **explantion**: the `PYTHONPATH` environment varible will make the birdears module be executed from that especified directory, having preemptiness even if there is already another version installed via `pip`.
