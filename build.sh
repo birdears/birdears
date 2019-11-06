@@ -22,7 +22,7 @@ rm -rf dist/
 
 # convert readme to rst for pypi
 rm -rf README.rst
-pandoc --from=markdown --to=rst README.md -o README.rst
+#pandoc --from=markdown --to=rst README.md -o README.rst
 
 # ATTENTION
 # sphinx apidoc now should be run only by hand, and with care for it's --force option, only when the api changes, as we will be editing the .rst generated with it by hand
