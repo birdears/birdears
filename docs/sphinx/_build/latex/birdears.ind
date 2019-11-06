@@ -1,224 +1,266 @@
 \begin{sphinxtheindex}
-\def\bigletter#1{{\Large\sffamily#1}\nopagebreak\vspace{1mm}}
+\let\bigletter\sphinxstyleindexlettergroup
+\let\spxpagem \sphinxstyleindexpagemain
+\let\spxentry \sphinxstyleindexentry
+\let\spxextra \sphinxstyleindexextra
 
-  \bigletter {Symbols}
-  \item \_\_call\_\_() (birdears.prequestion.PreQuestion method), \hyperpage{29}, \hyperpage{55}
-  \item \_\_call\_\_() (birdears.resolution.Resolution method), \hyperpage{32}, \hyperpage{58}
-  \item \_\_init\_\_() (birdears.interfaces.commandline.CommandLine method), \hyperpage{20}, 
-		\hyperpage{69}
-  \item \_\_init\_\_() (birdears.interval.Interval method), \hyperpage{28}, \hyperpage{54}
-  \item \_\_init\_\_() (birdears.prequestion.PreQuestion method), \hyperpage{29}, \hyperpage{56}
-  \item \_\_init\_\_() (birdears.questionbase.QuestionBase method), \hyperpage{30}, \hyperpage{56}
-  \item \_\_init\_\_() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method), 
-		\hyperpage{21}, \hyperpage{61}
-  \item \_\_init\_\_() (birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method), 
-		\hyperpage{23}, \hyperpage{63}
-  \item \_\_init\_\_() (birdears.questions.melodicdictation.MelodicDictationQuestion method), 
-		\hyperpage{25}, \hyperpage{65}
-  \item \_\_init\_\_() (birdears.questions.melodicinterval.MelodicIntervalQuestion method), 
-		\hyperpage{26}, \hyperpage{67}
-  \item \_\_init\_\_() (birdears.resolution.Resolution method), \hyperpage{32}, \hyperpage{58}
-  \item \_\_init\_\_() (birdears.scale.ChromaticScale method), \hyperpage{32}, \hyperpage{58}
-  \item \_\_init\_\_() (birdears.scale.DiatonicScale method), \hyperpage{33}, \hyperpage{59}
+  \bigletter {\sphinxsymbolsname}
+  \item \spxentry{\_\_call\_\_()}\spxextra{birdears.prequestion.PreQuestion method}, \hyperpage{30}, 
+		\hyperpage{56}
+  \item \spxentry{\_\_call\_\_()}\spxextra{birdears.resolution.Resolution method}, \hyperpage{32}, 
+		\hyperpage{58}
+  \item \spxentry{\_\_init\_\_()}\spxextra{birdears.interfaces.commandline.CommandLine method}, 
+		\hyperpage{20}, \hyperpage{71}
+  \item \spxentry{\_\_init\_\_()}\spxextra{birdears.interval.Interval method}, \hyperpage{29}, 
+		\hyperpage{55}
+  \item \spxentry{\_\_init\_\_()}\spxextra{birdears.prequestion.PreQuestion method}, \hyperpage{30}, 
+		\hyperpage{56}
+  \item \spxentry{\_\_init\_\_()}\spxextra{birdears.questionbase.QuestionBase method}, 
+		\hyperpage{31}, \hyperpage{57}
+  \item \spxentry{\_\_init\_\_()}\spxextra{birdears.questions.harmonicinterval.HarmonicIntervalQuestion method}, 
+		\hyperpage{21}, \hyperpage{63}
+  \item \spxentry{\_\_init\_\_()}\spxextra{birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method}, 
+		\hyperpage{23}, \hyperpage{65}
+  \item \spxentry{\_\_init\_\_()}\spxextra{birdears.questions.melodicdictation.MelodicDictationQuestion method}, 
+		\hyperpage{25}, \hyperpage{67}
+  \item \spxentry{\_\_init\_\_()}\spxextra{birdears.questions.melodicinterval.MelodicIntervalQuestion method}, 
+		\hyperpage{26}, \hyperpage{69}
+  \item \spxentry{\_\_init\_\_()}\spxextra{birdears.resolution.Resolution method}, \hyperpage{32}, 
+		\hyperpage{58}
+  \item \spxentry{\_\_init\_\_()}\spxextra{birdears.scale.ChromaticScale method}, \hyperpage{33}, 
+		\hyperpage{59}
+  \item \spxentry{\_\_init\_\_()}\spxextra{birdears.scale.DiatonicScale method}, \hyperpage{33}, 
+		\hyperpage{60}
 
   \indexspace
   \bigletter A
-  \item async\_play() (birdears.sequence.Sequence method), \hyperpage{34}, \hyperpage{60}
+  \item \spxentry{async\_play()}\spxextra{birdears.sequence.Sequence method}, \hyperpage{34}, 
+		\hyperpage{60}
 
   \indexspace
   \bigletter B
-  \item birdears (module), \hyperpage{19}, \hyperpage{53}
-  \item birdears.interfaces (module), \hyperpage{20}, \hyperpage{69}
-  \item birdears.interfaces.commandline (module), \hyperpage{20}, \hyperpage{69}
-  \item birdears.interval (module), \hyperpage{28}, \hyperpage{54}
-  \item birdears.logger (module), \hyperpage{29}, \hyperpage{55}
-  \item birdears.prequestion (module), \hyperpage{29}, \hyperpage{55}
-  \item birdears.questionbase (module), \hyperpage{30}, \hyperpage{56}
-  \item birdears.questions (module), \hyperpage{21}, \hyperpage{61}
-  \item birdears.questions.harmonicinterval (module), \hyperpage{21}, \hyperpage{61}
-  \item birdears.questions.instrumentaldictation (module), \hyperpage{23}, \hyperpage{63}
-  \item birdears.questions.melodicdictation (module), \hyperpage{25}, \hyperpage{65}
-  \item birdears.questions.melodicinterval (module), \hyperpage{26}, \hyperpage{67}
-  \item birdears.resolution (module), \hyperpage{31}, \hyperpage{58}
-  \item birdears.scale (module), \hyperpage{32}, \hyperpage{58}
-  \item birdears.sequence (module), \hyperpage{33}, \hyperpage{60}
+  \item \spxentry{birdears}\spxextra{module}, \hyperpage{19}, \hyperpage{53}
+  \item \spxentry{birdears.interfaces}\spxextra{module}, \hyperpage{20}, \hyperpage{71}
+  \item \spxentry{birdears.interfaces.commandline}\spxextra{module}, \hyperpage{20}, \hyperpage{71}
+  \item \spxentry{birdears.interval}\spxextra{module}, \hyperpage{28}, \hyperpage{54}
+  \item \spxentry{birdears.logger}\spxextra{module}, \hyperpage{29}, \hyperpage{55}
+  \item \spxentry{birdears.prequestion}\spxextra{module}, \hyperpage{29}, \hyperpage{56}
+  \item \spxentry{birdears.questionbase}\spxextra{module}, \hyperpage{31}, \hyperpage{57}
+  \item \spxentry{birdears.questions}\spxextra{module}, \hyperpage{21}, \hyperpage{63}
+  \item \spxentry{birdears.questions.harmonicinterval}\spxextra{module}, \hyperpage{21}, 
+		\hyperpage{63}
+  \item \spxentry{birdears.questions.instrumentaldictation}\spxextra{module}, \hyperpage{23}, 
+		\hyperpage{65}
+  \item \spxentry{birdears.questions.melodicdictation}\spxextra{module}, \hyperpage{25}, 
+		\hyperpage{67}
+  \item \spxentry{birdears.questions.melodicinterval}\spxextra{module}, \hyperpage{26}, 
+		\hyperpage{69}
+  \item \spxentry{birdears.resolution}\spxextra{module}, \hyperpage{32}, \hyperpage{58}
+  \item \spxentry{birdears.scale}\spxextra{module}, \hyperpage{33}, \hyperpage{59}
+  \item \spxentry{birdears.sequence}\spxextra{module}, \hyperpage{34}, \hyperpage{60}
 
   \indexspace
   \bigletter C
-  \item center\_text() (in module birdears.interfaces.commandline), \hyperpage{20}, \hyperpage{69}
-  \item check\_question() (birdears.questionbase.QuestionBase method), \hyperpage{31}, 
-		\hyperpage{57}
-  \item check\_question() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method), 
-		\hyperpage{22}, \hyperpage{62}
-  \item check\_question() (birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method), 
-		\hyperpage{24}, \hyperpage{64}
-  \item check\_question() (birdears.questions.melodicdictation.MelodicDictationQuestion method), 
-		\hyperpage{26}, \hyperpage{66}
-  \item check\_question() (birdears.questions.melodicinterval.MelodicIntervalQuestion method), 
-		\hyperpage{27}, \hyperpage{68}
-  \item CHROMATIC\_FLAT (in module birdears), \hyperpage{19}, \hyperpage{53}
-  \item chromatic\_offset (birdears.interval.Interval attribute), \hyperpage{28}, \hyperpage{54}
-  \item CHROMATIC\_SHARP (in module birdears), \hyperpage{19}, \hyperpage{53}
-  \item CHROMATIC\_TYPE (in module birdears), \hyperpage{19}, \hyperpage{53}
-  \item ChromaticScale (class in birdears.scale), \hyperpage{32}, \hyperpage{58}
-  \item CIRCLE\_OF\_FIFTHS (in module birdears), \hyperpage{19}, \hyperpage{53}
-  \item CommandLine (class in birdears.interfaces.commandline), \hyperpage{20}, \hyperpage{69}
+  \item \spxentry{center\_text()}\spxextra{in module birdears.interfaces.commandline}, 
+		\hyperpage{20}, \hyperpage{71}
+  \item \spxentry{check\_question()}\spxextra{birdears.questionbase.QuestionBase method}, 
+		\hyperpage{31}, \hyperpage{58}
+  \item \spxentry{check\_question()}\spxextra{birdears.questions.harmonicinterval.HarmonicIntervalQuestion method}, 
+		\hyperpage{22}, \hyperpage{64}
+  \item \spxentry{check\_question()}\spxextra{birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method}, 
+		\hyperpage{24}, \hyperpage{66}
+  \item \spxentry{check\_question()}\spxextra{birdears.questions.melodicdictation.MelodicDictationQuestion method}, 
+		\hyperpage{26}, \hyperpage{68}
+  \item \spxentry{check\_question()}\spxextra{birdears.questions.melodicinterval.MelodicIntervalQuestion method}, 
+		\hyperpage{27}, \hyperpage{70}
+  \item \spxentry{CHROMATIC\_FLAT}\spxextra{in module birdears}, \hyperpage{19}, \hyperpage{53}
+  \item \spxentry{chromatic\_offset}\spxextra{birdears.interval.Interval attribute}, \hyperpage{28}, 
+		\hyperpage{54}
+  \item \spxentry{CHROMATIC\_SHARP}\spxextra{in module birdears}, \hyperpage{19}, \hyperpage{53}
+  \item \spxentry{CHROMATIC\_TYPE}\spxextra{in module birdears}, \hyperpage{19}, \hyperpage{53}
+  \item \spxentry{ChromaticScale}\spxextra{class in birdears.scale}, \hyperpage{33}, \hyperpage{59}
+  \item \spxentry{CIRCLE\_OF\_FIFTHS}\spxextra{in module birdears}, \hyperpage{19}, \hyperpage{53}
+  \item \spxentry{CommandLine}\spxextra{class in birdears.interfaces.commandline}, \hyperpage{20}, 
+		\hyperpage{71}
 
   \indexspace
   \bigletter D
-  \item D() (in module birdears), \hyperpage{19}, \hyperpage{53}
-  \item data (birdears.interval.Interval attribute), \hyperpage{28}, \hyperpage{54}
-  \item DEGREE\_INDEX (in module birdears), \hyperpage{19}, \hyperpage{53}
-  \item diatonic\_index (birdears.interval.Interval attribute), \hyperpage{28}, \hyperpage{54}
-  \item DIATONIC\_MASK (in module birdears), \hyperpage{19}, \hyperpage{53}
-  \item DiatonicScale (class in birdears.scale), \hyperpage{33}, \hyperpage{59}
-  \item distance (birdears.interval.Interval attribute), \hyperpage{28}, \hyperpage{54}
+  \item \spxentry{D()}\spxextra{in module birdears}, \hyperpage{19}, \hyperpage{53}
+  \item \spxentry{data}\spxextra{birdears.interval.Interval attribute}, \hyperpage{29}, 
+		\hyperpage{55}
+  \item \spxentry{DEGREE\_INDEX}\spxextra{in module birdears}, \hyperpage{19}, \hyperpage{53}
+  \item \spxentry{diatonic\_index}\spxextra{birdears.interval.Interval attribute}, \hyperpage{28}, 
+		\hyperpage{55}
+  \item \spxentry{DIATONIC\_MASK}\spxextra{in module birdears}, \hyperpage{19}, \hyperpage{53}
+  \item \spxentry{DiatonicScale}\spxextra{class in birdears.scale}, \hyperpage{33}, \hyperpage{59}
+  \item \spxentry{distance}\spxextra{birdears.interval.Interval attribute}, \hyperpage{28}, 
+		\hyperpage{55}
 
   \indexspace
   \bigletter E
-  \item elements (birdears.sequence.Sequence attribute), \hyperpage{33}, \hyperpage{60}
+  \item \spxentry{elements}\spxextra{birdears.sequence.Sequence attribute}, \hyperpage{34}, 
+		\hyperpage{60}
 
   \indexspace
   \bigletter G
-  \item get\_interval\_by\_semitones() (in module birdears.interval), \hyperpage{28}, 
-		\hyperpage{55}
-  \item get\_triad() (birdears.scale.ChromaticScale method), \hyperpage{32}, \hyperpage{59}
-  \item get\_triad() (birdears.scale.DiatonicScale method), \hyperpage{33}, \hyperpage{59}
-  \item get\_valid\_pitches() (in module birdears.questionbase), \hyperpage{31}, \hyperpage{57}
+  \item \spxentry{get\_interval\_by\_semitones()}\spxextra{in module birdears.interval}, 
+		\hyperpage{29}, \hyperpage{55}
+  \item \spxentry{get\_triad()}\spxextra{birdears.scale.ChromaticScale method}, \hyperpage{33}, 
+		\hyperpage{59}
+  \item \spxentry{get\_triad()}\spxextra{birdears.scale.DiatonicScale method}, \hyperpage{34}, 
+		\hyperpage{60}
+  \item \spxentry{get\_valid\_pitches()}\spxextra{in module birdears.questionbase}, \hyperpage{32}, 
+		\hyperpage{58}
 
   \indexspace
   \bigletter H
-  \item HarmonicIntervalQuestion (class in birdears.questions.harmonicinterval), \hyperpage{21}, 
-		\hyperpage{61}
+  \item \spxentry{HarmonicIntervalQuestion}\spxextra{class in birdears.questions.harmonicinterval}, 
+		\hyperpage{21}, \hyperpage{63}
 
   \indexspace
   \bigletter I
-  \item InstrumentalDictationQuestion (class in birdears.questions.instrumentaldictation), 
-		\hyperpage{23}, \hyperpage{63}
-  \item Interval (class in birdears.interval), \hyperpage{28}, \hyperpage{54}
-  \item INTERVAL\_INDEX (in module birdears), \hyperpage{19}, \hyperpage{53}
-  \item INTERVALS (in module birdears), \hyperpage{19}, \hyperpage{53}
-  \item is\_chromatic (birdears.interval.Interval attribute), \hyperpage{28}, \hyperpage{54}
-  \item is\_descending (birdears.interval.Interval attribute), \hyperpage{28}, \hyperpage{54}
+  \item \spxentry{InstrumentalDictationQuestion}\spxextra{class in birdears.questions.instrumentaldictation}, 
+		\hyperpage{23}, \hyperpage{65}
+  \item \spxentry{Interval}\spxextra{class in birdears.interval}, \hyperpage{28}, \hyperpage{54}
+  \item \spxentry{INTERVAL\_INDEX}\spxextra{in module birdears}, \hyperpage{20}, \hyperpage{54}
+  \item \spxentry{INTERVALS}\spxextra{in module birdears}, \hyperpage{19}, \hyperpage{53}
+  \item \spxentry{is\_chromatic}\spxextra{birdears.interval.Interval attribute}, \hyperpage{28}, 
+		\hyperpage{54}
+  \item \spxentry{is\_descending}\spxextra{birdears.interval.Interval attribute}, \hyperpage{28}, 
+		\hyperpage{54}
 
   \indexspace
   \bigletter K
-  \item KEYS (in module birdears), \hyperpage{19}, \hyperpage{53}
+  \item \spxentry{KEYS}\spxextra{in module birdears}, \hyperpage{20}, \hyperpage{54}
 
   \indexspace
   \bigletter L
-  \item log\_event() (in module birdears.logger), \hyperpage{29}, \hyperpage{55}
+  \item \spxentry{log\_event()}\spxextra{in module birdears.logger}, \hyperpage{29}, \hyperpage{56}
 
   \indexspace
   \bigletter M
-  \item make\_chord\_progression() (birdears.sequence.Sequence method), \hyperpage{34}, 
-		\hyperpage{60}
-  \item make\_input\_str() (in module birdears.interfaces.commandline), \hyperpage{20}, 
-		\hyperpage{69}
-  \item make\_pre\_question() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method), 
-		\hyperpage{22}, \hyperpage{62}
-  \item make\_pre\_question() (birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method), 
-		\hyperpage{24}, \hyperpage{64}
-  \item make\_pre\_question() (birdears.questions.melodicdictation.MelodicDictationQuestion method), 
-		\hyperpage{26}, \hyperpage{66}
-  \item make\_pre\_question() (birdears.questions.melodicinterval.MelodicIntervalQuestion method), 
-		\hyperpage{27}, \hyperpage{68}
-  \item make\_question() (birdears.questionbase.QuestionBase method), \hyperpage{31}, 
-		\hyperpage{57}
-  \item make\_question() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method), 
-		\hyperpage{22}, \hyperpage{62}
-  \item make\_question() (birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method), 
-		\hyperpage{24}, \hyperpage{64}
-  \item make\_question() (birdears.questions.melodicdictation.MelodicDictationQuestion method), 
-		\hyperpage{26}, \hyperpage{66}
-  \item make\_question() (birdears.questions.melodicinterval.MelodicIntervalQuestion method), 
-		\hyperpage{27}, \hyperpage{68}
-  \item make\_resolution() (birdears.questionbase.QuestionBase method), \hyperpage{31}, 
-		\hyperpage{57}
-  \item make\_resolution() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method), 
-		\hyperpage{22}, \hyperpage{62}
-  \item make\_resolution() (birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method), 
-		\hyperpage{24}, \hyperpage{64}
-  \item make\_resolution() (birdears.questions.melodicdictation.MelodicDictationQuestion method), 
-		\hyperpage{26}, \hyperpage{66}
-  \item make\_resolution() (birdears.questions.melodicinterval.MelodicIntervalQuestion method), 
-		\hyperpage{27}, \hyperpage{68}
-  \item MelodicDictationQuestion (class in birdears.questions.melodicdictation), \hyperpage{25}, 
-		\hyperpage{65}
-  \item MelodicIntervalQuestion (class in birdears.questions.melodicinterval), \hyperpage{26}, 
-		\hyperpage{67}
+  \item \spxentry{make\_chord\_progression()}\spxextra{birdears.sequence.Sequence method}, 
+		\hyperpage{34}, \hyperpage{60}
+  \item \spxentry{make\_input\_str()}\spxextra{in module birdears.interfaces.commandline}, 
+		\hyperpage{20}, \hyperpage{71}
+  \item \spxentry{make\_pre\_question()}\spxextra{birdears.questions.harmonicinterval.HarmonicIntervalQuestion method}, 
+		\hyperpage{22}, \hyperpage{64}
+  \item \spxentry{make\_pre\_question()}\spxextra{birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method}, 
+		\hyperpage{24}, \hyperpage{66}
+  \item \spxentry{make\_pre\_question()}\spxextra{birdears.questions.melodicdictation.MelodicDictationQuestion method}, 
+		\hyperpage{26}, \hyperpage{68}
+  \item \spxentry{make\_pre\_question()}\spxextra{birdears.questions.melodicinterval.MelodicIntervalQuestion method}, 
+		\hyperpage{27}, \hyperpage{70}
+  \item \spxentry{make\_question()}\spxextra{birdears.questionbase.QuestionBase method}, 
+		\hyperpage{32}, \hyperpage{58}
+  \item \spxentry{make\_question()}\spxextra{birdears.questions.harmonicinterval.HarmonicIntervalQuestion method}, 
+		\hyperpage{22}, \hyperpage{64}
+  \item \spxentry{make\_question()}\spxextra{birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method}, 
+		\hyperpage{24}, \hyperpage{66}
+  \item \spxentry{make\_question()}\spxextra{birdears.questions.melodicdictation.MelodicDictationQuestion method}, 
+		\hyperpage{26}, \hyperpage{68}
+  \item \spxentry{make\_question()}\spxextra{birdears.questions.melodicinterval.MelodicIntervalQuestion method}, 
+		\hyperpage{27}, \hyperpage{70}
+  \item \spxentry{make\_resolution()}\spxextra{birdears.questionbase.QuestionBase method}, 
+		\hyperpage{32}, \hyperpage{58}
+  \item \spxentry{make\_resolution()}\spxextra{birdears.questions.harmonicinterval.HarmonicIntervalQuestion method}, 
+		\hyperpage{22}, \hyperpage{64}
+  \item \spxentry{make\_resolution()}\spxextra{birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method}, 
+		\hyperpage{24}, \hyperpage{66}
+  \item \spxentry{make\_resolution()}\spxextra{birdears.questions.melodicdictation.MelodicDictationQuestion method}, 
+		\hyperpage{26}, \hyperpage{68}
+  \item \spxentry{make\_resolution()}\spxextra{birdears.questions.melodicinterval.MelodicIntervalQuestion method}, 
+		\hyperpage{27}, \hyperpage{70}
+  \item \spxentry{MelodicDictationQuestion}\spxextra{class in birdears.questions.melodicdictation}, 
+		\hyperpage{25}, \hyperpage{67}
+  \item \spxentry{MelodicIntervalQuestion}\spxextra{class in birdears.questions.melodicinterval}, 
+		\hyperpage{26}, \hyperpage{69}
 
   \indexspace
   \bigletter N
-  \item name (birdears.questions.harmonicinterval.HarmonicIntervalQuestion attribute), 
-		\hyperpage{22}, \hyperpage{62}
-  \item name (birdears.questions.instrumentaldictation.InstrumentalDictationQuestion attribute), 
-		\hyperpage{24}, \hyperpage{64}
-  \item name (birdears.questions.melodicdictation.MelodicDictationQuestion attribute), 
-		\hyperpage{26}, \hyperpage{66}
-  \item name (birdears.questions.melodicinterval.MelodicIntervalQuestion attribute), \hyperpage{27}, 
-		\hyperpage{68}
-  \item nearest\_tonic() (in module birdears.resolution), \hyperpage{32}, \hyperpage{58}
-  \item none() (in module birdears.prequestion), \hyperpage{30}, \hyperpage{56}
-  \item note\_and\_octave (birdears.interval.Interval attribute), \hyperpage{28}, \hyperpage{54}
-  \item note\_name (birdears.interval.Interval attribute), \hyperpage{28}, \hyperpage{54}
+  \item \spxentry{name}\spxextra{birdears.questions.harmonicinterval.HarmonicIntervalQuestion attribute}, 
+		\hyperpage{22}, \hyperpage{64}
+  \item \spxentry{name}\spxextra{birdears.questions.instrumentaldictation.InstrumentalDictationQuestion attribute}, 
+		\hyperpage{24}, \hyperpage{66}
+  \item \spxentry{name}\spxextra{birdears.questions.melodicdictation.MelodicDictationQuestion attribute}, 
+		\hyperpage{26}, \hyperpage{68}
+  \item \spxentry{name}\spxextra{birdears.questions.melodicinterval.MelodicIntervalQuestion attribute}, 
+		\hyperpage{27}, \hyperpage{70}
+  \item \spxentry{nearest\_tonic()}\spxextra{in module birdears.resolution}, \hyperpage{32}, 
+		\hyperpage{58}
+  \item \spxentry{none()}\spxextra{in module birdears.prequestion}, \hyperpage{30}, \hyperpage{56}
+  \item \spxentry{note\_and\_octave}\spxextra{birdears.interval.Interval attribute}, \hyperpage{28}, 
+		\hyperpage{54}
+  \item \spxentry{note\_name}\spxextra{birdears.interval.Interval attribute}, \hyperpage{28}, 
+		\hyperpage{54}
 
   \indexspace
   \bigletter P
-  \item play() (birdears.sequence.Sequence method), \hyperpage{34}, \hyperpage{60}
-  \item play\_question() (birdears.questionbase.QuestionBase method), \hyperpage{31}, 
-		\hyperpage{57}
-  \item play\_question() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method), 
-		\hyperpage{22}, \hyperpage{62}
-  \item play\_question() (birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method), 
-		\hyperpage{24}, \hyperpage{64}
-  \item play\_question() (birdears.questions.melodicdictation.MelodicDictationQuestion method), 
-		\hyperpage{26}, \hyperpage{66}
-  \item play\_question() (birdears.questions.melodicinterval.MelodicIntervalQuestion method), 
-		\hyperpage{27}, \hyperpage{68}
-  \item play\_resolution() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method), 
-		\hyperpage{22}, \hyperpage{62}
-  \item play\_resolution() (birdears.questions.melodicdictation.MelodicDictationQuestion method), 
-		\hyperpage{26}, \hyperpage{66}
-  \item play\_resolution() (birdears.questions.melodicinterval.MelodicIntervalQuestion method), 
-		\hyperpage{27}, \hyperpage{68}
-  \item PreQuestion (class in birdears.prequestion), \hyperpage{29}, \hyperpage{55}
-  \item print\_instrumental() (in module birdears.interfaces.commandline), \hyperpage{20}, 
-		\hyperpage{69}
-  \item print\_question() (in module birdears.interfaces.commandline), \hyperpage{20}, 
-		\hyperpage{69}
-  \item print\_response() (in module birdears.interfaces.commandline), \hyperpage{20}, 
-		\hyperpage{70}
-  \item process\_key() (birdears.interfaces.commandline.CommandLine method), \hyperpage{20}, 
-		\hyperpage{69}
-  \item progression\_i\_iv\_v\_i() (in module birdears.prequestion), \hyperpage{30}, \hyperpage{56}
+  \item \spxentry{play()}\spxextra{birdears.sequence.Sequence method}, \hyperpage{34}, 
+		\hyperpage{61}
+  \item \spxentry{play\_question()}\spxextra{birdears.questionbase.QuestionBase method}, 
+		\hyperpage{32}, \hyperpage{58}
+  \item \spxentry{play\_question()}\spxextra{birdears.questions.harmonicinterval.HarmonicIntervalQuestion method}, 
+		\hyperpage{22}, \hyperpage{64}
+  \item \spxentry{play\_question()}\spxextra{birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method}, 
+		\hyperpage{24}, \hyperpage{66}
+  \item \spxentry{play\_question()}\spxextra{birdears.questions.melodicdictation.MelodicDictationQuestion method}, 
+		\hyperpage{26}, \hyperpage{68}
+  \item \spxentry{play\_question()}\spxextra{birdears.questions.melodicinterval.MelodicIntervalQuestion method}, 
+		\hyperpage{27}, \hyperpage{70}
+  \item \spxentry{play\_resolution()}\spxextra{birdears.questions.harmonicinterval.HarmonicIntervalQuestion method}, 
+		\hyperpage{22}, \hyperpage{64}
+  \item \spxentry{play\_resolution()}\spxextra{birdears.questions.melodicdictation.MelodicDictationQuestion method}, 
+		\hyperpage{26}, \hyperpage{68}
+  \item \spxentry{play\_resolution()}\spxextra{birdears.questions.melodicinterval.MelodicIntervalQuestion method}, 
+		\hyperpage{27}, \hyperpage{70}
+  \item \spxentry{PreQuestion}\spxextra{class in birdears.prequestion}, \hyperpage{30}, 
+		\hyperpage{56}
+  \item \spxentry{print\_instrumental()}\spxextra{in module birdears.interfaces.commandline}, 
+		\hyperpage{20}, \hyperpage{71}
+  \item \spxentry{print\_question()}\spxextra{in module birdears.interfaces.commandline}, 
+		\hyperpage{21}, \hyperpage{71}
+  \item \spxentry{print\_response()}\spxextra{in module birdears.interfaces.commandline}, 
+		\hyperpage{21}, \hyperpage{72}
+  \item \spxentry{process\_key()}\spxextra{birdears.interfaces.commandline.CommandLine method}, 
+		\hyperpage{20}, \hyperpage{71}
+  \item \spxentry{progression\_i\_iv\_v\_i()}\spxextra{in module birdears.prequestion}, 
+		\hyperpage{30}, \hyperpage{56}
 
   \indexspace
   \bigletter Q
-  \item QuestionBase (class in birdears.questionbase), \hyperpage{30}, \hyperpage{56}
+  \item \spxentry{QuestionBase}\spxextra{class in birdears.questionbase}, \hyperpage{31}, 
+		\hyperpage{57}
 
   \indexspace
   \bigletter R
-  \item register\_prequestion\_method() (in module birdears.prequestion), \hyperpage{30}, 
-		\hyperpage{56}
-  \item register\_question\_class() (in module birdears.questionbase), \hyperpage{31}, 
-		\hyperpage{57}
-  \item register\_resolution\_method() (in module birdears.resolution), \hyperpage{32}, 
+  \item \spxentry{register\_prequestion\_method()}\spxextra{in module birdears.prequestion}, 
+		\hyperpage{30}, \hyperpage{57}
+  \item \spxentry{register\_question\_class()}\spxextra{in module birdears.questionbase}, 
+		\hyperpage{32}, \hyperpage{58}
+  \item \spxentry{register\_resolution\_method()}\spxextra{in module birdears.resolution}, 
+		\hyperpage{32}, \hyperpage{59}
+  \item \spxentry{repeat\_only()}\spxextra{in module birdears.resolution}, \hyperpage{32}, 
+		\hyperpage{59}
+  \item \spxentry{Resolution}\spxextra{class in birdears.resolution}, \hyperpage{32}, 
 		\hyperpage{58}
-  \item repeat\_only() (in module birdears.resolution), \hyperpage{32}, \hyperpage{58}
-  \item Resolution (class in birdears.resolution), \hyperpage{31}, \hyperpage{58}
 
   \indexspace
   \bigletter S
-  \item scale (birdears.scale.ChromaticScale attribute), \hyperpage{32}, \hyperpage{58}
-  \item scale (birdears.scale.DiatonicScale attribute), \hyperpage{33}, \hyperpage{59}
-  \item ScaleBase (class in birdears.scale), \hyperpage{33}, \hyperpage{59}
-  \item semitones (birdears.interval.Interval attribute), \hyperpage{28}, \hyperpage{54}
-  \item Sequence (class in birdears.sequence), \hyperpage{33}, \hyperpage{60}
+  \item \spxentry{scale}\spxextra{birdears.scale.ChromaticScale attribute}, \hyperpage{33}, 
+		\hyperpage{59}
+  \item \spxentry{scale}\spxextra{birdears.scale.DiatonicScale attribute}, \hyperpage{33}, 
+		\hyperpage{60}
+  \item \spxentry{ScaleBase}\spxextra{class in birdears.scale}, \hyperpage{34}, \hyperpage{60}
+  \item \spxentry{semitones}\spxextra{birdears.interval.Interval attribute}, \hyperpage{28}, 
+		\hyperpage{54}
+  \item \spxentry{Sequence}\spxextra{class in birdears.sequence}, \hyperpage{34}, \hyperpage{60}
 
   \indexspace
   \bigletter T
-  \item tonic\_octave (birdears.interval.Interval attribute), \hyperpage{28}, \hyperpage{54}
-  \item tonic\_only() (in module birdears.prequestion), \hyperpage{30}, \hyperpage{56}
+  \item \spxentry{tonic\_octave}\spxextra{birdears.interval.Interval attribute}, \hyperpage{28}, 
+		\hyperpage{54}
+  \item \spxentry{tonic\_only()}\spxextra{in module birdears.prequestion}, \hyperpage{30}, 
+		\hyperpage{57}
 
 \end{sphinxtheindex}

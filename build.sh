@@ -21,7 +21,7 @@ rm -rf build/
 rm -rf dist/
 
 # convert readme to rst for pypi
-rm README.rst
+rm -rf README.rst
 pandoc --from=markdown --to=rst README.md -o README.rst
 
 # ATTENTION

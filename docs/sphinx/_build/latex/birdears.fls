@@ -1,4 +1,4 @@
-PWD /home/iacchus/git-stuff/birdears/docs/sphinx/_build/latex
+PWD /home/filosofo/git-stuff/birdears/docs/sphinx/_build/latex
 INPUT /usr/share/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
 INPUT birdears.tex
@@ -101,8 +101,10 @@ INPUT /usr/share/texmf-dist/tex/latex/float/float.sty
 INPUT /usr/share/texmf-dist/tex/latex/float/float.sty
 INPUT /usr/share/texmf-dist/tex/latex/wrapfig/wrapfig.sty
 INPUT /usr/share/texmf-dist/tex/latex/wrapfig/wrapfig.sty
+INPUT /usr/share/texmf-dist/tex/latex/parskip/parskip-2001-04-09.sty
 INPUT /usr/share/texmf-dist/tex/latex/parskip/parskip.sty
 INPUT /usr/share/texmf-dist/tex/latex/parskip/parskip.sty
+INPUT /usr/share/texmf-dist/tex/latex/parskip/parskip-2001-04-09.sty
 INPUT /usr/share/texmf-dist/tex/latex/base/alltt.sty
 INPUT /usr/share/texmf-dist/tex/latex/base/alltt.sty
 INPUT /usr/share/texmf-dist/tex/latex/upquote/upquote.sty
@@ -111,8 +113,6 @@ INPUT /usr/share/texmf-dist/tex/latex/capt-of/capt-of.sty
 INPUT /usr/share/texmf-dist/tex/latex/capt-of/capt-of.sty
 INPUT /usr/share/texmf-dist/tex/latex/needspace/needspace.sty
 INPUT /usr/share/texmf-dist/tex/latex/needspace/needspace.sty
-INPUT /usr/share/texmf-dist/tex/latex/carlisle/remreset.sty
-INPUT /usr/share/texmf-dist/tex/latex/carlisle/remreset.sty
 INPUT sphinxhighlight.sty
 INPUT sphinxhighlight.sty
 INPUT /usr/share/texmf-dist/tex/latex/oberdiek/kvoptions.sty
@@ -156,6 +156,8 @@ INPUT /usr/share/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
 INPUT /usr/share/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
 INPUT /usr/share/texmf-dist/tex/latex/oberdiek/hypcap.sty
 INPUT /usr/share/texmf-dist/tex/latex/oberdiek/hypcap.sty
+INPUT sphinxmessages.sty
+INPUT sphinxmessages.sty
 OUTPUT birdears.idx
 INPUT birdears.aux
 INPUT birdears.aux

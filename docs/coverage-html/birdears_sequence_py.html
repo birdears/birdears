@@ -434,7 +434,7 @@
 <p id="t157" class="pln"><span class="strut">&nbsp;</span></p>
 <p id="t158" class="pln">        <span class="com"># FIXME: this is experimental, revert to the old code if it is the case</span><span class="strut">&nbsp;</span></p>
 <p id="t159" class="stm run hide_run">        <span class="nam">command</span> <span class="op">=</span> <span class="op">(</span><span class="strut">&nbsp;</span></p>
-<p id="t160" class="pln">            <span class="str">"play -V1 -qn synth {duration} pluck {note}"</span><span class="strut">&nbsp;</span></p>
+<p id="t160" class="pln">            <span class="str">"sox -V1 -qn -d synth {duration} pluck {note}"</span><span class="strut">&nbsp;</span></p>
 <p id="t161" class="pln">            <span class="str">" fade l 0 {duration} {duration} reverb"</span><span class="strut">&nbsp;</span></p>
 <p id="t162" class="pln">        <span class="op">)</span><span class="op">.</span><span class="nam">format</span><span class="op">(</span><span class="nam">note</span><span class="op">=</span><span class="nam">str</span><span class="op">(</span><span class="nam">pitch</span><span class="op">)</span><span class="op">,</span> <span class="nam">duration</span><span class="op">=</span><span class="nam">duration</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t163" class="pln"><span class="strut">&nbsp;</span></p>
@@ -463,7 +463,7 @@
 <p id="t186" class="pln"><span class="strut">&nbsp;</span></p>
 <p id="t187" class="pln">        <span class="com"># FIXME: this is experimental, revert to the old code if it is the case</span><span class="strut">&nbsp;</span></p>
 <p id="t188" class="stm run hide_run">        <span class="nam">command</span> <span class="op">=</span> <span class="op">(</span><span class="strut">&nbsp;</span></p>
-<p id="t189" class="pln">            <span class="str">"play -V1 -qn synth {duration} {chord}"</span><span class="strut">&nbsp;</span></p>
+<p id="t189" class="pln">            <span class="str">"sox -V1 -qn -d synth {duration} {chord}"</span><span class="strut">&nbsp;</span></p>
 <p id="t190" class="pln">            <span class="str">" fade l 0 {duration} {duration} reverb"</span><span class="strut">&nbsp;</span></p>
 <p id="t191" class="pln">        <span class="op">)</span><span class="op">.</span><span class="nam">format</span><span class="op">(</span><span class="nam">chord</span><span class="op">=</span><span class="nam">chord_plucks</span><span class="op">,</span> <span class="nam">duration</span><span class="op">=</span><span class="nam">duration</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t192" class="pln"><span class="strut">&nbsp;</span></p>
@@ -489,8 +489,8 @@
 <div id="footer">
     <div class="content">
         <p>
-            <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v4.5.1</a>,
-            created at 2018-07-13 13:58
+            <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v4.5.4</a>,
+            created at 2019-11-06 09:51
         </p>
     </div>
 </div>
