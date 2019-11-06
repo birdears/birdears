@@ -34,11 +34,11 @@ For the support chat, please `/join` [`#birdears`](https://webchat.freenode.net/
 
 ### TUI
 
-![screenshot](screen-20190211-163428-BRT.png)
+![screenshot](https://github.com/iacchus/birdears/raw/master/screen-20190211-163428-BRT.png)
 
 ### CLI
 
-![birdears screencast](use.gif)
+![birdears screencast](https://github.com/iacchus/birdears/raw/master/use.gif)
 
 ## Introduction
 
@@ -168,35 +168,35 @@ for all the other intervals.
 
 These are the keybindings for the **Ionian (Major) Scale**; black keys are the chromatic notes.
 
-![birdears - ionian(major) keybindings](docs/keybindings/ionian.png)
+![birdears - ionian(major) keybindings](https://github.com/iacchus/birdears/raw/master/docs/keybindings/ionian.png)
 
 ### Dorian
 
-![birdears - dorian keybindings](docs/keybindings/dorian.png)
+![birdears - dorian keybindings](https://github.com/iacchus/birdears/raw/master/docs/keybindings/dorian.png)
 
 ### Phrygian
 
-![birdears - phryigian keybindings](docs/keybindings/phrygian.png)
+![birdears - phryigian keybindings](https://github.com/iacchus/birdears/raw/master/docs/keybindings/phrygian.png)
 
 ### Lydian
 
-![birdears - lydian keybindings](docs/keybindings/lydian.png)
+![birdears - lydian keybindings](https://github.com/iacchus/birdears/raw/master/docs/keybindings/lydian.png)
 
 ### Mixolydian
 
-![birdears - mixolydian keybindings](docs/keybindings/mixolydian.png)
+![birdears - mixolydian keybindings](https://github.com/iacchus/birdears/raw/master/docs/keybindings/mixolydian.png)
 
 ### Aeolian (minor)
 
-![birdears - aeolian keybindings](docs/keybindings/minor.png)
+![birdears - aeolian keybindings](https://github.com/iacchus/birdears/raw/master/docs/keybindings/minor.png)
 
 ### Locrian
 
-![birdears - locrian(minor) keybindings](docs/keybindings/locrian.png)
+![birdears - locrian(minor) keybindings](https://github.com/iacchus/birdears/raw/master/docs/keybindings/locrian.png)
 
 ## Advanced
 
-![birdears - advanced keybindings](docs/keybindings/full-advanced.png)
+![birdears - advanced keybindings](https://github.com/iacchus/birdears/raw/master/docs/keybindings/full-advanced.png)
 
 *this is still being improved*
 

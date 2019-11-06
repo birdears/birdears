@@ -52,6 +52,8 @@ read -p "Do you want to upload it to PyPI? [Yy/n] " -n 1 -r
 echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-    twine upload dist/birdears*
+    #twine upload dist/birdears*
+    echo change twine repo
+    twine upload --repository testpypi dist/birdears*
 fi
 
