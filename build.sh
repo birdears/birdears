@@ -53,7 +53,8 @@ echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
     #twine upload dist/birdears*
-    echo change twine repo
-    twine upload --repository testpypi dist/birdears*
+    #echo change twine repo
+    #twine upload --repository testpypi dist/birdears*
+    twine upload testpypi dist/birdears*
 fi
 
