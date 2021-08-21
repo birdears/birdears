@@ -282,39 +282,45 @@ class TextUserInterface:
         self.loop = urwid.MainLoop(widget=self.tui_widget, palette=palette)
         self.loop.screen.set_terminal_properties(colors=256)
 
-        with self.loop.start():
+        try:
 
-            new_question = True
-
-            while(True):
-
-                if new_question:
-
-                    self.counter += 1
-                    self.create_question(self.exercise, **self.arguments)
-                    self.run_question()
-                    new_question = False
-
-                while len(self.input_keys) < self.question.n_input_notes:
-                    input_key = self.loop.screen.get_input()[0]
-
-                    # these inputs are answers to the exercise
-                    if input_key in self.question.keyboard_index \
-                       and input_key != ' ':  # space char
-
-                        self.input_keys.append(input_key)
-                        if self.question.n_input_notes > 1:
-                            self.update_input_display()
-
-                    # these inputs are commands to birdears
-                    else:
-                        self.keypress(input_key)
-
-                if self.question.n_input_notes:
-                    answer = self.input_keys
-                    self.check_question(self.input_keys)
+            with self.loop.start():
 
                 new_question = True
+
+                while(True):
+
+                    if new_question:
+
+                        self.counter += 1
+                        self.create_question(self.exercise, **self.arguments)
+                        self.run_question()
+                        new_question = False
+
+                    while len(self.input_keys) < self.question.n_input_notes:
+                        input_key = self.loop.screen.get_input()[0]
+
+                        # these inputs are answers to the exercise
+                        if input_key in self.question.keyboard_index \
+                           and input_key != ' ':  # space char
+
+                            self.input_keys.append(input_key)
+                            if self.question.n_input_notes > 1:
+                                self.update_input_display()
+
+                        # these inputs are commands to birdears
+                        else:
+                            self.keypress(input_key)
+
+                    if self.question.n_input_notes:
+                        answer = self.input_keys
+                        self.check_question(self.input_keys)
+
+                    new_question = True
+
+        except urwid.ExitMainLoop:
+            print("Birdears <https://github.com/iacchus/birdears>")
+            print("Exiting...", end="\n\n")
 
     def check_question(self, user_input):
 
