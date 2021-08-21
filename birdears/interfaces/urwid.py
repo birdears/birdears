@@ -321,6 +321,7 @@ class TextUserInterface:
         except urwid.ExitMainLoop:
             print("Birdears <https://github.com/iacchus/birdears>")
             print("Exiting...", end="\n\n")
+            print("Correct: {} /  Wrong: {}".format(self.correct, self.wrong), end="\n\n")
 
     def check_question(self, user_input):
 
