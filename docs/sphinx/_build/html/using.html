@@ -1,17 +1,18 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Using birdears &#8212; birdears 0.2.1 documentation</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="birdears package" href="birdears.html" />
@@ -127,15 +128,15 @@ $(document).ready(function(){
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="using-birdears">
+  <section id="using-birdears">
 <h1>Using birdears<a class="headerlink" href="#using-birdears" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<div class="section" id="what-is-functional-ear-training">
+<section id="what-is-functional-ear-training">
 <h2>What is Functional Ear Training<a class="headerlink" href="#what-is-functional-ear-training" title="Permalink to this headline">¶</a></h2>
 <p><em>write me!</em></p>
-</div>
-<div class="section" id="the-method">
+</section>
+<section id="the-method">
 <h2>The method<a class="headerlink" href="#the-method" title="Permalink to this headline">¶</a></h2>
 <p>We can use abc language to notate music within the documentation, ok</p>
 <div class="highlight-abc notranslate"><div class="highlight"><pre><span></span>X: 1
@@ -152,8 +153,8 @@ f2g e2f| d2e c2d|ABA GAG| F2F GED|
 c3 cAG| AGA cde| fed cAG| Ad^c d3:|
 </pre></div>
 </div>
-</div>
-<div class="section" id="birdears-modes-and-basic-usage">
+</section>
+<section id="birdears-modes-and-basic-usage">
 <h2>birdears modes and basic usage<a class="headerlink" href="#birdears-modes-and-basic-usage" title="Permalink to this headline">¶</a></h2>
 <p>birdears actually has four modes:</p>
 <ul class="simple">
@@ -190,7 +191,7 @@ Commands:
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>birdears &lt;command&gt; --help
 </pre></div>
 </div>
-<div class="section" id="melodic">
+<section id="melodic">
 <h3>melodic<a class="headerlink" href="#melodic" title="Permalink to this headline">¶</a></h3>
 <p>In this exercise birdears will play two notes, the tonic and the interval
 melodically, ie., one after the other and you should reply which is the
@@ -239,8 +240,8 @@ Options:
   -r &lt;resolution_method&gt; is one of: nearest_tonic, repeat_only
 </pre></div>
 </div>
-</div>
-<div class="section" id="harmonic">
+</section>
+<section id="harmonic">
 <h3>harmonic<a class="headerlink" href="#harmonic" title="Permalink to this headline">¶</a></h3>
 <p>In this exercise birdears will play two notes, the tonic and the interval
 harmonically, ie., both on the same time and you should reply which is the
@@ -289,8 +290,8 @@ Options:
   -r &lt;resolution_method&gt; is one of: nearest_tonic, repeat_only
 </pre></div>
 </div>
-</div>
-<div class="section" id="dictation">
+</section>
+<section id="dictation">
 <h3>dictation<a class="headerlink" href="#dictation" title="Permalink to this headline">¶</a></h3>
 <p>In this exercise birdears will choose some random intervals and create a
 melodic dictation with them. You should reply the correct intervals of the
@@ -341,8 +342,8 @@ Options:
   -r &lt;resolution_method&gt; is one of: nearest_tonic, repeat_only
 </pre></div>
 </div>
-</div>
-<div class="section" id="instrumental">
+</section>
+<section id="instrumental">
 <h3>instrumental<a class="headerlink" href="#instrumental" title="Permalink to this headline">¶</a></h3>
 <p>In this exercise birdears will choose some random intervals and create a
 melodic dictation with them. You should play the correct melody in you
@@ -395,31 +396,31 @@ Options:
   -r &lt;resolution_method&gt; is one of: nearest_tonic, repeat_only
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="loading-from-config-preset-files">
+</section>
+</section>
+<section id="loading-from-config-preset-files">
 <h2>Loading from config/preset files<a class="headerlink" href="#loading-from-config-preset-files" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="pre-made-presets">
+<section id="pre-made-presets">
 <h3>Pre-made presets<a class="headerlink" href="#pre-made-presets" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">birdears</span></code> cointains some pre-made presets in it’s <code class="docutils literal notranslate"><span class="pre">presets/</span></code>
 subdirectory.</p>
 <p>The study for beginners is recommended by following the numeric order of
 those files (000, 001, then 002 etc.)</p>
-<div class="section" id="pre-made-presets-description">
+<section id="pre-made-presets-description">
 <h4>Pre-made presets description<a class="headerlink" href="#pre-made-presets-description" title="Permalink to this headline">¶</a></h4>
 <p><em>write me</em></p>
-</div>
-</div>
-<div class="section" id="creating-new-preset-files">
+</section>
+</section>
+<section id="creating-new-preset-files">
 <h3>Creating new preset files<a class="headerlink" href="#creating-new-preset-files" title="Permalink to this headline">¶</a></h3>
 <p>You can open the files cointained in birdears premade <code class="docutils literal notranslate"><span class="pre">presets/</span></code>
 folder to have an ideia on how config files are made; it is simply the
 command line options written in a form <code class="docutils literal notranslate"><span class="pre">toml</span></code> standard.</p>
-</div>
-</div>
-<div class="section" id="keybindings">
+</section>
+</section>
+<section id="keybindings">
 <h2>Keybindings<a class="headerlink" href="#keybindings" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="on-the-keybindings">
+<section id="on-the-keybindings">
 <h3>On the keybindings<a class="headerlink" href="#on-the-keybindings" title="Permalink to this headline">¶</a></h3>
 <p>The following keyboard diagrams should give you an idea on how the
 keybindings work. Please note how the keys on the line from <code class="docutils literal notranslate"><span class="pre">z</span></code>
@@ -429,58 +430,72 @@ keybindings work. Please note how the keys on the line from <code class="docutil
 the second octave</strong>. For example, <code class="docutils literal notranslate"><span class="pre">z</span></code> is <em>unison</em>, <code class="docutils literal notranslate"><span class="pre">,</span></code> is the
 <em>octave</em>, <code class="docutils literal notranslate"><span class="pre">Z</span></code> (uppercased) is the <em>double octave</em>. The same for all the other
 intervals.</p>
-</div>
-<div class="section" id="major-ionian">
+</section>
+<section id="major-ionian">
 <h3>Major (Ionian)<a class="headerlink" href="#major-ionian" title="Permalink to this headline">¶</a></h3>
-<div class="figure align-default" id="id1">
+<figure class="align-default" id="id1">
 <a class="reference internal image-reference" href="_images/ionian.png"><img alt="birdears keyboard bindings for ionian (major) mode" src="_images/ionian.png" style="width: 614.0px; height: 182.0px;" /></a>
-<p class="caption"><span class="caption-text">Keyboard diagram for the <code class="docutils literal notranslate"><span class="pre">--mode</span> <span class="pre">major</span></code> (default).</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="dorian">
+<figcaption>
+<p><span class="caption-text">Keyboard diagram for the <code class="docutils literal notranslate"><span class="pre">--mode</span> <span class="pre">major</span></code> (default).</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="dorian">
 <h3>Dorian<a class="headerlink" href="#dorian" title="Permalink to this headline">¶</a></h3>
-<div class="figure align-default" id="id2">
+<figure class="align-default" id="id2">
 <a class="reference internal image-reference" href="_images/dorian.png"><img alt="birdears keyboard bindings for dorian mode" src="_images/dorian.png" style="width: 614.0px; height: 182.0px;" /></a>
-<p class="caption"><span class="caption-text">Keyboard diagram for the <code class="docutils literal notranslate"><span class="pre">--mode</span> <span class="pre">dorian</span></code>.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="phrygian">
+<figcaption>
+<p><span class="caption-text">Keyboard diagram for the <code class="docutils literal notranslate"><span class="pre">--mode</span> <span class="pre">dorian</span></code>.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="phrygian">
 <h3>Phrygian<a class="headerlink" href="#phrygian" title="Permalink to this headline">¶</a></h3>
-<div class="figure align-default" id="id3">
+<figure class="align-default" id="id3">
 <a class="reference internal image-reference" href="_images/phrygian.png"><img alt="birdears keyboard bindings for phrygian mode" src="_images/phrygian.png" style="width: 614.0px; height: 182.0px;" /></a>
-<p class="caption"><span class="caption-text">Keyboard diagram for the <code class="docutils literal notranslate"><span class="pre">--mode</span> <span class="pre">phrygian</span></code>.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="lydian">
+<figcaption>
+<p><span class="caption-text">Keyboard diagram for the <code class="docutils literal notranslate"><span class="pre">--mode</span> <span class="pre">phrygian</span></code>.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="lydian">
 <h3>Lydian<a class="headerlink" href="#lydian" title="Permalink to this headline">¶</a></h3>
-<div class="figure align-default" id="id4">
+<figure class="align-default" id="id4">
 <a class="reference internal image-reference" href="_images/lydian.png"><img alt="birdears keyboard bindings for lydian mode" src="_images/lydian.png" style="width: 614.0px; height: 182.0px;" /></a>
-<p class="caption"><span class="caption-text">Keyboard diagram for the <code class="docutils literal notranslate"><span class="pre">--mode</span> <span class="pre">lydian</span></code>.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="mixolydian">
+<figcaption>
+<p><span class="caption-text">Keyboard diagram for the <code class="docutils literal notranslate"><span class="pre">--mode</span> <span class="pre">lydian</span></code>.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="mixolydian">
 <h3>Mixolydian<a class="headerlink" href="#mixolydian" title="Permalink to this headline">¶</a></h3>
-<div class="figure align-default" id="id5">
+<figure class="align-default" id="id5">
 <a class="reference internal image-reference" href="_images/mixolydian.png"><img alt="birdears keyboard bindings for mixolydian mode" src="_images/mixolydian.png" style="width: 614.0px; height: 182.0px;" /></a>
-<p class="caption"><span class="caption-text">Keyboard diagram for the <code class="docutils literal notranslate"><span class="pre">--mode</span> <span class="pre">mixolydian</span></code>.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="minor-aeolian">
+<figcaption>
+<p><span class="caption-text">Keyboard diagram for the <code class="docutils literal notranslate"><span class="pre">--mode</span> <span class="pre">mixolydian</span></code>.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="minor-aeolian">
 <h3>Minor (Aeolian)<a class="headerlink" href="#minor-aeolian" title="Permalink to this headline">¶</a></h3>
-<div class="figure align-default" id="id6">
+<figure class="align-default" id="id6">
 <a class="reference internal image-reference" href="_images/minor.png"><img alt="birdears keyboard bindings for aeolian (minor) mode" src="_images/minor.png" style="width: 614.0px; height: 182.0px;" /></a>
-<p class="caption"><span class="caption-text">Keyboard diagram for the <code class="docutils literal notranslate"><span class="pre">--mode</span> <span class="pre">minor</span></code>.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="locrian">
+<figcaption>
+<p><span class="caption-text">Keyboard diagram for the <code class="docutils literal notranslate"><span class="pre">--mode</span> <span class="pre">minor</span></code>.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="locrian">
 <h3>Locrian<a class="headerlink" href="#locrian" title="Permalink to this headline">¶</a></h3>
-<div class="figure align-default" id="id7">
+<figure class="align-default" id="id7">
 <a class="reference internal image-reference" href="_images/locrian.png"><img alt="birdears keyboard bindings for locrian mode" src="_images/locrian.png" style="width: 614.0px; height: 182.0px;" /></a>
-<p class="caption"><span class="caption-text">Keyboard diagram for the <code class="docutils literal notranslate"><span class="pre">--mode</span> <span class="pre">locrian</span></code>.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-</div>
-</div>
+<figcaption>
+<p><span class="caption-text">Keyboard diagram for the <code class="docutils literal notranslate"><span class="pre">--mode</span> <span class="pre">locrian</span></code>.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+</section>
 
 
           </div>
@@ -542,12 +557,12 @@ intervals.</p>
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -556,7 +571,7 @@ intervals.</p>
       &copy;2017-2018, Iacchus Mercurius.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

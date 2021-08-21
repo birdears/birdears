@@ -1,13 +1,10 @@
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Coverage report</title>
+    <link rel="icon" sizes="32x32" href="favicon_32.png">
     <link rel="stylesheet" href="style.css" type="text/css">
-    
     <script type="text/javascript" src="jquery.min.js"></script>
     <script type="text/javascript" src="jquery.ba-throttle-debounce.min.js"></script>
     <script type="text/javascript" src="jquery.tablesorter.min.js"></script>
@@ -18,21 +15,17 @@
     </script>
 </head>
 <body class="indexfile">
-
 <div id="header">
     <div class="content">
         <h1>Coverage report:
             <span class="pc_cov">69%</span>
         </h1>
-
         <img id="keyboard_icon" src="keybd_closed.png" alt="Show keyboard shortcuts" />
-
         <form id="filter_container">
             <input id="filter" type="text" value="" placeholder="filter..." />
         </form>
     </div>
 </div>
-
 <div class="help_panel">
     <img id="panel_icon" src="keybd_open.png" alt="Hide keyboard shortcuts" />
     <p class="legend">Hot-keys on this page</p>
@@ -42,243 +35,191 @@
         <span class="key">s</span>
         <span class="key">m</span>
         <span class="key">x</span>
-        
         <span class="key">c</span> &nbsp; change column sorting
     </p>
     </div>
 </div>
-
 <div id="index">
     <table class="index">
         <thead>
-            
             <tr class="tablehead" title="Click to sort">
                 <th class="name left headerSortDown shortkey_n">Module</th>
                 <th class="shortkey_s">statements</th>
                 <th class="shortkey_m">missing</th>
                 <th class="shortkey_x">excluded</th>
-                
                 <th class="right shortkey_c">coverage</th>
             </tr>
         </thead>
-        
         <tfoot>
             <tr class="total">
                 <td class="name left">Total</td>
-                <td>1336</td>
-                <td>416</td>
+                <td>1356</td>
+                <td>420</td>
                 <td>0</td>
-                
-                <td class="right" data-ratio="920 1336">69%</td>
+                <td class="right" data-ratio="936 1356">69%</td>
             </tr>
         </tfoot>
         <tbody>
-            
             <tr class="file">
                 <td class="name left"><a href="birdears___init___py.html">birdears/__init__.py</a></td>
                 <td>48</td>
                 <td>15</td>
                 <td>0</td>
-                
                 <td class="right" data-ratio="33 48">69%</td>
             </tr>
-            
             <tr class="file">
                 <td class="name left"><a href="birdears___main___py.html">birdears/__main__.py</a></td>
-                <td>127</td>
+                <td>134</td>
                 <td>16</td>
                 <td>0</td>
-                
-                <td class="right" data-ratio="111 127">87%</td>
+                <td class="right" data-ratio="118 134">88%</td>
             </tr>
-            
             <tr class="file">
                 <td class="name left"><a href="birdears_exception_py.html">birdears/exception.py</a></td>
                 <td>8</td>
                 <td>0</td>
                 <td>0</td>
-                
                 <td class="right" data-ratio="8 8">100%</td>
             </tr>
-            
             <tr class="file">
                 <td class="name left"><a href="birdears_interfaces___init___py.html">birdears/interfaces/__init__.py</a></td>
                 <td>1</td>
                 <td>0</td>
                 <td>0</td>
-                
                 <td class="right" data-ratio="1 1">100%</td>
             </tr>
-            
             <tr class="file">
                 <td class="name left"><a href="birdears_interfaces_commandline_py.html">birdears/interfaces/commandline.py</a></td>
-                <td>108</td>
-                <td>1</td>
+                <td>107</td>
+                <td>2</td>
                 <td>0</td>
-                
-                <td class="right" data-ratio="107 108">99%</td>
+                <td class="right" data-ratio="105 107">98%</td>
             </tr>
-            
             <tr class="file">
                 <td class="name left"><a href="birdears_interfaces_urwid_py.html">birdears/interfaces/urwid.py</a></td>
-                <td>233</td>
-                <td>233</td>
+                <td>236</td>
+                <td>236</td>
                 <td>0</td>
-                
-                <td class="right" data-ratio="0 233">0%</td>
+                <td class="right" data-ratio="0 236">0%</td>
             </tr>
-            
             <tr class="file">
                 <td class="name left"><a href="birdears_interval_py.html">birdears/interval.py</a></td>
                 <td>8</td>
                 <td>1</td>
                 <td>0</td>
-                
                 <td class="right" data-ratio="7 8">88%</td>
             </tr>
-            
             <tr class="file">
                 <td class="name left"><a href="birdears_logger_py.html">birdears/logger.py</a></td>
-                <td>24</td>
+                <td>25</td>
                 <td>6</td>
                 <td>0</td>
-                
-                <td class="right" data-ratio="18 24">75%</td>
+                <td class="right" data-ratio="19 25">76%</td>
             </tr>
-            
             <tr class="file">
                 <td class="name left"><a href="birdears_note_and_pitch_py.html">birdears/note_and_pitch.py</a></td>
-                <td>119</td>
+                <td>121</td>
                 <td>52</td>
                 <td>0</td>
-                
-                <td class="right" data-ratio="67 119">56%</td>
+                <td class="right" data-ratio="69 121">57%</td>
             </tr>
-            
             <tr class="file">
                 <td class="name left"><a href="birdears_prequestion_py.html">birdears/prequestion.py</a></td>
-                <td>34</td>
+                <td>38</td>
                 <td>1</td>
                 <td>0</td>
-                
-                <td class="right" data-ratio="33 34">97%</td>
+                <td class="right" data-ratio="37 38">97%</td>
             </tr>
-            
             <tr class="file">
                 <td class="name left"><a href="birdears_questionbase_py.html">birdears/questionbase.py</a></td>
                 <td>112</td>
                 <td>23</td>
                 <td>0</td>
-                
                 <td class="right" data-ratio="89 112">79%</td>
             </tr>
-            
             <tr class="file">
                 <td class="name left"><a href="birdears_questions___init___py.html">birdears/questions/__init__.py</a></td>
                 <td>1</td>
                 <td>0</td>
                 <td>0</td>
-                
                 <td class="right" data-ratio="1 1">100%</td>
             </tr>
-            
             <tr class="file">
                 <td class="name left"><a href="birdears_questions_harmonicinterval_py.html">birdears/questions/harmonicinterval.py</a></td>
                 <td>57</td>
                 <td>0</td>
                 <td>0</td>
-                
                 <td class="right" data-ratio="57 57">100%</td>
             </tr>
-            
             <tr class="file">
                 <td class="name left"><a href="birdears_questions_instrumentaldictation_py.html">birdears/questions/instrumentaldictation.py</a></td>
                 <td>48</td>
                 <td>0</td>
                 <td>0</td>
-                
                 <td class="right" data-ratio="48 48">100%</td>
             </tr>
-            
             <tr class="file">
                 <td class="name left"><a href="birdears_questions_melodicdictation_py.html">birdears/questions/melodicdictation.py</a></td>
                 <td>58</td>
                 <td>0</td>
                 <td>0</td>
-                
                 <td class="right" data-ratio="58 58">100%</td>
             </tr>
-            
             <tr class="file">
                 <td class="name left"><a href="birdears_questions_melodicinterval_py.html">birdears/questions/melodicinterval.py</a></td>
                 <td>55</td>
                 <td>0</td>
                 <td>0</td>
-                
                 <td class="right" data-ratio="55 55">100%</td>
             </tr>
-            
             <tr class="file">
                 <td class="name left"><a href="birdears_questions_notename_py.html">birdears/questions/notename.py</a></td>
                 <td>66</td>
                 <td>43</td>
                 <td>0</td>
-                
                 <td class="right" data-ratio="23 66">35%</td>
             </tr>
-            
             <tr class="file">
                 <td class="name left"><a href="birdears_resolution_py.html">birdears/resolution.py</a></td>
-                <td>64</td>
+                <td>67</td>
                 <td>4</td>
                 <td>0</td>
-                
-                <td class="right" data-ratio="60 64">94%</td>
+                <td class="right" data-ratio="63 67">94%</td>
             </tr>
-            
             <tr class="file">
                 <td class="name left"><a href="birdears_scale_py.html">birdears/scale.py</a></td>
                 <td>70</td>
                 <td>3</td>
                 <td>0</td>
-                
                 <td class="right" data-ratio="67 70">96%</td>
             </tr>
-            
             <tr class="file">
                 <td class="name left"><a href="birdears_sequence_py.html">birdears/sequence.py</a></td>
-                <td>80</td>
+                <td>81</td>
                 <td>14</td>
                 <td>0</td>
-                
-                <td class="right" data-ratio="66 80">82%</td>
+                <td class="right" data-ratio="67 81">83%</td>
             </tr>
-            
             <tr class="file">
                 <td class="name left"><a href="birdears_utils_py.html">birdears/utils.py</a></td>
                 <td>15</td>
                 <td>4</td>
                 <td>0</td>
-                
                 <td class="right" data-ratio="11 15">73%</td>
             </tr>
-            
         </tbody>
     </table>
-
     <p id="no_rows">
         No items found using the specified filter.
     </p>
 </div>
-
 <div id="footer">
     <div class="content">
         <p>
-            <a class="nav" href="https://coverage.readthedocs.io">coverage.py v4.5.4</a>,
-            created at 2019-11-06 11:00
+            <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.5</a>,
+            created at 2021-08-21 11:13 -0300
         </p>
     </div>
 </div>
-
 </body>
 </html>

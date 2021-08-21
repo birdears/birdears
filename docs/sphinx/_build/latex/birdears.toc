@@ -1,98 +1,98 @@
 \babel@toc {english}{}
-\contentsline {chapter}{\numberline {1}Support}{3}{chapter.1}% 
-\contentsline {chapter}{\numberline {2}Features}{5}{chapter.2}% 
-\contentsline {chapter}{\numberline {3}Installing birdears}{7}{chapter.3}% 
-\contentsline {section}{\numberline {3.1}Installing the dependencies}{7}{section.3.1}% 
-\contentsline {subsection}{\numberline {3.1.1}Arch Linux}{7}{subsection.3.1.1}% 
-\contentsline {section}{\numberline {3.2}Installing birdears}{7}{section.3.2}% 
-\contentsline {subsection}{\numberline {3.2.1}In-depth installation}{7}{subsection.3.2.1}% 
-\contentsline {chapter}{\numberline {4}Using birdears}{9}{chapter.4}% 
-\contentsline {section}{\numberline {4.1}What is Functional Ear Training}{9}{section.4.1}% 
-\contentsline {section}{\numberline {4.2}The method}{9}{section.4.2}% 
-\contentsline {section}{\numberline {4.3}birdears modes and basic usage}{9}{section.4.3}% 
-\contentsline {subsection}{\numberline {4.3.1}melodic}{10}{subsection.4.3.1}% 
-\contentsline {subsection}{\numberline {4.3.2}harmonic}{11}{subsection.4.3.2}% 
-\contentsline {subsection}{\numberline {4.3.3}dictation}{12}{subsection.4.3.3}% 
-\contentsline {subsection}{\numberline {4.3.4}instrumental}{13}{subsection.4.3.4}% 
-\contentsline {section}{\numberline {4.4}Loading from config/preset files}{14}{section.4.4}% 
-\contentsline {subsection}{\numberline {4.4.1}Pre-made presets}{14}{subsection.4.4.1}% 
-\contentsline {subsubsection}{Pre-made presets description}{14}{subsubsection*.3}% 
-\contentsline {subsection}{\numberline {4.4.2}Creating new preset files}{14}{subsection.4.4.2}% 
-\contentsline {section}{\numberline {4.5}Keybindings}{14}{section.4.5}% 
-\contentsline {subsection}{\numberline {4.5.1}On the keybindings}{14}{subsection.4.5.1}% 
-\contentsline {subsection}{\numberline {4.5.2}Major (Ionian)}{14}{subsection.4.5.2}% 
-\contentsline {subsection}{\numberline {4.5.3}Dorian}{16}{subsection.4.5.3}% 
-\contentsline {subsection}{\numberline {4.5.4}Phrygian}{16}{subsection.4.5.4}% 
-\contentsline {subsection}{\numberline {4.5.5}Lydian}{16}{subsection.4.5.5}% 
-\contentsline {subsection}{\numberline {4.5.6}Mixolydian}{16}{subsection.4.5.6}% 
-\contentsline {subsection}{\numberline {4.5.7}Minor (Aeolian)}{16}{subsection.4.5.7}% 
-\contentsline {subsection}{\numberline {4.5.8}Locrian}{16}{subsection.4.5.8}% 
-\contentsline {chapter}{\numberline {5}birdears package}{19}{chapter.5}% 
-\contentsline {section}{\numberline {5.1}Subpackages}{20}{section.5.1}% 
-\contentsline {subsection}{\numberline {5.1.1}birdears.interfaces package}{20}{subsection.5.1.1}% 
-\contentsline {subsubsection}{Submodules}{20}{subsubsection*.14}% 
-\contentsline {subsubsection}{birdears.interfaces.commandline module}{20}{subsubsection*.15}% 
-\contentsline {subsection}{\numberline {5.1.2}birdears.questions package}{21}{subsection.5.1.2}% 
-\contentsline {subsubsection}{Submodules}{21}{subsubsection*.24}% 
-\contentsline {subsubsection}{birdears.questions.harmonicinterval module}{21}{subsubsection*.25}% 
-\contentsline {subsubsection}{birdears.questions.instrumentaldictation module}{23}{subsubsection*.35}% 
-\contentsline {subsubsection}{birdears.questions.melodicdictation module}{25}{subsubsection*.44}% 
-\contentsline {subsubsection}{birdears.questions.melodicinterval module}{26}{subsubsection*.54}% 
-\contentsline {section}{\numberline {5.2}Submodules}{28}{section.5.2}% 
-\contentsline {section}{\numberline {5.3}birdears.interval module}{28}{section.5.3}% 
-\contentsline {section}{\numberline {5.4}birdears.logger module}{29}{section.5.4}% 
-\contentsline {section}{\numberline {5.5}birdears.prequestion module}{29}{section.5.5}% 
-\contentsline {section}{\numberline {5.6}birdears.questionbase module}{31}{section.5.6}% 
-\contentsline {section}{\numberline {5.7}birdears.resolution module}{32}{section.5.7}% 
-\contentsline {section}{\numberline {5.8}birdears.scale module}{33}{section.5.8}% 
-\contentsline {section}{\numberline {5.9}birdears.sequence module}{34}{section.5.9}% 
-\contentsline {chapter}{\numberline {6}Support}{35}{chapter.6}% 
-\contentsline {chapter}{\numberline {7}Features}{37}{chapter.7}% 
-\contentsline {chapter}{\numberline {8}Installing birdears}{39}{chapter.8}% 
-\contentsline {section}{\numberline {8.1}Installing the dependencies}{39}{section.8.1}% 
-\contentsline {subsection}{\numberline {8.1.1}Arch Linux}{39}{subsection.8.1.1}% 
-\contentsline {section}{\numberline {8.2}Installing birdears}{39}{section.8.2}% 
-\contentsline {subsection}{\numberline {8.2.1}In-depth installation}{39}{subsection.8.2.1}% 
-\contentsline {chapter}{\numberline {9}Using birdears}{41}{chapter.9}% 
-\contentsline {section}{\numberline {9.1}What is Functional Ear Training}{41}{section.9.1}% 
-\contentsline {section}{\numberline {9.2}The method}{41}{section.9.2}% 
-\contentsline {section}{\numberline {9.3}birdears modes and basic usage}{41}{section.9.3}% 
-\contentsline {subsection}{\numberline {9.3.1}melodic}{42}{subsection.9.3.1}% 
-\contentsline {subsection}{\numberline {9.3.2}harmonic}{43}{subsection.9.3.2}% 
-\contentsline {subsection}{\numberline {9.3.3}dictation}{44}{subsection.9.3.3}% 
-\contentsline {subsection}{\numberline {9.3.4}instrumental}{45}{subsection.9.3.4}% 
-\contentsline {section}{\numberline {9.4}Loading from config/preset files}{46}{section.9.4}% 
-\contentsline {subsection}{\numberline {9.4.1}Pre-made presets}{46}{subsection.9.4.1}% 
-\contentsline {subsubsection}{Pre-made presets description}{46}{subsubsection*.113}% 
-\contentsline {subsection}{\numberline {9.4.2}Creating new preset files}{46}{subsection.9.4.2}% 
-\contentsline {section}{\numberline {9.5}Keybindings}{46}{section.9.5}% 
-\contentsline {subsection}{\numberline {9.5.1}On the keybindings}{46}{subsection.9.5.1}% 
-\contentsline {subsection}{\numberline {9.5.2}Major (Ionian)}{46}{subsection.9.5.2}% 
-\contentsline {subsection}{\numberline {9.5.3}Dorian}{48}{subsection.9.5.3}% 
-\contentsline {subsection}{\numberline {9.5.4}Phrygian}{48}{subsection.9.5.4}% 
-\contentsline {subsection}{\numberline {9.5.5}Lydian}{48}{subsection.9.5.5}% 
-\contentsline {subsection}{\numberline {9.5.6}Mixolydian}{48}{subsection.9.5.6}% 
-\contentsline {subsection}{\numberline {9.5.7}Minor (Aeolian)}{48}{subsection.9.5.7}% 
-\contentsline {subsection}{\numberline {9.5.8}Locrian}{48}{subsection.9.5.8}% 
-\contentsline {chapter}{\numberline {10}API}{51}{chapter.10}% 
-\contentsline {chapter}{\numberline {11}birdears package}{53}{chapter.11}% 
-\contentsline {section}{\numberline {11.1}Subpackages}{54}{section.11.1}% 
-\contentsline {section}{\numberline {11.2}Submodules}{54}{section.11.2}% 
-\contentsline {section}{\numberline {11.3}birdears.interval module}{54}{section.11.3}% 
-\contentsline {section}{\numberline {11.4}birdears.logger module}{55}{section.11.4}% 
-\contentsline {section}{\numberline {11.5}birdears.prequestion module}{56}{section.11.5}% 
-\contentsline {section}{\numberline {11.6}birdears.questionbase module}{57}{section.11.6}% 
-\contentsline {section}{\numberline {11.7}birdears.resolution module}{58}{section.11.7}% 
-\contentsline {section}{\numberline {11.8}birdears.scale module}{59}{section.11.8}% 
-\contentsline {section}{\numberline {11.9}birdears.sequence module}{60}{section.11.9}% 
-\contentsline {chapter}{\numberline {12}birdears.questions package}{63}{chapter.12}% 
-\contentsline {section}{\numberline {12.1}Submodules}{63}{section.12.1}% 
-\contentsline {section}{\numberline {12.2}birdears.questions.harmonicinterval module}{63}{section.12.2}% 
-\contentsline {section}{\numberline {12.3}birdears.questions.instrumentaldictation module}{65}{section.12.3}% 
-\contentsline {section}{\numberline {12.4}birdears.questions.melodicdictation module}{67}{section.12.4}% 
-\contentsline {section}{\numberline {12.5}birdears.questions.melodicinterval module}{69}{section.12.5}% 
-\contentsline {chapter}{\numberline {13}birdears.interfaces package}{71}{chapter.13}% 
-\contentsline {section}{\numberline {13.1}Submodules}{71}{section.13.1}% 
-\contentsline {section}{\numberline {13.2}birdears.interfaces.commandline module}{71}{section.13.2}% 
-\contentsline {chapter}{Python Module Index}{73}{section*.216}% 
-\contentsline {chapter}{Index}{75}{section*.217}% 
+\contentsline {chapter}{\numberline {1}Support}{3}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Features}{5}{chapter.2}%
+\contentsline {chapter}{\numberline {3}Installing birdears}{7}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Installing the dependencies}{7}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Arch Linux}{7}{subsection.3.1.1}%
+\contentsline {section}{\numberline {3.2}Installing birdears}{7}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}In\sphinxhyphen {}depth installation}{7}{subsection.3.2.1}%
+\contentsline {chapter}{\numberline {4}Using birdears}{9}{chapter.4}%
+\contentsline {section}{\numberline {4.1}What is Functional Ear Training}{9}{section.4.1}%
+\contentsline {section}{\numberline {4.2}The method}{9}{section.4.2}%
+\contentsline {section}{\numberline {4.3}birdears modes and basic usage}{9}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}melodic}{10}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}harmonic}{11}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}dictation}{12}{subsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.3.4}instrumental}{13}{subsection.4.3.4}%
+\contentsline {section}{\numberline {4.4}Loading from config/preset files}{14}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Pre\sphinxhyphen {}made presets}{14}{subsection.4.4.1}%
+\contentsline {subsubsection}{Pre\sphinxhyphen {}made presets description}{14}{subsubsection*.3}%
+\contentsline {subsection}{\numberline {4.4.2}Creating new preset files}{14}{subsection.4.4.2}%
+\contentsline {section}{\numberline {4.5}Keybindings}{14}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}On the keybindings}{14}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Major (Ionian)}{15}{subsection.4.5.2}%
+\contentsline {subsection}{\numberline {4.5.3}Dorian}{15}{subsection.4.5.3}%
+\contentsline {subsection}{\numberline {4.5.4}Phrygian}{15}{subsection.4.5.4}%
+\contentsline {subsection}{\numberline {4.5.5}Lydian}{15}{subsection.4.5.5}%
+\contentsline {subsection}{\numberline {4.5.6}Mixolydian}{15}{subsection.4.5.6}%
+\contentsline {subsection}{\numberline {4.5.7}Minor (Aeolian)}{15}{subsection.4.5.7}%
+\contentsline {subsection}{\numberline {4.5.8}Locrian}{15}{subsection.4.5.8}%
+\contentsline {chapter}{\numberline {5}birdears package}{19}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Subpackages}{20}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}birdears.interfaces package}{20}{subsection.5.1.1}%
+\contentsline {subsubsection}{Submodules}{20}{subsubsection*.14}%
+\contentsline {subsubsection}{birdears.interfaces.commandline module}{20}{subsubsection*.15}%
+\contentsline {subsection}{\numberline {5.1.2}birdears.questions package}{21}{subsection.5.1.2}%
+\contentsline {subsubsection}{Submodules}{21}{subsubsection*.24}%
+\contentsline {subsubsection}{birdears.questions.harmonicinterval module}{21}{subsubsection*.25}%
+\contentsline {subsubsection}{birdears.questions.instrumentaldictation module}{23}{subsubsection*.35}%
+\contentsline {subsubsection}{birdears.questions.melodicdictation module}{24}{subsubsection*.44}%
+\contentsline {subsubsection}{birdears.questions.melodicinterval module}{26}{subsubsection*.54}%
+\contentsline {section}{\numberline {5.2}Submodules}{27}{section.5.2}%
+\contentsline {section}{\numberline {5.3}birdears.interval module}{27}{section.5.3}%
+\contentsline {section}{\numberline {5.4}birdears.logger module}{28}{section.5.4}%
+\contentsline {section}{\numberline {5.5}birdears.prequestion module}{29}{section.5.5}%
+\contentsline {section}{\numberline {5.6}birdears.questionbase module}{30}{section.5.6}%
+\contentsline {section}{\numberline {5.7}birdears.resolution module}{31}{section.5.7}%
+\contentsline {section}{\numberline {5.8}birdears.scale module}{32}{section.5.8}%
+\contentsline {section}{\numberline {5.9}birdears.sequence module}{33}{section.5.9}%
+\contentsline {chapter}{\numberline {6}Support}{35}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Features}{37}{chapter.7}%
+\contentsline {chapter}{\numberline {8}Installing birdears}{39}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Installing the dependencies}{39}{section.8.1}%
+\contentsline {subsection}{\numberline {8.1.1}Arch Linux}{39}{subsection.8.1.1}%
+\contentsline {section}{\numberline {8.2}Installing birdears}{39}{section.8.2}%
+\contentsline {subsection}{\numberline {8.2.1}In\sphinxhyphen {}depth installation}{39}{subsection.8.2.1}%
+\contentsline {chapter}{\numberline {9}Using birdears}{41}{chapter.9}%
+\contentsline {section}{\numberline {9.1}What is Functional Ear Training}{41}{section.9.1}%
+\contentsline {section}{\numberline {9.2}The method}{41}{section.9.2}%
+\contentsline {section}{\numberline {9.3}birdears modes and basic usage}{41}{section.9.3}%
+\contentsline {subsection}{\numberline {9.3.1}melodic}{42}{subsection.9.3.1}%
+\contentsline {subsection}{\numberline {9.3.2}harmonic}{43}{subsection.9.3.2}%
+\contentsline {subsection}{\numberline {9.3.3}dictation}{44}{subsection.9.3.3}%
+\contentsline {subsection}{\numberline {9.3.4}instrumental}{45}{subsection.9.3.4}%
+\contentsline {section}{\numberline {9.4}Loading from config/preset files}{46}{section.9.4}%
+\contentsline {subsection}{\numberline {9.4.1}Pre\sphinxhyphen {}made presets}{46}{subsection.9.4.1}%
+\contentsline {subsubsection}{Pre\sphinxhyphen {}made presets description}{46}{subsubsection*.114}%
+\contentsline {subsection}{\numberline {9.4.2}Creating new preset files}{46}{subsection.9.4.2}%
+\contentsline {section}{\numberline {9.5}Keybindings}{46}{section.9.5}%
+\contentsline {subsection}{\numberline {9.5.1}On the keybindings}{46}{subsection.9.5.1}%
+\contentsline {subsection}{\numberline {9.5.2}Major (Ionian)}{47}{subsection.9.5.2}%
+\contentsline {subsection}{\numberline {9.5.3}Dorian}{47}{subsection.9.5.3}%
+\contentsline {subsection}{\numberline {9.5.4}Phrygian}{47}{subsection.9.5.4}%
+\contentsline {subsection}{\numberline {9.5.5}Lydian}{47}{subsection.9.5.5}%
+\contentsline {subsection}{\numberline {9.5.6}Mixolydian}{47}{subsection.9.5.6}%
+\contentsline {subsection}{\numberline {9.5.7}Minor (Aeolian)}{47}{subsection.9.5.7}%
+\contentsline {subsection}{\numberline {9.5.8}Locrian}{47}{subsection.9.5.8}%
+\contentsline {chapter}{\numberline {10}API}{51}{chapter.10}%
+\contentsline {chapter}{\numberline {11}birdears package}{53}{chapter.11}%
+\contentsline {section}{\numberline {11.1}Subpackages}{54}{section.11.1}%
+\contentsline {section}{\numberline {11.2}Submodules}{54}{section.11.2}%
+\contentsline {section}{\numberline {11.3}birdears.interval module}{54}{section.11.3}%
+\contentsline {section}{\numberline {11.4}birdears.logger module}{56}{section.11.4}%
+\contentsline {section}{\numberline {11.5}birdears.prequestion module}{56}{section.11.5}%
+\contentsline {section}{\numberline {11.6}birdears.questionbase module}{57}{section.11.6}%
+\contentsline {section}{\numberline {11.7}birdears.resolution module}{59}{section.11.7}%
+\contentsline {section}{\numberline {11.8}birdears.scale module}{59}{section.11.8}%
+\contentsline {section}{\numberline {11.9}birdears.sequence module}{61}{section.11.9}%
+\contentsline {chapter}{\numberline {12}birdears.questions package}{63}{chapter.12}%
+\contentsline {section}{\numberline {12.1}Submodules}{63}{section.12.1}%
+\contentsline {section}{\numberline {12.2}birdears.questions.harmonicinterval module}{63}{section.12.2}%
+\contentsline {section}{\numberline {12.3}birdears.questions.instrumentaldictation module}{65}{section.12.3}%
+\contentsline {section}{\numberline {12.4}birdears.questions.melodicdictation module}{66}{section.12.4}%
+\contentsline {section}{\numberline {12.5}birdears.questions.melodicinterval module}{68}{section.12.5}%
+\contentsline {chapter}{\numberline {13}birdears.interfaces package}{71}{chapter.13}%
+\contentsline {section}{\numberline {13.1}Submodules}{71}{section.13.1}%
+\contentsline {section}{\numberline {13.2}birdears.interfaces.commandline module}{71}{section.13.2}%
+\contentsline {chapter}{Python Module Index}{73}{section*.218}%
+\contentsline {chapter}{Index}{75}{section*.219}%
