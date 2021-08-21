@@ -30,7 +30,9 @@
 
 <!-- /TOC -->
 
-For the support chat, please `/join` [`#birdears`](https://webchat.freenode.net/?randomnick=1&channels=%23birdears&uio=MTY9dHJ1ZSYxMT0yNDY57) channel on freenode (`chat.freenode.net/6697` - ssl).
+For discussions, questions and the like, you can use the Birdears
+[Discussions](https://github.com/iacchus/birdears/discussions) Forum or the
+[Issues](https://github.com/iacchus/birdears/issues) here on GitHub repository.
 
 ### TUI
 
