@@ -55,6 +55,8 @@ then
     #twine upload dist/birdears*
     #echo change twine repo
     #twine upload --repository testpypi dist/birdears*
-    twine upload testpypi dist/birdears*
+    #twine upload -r testpypi dist/birdears*
+    twine upload -r testpypi dist/birdears*
+    twine upload -r pypi dist/birdears*
 fi
 
