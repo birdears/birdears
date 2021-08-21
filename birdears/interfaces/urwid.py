@@ -96,7 +96,10 @@ class Keyboard(urwid.Filler):
 
         # start (left) padding
         first_pad = diatonic_keys if is_key_chromatic else chromatic_keys
-        first_pad.append(Pad(weight=0.5))
+        if tonic_str == "E" or tonic_str == "B":
+            first_pad.append(Pad(weight=1.5))
+        else:
+            first_pad.append(Pad(weight=0.5))
 
         first_chromatic = [pitch for pitch in key_scale
                            if len(pitch.note) == 2][0]
@@ -135,7 +138,10 @@ class Keyboard(urwid.Filler):
         else:
 
             if KEY_PADS[first_chromatic.note]:
-                weight = (KEY_PADS[first_chromatic.note]/2) + 1
+                if tonic_str == "E" or tonic_str == "B":
+                    weight = 0.5
+                else:
+                    weight = (KEY_PADS[first_chromatic.note]/2) + 1
                 chromatic_keys.append(Pad(weight=weight))
 
             if not KEY_PADS[first_chromatic.note]:
