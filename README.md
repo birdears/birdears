@@ -70,12 +70,12 @@ It is currently [being written here](WRITE-ME-method.md)
 
 ### Features
 
-* questions
-* pretty much configurable
-* load from config file
+* Different kind of exercises for ear training.
+* Pretty much configurable: you can create more difficult exercises as you progress.
+* Exercises from configuration files: you can make presets and share them:
 * you can make your own presets
-* can be used interactively *(docs needed)*
-* can be used as a library *(docs needed)*
+* Can be used interactively from a Python console. *(docs needed)*
+* Can be used as a Python library. *(docs needed)*
 
 ## Installing
 
