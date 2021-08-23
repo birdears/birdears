@@ -4,9 +4,10 @@ The Functional Ear Training method consists in educating the ear to listen to mu
 
 The method is the following:
 
-**First**, we will play a cadence to stablish the key to the ears 
+**First**, we will begin with a given key and then play a cadence to establish
+the key to the ears.
 
-for example, the cadence of `I-IV-V-I` in the key of `C major`:
+For example, the cadence of `I-IV-V-I` in the key of `C major`:
 
 ```
 C - F - G - C
