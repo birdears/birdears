@@ -66,6 +66,8 @@ you can have as much time as you want to try it out.
 
 *this needs to be written. The method.*
 
+It is currently [being written here](WRITE-ME-method.md)
+
 ### Features
 
 * questions
