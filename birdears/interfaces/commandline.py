@@ -65,13 +65,17 @@ def print_response(response):
     # TODO: make a class for response
     if response['is_correct']:
         response_text = "Correct!"
+        color = '\033[32m' # green
     else:
-        response_text = "Wrong.."
+        response_text = "Wrong"
+        color = '\033[31m' # red
+
+    reset = '\033[0m' # reset terminal color
 
     if 'extra_response_str' in response.keys():
         print(center_text(response['extra_response_str']))
 
-    print(center_text(response_text, nl=2))
+    print(color + center_text(response_text, sep=False, nl=1) + reset)
 
 
 def print_instrumental(response):
