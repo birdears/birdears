@@ -11,7 +11,9 @@
 [![PyPI Python Versions](https://img.shields.io/pypi/pyversions/birdears.svg?style=flat-square)](https://pypi.python.org/pypi/birdears)
 [![Documentation Status](https://img.shields.io/badge/readthedocs-latest-orange.svg?style=flat-square)](https://birdears.readthedocs.io/en/latest/)
 
-[![agpl3](https://github.com/iacchus/birdears/raw/master/agplv3-155x51.png)](https://github.com/iacchus/birdears/blob/master/LICENSE)
+| **Licensed with [GNU AGPLv3](https://github.com/iacchus/birdears/blob/master/LICENSE)** |
+| ----------------- |
+| [![agpl3](https://github.com/iacchus/birdears/raw/master/agplv3-155x51.png)](https://github.com/iacchus/birdears/blob/master/LICENSE) |
 
 <!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
