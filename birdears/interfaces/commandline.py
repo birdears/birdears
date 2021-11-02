@@ -252,6 +252,24 @@ class CommandLine:
                 print_response(response)
 
                 self.question.play_resolution()
+                
+                print(center_text('Next question', nl=0))
+                print(center_text('space- play   q- quit', sep=False, nl=0))
+                
+                getch2 = _Getch()
+
+                while True: # wait for input before next question
+                    user_input2 = getch2()
+                
+                    # spacebar, enter - play next question
+                    if user_input2 in (' ', '\r'):
+                        break
+                    # q - quit
+                    elif user_input2 in ('q', 'Q'):
+                        exit(0)
+                    # loop, keep waiting
+                    else:
+                        pass
 
                 self.new_question_bit = True
 
@@ -265,7 +283,7 @@ class CommandLine:
                                            self.question.keyboard_index)
                 print(input_str, end='')
 
-        # q/Q - quit
+        # q - quit
         elif user_input in ('q', 'Q'):
             exit(0)
 
