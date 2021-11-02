@@ -37,14 +37,14 @@
 ### Support Channels
 
 
-| Channel | *etc* | Link |
+| Channel | Site | Description |
 | --- | --- | --- |
-| **Chat (Matrix)** | *chat channel* | [#birdears:mozilla.org](https://matrix.to/#/#birdears:mozilla.org) |
-| **GitHub Discussions** | *general discussion* | [Discussions](https://github.com/iacchus/birdears/discussions) |
-| **GitHub Issues** | *for issues with the software* | [Issues](https://github.com/iacchus/birdears/issues) |
-| **Documentation** | *extended documentation at **ReadTheDocs*** | [https://birdears.readthedocs.io/](https://birdears.readthedocs.io/) |
-| **PyPI** | *python package/repository* | [https://pypi.python.org/pypi/birdears](https://pypi.python.org/pypi/birdears) |
-| **GitHub** | *mainline repository* | [https://github.com/iacchus](https://github.com/iacchus) |
+| **Chat (Matrix)** | [#birdears:mozilla.org](https://matrix.to/#/#birdears:mozilla.org) | *chat channel* |
+| **GitHub Discussions** | [discussions](https://github.com/iacchus/birdears/discussions) | *general discussion* |
+| **GitHub Issues** | [issues](https://github.com/iacchus/birdears/issues) | *for issues with the software* |
+| **Documentation** | [https://birdears.readthedocs.io/](https://birdears.readthedocs.io/) |  *extended documentation at **ReadTheDocs*** |
+| **PyPI** | [https://pypi.python.org/pypi/birdears](https://pypi.python.org/pypi/birdears) | *python package/repository* |
+| **GitHub** | [https://github.com/iacchus](https://github.com/iacchus) | *mainline repository* |
 
 ### TUI
 
