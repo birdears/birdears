@@ -1,3 +1,5 @@
+import os
+
 from .. import _Getch
 
 from .. import KEYS
@@ -204,6 +206,10 @@ class CommandLine:
 
                 self.input_keys = list()
                 self.question = QUESTION_CLASS(**kwargs)
+
+                # Clear terminal screen (but keep scrollback)
+                # See https://stackoverflow.com/a/2084628
+                os.system('cls' if os.name == 'nt' else 'clear -x')
 
                 print_question(self.question)
 
