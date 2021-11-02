@@ -34,9 +34,17 @@
 
 <!-- /TOC -->
 
-For discussions, questions and the like, you can use the Birdears
-[Discussions](https://github.com/iacchus/birdears/discussions) Forum or the
-[Issues](https://github.com/iacchus/birdears/issues) here on GitHub repository.
+### Support Channels
+
+
+| Channel | *etc* | Link |
+| --- | --- | --- |
+| **Chat (Matrix)** | *chat channel* | [#birdears:mozilla.org](https://matrix.to/#/#birdears:mozilla.org) |
+| **GitHub Discussions** | *general discussion* | [Discussions](https://github.com/iacchus/birdears/discussions) |
+| **GitHub Issues** | *for issues with the software* | [Issues](https://github.com/iacchus/birdears/issues) |
+| **Documentation** | *extended documentation at **ReadTheDocs*** | [https://birdears.readthedocs.io/](https://birdears.readthedocs.io/) |
+| **PyPI** | *python package/repository* | [https://pypi.python.org/pypi/birdears](https://pypi.python.org/pypi/birdears) |
+| **GitHub** | *mainline repository* | [https://github.com/iacchus](https://github.com/iacchus) |
 
 ### TUI
 
