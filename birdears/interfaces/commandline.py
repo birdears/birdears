@@ -207,19 +207,55 @@ class CommandLine:
                 self.input_keys = list()
                 self.question = QUESTION_CLASS(**kwargs)
 
+                if   self.exercise == 'melodic':
+                    exercise_title  = 'Melodic interval recognition'
+                    question_prompt = 'What is the interval?'
+
+                elif self.exercise == 'harmonic':
+                    exercise_title  = 'Harmonic interval recognition'
+                    question_prompt = 'What is the interval?'
+
+                elif self.exercise == 'dictation':
+                    exercise_title  = 'Melodic dictation'
+                    question_prompt = 'Now, please type the intervals ' \
+                                      'you\'ve heard.'
+
+                elif self.exercise == 'instrumental':
+                    exercise_title  = 'Instrumental melodic ' \
+                                      'time-based detection'
+                    # TODO: question_prompt
+
+                else:               # 'notename':
+                    exercise_title  = 'Note name by interval recognition'
+                    question_prompt = 'The tonic is {tonic}. ' \
+                                      'Press the key representing the ' \
+                                      'second note.' \
+                                      .format(tonic=self.question.tonic_str)
+
                 # Clear terminal screen (but keep scrollback)
                 # See https://stackoverflow.com/a/2084628
                 os.system('cls' if os.name == 'nt' else 'clear -x')
 
+                bold = '\033[1m'
+                reset = '\033[0m'
+
+                print()
+                print(bold + center_text(exercise_title, nl=0) + reset)
+                
                 print_question(self.question)
 
                 if not self.exercise == 'instrumental':
                     self.question.play_question()
 
+                    print(center_text(question_prompt))
+                    print(center_text(
+                        'key- answer   r- repeat   q- quit', sep=False, nl=0))
+
             if self.exercise == 'instrumental':
                 for r in range(self.question.n_repeats):
                     self.question.play_question()
 
+                # FIXME: Instrumental is broken in CLI, double countdown...
                 for i in range(self.question.wait_time):
                     time_left = str(self.question.wait_time - i).rjust(3)
                     text = '{} seconds remaining...'.format(time_left)
