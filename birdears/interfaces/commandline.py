@@ -51,7 +51,9 @@ def center_text(text, sep=True, nl=0):
     for line in linelist:
         text += (spacing + line + '\n')
 
-    divider = spacing + (dim + '─' * int(biggest_line_size) + reset)  # unicode 0x2500
+    divider = \
+        spacing + (dim + '─' * int(biggest_line_size) + reset) # unicode 0x2500
+    
     text += divider if sep else ''
 
     text += nl * '\n'
@@ -179,8 +181,8 @@ class CommandLine:
 
         Args:
             exercise (str): The question name.
-            **kwargs (kwargs): FIXME: The kwargs can contain options for specific
-                questions.
+            **kwargs (kwargs): FIXME: The kwargs can contain options for
+                specific questions.
         """
 
         if exercise in QUESTION_CLASSES:
@@ -241,7 +243,7 @@ class CommandLine:
 
                 print()
                 print(bold + center_text(exercise_title, nl=0) + reset)
-                
+
                 print_question(self.question)
 
                 if not self.exercise == 'instrumental':
@@ -274,12 +276,14 @@ class CommandLine:
 
     def process_key(self, user_input):
         
-        if user_input in self.question.keyboard_index and user_input != ' ':  # spc
+        if user_input in self.question.keyboard_index \
+            and user_input != ' ':  # spc
 
             self.input_keys.append(user_input)
 
             ###if self.exercise == 'dictation':
-                ###input_str = make_input_str(self.input_keys, self.question.keyboard_index)
+                ###input_str = make_input_str(self.input_keys,
+                ###    self.question.keyboard_index)
                 ###print(input_str, end='')
             if self.question.n_input_notes > 1:
                 input_str = make_input_str(self.input_keys,
