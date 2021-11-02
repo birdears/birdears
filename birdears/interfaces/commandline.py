@@ -238,11 +238,8 @@ class CommandLine:
                 # See https://stackoverflow.com/a/2084628
                 os.system('cls' if os.name == 'nt' else 'clear -x')
 
-                bold = '\033[1m'
-                reset = '\033[0m'
-
                 print()
-                print(bold + center_text(exercise_title, nl=0) + reset)
+                print(center_text(exercise_title, nl=0))
 
                 print_question(self.question)
 
