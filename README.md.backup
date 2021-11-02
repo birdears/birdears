@@ -11,7 +11,6 @@
 [![PyPI Python Versions](https://img.shields.io/pypi/pyversions/birdears.svg?style=flat-square)](https://pypi.python.org/pypi/birdears)
 [![Documentation Status](https://img.shields.io/badge/readthedocs-latest-orange.svg?style=flat-square)](https://birdears.readthedocs.io/en/latest/)
 
-[![agpl3](https://github.com/iacchus/birdears/raw/master/agplv3-155x51.png)](https://github.com/iacchus/birdears/blob/master/LICENSE)
 <!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
 - [Introduction](#introduction)
@@ -75,8 +74,8 @@ It is currently [being written here](WRITE-ME-method.md)
 * Pretty much configurable: you can create more difficult exercises as you progress.
 * Exercises from configuration files: you can make presets and share them:
 * you can make your own presets
-* Can be used interactively from a Python console. *(docs needed)*
-* Can be used as a Python library. *(docs needed)*
+* Can be used interactively from a Python console *(docs needed)*
+* Can be used as a Python library *(docs needed)*
 
 ## Installing
 
