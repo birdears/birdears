@@ -75,10 +75,9 @@ def print_response(response):
     reset = '\033[0m' # reset terminal color
 
     if 'extra_response_str' in response.keys():
-        print(center_text(response['extra_response_str']))
+        print(center_text(response['extra_response_str'], nl=0))
 
-    print(color + center_text(response_text, sep=False, nl=1) + reset)
-
+    print(color + center_text(response_text, sep=False, nl=0) + reset)
 
 def print_instrumental(response):
     """Prints the formatted response for 'instrumental' exercise.
@@ -135,15 +134,13 @@ def print_question(question):
         'keyboard': keys,
     }
 
-    question_text = """\
-
+    question_text = """
 KEY: {tonic} {mode}
 (chromatic: {chroma}; descending: {desc})
 
 Intervals {intervals}
 Scale     {scale}
 Keyboard  {keyboard}
-
 """.format(**text_kwargs)
 
     print(center_text(question_text, nl=1))
