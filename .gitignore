@@ -3,12 +3,14 @@
 
 # kate swap
 *.kate-swp
+.idea
 
 .birdears
 .pytest_cache/
 
 # birdears debug fifo
 dbg_pipe
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
