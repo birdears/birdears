@@ -33,9 +33,9 @@ def center_text(text, sep=True, nl=0):
     # gets the biggest line
     biggest_line_size = 0
     for line in linelist:
-        line_lenght = len(line.expandtabs())
-        if line_lenght > biggest_line_size:
-            biggest_line_size = line_lenght
+        line_length = len(line.expandtabs())
+        if line_length > biggest_line_size:
+            biggest_line_size = line_length
 
     columns = COLS
     offset = biggest_line_size / 2
