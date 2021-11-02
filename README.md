@@ -12,6 +12,7 @@
 [![Documentation Status](https://img.shields.io/badge/readthedocs-latest-orange.svg?style=flat-square)](https://birdears.readthedocs.io/en/latest/)
 
 [![agpl3](https://github.com/iacchus/birdears/raw/master/agplv3-155x51.png)](https://github.com/iacchus/birdears/blob/master/LICENSE)
+
 <!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
 - [Introduction](#introduction)
