@@ -42,12 +42,14 @@ def center_text(text, sep=True, nl=0):
     perfect_center = columns / 2
     padsize = int(perfect_center - offset)
     spacing = ' ' * padsize  # space char
+    dim = '\033[2m'
+    reset = '\033[0m'
 
     text = str()
     for line in linelist:
         text += (spacing + line + '\n')
 
-    divider = spacing + ('─' * int(biggest_line_size))  # unicode 0x2500
+    divider = spacing + (dim + '─' * int(biggest_line_size) + reset)  # unicode 0x2500
     text += divider if sep else ''
 
     text += nl * '\n'
