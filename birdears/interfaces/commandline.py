@@ -81,7 +81,7 @@ def print_response(response):
     if 'extra_response_str' in response.keys():
         print(center_text(response['extra_response_str'], nl=0))
 
-    print(color + center_text(response_text, sep=False, nl=0) + reset)
+    print(color + center_text(response_text, sep=False, nl=1) + reset)
 
 def print_instrumental(response):
     """Prints the formatted response for 'instrumental' exercise.
@@ -138,7 +138,7 @@ def print_question(question):
         'keyboard': keys,
     }
 
-    question_text = """
+    question_text = """\
 KEY: {tonic} {mode}
 (chromatic: {chroma}; descending: {desc})
 
@@ -147,7 +147,7 @@ Scale     {scale}
 Keyboard  {keyboard}
 """.format(**text_kwargs)
 
-    print(center_text(question_text, nl=1))
+    print(center_text(question_text, nl=2))
 
 
 def make_input_str(user_input, keyboard_index):
@@ -238,7 +238,7 @@ class CommandLine:
                 # See https://stackoverflow.com/a/2084628
                 os.system('cls' if os.name == 'nt' else 'clear -x')
 
-                print()
+                print('\n')
                 print(center_text(exercise_title, nl=0))
 
                 print_question(self.question)
@@ -248,7 +248,7 @@ class CommandLine:
 
                     print(center_text(question_prompt))
                     print(center_text(
-                        'key- answer   r- repeat   q- quit', sep=False, nl=0))
+                        'key- answer   r- repeat   q- quit', sep=False, nl=1))
 
             if self.exercise == 'instrumental':
                 for r in range(self.question.n_repeats):
