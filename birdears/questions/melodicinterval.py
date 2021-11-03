@@ -135,41 +135,80 @@ class MelodicIntervalQuestion(QuestionBase):
                                       *args, **kwargs)
         thread.join()
 
+    def check_plural(self, value, string):
+        """Returns either a singular or plural string.
+        """
+
+        if value > 1: # plural
+            string += 's'
+        else: # singular
+            pass # leave string as is
+
+        return string
+
+    def longest_string(self, string1, string2):
+        """Returns length of the longest string (for alignment).
+        """
+
+        length = max(len(string1), len(string2))
+
+        return length
+
     def check_question(self, user_input_char):
         """Checks whether the given answer is correct.
         """
 
+        tonic_string = str(self.tonic_pitch)
+
         user_semitones = self.keyboard_index.index(user_input_char[0])
+        user_semitones_text = self.check_plural(user_semitones, 'semitone')
+
         user_semitones_plus_diretion = \
             (user_semitones * -1) if self.is_descending else (user_semitones)
 
         user_pitch = get_pitch_by_number(int(self.tonic_pitch) +
                                          user_semitones_plus_diretion)
+        user_interval = \
+            '“' + Interval(self.tonic_pitch, user_pitch)['data'][2] + '”'
 
-        user_interval = Interval(self.tonic_pitch, user_pitch)['data'][2]
         user_note = str(user_pitch)
+        user_note_range = tonic_string + '–' + user_note + ','
 
         correct_semitones = abs(int(self.interval['semitones']))
+        correct_semitones_text = \
+            self.check_plural(correct_semitones, 'semitone')
+
         correct_pitch = self.random_pitch
-        correct_interval = Interval(self.tonic_pitch,
-                                    self.random_pitch)['data'][2]
+        correct_interval = \
+            '“' + Interval(self.tonic_pitch, self.random_pitch)['data'][2] + '”'
+
         correct_note = str(self.random_pitch)
+        correct_note_range = tonic_string + '–' + correct_note + ','
+
+        interval_length   = self.longest_string(correct_interval,
+                                                user_interval)
+
+        note_range_length = self.longest_string(correct_note_range,
+                                                user_note_range)
+
+        semitones_length  = self.longest_string(str(correct_semitones),
+                                                str(user_semitones))
 
         is_correct = user_pitch == correct_pitch
-
         signal = ('x', '✓')[is_correct]  # u2713; False==0, True==1
 
         extra_response_str = """\
-       “{ci}” ({to}─{cn})
-user {si} “{ui}” ({to}─{un})
-{st} semitones
-""".format(ci=correct_interval,
-           to=str(self.tonic_pitch),
-           cn=correct_note,
+Notes played:   {ci} ({cr} {cs} {ct})
+ Your answer: {si} {ui} ({ur} {us} {ut})
+""".format(ci=correct_interval.ljust(interval_length),
+           cr=correct_note_range.ljust(note_range_length),
+           cs=str(correct_semitones).rjust(semitones_length),
+           ct=correct_semitones_text,
            si=signal,
-           ui=user_interval,
-           un=user_note,
-           st=correct_semitones)
+           ui=user_interval.ljust(interval_length),
+           ur=user_note_range.ljust(note_range_length),
+           us=str(user_semitones).rjust(semitones_length),
+           ut=user_semitones_text)
 
         response = {
             'is_correct': is_correct,
