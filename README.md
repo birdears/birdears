@@ -44,7 +44,7 @@
 | **GitHub Issues** | [issues](https://github.com/iacchus/birdears/issues) | *for issues with the software* |
 | **Documentation** | [https://birdears.readthedocs.io/](https://birdears.readthedocs.io/) |  *extended documentation at **ReadTheDocs*** |
 | **PyPI** | [https://pypi.python.org/pypi/birdears](https://pypi.python.org/pypi/birdears) | *python package/repository* |
-| **GitHub** | [https://github.com/iacchus](https://github.com/iacchus) | *mainline repository* |
+| **GitHub** | [https://github.com/iacchus/birdears](https://github.com/iacchus/birdears) | *mainline repository* |
 
 ### TUI
 
