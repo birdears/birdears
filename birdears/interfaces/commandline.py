@@ -1,3 +1,5 @@
+import os
+
 from .. import _Getch
 
 from .. import KEYS
@@ -33,21 +35,25 @@ def center_text(text, sep=True, nl=0):
     # gets the biggest line
     biggest_line_size = 0
     for line in linelist:
-        line_lenght = len(line.expandtabs())
-        if line_lenght > biggest_line_size:
-            biggest_line_size = line_lenght
+        line_length = len(line.expandtabs())
+        if line_length > biggest_line_size:
+            biggest_line_size = line_length
 
     columns = COLS
     offset = biggest_line_size / 2
     perfect_center = columns / 2
     padsize = int(perfect_center - offset)
     spacing = ' ' * padsize  # space char
+    dim = '\033[2m'
+    reset = '\033[0m'
 
     text = str()
     for line in linelist:
         text += (spacing + line + '\n')
 
-    divider = spacing + ('─' * int(biggest_line_size))  # unicode 0x2500
+    divider = \
+        spacing + (dim + '─' * int(biggest_line_size) + reset) # unicode 0x2500
+    
     text += divider if sep else ''
 
     text += nl * '\n'
@@ -65,14 +71,17 @@ def print_response(response):
     # TODO: make a class for response
     if response['is_correct']:
         response_text = "Correct!"
+        color = '\033[32m' # green
     else:
-        response_text = "Wrong.."
+        response_text = "Wrong"
+        color = '\033[31m' # red
+
+    reset = '\033[0m' # reset terminal color
 
     if 'extra_response_str' in response.keys():
-        print(center_text(response['extra_response_str']))
+        print(center_text(response['extra_response_str'], nl=0))
 
-    print(center_text(response_text, nl=2))
-
+    print(color + center_text(response_text, sep=False, nl=1) + reset)
 
 def print_instrumental(response):
     """Prints the formatted response for 'instrumental' exercise.
@@ -130,17 +139,15 @@ def print_question(question):
     }
 
     question_text = """\
-
 KEY: {tonic} {mode}
 (chromatic: {chroma}; descending: {desc})
 
 Intervals {intervals}
 Scale     {scale}
 Keyboard  {keyboard}
-
 """.format(**text_kwargs)
 
-    print(center_text(question_text, nl=1))
+    print(center_text(question_text, nl=2))
 
 
 def make_input_str(user_input, keyboard_index):
@@ -174,8 +181,8 @@ class CommandLine:
 
         Args:
             exercise (str): The question name.
-            **kwargs (kwargs): FIXME: The kwargs can contain options for specific
-                questions.
+            **kwargs (kwargs): FIXME: The kwargs can contain options for
+                specific questions.
         """
 
         if exercise in QUESTION_CLASSES:
@@ -202,15 +209,52 @@ class CommandLine:
                 self.input_keys = list()
                 self.question = QUESTION_CLASS(**kwargs)
 
+                if   self.exercise == 'melodic':
+                    exercise_title  = 'Melodic interval recognition'
+                    question_prompt = 'What is the interval?'
+
+                elif self.exercise == 'harmonic':
+                    exercise_title  = 'Harmonic interval recognition'
+                    question_prompt = 'What is the interval?'
+
+                elif self.exercise == 'dictation':
+                    exercise_title  = 'Melodic dictation'
+                    question_prompt = 'Now, please type the intervals ' \
+                                      'you\'ve heard.'
+
+                elif self.exercise == 'instrumental':
+                    exercise_title  = 'Instrumental melodic ' \
+                                      'time-based detection'
+                    # TODO: question_prompt
+
+                else:               # 'notename':
+                    exercise_title  = 'Note name by interval recognition'
+                    question_prompt = 'The tonic is {tonic}. ' \
+                                      'Press the key representing the ' \
+                                      'second note.' \
+                                      .format(tonic=self.question.tonic_str)
+
+                # Clear terminal screen (but keep scrollback)
+                # See https://stackoverflow.com/a/2084628
+                os.system('cls' if os.name == 'nt' else 'clear -x')
+
+                print('\n')
+                print(center_text(exercise_title, nl=0))
+
                 print_question(self.question)
 
                 if not self.exercise == 'instrumental':
                     self.question.play_question()
 
+                    print(center_text(question_prompt))
+                    print(center_text(
+                        'key- answer   r- repeat   q- quit', sep=False, nl=1))
+
             if self.exercise == 'instrumental':
                 for r in range(self.question.n_repeats):
                     self.question.play_question()
 
+                # FIXME: Instrumental is broken in CLI, double countdown...
                 for i in range(self.question.wait_time):
                     time_left = str(self.question.wait_time - i).rjust(3)
                     text = '{} seconds remaining...'.format(time_left)
@@ -229,12 +273,14 @@ class CommandLine:
 
     def process_key(self, user_input):
         
-        if user_input in self.question.keyboard_index and user_input != ' ':  # spc
+        if user_input in self.question.keyboard_index \
+            and user_input != ' ':  # spc
 
             self.input_keys.append(user_input)
 
             ###if self.exercise == 'dictation':
-                ###input_str = make_input_str(self.input_keys, self.question.keyboard_index)
+                ###input_str = make_input_str(self.input_keys,
+                ###    self.question.keyboard_index)
                 ###print(input_str, end='')
             if self.question.n_input_notes > 1:
                 input_str = make_input_str(self.input_keys,
@@ -249,6 +295,24 @@ class CommandLine:
                 print_response(response)
 
                 self.question.play_resolution()
+                
+                print(center_text('Next question', nl=0))
+                print(center_text('space- play   q- quit', sep=False, nl=0))
+                
+                getch2 = _Getch()
+
+                while True: # wait for input before next question
+                    user_input2 = getch2()
+                
+                    # spacebar, enter - play next question
+                    if user_input2 in (' ', '\r'):
+                        break
+                    # q - quit
+                    elif user_input2 in ('q', 'Q'):
+                        exit(0)
+                    # loop, keep waiting
+                    else:
+                        pass
 
                 self.new_question_bit = True
 
@@ -262,7 +326,7 @@ class CommandLine:
                                            self.question.keyboard_index)
                 print(input_str, end='')
 
-        # q/Q - quit
+        # q - quit
         elif user_input in ('q', 'Q'):
             exit(0)
 
