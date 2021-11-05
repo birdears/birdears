@@ -38,7 +38,8 @@ def load_interface(*args, **kwargs):
         from .interfaces.urwid import TextUserInterface
         tui = TextUserInterface(**kwargs)
     else:
-        cli = CommandLine(*args, **kwargs)
+        cli = CommandLine(cli_prompt_next, cli_no_scroll, cli_no_resolution,
+              *args, **kwargs)
 
 
 main_epilog = """
@@ -68,7 +69,16 @@ valid_resolution_methods = ", ".join(VALID_RESOLUTION_METHODS)
 @click.option('--cli/--no-cli',
               help='Uses command line as interface.',
               default=False, envvar='CLI')
-def cli(debug, urwid, cli):
+@click.option('--prompt',
+              help='Wait for input before new question (\'cli\' only)',
+              default=False, is_flag=True, envvar='PROMPT')
+@click.option('--no-scroll',
+              help='Clear screen on new question (implies --prompt)',
+              default=False, is_flag=True, envvar='NO_SCROLL')
+@click.option('--no-resolution',
+              help='Do not play resolution after answer (\'cli\' only)',
+              default=False, is_flag=True, envvar='NO_RESOLUTION')
+def cli(debug, urwid, cli, prompt, no_scroll, no_resolution):
     """birdears ─ Functional Ear Training for Musicians!"""
 
     global INTERFACE
@@ -84,8 +94,17 @@ def cli(debug, urwid, cli):
 
     if cli:
         INTERFACE = 'commandline'
-    elif urwid:
-        INTERFACE = 'urwid'
+    
+        global cli_prompt_next
+        global cli_no_scroll
+        global cli_no_resolution
+        
+        cli_prompt_next = prompt
+        cli_no_scroll = no_scroll
+        cli_no_resolution = no_resolution
+
+        if cli_no_scroll:
+            cli_prompt_next = True
     else:
         INTERFACE = 'urwid'
 
