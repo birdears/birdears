@@ -45,7 +45,9 @@ def load_interface(*args, **kwargs):
 main_epilog = """
 You can use 'birdears <command> --help' to show options for a specific command.
 
-More info at https://github.com/iacchus/birdears
+Global options can also be set as environment variables (e.g., DEBUG=1).
+
+More info at https://github.com/iacchus/birdears.
 """
 
 tonics = list(set(CHROMATIC_SHARP + CHROMATIC_FLAT))
@@ -68,13 +70,13 @@ class SortCommands(click.Group):
              epilog=main_epilog,
              context_settings=CTX_SETTINGS)
 @click.option('--debug/--no-debug',
-              help='Turns on debugging; instead you can set DEBUG=1.',
+              help='Turn on debugging',
               default=False, envvar='DEBUG')
 @click.option('--urwid/--no-urwid',
-              help='Uses urwid as interface.',
+              help='Use urwid as interface (default)',
               default=True, envvar='URWID')
 @click.option('--cli/--no-cli',
-              help='Uses command line as interface.',
+              help='Use command line as interface',
               default=False, envvar='CLI')
 @click.option('--prompt',
               help='Wait for input before new question (\'cli\' only)',
@@ -119,7 +121,6 @@ def cli(debug, urwid, cli, prompt, no_scroll, no_resolution):
 # melodic interval
 #
 
-
 melodic_epilog = """
 In this exercise birdears will play two notes, the tonic and the interval
 melodically, ie., one after the other and you should reply which is the correct
@@ -140,7 +141,6 @@ Valid values are as follows:
     valid_resolution_methods=valid_resolution_methods,
     valid_prequestion_methods=valid_prequestion_methods,
 )
-
 
 @cli.command(options_metavar='[options]', epilog=melodic_epilog)
 @click.option('-m', '--mode', type=click.Choice(VALID_MODES),
@@ -176,11 +176,9 @@ def melodic(*args, **kwargs):
     kwargs.update({'exercise': 'melodic'})
     load_interface(*args, **kwargs)
 
-
 #
 # harmonic interval
 #
-
 
 harmonic_epilog = """
 In this exercise birdears will play two notes, the tonic and the interval
@@ -202,7 +200,6 @@ Valid values are as follows:
     valid_resolution_methods=valid_resolution_methods,
     valid_prequestion_methods=valid_prequestion_methods,
 )
-
 
 @cli.command(options_metavar='[options]', epilog=harmonic_epilog)
 @click.option('-m', '--mode', metavar='<mode>', type=click.Choice(VALID_MODES),
@@ -239,9 +236,8 @@ def harmonic(*args, **kwargs):
     load_interface(*args, **kwargs)
 
 #
-# dictation
+# melodic dictation
 #
-
 
 dictation_epilog = """
 In this exercise birdears will choose some random intervals and create a
@@ -264,7 +260,6 @@ Valid values are as follows:
     valid_resolution_methods=valid_resolution_methods,
     valid_prequestion_methods=valid_prequestion_methods,
 )
-
 
 @cli.command(options_metavar='[options]', epilog=dictation_epilog)
 @click.option('-m', '--mode', metavar='<mode>', type=click.Choice(VALID_MODES),
@@ -306,14 +301,13 @@ def dictation(*args, **kwargs):
     kwargs.update({'exercise': 'dictation'})
     load_interface(*args, **kwargs)
 
-
 #
 # instrumental dictation
 #
 
 instrumental_epilog = """
 In this exercise birdears will choose some random intervals and create a
-melodic dictation with them. You should play the correct melody in you musical
+melodic dictation with them. You should play the correct melody on your musical
 instrument.
 
 Valid values are as follows:
@@ -331,7 +325,6 @@ Valid values are as follows:
     valid_resolution_methods=valid_resolution_methods,
     valid_prequestion_methods=valid_prequestion_methods,
 )
-
 
 @cli.command(options_metavar='[options]', epilog=instrumental_epilog)
 @click.option('-m', '--mode', metavar='<mode>', type=click.Choice(VALID_MODES),
@@ -371,12 +364,15 @@ Valid values are as follows:
               metavar='<resolution_method>',
               help='The name of a resolution method.')
 def instrumental(*args, **kwargs):
-    """Instrumental melodic time-based dictation
+    """Instrumental melodic dictation (time-based)
     """
 
     kwargs.update({'exercise': 'instrumental'})
     load_interface(*args, **kwargs)
 
+#
+# notename
+#
 
 notename_epilog = """
 In this exercise birdears will play two notes, the tonic and the interval
@@ -398,7 +394,6 @@ Valid values are as follows:
     valid_resolution_methods=valid_resolution_methods,
     valid_prequestion_methods=valid_prequestion_methods,
 )
-
 
 @cli.command(options_metavar='[options]', epilog=notename_epilog)
 @click.option('-m', '--mode', type=click.Choice(VALID_MODES),
@@ -428,27 +423,20 @@ Valid values are as follows:
               metavar='<resolution_method>',
               help='The name of a resolution method.')
 def notename(*args, **kwargs):
-    """Note name by intervaç recognition
+    """Note name by interval recognition
     """
 
     kwargs.update({'exercise': 'notename'})
     load_interface(*args, **kwargs)
 
-
 #
-# birdear's "load"
+# load preset config
 #
 
-
-load_epilog = """
-Loads exercise from file.
-"""
-
-
-@cli.command(options_metavar='', epilog=load_epilog)
+@cli.command(options_metavar='')
 @click.argument('filename', type=click.File(), metavar='<filename>')
 def load(filename, *args, **kwargs):
-    """Loads exercise from .toml config file <filename>.
+    """Load exercise preset from .toml config file <filename>.
     """
 
     from .toml import toml
