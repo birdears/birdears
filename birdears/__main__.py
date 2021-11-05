@@ -65,7 +65,7 @@ valid_resolution_methods = ", ".join(VALID_RESOLUTION_METHODS)
               default=False, envvar='DEBUG')
 @click.option('--urwid/--no-urwid',
               help='Uses urwid as interface.',
-              default=False, envvar='URWID')
+              default=True, envvar='URWID')
 @click.option('--cli/--no-cli',
               help='Uses command line as interface.',
               default=False, envvar='CLI')
@@ -92,7 +92,7 @@ def cli(debug, urwid, cli, prompt, no_scroll, no_resolution):
         logger.setLevel(logging.DEBUG)
         logger.debug('debug is on.')
 
-    if cli:
+    if cli or not urwid:
         INTERFACE = 'commandline'
     
         global cli_prompt_next
