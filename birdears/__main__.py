@@ -56,8 +56,15 @@ valid_modes = ", ".join(VALID_MODES)
 valid_prequestion_methods = ", ".join(VALID_PREQUESTION_METHODS)
 valid_resolution_methods = ", ".join(VALID_RESOLUTION_METHODS)
 
+# On the help screen, sort commands by definition order, not alphabetically.
+# See https://github.com/pallets/click/issues/513#issuecomment-504158316
+class SortCommands(click.Group):
+    def list_commands(self, ctx):
+        return self.commands.keys()
 
-@click.group(options_metavar='', subcommand_metavar='<command> [options]',
+@click.group(cls=SortCommands,
+             options_metavar='[options]',
+             subcommand_metavar='<command> [--help]',
              epilog=main_epilog,
              context_settings=CTX_SETTINGS)
 @click.option('--debug/--no-debug',
