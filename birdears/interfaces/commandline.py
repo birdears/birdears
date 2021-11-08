@@ -176,10 +176,15 @@ def make_input_str(user_input, keyboard_index):
 
 class CommandLine:
 
-    def __init__(self, exercise=None, *args, **kwargs):
+    def __init__(self, cli_prompt_next=False,
+                 cli_no_scroll=False, cli_no_resolution=False,
+                 exercise=None, *args, **kwargs):
         """This function implements the birdears loop for command line.
 
         Args:
+            cli_prompt_next (bool): True if --prompt is set.
+            cli_no_scroll (bool): True if --no-scroll is set.
+            cli_no_resolution (bool): True if --no-resolution is set.
             exercise (str): The question name.
             **kwargs (kwargs): FIXME: The kwargs can contain options for
                 specific questions.
@@ -190,6 +195,10 @@ class CommandLine:
         else:
             raise Exception("Invalid `exercise` value:", exercise)
         
+        self.prompt_next = cli_prompt_next
+        self.no_scroll = cli_no_scroll
+        self.no_resolution = cli_no_resolution
+
         self.exercise = exercise
 
         ####if 'n_notes' in kwargs:
@@ -200,6 +209,8 @@ class CommandLine:
         getch = _Getch()
 
         self.new_question_bit = True
+
+        print('\n')
 
         while True:
             if self.new_question_bit is True:
@@ -234,11 +245,12 @@ class CommandLine:
                                       'second note.' \
                                       .format(tonic=self.question.tonic_str)
 
-                # Clear terminal screen (but keep scrollback)
-                # See https://stackoverflow.com/a/2084628
-                os.system('cls' if os.name == 'nt' else 'clear -x')
+                if self.no_scroll:
+                    # Clear terminal screen (but keep scrollback)
+                    # See https://stackoverflow.com/a/2084628
+                    os.system('cls' if os.name == 'nt' else 'clear -x')
+                    print('\n')
 
-                print('\n')
                 print(center_text(exercise_title, nl=0))
 
                 print_question(self.question)
@@ -294,25 +306,27 @@ class CommandLine:
                 response = self.question.check_question(self.input_keys)
                 print_response(response)
 
-                self.question.play_resolution()
+                if not self.no_resolution:
+                    self.question.play_resolution()
                 
-                print(center_text('Next question', nl=0))
-                print(center_text('space- play   q- quit', sep=False, nl=0))
-                
-                getch2 = _Getch()
+                if self.prompt_next:
+                    print(center_text('Next question', nl=0))
+                    print(center_text('space- play   q- quit', sep=False, nl=1))
+                    
+                    getch2 = _Getch()
 
-                while True: # wait for input before next question
-                    user_input2 = getch2()
-                
-                    # spacebar, enter - play next question
-                    if user_input2 in (' ', '\r'):
-                        break
-                    # q - quit
-                    elif user_input2 in ('q', 'Q'):
-                        exit(0)
-                    # loop, keep waiting
-                    else:
-                        pass
+                    while True: # wait for input before next question
+                        user_input2 = getch2()
+                    
+                        # spacebar, enter - play next question
+                        if user_input2 in (' ', '\r'):
+                            break
+                        # q - quit
+                        elif user_input2 in ('q', 'Q'):
+                            exit(0)
+                        # loop, keep waiting
+                        else:
+                            pass
 
                 self.new_question_bit = True
 

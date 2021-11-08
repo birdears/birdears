@@ -38,13 +38,16 @@ def load_interface(*args, **kwargs):
         from .interfaces.urwid import TextUserInterface
         tui = TextUserInterface(**kwargs)
     else:
-        cli = CommandLine(*args, **kwargs)
+        cli = CommandLine(cli_prompt_next, cli_no_scroll, cli_no_resolution,
+              *args, **kwargs)
 
 
 main_epilog = """
 You can use 'birdears <command> --help' to show options for a specific command.
 
-More info at https://github.com/iacchus/birdears
+Global options can also be set as environment variables (e.g., DEBUG=1).
+
+More info at https://github.com/iacchus/birdears.
 """
 
 tonics = list(set(CHROMATIC_SHARP + CHROMATIC_FLAT))
@@ -55,20 +58,36 @@ valid_modes = ", ".join(VALID_MODES)
 valid_prequestion_methods = ", ".join(VALID_PREQUESTION_METHODS)
 valid_resolution_methods = ", ".join(VALID_RESOLUTION_METHODS)
 
+# On the help screen, sort commands by definition order, not alphabetically.
+# See https://github.com/pallets/click/issues/513#issuecomment-504158316
+class SortCommands(click.Group):
+    def list_commands(self, ctx):
+        return self.commands.keys()
 
-@click.group(options_metavar='', subcommand_metavar='<command> [options]',
+@click.group(cls=SortCommands,
+             options_metavar='[options]',
+             subcommand_metavar='<command> [--help]',
              epilog=main_epilog,
              context_settings=CTX_SETTINGS)
 @click.option('--debug/--no-debug',
-              help='Turns on debugging; instead you can set DEBUG=1.',
+              help='Turn on debugging',
               default=False, envvar='DEBUG')
 @click.option('--urwid/--no-urwid',
-              help='Uses urwid as interface.',
-              default=False, envvar='URWID')
+              help='Use urwid as interface (default)',
+              default=True, envvar='URWID')
 @click.option('--cli/--no-cli',
-              help='Uses command line as interface.',
+              help='Use command line as interface',
               default=False, envvar='CLI')
-def cli(debug, urwid, cli):
+@click.option('--prompt',
+              help='Wait for input before new question (\'cli\' only)',
+              default=False, is_flag=True, envvar='PROMPT')
+@click.option('--no-scroll',
+              help='Clear screen on new question (implies --prompt)',
+              default=False, is_flag=True, envvar='NO_SCROLL')
+@click.option('--no-resolution',
+              help='Do not play resolution after answer (\'cli\' only)',
+              default=False, is_flag=True, envvar='NO_RESOLUTION')
+def cli(debug, urwid, cli, prompt, no_scroll, no_resolution):
     """birdears ─ Functional Ear Training for Musicians!"""
 
     global INTERFACE
@@ -82,17 +101,25 @@ def cli(debug, urwid, cli):
         logger.setLevel(logging.DEBUG)
         logger.debug('debug is on.')
 
-    if cli:
+    if cli or not urwid:
         INTERFACE = 'commandline'
-    elif urwid:
-        INTERFACE = 'urwid'
+    
+        global cli_prompt_next
+        global cli_no_scroll
+        global cli_no_resolution
+        
+        cli_prompt_next = prompt
+        cli_no_scroll = no_scroll
+        cli_no_resolution = no_resolution
+
+        if cli_no_scroll:
+            cli_prompt_next = True
     else:
         INTERFACE = 'urwid'
 
 #
 # melodic interval
 #
-
 
 melodic_epilog = """
 In this exercise birdears will play two notes, the tonic and the interval
@@ -114,7 +141,6 @@ Valid values are as follows:
     valid_resolution_methods=valid_resolution_methods,
     valid_prequestion_methods=valid_prequestion_methods,
 )
-
 
 @cli.command(options_metavar='[options]', epilog=melodic_epilog)
 @click.option('-m', '--mode', type=click.Choice(VALID_MODES),
@@ -150,11 +176,9 @@ def melodic(*args, **kwargs):
     kwargs.update({'exercise': 'melodic'})
     load_interface(*args, **kwargs)
 
-
 #
 # harmonic interval
 #
-
 
 harmonic_epilog = """
 In this exercise birdears will play two notes, the tonic and the interval
@@ -176,7 +200,6 @@ Valid values are as follows:
     valid_resolution_methods=valid_resolution_methods,
     valid_prequestion_methods=valid_prequestion_methods,
 )
-
 
 @cli.command(options_metavar='[options]', epilog=harmonic_epilog)
 @click.option('-m', '--mode', metavar='<mode>', type=click.Choice(VALID_MODES),
@@ -213,9 +236,8 @@ def harmonic(*args, **kwargs):
     load_interface(*args, **kwargs)
 
 #
-# dictation
+# melodic dictation
 #
-
 
 dictation_epilog = """
 In this exercise birdears will choose some random intervals and create a
@@ -238,7 +260,6 @@ Valid values are as follows:
     valid_resolution_methods=valid_resolution_methods,
     valid_prequestion_methods=valid_prequestion_methods,
 )
-
 
 @cli.command(options_metavar='[options]', epilog=dictation_epilog)
 @click.option('-m', '--mode', metavar='<mode>', type=click.Choice(VALID_MODES),
@@ -280,14 +301,13 @@ def dictation(*args, **kwargs):
     kwargs.update({'exercise': 'dictation'})
     load_interface(*args, **kwargs)
 
-
 #
 # instrumental dictation
 #
 
 instrumental_epilog = """
 In this exercise birdears will choose some random intervals and create a
-melodic dictation with them. You should play the correct melody in you musical
+melodic dictation with them. You should play the correct melody on your musical
 instrument.
 
 Valid values are as follows:
@@ -305,7 +325,6 @@ Valid values are as follows:
     valid_resolution_methods=valid_resolution_methods,
     valid_prequestion_methods=valid_prequestion_methods,
 )
-
 
 @cli.command(options_metavar='[options]', epilog=instrumental_epilog)
 @click.option('-m', '--mode', metavar='<mode>', type=click.Choice(VALID_MODES),
@@ -345,12 +364,15 @@ Valid values are as follows:
               metavar='<resolution_method>',
               help='The name of a resolution method.')
 def instrumental(*args, **kwargs):
-    """Instrumental melodic time-based dictation
+    """Instrumental melodic dictation (time-based)
     """
 
     kwargs.update({'exercise': 'instrumental'})
     load_interface(*args, **kwargs)
 
+#
+# notename
+#
 
 notename_epilog = """
 In this exercise birdears will play two notes, the tonic and the interval
@@ -372,7 +394,6 @@ Valid values are as follows:
     valid_resolution_methods=valid_resolution_methods,
     valid_prequestion_methods=valid_prequestion_methods,
 )
-
 
 @cli.command(options_metavar='[options]', epilog=notename_epilog)
 @click.option('-m', '--mode', type=click.Choice(VALID_MODES),
@@ -402,27 +423,20 @@ Valid values are as follows:
               metavar='<resolution_method>',
               help='The name of a resolution method.')
 def notename(*args, **kwargs):
-    """Note name by intervaç recognition
+    """Note name by interval recognition
     """
 
     kwargs.update({'exercise': 'notename'})
     load_interface(*args, **kwargs)
 
-
 #
-# birdear's "load"
+# load preset config
 #
 
-
-load_epilog = """
-Loads exercise from file.
-"""
-
-
-@cli.command(options_metavar='', epilog=load_epilog)
+@cli.command(options_metavar='')
 @click.argument('filename', type=click.File(), metavar='<filename>')
 def load(filename, *args, **kwargs):
-    """Loads exercise from .toml config file <filename>.
+    """Load exercise preset from .toml config file <filename>.
     """
 
     from .toml import toml
