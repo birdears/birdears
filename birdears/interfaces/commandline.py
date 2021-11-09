@@ -311,19 +311,19 @@ class CommandLine:
                 
                 if self.prompt_next:
                     print(center_text('Next question', nl=0))
-                    print(center_text('space- play   q- quit', sep=False, nl=1))
+                    print(center_text('any- play   q- quit', sep=False, nl=1))
                     
                     getch2 = _Getch()
 
                     while True: # wait for input before next question
                         user_input2 = getch2()
                     
-                        # spacebar, enter - play next question
-                        if user_input2 in (' ', '\r'):
-                            break
                         # q - quit
-                        elif user_input2 in ('q', 'Q'):
+                        if user_input2 in ('q', 'Q'):
                             exit(0)
+                        # any key - play next question
+                        elif user_input2:
+                            break
                         # loop, keep waiting
                         else:
                             pass
