@@ -198,8 +198,8 @@ class MelodicIntervalQuestion(QuestionBase):
         signal = ('x', '✓')[is_correct]  # u2713; False==0, True==1
 
         extra_response_str = """\
-Notes played:   {ci} ({cr} {cs} {ct})
- Your answer: {si} {ui} ({ur} {us} {ut})
+ Notes:   {ci} ({cr} {cs} {ct})
+Answer: {si} {ui} ({ur} {us} {ut})
 """.format(ci=correct_interval.ljust(interval_length),
            cr=correct_note_range.ljust(note_range_length),
            cs=str(correct_semitones).rjust(semitones_length),
