@@ -140,9 +140,6 @@ def print_question(question):
     }
 
     question_text = """\
-KEY: {tonic} {mode}
-(chromatic: {chroma}; descending: {desc})
-
      Scale: {scale}
  Intervals: {intervals}
   Keyboard: {keyboard}
@@ -253,6 +250,8 @@ class CommandLine:
                     print('\n')
 
                 print(center_text(exercise_title, nl=0))
+                print(center_text('KEY: ' + self.question.tonic_str + ' ' \
+                                  + self.question.mode, sep=False, nl=1))
 
                 print_question(self.question)
 
