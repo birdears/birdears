@@ -1,4 +1,5 @@
 import os
+import sys
 
 from .. import _Getch
 
@@ -320,7 +321,7 @@ class CommandLine:
                     
                         # q - quit
                         if user_input2 in ('q', 'Q'):
-                            exit(0)
+                            sys.exit()
                         # any key - play next question
                         elif user_input2:
                             break
@@ -342,7 +343,7 @@ class CommandLine:
 
         # q - quit
         elif user_input in ('q', 'Q'):
-            exit(0)
+            sys.exit()
 
         # r - repeat interval
         elif user_input in ('r', 'R'):
