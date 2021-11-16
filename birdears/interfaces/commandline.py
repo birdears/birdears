@@ -143,9 +143,9 @@ def print_question(question):
 KEY: {tonic} {mode}
 (chromatic: {chroma}; descending: {desc})
 
-Intervals {intervals}
-Scale     {scale}
-Keyboard  {keyboard}
+     Scale: {scale}
+ Intervals: {intervals}
+  Keyboard: {keyboard}
 """.format(**text_kwargs)
 
     print(center_text(question_text, nl=2))
