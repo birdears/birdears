@@ -249,6 +249,8 @@ class CommandLine:
                     os.system('cls' if os.name == 'nt' else 'clear -x')
                     print('\n')
 
+                print(center_text('birdears ─ Functional Ear Training',
+                                  sep=False, nl=1))
                 print(center_text(exercise_title, nl=0))
                 print(center_text('KEY: ' + self.question.tonic_str + ' ' \
                                   + self.question.mode, sep=False, nl=1))
