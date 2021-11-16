@@ -1,0 +1,2 @@
+# https://github.com/sphinx-doc/sphinx/issues/9727#issuecomment-953025696
+docutils<0.18
