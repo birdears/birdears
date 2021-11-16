@@ -1,4 +1,5 @@
 import os
+import sys
 
 from .. import _Getch
 
@@ -139,12 +140,9 @@ def print_question(question):
     }
 
     question_text = """\
-KEY: {tonic} {mode}
-(chromatic: {chroma}; descending: {desc})
-
-Intervals {intervals}
-Scale     {scale}
-Keyboard  {keyboard}
+     Scale: {scale}
+ Intervals: {intervals}
+  Keyboard: {keyboard}
 """.format(**text_kwargs)
 
     print(center_text(question_text, nl=2))
@@ -251,7 +249,11 @@ class CommandLine:
                     os.system('cls' if os.name == 'nt' else 'clear -x')
                     print('\n')
 
+                print(center_text('birdears ─ Functional Ear Training',
+                                  sep=False, nl=1))
                 print(center_text(exercise_title, nl=0))
+                print(center_text('KEY: ' + self.question.tonic_str + ' ' \
+                                  + self.question.mode, sep=False, nl=1))
 
                 print_question(self.question)
 
@@ -311,19 +313,19 @@ class CommandLine:
                 
                 if self.prompt_next:
                     print(center_text('Next question', nl=0))
-                    print(center_text('space- play   q- quit', sep=False, nl=1))
+                    print(center_text('any- play   q- quit', sep=False, nl=1))
                     
                     getch2 = _Getch()
 
                     while True: # wait for input before next question
                         user_input2 = getch2()
                     
-                        # spacebar, enter - play next question
-                        if user_input2 in (' ', '\r'):
-                            break
                         # q - quit
-                        elif user_input2 in ('q', 'Q'):
-                            exit(0)
+                        if user_input2 in ('q', 'Q'):
+                            sys.exit()
+                        # any key - play next question
+                        elif user_input2:
+                            break
                         # loop, keep waiting
                         else:
                             pass
@@ -342,7 +344,7 @@ class CommandLine:
 
         # q - quit
         elif user_input in ('q', 'Q'):
-            exit(0)
+            sys.exit()
 
         # r - repeat interval
         elif user_input in ('r', 'R'):
