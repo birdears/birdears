@@ -38,7 +38,7 @@ Google's online [Python Style Guide](https://google.github.io/styleguide/pyguide
 which has some of the specification or Sphinx Napoleon documentation [online](http://www.sphinx-doc.org/en/stable/ext/napoleon.html)
 or in [PDF](https://readthedocs.org/projects/sphinxcontrib-napoleon/downloads/pdf/latest/).
 Napoleon is the extension used by Sphinx to render Google Docstrings in the
-documentation.
+documentation. Here is [a good documentation on Google-style Docstring](https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html).
 
 ### Runing apidoc
 
@@ -96,7 +96,7 @@ Out tests are in repo's `tests/` directory. We also have a local repoting in htm
 
 ## Feature requests :gift: and suggestions
 
-You are welcome to use [github issues](https://github.com/iacchus/birdears/issues) or [gitter.im](https://gitter.im/birdears/Lobby) to ask for, or give ideia for new features.
+You are welcome to use [github issues](https://github.com/iacchus/birdears/issues) or our [matrix chat](https://matrix.to/#/#birdears:mozilla.org) to ask for, or give ideia for new features.
 
 # Other stuff
 
