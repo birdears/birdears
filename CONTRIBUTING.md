@@ -38,7 +38,7 @@ Google's online [Python Style Guide](https://google.github.io/styleguide/pyguide
 which has some of the specification or Sphinx Napoleon documentation [online](http://www.sphinx-doc.org/en/stable/ext/napoleon.html)
 or in [PDF](https://readthedocs.org/projects/sphinxcontrib-napoleon/downloads/pdf/latest/).
 Napoleon is the extension used by Sphinx to render Google Docstrings in the
-documentation. Here is [a good documentation on Google-style Docstring](https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html).
+documentation. Here is [a good documentation on Google-style Docstrings.](https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html).
 
 ### Runing apidoc
 
