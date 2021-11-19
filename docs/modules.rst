@@ -1,7 +1,7 @@
-src
-===
+birdears
+========
 
 .. toctree::
    :maxdepth: 4
 
-   src
+   birdears
