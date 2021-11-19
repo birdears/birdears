@@ -57,7 +57,7 @@ def center_text(text, sep=True, nl=0):
 
     divider = \
         spacing + (dim + '─' * int(biggest_line_size) + reset) # unicode 0x2500
-    
+
     text += divider if sep else ''
 
     text += nl * '\n'
@@ -86,6 +86,7 @@ def print_response(response):
         print(center_text(response['extra_response_str'], nl=0))
 
     print(color + center_text(response_text, sep=False, nl=1) + reset)
+
 
 def print_instrumental(response):
     """Prints the formatted response for 'instrumental' exercise.
@@ -289,7 +290,7 @@ class CommandLine:
             self.process_key(user_input)
 
     def process_key(self, user_input):
-        
+
         if user_input in self.question.keyboard_index \
             and user_input != ' ':  # spc
 

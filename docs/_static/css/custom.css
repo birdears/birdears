@@ -1,8 +1,11 @@
 /* This file intentionally left blank. */
 
-.sig {
+.sig, .sig-name, .sig-prename {
     font-family: unset;
+    font-size: unset;
 }
+
+
 
 td.field-body strong
 {
@@ -19,6 +22,16 @@ span.descclassname {
     font-family: 'Inconsolata', monospace;
     font-weight: 500;
     color: #669;
+}
+
+span.descname {
+    font-family: 'Roboto Condensed', monospace !important;
+    font-weight: 900 !important;
+    color: #669;
+}
+
+h1, h2, h3, h4 {
+    font-weight: 900 !important;
 }
 
 em.property {
