@@ -1,61 +1,70 @@
-========
-birdears
-========
+######################
+birdears documentation
+######################
 
-This is the documentation of **birdears**.
+Welcome to birdears documentation.
 
-.. note::
+``birdears`` is a software written in Python 3 for ear training for
+musicians (musical intelligence, transcribing music, composing). It is a
+clone of the method used by `Funcitional Ear
+Trainer <https://play.google.com/store/apps/details?id=com.kaizen9.fet.android>`__
+app for Android.
 
-    This is the main page of your project's `Sphinx`_ documentation.
-    It is formatted in `reStructuredText`_. Add additional pages
-    by creating rst-files in ``docs`` and adding them to the `toctree`_ below.
-    Use then `references`_ in order to link them from this page, e.g.
-    :ref:`authors` and :ref:`changes`.
+It comes with four modes, or four kind of exercises, which are:
+``melodic``, ``harmonic``, ``dictation`` and ``instrumental``.
 
-    It is also possible to refer to the documentation of other Python packages
-    with the `Python domain syntax`_. By default you can reference the
-    documentation of `Sphinx`_, `Python`_, `NumPy`_, `SciPy`_, `matplotlib`_,
-    `Pandas`_, `Scikit-Learn`_. You can add more by extending the
-    ``intersphinx_mapping`` in your Sphinx's ``conf.py``.
+In resume, with the *melodic* mode two notes are played one after the
+other and you have to guess the interval; with the *harmonic* mode,
+two notes are played simoutaneously (harmonically) and you should guess
+the interval.
 
-    The pretty useful extension `autodoc`_ is activated by default and lets
-    you include documentation from docstrings. Docstrings can be written in
-    `Google style`_ (recommended!), `NumPy style`_ and `classical style`_.
+With the *dictation* mode, more than 2 notes are played (*ie*., a
+melodic dictation) and you should tell what are the intervals between
+them.
 
+With the *instrumental* mode, it is a like the *dictation*, but you will
+be expected to play the notes on your instrument, *ie*., birdears will
+not wait for a typed reply and you should prectice with your own
+judgement. The melody can be repeat any times and you can have as much
+time as you want to try it out.
 
-Contents
-========
+Project at GitHub_.
+
+.. _GitHub: https://github.com/iacchus/birdears
+
+Download the PDF version of this book. Clicking here_.
+
+.. _here: https://github.com/iacchus/birdears/raw/master/docs/sphinx/_build/latex/birdears.pdf
+
+.. raw:: html
+
+  <script src="https://asciinema.org/a/153478.js" id="asciicast-153478" async></script>
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
+   :hidden:
 
-   Overview <readme>
-   Contributions & Help <contributing>
-   License <license>
-   Authors <authors>
-   Changelog <changelog>
-   Module Reference <api/modules>
+   community
+   features
+   installing
+   using
+   birdears
+   birdears.questions
+   birdears.interfaces
 
+.. include:: community.rst
 
-Indices and tables
-==================
+.. include:: features.rst
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+.. include:: installing.rst
 
-.. _toctree: https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html
-.. _reStructuredText: https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
-.. _references: https://www.sphinx-doc.org/en/stable/markup/inline.html
-.. _Python domain syntax: https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#the-python-domain
-.. _Sphinx: https://www.sphinx-doc.org/
-.. _Python: https://docs.python.org/
-.. _Numpy: https://numpy.org/doc/stable
-.. _SciPy: https://docs.scipy.org/doc/scipy/reference/
-.. _matplotlib: https://matplotlib.org/contents.html#
-.. _Pandas: https://pandas.pydata.org/pandas-docs/stable
-.. _Scikit-Learn: https://scikit-learn.org/stable
-.. _autodoc: https://www.sphinx-doc.org/en/master/ext/autodoc.html
-.. _Google style: https://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings
-.. _NumPy style: https://numpydoc.readthedocs.io/en/latest/format.html
-.. _classical style: https://www.sphinx-doc.org/en/master/domains.html#info-field-lists
+.. include:: using.rst
+
+API
+===
+
+.. include:: birdears.rst
+
+.. include:: birdears.questions.rst
+
+.. include:: birdears.interfaces.rst
