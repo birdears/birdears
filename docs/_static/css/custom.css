@@ -1,0 +1,132 @@
+/* This file intentionally left blank. */
+
+.sig {
+    font-family: unset;
+}
+
+td.field-body strong
+{
+    font-family: 'Roboto', 'Inconsolata' monospace;
+}
+
+code.descclassname {
+    font-family: 'Inconsolata', monospace;
+    font-weight: 300;
+    color: #669;
+}
+
+span.descclassname {
+    font-family: 'Inconsolata', monospace;
+    font-weight: 500;
+    color: #669;
+}
+
+em.property {
+    color: #f92672;
+    font-weight: bold;
+    }
+
+dl.method {
+    /*border-left: 4px solid #669;
+    border-radius: 3px;
+    padding-left: 11px;*/
+}
+
+table.docutils.field-list th,table.docutils.field-list td {
+    padding: 7px;
+}
+
+p.rubric + table.docutils {
+    background-color: #eee;
+}
+
+p.rubric + table.docutils td {
+    border: 1px solid #ddd;
+    color: #333;
+}
+
+p.rubric + table.docutils td:first-of-type {
+    font-family: 'Inconsolata', monospace;
+    font-weight: bold;
+}
+
+pre {
+  font-family: 'Inconsolata', monospace;
+}
+
+code.docutils.literal {
+  font-family: 'Inconsolata', monospace;
+}
+
+code {
+ // border: 1px solid #ddd;
+}
+
+div#subpackages, #submodules {
+    display: none;    
+}
+
+a {
+    color: #669;
+    //text-decoration: underline;
+    font-weight: 500;
+}
+
+a.reference {
+    border-bottom:1px solid #ddd;
+}
+
+.docutils.literal {
+    color: #fff;
+    background-color: #333;
+    //border: 1px solid #966;
+    
+    padding: 0 2px;
+    border-radius: 2px;
+    /font-size: 13px;
+}
+
+div.figure {
+    border: 1px solid #ddd;
+    background-color: #eee;
+}
+
+
+table:not(.field-list) {
+    width: 100%;
+    max-width: 100%;
+    margin: 2em 0;
+    background-color: transparent;
+    border: 1px solid #e5e4e1 !important;
+}
+
+table th,
+table td {
+    position: relative;
+    padding: 0.5em !important;
+    //line-height: 0.95em !important;
+    text-align: left;
+    border: 1px solid #e5e4e1 !important;
+}
+
+table th {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 14px !important;
+    line-height: 1.25em;
+    padding: 0.666em !important;
+    color: #000
+}
+
+table td:after {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: -1px;
+    top: -1px;
+    padding: 1px;
+    z-index: -1;
+    content: '';
+    background: #faf9f7;
+}
+

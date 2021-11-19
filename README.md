@@ -36,7 +36,6 @@
 
 ### Support Channels
 
-
 | Channel | Site | Description |
 | --- | --- | --- |
 | **Chat (Matrix)** | [#birdears:mozilla.org](https://matrix.to/#/#birdears:mozilla.org) | *chat channel* |
