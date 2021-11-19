@@ -1,0 +1,4 @@
+-e git+ssh://git@github.com/iacchus/birdears.git@ea6330fc211724fa3461b3ea16feee24fe073350#egg=birdears
+click==8.0.3
+toml==0.10.2
+urwid==2.1.2
