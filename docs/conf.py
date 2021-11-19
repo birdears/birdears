@@ -88,12 +88,14 @@ master_doc = "index"
 
 # General information about the project.
 project = "birdears"
-copyright = "2021, I.M."
+copyright = "2021, Iacchus Mercurius"
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
+version: '0.3'
+release: '0.3.7'
 # version: The short X.Y version.
 # release: The full version, including alpha/beta/rc tags.
 # If you don’t need the separation provided between version and release,
@@ -153,7 +155,8 @@ todo_emit_warnings = True
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = "alabaster"
+#html_theme = "alabaster"
+html_theme = "birdears_sphinx_theme"
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -165,6 +168,7 @@ html_theme_options = {
 
 # Add any paths that contain custom themes here, relative to this directory.
 # html_theme_path = []
+html_theme_path = ["_themes"]
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
@@ -246,7 +250,8 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-    ("index", "user_guide.tex", "birdears Documentation", "I.M.", "manual")
+    ("index", "user_guide.tex", "birdears Documentation", "Iacchus Mmercurius",
+     "manual")
 ]
 
 # The name of an image file (relative to this directory) to place at the top of

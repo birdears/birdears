@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>birdears.sequence &#8212; birdears 0.2.1 documentation</title>
+    <title>birdears.sequence &#8212; birdears unknown documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
@@ -16,103 +16,6 @@
     <link rel="search" title="Search" href="../../search.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/css/hljs_styles/monokai.css" type="text/css" />
-  <script type="text/javascript" src="../../_static/js/highlight.pack.js"></script>
-  <script src="https://cdn.rawgit.com/iacchus/abcjs/master/bin/abcjs_plugin_3.1.2-hotfix-min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script>
-  $(document).ready(function() {
-    $('.highlight-none pre').each(function(i, block) {
-      hljs.highlightBlock(block);
-    });
-    $('.highlight pre').each(function(i, block) {
-      hljs.highlightBlock(block);
-    });
-  });
-</script>
-
-<script>
-  abcjs_plugin_autostart = false;
-  window.ABCJS.plugin.auto_render = false;
-
-$(document).ready(function(){
-  function is_it_abc(elem) {
-    if(window.ABCJS.plugin.getABCContainingElements(elem).length) return true;
-    else return false;
-  }
-
-  if($(".highlight-abc pre").length)
-  {
-    var tunes_code = $(".highlight-abc pre");
-			
-    for(var $i=0; tunes_code[$i]; $i++)
-    {               
-      if(! is_it_abc($(tunes_code[$i]))) continue;
-
-      var ws_strip="";
-      var mystr="";
-
-      ws_strip = $(tunes_code[$i]).text().split('\n');
-      for(var aaa=0; ws_strip[aaa]; aaa++) { mystr+=ws_strip[aaa].trim() + "\n"; }
-
-      $(tunes_code[$i]).text(mystr); //abctune
-
-      $('<div id="abctune-' + $i + '" class="abctune-rendered"></div>').insertBefore($(tunes_code[$i]).parent());
-      ABCJS.renderAbc(
-        "abctune-"+$i, //container
-        "%%staffsep 27pt\n" + $(tunes_code[$i]).text(), //abctune
-        { }, //parserParams
-        {
-          scale: 1,
-          staffwidth:600,
-          paddingtop: 0,
-          paddingbottom: 0,
-          paddingright: 0,
-          paddingleft: 0,
-        }, //engraverParams
-        { viewportHorizontal: true } //renderParams
-      );
-      $(tunes_code[$i]).parent().hide();
-    }
-  }
-
-  if($("code.abckeep").length)
-  {
-    var tunes_code = $("code.abckeep");
-			
-    for(var $i=0; tunes_code[$i]; $i++)
-    {               
-      if(! is_it_abc($(tunes_code[$i]))) continue;
-
-      var ws_strip="";
-      var mystr="";
-
-      ws_strip = $(tunes_code[$i]).text().split('\n');
-      for(var aaa=0; ws_strip[aaa]; aaa++) { mystr+=ws_strip[aaa].trim() + "\n"; }
-
-      $(tunes_code[$i]).text(mystr); //abctune
-
-      $('<div id="abctunekeep-' + $i + '" class="abctune-rendered"></div>').insertBefore($(tunes_code[$i]).parent());
-      ABCJS.renderAbc(
-        "abctunekeep-"+$i, //container
-        "%%staffsep 27pt\n"+$(tunes_code[$i]).text(), //abctune
-        { }, //parserParams
-        {
-          scale: 1,
-          staffwidth:700,
-          paddingtop: 0,
-          paddingbottom: 0,
-          paddingright: 0,
-          paddingleft: 0,
-        }, //engraverParams
-        { viewportHorizontal: true } //renderParams
-      );
-      $(tunes_code[$i]).parent().css({marginTop:0})
-      //$(tunes_code[$i]).hide();
-    }
-  }
-})
-</script>
   
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
@@ -123,221 +26,244 @@ $(document).ready(function(){
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <h1>Source code for birdears.sequence</h1><div class="highlight"><pre>
-<span></span>from .logger import log_event
+<span></span><span class="kn">from</span> <span class="nn">.logger</span> <span class="kn">import</span> <span class="n">log_event</span>
 
-from threading import Thread
-import subprocess
-import time
+<span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Thread</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">time</span>
 
-from .scale import ChromaticScale
+<span class="kn">from</span> <span class="nn">.scale</span> <span class="kn">import</span> <span class="n">ChromaticScale</span>
 
-from .note_and_pitch import Pitch
-from .note_and_pitch import Chord
+<span class="kn">from</span> <span class="nn">.note_and_pitch</span> <span class="kn">import</span> <span class="n">Pitch</span>
+<span class="kn">from</span> <span class="nn">.note_and_pitch</span> <span class="kn">import</span> <span class="n">Chord</span>
 
-from .exception import InvalidSequenceElement
+<span class="kn">from</span> <span class="nn">.exception</span> <span class="kn">import</span> <span class="n">InvalidSequenceElement</span>
 
-SEQUENCE_THREAD = None
-cb_thread = None
+<span class="n">SEQUENCE_THREAD</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">cb_thread</span> <span class="o">=</span> <span class="kc">None</span>
 
 
-<div class="viewcode-block" id="Sequence"><a class="viewcode-back" href="../../index.html#birdears.sequence.Sequence">[docs]</a>class Sequence(list):
-    &quot;&quot;&quot;Register a Sequence of notes and/or chords.
+<div class="viewcode-block" id="Sequence"><a class="viewcode-back" href="../../api/birdears.html#birdears.sequence.Sequence">[docs]</a><span class="k">class</span> <span class="nc">Sequence</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Register a Sequence of notes and/or chords.</span>
 
-    Attributes:
-        elements (array_type): List of notes (strings) ou chords (list of
-            strings) in this Sequence.
-    &quot;&quot;&quot;
+<span class="sd">    Attributes:</span>
+<span class="sd">        elements (array_type): List of notes (strings) ou chords (list of</span>
+<span class="sd">            strings) in this Sequence.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Sequence.__init__"><a class="viewcode-back" href="../../index.html#birdears.sequence.Sequence.__init__">[docs]</a>    @log_event
-    def __init__(self, elements=[], duration=2, delay=1.5, pos_delay=1):
-        &quot;&quot;&quot;Inits the Sequence with an array and sets the default times for
-            playing / pausing the elements.
+    <span class="nd">@log_event</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elements</span><span class="o">=</span><span class="p">[],</span> <span class="n">duration</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">pos_delay</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Inits the Sequence with an array and sets the default times for</span>
+<span class="sd">            playing / pausing the elements.</span>
 
-        Args:
-            elements (array_type): List of elements in this sequence.
-                (Pitch&#39;es and/or Chord&#39;s)
-            duration (float): Default playing time for each element in the
-                sequence.
-            delay (float): Default waiting time to play the next element
-                in the sequence.
-            pos_delay (float): Waiting time after playing the last element
-                in the sequence.
-        &quot;&quot;&quot;
+<span class="sd">        Args:</span>
+<span class="sd">            elements (array_type): List of elements in this sequence.</span>
+<span class="sd">                (Pitch&#39;es and/or Chord&#39;s)</span>
+<span class="sd">            duration (float): Default playing time for each element in the</span>
+<span class="sd">                sequence.</span>
+<span class="sd">            delay (float): Default waiting time to play the next element</span>
+<span class="sd">                in the sequence.</span>
+<span class="sd">            pos_delay (float): Waiting time after playing the last element</span>
+<span class="sd">                in the sequence.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
-        if not all(isinstance(element, (Pitch, Chord))
-                   for element in elements):
-            raise InvalidSequenceElement
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="p">(</span><span class="n">Pitch</span><span class="p">,</span> <span class="n">Chord</span><span class="p">))</span>
+                   <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">elements</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">InvalidSequenceElement</span>
 
-        super(Sequence, self).__init__(elements)
+        <span class="nb">super</span><span class="p">(</span><span class="n">Sequence</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">elements</span><span class="p">)</span>
 
-        self.duration = duration
-        self.delay = delay
-        self.pos_delay = pos_delay</div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">duration</span> <span class="o">=</span> <span class="n">duration</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay</span> <span class="o">=</span> <span class="n">delay</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pos_delay</span> <span class="o">=</span> <span class="n">pos_delay</span>
 
-<div class="viewcode-block" id="Sequence.play"><a class="viewcode-back" href="../../index.html#birdears.sequence.Sequence.play">[docs]</a>    @log_event
-    def play(self, callback=None, end_callback=None, *args, **kwargs):
+<div class="viewcode-block" id="Sequence.play"><a class="viewcode-back" href="../../api/birdears.html#birdears.sequence.Sequence.play">[docs]</a>    <span class="nd">@log_event</span>
+    <span class="k">def</span> <span class="nf">play</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">end_callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 
-        global SEQUENCE_THREAD
+        <span class="k">global</span> <span class="n">SEQUENCE_THREAD</span>
 
-        if hasattr(SEQUENCE_THREAD, &#39;is_alive&#39;) and SEQUENCE_THREAD.is_alive():
-            try:
-                SEQUENCE_THREAD.join()
-            except KeyboardInterrupt:
-                print(&#39;Ctrl+C&#39;)
-                exit(0)
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">SEQUENCE_THREAD</span><span class="p">,</span> <span class="s1">&#39;is_alive&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">SEQUENCE_THREAD</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">SEQUENCE_THREAD</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+            <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ctrl+C&#39;</span><span class="p">)</span>
+                <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
-        # TODO: later we should passa callback and end_callback here so the
-        # thread can talk to user interfaces, cli/tui/gui etc
-        SEQUENCE_THREAD = Thread(target=self.async_play,
-                                 kwargs={&#39;callback&#39;: callback,
-                                         &#39;end_callback&#39;: end_callback,
-                                         &#39;args&#39;: args,
-                                         &#39;kwargs&#39;: kwargs})
-        SEQUENCE_THREAD.start()
+        <span class="c1"># TODO: later we should passa callback and end_callback here so the</span>
+        <span class="c1"># thread can talk to user interfaces, cli/tui/gui etc</span>
+        <span class="n">SEQUENCE_THREAD</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">async_play</span><span class="p">,</span>
+                                 <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;callback&#39;</span><span class="p">:</span> <span class="n">callback</span><span class="p">,</span>
+                                         <span class="s1">&#39;end_callback&#39;</span><span class="p">:</span> <span class="n">end_callback</span><span class="p">,</span>
+                                         <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="n">args</span><span class="p">,</span>
+                                         <span class="s1">&#39;kwargs&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="p">})</span>
+        <span class="n">SEQUENCE_THREAD</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 
-        return SEQUENCE_THREAD</div>
+        <span class="k">return</span> <span class="n">SEQUENCE_THREAD</span></div>
 
-<div class="viewcode-block" id="Sequence.async_play"><a class="viewcode-back" href="../../index.html#birdears.sequence.Sequence.async_play">[docs]</a>    @log_event
-    def async_play(self, callback, end_callback, args, kwargs):
-        &quot;&quot;&quot;Plays the Sequence elements of notes and/or chords and wait for
-        `Sequence.pos_delay` seconds.
-        &quot;&quot;&quot;
+<div class="viewcode-block" id="Sequence.async_play"><a class="viewcode-back" href="../../api/birdears.html#birdears.sequence.Sequence.async_play">[docs]</a>    <span class="nd">@log_event</span>
+    <span class="k">def</span> <span class="nf">async_play</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">end_callback</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Plays the Sequence elements of notes and/or chords and wait for</span>
+<span class="sd">        `Sequence.pos_delay` seconds.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
-        global cb_thread
-        global SEQUENCE_THREAD
+        <span class="k">global</span> <span class="n">cb_thread</span>
+        <span class="k">global</span> <span class="n">SEQUENCE_THREAD</span>
 
-        for index, element in enumerate(self):
+        <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">element</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
-            # is the current element to be played the last of the sequence?
-            # because if it is the last, we will supress it&#39;s  playing delay
-            # and will use the Sequence.pos_delay
-            is_last = (index == len(self) - 1)
+            <span class="c1"># is the current element to be played the last of the sequence?</span>
+            <span class="c1"># because if it is the last, we will supress it&#39;s  playing delay</span>
+            <span class="c1"># and will use the Sequence.pos_delay</span>
+            <span class="n">is_last</span> <span class="o">=</span> <span class="p">(</span><span class="n">index</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 
-            if callback:
+            <span class="k">if</span> <span class="n">callback</span><span class="p">:</span>
 
-                cb_thread = Thread(target=callback, args=[element])
-                cb_thread.start()
+                <span class="n">cb_thread</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">callback</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">element</span><span class="p">])</span>
+                <span class="n">cb_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 
-            if type(element) == Pitch:
-                self._play_note(element, last_element=is_last)
-            elif type(element) == Chord:
-                self._play_chord(element, last_element=is_last)
-            else:
-                raise InvalidSequenceElement
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">element</span><span class="p">)</span> <span class="o">==</span> <span class="n">Pitch</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_play_note</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">last_element</span><span class="o">=</span><span class="n">is_last</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">element</span><span class="p">)</span> <span class="o">==</span> <span class="n">Chord</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_play_chord</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">last_element</span><span class="o">=</span><span class="n">is_last</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">InvalidSequenceElement</span>
 
-            if hasattr(cb_thread, &#39;is_alive&#39;):
-                try:
-                    cb_thread.join()
-                except KeyboardInterrupt:
-                    print(&#39;Ctrl+C&#39;)
-                    exit(0)
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">cb_thread</span><span class="p">,</span> <span class="s1">&#39;is_alive&#39;</span><span class="p">):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">cb_thread</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+                <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ctrl+C&#39;</span><span class="p">)</span>
+                    <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
-            # TODO we should later get the element information and pass via a
-            # dict to Sequence._async_play()&#39;s callback so it can inform the
-            # user interfaces on the status of the element current being played
+            <span class="c1"># TODO we should later get the element information and pass via a</span>
+            <span class="c1"># dict to Sequence._async_play()&#39;s callback so it can inform the</span>
+            <span class="c1"># user interfaces on the status of the element current being played</span>
 
-        if self.pos_delay:
-            self._wait(self.pos_delay)
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos_delay</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_wait</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pos_delay</span><span class="p">)</span>
 
-        if end_callback:
-            cb_thread = Thread(target=end_callback)
-            cb_thread.start()</div>
+        <span class="k">if</span> <span class="n">end_callback</span><span class="p">:</span>
+            <span class="n">cb_thread</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">end_callback</span><span class="p">)</span>
+            <span class="n">cb_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span></div>
 
-    # FIXME: implement octave here:
-<div class="viewcode-block" id="Sequence.make_chord_progression"><a class="viewcode-back" href="../../index.html#birdears.sequence.Sequence.make_chord_progression">[docs]</a>    def make_chord_progression(self, tonic_pitch, mode, degrees):
-        &quot;&quot;&quot;Appends triad chord(s) to the Sequence.
+    <span class="c1"># FIXME: implement octave here:</span>
+<div class="viewcode-block" id="Sequence.make_chord_progression"><a class="viewcode-back" href="../../api/birdears.html#birdears.sequence.Sequence.make_chord_progression">[docs]</a>    <span class="k">def</span> <span class="nf">make_chord_progression</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tonic_pitch</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">degrees</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Appends triad chord(s) to the Sequence.</span>
 
-        Args:
-            tonic (str): Tonic note of the scale.
-            mode (str): Mode of the scale from which build the triads upon.
-            degrees (array_type): List with integers represending the degrees
-                of each triad.
-        &quot;&quot;&quot;
+<span class="sd">        Args:</span>
+<span class="sd">            tonic (str): Tonic note of the scale.</span>
+<span class="sd">            mode (str): Mode of the scale from which build the triads upon.</span>
+<span class="sd">            degrees (array_type): List with integers represending the degrees</span>
+<span class="sd">                of each triad.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
-        tonic_str = tonic_pitch.note
-        octave = tonic_pitch.octave
-        scale = ChromaticScale(tonic=tonic_str, octave=octave)
+        <span class="n">tonic_str</span> <span class="o">=</span> <span class="n">tonic_pitch</span><span class="o">.</span><span class="n">note</span>
+        <span class="n">octave</span> <span class="o">=</span> <span class="n">tonic_pitch</span><span class="o">.</span><span class="n">octave</span>
+        <span class="n">scale</span> <span class="o">=</span> <span class="n">ChromaticScale</span><span class="p">(</span><span class="n">tonic</span><span class="o">=</span><span class="n">tonic_str</span><span class="p">,</span> <span class="n">octave</span><span class="o">=</span><span class="n">octave</span><span class="p">)</span>
 
-        for degree in degrees:
-            chord = scale.get_triad(mode=mode, degree=degree)
-            self.append(chord)</div>
+        <span class="k">for</span> <span class="n">degree</span> <span class="ow">in</span> <span class="n">degrees</span><span class="p">:</span>
+            <span class="n">chord</span> <span class="o">=</span> <span class="n">scale</span><span class="o">.</span><span class="n">get_triad</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span> <span class="n">degree</span><span class="o">=</span><span class="n">degree</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chord</span><span class="p">)</span></div>
 
-    @log_event
-    def _play_note(self, pitch, last_element=False):
-        &quot;&quot;&quot;Plays a note.
+    <span class="nd">@log_event</span>
+    <span class="k">def</span> <span class="nf">_play_note</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">last_element</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Plays a note.</span>
 
-        Args:
-            note (Pitch): The note and octave to be played. Eg.: &#39;C4&#39;
-            duration (float): Duration of the note in seconds.
-            delay (float): Delay after the note in seconds.
-        &quot;&quot;&quot;
+<span class="sd">        Args:</span>
+<span class="sd">            note (Pitch): The note and octave to be played. Eg.: &#39;C4&#39;</span>
+<span class="sd">            duration (float): Duration of the note in seconds.</span>
+<span class="sd">            delay (float): Delay after the note in seconds.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
-        # requires sox to be installed
+        <span class="c1"># requires sox to be installed</span>
 
-        duration = pitch.duration or self.duration
-        delay = pitch.delay or self.delay
+        <span class="n">duration</span> <span class="o">=</span> <span class="n">pitch</span><span class="o">.</span><span class="n">duration</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">duration</span>
+        <span class="n">delay</span> <span class="o">=</span> <span class="n">pitch</span><span class="o">.</span><span class="n">delay</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">delay</span>
 
-        # from sox manual: fade [type] fade-in-length [stop-position(=)
-        # [fade-out-length]]
+        <span class="c1"># from sox manual: fade [type] fade-in-length [stop-position(=)</span>
+        <span class="c1"># [fade-out-length]]</span>
 
-        # FIXME: this is experimental, revert to the old code if it is the case
-        command = (
-            &quot;sox -V1 -qn -d synth {duration} pluck {note}&quot;
-            &quot; fade l 0 {duration} {duration} reverb&quot;
-        ).format(note=str(pitch), duration=duration)
+        <span class="c1"># FIXME: this is experimental, revert to the old code if it is the case</span>
+        <span class="n">command</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot;sox -V1 -qn -d synth </span><span class="si">{duration}</span><span class="s2"> pluck </span><span class="si">{note}</span><span class="s2">&quot;</span>
+            <span class="s2">&quot; fade l 0 </span><span class="si">{duration}</span><span class="s2"> </span><span class="si">{duration}</span><span class="s2"> reverb&quot;</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">note</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">pitch</span><span class="p">),</span> <span class="n">duration</span><span class="o">=</span><span class="n">duration</span><span class="p">)</span>
 
-        subprocess.Popen(command.split())
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">command</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
 
-        if not last_element:
-            self._wait(delay)
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">last_element</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_wait</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 
-    @log_event
-    def _play_chord(self, chord, last_element=False):
-        &quot;&quot;&quot;Plays a chord.
+    <span class="nd">@log_event</span>
+    <span class="k">def</span> <span class="nf">_play_chord</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chord</span><span class="p">,</span> <span class="n">last_element</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Plays a chord.</span>
 
-        Args:
-            chord (Chord): An array of pitches (notes and octaves)
-                to be played, representing a chord. Eg.: [&#39;C4&#39;, &#39;Eb4&#39;, &#39;G5&#39;]
-            duration (float): Duration of the chord in seconds.
-            delay (float): Delay after the chord in seconds.
-        &quot;&quot;&quot;
+<span class="sd">        Args:</span>
+<span class="sd">            chord (Chord): An array of pitches (notes and octaves)</span>
+<span class="sd">                to be played, representing a chord. Eg.: [&#39;C4&#39;, &#39;Eb4&#39;, &#39;G5&#39;]</span>
+<span class="sd">            duration (float): Duration of the chord in seconds.</span>
+<span class="sd">            delay (float): Delay after the chord in seconds.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
-        duration = chord.duration or self.duration
-        delay = chord.delay or self.delay
+        <span class="n">duration</span> <span class="o">=</span> <span class="n">chord</span><span class="o">.</span><span class="n">duration</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">duration</span>
+        <span class="n">delay</span> <span class="o">=</span> <span class="n">chord</span><span class="o">.</span><span class="n">delay</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">delay</span>
 
-        chord_plucks = str()
-        for note in chord:
-            chord_plucks += &quot; pluck {} &quot;.format(note)
+        <span class="n">chord_plucks</span> <span class="o">=</span> <span class="nb">str</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">note</span> <span class="ow">in</span> <span class="n">chord</span><span class="p">:</span>
+            <span class="n">chord_plucks</span> <span class="o">+=</span> <span class="s2">&quot; pluck </span><span class="si">{}</span><span class="s2"> &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
 
-        # FIXME: this is experimental, revert to the old code if it is the case
-        command = (
-            &quot;sox -V1 -qn -d synth {duration} {chord}&quot;
-            &quot; fade l 0 {duration} {duration} reverb&quot;
-        ).format(chord=chord_plucks, duration=duration)
+        <span class="c1"># FIXME: this is experimental, revert to the old code if it is the case</span>
+        <span class="n">command</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot;sox -V1 -qn -d synth </span><span class="si">{duration}</span><span class="s2"> </span><span class="si">{chord}</span><span class="s2">&quot;</span>
+            <span class="s2">&quot; fade l 0 </span><span class="si">{duration}</span><span class="s2"> </span><span class="si">{duration}</span><span class="s2"> reverb&quot;</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chord</span><span class="o">=</span><span class="n">chord_plucks</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="n">duration</span><span class="p">)</span>
 
-        subprocess.Popen(command.split())
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">command</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
 
-        if not last_element:
-            self._wait(delay)
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">last_element</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_wait</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 
-    def _wait(self, seconds):
-        &quot;&quot;&quot;Waits, ie., stops execution for some time.
+    <span class="k">def</span> <span class="nf">_wait</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seconds</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Waits, ie., stops execution for some time.</span>
 
-        Args:
-            seconds (float): Seconds to wait.
-        &quot;&quot;&quot;
+<span class="sd">        Args:</span>
+<span class="sd">            seconds (float): Seconds to wait.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
-        time.sleep(seconds)</div>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">seconds</span><span class="p">)</span></div>
 </pre></div>
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper"><div class="relations">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">birdears</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributions &amp; Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/modules.html">Module Reference</a></li>
+</ul>
+
+<div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
@@ -358,15 +284,23 @@ cb_thread = None
     </div>
 </div>
 <script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
         </div>
       </div>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2017-2018, Iacchus Mercurius.
+      &copy;2021, I.M..
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.2.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
     </div>

@@ -1,0 +1,690 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index &#8212; birdears 0.2.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="#" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/hljs_styles/monokai.css" type="text/css" />
+  <script type="text/javascript" src="_static/js/highlight.pack.js"></script>
+  <script src="https://cdn.rawgit.com/iacchus/abcjs/master/bin/abcjs_plugin_3.1.2-hotfix-min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+  $(document).ready(function() {
+    $('.highlight-none pre').each(function(i, block) {
+      hljs.highlightBlock(block);
+    });
+    $('.highlight pre').each(function(i, block) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+<script>
+  abcjs_plugin_autostart = false;
+  window.ABCJS.plugin.auto_render = false;
+
+$(document).ready(function(){
+  function is_it_abc(elem) {
+    if(window.ABCJS.plugin.getABCContainingElements(elem).length) return true;
+    else return false;
+  }
+
+  if($(".highlight-abc pre").length)
+  {
+    var tunes_code = $(".highlight-abc pre");
+			
+    for(var $i=0; tunes_code[$i]; $i++)
+    {               
+      if(! is_it_abc($(tunes_code[$i]))) continue;
+
+      var ws_strip="";
+      var mystr="";
+
+      ws_strip = $(tunes_code[$i]).text().split('\n');
+      for(var aaa=0; ws_strip[aaa]; aaa++) { mystr+=ws_strip[aaa].trim() + "\n"; }
+
+      $(tunes_code[$i]).text(mystr); //abctune
+
+      $('<div id="abctune-' + $i + '" class="abctune-rendered"></div>').insertBefore($(tunes_code[$i]).parent());
+      ABCJS.renderAbc(
+        "abctune-"+$i, //container
+        "%%staffsep 27pt\n" + $(tunes_code[$i]).text(), //abctune
+        { }, //parserParams
+        {
+          scale: 1,
+          staffwidth:600,
+          paddingtop: 0,
+          paddingbottom: 0,
+          paddingright: 0,
+          paddingleft: 0,
+        }, //engraverParams
+        { viewportHorizontal: true } //renderParams
+      );
+      $(tunes_code[$i]).parent().hide();
+    }
+  }
+
+  if($("code.abckeep").length)
+  {
+    var tunes_code = $("code.abckeep");
+			
+    for(var $i=0; tunes_code[$i]; $i++)
+    {               
+      if(! is_it_abc($(tunes_code[$i]))) continue;
+
+      var ws_strip="";
+      var mystr="";
+
+      ws_strip = $(tunes_code[$i]).text().split('\n');
+      for(var aaa=0; ws_strip[aaa]; aaa++) { mystr+=ws_strip[aaa].trim() + "\n"; }
+
+      $(tunes_code[$i]).text(mystr); //abctune
+
+      $('<div id="abctunekeep-' + $i + '" class="abctune-rendered"></div>').insertBefore($(tunes_code[$i]).parent());
+      ABCJS.renderAbc(
+        "abctunekeep-"+$i, //container
+        "%%staffsep 27pt\n"+$(tunes_code[$i]).text(), //abctune
+        { }, //parserParams
+        {
+          scale: 1,
+          staffwidth:700,
+          paddingtop: 0,
+          paddingbottom: 0,
+          paddingright: 0,
+          paddingleft: 0,
+        }, //engraverParams
+        { viewportHorizontal: true } //renderParams
+      );
+      $(tunes_code[$i]).parent().css({marginTop:0})
+      //$(tunes_code[$i]).hide();
+    }
+  }
+})
+</script>
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+
+<h1 id="index">Index</h1>
+
+<div class="genindex-jumpbox">
+ <a href="#_"><strong>_</strong></a>
+ | <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
+ | <a href="#E"><strong>E</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
+ | <a href="#I"><strong>I</strong></a>
+ | <a href="#K"><strong>K</strong></a>
+ | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#Q"><strong>Q</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ 
+</div>
+<h2 id="_">_</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="birdears.html#birdears.prequestion.PreQuestion.__call__">__call__() (birdears.prequestion.PreQuestion method)</a>, <a href="index.html#birdears.prequestion.PreQuestion.__call__">[1]</a>
+
+      <ul>
+        <li><a href="birdears.html#birdears.resolution.Resolution.__call__">(birdears.resolution.Resolution method)</a>, <a href="index.html#birdears.resolution.Resolution.__call__">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="birdears.interfaces.html#birdears.interfaces.commandline.CommandLine.__init__">__init__() (birdears.interfaces.commandline.CommandLine method)</a>, <a href="index.html#birdears.interfaces.commandline.CommandLine.__init__">[1]</a>
+
+      <ul>
+        <li><a href="birdears.html#birdears.interval.Interval.__init__">(birdears.interval.Interval method)</a>, <a href="index.html#birdears.interval.Interval.__init__">[1]</a>
+</li>
+        <li><a href="birdears.html#birdears.prequestion.PreQuestion.__init__">(birdears.prequestion.PreQuestion method)</a>, <a href="index.html#birdears.prequestion.PreQuestion.__init__">[1]</a>
+</li>
+        <li><a href="birdears.html#birdears.questionbase.QuestionBase.__init__">(birdears.questionbase.QuestionBase method)</a>, <a href="index.html#birdears.questionbase.QuestionBase.__init__">[1]</a>
+</li>
+        <li><a href="birdears.questions.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.__init__">(birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)</a>, <a href="index.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.__init__">[1]</a>
+</li>
+        <li><a href="birdears.questions.html#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.__init__">(birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method)</a>, <a href="index.html#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.__init__">[1]</a>
+</li>
+        <li><a href="birdears.questions.html#birdears.questions.melodicdictation.MelodicDictationQuestion.__init__">(birdears.questions.melodicdictation.MelodicDictationQuestion method)</a>, <a href="index.html#birdears.questions.melodicdictation.MelodicDictationQuestion.__init__">[1]</a>
+</li>
+        <li><a href="birdears.questions.html#birdears.questions.melodicinterval.MelodicIntervalQuestion.__init__">(birdears.questions.melodicinterval.MelodicIntervalQuestion method)</a>, <a href="index.html#birdears.questions.melodicinterval.MelodicIntervalQuestion.__init__">[1]</a>
+</li>
+        <li><a href="birdears.html#birdears.resolution.Resolution.__init__">(birdears.resolution.Resolution method)</a>, <a href="index.html#birdears.resolution.Resolution.__init__">[1]</a>
+</li>
+        <li><a href="birdears.html#birdears.scale.ChromaticScale.__init__">(birdears.scale.ChromaticScale method)</a>, <a href="index.html#birdears.scale.ChromaticScale.__init__">[1]</a>
+</li>
+        <li><a href="birdears.html#birdears.scale.DiatonicScale.__init__">(birdears.scale.DiatonicScale method)</a>, <a href="index.html#birdears.scale.DiatonicScale.__init__">[1]</a>
+</li>
+        <li><a href="birdears.html#birdears.sequence.Sequence.__init__">(birdears.sequence.Sequence method)</a>, <a href="index.html#birdears.sequence.Sequence.__init__">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="birdears.html#birdears.sequence.Sequence.async_play">async_play() (birdears.sequence.Sequence method)</a>, <a href="index.html#birdears.sequence.Sequence.async_play">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    birdears
+
+      <ul>
+        <li><a href="birdears.html#module-birdears">module</a>, <a href="index.html#module-birdears">[1]</a>
+</li>
+      </ul></li>
+      <li>
+    birdears.interfaces
+
+      <ul>
+        <li><a href="birdears.interfaces.html#module-birdears.interfaces">module</a>, <a href="index.html#module-birdears.interfaces">[1]</a>
+</li>
+      </ul></li>
+      <li>
+    birdears.interfaces.commandline
+
+      <ul>
+        <li><a href="birdears.interfaces.html#module-birdears.interfaces.commandline">module</a>, <a href="index.html#module-birdears.interfaces.commandline">[1]</a>
+</li>
+      </ul></li>
+      <li>
+    birdears.interval
+
+      <ul>
+        <li><a href="birdears.html#module-birdears.interval">module</a>, <a href="index.html#module-birdears.interval">[1]</a>
+</li>
+      </ul></li>
+      <li>
+    birdears.logger
+
+      <ul>
+        <li><a href="birdears.html#module-birdears.logger">module</a>, <a href="index.html#module-birdears.logger">[1]</a>
+</li>
+      </ul></li>
+      <li>
+    birdears.prequestion
+
+      <ul>
+        <li><a href="birdears.html#module-birdears.prequestion">module</a>, <a href="index.html#module-birdears.prequestion">[1]</a>
+</li>
+      </ul></li>
+      <li>
+    birdears.questionbase
+
+      <ul>
+        <li><a href="birdears.html#module-birdears.questionbase">module</a>, <a href="index.html#module-birdears.questionbase">[1]</a>
+</li>
+      </ul></li>
+      <li>
+    birdears.questions
+
+      <ul>
+        <li><a href="birdears.questions.html#module-birdears.questions">module</a>, <a href="index.html#module-birdears.questions">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    birdears.questions.harmonicinterval
+
+      <ul>
+        <li><a href="birdears.questions.html#module-birdears.questions.harmonicinterval">module</a>, <a href="index.html#module-birdears.questions.harmonicinterval">[1]</a>
+</li>
+      </ul></li>
+      <li>
+    birdears.questions.instrumentaldictation
+
+      <ul>
+        <li><a href="birdears.questions.html#module-birdears.questions.instrumentaldictation">module</a>, <a href="index.html#module-birdears.questions.instrumentaldictation">[1]</a>
+</li>
+      </ul></li>
+      <li>
+    birdears.questions.melodicdictation
+
+      <ul>
+        <li><a href="birdears.questions.html#module-birdears.questions.melodicdictation">module</a>, <a href="index.html#module-birdears.questions.melodicdictation">[1]</a>
+</li>
+      </ul></li>
+      <li>
+    birdears.questions.melodicinterval
+
+      <ul>
+        <li><a href="birdears.questions.html#module-birdears.questions.melodicinterval">module</a>, <a href="index.html#module-birdears.questions.melodicinterval">[1]</a>
+</li>
+      </ul></li>
+      <li>
+    birdears.resolution
+
+      <ul>
+        <li><a href="birdears.html#module-birdears.resolution">module</a>, <a href="index.html#module-birdears.resolution">[1]</a>
+</li>
+      </ul></li>
+      <li>
+    birdears.scale
+
+      <ul>
+        <li><a href="birdears.html#module-birdears.scale">module</a>, <a href="index.html#module-birdears.scale">[1]</a>
+</li>
+      </ul></li>
+      <li>
+    birdears.sequence
+
+      <ul>
+        <li><a href="birdears.html#module-birdears.sequence">module</a>, <a href="index.html#module-birdears.sequence">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="birdears.interfaces.html#birdears.interfaces.commandline.center_text">center_text() (in module birdears.interfaces.commandline)</a>, <a href="index.html#birdears.interfaces.commandline.center_text">[1]</a>
+</li>
+      <li><a href="birdears.html#birdears.questionbase.QuestionBase.check_question">check_question() (birdears.questionbase.QuestionBase method)</a>, <a href="index.html#birdears.questionbase.QuestionBase.check_question">[1]</a>
+
+      <ul>
+        <li><a href="birdears.questions.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.check_question">(birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)</a>, <a href="index.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.check_question">[1]</a>
+</li>
+        <li><a href="birdears.questions.html#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.check_question">(birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method)</a>, <a href="index.html#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.check_question">[1]</a>
+</li>
+        <li><a href="birdears.questions.html#birdears.questions.melodicdictation.MelodicDictationQuestion.check_question">(birdears.questions.melodicdictation.MelodicDictationQuestion method)</a>, <a href="index.html#birdears.questions.melodicdictation.MelodicDictationQuestion.check_question">[1]</a>
+</li>
+        <li><a href="birdears.questions.html#birdears.questions.melodicinterval.MelodicIntervalQuestion.check_question">(birdears.questions.melodicinterval.MelodicIntervalQuestion method)</a>, <a href="index.html#birdears.questions.melodicinterval.MelodicIntervalQuestion.check_question">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="birdears.html#birdears.CHROMATIC_FLAT">CHROMATIC_FLAT (in module birdears)</a>, <a href="index.html#birdears.CHROMATIC_FLAT">[1]</a>
+</li>
+      <li><a href="birdears.html#birdears.interval.Interval.chromatic_offset">chromatic_offset (birdears.interval.Interval attribute)</a>, <a href="index.html#birdears.interval.Interval.chromatic_offset">[1]</a>
+</li>
+      <li><a href="birdears.html#birdears.CHROMATIC_SHARP">CHROMATIC_SHARP (in module birdears)</a>, <a href="index.html#birdears.CHROMATIC_SHARP">[1]</a>
+</li>
+      <li><a href="birdears.html#birdears.CHROMATIC_TYPE">CHROMATIC_TYPE (in module birdears)</a>, <a href="index.html#birdears.CHROMATIC_TYPE">[1]</a>
+</li>
+      <li><a href="birdears.html#birdears.scale.ChromaticScale">ChromaticScale (class in birdears.scale)</a>, <a href="index.html#birdears.scale.ChromaticScale">[1]</a>
+</li>
+      <li><a href="birdears.html#birdears.CIRCLE_OF_FIFTHS">CIRCLE_OF_FIFTHS (in module birdears)</a>, <a href="index.html#birdears.CIRCLE_OF_FIFTHS">[1]</a>
+</li>
+      <li><a href="birdears.interfaces.html#birdears.interfaces.commandline.CommandLine">CommandLine (class in birdears.interfaces.commandline)</a>, <a href="index.html#birdears.interfaces.commandline.CommandLine">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="birdears.html#birdears.D">D() (in module birdears)</a>, <a href="index.html#birdears.D">[1]</a>
+</li>
+      <li><a href="birdears.html#birdears.interval.Interval.data">data (birdears.interval.Interval attribute)</a>, <a href="index.html#birdears.interval.Interval.data">[1]</a>
+</li>
+      <li><a href="birdears.html#birdears.DEGREE_INDEX">DEGREE_INDEX (in module birdears)</a>, <a href="index.html#birdears.DEGREE_INDEX">[1]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="birdears.html#birdears.interval.Interval.diatonic_index">diatonic_index (birdears.interval.Interval attribute)</a>, <a href="index.html#birdears.interval.Interval.diatonic_index">[1]</a>
+</li>
+      <li><a href="birdears.html#birdears.DIATONIC_MASK">DIATONIC_MASK (in module birdears)</a>, <a href="index.html#birdears.DIATONIC_MASK">[1]</a>
+</li>
+      <li><a href="birdears.html#birdears.scale.DiatonicScale">DiatonicScale (class in birdears.scale)</a>, <a href="index.html#birdears.scale.DiatonicScale">[1]</a>
+</li>
+      <li><a href="birdears.html#birdears.interval.Interval.distance">distance (birdears.interval.Interval attribute)</a>, <a href="index.html#birdears.interval.Interval.distance">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="birdears.html#birdears.sequence.Sequence.elements">elements (birdears.sequence.Sequence attribute)</a>, <a href="index.html#birdears.sequence.Sequence.elements">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="birdears.html#birdears.interval.get_interval_by_semitones">get_interval_by_semitones() (in module birdears.interval)</a>, <a href="index.html#birdears.interval.get_interval_by_semitones">[1]</a>
+</li>
+      <li><a href="birdears.html#birdears.scale.ChromaticScale.get_triad">get_triad() (birdears.scale.ChromaticScale method)</a>, <a href="index.html#birdears.scale.ChromaticScale.get_triad">[1]</a>
+
+      <ul>
+        <li><a href="birdears.html#birdears.scale.DiatonicScale.get_triad">(birdears.scale.DiatonicScale method)</a>, <a href="index.html#birdears.scale.DiatonicScale.get_triad">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="birdears.html#birdears.questionbase.get_valid_pitches">get_valid_pitches() (in module birdears.questionbase)</a>, <a href="index.html#birdears.questionbase.get_valid_pitches">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="birdears.questions.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion">HarmonicIntervalQuestion (class in birdears.questions.harmonicinterval)</a>, <a href="index.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="birdears.questions.html#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion">InstrumentalDictationQuestion (class in birdears.questions.instrumentaldictation)</a>, <a href="index.html#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion">[1]</a>
+</li>
+      <li><a href="birdears.html#birdears.interval.Interval">Interval (class in birdears.interval)</a>, <a href="index.html#birdears.interval.Interval">[1]</a>
+</li>
+      <li><a href="birdears.html#birdears.INTERVAL_INDEX">INTERVAL_INDEX (in module birdears)</a>, <a href="index.html#birdears.INTERVAL_INDEX">[1]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="birdears.html#birdears.INTERVALS">INTERVALS (in module birdears)</a>, <a href="index.html#birdears.INTERVALS">[1]</a>
+</li>
+      <li><a href="birdears.html#birdears.interval.Interval.is_chromatic">is_chromatic (birdears.interval.Interval attribute)</a>, <a href="index.html#birdears.interval.Interval.is_chromatic">[1]</a>
+</li>
+      <li><a href="birdears.html#birdears.interval.Interval.is_descending">is_descending (birdears.interval.Interval attribute)</a>, <a href="index.html#birdears.interval.Interval.is_descending">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="K">K</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="birdears.html#birdears.KEYS">KEYS (in module birdears)</a>, <a href="index.html#birdears.KEYS">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="birdears.html#birdears.logger.log_event">log_event() (in module birdears.logger)</a>, <a href="index.html#birdears.logger.log_event">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="birdears.html#birdears.sequence.Sequence.make_chord_progression">make_chord_progression() (birdears.sequence.Sequence method)</a>, <a href="index.html#birdears.sequence.Sequence.make_chord_progression">[1]</a>
+</li>
+      <li><a href="birdears.interfaces.html#birdears.interfaces.commandline.make_input_str">make_input_str() (in module birdears.interfaces.commandline)</a>, <a href="index.html#birdears.interfaces.commandline.make_input_str">[1]</a>
+</li>
+      <li><a href="birdears.questions.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.make_pre_question">make_pre_question() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)</a>, <a href="index.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.make_pre_question">[1]</a>
+
+      <ul>
+        <li><a href="birdears.questions.html#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.make_pre_question">(birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method)</a>, <a href="index.html#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.make_pre_question">[1]</a>
+</li>
+        <li><a href="birdears.questions.html#birdears.questions.melodicdictation.MelodicDictationQuestion.make_pre_question">(birdears.questions.melodicdictation.MelodicDictationQuestion method)</a>, <a href="index.html#birdears.questions.melodicdictation.MelodicDictationQuestion.make_pre_question">[1]</a>
+</li>
+        <li><a href="birdears.questions.html#birdears.questions.melodicinterval.MelodicIntervalQuestion.make_pre_question">(birdears.questions.melodicinterval.MelodicIntervalQuestion method)</a>, <a href="index.html#birdears.questions.melodicinterval.MelodicIntervalQuestion.make_pre_question">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="birdears.html#birdears.questionbase.QuestionBase.make_question">make_question() (birdears.questionbase.QuestionBase method)</a>, <a href="index.html#birdears.questionbase.QuestionBase.make_question">[1]</a>
+
+      <ul>
+        <li><a href="birdears.questions.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.make_question">(birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)</a>, <a href="index.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.make_question">[1]</a>
+</li>
+        <li><a href="birdears.questions.html#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.make_question">(birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method)</a>, <a href="index.html#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.make_question">[1]</a>
+</li>
+        <li><a href="birdears.questions.html#birdears.questions.melodicdictation.MelodicDictationQuestion.make_question">(birdears.questions.melodicdictation.MelodicDictationQuestion method)</a>, <a href="index.html#birdears.questions.melodicdictation.MelodicDictationQuestion.make_question">[1]</a>
+</li>
+        <li><a href="birdears.questions.html#birdears.questions.melodicinterval.MelodicIntervalQuestion.make_question">(birdears.questions.melodicinterval.MelodicIntervalQuestion method)</a>, <a href="index.html#birdears.questions.melodicinterval.MelodicIntervalQuestion.make_question">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="birdears.html#birdears.questionbase.QuestionBase.make_resolution">make_resolution() (birdears.questionbase.QuestionBase method)</a>, <a href="index.html#birdears.questionbase.QuestionBase.make_resolution">[1]</a>
+
+      <ul>
+        <li><a href="birdears.questions.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.make_resolution">(birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)</a>, <a href="index.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.make_resolution">[1]</a>
+</li>
+        <li><a href="birdears.questions.html#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.make_resolution">(birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method)</a>, <a href="index.html#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.make_resolution">[1]</a>
+</li>
+        <li><a href="birdears.questions.html#birdears.questions.melodicdictation.MelodicDictationQuestion.make_resolution">(birdears.questions.melodicdictation.MelodicDictationQuestion method)</a>, <a href="index.html#birdears.questions.melodicdictation.MelodicDictationQuestion.make_resolution">[1]</a>
+</li>
+        <li><a href="birdears.questions.html#birdears.questions.melodicinterval.MelodicIntervalQuestion.make_resolution">(birdears.questions.melodicinterval.MelodicIntervalQuestion method)</a>, <a href="index.html#birdears.questions.melodicinterval.MelodicIntervalQuestion.make_resolution">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="birdears.questions.html#birdears.questions.melodicdictation.MelodicDictationQuestion">MelodicDictationQuestion (class in birdears.questions.melodicdictation)</a>, <a href="index.html#birdears.questions.melodicdictation.MelodicDictationQuestion">[1]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="birdears.questions.html#birdears.questions.melodicinterval.MelodicIntervalQuestion">MelodicIntervalQuestion (class in birdears.questions.melodicinterval)</a>, <a href="index.html#birdears.questions.melodicinterval.MelodicIntervalQuestion">[1]</a>
+</li>
+      <li>
+    module
+
+      <ul>
+        <li><a href="birdears.html#module-birdears">birdears</a>, <a href="index.html#module-birdears">[1]</a>
+</li>
+        <li><a href="birdears.interfaces.html#module-birdears.interfaces">birdears.interfaces</a>, <a href="index.html#module-birdears.interfaces">[1]</a>
+</li>
+        <li><a href="birdears.interfaces.html#module-birdears.interfaces.commandline">birdears.interfaces.commandline</a>, <a href="index.html#module-birdears.interfaces.commandline">[1]</a>
+</li>
+        <li><a href="birdears.html#module-birdears.interval">birdears.interval</a>, <a href="index.html#module-birdears.interval">[1]</a>
+</li>
+        <li><a href="birdears.html#module-birdears.logger">birdears.logger</a>, <a href="index.html#module-birdears.logger">[1]</a>
+</li>
+        <li><a href="birdears.html#module-birdears.prequestion">birdears.prequestion</a>, <a href="index.html#module-birdears.prequestion">[1]</a>
+</li>
+        <li><a href="birdears.html#module-birdears.questionbase">birdears.questionbase</a>, <a href="index.html#module-birdears.questionbase">[1]</a>
+</li>
+        <li><a href="birdears.questions.html#module-birdears.questions">birdears.questions</a>, <a href="index.html#module-birdears.questions">[1]</a>
+</li>
+        <li><a href="birdears.questions.html#module-birdears.questions.harmonicinterval">birdears.questions.harmonicinterval</a>, <a href="index.html#module-birdears.questions.harmonicinterval">[1]</a>
+</li>
+        <li><a href="birdears.questions.html#module-birdears.questions.instrumentaldictation">birdears.questions.instrumentaldictation</a>, <a href="index.html#module-birdears.questions.instrumentaldictation">[1]</a>
+</li>
+        <li><a href="birdears.questions.html#module-birdears.questions.melodicdictation">birdears.questions.melodicdictation</a>, <a href="index.html#module-birdears.questions.melodicdictation">[1]</a>
+</li>
+        <li><a href="birdears.questions.html#module-birdears.questions.melodicinterval">birdears.questions.melodicinterval</a>, <a href="index.html#module-birdears.questions.melodicinterval">[1]</a>
+</li>
+        <li><a href="birdears.html#module-birdears.resolution">birdears.resolution</a>, <a href="index.html#module-birdears.resolution">[1]</a>
+</li>
+        <li><a href="birdears.html#module-birdears.scale">birdears.scale</a>, <a href="index.html#module-birdears.scale">[1]</a>
+</li>
+        <li><a href="birdears.html#module-birdears.sequence">birdears.sequence</a>, <a href="index.html#module-birdears.sequence">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="birdears.questions.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.name">name (birdears.questions.harmonicinterval.HarmonicIntervalQuestion attribute)</a>, <a href="index.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.name">[1]</a>
+
+      <ul>
+        <li><a href="birdears.questions.html#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.name">(birdears.questions.instrumentaldictation.InstrumentalDictationQuestion attribute)</a>, <a href="index.html#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.name">[1]</a>
+</li>
+        <li><a href="birdears.questions.html#birdears.questions.melodicdictation.MelodicDictationQuestion.name">(birdears.questions.melodicdictation.MelodicDictationQuestion attribute)</a>, <a href="index.html#birdears.questions.melodicdictation.MelodicDictationQuestion.name">[1]</a>
+</li>
+        <li><a href="birdears.questions.html#birdears.questions.melodicinterval.MelodicIntervalQuestion.name">(birdears.questions.melodicinterval.MelodicIntervalQuestion attribute)</a>, <a href="index.html#birdears.questions.melodicinterval.MelodicIntervalQuestion.name">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="birdears.html#birdears.resolution.nearest_tonic">nearest_tonic() (in module birdears.resolution)</a>, <a href="index.html#birdears.resolution.nearest_tonic">[1]</a>
+</li>
+      <li><a href="birdears.html#birdears.prequestion.none">none() (in module birdears.prequestion)</a>, <a href="index.html#birdears.prequestion.none">[1]</a>
+</li>
+      <li><a href="birdears.html#birdears.interval.Interval.note_and_octave">note_and_octave (birdears.interval.Interval attribute)</a>, <a href="index.html#birdears.interval.Interval.note_and_octave">[1]</a>
+</li>
+      <li><a href="birdears.html#birdears.interval.Interval.note_name">note_name (birdears.interval.Interval attribute)</a>, <a href="index.html#birdears.interval.Interval.note_name">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="birdears.html#birdears.sequence.Sequence.play">play() (birdears.sequence.Sequence method)</a>, <a href="index.html#birdears.sequence.Sequence.play">[1]</a>
+</li>
+      <li><a href="birdears.html#birdears.questionbase.QuestionBase.play_question">play_question() (birdears.questionbase.QuestionBase method)</a>, <a href="index.html#birdears.questionbase.QuestionBase.play_question">[1]</a>
+
+      <ul>
+        <li><a href="birdears.questions.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.play_question">(birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)</a>, <a href="index.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.play_question">[1]</a>
+</li>
+        <li><a href="birdears.questions.html#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.play_question">(birdears.questions.instrumentaldictation.InstrumentalDictationQuestion method)</a>, <a href="index.html#birdears.questions.instrumentaldictation.InstrumentalDictationQuestion.play_question">[1]</a>
+</li>
+        <li><a href="birdears.questions.html#birdears.questions.melodicdictation.MelodicDictationQuestion.play_question">(birdears.questions.melodicdictation.MelodicDictationQuestion method)</a>, <a href="index.html#birdears.questions.melodicdictation.MelodicDictationQuestion.play_question">[1]</a>
+</li>
+        <li><a href="birdears.questions.html#birdears.questions.melodicinterval.MelodicIntervalQuestion.play_question">(birdears.questions.melodicinterval.MelodicIntervalQuestion method)</a>, <a href="index.html#birdears.questions.melodicinterval.MelodicIntervalQuestion.play_question">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="birdears.questions.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.play_resolution">play_resolution() (birdears.questions.harmonicinterval.HarmonicIntervalQuestion method)</a>, <a href="index.html#birdears.questions.harmonicinterval.HarmonicIntervalQuestion.play_resolution">[1]</a>
+
+      <ul>
+        <li><a href="birdears.questions.html#birdears.questions.melodicdictation.MelodicDictationQuestion.play_resolution">(birdears.questions.melodicdictation.MelodicDictationQuestion method)</a>, <a href="index.html#birdears.questions.melodicdictation.MelodicDictationQuestion.play_resolution">[1]</a>
+</li>
+        <li><a href="birdears.questions.html#birdears.questions.melodicinterval.MelodicIntervalQuestion.play_resolution">(birdears.questions.melodicinterval.MelodicIntervalQuestion method)</a>, <a href="index.html#birdears.questions.melodicinterval.MelodicIntervalQuestion.play_resolution">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="birdears.html#birdears.prequestion.PreQuestion">PreQuestion (class in birdears.prequestion)</a>, <a href="index.html#birdears.prequestion.PreQuestion">[1]</a>
+</li>
+      <li><a href="birdears.interfaces.html#birdears.interfaces.commandline.print_instrumental">print_instrumental() (in module birdears.interfaces.commandline)</a>, <a href="index.html#birdears.interfaces.commandline.print_instrumental">[1]</a>
+</li>
+      <li><a href="birdears.interfaces.html#birdears.interfaces.commandline.print_question">print_question() (in module birdears.interfaces.commandline)</a>, <a href="index.html#birdears.interfaces.commandline.print_question">[1]</a>
+</li>
+      <li><a href="birdears.interfaces.html#birdears.interfaces.commandline.print_response">print_response() (in module birdears.interfaces.commandline)</a>, <a href="index.html#birdears.interfaces.commandline.print_response">[1]</a>
+</li>
+      <li><a href="birdears.interfaces.html#birdears.interfaces.commandline.CommandLine.process_key">process_key() (birdears.interfaces.commandline.CommandLine method)</a>, <a href="index.html#birdears.interfaces.commandline.CommandLine.process_key">[1]</a>
+</li>
+      <li><a href="birdears.html#birdears.prequestion.progression_i_iv_v_i">progression_i_iv_v_i() (in module birdears.prequestion)</a>, <a href="index.html#birdears.prequestion.progression_i_iv_v_i">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Q">Q</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="birdears.html#birdears.questionbase.QuestionBase">QuestionBase (class in birdears.questionbase)</a>, <a href="index.html#birdears.questionbase.QuestionBase">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="birdears.html#birdears.prequestion.register_prequestion_method">register_prequestion_method() (in module birdears.prequestion)</a>, <a href="index.html#birdears.prequestion.register_prequestion_method">[1]</a>
+</li>
+      <li><a href="birdears.html#birdears.questionbase.register_question_class">register_question_class() (in module birdears.questionbase)</a>, <a href="index.html#birdears.questionbase.register_question_class">[1]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="birdears.html#birdears.resolution.register_resolution_method">register_resolution_method() (in module birdears.resolution)</a>, <a href="index.html#birdears.resolution.register_resolution_method">[1]</a>
+</li>
+      <li><a href="birdears.html#birdears.resolution.repeat_only">repeat_only() (in module birdears.resolution)</a>, <a href="index.html#birdears.resolution.repeat_only">[1]</a>
+</li>
+      <li><a href="birdears.html#birdears.resolution.Resolution">Resolution (class in birdears.resolution)</a>, <a href="index.html#birdears.resolution.Resolution">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="birdears.html#birdears.scale.ChromaticScale.scale">scale (birdears.scale.ChromaticScale attribute)</a>, <a href="index.html#birdears.scale.ChromaticScale.scale">[1]</a>
+
+      <ul>
+        <li><a href="birdears.html#birdears.scale.DiatonicScale.scale">(birdears.scale.DiatonicScale attribute)</a>, <a href="index.html#birdears.scale.DiatonicScale.scale">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="birdears.html#birdears.scale.ScaleBase">ScaleBase (class in birdears.scale)</a>, <a href="index.html#birdears.scale.ScaleBase">[1]</a>
+</li>
+      <li><a href="birdears.html#birdears.interval.Interval.semitones">semitones (birdears.interval.Interval attribute)</a>, <a href="index.html#birdears.interval.Interval.semitones">[1]</a>
+</li>
+      <li><a href="birdears.html#birdears.sequence.Sequence">Sequence (class in birdears.sequence)</a>, <a href="index.html#birdears.sequence.Sequence">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="birdears.html#birdears.interval.Interval.tonic_octave">tonic_octave (birdears.interval.Interval attribute)</a>, <a href="index.html#birdears.interval.Interval.tonic_octave">[1]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="birdears.html#birdears.prequestion.tonic_only">tonic_only() (in module birdears.prequestion)</a>, <a href="index.html#birdears.prequestion.tonic_only">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017-2018, Iacchus Mercurius.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

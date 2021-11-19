@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>birdears.prequestion &#8212; birdears 0.2.1 documentation</title>
+    <title>birdears.prequestion &#8212; birdears unknown documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
@@ -16,103 +16,6 @@
     <link rel="search" title="Search" href="../../search.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/css/hljs_styles/monokai.css" type="text/css" />
-  <script type="text/javascript" src="../../_static/js/highlight.pack.js"></script>
-  <script src="https://cdn.rawgit.com/iacchus/abcjs/master/bin/abcjs_plugin_3.1.2-hotfix-min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script>
-  $(document).ready(function() {
-    $('.highlight-none pre').each(function(i, block) {
-      hljs.highlightBlock(block);
-    });
-    $('.highlight pre').each(function(i, block) {
-      hljs.highlightBlock(block);
-    });
-  });
-</script>
-
-<script>
-  abcjs_plugin_autostart = false;
-  window.ABCJS.plugin.auto_render = false;
-
-$(document).ready(function(){
-  function is_it_abc(elem) {
-    if(window.ABCJS.plugin.getABCContainingElements(elem).length) return true;
-    else return false;
-  }
-
-  if($(".highlight-abc pre").length)
-  {
-    var tunes_code = $(".highlight-abc pre");
-			
-    for(var $i=0; tunes_code[$i]; $i++)
-    {               
-      if(! is_it_abc($(tunes_code[$i]))) continue;
-
-      var ws_strip="";
-      var mystr="";
-
-      ws_strip = $(tunes_code[$i]).text().split('\n');
-      for(var aaa=0; ws_strip[aaa]; aaa++) { mystr+=ws_strip[aaa].trim() + "\n"; }
-
-      $(tunes_code[$i]).text(mystr); //abctune
-
-      $('<div id="abctune-' + $i + '" class="abctune-rendered"></div>').insertBefore($(tunes_code[$i]).parent());
-      ABCJS.renderAbc(
-        "abctune-"+$i, //container
-        "%%staffsep 27pt\n" + $(tunes_code[$i]).text(), //abctune
-        { }, //parserParams
-        {
-          scale: 1,
-          staffwidth:600,
-          paddingtop: 0,
-          paddingbottom: 0,
-          paddingright: 0,
-          paddingleft: 0,
-        }, //engraverParams
-        { viewportHorizontal: true } //renderParams
-      );
-      $(tunes_code[$i]).parent().hide();
-    }
-  }
-
-  if($("code.abckeep").length)
-  {
-    var tunes_code = $("code.abckeep");
-			
-    for(var $i=0; tunes_code[$i]; $i++)
-    {               
-      if(! is_it_abc($(tunes_code[$i]))) continue;
-
-      var ws_strip="";
-      var mystr="";
-
-      ws_strip = $(tunes_code[$i]).text().split('\n');
-      for(var aaa=0; ws_strip[aaa]; aaa++) { mystr+=ws_strip[aaa].trim() + "\n"; }
-
-      $(tunes_code[$i]).text(mystr); //abctune
-
-      $('<div id="abctunekeep-' + $i + '" class="abctune-rendered"></div>').insertBefore($(tunes_code[$i]).parent());
-      ABCJS.renderAbc(
-        "abctunekeep-"+$i, //container
-        "%%staffsep 27pt\n"+$(tunes_code[$i]).text(), //abctune
-        { }, //parserParams
-        {
-          scale: 1,
-          staffwidth:700,
-          paddingtop: 0,
-          paddingbottom: 0,
-          paddingright: 0,
-          paddingleft: 0,
-        }, //engraverParams
-        { viewportHorizontal: true } //renderParams
-      );
-      $(tunes_code[$i]).parent().css({marginTop:0})
-      //$(tunes_code[$i]).hide();
-    }
-  }
-})
-</script>
   
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
@@ -123,143 +26,166 @@ $(document).ready(function(){
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <h1>Source code for birdears.prequestion</h1><div class="highlight"><pre>
-<span></span>&quot;&quot;&quot;This module implements pre-questions&#39; progressions.
+<span></span><span class="sd">&quot;&quot;&quot;This module implements pre-questions&#39; progressions.</span>
 
-Pre questions are chord progressions or notes played before the question is
-played, so to affirmate the sound of the question&#39;s key.
+<span class="sd">Pre questions are chord progressions or notes played before the question is</span>
+<span class="sd">played, so to affirmate the sound of the question&#39;s key.</span>
 
-For example a common cadence is chords I-IV-V-I from the diatonic scale, which
-in a key of `C` is `CM-FM-GM-CM` and in a key of `A` is `AM-DM-EM-AM`.
+<span class="sd">For example a common cadence is chords I-IV-V-I from the diatonic scale, which</span>
+<span class="sd">in a key of `C` is `CM-FM-GM-CM` and in a key of `A` is `AM-DM-EM-AM`.</span>
 
-Pre-question methods should be decorated with `register_prequestion_method`
-decorator, so that they will be registered as a valid pre-question method.
-&quot;&quot;&quot;
+<span class="sd">Pre-question methods should be decorated with `register_prequestion_method`</span>
+<span class="sd">decorator, so that they will be registered as a valid pre-question method.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
-from .sequence import Sequence
+<span class="kn">from</span> <span class="nn">.sequence</span> <span class="kn">import</span> <span class="n">Sequence</span>
 
-from functools import wraps
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
 
-PREQUESTION_METHODS = {}
-# http://stackoverflow.com/questions/5910703/howto-get-all-methods-of-a-pyt\
-# hon-class-with-given-decorator
-# http://stackoverflow.com/questions/5707589/calling-functions-by-array-ind\
-# ex-in-python/5707605#5707605
-
-
-<div class="viewcode-block" id="register_prequestion_method"><a class="viewcode-back" href="../../index.html#birdears.prequestion.register_prequestion_method">[docs]</a>def register_prequestion_method(f, *args, **kwargs):
-    &quot;&quot;&quot;Decorator for prequestion method functions.
-
-    Functions decorated with this decorator will be registered in the
-    `PREQUESTION_METHODS` global dict.
-    &quot;&quot;&quot;
-
-    @wraps(f)
-    def decorator(*args, **kwargs):
-        return f(*args, **kwargs)
-
-    PREQUESTION_METHODS.update({f.__name__: f})
-
-    return decorator</div>
+<span class="n">PREQUESTION_METHODS</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="c1"># http://stackoverflow.com/questions/5910703/howto-get-all-methods-of-a-pyt\</span>
+<span class="c1"># hon-class-with-given-decorator</span>
+<span class="c1"># http://stackoverflow.com/questions/5707589/calling-functions-by-array-ind\</span>
+<span class="c1"># ex-in-python/5707605#5707605</span>
 
 
-<div class="viewcode-block" id="PreQuestion"><a class="viewcode-back" href="../../index.html#birdears.prequestion.PreQuestion">[docs]</a>class PreQuestion:
+<div class="viewcode-block" id="register_prequestion_method"><a class="viewcode-back" href="../../api/birdears.html#birdears.prequestion.register_prequestion_method">[docs]</a><span class="k">def</span> <span class="nf">register_prequestion_method</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Decorator for prequestion method functions.</span>
 
-<div class="viewcode-block" id="PreQuestion.__init__"><a class="viewcode-back" href="../../index.html#birdears.prequestion.PreQuestion.__init__">[docs]</a>    def __init__(self, method, question):
-        &quot;&quot;&quot;This class implements methods for different types of pre-question
-        progressions.
+<span class="sd">    Functions decorated with this decorator will be registered in the</span>
+<span class="sd">    `PREQUESTION_METHODS` global dict.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-        Args:
-            method (str): The method used in the pre question.
-            question (obj): Question object from which to generate the
-            pre-question sequence.
-        &quot;&quot;&quot;
+    <span class="nd">@wraps</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        self.METHOD = PREQUESTION_METHODS[method]
-        self.question = question</div>
+    <span class="n">PREQUESTION_METHODS</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">f</span><span class="o">.</span><span class="vm">__name__</span><span class="p">:</span> <span class="n">f</span><span class="p">})</span>
 
-<div class="viewcode-block" id="PreQuestion.__call__"><a class="viewcode-back" href="../../index.html#birdears.prequestion.PreQuestion.__call__">[docs]</a>    def __call__(self, *args, **kwargs):
-        &quot;&quot;&quot;Calls the resolution method and pass arguments to it.
-
-        Returns a `birdears.Sequence` object with the pre-question generated by
-        the method.
-        &quot;&quot;&quot;
-        return self.METHOD(question=self.question, *args, **kwargs)</div></div>
+    <span class="k">return</span> <span class="n">decorator</span></div>
 
 
-<div class="viewcode-block" id="none"><a class="viewcode-back" href="../../index.html#birdears.prequestion.none">[docs]</a>@register_prequestion_method
-def none(question, *args, **kwargs):
-    &quot;&quot;&quot;Pre-question method that return an empty sequence with no delay.
-    Args:
-        question (obj): Question object from which to generate the
-            pre-question sequence. (this is provided by the `Resolution` class
-            when it is `__call__`ed)
-    &quot;&quot;&quot;
-    return Sequence(elements=[], duration=0, delay=0, pos_delay=0)</div>
+<div class="viewcode-block" id="PreQuestion"><a class="viewcode-back" href="../../api/birdears.html#birdears.prequestion.PreQuestion">[docs]</a><span class="k">class</span> <span class="nc">PreQuestion</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">question</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This class implements methods for different types of pre-question</span>
+<span class="sd">        progressions.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            method (str): The method used in the pre question.</span>
+<span class="sd">            question (obj): Question object from which to generate the</span>
+<span class="sd">            pre-question sequence.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">METHOD</span> <span class="o">=</span> <span class="n">PREQUESTION_METHODS</span><span class="p">[</span><span class="n">method</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">question</span> <span class="o">=</span> <span class="n">question</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Calls the resolution method and pass arguments to it.</span>
+
+<span class="sd">        Returns a `birdears.Sequence` object with the pre-question generated by</span>
+<span class="sd">        the method.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">METHOD</span><span class="p">(</span><span class="n">question</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">question</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="tonic_only"><a class="viewcode-back" href="../../index.html#birdears.prequestion.tonic_only">[docs]</a>@register_prequestion_method
-def tonic_only(question, *args, **kwargs):
-    &quot;&quot;&quot;Pre-question method that only play&#39;s the question tonic note before the
-    question.
-
-    Args:
-        question (object): Question object from which to generate the
-            pre-question sequence. (this is provided by the `Resolution` class
-            when it is `__call__`ed)
-    &quot;&quot;&quot;
-
-    tonic_pitch = question.tonic_pitch
-
-    duration = question.durations[&#39;preq&#39;][&#39;duration&#39;]
-    delay = question.durations[&#39;preq&#39;][&#39;delay&#39;]
-    pos_delay = question.durations[&#39;preq&#39;][&#39;pos_delay&#39;]
-
-    sequence = Sequence(elements=[tonic_pitch], duration=duration,
-                        delay=delay, pos_delay=pos_delay)
-
-    return sequence</div>
+<div class="viewcode-block" id="none"><a class="viewcode-back" href="../../api/birdears.html#birdears.prequestion.none">[docs]</a><span class="nd">@register_prequestion_method</span>
+<span class="k">def</span> <span class="nf">none</span><span class="p">(</span><span class="n">question</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Pre-question method that return an empty sequence with no delay.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        question (obj): Question object from which to generate the</span>
+<span class="sd">            pre-question sequence. (this is provided by the `Resolution` class</span>
+<span class="sd">            when it is `__call__`ed)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">Sequence</span><span class="p">(</span><span class="n">elements</span><span class="o">=</span><span class="p">[],</span> <span class="n">duration</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">pos_delay</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="progression_i_iv_v_i"><a class="viewcode-back" href="../../index.html#birdears.prequestion.progression_i_iv_v_i">[docs]</a>@register_prequestion_method
-def progression_i_iv_v_i(question, *args, **kwargs):
-    &quot;&quot;&quot;Pre-question method that play&#39;s a chord progression with triad chords
-    built on the grades I, IV, V the I of the question key.
+<div class="viewcode-block" id="tonic_only"><a class="viewcode-back" href="../../api/birdears.html#birdears.prequestion.tonic_only">[docs]</a><span class="nd">@register_prequestion_method</span>
+<span class="k">def</span> <span class="nf">tonic_only</span><span class="p">(</span><span class="n">question</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Pre-question method that only play&#39;s the question tonic note before the</span>
+<span class="sd">    question.</span>
 
-    Args:
-        question (obj): Question object from which to generate the
-            pre-question sequence. (this is provided by the `Resolution` class
-            when it is `__call__`ed)
-    &quot;&quot;&quot;
+<span class="sd">    Args:</span>
+<span class="sd">        question (object): Question object from which to generate the</span>
+<span class="sd">            pre-question sequence. (this is provided by the `Resolution` class</span>
+<span class="sd">            when it is `__call__`ed)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-    # tonic_pitch = question.tonic_pitch
-    # is_scale_descending = question
-    tonic_index = 0 if not question.scale.is_descending else -1
-    tonic_pitch = question.scale[tonic_index]
-    mode = question.mode
+    <span class="n">tonic_pitch</span> <span class="o">=</span> <span class="n">question</span><span class="o">.</span><span class="n">tonic_pitch</span>
 
-    duration = question.durations[&#39;preq&#39;][&#39;duration&#39;]
-    delay = question.durations[&#39;preq&#39;][&#39;delay&#39;]
-    pos_delay = question.durations[&#39;preq&#39;][&#39;pos_delay&#39;]
+    <span class="n">duration</span> <span class="o">=</span> <span class="n">question</span><span class="o">.</span><span class="n">durations</span><span class="p">[</span><span class="s1">&#39;preq&#39;</span><span class="p">][</span><span class="s1">&#39;duration&#39;</span><span class="p">]</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="n">question</span><span class="o">.</span><span class="n">durations</span><span class="p">[</span><span class="s1">&#39;preq&#39;</span><span class="p">][</span><span class="s1">&#39;delay&#39;</span><span class="p">]</span>
+    <span class="n">pos_delay</span> <span class="o">=</span> <span class="n">question</span><span class="o">.</span><span class="n">durations</span><span class="p">[</span><span class="s1">&#39;preq&#39;</span><span class="p">][</span><span class="s1">&#39;pos_delay&#39;</span><span class="p">]</span>
 
-    degrees = [1, 4, 5, 1]
+    <span class="n">sequence</span> <span class="o">=</span> <span class="n">Sequence</span><span class="p">(</span><span class="n">elements</span><span class="o">=</span><span class="p">[</span><span class="n">tonic_pitch</span><span class="p">],</span> <span class="n">duration</span><span class="o">=</span><span class="n">duration</span><span class="p">,</span>
+                        <span class="n">delay</span><span class="o">=</span><span class="n">delay</span><span class="p">,</span> <span class="n">pos_delay</span><span class="o">=</span><span class="n">pos_delay</span><span class="p">)</span>
 
-    sequence = Sequence(duration=duration, delay=delay,
-                        pos_delay=pos_delay)
+    <span class="k">return</span> <span class="n">sequence</span></div>
 
-    sequence.make_chord_progression(tonic_pitch=tonic_pitch, mode=mode,
-                                    degrees=degrees)
 
-    return sequence</div>
+<div class="viewcode-block" id="progression_i_iv_v_i"><a class="viewcode-back" href="../../api/birdears.html#birdears.prequestion.progression_i_iv_v_i">[docs]</a><span class="nd">@register_prequestion_method</span>
+<span class="k">def</span> <span class="nf">progression_i_iv_v_i</span><span class="p">(</span><span class="n">question</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Pre-question method that play&#39;s a chord progression with triad chords</span>
+<span class="sd">    built on the grades I, IV, V the I of the question key.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        question (obj): Question object from which to generate the</span>
+<span class="sd">            pre-question sequence. (this is provided by the `Resolution` class</span>
+<span class="sd">            when it is `__call__`ed)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># tonic_pitch = question.tonic_pitch</span>
+    <span class="c1"># is_scale_descending = question</span>
+    <span class="n">tonic_index</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">question</span><span class="o">.</span><span class="n">scale</span><span class="o">.</span><span class="n">is_descending</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="n">tonic_pitch</span> <span class="o">=</span> <span class="n">question</span><span class="o">.</span><span class="n">scale</span><span class="p">[</span><span class="n">tonic_index</span><span class="p">]</span>
+    <span class="n">mode</span> <span class="o">=</span> <span class="n">question</span><span class="o">.</span><span class="n">mode</span>
+
+    <span class="n">duration</span> <span class="o">=</span> <span class="n">question</span><span class="o">.</span><span class="n">durations</span><span class="p">[</span><span class="s1">&#39;preq&#39;</span><span class="p">][</span><span class="s1">&#39;duration&#39;</span><span class="p">]</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="n">question</span><span class="o">.</span><span class="n">durations</span><span class="p">[</span><span class="s1">&#39;preq&#39;</span><span class="p">][</span><span class="s1">&#39;delay&#39;</span><span class="p">]</span>
+    <span class="n">pos_delay</span> <span class="o">=</span> <span class="n">question</span><span class="o">.</span><span class="n">durations</span><span class="p">[</span><span class="s1">&#39;preq&#39;</span><span class="p">][</span><span class="s1">&#39;pos_delay&#39;</span><span class="p">]</span>
+
+    <span class="n">degrees</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">sequence</span> <span class="o">=</span> <span class="n">Sequence</span><span class="p">(</span><span class="n">duration</span><span class="o">=</span><span class="n">duration</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="n">delay</span><span class="p">,</span>
+                        <span class="n">pos_delay</span><span class="o">=</span><span class="n">pos_delay</span><span class="p">)</span>
+
+    <span class="n">sequence</span><span class="o">.</span><span class="n">make_chord_progression</span><span class="p">(</span><span class="n">tonic_pitch</span><span class="o">=</span><span class="n">tonic_pitch</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span>
+                                    <span class="n">degrees</span><span class="o">=</span><span class="n">degrees</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">sequence</span></div>
 </pre></div>
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper"><div class="relations">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">birdears</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributions &amp; Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/modules.html">Module Reference</a></li>
+</ul>
+
+<div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
@@ -280,15 +206,23 @@ def progression_i_iv_v_i(question, *args, **kwargs):
     </div>
 </div>
 <script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
         </div>
       </div>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2017-2018, Iacchus Mercurius.
+      &copy;2021, I.M..
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.2.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
     </div>

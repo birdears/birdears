@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>birdears.resolution &#8212; birdears 0.2.1 documentation</title>
+    <title>birdears.resolution &#8212; birdears unknown documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
@@ -16,103 +16,6 @@
     <link rel="search" title="Search" href="../../search.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/css/hljs_styles/monokai.css" type="text/css" />
-  <script type="text/javascript" src="../../_static/js/highlight.pack.js"></script>
-  <script src="https://cdn.rawgit.com/iacchus/abcjs/master/bin/abcjs_plugin_3.1.2-hotfix-min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script>
-  $(document).ready(function() {
-    $('.highlight-none pre').each(function(i, block) {
-      hljs.highlightBlock(block);
-    });
-    $('.highlight pre').each(function(i, block) {
-      hljs.highlightBlock(block);
-    });
-  });
-</script>
-
-<script>
-  abcjs_plugin_autostart = false;
-  window.ABCJS.plugin.auto_render = false;
-
-$(document).ready(function(){
-  function is_it_abc(elem) {
-    if(window.ABCJS.plugin.getABCContainingElements(elem).length) return true;
-    else return false;
-  }
-
-  if($(".highlight-abc pre").length)
-  {
-    var tunes_code = $(".highlight-abc pre");
-			
-    for(var $i=0; tunes_code[$i]; $i++)
-    {               
-      if(! is_it_abc($(tunes_code[$i]))) continue;
-
-      var ws_strip="";
-      var mystr="";
-
-      ws_strip = $(tunes_code[$i]).text().split('\n');
-      for(var aaa=0; ws_strip[aaa]; aaa++) { mystr+=ws_strip[aaa].trim() + "\n"; }
-
-      $(tunes_code[$i]).text(mystr); //abctune
-
-      $('<div id="abctune-' + $i + '" class="abctune-rendered"></div>').insertBefore($(tunes_code[$i]).parent());
-      ABCJS.renderAbc(
-        "abctune-"+$i, //container
-        "%%staffsep 27pt\n" + $(tunes_code[$i]).text(), //abctune
-        { }, //parserParams
-        {
-          scale: 1,
-          staffwidth:600,
-          paddingtop: 0,
-          paddingbottom: 0,
-          paddingright: 0,
-          paddingleft: 0,
-        }, //engraverParams
-        { viewportHorizontal: true } //renderParams
-      );
-      $(tunes_code[$i]).parent().hide();
-    }
-  }
-
-  if($("code.abckeep").length)
-  {
-    var tunes_code = $("code.abckeep");
-			
-    for(var $i=0; tunes_code[$i]; $i++)
-    {               
-      if(! is_it_abc($(tunes_code[$i]))) continue;
-
-      var ws_strip="";
-      var mystr="";
-
-      ws_strip = $(tunes_code[$i]).text().split('\n');
-      for(var aaa=0; ws_strip[aaa]; aaa++) { mystr+=ws_strip[aaa].trim() + "\n"; }
-
-      $(tunes_code[$i]).text(mystr); //abctune
-
-      $('<div id="abctunekeep-' + $i + '" class="abctune-rendered"></div>').insertBefore($(tunes_code[$i]).parent());
-      ABCJS.renderAbc(
-        "abctunekeep-"+$i, //container
-        "%%staffsep 27pt\n"+$(tunes_code[$i]).text(), //abctune
-        { }, //parserParams
-        {
-          scale: 1,
-          staffwidth:700,
-          paddingtop: 0,
-          paddingbottom: 0,
-          paddingright: 0,
-          paddingleft: 0,
-        }, //engraverParams
-        { viewportHorizontal: true } //renderParams
-      );
-      $(tunes_code[$i]).parent().css({marginTop:0})
-      //$(tunes_code[$i]).hide();
-    }
-  }
-})
-</script>
   
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
@@ -123,195 +26,218 @@ $(document).ready(function(){
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <h1>Source code for birdears.resolution</h1><div class="highlight"><pre>
-<span></span>from . import MAX_SEMITONES_RESOLVE_BELOW
+<span></span><span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">MAX_SEMITONES_RESOLVE_BELOW</span>
 
-from .interval import Interval
+<span class="kn">from</span> <span class="nn">.interval</span> <span class="kn">import</span> <span class="n">Interval</span>
 
-from .scale import DiatonicScale
+<span class="kn">from</span> <span class="nn">.scale</span> <span class="kn">import</span> <span class="n">DiatonicScale</span>
 
-from .sequence import Sequence
+<span class="kn">from</span> <span class="nn">.sequence</span> <span class="kn">import</span> <span class="n">Sequence</span>
 
-from .note_and_pitch import get_pitch_by_number
-from .note_and_pitch import Chord
+<span class="kn">from</span> <span class="nn">.note_and_pitch</span> <span class="kn">import</span> <span class="n">get_pitch_by_number</span>
+<span class="kn">from</span> <span class="nn">.note_and_pitch</span> <span class="kn">import</span> <span class="n">Chord</span>
 
-from functools import wraps
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
 
-RESOLUTION_METHODS = {}
-# http://stackoverflow.com/questions/5910703/howto-get-all-methods-of-a-pyt\
-# hon-class-with-given-decorator
-# http://stackoverflow.com/questions/5707589/calling-functions-by-array-ind\
-# ex-in-python/5707605#5707605
-
-
-<div class="viewcode-block" id="register_resolution_method"><a class="viewcode-back" href="../../index.html#birdears.resolution.register_resolution_method">[docs]</a>def register_resolution_method(f, *args, **kwargs):
-    &quot;&quot;&quot;Decorator for resolution method functions.
-
-    Functions decorated with this decorator will be registered in the
-    `RESOLUTION_METHODS` global dict.
-    &quot;&quot;&quot;
-
-    @wraps(f)
-    def decorator(*args, **kwargs):
-        return f(*args, **kwargs)
-
-    RESOLUTION_METHODS.update({f.__name__: f})
-
-    return decorator</div>
+<span class="n">RESOLUTION_METHODS</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="c1"># http://stackoverflow.com/questions/5910703/howto-get-all-methods-of-a-pyt\</span>
+<span class="c1"># hon-class-with-given-decorator</span>
+<span class="c1"># http://stackoverflow.com/questions/5707589/calling-functions-by-array-ind\</span>
+<span class="c1"># ex-in-python/5707605#5707605</span>
 
 
-<div class="viewcode-block" id="Resolution"><a class="viewcode-back" href="../../index.html#birdears.resolution.Resolution">[docs]</a>class Resolution:
-    &quot;&quot;&quot;This class implements methods for different types of question
-    resolutions.
+<div class="viewcode-block" id="register_resolution_method"><a class="viewcode-back" href="../../api/birdears.html#birdears.resolution.register_resolution_method">[docs]</a><span class="k">def</span> <span class="nf">register_resolution_method</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Decorator for resolution method functions.</span>
 
-    A resolution is an answer to a question. It aims to create a mnemonic on
-    how the inverval resvolver to the tonic.
-    &quot;&quot;&quot;
+<span class="sd">    Functions decorated with this decorator will be registered in the</span>
+<span class="sd">    `RESOLUTION_METHODS` global dict.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Resolution.__init__"><a class="viewcode-back" href="../../index.html#birdears.resolution.Resolution.__init__">[docs]</a>    def __init__(self, method, question):
-        &quot;&quot;&quot;Inits the resolution class.
+    <span class="nd">@wraps</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        Args:
-            method (str): The method used in the resolution.
-            question (obj): Question object from which to generate the
-            resolution sequence.
-        &quot;&quot;&quot;
+    <span class="n">RESOLUTION_METHODS</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">f</span><span class="o">.</span><span class="vm">__name__</span><span class="p">:</span> <span class="n">f</span><span class="p">})</span>
 
-        self.METHOD = RESOLUTION_METHODS[method]
-        self.question = question</div>
-
-<div class="viewcode-block" id="Resolution.__call__"><a class="viewcode-back" href="../../index.html#birdears.resolution.Resolution.__call__">[docs]</a>    def __call__(self, *args, **kwargs):
-        &quot;&quot;&quot;Calls the resolution method and pass arguments to it.
-
-        Returns a `birdears.Sequence` object with the resolution generated by
-        the.method.
-        &quot;&quot;&quot;
-        return self.METHOD(question=self.question, *args, **kwargs)</div></div>
+    <span class="k">return</span> <span class="n">decorator</span></div>
 
 
-<div class="viewcode-block" id="nearest_tonic"><a class="viewcode-back" href="../../index.html#birdears.resolution.nearest_tonic">[docs]</a>@register_resolution_method
-def nearest_tonic(question):
-    &quot;&quot;&quot;Resolution method that resolve the intervals to their nearest tonics.
+<div class="viewcode-block" id="Resolution"><a class="viewcode-back" href="../../api/birdears.html#birdears.resolution.Resolution">[docs]</a><span class="k">class</span> <span class="nc">Resolution</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;This class implements methods for different types of question</span>
+<span class="sd">    resolutions.</span>
 
-    Args:
-        question (obj): Question object from which to generate the
-            resolution sequence. (this is provided by the `Prequestion` class
-            when it is `__call__`ed)
-    &quot;&quot;&quot;
+<span class="sd">    A resolution is an answer to a question. It aims to create a mnemonic on</span>
+<span class="sd">    how the inverval resvolver to the tonic.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-    tonic_pitch = question.tonic_pitch
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">question</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Inits the resolution class.</span>
 
-    # if hasattr(question, &#39;random_pitch&#39;):
-    #    random_pitch = tuple(question.random_pitch)
-    # else:
-    #    random_pitch = tuple(question.random_pitches)
-    #
-    # TODO:
-    if hasattr(question, &#39;random_pitches&#39;):
-        raise Exception(&#39;NEAREST_TONIC FOR MULTIPLE PITCHES IS STILL TO BE&#39;
-                        &#39;IMPLEMENTED&#39;)
-    random_pitch = question.random_pitch
+<span class="sd">        Args:</span>
+<span class="sd">            method (str): The method used in the resolution.</span>
+<span class="sd">            question (obj): Question object from which to generate the</span>
+<span class="sd">            resolution sequence.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
-    duration = question.durations[&#39;resol&#39;][&#39;duration&#39;]
-    delay = question.durations[&#39;resol&#39;][&#39;delay&#39;]
-    pos_delay = question.durations[&#39;resol&#39;][&#39;pos_delay&#39;]
+        <span class="bp">self</span><span class="o">.</span><span class="n">METHOD</span> <span class="o">=</span> <span class="n">RESOLUTION_METHODS</span><span class="p">[</span><span class="n">method</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">question</span> <span class="o">=</span> <span class="n">question</span>
 
-    # this function will receive: tonic, scale and random_pitch (which may be
-    # chromatic, ie., not in `scale`)
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Calls the resolution method and pass arguments to it.</span>
 
-    semitones = (int(random_pitch) - int(tonic_pitch)) % 12
-
-    scale_random_pitch = question.diatonic_scale
-
-    direction = -1 if (semitones &lt;= MAX_SEMITONES_RESOLVE_BELOW) else +1
-    # invert `direction` signal if descending:
-    pitch_direction = (direction * -1) if question.is_descending else direction
-
-    resolution = []
-
-    if random_pitch not in scale_random_pitch:  # random_pitch is chromatic
-        resolution.append(random_pitch)
-        # if this note is chromatic then the
-        # next ones above or below are in the diatonic for sure, so we
-        # add one semitone and we will have the next diatonic degree:
-        nearest_diatonic_pitch = \
-            get_pitch_by_number(int(random_pitch) + direction)
-    else:
-        nearest_diatonic_pitch = random_pitch  # random_pitch is diatonic
-
-    resolve_mask = 0 if semitones &lt;= MAX_SEMITONES_RESOLVE_BELOW else 12
-
-    nearest_tonic_pitch = get_pitch_by_number(int(random_pitch) +
-                                              (resolve_mask-semitones))
-
-    nearest_tonic_index = scale_random_pitch.index(nearest_tonic_pitch)
-
-    nearest_diatonic_pitch_index = \
-        scale_random_pitch.index(nearest_diatonic_pitch)
-
-    random_pitch_index = nearest_diatonic_pitch_index
-
-    ohslice = slice(min(nearest_tonic_index, random_pitch_index),
-                    max(nearest_tonic_index, nearest_diatonic_pitch_index)+1)
-
-    resolution = scale_random_pitch[ohslice][::pitch_direction]
-
-    # is it chromatic?
-    if random_pitch not in scale_random_pitch:
-        resolution.insert(0, random_pitch)
-
-    if len(resolution) == 1:
-        resolution.append(tonic_pitch)
-
-    if question.is_harmonic:
-        resolution_harmonic = []
-
-        for item in resolution:
-            resolution_harmonic.append(Chord([tonic_pitch, item]))
-
-        resolution = resolution_harmonic
-
-    # resolution
-    return Sequence(elements=resolution, duration=duration, delay=delay,
-                    pos_delay=pos_delay)</div>
+<span class="sd">        Returns a `birdears.Sequence` object with the resolution generated by</span>
+<span class="sd">        the.method.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">METHOD</span><span class="p">(</span><span class="n">question</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">question</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="repeat_only"><a class="viewcode-back" href="../../index.html#birdears.resolution.repeat_only">[docs]</a>@register_resolution_method
-# FIXME : it should both play preq and question
-def repeat_only(question):
-    &quot;&quot;&quot;Resolution method that only repeats the sequence elements with given
-    durations.
+<div class="viewcode-block" id="nearest_tonic"><a class="viewcode-back" href="../../api/birdears.html#birdears.resolution.nearest_tonic">[docs]</a><span class="nd">@register_resolution_method</span>
+<span class="k">def</span> <span class="nf">nearest_tonic</span><span class="p">(</span><span class="n">question</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Resolution method that resolve the intervals to their nearest tonics.</span>
 
-    Args:
-        question (obj): Question object from which to generate the
-            resolution sequence. (this is provided by the `Prequestion` class
-            when it is `__call__`ed)
-    &quot;&quot;&quot;
+<span class="sd">    Args:</span>
+<span class="sd">        question (obj): Question object from which to generate the</span>
+<span class="sd">            resolution sequence. (this is provided by the `Prequestion` class</span>
+<span class="sd">            when it is `__call__`ed)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-    elements = list()
-    if hasattr(question, &#39;random_pitches&#39;):
-        elements.extend(question.random_pitches)
-    else:
-        elements.append(question.random_pitch)
-        elements.append(question.tonic_pitch)
+    <span class="n">tonic_pitch</span> <span class="o">=</span> <span class="n">question</span><span class="o">.</span><span class="n">tonic_pitch</span>
 
-    duration = question.durations[&#39;resol&#39;][&#39;duration&#39;]
-    delay = question.durations[&#39;resol&#39;][&#39;delay&#39;]
-    pos_delay = question.durations[&#39;resol&#39;][&#39;pos_delay&#39;]
+    <span class="c1"># if hasattr(question, &#39;random_pitch&#39;):</span>
+    <span class="c1">#    random_pitch = tuple(question.random_pitch)</span>
+    <span class="c1"># else:</span>
+    <span class="c1">#    random_pitch = tuple(question.random_pitches)</span>
+    <span class="c1">#</span>
+    <span class="c1"># TODO:</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">question</span><span class="p">,</span> <span class="s1">&#39;random_pitches&#39;</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;NEAREST_TONIC FOR MULTIPLE PITCHES IS STILL TO BE&#39;</span>
+                        <span class="s1">&#39;IMPLEMENTED&#39;</span><span class="p">)</span>
+    <span class="n">random_pitch</span> <span class="o">=</span> <span class="n">question</span><span class="o">.</span><span class="n">random_pitch</span>
 
-    sequence_list = Sequence(elements, duration=duration, delay=delay,
-                             pos_delay=pos_delay)
+    <span class="n">duration</span> <span class="o">=</span> <span class="n">question</span><span class="o">.</span><span class="n">durations</span><span class="p">[</span><span class="s1">&#39;resol&#39;</span><span class="p">][</span><span class="s1">&#39;duration&#39;</span><span class="p">]</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="n">question</span><span class="o">.</span><span class="n">durations</span><span class="p">[</span><span class="s1">&#39;resol&#39;</span><span class="p">][</span><span class="s1">&#39;delay&#39;</span><span class="p">]</span>
+    <span class="n">pos_delay</span> <span class="o">=</span> <span class="n">question</span><span class="o">.</span><span class="n">durations</span><span class="p">[</span><span class="s1">&#39;resol&#39;</span><span class="p">][</span><span class="s1">&#39;pos_delay&#39;</span><span class="p">]</span>
 
-    return sequence_list</div>
+    <span class="c1"># this function will receive: tonic, scale and random_pitch (which may be</span>
+    <span class="c1"># chromatic, ie., not in `scale`)</span>
+
+    <span class="n">semitones</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">random_pitch</span><span class="p">)</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="n">tonic_pitch</span><span class="p">))</span> <span class="o">%</span> <span class="mi">12</span>
+
+    <span class="n">scale_random_pitch</span> <span class="o">=</span> <span class="n">question</span><span class="o">.</span><span class="n">diatonic_scale</span>
+
+    <span class="n">direction</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="k">if</span> <span class="p">(</span><span class="n">semitones</span> <span class="o">&lt;=</span> <span class="n">MAX_SEMITONES_RESOLVE_BELOW</span><span class="p">)</span> <span class="k">else</span> <span class="o">+</span><span class="mi">1</span>
+    <span class="c1"># invert `direction` signal if descending:</span>
+    <span class="n">pitch_direction</span> <span class="o">=</span> <span class="p">(</span><span class="n">direction</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">question</span><span class="o">.</span><span class="n">is_descending</span> <span class="k">else</span> <span class="n">direction</span>
+
+    <span class="n">resolution</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">if</span> <span class="n">random_pitch</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">scale_random_pitch</span><span class="p">:</span>  <span class="c1"># random_pitch is chromatic</span>
+        <span class="n">resolution</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">random_pitch</span><span class="p">)</span>
+        <span class="c1"># if this note is chromatic then the</span>
+        <span class="c1"># next ones above or below are in the diatonic for sure, so we</span>
+        <span class="c1"># add one semitone and we will have the next diatonic degree:</span>
+        <span class="n">nearest_diatonic_pitch</span> <span class="o">=</span> \
+            <span class="n">get_pitch_by_number</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">random_pitch</span><span class="p">)</span> <span class="o">+</span> <span class="n">direction</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">nearest_diatonic_pitch</span> <span class="o">=</span> <span class="n">random_pitch</span>  <span class="c1"># random_pitch is diatonic</span>
+
+    <span class="n">resolve_mask</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">semitones</span> <span class="o">&lt;=</span> <span class="n">MAX_SEMITONES_RESOLVE_BELOW</span> <span class="k">else</span> <span class="mi">12</span>
+
+    <span class="n">nearest_tonic_pitch</span> <span class="o">=</span> <span class="n">get_pitch_by_number</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">random_pitch</span><span class="p">)</span> <span class="o">+</span>
+                                              <span class="p">(</span><span class="n">resolve_mask</span><span class="o">-</span><span class="n">semitones</span><span class="p">))</span>
+
+    <span class="n">nearest_tonic_index</span> <span class="o">=</span> <span class="n">scale_random_pitch</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">nearest_tonic_pitch</span><span class="p">)</span>
+
+    <span class="n">nearest_diatonic_pitch_index</span> <span class="o">=</span> \
+        <span class="n">scale_random_pitch</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">nearest_diatonic_pitch</span><span class="p">)</span>
+
+    <span class="n">random_pitch_index</span> <span class="o">=</span> <span class="n">nearest_diatonic_pitch_index</span>
+
+    <span class="n">ohslice</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">nearest_tonic_index</span><span class="p">,</span> <span class="n">random_pitch_index</span><span class="p">),</span>
+                    <span class="nb">max</span><span class="p">(</span><span class="n">nearest_tonic_index</span><span class="p">,</span> <span class="n">nearest_diatonic_pitch_index</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">resolution</span> <span class="o">=</span> <span class="n">scale_random_pitch</span><span class="p">[</span><span class="n">ohslice</span><span class="p">][::</span><span class="n">pitch_direction</span><span class="p">]</span>
+
+    <span class="c1"># is it chromatic?</span>
+    <span class="k">if</span> <span class="n">random_pitch</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">scale_random_pitch</span><span class="p">:</span>
+        <span class="n">resolution</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">random_pitch</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">resolution</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">resolution</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tonic_pitch</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">question</span><span class="o">.</span><span class="n">is_harmonic</span><span class="p">:</span>
+        <span class="n">resolution_harmonic</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">resolution</span><span class="p">:</span>
+            <span class="n">resolution_harmonic</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Chord</span><span class="p">([</span><span class="n">tonic_pitch</span><span class="p">,</span> <span class="n">item</span><span class="p">]))</span>
+
+        <span class="n">resolution</span> <span class="o">=</span> <span class="n">resolution_harmonic</span>
+
+    <span class="c1"># resolution</span>
+    <span class="k">return</span> <span class="n">Sequence</span><span class="p">(</span><span class="n">elements</span><span class="o">=</span><span class="n">resolution</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="n">duration</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="n">delay</span><span class="p">,</span>
+                    <span class="n">pos_delay</span><span class="o">=</span><span class="n">pos_delay</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="repeat_only"><a class="viewcode-back" href="../../api/birdears.html#birdears.resolution.repeat_only">[docs]</a><span class="nd">@register_resolution_method</span>
+<span class="c1"># FIXME : it should both play preq and question</span>
+<span class="k">def</span> <span class="nf">repeat_only</span><span class="p">(</span><span class="n">question</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Resolution method that only repeats the sequence elements with given</span>
+<span class="sd">    durations.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        question (obj): Question object from which to generate the</span>
+<span class="sd">            resolution sequence. (this is provided by the `Prequestion` class</span>
+<span class="sd">            when it is `__call__`ed)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">elements</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">question</span><span class="p">,</span> <span class="s1">&#39;random_pitches&#39;</span><span class="p">):</span>
+        <span class="n">elements</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">question</span><span class="o">.</span><span class="n">random_pitches</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">question</span><span class="o">.</span><span class="n">random_pitch</span><span class="p">)</span>
+        <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">question</span><span class="o">.</span><span class="n">tonic_pitch</span><span class="p">)</span>
+
+    <span class="n">duration</span> <span class="o">=</span> <span class="n">question</span><span class="o">.</span><span class="n">durations</span><span class="p">[</span><span class="s1">&#39;resol&#39;</span><span class="p">][</span><span class="s1">&#39;duration&#39;</span><span class="p">]</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="n">question</span><span class="o">.</span><span class="n">durations</span><span class="p">[</span><span class="s1">&#39;resol&#39;</span><span class="p">][</span><span class="s1">&#39;delay&#39;</span><span class="p">]</span>
+    <span class="n">pos_delay</span> <span class="o">=</span> <span class="n">question</span><span class="o">.</span><span class="n">durations</span><span class="p">[</span><span class="s1">&#39;resol&#39;</span><span class="p">][</span><span class="s1">&#39;pos_delay&#39;</span><span class="p">]</span>
+
+    <span class="n">sequence_list</span> <span class="o">=</span> <span class="n">Sequence</span><span class="p">(</span><span class="n">elements</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="n">duration</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="n">delay</span><span class="p">,</span>
+                             <span class="n">pos_delay</span><span class="o">=</span><span class="n">pos_delay</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">sequence_list</span></div>
 </pre></div>
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper"><div class="relations">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">birdears</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributions &amp; Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/modules.html">Module Reference</a></li>
+</ul>
+
+<div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
@@ -332,15 +258,23 @@ def repeat_only(question):
     </div>
 </div>
 <script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
         </div>
       </div>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2017-2018, Iacchus Mercurius.
+      &copy;2021, I.M..
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.2.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
     </div>

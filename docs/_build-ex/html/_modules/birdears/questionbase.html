@@ -1,0 +1,462 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>birdears.questionbase &#8212; birdears 0.2.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/hljs_styles/monokai.css" type="text/css" />
+  <script type="text/javascript" src="../../_static/js/highlight.pack.js"></script>
+  <script src="https://cdn.rawgit.com/iacchus/abcjs/master/bin/abcjs_plugin_3.1.2-hotfix-min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+  $(document).ready(function() {
+    $('.highlight-none pre').each(function(i, block) {
+      hljs.highlightBlock(block);
+    });
+    $('.highlight pre').each(function(i, block) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+<script>
+  abcjs_plugin_autostart = false;
+  window.ABCJS.plugin.auto_render = false;
+
+$(document).ready(function(){
+  function is_it_abc(elem) {
+    if(window.ABCJS.plugin.getABCContainingElements(elem).length) return true;
+    else return false;
+  }
+
+  if($(".highlight-abc pre").length)
+  {
+    var tunes_code = $(".highlight-abc pre");
+			
+    for(var $i=0; tunes_code[$i]; $i++)
+    {               
+      if(! is_it_abc($(tunes_code[$i]))) continue;
+
+      var ws_strip="";
+      var mystr="";
+
+      ws_strip = $(tunes_code[$i]).text().split('\n');
+      for(var aaa=0; ws_strip[aaa]; aaa++) { mystr+=ws_strip[aaa].trim() + "\n"; }
+
+      $(tunes_code[$i]).text(mystr); //abctune
+
+      $('<div id="abctune-' + $i + '" class="abctune-rendered"></div>').insertBefore($(tunes_code[$i]).parent());
+      ABCJS.renderAbc(
+        "abctune-"+$i, //container
+        "%%staffsep 27pt\n" + $(tunes_code[$i]).text(), //abctune
+        { }, //parserParams
+        {
+          scale: 1,
+          staffwidth:600,
+          paddingtop: 0,
+          paddingbottom: 0,
+          paddingright: 0,
+          paddingleft: 0,
+        }, //engraverParams
+        { viewportHorizontal: true } //renderParams
+      );
+      $(tunes_code[$i]).parent().hide();
+    }
+  }
+
+  if($("code.abckeep").length)
+  {
+    var tunes_code = $("code.abckeep");
+			
+    for(var $i=0; tunes_code[$i]; $i++)
+    {               
+      if(! is_it_abc($(tunes_code[$i]))) continue;
+
+      var ws_strip="";
+      var mystr="";
+
+      ws_strip = $(tunes_code[$i]).text().split('\n');
+      for(var aaa=0; ws_strip[aaa]; aaa++) { mystr+=ws_strip[aaa].trim() + "\n"; }
+
+      $(tunes_code[$i]).text(mystr); //abctune
+
+      $('<div id="abctunekeep-' + $i + '" class="abctune-rendered"></div>').insertBefore($(tunes_code[$i]).parent());
+      ABCJS.renderAbc(
+        "abctunekeep-"+$i, //container
+        "%%staffsep 27pt\n"+$(tunes_code[$i]).text(), //abctune
+        { }, //parserParams
+        {
+          scale: 1,
+          staffwidth:700,
+          paddingtop: 0,
+          paddingbottom: 0,
+          paddingright: 0,
+          paddingleft: 0,
+        }, //engraverParams
+        { viewportHorizontal: true } //renderParams
+      );
+      $(tunes_code[$i]).parent().css({marginTop:0})
+      //$(tunes_code[$i]).hide();
+    }
+  }
+})
+</script>
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for birdears.questionbase</h1><div class="highlight"><pre>
+<span></span>from random import randrange
+from random import choice
+
+from . import D
+
+from . import KEYBOARD_INDICES
+from . import CHROMATIC_TYPE
+from . import KEYS
+from . import DEGREE_INDEX
+from . import INTERVALS
+from . import DIATONIC_FORMS
+
+# from .interval import Interval
+
+from .note_and_pitch import Pitch
+from .note_and_pitch import get_pitch_by_number
+
+from .scale import DiatonicScale
+from .scale import ChromaticScale
+
+from .utils import DictCallback
+
+from functools import wraps
+
+QUESTION_CLASSES = {}
+
+
+<div class="viewcode-block" id="register_question_class"><a class="viewcode-back" href="../../index.html#birdears.questionbase.register_question_class">[docs]</a>def register_question_class(cls, *args, **kwargs):
+    &quot;&quot;&quot;Decorator for question classes.
+
+    Classes decorated with this decorator will be registered in the
+    `QUESTION_CLASSES` global.
+    &quot;&quot;&quot;
+
+    global QUESTION_CLASSES
+
+    QUESTION_CLASSES.update({cls.name: cls})
+
+    return cls</div>
+
+
+# values for valid_semitones list can be Interval objects or int&#39;s (semitones)
+<div class="viewcode-block" id="get_valid_pitches"><a class="viewcode-back" href="../../index.html#birdears.questionbase.get_valid_pitches">[docs]</a>def get_valid_pitches(scale, valid_intervals=CHROMATIC_TYPE):
+
+    tonic_pitch = scale[0]
+
+    valid_scale = list()
+
+    if isinstance(valid_intervals, tuple):
+        valid_list = list(map(lambda x: str(x), valid_intervals))
+    elif isinstance(valid_intervals, list):
+        valid_list = list(map(lambda x: str(x), valid_intervals))
+    elif isinstance(valid_intervals, str):
+        valid_list = valid_intervals.replace(&#39; &#39;, &#39;&#39;).split(&#39;,&#39;)
+    else:
+        raise Exception(&#39;Incorrect type for valid_semitones&#39;)
+
+    valid_semitones = list()
+
+    for item in valid_list:
+
+        # &#39;i&#39;, &#39;ii&#39; etc...
+        if item.lower() in DEGREE_INDEX:
+            valid_semitones.extend(DEGREE_INDEX[item.lower()])
+        # 0, 1, 2 etc...
+        elif item.isdecimal():
+            valid_semitones.append(int(item))
+        # something else
+        else:
+            print(&#39;Warning: invalid `valid_interval`: &#39;, item)
+            continue
+
+    for pitch in scale:
+
+        # this will work with multple octaves
+        chromatic_offset = \
+            abs(int(tonic_pitch) - int(pitch)) % 12
+
+        if chromatic_offset in valid_semitones:
+            valid_scale.append(pitch)
+
+    return valid_scale</div>
+
+
+<div class="viewcode-block" id="QuestionBase"><a class="viewcode-back" href="../../index.html#birdears.questionbase.QuestionBase">[docs]</a>class QuestionBase:
+    &quot;&quot;&quot;
+    Base Class to be subclassed for Question classes.
+
+    This class implements attributes and routines to be used in Question
+    subclasses.
+    &quot;&quot;&quot;
+
+<div class="viewcode-block" id="QuestionBase.__init__"><a class="viewcode-back" href="../../index.html#birdears.questionbase.QuestionBase.__init__">[docs]</a>    def __init__(self, mode=&#39;major&#39;, tonic=&#39;C&#39;, octave=4, descending=False,
+                 chromatic=False, n_octaves=1, valid_intervals=CHROMATIC_TYPE,
+                 user_durations=None, prequestion_method=None,
+                 resolution_method=None, default_durations=None,
+                 *args, **kwargs):
+        &quot;&quot;&quot;Inits the class.
+
+        Args:
+            mode (str): A string represnting the mode of the question.
+                Eg., &#39;major&#39; or &#39;minor&#39;
+            tonic (str): A string representing the tonic of the
+                question, eg.: &#39;C&#39;; if omitted, it will be selected
+                randomly.
+            octave (int): A scienfic octave notation, for example,
+                4 for &#39;C4&#39;; if not present, it will be randomly chosen.
+            descending (bool): Is the question direction in descending,
+                ie., intervals have lower pitch than the tonic.
+            chromatic (bool): If the question can have (True) or not
+                (False) chromatic intervals, ie., intervals not in the
+                diatonic scale of tonic/mode.
+            n_octaves (int): Maximum numbr of octaves of the question.
+            valid_intervals (list): A list with intervals (int) valid for
+                random choice, 1 is 1st, 2 is second etc. Eg. [1, 4, 5] to
+                allow only tonics, fourths and fifths.
+            user_durations (str): A string with 9 comma-separated `int` or
+                `float`s to set the default duration for the notes played. The
+                values are respectively for: pre-question duration (1st),
+                pre-question delay (2nd), and pre-question pos-delay (3rd);
+                question duration (4th), question delay (5th), and question
+                pos-delay (6th); resolution duration (7th), resolution
+                delay (8th), and resolution pos-delay (9th).
+                duration is the duration in of the note in seconds; delay is
+                the time to wait before playing the next note, and pos_delay is
+                the time to wait after all the notes of the respective sequence
+                have been played. If any of the user durations is `n`, the
+                default duration for the type of question will be used instead.
+                Example::
+                    &quot;2,0.5,1,2,n,0,2.5,n,1&quot;
+            prequestion_method (str): Method of playing a cadence or the
+                exercise tonic before the question so to affirm the question
+                musical tonic key to the ear. Valid ones are registered in the
+                `birdears.prequestion.PREQUESION_METHODS` global dict.
+            resolution_method (str): Method of playing the resolution of an
+                exercise Valid ones are registered in the
+                `birdears.resolution.RESOLUTION_METHODS` global dict.
+            user_durations (dict): Dictionary with the default durations for
+                each type of sequence. This is provided by the subclasses.
+        &quot;&quot;&quot;
+
+        self.display = DictCallback({&#39;main_display&#39;: str()})
+
+        if isinstance(mode, str) and any(el == mode for el in (&#39;R&#39;, &#39;r&#39;)):
+            mode = choice(list(DIATONIC_FORMS))
+
+        self.mode = mode
+
+        self.is_descending = descending
+        self.is_chromatic = chromatic
+
+        try:
+            if kwargs[&#39;n_notes&#39;]:
+                self.n_notes = kwargs[&#39;n_notes&#39;]
+        except KeyError:
+            self.n_notes = 1
+
+        self.n_input_notes = int(self.n_notes)
+
+        # self.octave = octave if octave else randrange(3, 5)
+        if isinstance(octave, str) and any(el in octave for el in (&#39;R&#39;, &#39;r&#39;)):
+            self.octave = randrange(3, 6)
+        elif isinstance(octave, str) and &#39;,&#39; in octave:
+            octave = octave.replace(&#39; &#39;, &#39;&#39;)
+            octave = choice(octave.split(&#39;,&#39;))
+            self.octave = int(octave)
+        elif isinstance(octave, int) and (octave &gt;= 3 and octave &lt;= 6):
+            self.octave = octave
+        elif isinstance(octave, list):
+            self.octave = int(choice(octave))
+        elif isinstance(octave, tuple) and len(octave) == 2:
+            self.octave = randrange(*octave)
+        # if not octave:
+        else:
+            self.octave = randrange(3, 6)
+
+        # TODO: raise exceptions in case octave/n_octaves are invalid or
+        #       extrapolate each other
+
+        # self.octave = octave
+
+        self.n_octaves = n_octaves
+
+        direction = &#39;descending&#39; if descending else &#39;ascending&#39;
+
+        # FIXME: maybe this should go to __main__
+        self.keyboard_index = \
+            tuple(KEYBOARD_INDICES[&#39;chromatic&#39;][direction][self.mode])
+
+        if isinstance(tonic, list) or isinstance(tonic, tuple):
+            tonic = choice(tonic)
+        elif isinstance(tonic, str) and &#39;,&#39; in tonic:
+            tonic = tonic.replace(&#39; &#39;, &#39;&#39;)
+            tonic = choice(tonic.split(&#39;,&#39;))
+        elif isinstance(tonic, str) and (&#39;R&#39; in tonic or &#39;r&#39; in tonic):
+            tonic = choice(KEYS)
+
+        self.tonic_pitch = Pitch(note=tonic, octave=self.octave)
+        self.tonic_str = str(self.tonic_pitch.note)
+        self.tonic_pitch_str = str(self.tonic_pitch)
+
+        if not chromatic:
+            self.scale = DiatonicScale(tonic=self.tonic_str, mode=mode,
+                                       octave=self.octave,
+                                       descending=descending,
+                                       n_octaves=n_octaves)
+        else:
+            self.scale = ChromaticScale(tonic=self.tonic_str,
+                                        octave=self.octave,
+                                        descending=descending,
+                                        n_octaves=n_octaves)
+
+        self.diatonic_scale = DiatonicScale(tonic=self.tonic_str, mode=mode,
+                                            octave=self.octave,
+                                            descending=descending,
+                                            n_octaves=n_octaves)
+
+        self.chromatic_scale = ChromaticScale(tonic=self.tonic_str,
+                                              octave=self.octave,
+                                              descending=descending,
+                                              n_octaves=n_octaves)
+
+        self.tonic_accident = (&#39;flat&#39; if ((&#39;b&#39; in self.tonic_str)
+                               or (self.tonic_str == &#39;F&#39;))
+                               else &#39;sharp&#39;)
+
+        if self.is_descending:
+            self.lowest_tonic_pitch = \
+                get_pitch_by_number(int(self.tonic_pitch)
+                                    - (self.n_octaves * 12),
+                                    accident=self.tonic_accident)
+        else:
+            self.lowest_tonic_pitch = self.tonic_pitch
+
+        #D(self.lowest_tonic_pitch)
+
+        self.allowed_pitches = \
+            get_valid_pitches(self.scale, valid_intervals=valid_intervals)
+
+        self.allowed_intervals = \
+            [INTERVALS[abs(int(self.tonic_pitch)-int(pitch))][1]
+             for pitch in self.allowed_pitches]
+
+        self.durations = default_durations
+        if user_durations:
+            ud_index = {
+                0: (&#39;preq&#39;, &#39;duration&#39;),
+                1: (&#39;preq&#39;, &#39;delay&#39;),
+                2: (&#39;preq&#39;, &#39;pos_delay&#39;),
+                3: (&#39;quest&#39;, &#39;duration&#39;),
+                4: (&#39;quest&#39;, &#39;delay&#39;),
+                5: (&#39;quest&#39;, &#39;pos_delay&#39;),
+                6: (&#39;resol&#39;, &#39;duration&#39;),
+                7: (&#39;resol&#39;, &#39;delay&#39;),
+                8: (&#39;resol&#39;, &#39;pos_delay&#39;),
+            }
+            ud = user_durations.split(&#39;,&#39;)
+            if len(ud) == len(ud_index):
+                for idx, v in ud_index.items():
+                    cur_duration = ud[idx].strip()
+                    if cur_duration != &#39;n&#39;:
+                        self.durations[v[0]][v[1]] = float(cur_duration)
+
+        self.prequestion_method = prequestion_method
+        self.resolution_method = resolution_method</div>
+
+<div class="viewcode-block" id="QuestionBase.make_question"><a class="viewcode-back" href="../../index.html#birdears.questionbase.QuestionBase.make_question">[docs]</a>    def make_question(self):
+        &quot;&quot;&quot;This method should be overwritten by the question subclasses.
+        &quot;&quot;&quot;
+
+        pass</div>
+
+<div class="viewcode-block" id="QuestionBase.make_resolution"><a class="viewcode-back" href="../../index.html#birdears.questionbase.QuestionBase.make_resolution">[docs]</a>    def make_resolution(self):
+        &quot;&quot;&quot;This method should be overwritten by the question subclasses.
+        &quot;&quot;&quot;
+
+        pass</div>
+
+<div class="viewcode-block" id="QuestionBase.play_question"><a class="viewcode-back" href="../../index.html#birdears.questionbase.QuestionBase.play_question">[docs]</a>    def play_question(self):
+        &quot;&quot;&quot;This method should be overwritten by the question subclasses.
+        &quot;&quot;&quot;
+
+        pass</div>
+
+<div class="viewcode-block" id="QuestionBase.check_question"><a class="viewcode-back" href="../../index.html#birdears.questionbase.QuestionBase.check_question">[docs]</a>    def check_question(self):
+        &quot;&quot;&quot;This method should be overwritten by the question subclasses.
+        &quot;&quot;&quot;
+
+        pass</div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  <li><a href="../birdears.html">birdears</a><ul>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017-2018, Iacchus Mercurius.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
