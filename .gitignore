@@ -11,6 +11,7 @@
 __pycache__/*
 .cache/*
 .*.swp
+.envrc
 */.ipynb_checkpoints/*
 .DS_Store
 
