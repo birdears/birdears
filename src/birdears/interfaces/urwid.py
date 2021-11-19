@@ -1,5 +1,9 @@
 import threading
-from .. import urwid
+
+try:
+    import urwid
+except ImportError:
+    from .. import urwid
 
 from .. import KEYS
 from .. import CHROMATIC_SHARP

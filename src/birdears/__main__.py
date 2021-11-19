@@ -1,8 +1,14 @@
 "__Main__ docs are here."
 
-from . import urwid
+try:
+    import urwid
+except ImportError:
+    from . import urwid
 
-from . import click
+try:
+    import click
+except ImportError:
+    from . import click
 
 from . import DIATONIC_MODES
 
@@ -439,6 +445,9 @@ def load(filename, *args, **kwargs):
     """Load exercise preset from .toml config file <filename>.
     """
 
+try:
+    import toml
+except ImportError:
     from .toml import toml
 
     toml_file_str = filename.read()

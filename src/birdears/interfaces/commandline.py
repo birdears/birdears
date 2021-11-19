@@ -14,7 +14,10 @@ from .. import CHROMATIC_TYPE
 from ..questionbase import QUESTION_CLASSES
 
 # from os import popen
-from ..click import get_terminal_size
+try:
+    from click import get_terminal_size
+except ImportError:
+    from ..click import get_terminal_size
 
 # FIXME: use `click` one instead or it won't be portable
 # COLS = int(popen('tput cols', 'r').read())
