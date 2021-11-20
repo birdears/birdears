@@ -53,7 +53,7 @@ def get_valid_pitches(scale, valid_intervals=CHROMATIC_TYPE):
     elif isinstance(valid_intervals, str):
         valid_list = valid_intervals.replace(' ', '').split(',')
     else:
-        raise Exception('Incorrect type for valid_semitones')
+        raise Exception('Incorrect type for valid_intervals')
 
     valid_semitones = list()
 
@@ -67,7 +67,7 @@ def get_valid_pitches(scale, valid_intervals=CHROMATIC_TYPE):
             valid_semitones.append(int(item))
         # something else
         else:
-            print('Warning: invalid `valid_interval`: ', item)
+            print('Warning: incorrect item in `valid_list`: ', item)
             continue
 
     for pitch in scale:

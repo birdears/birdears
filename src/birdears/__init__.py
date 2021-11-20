@@ -80,9 +80,9 @@ INTERVALS = (
 A tuple of tuples representing data for the intervals with format
 (semitones, short name, full name)."""
 
-CHROMATIC_TYPE = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
-# CHROMATIC_TYPE = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
-"""tuple: A map of the chromatic scale.
+CHROMATIC_TYPE = '0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11'
+# CHROMATIC_TYPE = '0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12'
+"""str: A map of the chromatic scale.
 
 A map of the the semitones which compound the chromatic scale."""
 
