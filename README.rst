@@ -13,8 +13,6 @@ Versions| |Documentation Status|
 | |agpl3|                                                              |
 +----------------------------------------------------------------------+
 
-#
-
 -  `Introduction <#introduction>`__
 
    -  `birdears <#birdears>`__
@@ -37,8 +35,6 @@ Versions| |Documentation Status|
 -  `Keybindings <#keybindings>`__
 -  `Documentation <#documentation>`__
 -  `Contributing <#contributing>`__
-
-#
 
 Support Channels
 ~~~~~~~~~~~~~~~~

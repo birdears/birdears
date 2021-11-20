@@ -15,7 +15,6 @@
 | ----------------- |
 | [![agpl3](https://github.com/iacchus/birdears/raw/master/docs/_static/img/agplv3-155x51.png)](https://github.com/iacchus/birdears/blob/master/LICENSE.txt) |
 
-#<!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
 - [Introduction](#introduction)
 	- [birdears](#birdears)
@@ -31,8 +30,6 @@
 - [Keybindings](#keybindings)
 - [Documentation](#documentation)
 - [Contributing](#contributing)
-
-#<!-- /TOC -->
 
 ### Support Channels
 
