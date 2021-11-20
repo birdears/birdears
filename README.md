@@ -90,7 +90,7 @@ It is currently [being written here](docs/WRITE-ME-method.md)
 ### Installing the dependencies
 
 `birdears` depends only on `python >= 3.5` and `sox` (which should be installed by your distribution's package manager,
-supposing you're using linux, and which provides the `play` command.) 
+supposing you're using linux, and which provides the `play` command.)
 
 #### Installing the dependencies: Arch Linux
 
