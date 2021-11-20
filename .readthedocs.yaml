@@ -1,5 +1,0 @@
-# https://github.com/sphinx-doc/sphinx/issues/9727#issuecomment-953025696
-version: 2
-python:
-   install:
-   - requirements: requirements.txt

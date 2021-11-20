@@ -13,9 +13,7 @@ Versions| |Documentation Status|
 | |agpl3|                                                              |
 +----------------------------------------------------------------------+
 
-.. raw:: html
-
-   <!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+#
 
 -  `Introduction <#introduction>`__
 
@@ -40,9 +38,7 @@ Versions| |Documentation Status|
 -  `Documentation <#documentation>`__
 -  `Contributing <#contributing>`__
 
-.. raw:: html
-
-   <!-- /TOC -->
+#
 
 Support Channels
 ~~~~~~~~~~~~~~~~
@@ -155,14 +151,18 @@ using linux, and which provides the ``play`` command.)
 Arch Linux
 ^^^^^^^^^^
 
-::
+The dependencies are installed this way:
+
+.. code:: sh
 
    sudo pacman -Syu sox python python-pip
 
 Installing birdears
 ~~~~~~~~~~~~~~~~~~~
 
-``pip3 install --user --upgrade --no-cache-dir birdears``
+.. code:: sh
+
+   pip3 install --user --upgrade --no-cache-dir birdears
 
 In-depth installation
 ^^^^^^^^^^^^^^^^^^^^^

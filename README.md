@@ -15,7 +15,7 @@
 | ----------------- |
 | [![agpl3](https://github.com/iacchus/birdears/raw/master/docs/_static/img/agplv3-155x51.png)](https://github.com/iacchus/birdears/blob/master/LICENSE.txt) |
 
-<!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+#<!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
 - [Introduction](#introduction)
 	- [birdears](#birdears)
@@ -32,7 +32,7 @@
 - [Documentation](#documentation)
 - [Contributing](#contributing)
 
-<!-- /TOC -->
+#<!-- /TOC -->
 
 ### Support Channels
 
@@ -95,15 +95,19 @@ It is currently [being written here](docs/WRITE-ME-method.md)
 `birdears` depends only on `python >= 3.5` and `sox` (which should be installed by your distribution's package manager,
 supposing you're using linux, and which provides the `play` command.) 
 
-#### Arch Linux
+#### Installing the dependencies: Arch Linux
 
-```
+The dependencies are installed this way:
+
+```sh
 sudo pacman -Syu sox python python-pip
 ```
 
 ### Installing birdears
 
-`pip3 install --user --upgrade --no-cache-dir birdears`
+```sh
+pip3 install --user --upgrade --no-cache-dir birdears
+```
 
 #### In-depth installation
 

@@ -108,7 +108,7 @@ copyright = "2021, Iacchus Mercurius"
 # built documents.
 #
 version: '0.3'
-release: '0.3.7'
+release: '0.3.8'
 # version: The short X.Y version.
 # release: The full version, including alpha/beta/rc tags.
 # If you don’t need the separation provided between version and release,
