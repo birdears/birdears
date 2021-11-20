@@ -114,7 +114,16 @@ can install the software with the following command:
 pip3 install --user --upgrade --no-cache-dir birdears
 ```
 
+Add this to your PATH via your `.bashrc`, `.zshrc` or respective to your shell:
+
+```
+PATH="$(python3 -m site --user-base)/bin:${PATH}"
+```
+This path is where the command will be installed when using `--user` method.
+
 ### Upgrading birdears
+
+The same command that installs upgrades it:
 
 ```sh
 pip3 install --user --upgrade --no-cache-dir birdears
