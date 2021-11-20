@@ -350,6 +350,8 @@ format <https://github.com/iacchus/birdears/raw/master/docs/sphinx/_build/latex/
 Contributors
 ------------
 
+`Contributors <!%5Bbirdears'%20Contributors%5D(https://contrib.rocks/image?repo=iacchus/birdears&max=101)>`__
+
 Made with `contrib.rocks <https://contrib.rocks>`__.
 
 Contributing

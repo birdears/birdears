@@ -239,9 +239,7 @@ and also in [PDF format](https://github.com/iacchus/birdears/raw/master/docs/sph
 
 ## Contributors
 
-<a href="https://github.com/iacchus/birdears/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=iacchus/birdears&max=101" />
-</a>
+[Contributors](![birdears' Contributors](https://contrib.rocks/image?repo=iacchus/birdears&max=101))
 
 Made with [contrib.rocks](https://contrib.rocks).
 
