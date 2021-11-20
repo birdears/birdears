@@ -87,9 +87,11 @@ It is currently [being written here](docs/WRITE-ME-method.md)
 
 ## Installing
 
-`birdears` depends only on `python >= 3.7` and `sox` (which should be installed
-by your distribution's package manager, supposing you're using linux, and which
-provides the `play` command.)
+### 1. Installing the dependencies
+
+`birdears` depends on `python >= 3.7` and `sox` (which should be installed by
+your distribution's package manager (supposing you're using GNU/Linux) and the
+which provides the `play` command.)
 
 *(Please send the steps for your OS)*
 
@@ -99,13 +101,13 @@ provides the `play` command.)
 sudo pacman -Syu sox python python-pip
 ```
 
-#### Ubuntu 20.04 LTS
+#### Debian/Ubuntu
 
 ```sh
 sudo apt install sox python3 python3-pip python3-venv
 ```
 
-### Installing birdears
+### 2. Installing birdears
 
 After installing the above stated dependencies for your operating system, you
 can install the software with the following command:
@@ -114,20 +116,29 @@ can install the software with the following command:
 pip3 install --user --upgrade --no-cache-dir birdears
 ```
 
-Add this to your PATH via your `.bashrc`, `.zshrc` or respective to your shell:
+Then add the installation directory to your PATH via your `.bashrc`, `.zshrc`,
+or the respective file for your shell:
 
 ```
 PATH="$(python3 -m site --user-base)/bin:${PATH}"
 ```
+
 This path is where the command will be installed when using `--user` method.
 
-### Upgrading birdears
+## 3. Running
 
-The same command that installs upgrades it:
+After installing just run:
 
-```sh
-pip3 install --user --upgrade --no-cache-dir birdears
 ```
+birdears --help
+```
+
+or
+
+```
+python3 -m birdears
+```
+
 
 ### What is 'pip'?
 
@@ -145,7 +156,7 @@ the following:
 **pip** will then download and install the software from the Python's official
 repository, the [package in here](https://pypi.org/project/birdears/).
 
-#### In-depth installation
+#### Addendum: In-depth installation
 
 You can choose to use a virtualenv to use birdears; this should give you an idea on how to setup one virtualenv.
 
@@ -166,18 +177,12 @@ pip install birdears         # this will install the software
 birdears --help               # and this will run it
 ```
 
-## Running
+### Upgrading birdears
 
-After installing just run:
+The same command that installs upgrades it:
 
-```
-birdears --help
-```
-
-or
-
-```
-python3 -m birdears
+```sh
+pip3 install --user --upgrade --no-cache-dir birdears
 ```
 
 ## Keybindings
