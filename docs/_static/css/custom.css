@@ -5,17 +5,9 @@
     font-size: unset;
 }
 
-
-
 td.field-body strong
 {
     font-family: 'Roboto', 'Inconsolata' monospace;
-}
-
-code.descclassname {
-    font-family: 'Inconsolata', monospace;
-    font-weight: 300;
-    color: #669;
 }
 
 span.descclassname {
@@ -27,6 +19,8 @@ span.descclassname {
 span.descname {
     font-family: 'Roboto Condensed', monospace !important;
     font-weight: 900 !important;
+    font-size: 120%;
+    color: #222;
 }
 
 h1, h2, h3, h4 {
@@ -38,7 +32,8 @@ em.property {
     font-weight: bold;
     }
 
-dl.method {
+dl.attribute, dl.method {
+    margin: 20px 0 0 0;
     /*border-left: 4px solid #669;
     border-radius: 3px;
     padding-left: 11px;*/
