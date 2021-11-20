@@ -109,33 +109,39 @@ sudo apt install sox python3 python3-pip python3-venv
 
 ### 2. Installing birdears
 
-After installing the above stated dependencies for your operating system, you
+1. After installing the above stated dependencies for your operating system, you
 can install the software with the following command:
 
 ```sh
 pip3 install --user --upgrade --no-cache-dir birdears
 ```
 
-Then add the installation directory to your PATH via your `.bashrc`, `.zshrc`,
+2. Then add the installation directory to your PATH via your `.bashrc`, `.zshrc`,
 or the respective file for your shell:
 
-```
-PATH="$(python3 -m site --user-base)/bin:${PATH}"
+```sh
+export PATH="$(python3 -m site --user-base)/bin:${PATH}"
 ```
 
 This path is where the command will be installed when using `--user` method.
+
+If you prefer, you can skip step 2 and start the software with:
+
+```sh
+python -m birdears --help
+```
 
 ## 3. Running
 
 After installing just run:
 
-```
+```sh
 birdears --help
 ```
 
 or
 
-```
+```sh
 python3 -m birdears
 ```
 
@@ -156,14 +162,16 @@ the following:
 **pip** will then download and install the software from the Python's official
 repository, the [package in here](https://pypi.org/project/birdears/).
 
-#### Addendum: In-depth installation
+#### Addendum: In-depth installation using a virtualenv
 
 You can choose to use a virtualenv to use birdears; this should give you an idea on how to setup one virtualenv.
 
 You should first install virtualenv (for python3) using your distribution's package (supposing you're on linux),
 then on terminal:
 
-```
+*use `python` or `python3` depending on your operating system distribution.*
+
+```sh
 python -m venv ~/.venv       # use the directory ~/.venv/ for the virtualenv
 
 source ~/.venv/bin/activate   # activate the virtualenv; this should be done
