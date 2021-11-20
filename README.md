@@ -144,7 +144,7 @@ You should first install virtualenv (for python3) using your distribution's pack
 then on terminal:
 
 ```
-python3 -m venv ~/.venv       # use the directory ~/.venv/ for the virtualenv
+python -m venv ~/.venv       # use the directory ~/.venv/ for the virtualenv
 
 source ~/.venv/bin/activate   # activate the virtualenv; this should be done
                               # every time you may want to run the software
@@ -152,55 +152,24 @@ source ~/.venv/bin/activate   # activate the virtualenv; this should be done
                               # your .bashrc or .zshrc etc, so to start with
                               # the shell.
 
-pip3 install birdears         # this will install the software
+pip install birdears         # this will install the software
 
 birdears --help               # and this will run it
 ```
-
-#### Alternative installation: Cloning this Repository
-
-This way you can have the mainline version of `birdears`, which sometimes takes time to be updated to `pip`.
-
-1. Install `python3` and `sox` for your linux distribution.
-
-2. Clone the repository:
-
-*ex. cloning it ro a directory named `birdears-root`*
-
-```
-git clone https://github.com/iacchus/birdears.git birdears-root
-```
-
-3. Set the `PYTHONPATH` environment variable to the directory you cloned `birdears`
-
-*first example:*
-
-```
-export PYTHONPATH='/home/YOUR_USERNAME/my-git-repos/birdears-root'
-python -m birdears
-```
-
-*second example:*
-
-```
-PYTHONPATH='/home/YOUR_USERNAME/my-git-repos/birdears-root' python -m birdears
-```
-
-**tip:**
-
-You can also add an *alias* to your `.bashrc` to simplify this
-
-```
-alias birdears="PYTHONPATH='/home/YOUR_USERNAME/my-git-repos/birdears-root' python -m birdears"
-```
-
-**explantion**: the `PYTHONPATH` environment varible will make the birdears module be executed from that especified directory, having preemptiness even if there is already another version installed via `pip`.
 
 ## Running
 
 After installing just run:
 
-`birdears --help`
+```
+birdears --help
+```
+
+or
+
+```
+python3 -m birdears
+```
 
 ## Keybindings
 
