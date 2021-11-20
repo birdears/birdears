@@ -39,7 +39,7 @@ class Resolution:
     resolutions.
 
     A resolution is an answer to a question. It aims to create a mnemonic on
-    how the inverval resvolver to the tonic.
+    how the inverval resolves to the tonic.
     """
 
     def __init__(self, method, question):
