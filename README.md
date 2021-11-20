@@ -142,7 +142,7 @@ birdears --help
 or
 
 ```sh
-python3 -m birdears
+python3 -m birdears --help
 ```
 
 
