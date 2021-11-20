@@ -59,8 +59,8 @@
 method used by [Funcitional Ear Trainer](https://play.google.com/store/apps/details?id=com.kaizen9.fet.android) app for Android.
 
 It has five different kinds of musical exercises, which are:
-`melodic interval`, `harmonic interval`, `melodic dictation` and
-`instrumental`.
+`melodic interval`, `harmonic interval`, `melodic dictation`, `instrumental`,
+and `note name`.
 
 In resume, with the *melodic interval* mode two notes are played one after the
 other and you have to guess the interval; with the `harmonic interval` mode,
