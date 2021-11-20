@@ -32,7 +32,18 @@ em.property {
     font-weight: bold;
     }
 
-dl.attribute, dl.method {
+dl.class > dd > p {
+    /*font-size: 120%;
+    font-weight: 500;*/
+    font-size: 100%;
+    font-weight: 900;
+}
+
+dl.py > dd {
+    margin-top: 17px;
+}
+
+dl.attribute, dl.data, dl.exception, dl.function, dl.method {
     margin: 20px 0 0 0;
     /*border-left: 4px solid #669;
     border-radius: 3px;
