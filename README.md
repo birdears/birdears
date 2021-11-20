@@ -237,6 +237,14 @@ Second octave is usable for exercises with `-n 2` or `--n_octaves 2`
 Full documentation for this software is available at birdears [Read The Docs](https://birdears.readthedocs.io/en/latest/)
 and also in [PDF format](https://github.com/iacchus/birdears/raw/master/docs/sphinx/_build/latex/birdears.pdf).
 
+## Contributors
+
+<a href="https://github.com/iacchus/birdears/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=iacchus/birdears&max=101" />
+</a>
+
+Made with [contrib.rocks](https://contrib.rocks).
+
 ## Contributing
 
 Those who want to contribute to this project can read [CONTRIBUTING.md](CONTRIBUTING.md).

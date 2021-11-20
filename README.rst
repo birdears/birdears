@@ -78,7 +78,7 @@ Support Channels
 TUI
 ~~~
 
-.. figure:: https://github.com/iacchus/birdears/raw/master/screen-20190211-163428-BRT.png
+.. figure:: https://github.com/iacchus/birdears/raw/master/docs/_static/img/screen-20190211-163428-BRT.png
    :alt: screenshot
 
    screenshot
@@ -86,7 +86,7 @@ TUI
 CLI
 ~~~
 
-.. figure:: https://github.com/iacchus/birdears/raw/master/use.gif
+.. figure:: https://github.com/iacchus/birdears/raw/master/docs/_static/img/use.gif
    :alt: birdears screencast
 
    birdears screencast
@@ -128,7 +128,7 @@ What is musical ear training
 
 *this needs to be written. The method.*
 
-It is currently `being written here <WRITE-ME-method.md>`__
+It is currently `being written here <docs/WRITE-ME-method.md>`__
 
 Features
 ~~~~~~~~
@@ -256,7 +256,7 @@ Ionian (Major)
 These are the keybindings for the **Ionian (Major) Scale**; black keys
 are the chromatic notes.
 
-.. figure:: https://github.com/iacchus/birdears/raw/master/docs/keybindings/ionian.png
+.. figure:: https://github.com/iacchus/birdears/raw/master/docs/_static/img/keybindings/ionian.png
    :alt: birdears - ionian(major) keybindings
 
    birdears - ionian(major) keybindings
@@ -264,7 +264,7 @@ are the chromatic notes.
 Dorian
 ~~~~~~
 
-.. figure:: https://github.com/iacchus/birdears/raw/master/docs/keybindings/dorian.png
+.. figure:: https://github.com/iacchus/birdears/raw/master/docs/_static/img/keybindings/dorian.png
    :alt: birdears - dorian keybindings
 
    birdears - dorian keybindings
@@ -272,7 +272,7 @@ Dorian
 Phrygian
 ~~~~~~~~
 
-.. figure:: https://github.com/iacchus/birdears/raw/master/docs/keybindings/phrygian.png
+.. figure:: https://github.com/iacchus/birdears/raw/master/docs/_static/img/keybindings/phrygian.png
    :alt: birdears - phryigian keybindings
 
    birdears - phryigian keybindings
@@ -280,7 +280,7 @@ Phrygian
 Lydian
 ~~~~~~
 
-.. figure:: https://github.com/iacchus/birdears/raw/master/docs/keybindings/lydian.png
+.. figure:: https://github.com/iacchus/birdears/raw/master/docs/_static/img/keybindings/lydian.png
    :alt: birdears - lydian keybindings
 
    birdears - lydian keybindings
@@ -288,7 +288,7 @@ Lydian
 Mixolydian
 ~~~~~~~~~~
 
-.. figure:: https://github.com/iacchus/birdears/raw/master/docs/keybindings/mixolydian.png
+.. figure:: https://github.com/iacchus/birdears/raw/master/docs/_static/img/keybindings/mixolydian.png
    :alt: birdears - mixolydian keybindings
 
    birdears - mixolydian keybindings
@@ -296,7 +296,7 @@ Mixolydian
 Aeolian (minor)
 ~~~~~~~~~~~~~~~
 
-.. figure:: https://github.com/iacchus/birdears/raw/master/docs/keybindings/minor.png
+.. figure:: https://github.com/iacchus/birdears/raw/master/docs/_static/img/keybindings/minor.png
    :alt: birdears - aeolian keybindings
 
    birdears - aeolian keybindings
@@ -304,7 +304,7 @@ Aeolian (minor)
 Locrian
 ~~~~~~~
 
-.. figure:: https://github.com/iacchus/birdears/raw/master/docs/keybindings/locrian.png
+.. figure:: https://github.com/iacchus/birdears/raw/master/docs/_static/img/keybindings/locrian.png
    :alt: birdears - locrian(minor) keybindings
 
    birdears - locrian(minor) keybindings
@@ -312,7 +312,7 @@ Locrian
 Advanced
 --------
 
-.. figure:: https://github.com/iacchus/birdears/raw/master/docs/keybindings/full-advanced.png
+.. figure:: https://github.com/iacchus/birdears/raw/master/docs/_static/img/keybindings/full-advanced.png
    :alt: birdears - advanced keybindings
 
    birdears - advanced keybindings
@@ -346,6 +346,11 @@ Documentation
 Full documentation for this software is available at birdears `Read The
 Docs <https://birdears.readthedocs.io/en/latest/>`__ and also in `PDF
 format <https://github.com/iacchus/birdears/raw/master/docs/sphinx/_build/latex/birdears.pdf>`__.
+
+Contributors
+------------
+
+Made with `contrib.rocks <https://contrib.rocks>`__.
 
 Contributing
 ------------
@@ -387,5 +392,5 @@ http://www.keyboard-layout-editor.com/
    :target: https://pypi.python.org/pypi/birdears
 .. |Documentation Status| image:: https://img.shields.io/badge/readthedocs-latest-orange.svg?style=flat-square
    :target: https://birdears.readthedocs.io/en/latest/
-.. |agpl3| image:: https://github.com/iacchus/birdears/raw/master/agplv3-155x51.png
-   :target: https://github.com/iacchus/birdears/blob/master/LICENSE
+.. |agpl3| image:: https://github.com/iacchus/birdears/raw/master/docs/_static/img/agplv3-155x51.png
+   :target: https://github.com/iacchus/birdears/blob/master/LICENSE.txt
