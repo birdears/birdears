@@ -97,8 +97,6 @@ supposing you're using linux, and which provides the `play` command.)
 
 #### Installing the dependencies: Arch Linux
 
-The dependencies are installed this way:
-
 ```sh
 sudo pacman -Syu sox python python-pip
 ```
