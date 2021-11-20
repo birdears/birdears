@@ -87,22 +87,54 @@ It is currently [being written here](docs/WRITE-ME-method.md)
 
 ## Installing
 
-### Installing the dependencies
+`birdears` depends only on `python >= 3.7` and `sox` (which should be installed
+by your distribution's package manager, supposing you're using linux, and which
+provides the `play` command.)
 
-`birdears` depends only on `python >= 3.5` and `sox` (which should be installed by your distribution's package manager,
-supposing you're using linux, and which provides the `play` command.)
+*(Please send the steps for your OS)*
 
-#### Installing the dependencies: Arch Linux
+#### Arch Linux
 
 ```sh
 sudo pacman -Syu sox python python-pip
 ```
 
+#### Ubuntu 20.04 LTS
+
+```sh
+sudo apt install sox python3 python3-pip python3-venv
+```
+
 ### Installing birdears
+
+After installing the above stated dependencies for your operating system, you
+can install the software with the following command:
 
 ```sh
 pip3 install --user --upgrade --no-cache-dir birdears
 ```
+
+### Upgrading birdears
+
+```sh
+pip3 install --user --upgrade --no-cache-dir birdears
+```
+
+### What is 'pip'?
+
+The software **pip** is the python package installer. The arguments used are
+the following:
+
+| arg | meaning |
+| --- | --- |
+| pip3 install | install command |
+| --user | installs on the user home; no need to root access/ global install |
+| --upgrade | if it is already installed, upgrade nonetheless if there is an upgrade available |
+| --no-cache-dir | avoid previously downloaded versions; always check PyPI server for newer versions |
+| birdears | the software to be installed |
+
+**pip** will then download and install the software from the Python's official
+repository, the [package in here](https://pypi.org/project/birdears/).
 
 #### In-depth installation
 
@@ -112,11 +144,13 @@ You should first install virtualenv (for python3) using your distribution's pack
 then on terminal:
 
 ```
-virtualenv -p python3 ~/.venv # use the directory ~/.venv/ for the virtualenv
+python3 -m venv ~/.venv       # use the directory ~/.venv/ for the virtualenv
 
 source ~/.venv/bin/activate   # activate the virtualenv; this should be done
                               # every time you may want to run the software
-                              # installed here.
+                              # installed here. You can also put this line in
+                              # your .bashrc or .zshrc etc, so to start with
+                              # the shell.
 
 pip3 install birdears         # this will install the software
 
