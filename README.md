@@ -89,9 +89,9 @@ It is currently [being written here](docs/WRITE-ME-method.md)
 
 ### 1. Installing the dependencies
 
-`birdears` depends on `python >= 3.7` and `sox` (which should be installed by
-your distribution's package manager (supposing you're using GNU/Linux) and the
-which provides the `play` command.)
+`birdears` depends on `python >= 3.7` and `sox`; the latter should be installed
+by your distribution's package manager (supposing you're using GNU/Linux) and
+provides the `play` command.)
 
 *(Please send the steps for your OS)*
 
@@ -131,7 +131,7 @@ If you prefer, you can skip step 2 and start the software with:
 python -m birdears --help
 ```
 
-## 3. Running
+### 3. Running
 
 After installing just run:
 
@@ -146,7 +146,7 @@ python3 -m birdears
 ```
 
 
-### What is 'pip'?
+#### What is 'pip'?
 
 The software **pip** is the python package installer. The arguments used are
 the following:
