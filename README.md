@@ -58,17 +58,29 @@
 (musical intelligence, transcribing music, composing). It is a clone of the
 method used by [Funcitional Ear Trainer](https://play.google.com/store/apps/details?id=com.kaizen9.fet.android) app for Android.
 
-It comes with four modes, or four kind of exercises, which are: `melodic`, `harmonic`, `dictation` and `instrumental`.
+It has five different kinds of musical exercises, which are:
+`melodic interval`, `harmonic interval`, `melodic dictation` and
+`instrumental`.
 
-In resume, with the *melodic* mode two notes are played one after the other and you have to guess the interval; with the
-`harmonic` mode, two notes are played simoutaneously (harmonically) and you should guess the interval.
+In resume, with the *melodic interval* mode two notes are played one after the
+other and you have to guess the interval; with the `harmonic interval` mode,
+two notes are played simoutaneously (harmonically) and you should guess the
+interval.
 
-With the *dictation* mode, more than 2 notes are played (*ie*., a melodic dictation) and you should tell what are the intervals
-between them.
+With the *melodic dictation* mode, more than 2 notes are played (*ie*., a
+melodic dictation) and you should tell what are the all intervals composing the
+melody played.
 
-With the *instrumental* mode, it is a like the *dictation*, but you will be expected to play the notes on your instrument, *ie*.,
-birdears will not wait for a typed reply and you should prectice with your own judgement. The melody can be repeat any times and
-you can have as much time as you want to try it out.
+The *instrumental* mode works in a fashion similar to the melodic dictation
+mode, but you will be expected to play the notes on your instrument, *ie*.,
+birdears will not wait for a typed reply and you should prectice with your own
+judgement. The melody can be repeated as much times as necessary so you can
+the time you need to try out.
+
+The `notename` is made for you to learn the note names inside a scale by its
+melodic interval from the tonic. For example, in a tonic of 'C',
+when a `P5` interval is played, you are expected to reply with the `C`'s 5th,
+this is, `G`.
 
 ### What is musical ear training
 
@@ -80,8 +92,7 @@ It is currently [being written here](docs/WRITE-ME-method.md)
 
 * Different kind of exercises for ear training.
 * Pretty much configurable: you can create more difficult exercises as you progress.
-* Exercises from configuration files: you can make presets and share them:
-* you can make your own presets
+* Exercises from configuration files: you can make presets and share them
 * Can be used interactively from a Python console. *(docs needed)*
 * Can be used as a Python library. *(docs needed)*
 
@@ -164,15 +175,16 @@ repository, the [package in here](https://pypi.org/project/birdears/).
 
 #### Addendum: In-depth installation using a virtualenv
 
-You can choose to use a virtualenv to use birdears; this should give you an idea on how to setup one virtualenv.
+You can choose to use a virtualenv to use birdears; this should give you an
+idea on how to setup one virtualenv.
 
-You should first install virtualenv (for python3) using your distribution's package (supposing you're on linux),
-then on terminal:
+You should first install virtualenv (for python3) using your distribution's
+package (supposing you're on linux), then on terminal:
 
 *use `python` or `python3` depending on your operating system distribution.*
 
 ```sh
-python -m venv ~/.venv       # use the directory ~/.venv/ for the virtualenv
+python -m venv ~/.venv       # create the virtualenv in the  ~/.venv/ directory
 
 source ~/.venv/bin/activate   # activate the virtualenv; this should be done
                               # every time you may want to run the software
@@ -235,7 +247,7 @@ These are the keybindings for the **Ionian (Major) Scale**; black keys are the c
 
 ## Advanced
 
-![birdears - advanced keybindings](https://github.com/iacchus/birdears/raw/master/docs/_static/img/keybindings/full-advanced.png)
+![birdears - advanced keybindings](https://github.com/iacchus/birdears/raw/master/docs/_static/img/keybindings/keyboard-layout.png)
 
 *this is still being improved*
 
