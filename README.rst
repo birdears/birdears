@@ -148,8 +148,8 @@ Installing the dependencies
 be installed by your distribution’s package manager, supposing you’re
 using linux, and which provides the ``play`` command.)
 
-Arch Linux
-^^^^^^^^^^
+Installing the dependencies: Arch Linux
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The dependencies are installed this way:
 
@@ -350,7 +350,7 @@ format <https://github.com/iacchus/birdears/raw/master/docs/sphinx/_build/latex/
 Contributors
 ------------
 
-`Contributors <!%5Bbirdears'%20Contributors%5D(https://contrib.rocks/image?repo=iacchus/birdears&max=101)>`__
+|birdears’ Contributors|
 
 Made with `contrib.rocks <https://contrib.rocks>`__.
 
@@ -359,22 +359,6 @@ Contributing
 
 Those who want to contribute to this project can read
 `CONTRIBUTING.md <CONTRIBUTING.md>`__.
-
-Etc
----
-
-the screencast was recorded with a command similar to
-
-::
-
-   COLUMNS=120 LINES=36 ttyrec
-   seq2gif -s 2 -i ttyrecord -w 120 -h 36 -o use.gif
-
-`ttyrec <https://aur.archlinux.org/packages/ttyrec/>`__ and
-`seq2gif <https://github.com/saitoha/seq2gif>`__
-
-keyboard layouts were generated with
-http://www.keyboard-layout-editor.com/
 
 .. |Maintenance| image:: https://img.shields.io/maintenance/yes/2021.svg?style=flat-square
    :target: https://github.com/iacchus/birdears/issues/new?title=Is+birdears+still+maintained&body=Please+file+an+issue+if+the+maintained+button+says+no
@@ -396,3 +380,5 @@ http://www.keyboard-layout-editor.com/
    :target: https://birdears.readthedocs.io/en/latest/
 .. |agpl3| image:: https://github.com/iacchus/birdears/raw/master/docs/_static/img/agplv3-155x51.png
    :target: https://github.com/iacchus/birdears/blob/master/LICENSE.txt
+.. |birdears’ Contributors| image:: https://contrib.rocks/image?repo=iacchus/birdears&max=101
+   :target: https://github.com/iacchus/birdears/graphs/contributors

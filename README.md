@@ -243,23 +243,10 @@ and also in [PDF format](https://github.com/iacchus/birdears/raw/master/docs/sph
 
 ## Contributors
 
-[Contributors](![birdears' Contributors](https://contrib.rocks/image?repo=iacchus/birdears&max=101))
+[![birdears' Contributors](https://contrib.rocks/image?repo=iacchus/birdears&max=101)](https://github.com/iacchus/birdears/graphs/contributors)
 
 Made with [contrib.rocks](https://contrib.rocks).
 
 ## Contributing
 
 Those who want to contribute to this project can read [CONTRIBUTING.md](CONTRIBUTING.md).
-
-## Etc
-
-the screencast was recorded with a command similar to
-
-```
-COLUMNS=120 LINES=36 ttyrec
-seq2gif -s 2 -i ttyrecord -w 120 -h 36 -o use.gif
-```
-
-[ttyrec](https://aur.archlinux.org/packages/ttyrec/) and [seq2gif](https://github.com/saitoha/seq2gif)
-
-keyboard layouts were generated with http://www.keyboard-layout-editor.com/
