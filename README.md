@@ -13,7 +13,7 @@
 
 | **Licensed with [GNU AGPLv3](https://github.com/iacchus/birdears/blob/master/LICENSE)** |
 | ----------------- |
-| [![agpl3](https://github.com/iacchus/birdears/raw/master/agplv3-155x51.png)](https://github.com/iacchus/birdears/blob/master/LICENSE) |
+| [![agpl3](https://github.com/iacchus/birdears/raw/master/docs/_static/img/agplv3-155x51.png)](https://github.com/iacchus/birdears/blob/master/LICENSE.txt) |
 
 <!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
@@ -47,11 +47,11 @@
 
 ### TUI
 
-![screenshot](https://github.com/iacchus/birdears/raw/master/screen-20190211-163428-BRT.png)
+![screenshot](https://github.com/iacchus/birdears/raw/master/docs/_static/img/screen-20190211-163428-BRT.png)
 
 ### CLI
 
-![birdears screencast](https://github.com/iacchus/birdears/raw/master/use.gif)
+![birdears screencast](https://github.com/iacchus/birdears/raw/master/docs/_static/img/use.gif)
 
 ## Introduction
 
@@ -77,7 +77,7 @@ you can have as much time as you want to try it out.
 
 *this needs to be written. The method.*
 
-It is currently [being written here](WRITE-ME-method.md)
+It is currently [being written here](docs/WRITE-ME-method.md)
 
 ### Features
 
@@ -183,35 +183,35 @@ for all the other intervals.
 
 These are the keybindings for the **Ionian (Major) Scale**; black keys are the chromatic notes.
 
-![birdears - ionian(major) keybindings](https://github.com/iacchus/birdears/raw/master/docs/keybindings/ionian.png)
+![birdears - ionian(major) keybindings](https://github.com/iacchus/birdears/raw/master/docs/_static/img/keybindings/ionian.png)
 
 ### Dorian
 
-![birdears - dorian keybindings](https://github.com/iacchus/birdears/raw/master/docs/keybindings/dorian.png)
+![birdears - dorian keybindings](https://github.com/iacchus/birdears/raw/master/docs/_static/img/keybindings/dorian.png)
 
 ### Phrygian
 
-![birdears - phryigian keybindings](https://github.com/iacchus/birdears/raw/master/docs/keybindings/phrygian.png)
+![birdears - phryigian keybindings](https://github.com/iacchus/birdears/raw/master/docs/_static/img/keybindings/phrygian.png)
 
 ### Lydian
 
-![birdears - lydian keybindings](https://github.com/iacchus/birdears/raw/master/docs/keybindings/lydian.png)
+![birdears - lydian keybindings](https://github.com/iacchus/birdears/raw/master/docs/_static/img/keybindings/lydian.png)
 
 ### Mixolydian
 
-![birdears - mixolydian keybindings](https://github.com/iacchus/birdears/raw/master/docs/keybindings/mixolydian.png)
+![birdears - mixolydian keybindings](https://github.com/iacchus/birdears/raw/master/docs/_static/img/keybindings/mixolydian.png)
 
 ### Aeolian (minor)
 
-![birdears - aeolian keybindings](https://github.com/iacchus/birdears/raw/master/docs/keybindings/minor.png)
+![birdears - aeolian keybindings](https://github.com/iacchus/birdears/raw/master/docs/_static/img/keybindings/minor.png)
 
 ### Locrian
 
-![birdears - locrian(minor) keybindings](https://github.com/iacchus/birdears/raw/master/docs/keybindings/locrian.png)
+![birdears - locrian(minor) keybindings](https://github.com/iacchus/birdears/raw/master/docs/_static/img/keybindings/locrian.png)
 
 ## Advanced
 
-![birdears - advanced keybindings](https://github.com/iacchus/birdears/raw/master/docs/keybindings/full-advanced.png)
+![birdears - advanced keybindings](https://github.com/iacchus/birdears/raw/master/docs/_static/img/keybindings/full-advanced.png)
 
 *this is still being improved*
 
