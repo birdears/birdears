@@ -152,7 +152,6 @@ linux_mac_task:
 #  build_script: *build
 #  test_script: *test
 
-
 coverage_task:
   name: coverage (Linux - 3.6)
   clone_script: *clone
@@ -168,16 +167,16 @@ coverage_task:
     #- test (OS X)
   pip_install_script:
     pip install --user --upgrade coverage coveralls pre-commit
-  precommit_script:
-    - pre-commit install
-    - pre-commit run --all-files
+  #precommit_script:
+  #  - pre-commit install
+  #  - pre-commit run --all-files
   <<: *REGULAR_TASK_TEMPLATE
   coverage_script:
     - coveralls
-  pre_commit_cache: &pre-commit-cache
-    folder: $PRE_COMMIT_HOME
-    fingerprint_script:
-      - echo $CIRRUS_OS
-      - python --version
-      - pre-commit --version
-      - cat .pre-commit-config.yaml
+  #pre_commit_cache: &pre-commit-cache
+  #  folder: $PRE_COMMIT_HOME
+  #  fingerprint_script:
+  #    - echo $CIRRUS_OS
+  #    - python --version
+  #    - pre-commit --version
+  #    - cat .pre-commit-config.yaml
