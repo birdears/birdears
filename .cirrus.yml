@@ -14,7 +14,7 @@ env:
   PIP_CACHE: ${HOME}/.cache/pip
   LC_ALL: C.UTF-8
   LANG: C.UTF-8
-  COVERAGE: YES
+  COVERAGE: NO
   CI_NAME: cirrus-ci
   CI_BRANCH: ${CIRRUS_BRANCH}
   CI_PULL_REQUEST: ${CIRRUS_PR}
@@ -158,7 +158,7 @@ coverage_task:
   container: {image: "python:3.6-buster"}
   env:
     COVERAGE: yes
-    PRE_COMMIT_HOME: ${HOME}/.cache/pre-commit
+    #PRE_COMMIT_HOME: ${HOME}/.cache/pre-commit
   depends_on:
     - test (Linux - 3.6)
     - test (Linux - 3.7)
@@ -166,7 +166,8 @@ coverage_task:
     #- test (Linux - Anaconda)
     #- test (OS X)
   pip_install_script:
-    pip install --user --upgrade coverage coveralls pre-commit
+    #pip install --user --upgrade coverage coveralls pre-commit
+    pip install --user --upgrade coverage coveralls
   #precommit_script:
   #  - pre-commit install
   #  - pre-commit run --all-files
