@@ -90,67 +90,67 @@ linux_mac_task:
   <<: *REGULAR_TASK_TEMPLATE
 
 
-# If you find some problems with long paths on Windows,
-# please check the .cirrus.yml file of PyScaffold itself for some workarounds.
-windows_task:
-  name: test (Windows)
-  tools_cache:
-    folder: 'C:\tools'
-    fingerprint_script:
-      - ps: echo "$env:CIRRUS_OS - nuget v5.10.0 - git 2.32.0.2"
-    populate_script:
-      - ps: (mkdir 'C:\tools')
-      # ^  use parentheses to suppress errors
-      - ps: Invoke-WebRequest -OutFile 'C:\tools\nuget.exe' 'https://dist.nuget.org/win-x86-commandline/v5.10.0/nuget.exe'
-      - ps: nuget install GitForWindows -Version 2.32.0.2 -NonInteractive -OutputDirectory 'C:\tools'
-  workaround_git_script:
-    - git config --system core.longpaths true  # Fix for windows git checkout problems
-  clone_script:
-    # Use custom cloning since otherwise git tags are missing
-    CMD.exe /C ECHO ON &
-    IF NOT DEFINED CIRRUS_PR (
-      git clone --recursive --branch=%CIRRUS_BRANCH% https://x-access-token:%CIRRUS_REPO_CLONE_TOKEN%@github.com/%CIRRUS_REPO_FULL_NAME%.git %CIRRUS_WORKING_DIR% &
-      git reset --hard %CIRRUS_CHANGE_IN_REPO%
-    ) ELSE (
-      git clone --recursive https://x-access-token:%CIRRUS_REPO_CLONE_TOKEN%@github.com/%CIRRUS_REPO_FULL_NAME%.git %CIRRUS_WORKING_DIR% &
-      git fetch origin pull/%CIRRUS_PR%/head:pull/%CIRRUS_PR% &
-      git reset --hard %CIRRUS_CHANGE_IN_REPO%
-    )
-  windows_container:
-    image: "python:3.8-windowsservercore"
-    os_version: 2019
-  env:
-    # Single quotes are used bellow to escape Windows backslash and % (YAML restrictions).
-    PYTHON_HOME: 'C:\Python'
-    PYTHON_APPDATA: '%APPDATA%\Python\Python38'
-    # ^  update when python version changes
-    GIT_HOME: 'C:\tools\GitForWindows.2.32.0.2\tools'
-    # ^ update when git version changes
-    HOME: '%USERPROFILE%'
-    USERNAME: ContainerAdministrator
-    # ^  ensure USERNAME is set in Windows, so the getpass module doesn't raise exceptions
-    PATH: '%HOME%\.local\bin\;%PYTHON_APPDATA%\Scripts\;%PYTHON_HOME%\;%PYTHON_HOME%\Scripts\;C:\tools\;%GIT_HOME%\cmd\;%PATH%'
-    # ^  add user paths (if POSIX tools are needed you can try also adding %GIT_HOME\usr\bin\)
-    PIP_CACHE: '%LocalAppData%\pip\Cache'
-    PIP_TRUSTED_HOST: 'pypi.org pypi.python.org files.pythonhosted.org'
-    PIP_CONFIG_FILE: '%AppData%\pip\pip.ini'
-    COVERAGE: 'NO'
-  pip_cache:
-    folder: '%PIP_CACHE%'
-  install_script:
-    # Activate long file paths to avoid some errors
-    - REG ADD "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem" /v LongPathsEnabled /t REG_DWORD /d 1 /f
-    # Set Windows encoding to UTF-8
-    - REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Command Processor" /v Autorun /t REG_SZ /d "@chcp 65001>nul" /f
-    - python -m ensurepip
-    - python -m pip install --upgrade --user pip setuptools certifi tox
-  prepare_script: *prepare
-  clean_workspace_script:
-    # Avoid information carried from one run to the other
-    # CMD is not capable of globbing, so we have to use PowerShell
-    - ps: (rm -Recurse -Force -ErrorAction SilentlyContinue .tox,junit-*.xml)
-  build_script: *build
-  test_script: *test
+## If you find some problems with long paths on Windows,
+## please check the .cirrus.yml file of PyScaffold itself for some workarounds.
+#windows_task:
+#  name: test (Windows)
+#  tools_cache:
+#    folder: 'C:\tools'
+#    fingerprint_script:
+#      - ps: echo "$env:CIRRUS_OS - nuget v5.10.0 - git 2.32.0.2"
+#    populate_script:
+#      - ps: (mkdir 'C:\tools')
+#      # ^  use parentheses to suppress errors
+#      - ps: Invoke-WebRequest -OutFile 'C:\tools\nuget.exe' 'https://dist.nuget.org/win-x86-commandline/v5.10.0/nuget.exe'
+#      - ps: nuget install GitForWindows -Version 2.32.0.2 -NonInteractive -OutputDirectory 'C:\tools'
+#  workaround_git_script:
+#    - git config --system core.longpaths true  # Fix for windows git checkout problems
+#  clone_script:
+#    # Use custom cloning since otherwise git tags are missing
+#    CMD.exe /C ECHO ON &
+#    IF NOT DEFINED CIRRUS_PR (
+#      git clone --recursive --branch=%CIRRUS_BRANCH% https://x-access-token:%CIRRUS_REPO_CLONE_TOKEN%@github.com/%CIRRUS_REPO_FULL_NAME%.git %CIRRUS_WORKING_DIR% &
+#      git reset --hard %CIRRUS_CHANGE_IN_REPO%
+#    ) ELSE (
+#      git clone --recursive https://x-access-token:%CIRRUS_REPO_CLONE_TOKEN%@github.com/%CIRRUS_REPO_FULL_NAME%.git %CIRRUS_WORKING_DIR% &
+#      git fetch origin pull/%CIRRUS_PR%/head:pull/%CIRRUS_PR% &
+#      git reset --hard %CIRRUS_CHANGE_IN_REPO%
+#    )
+#  windows_container:
+#    image: "python:3.8-windowsservercore"
+#    os_version: 2019
+#  env:
+#    # Single quotes are used bellow to escape Windows backslash and % (YAML restrictions).
+#    PYTHON_HOME: 'C:\Python'
+#    PYTHON_APPDATA: '%APPDATA%\Python\Python38'
+#    # ^  update when python version changes
+#    GIT_HOME: 'C:\tools\GitForWindows.2.32.0.2\tools'
+#    # ^ update when git version changes
+#    HOME: '%USERPROFILE%'
+#    USERNAME: ContainerAdministrator
+#    # ^  ensure USERNAME is set in Windows, so the getpass module doesn't raise exceptions
+#    PATH: '%HOME%\.local\bin\;%PYTHON_APPDATA%\Scripts\;%PYTHON_HOME%\;%PYTHON_HOME%\Scripts\;C:\tools\;%GIT_HOME%\cmd\;%PATH%'
+#    # ^  add user paths (if POSIX tools are needed you can try also adding %GIT_HOME\usr\bin\)
+#    PIP_CACHE: '%LocalAppData%\pip\Cache'
+#    PIP_TRUSTED_HOST: 'pypi.org pypi.python.org files.pythonhosted.org'
+#    PIP_CONFIG_FILE: '%AppData%\pip\pip.ini'
+#    COVERAGE: 'NO'
+#  pip_cache:
+#    folder: '%PIP_CACHE%'
+#  install_script:
+#    # Activate long file paths to avoid some errors
+#    - REG ADD "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem" /v LongPathsEnabled /t REG_DWORD /d 1 /f
+#    # Set Windows encoding to UTF-8
+#    - REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Command Processor" /v Autorun /t REG_SZ /d "@chcp 65001>nul" /f
+#    - python -m ensurepip
+#    - python -m pip install --upgrade --user pip setuptools certifi tox
+#  prepare_script: *prepare
+#  clean_workspace_script:
+#    # Avoid information carried from one run to the other
+#    # CMD is not capable of globbing, so we have to use PowerShell
+#    - ps: (rm -Recurse -Force -ErrorAction SilentlyContinue .tox,junit-*.xml)
+#  build_script: *build
+#  test_script: *test
 
 
 coverage_task:
