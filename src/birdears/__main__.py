@@ -180,6 +180,10 @@ resolution_method_option = \
     click.option('-r', '--resolution_method', type=str,
                  default='nearest_tonic', metavar='<resolution_method>',
                  help='The name of a resolution method.')
+repeat_only_resolution_method_option = \
+    click.option('-r', '--resolution_method', type=str,
+                 default='repeat_only', metavar='<resolution_method>',
+                 help='The name of a resolution method.')
 
 #
 # melodic interval
@@ -305,7 +309,8 @@ Valid values are as follows:
 @valid_intervals_option
 @user_durations_option
 @prequestion_method_option
-@resolution_method_option
+#@resolution_method_option
+@repeat_only_resolution_method_option
 def dictation(*args, **kwargs):
     """Melodic dictation
     """
@@ -352,7 +357,8 @@ Valid values are as follows:
 @valid_intervals_option
 @user_durations_option
 @prequestion_method_option
-@resolution_method_option
+#@resolution_method_option
+@repeat_only_resolution_method_option
 def instrumental(*args, **kwargs):
     """Instrumental melodic dictation (time-based)
     """
