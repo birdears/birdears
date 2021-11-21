@@ -46,9 +46,9 @@ repos:
 #   - id: blacken-docs
 #     additional_dependencies: [black]
 
-- repo: https://github.com/PyCQA/flake8
-  rev: 4.0.1
-  hooks:
-  - id: flake8
-  ## You can add flake8 plugins via `additional_dependencies`:
-  #  additional_dependencies: [flake8-bugbear]
+#- repo: https://github.com/PyCQA/flake8
+#  rev: 4.0.1
+#  hooks:
+#  - id: flake8
+#  ## You can add flake8 plugins via `additional_dependencies`:
+#  #  additional_dependencies: [flake8-bugbear]

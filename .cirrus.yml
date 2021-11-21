@@ -14,7 +14,7 @@ env:
   PIP_CACHE: ${HOME}/.cache/pip
   LC_ALL: C.UTF-8
   LANG: C.UTF-8
-  COVERAGE: NO
+  COVERAGE: YES
   CI_NAME: cirrus-ci
   CI_BRANCH: ${CIRRUS_BRANCH}
   CI_PULL_REQUEST: ${CIRRUS_PR}
@@ -74,19 +74,19 @@ linux_mac_task:
       container: {image: "continuumio/anaconda3:2021.05"}
       extra_install_script:
         - conda install -y -c conda-forge virtualenv build setuptools setuptools-scm pip tox
-    - name: test (OS X)
-      macos_instance: {image: "big-sur-xcode"}
-      env:
-        PYTHON_VERSION: 3.7
-        # ^  update when the default version of python in homebrew changes
-        PATH: "${HOME}/.local/bin:${HOME}/Library/Python/${PYTHON_VERSION}/bin:/usr/local/opt/python/libexec/bin:${PATH}"
-        # ^  add user and homebrew paths
-        PIP_CACHE: "${HOME}/Library/Caches/pip"
-      brew_cache:
-        folder: "$HOME/Library/Caches/Homebrew"
-      install_script:
-        - brew install python gnu-tar sox
-        - brew cleanup
+    #- name: test (OS X)
+    #  macos_instance: {image: "big-sur-xcode"}
+    #  env:
+    #    PYTHON_VERSION: 3.7
+    #    # ^  update when the default version of python in homebrew changes
+    #    PATH: "${HOME}/.local/bin:${HOME}/Library/Python/${PYTHON_VERSION}/bin:/usr/local/opt/python/libexec/bin:${PATH}"
+    #    # ^  add user and homebrew paths
+    #    PIP_CACHE: "${HOME}/Library/Caches/pip"
+    #  brew_cache:
+    #    folder: "$HOME/Library/Caches/Homebrew"
+    #  install_script:
+    #    - brew install python gnu-tar sox
+    #    - brew cleanup
   <<: *REGULAR_TASK_TEMPLATE
 
 
