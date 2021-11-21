@@ -29,6 +29,7 @@ env:
     - python -m pip install --upgrade pip setuptools tox
   prepare_script: &prepare
     # This script is also used in Windows, so the shell is not POSIX
+    - apt-get update && apt-get install -y --no-install-recommends sox
     - git config --global user.email "kassivs+git@gmail.com"
     - git config --global user.name "I.M."
   clean_workspace_script:
