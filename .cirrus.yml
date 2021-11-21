@@ -61,6 +61,12 @@ linux_mac_task:
   # Use custom cloning since otherwise git tags are missing
   clone_script: *clone
   matrix:
+    - name: test (Linux - 3.3)
+      container: {image: "python:3.3-buster"}
+    - name: test (Linux - 3.4)
+      container: {image: "python:3.4-buster"}
+    - name: test (Linux - 3.5)
+      container: {image: "python:3.5-buster"}
     - name: test (Linux - 3.6)
       container: {image: "python:3.6-buster"}
     - name: test (Linux - 3.7)
@@ -160,6 +166,9 @@ coverage_task:
     COVERAGE: yes
     PRE_COMMIT_HOME: ${HOME}/.cache/pre-commit
   depends_on:
+    - test (Linux - 3.3)
+    - test (Linux - 3.4)
+    - test (Linux - 3.5)
     - test (Linux - 3.6)
     - test (Linux - 3.7)
     - test (Linux - 3.8)
