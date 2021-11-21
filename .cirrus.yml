@@ -8,6 +8,7 @@ env:
   PATH: ${HOME}/.local/bin:${PATH}
   # ^  add user paths
   # COVERALLS_REPO_TOKEN: ENCRYPTED[]
+  COVERALLS_REPO_TOKEN: ENCRYPTED[bdd14cd954cf631c930575f9c2dcf9aab360b0d2de6b642424e5b825112e2532e6a6d0147149bc52e1a7b79fb7217415]
   # ^ You can add an encrypted token or use CirrusCI web interface to set the variable
   #   See discussion in: https://github.com/cirruslabs/cirrus-ci-docs/discussions/866
   PIP_CACHE: ${HOME}/.cache/pip
@@ -61,12 +62,6 @@ linux_mac_task:
   # Use custom cloning since otherwise git tags are missing
   clone_script: *clone
   matrix:
-    - name: test (Linux - 3.3)
-      container: {image: "python:3.3-buster"}
-    - name: test (Linux - 3.4)
-      container: {image: "python:3.4-buster"}
-    - name: test (Linux - 3.5)
-      container: {image: "python:3.5-buster"}
     - name: test (Linux - 3.6)
       container: {image: "python:3.6-buster"}
     - name: test (Linux - 3.7)
@@ -90,7 +85,7 @@ linux_mac_task:
       brew_cache:
         folder: "$HOME/Library/Caches/Homebrew"
       install_script:
-        - brew install python gnu-tar
+        - brew install python gnu-tar sox
         - brew cleanup
   <<: *REGULAR_TASK_TEMPLATE
 
@@ -166,9 +161,6 @@ coverage_task:
     COVERAGE: yes
     PRE_COMMIT_HOME: ${HOME}/.cache/pre-commit
   depends_on:
-    - test (Linux - 3.3)
-    - test (Linux - 3.4)
-    - test (Linux - 3.5)
     - test (Linux - 3.6)
     - test (Linux - 3.7)
     - test (Linux - 3.8)
