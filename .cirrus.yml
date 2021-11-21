@@ -70,10 +70,10 @@ linux_mac_task:
       container: {image: "python:3.8-buster"}
     - name: test (Linux - 3.9)
       container: {image: "python:3.9-buster"}
-    - name: test (Linux - Anaconda)
-      container: {image: "continuumio/anaconda3:2021.05"}
-      extra_install_script:
-        - conda install -y -c conda-forge virtualenv build setuptools setuptools-scm pip tox
+    #- name: test (Linux - Anaconda)
+    #  container: {image: "continuumio/anaconda3:2021.05"}
+    #  extra_install_script:
+    #    - conda install -y -c conda-forge virtualenv build setuptools setuptools-scm pip tox
     #- name: test (OS X)
     #  macos_instance: {image: "big-sur-xcode"}
     #  env:
@@ -164,7 +164,7 @@ coverage_task:
     - test (Linux - 3.6)
     - test (Linux - 3.7)
     - test (Linux - 3.8)
-    - test (Linux - Anaconda)
+    #- test (Linux - Anaconda)
     #- test (OS X)
   pip_install_script:
     pip install --user --upgrade coverage coveralls pre-commit
