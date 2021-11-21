@@ -162,7 +162,8 @@ Valid values are as follows:
               help='If chosen, question has chromatic notes.')
 @click.option('-n', '--n_octaves', type=click.IntRange(1, 2), default=1,
               metavar='<n max>', help='Maximum number of octaves.')
-@click.option('-v', '--valid_intervals', type=str, default=CHROMATIC_TYPE,
+@click.option('-v', '--valid_intervals', type=str,
+              default=str(",").join([str(item) for item in CHROMATIC_TYPE]),
               metavar='<1,2,..>', help='A comma-separated list without spaces\
               of valid scale degrees to be chosen for the question.')
 @click.option('-q', '--user_durations', type=str, default=None,
@@ -221,7 +222,8 @@ Valid values are as follows:
               help='If chosen, question has chromatic notes.')
 @click.option('-n', '--n_octaves', type=click.IntRange(1, 2), default=1,
               metavar='<n max>', help='Maximum number of octaves.')
-@click.option('-v', '--valid_intervals', type=str, default=CHROMATIC_TYPE,
+@click.option('-v', '--valid_intervals', type=str,
+              default=str(",").join([str(item) for item in CHROMATIC_TYPE]),
               metavar='<1,2,..>', help='A comma-separated list without spaces\
               of valid scale degrees to be chosen for the question.')
 @click.option('-q', '--user_durations', type=str, default=None,
@@ -287,7 +289,8 @@ Valid values are as follows:
               help='If chosen, question has chromatic notes.')
 @click.option('-n', '--n_octaves', type=click.IntRange(1, 2), default=1,
               metavar='<n max>', help='Maximum number of octaves.')
-@click.option('-v', '--valid_intervals', type=str, default=CHROMATIC_TYPE,
+@click.option('-v', '--valid_intervals',
+              default=str(",").join([str(item) for item in CHROMATIC_TYPE]),
               metavar='<1,2,..>', help='A comma-separated list without spaces\
               of valid scale degrees to be chosen for the question.')
 @click.option('-q', '--user_durations', type=str, default=None,
@@ -356,7 +359,8 @@ Valid values are as follows:
               help='If chosen, question has chromatic notes.')
 @click.option('-n', '--n_octaves', type=click.IntRange(1, 2), default=1,
               metavar='<n max>', help='Maximum number of octaves.')
-@click.option('-v', '--valid_intervals', type=str, default=CHROMATIC_TYPE,
+@click.option('-v', '--valid_intervals', type=str,
+              default=str(",").join([str(item) for item in CHROMATIC_TYPE]),
               metavar='<1,2,..>', help='A comma-separated list without spaces\
               of valid scale degrees to be chosen for the question.')
 @click.option('-q', '--user_durations', type=str, default=None,
@@ -415,7 +419,8 @@ Valid values are as follows:
               help='If chosen, question has chromatic notes.')
 @click.option('-n', '--n_octaves', type=click.IntRange(1, 2), default=1,
               metavar='<n max>', help='Maximum number of octaves.')
-@click.option('-v', '--valid_intervals', type=str, default=CHROMATIC_TYPE,
+@click.option('-v', '--valid_intervals', type=str,
+              default=str(",").join([str(item) for item in CHROMATIC_TYPE]),
               metavar='<1,2,..>', help='A comma-separated list without spaces\
               of valid scale degrees to be chosen for the question.')
 @click.option('-q', '--user_durations', type=str, default=None,
