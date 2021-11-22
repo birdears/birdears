@@ -1,7 +1,6 @@
 # birdears
 
 [![Maintenance](https://img.shields.io/maintenance/yes/2021.svg?style=flat-square)](https://github.com/iacchus/birdears/issues/new?title=Is+birdears+still+maintained&body=Please+file+an+issue+if+the+maintained+button+says+no)
-[![Travis Build Status](https://img.shields.io/travis/iacchus/birdears.svg?style=flat-square&label=build)](https://travis-ci.org/iacchus/birdears)
 [![Build Status](https://api.cirrus-ci.com/github/iacchus/birdears.svg)](https://cirrus-ci.com/github/iacchus/birdears)
 [![Coveralls](https://img.shields.io/coveralls/iacchus/birdears.svg?style=flat-square&label=coverage)](https://coveralls.io/github/iacchus/birdears)
 [![Awesome Sheet Music](https://img.shields.io/badge/awesome-sheet%20music-blue.svg?style=flat-square&logoWidth=14;&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAABmJLR0QA%2FwD%2FAP%2BgvaeTAAAACXBIWXMAAD2EAAA9hAHVrK90AAAAB3RJTUUH4QYVEQ4dGSq4mgAAAuVJREFUKM8FwUtoHGUAB%2FD%2F983s7CSb7s6%2BsrtJtqbEJA21llgQi4VaCL5QRKXQg6JXEUTqrfQi9CTozYPeUgrtxceh1kbEEEtBeslzTbdrup109r2zMzvZ2Xl8s9%2F4%2B5Hvfg4vOGpzqJf3aCpY%2FfTMi5OvE%2B6mdx%2Fud0YjP5PNxpiuh6X9%2F3I%2F6mzcScvT%2BvjYCUucknhkYSnvNYTvr5169YNLCEMAHKfPvZxwrBZaqoaGWn%2BNBNWlJ4dzn3147n2totckelwZhdr%2B9U%2FOvnnx0kRSgTJdhOBpIPYzSMyE7DaQJEcoFOO5lFK%2BeszcjxblGU%2BUzHosO5%2B6Ek2kQUYuupt3cXxxEoTIYN0WFDGHNnGwvVFGLJ1eXqv%2B8dzJPK%2FRhvbLKwtnzoI7BvyBjqBzCGEiC5ougAgCCJUAymHZPuYWc8J27cGV3c76jOgM9FlwjpE7APMZAscHH%2FYQsBgAhqBvYCyeREgRbm%2FV3aXixLwf6DFxqpCIDpqPQMQIjNoTBLaN9uYO7v30T9h72sHlL1fIV1%2Bvh0mBsp16na6czmUuJM5XaM%2Fo5UEp9JqGeGEO7tBHfGYW73x8kay8%2FTwRvADL02PIClw6shkxbd8sxl%2Fo0yghVl%2FvIyoL0DY30G8ZcKt7kDnDVDGHQbOFNAFZzlC4ozDiub6SofGAWsNIZWh10X7WwtODNsyeh15ZhfVYw6M%2Ft9Do%2B1jdMsPAC%2BEEHCyAy5WCT5VE%2FqDyr4rh0IZlu%2BygZg%2FdaAw2O0KTUWh%2FVXBe4kT1KVgIeAPh1rHxJBdufHsnKJXvXK7slIV61SodNI7iswVRDgnB%2FEuz8IiDvs1xs2yH1Q099oaZfyj5lkRVf4Ta4%2B69vuF6ajeodkRJ2tzroVRq4%2F5v2xiTFahd115ITn5eu23L5on3mBn5O0UNTxB2m%2FIDdZD5hiUW7qcyhd%2B%2F%2BHUNc2%2B9i8OBwFfXDo11Hfjho2t3I4tRIRoYNBAV738fRoHSSCa2GwAAAABJRU5ErkJggg%3D%3D)](https://iacchus.github.io/awesome-sheet-music/)
@@ -11,6 +10,7 @@
 [![PyPI Version](https://img.shields.io/pypi/v/birdears.svg?style=flat-square)](https://pypi.python.org/pypi/birdears)
 [![PyPI Python Versions](https://img.shields.io/pypi/pyversions/birdears.svg?style=flat-square)](https://pypi.python.org/pypi/birdears)
 [![Documentation Status](https://img.shields.io/badge/readthedocs-latest-orange.svg?style=flat-square)](https://birdears.readthedocs.io/en/latest/)
+[![PyPI - License](https://img.shields.io/pypi/l/birdears)](https://github.com/iacchus/birdears/blob/master/LICENSE.txt)
 
 | **Licensed with [GNU AGPLv3](https://github.com/iacchus/birdears/blob/master/LICENSE)** |
 | ----------------- |
@@ -57,7 +57,7 @@
 
 `birdears` is a software written in Python 3 for ear training for musicians
 (musical intelligence, transcribing music, composing). It is a clone of the
-method used by [Funcitional Ear Trainer](https://play.google.com/store/apps/details?id=com.kaizen9.fet.android) app for Android.
+method used by [Functional Ear Trainer](https://play.google.com/store/apps/details?id=com.kaizen9.fet.android) app for Android.
 
 It has five different kinds of musical exercises, which are:
 `melodic interval`, `harmonic interval`, `melodic dictation`, `instrumental`,
@@ -65,7 +65,7 @@ and `note name`.
 
 In resume, with the *melodic interval* mode two notes are played one after the
 other and you have to guess the interval; with the `harmonic interval` mode,
-two notes are played simoutaneously (harmonically) and you should guess the
+two notes are played simultaneously (harmonically) and you should guess the
 interval.
 
 With the *melodic dictation* mode, more than 2 notes are played (*ie*., a
@@ -74,12 +74,12 @@ melody played.
 
 The *instrumental* mode works in a fashion similar to the melodic dictation
 mode, but you will be expected to play the notes on your instrument, *ie*.,
-birdears will not wait for a typed reply and you should prectice with your own
+birdears will not wait for a typed reply and you should practice with your own
 judgement. The melody can be repeated as much times as necessary so you can
 the time you need to try out.
 
-The `notename` is made for you to learn the note names inside a scale by its
-melodic interval from the tonic. For example, in a tonic of 'C',
+The *notename* is made for you to learn the note names inside a scale by it's
+melodic interval from the tonic. For example, in a tonic of `C`,
 when a `P5` interval is played, you are expected to reply with the `C`'s 5th,
 this is, `G`.
 
