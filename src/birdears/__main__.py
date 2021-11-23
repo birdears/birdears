@@ -185,6 +185,7 @@ repeat_only_resolution_method_option = \
                  default='repeat_only', metavar='<resolution_method>',
                  help='The name of a resolution method.')
 
+
 #
 # melodic interval
 #
@@ -227,6 +228,7 @@ def melodic(*args, **kwargs):
 
     kwargs.update({'exercise': 'melodic'})
     load_interface(*args, **kwargs)
+
 
 #
 # harmonic interval
@@ -271,6 +273,7 @@ def harmonic(*args, **kwargs):
     kwargs.update({'exercise': 'harmonic'})
     load_interface(*args, **kwargs)
 
+
 #
 # melodic dictation
 #
@@ -279,7 +282,6 @@ dictation_epilog = """
 In this exercise birdears will choose some random intervals and create a
 melodic dictation with them. You should reply the correct intervals of the
 melodic dictation.
-
 
 Valid values are as follows:
 
@@ -317,6 +319,7 @@ def dictation(*args, **kwargs):
 
     kwargs.update({'exercise': 'dictation'})
     load_interface(*args, **kwargs)
+
 
 #
 # instrumental dictation
@@ -366,6 +369,7 @@ def instrumental(*args, **kwargs):
     kwargs.update({'exercise': 'instrumental'})
     load_interface(*args, **kwargs)
 
+
 #
 # notename
 #
@@ -391,8 +395,6 @@ Valid values are as follows:
     valid_prequestion_methods=valid_prequestion_methods,
 )
 
-
-
 @cli.command(options_metavar='[options]', epilog=notename_epilog)
 @mode_option
 @tonic_option
@@ -411,6 +413,7 @@ def notename(*args, **kwargs):
     kwargs.update({'exercise': 'notename'})
     load_interface(*args, **kwargs)
 
+
 #
 # load preset config
 #
@@ -421,10 +424,10 @@ def load(filename, *args, **kwargs):
     """Load exercise preset from .toml config file <filename>.
     """
 
-try:
-    import toml
-except ImportError:
-    from .toml import toml
+    try:
+        import toml
+    except ImportError:
+        from .toml import toml
 
     toml_file_str = filename.read()
     config_dict = toml.loads(toml_file_str)

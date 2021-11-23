@@ -15,12 +15,10 @@ from ..questionbase import QUESTION_CLASSES
 
 # from os import popen
 try:
-    from click import get_terminal_size
+    from shutil import get_terminal_size
 except ImportError:
-    from ..click import get_terminal_size
+    from click import get_terminal_size
 
-# FIXME: use `click` one instead or it won't be portable
-# COLS = int(popen('tput cols', 'r').read())
 COLS, LINES = get_terminal_size()
 
 
