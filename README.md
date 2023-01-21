@@ -1,6 +1,6 @@
 # birdears
 
-[![Maintenance](https://img.shields.io/maintenance/yes/2022.svg?style=flat-square)](https://github.com/iacchus/birdears/issues/new?title=Is+birdears+still+maintained&body=Please+file+an+issue+if+the+maintained+button+says+no)
+[![Maintenance](https://img.shields.io/maintenance/yes/2023.svg?style=flat-square)](https://github.com/iacchus/birdears/issues/new?title=Is+birdears+still+maintained&body=Please+file+an+issue+if+the+maintained+button+says+no)
 [![Travis Build Status](https://img.shields.io/travis/iacchus/birdears.svg?style=flat-square&label=build)](https://travis-ci.org/iacchus/birdears)
 [![Build Status](https://api.cirrus-ci.com/github/iacchus/birdears.svg)](https://cirrus-ci.com/github/iacchus/birdears)
 [![Coveralls](https://img.shields.io/coveralls/iacchus/birdears.svg?style=flat-square&label=coverage)](https://coveralls.io/github/iacchus/birdears)

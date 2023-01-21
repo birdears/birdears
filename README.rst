@@ -356,7 +356,7 @@ Contributing
 Those who want to contribute to this project can read
 `CONTRIBUTING.md <CONTRIBUTING.md>`__.
 
-.. |Maintenance| image:: https://img.shields.io/maintenance/yes/2021.svg?style=flat-square
+.. |Maintenance| image:: https://img.shields.io/maintenance/yes/2023.svg?style=flat-square
    :target: https://github.com/iacchus/birdears/issues/new?title=Is+birdears+still+maintained&body=Please+file+an+issue+if+the+maintained+button+says+no
 .. |Travis Build Status| image:: https://img.shields.io/travis/iacchus/birdears.svg?style=flat-square&label=build
    :target: https://travis-ci.org/iacchus/birdears
