@@ -1,14 +1,7 @@
 "__Main__ docs are here."
 
-try:
-    import urwid
-except ImportError:
-    from . import urwid
-
-try:
-    import click
-except ImportError:
-    from . import click
+import urwid
+import click
 
 from . import DIATONIC_MODES
 
