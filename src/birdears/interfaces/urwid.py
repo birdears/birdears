@@ -442,10 +442,9 @@ class TextUserInterface:
                                n_octaves=self.question.n_octaves)
         else:
             scale = \
-                ChromaticScale(tonic='C',
-                               octave=self.question.lowest_tonic_pitch.octave)
-                               #descending=False,
-                               #n_octaves=self.question.n_octaves)
+                ChromaticScale(tonic=self.question.tonic_str,
+                               octave=self.question.lowest_tonic_pitch.octave,
+                               n_octaves=self.question.n_octaves)
 
         self.keyboard = \
             Keyboard(scale=scale,
