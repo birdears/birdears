@@ -146,17 +146,16 @@ class NoteNameQuestion(QuestionBase):
         global INTERVALS
 
         from ..scale import ChromaticScale
-        c_chromatic = ChromaticScale(tonic='C', n_octaves=2)
-        # question_tone_chromatic = ChromaticScale(tonic=self.tonic_str,
-        #                                         octave=self.octave,
-        #                                         n_octaves = self.n_octaves)
+        question_tone_chromatic = ChromaticScale(tonic=self.tonic_str,
+                                                octave=self.octave,
+                                                n_octaves = self.n_octaves)
 
         keyboard_index = \
             KEYBOARD_INDICES['chromatic']['ascending']['major']
 
         user_semitones = keyboard_index.index(user_input_char[0])
 
-        user_pitch = c_chromatic[user_semitones]
+        user_pitch = question_tone_chromatic[user_semitones]
         user_note = user_pitch.note
 
         correct_semitones = abs(int(self.tonic_pitch) - int(self.random_pitch))
