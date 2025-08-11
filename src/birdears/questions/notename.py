@@ -120,9 +120,9 @@ class NoteNameQuestion(QuestionBase):
         # terminated.
         # https://docs.python.org/3/library/threading.html#thread-objects
 
-        self.display.update({'main_display': ('The tonic is {tonic}.'
-                                              'Press the'
-                                              'key representing the'
+        self.display.update({'main_display': ('The tonic is {tonic}. '
+                                              'Press the '
+                                              'key representing the '
                                               'second note.'
                                               .format(tonic=self.tonic_str))})
 
