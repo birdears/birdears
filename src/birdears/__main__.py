@@ -39,6 +39,7 @@ def load_interface(*args, **kwargs):
     else:
         cli = CommandLine(cli_prompt_next, cli_no_scroll, cli_no_resolution,
               *args, **kwargs)
+        cli.run()
 
 
 main_epilog = """

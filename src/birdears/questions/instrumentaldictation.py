@@ -11,8 +11,6 @@ from ..sequence import Sequence
 from ..resolution import Resolution
 from ..prequestion import PreQuestion
 
-from ..interfaces.commandline import center_text
-
 
 @register_question_class
 class InstrumentalDictationQuestion(QuestionBase):
