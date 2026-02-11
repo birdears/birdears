@@ -7,6 +7,6 @@ build-backend = "setuptools.build_meta"
 # See configuration details in https://github.com/pypa/setuptools_scm
 version_scheme = "no-guess-dev"
 
-[project]
-license = "AGPL-3.0-only"
-license-files = "LICENSE.txt"
+# [project]
+# license = "AGPL-3.0-only"
+# license-files = "LICENSE.txt"
