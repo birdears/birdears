@@ -51,9 +51,12 @@ def is_chromatic(key):
 
 class KeyboardButton(urwid.Padding):
 
+    signals = ['click']
+
     def __init__(self, top="", middle="", bottom="", pitch=None, *args,
                  **kwargs):
 
+        self.key_char = bottom
         self.pitch = pitch
         self.pitch_str = str(pitch)
         self.note_str = pitch.note
@@ -73,6 +76,13 @@ class KeyboardButton(urwid.Padding):
 
         attr_map = {None: 'default' if not state else 'highlight'}
         self.original_widget.set_attr_map(attr_map=attr_map)
+
+    def mouse_event(self, size, event, button, col, row, focus):
+        if event == 'mouse press' and button == 1:
+            urwid.emit_signal(self, 'click', self, self.key_char)
+            return True
+
+        return super(KeyboardButton, self).mouse_event(size, event, button, col, row, focus)
 
 
 class Keyboard(urwid.Filler):
@@ -302,7 +312,16 @@ class TextUserInterface:
                         new_question = False
 
                     while len(self.input_keys) < self.question.n_input_notes:
-                        input_key = self.loop.screen.get_input()[0]
+                        keys = self.loop.screen.get_input()
+
+                        if not keys:
+                            continue
+
+                        input_key = keys[0]
+
+                        if isinstance(input_key, tuple):
+                            self.loop.process_input([input_key])
+                            continue
 
                         # these inputs are answers to the exercise
                         if input_key in self.question.keyboard_index \
@@ -326,6 +345,12 @@ class TextUserInterface:
             print("Birdears <https://github.com/iacchus/birdears>")
             print("Exiting...", end="\n\n")
             print("Correct: {} /  Wrong: {}".format(self.correct, self.wrong), end="\n\n")
+
+    def on_key_click(self, button, key_char):
+        if key_char in self.question.keyboard_index and key_char != ' ':
+            self.input_keys.append(key_char)
+            if self.question.n_input_notes > 1:
+                self.update_input_display()
 
     def check_question(self, user_input):
 
@@ -427,6 +452,9 @@ class TextUserInterface:
                      question_tonic_pitch=self.question.tonic_pitch,
                      main_loop=self.loop,
                      keyboard_index=self.question.keyboard_index)
+
+        for key in self.keyboard.key_index.values():
+            urwid.connect_signal(key, 'click', self.on_key_click)
 
         top_variables = {
             'tonic': self.question.tonic_str,
