@@ -5,197 +5,15 @@ try:
 except ImportError:
     from .. import urwid
 
-from .. import KEYS
-from .. import CHROMATIC_SHARP
-from .. import CHROMATIC_FLAT
 from .. import INTERVALS
-
 from ..questionbase import QUESTION_CLASSES
-
 from ..note_and_pitch import get_pitch_by_number
-
 from ..scale import ChromaticScale
-
 from .. import D
 
-KEY_PADS = {
-    'C#': 1,
-    'Db': 1,
-    'D#': 0,
-    'Eb': 0,
-    'F#': 1,
-    'Gb': 1,
-    'G#': 0,
-    'Ab': 0,
-    'A#': 0,
-    'Bb': 0
-}
-
-SPACE_CHAR = ' '
-FILL_HEIGHT = 3
+from .keyboard import Keyboard
 
 LOCK = threading.Lock()
-
-
-def Pad(weight=1):
-    return ('weight',
-            weight,
-            urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR), height=FILL_HEIGHT))
-
-
-def is_chromatic(key):
-    if len(key) == 2:
-        return True
-    return False
-
-
-class KeyboardButton(urwid.Padding):
-
-    def __init__(self, top="", middle="", bottom="", pitch=None, *args,
-                 **kwargs):
-
-        self.pitch = pitch
-        self.pitch_str = str(pitch)
-        self.note_str = pitch.note
-
-        top = self.note_str
-
-        text = urwid.Text("{}\n{}\n{}".format(top, middle, bottom))
-        fill = urwid.Filler(text)
-        adapter = urwid.BoxAdapter(fill, height=3)
-        pad = urwid.Padding(adapter)
-        box = urwid.LineBox(pad)
-        attr = urwid.AttrMap(w=box, attr_map='default')
-
-        super(KeyboardButton, self).__init__(w=attr, *args, **kwargs)
-
-    def highlight(self, state=False):
-
-        attr_map = {None: 'default' if not state else 'highlight'}
-        self.original_widget.set_attr_map(attr_map=attr_map)
-
-
-class Keyboard(urwid.Filler):
-
-    def __init__(self, scale, question_tonic_pitch, main_loop=None,
-                 keyboard_index=None, *args, **kwargs):
-
-        self.main_loop = main_loop
-
-        self.scale = scale
-
-        self.key_index = {}
-
-        self.highlighted_keys = list()
-
-        tonic_pitch = scale[0]
-        tonic_str = scale[0].note
-
-        key_scale = [pitch for pitch in scale]
-
-        chromatic_keys = list()
-        diatonic_keys = list()
-
-        is_key_chromatic = is_chromatic(key=tonic_str)
-
-        # start (left) padding
-        first_pad = diatonic_keys if is_key_chromatic else chromatic_keys
-        if tonic_str == "E" or tonic_str == "B":
-            first_pad.append(Pad(weight=1.5))
-        else:
-            first_pad.append(Pad(weight=0.5))
-
-        first_chromatic = [pitch for pitch in key_scale
-                           if len(pitch.note) == 2][0]
-
-        for index, pitch in enumerate(key_scale):
-
-            pitch_str = str(pitch)
-            note_str = pitch.note
-
-            _idx = abs(int(question_tonic_pitch) - int(pitch))
-
-            letter = keyboard_index[_idx]
-            #letter = keyboard_index[index]
-            bottom_text = letter
-            middle_text = INTERVALS[keyboard_index.index(letter)][1]
-
-            if is_chromatic(pitch.note):
-
-                if KEY_PADS[note_str] == 1 and (pitch is not first_chromatic):
-                    chromatic_keys.append(Pad(weight=1))
-
-                chromatic_keys.append(KeyboardButton(pitch=pitch,
-                                                     middle=middle_text,
-                                                     bottom=bottom_text))
-
-            else:
-                diatonic_keys.append(KeyboardButton(pitch=pitch,
-                                                    middle=middle_text,
-                                                    bottom=bottom_text))
-
-        # end (right) padding:
-        if is_key_chromatic:
-            weight = 0.5
-            diatonic_keys.append(Pad(weight=weight))
-
-        else:
-
-            if KEY_PADS[first_chromatic.note]:
-                if tonic_str == "E" or tonic_str == "B":
-                    weight = 0.5
-                else:
-                    weight = (KEY_PADS[first_chromatic.note]/2) + 1
-                chromatic_keys.append(Pad(weight=weight))
-
-            if not KEY_PADS[first_chromatic.note]:
-                weight = 0.5
-                chromatic_keys.append(Pad(weight=weight))
-
-        self.key_index = {item.pitch_str: item
-                          for item in chromatic_keys+diatonic_keys
-                          if type(item).__name__ == 'KeyboardButton'}
-
-        chromatic = urwid.Columns(widget_list=chromatic_keys, dividechars=1)
-        diatonic = urwid.Columns(widget_list=diatonic_keys, dividechars=1)
-
-        keyboard = urwid.Pile([chromatic, diatonic])
-        box = urwid.LineBox(keyboard)
-
-        super(Keyboard, self).__init__(body=box, min_height=10,
-                                       *args, **kwargs)
-
-    def highlight_key(self, element=None):
-
-        with LOCK:
-
-            # for key in self.key_index.values():
-            for key in self.highlighted_keys:
-                # key.highlight(state=False)
-                self.key_index[key].highlight(state=False)
-                self.highlighted_keys.remove(key)
-
-        if type(element).__name__ == "Pitch":
-
-            pitch_str = str(element)
-
-            if pitch_str in self.key_index:
-                self.key_index[pitch_str].highlight(state=True)
-                self.highlighted_keys.append(pitch_str)
-                # D(self.highlighted_keys,2)
-
-        elif type(element).__name__ == "Chord":
-
-            for pitch in element:
-                chord_pitch_str = str(pitch)
-
-                if chord_pitch_str in self.key_index:
-                    self.key_index[chord_pitch_str].highlight(state=True)
-                    self.highlighted_keys.append(chord_pitch_str)
-
-        with LOCK:
-            self.main_loop.draw_screen()
-
 
 class TextUserInterfaceWidget(urwid.Frame):
 
@@ -426,7 +244,8 @@ class TextUserInterface:
             Keyboard(scale=scale,
                      question_tonic_pitch=self.question.tonic_pitch,
                      main_loop=self.loop,
-                     keyboard_index=self.question.keyboard_index)
+                     keyboard_index=self.question.keyboard_index,
+                     lock=LOCK)
 
         top_variables = {
             'tonic': self.question.tonic_str,
