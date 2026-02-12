@@ -56,23 +56,23 @@ Ensure your user binary directory is in your `PATH`. If you cannot run `birdears
 export PATH="$(python3 -m site --user-base)/bin:${PATH}"
 ```
 
-### Installation with Virtual Environment (Recommended)
+### Installation with Virtual Environment
 
 Using a virtual environment keeps your system Python clean and avoids dependency conflicts.
 
 1.  **Create a virtual environment**:
 
     ```sh
-    python3 -m venv ~/.virtualenvs/birdears
+    python3 -m venv ~/.venv
     ```
 
 2.  **Activate the environment**:
 
     ```sh
-    source ~/.virtualenvs/birdears/bin/activate
+    source ~/.venv/bin/activate
     ```
 
-    (You will need to run this command every time you want to use `birdears` in a new terminal session).
+    (By installing it inside a virtualenv you will need to run this command every time you want to use `birdears` in a new terminal session).
 
 3.  **Install birdears**:
 
@@ -91,7 +91,7 @@ Using a virtual environment keeps your system Python clean and avoids dependency
 To upgrade to the latest version:
 
 ```sh
-pip install --upgrade birdears
+pip install --upgrade --no-cache-dir birdears
 ```
 
 ### Troubleshooting
