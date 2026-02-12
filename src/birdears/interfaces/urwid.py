@@ -18,19 +18,6 @@ from ..scale import ChromaticScale
 
 from .. import D
 
-KEY_PADS = {
-    'C#': 1,
-    'Db': 1,
-    'D#': 0,
-    'Eb': 0,
-    'F#': 1,
-    'Gb': 1,
-    'G#': 0,
-    'Ab': 0,
-    'A#': 0,
-    'Bb': 0
-}
-
 SPACE_CHAR = ' '
 FILL_HEIGHT = 3
 
@@ -41,12 +28,6 @@ def Pad(weight=1):
     return ('weight',
             weight,
             urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR), height=FILL_HEIGHT))
-
-
-def is_chromatic(key):
-    if len(key) == 2:
-        return True
-    return False
 
 
 class KeyboardButton(urwid.Padding):
@@ -87,87 +68,78 @@ class KeyboardButton(urwid.Padding):
 
 class Keyboard(urwid.Filler):
 
+    SEMITONE_OFFSETS = [0, 0.5, 1, 1.5, 2, 3, 3.5, 4, 4.5, 5, 5.5, 6]
+    CHROMATIC_INDICES = (1, 3, 6, 8, 10)
+
     def __init__(self, scale, question_tonic_pitch, main_loop=None,
                  keyboard_index=None, *args, **kwargs):
 
         self.main_loop = main_loop
-
         self.scale = scale
-
         self.key_index = {}
-
         self.highlighted_keys = list()
 
-        tonic_pitch = scale[0]
-        tonic_str = scale[0].note
-
-        key_scale = [pitch for pitch in scale]
-
-        chromatic_keys = list()
-        diatonic_keys = list()
-
-        is_key_chromatic = is_chromatic(key=tonic_str)
-
-        # start (left) padding
-        first_pad = diatonic_keys if is_key_chromatic else chromatic_keys
-        if tonic_str == "E" or tonic_str == "B":
-            first_pad.append(Pad(weight=1.5))
-        else:
-            first_pad.append(Pad(weight=0.5))
-
-        first_chromatic = [pitch for pitch in key_scale
-                           if len(pitch.note) == 2][0]
-
-        for index, pitch in enumerate(key_scale):
-
-            pitch_str = str(pitch)
-            note_str = pitch.note
-
+        keys = []
+        for pitch in scale:
+            pitch_pos = pitch.octave * 7 + self.SEMITONE_OFFSETS[pitch.pitch_class]
             _idx = abs(int(question_tonic_pitch) - int(pitch))
-
             letter = keyboard_index[_idx]
-            #letter = keyboard_index[index]
-            bottom_text = letter
             middle_text = INTERVALS[keyboard_index.index(letter)][1]
 
-            if is_chromatic(pitch.note):
+            keys.append({
+                'pitch': pitch,
+                'pos': pitch_pos,
+                'widget': KeyboardButton(pitch=pitch,
+                                         middle=middle_text,
+                                         bottom=letter),
+                'is_chromatic': pitch.pitch_class in self.CHROMATIC_INDICES
+            })
 
-                if KEY_PADS[note_str] == 1 and (pitch is not first_chromatic):
-                    chromatic_keys.append(Pad(weight=1))
+        if not keys:
+            super(Keyboard, self).__init__(body=urwid.Filler(urwid.Text("Empty Keyboard")),
+                                           *args, **kwargs)
+            return
 
-                chromatic_keys.append(KeyboardButton(pitch=pitch,
-                                                     middle=middle_text,
-                                                     bottom=bottom_text))
+        min_pos = min(k['pos'] for k in keys)
+        origin = int(min_pos)
 
-            else:
-                diatonic_keys.append(KeyboardButton(pitch=pitch,
-                                                    middle=middle_text,
-                                                    bottom=bottom_text))
+        chromatic_widgets = []
+        diatonic_widgets = []
 
-        # end (right) padding:
-        if is_key_chromatic:
-            weight = 0.5
-            diatonic_keys.append(Pad(weight=weight))
+        # Top row (Chromatic)
+        c_current_x = origin
+        for k in keys:
+            if k['is_chromatic']:
+                start = k['pos'] - 0.5
+                gap = start - c_current_x
+                if gap > 0:
+                    chromatic_widgets.append(Pad(weight=gap))
+                chromatic_widgets.append(('weight', 1, k['widget']))
+                c_current_x = start + 1
 
-        else:
+        # Bottom row (Diatonic)
+        d_current_x = origin
+        for k in keys:
+            if not k['is_chromatic']:
+                start = k['pos']
+                gap = start - d_current_x
+                if gap > 0:
+                    diatonic_widgets.append(Pad(weight=gap))
+                diatonic_widgets.append(('weight', 1, k['widget']))
+                d_current_x = start + 1
 
-            if KEY_PADS[first_chromatic.note]:
-                if tonic_str == "E" or tonic_str == "B":
-                    weight = 0.5
-                else:
-                    weight = (KEY_PADS[first_chromatic.note]/2) + 1
-                chromatic_keys.append(Pad(weight=weight))
+        max_width = max(c_current_x, d_current_x)
 
-            if not KEY_PADS[first_chromatic.note]:
-                weight = 0.5
-                chromatic_keys.append(Pad(weight=weight))
+        if max_width > c_current_x:
+            chromatic_widgets.append(Pad(weight=max_width - c_current_x))
 
-        self.key_index = {item.pitch_str: item
-                          for item in chromatic_keys+diatonic_keys
-                          if type(item).__name__ == 'KeyboardButton'}
+        if max_width > d_current_x:
+            diatonic_widgets.append(Pad(weight=max_width - d_current_x))
 
-        chromatic = urwid.Columns(widget_list=chromatic_keys, dividechars=1)
-        diatonic = urwid.Columns(widget_list=diatonic_keys, dividechars=1)
+        self.key_index = {k['pitch'].__str__(): k['widget'] for k in keys}
+
+        chromatic = urwid.Columns(widget_list=chromatic_widgets, dividechars=0)
+        diatonic = urwid.Columns(widget_list=diatonic_widgets, dividechars=0)
 
         keyboard = urwid.Pile([chromatic, diatonic])
         box = urwid.LineBox(keyboard)
