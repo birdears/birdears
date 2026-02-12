@@ -1,0 +1,6 @@
+exercise = 'melodic'
+
+tonic = 'C'
+octave = 4
+chromatic = true
+valid_intervals = [1, 2, 3, 4]
