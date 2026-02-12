@@ -177,6 +177,10 @@ repeat_only_resolution_method_option = \
     click.option('-r', '--resolution_method', type=str,
                  default='repeat_only', metavar='<resolution_method>',
                  help='The name of a resolution method.')
+keyboard_width_option = \
+    click.option('-k', '--keyboard_width', type=click.IntRange(10, 100),
+                 default=60, metavar='<width>',
+                 help='The width of the keyboard in percentage.')
 
 
 #
@@ -215,6 +219,7 @@ Valid values are as follows:
 @user_durations_option
 @prequestion_method_option
 @resolution_method_option
+@keyboard_width_option
 def melodic(*args, **kwargs):
     """Melodic interval recognition
     """
@@ -259,6 +264,7 @@ Valid values are as follows:
 @user_durations_option
 @prequestion_method_option
 @resolution_method_option
+@keyboard_width_option
 def harmonic(*args, **kwargs):
     """Harmonic interval recognition
     """
@@ -306,6 +312,7 @@ Valid values are as follows:
 @prequestion_method_option
 #@resolution_method_option
 @repeat_only_resolution_method_option
+@keyboard_width_option
 def dictation(*args, **kwargs):
     """Melodic dictation
     """
@@ -355,6 +362,7 @@ Valid values are as follows:
 @prequestion_method_option
 #@resolution_method_option
 @repeat_only_resolution_method_option
+@keyboard_width_option
 def instrumental(*args, **kwargs):
     """Instrumental melodic dictation (time-based)
     """
@@ -399,6 +407,7 @@ Valid values are as follows:
 @user_durations_option
 @prequestion_method_option
 @resolution_method_option
+@keyboard_width_option
 def notename(*args, **kwargs):
     """Note name by interval recognition
     """
