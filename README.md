@@ -1,5 +1,7 @@
 # birdears 🎵
 
+<video src="https://raw.githubusercontent.com/birdears/birdears/refs/heads/master/birdears-logo.png" width="100%"></video>
+
 [![Maintenance](https://img.shields.io/maintenance/yes/2026.svg?style=flat-square)](https://github.com/iacchus/birdears/issues/new?title=Is+birdears+still+maintained&body=Please+file+an+issue+if+the+maintained+button+says+no)
 [![Build Status](https://api.cirrus-ci.com/github/iacchus/birdears.svg)](https://cirrus-ci.com/github/iacchus/birdears)
 [![PyPI Version](https://img.shields.io/pypi/v/birdears.svg?style=flat-square)](https://pypi.python.org/pypi/birdears)
