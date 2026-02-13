@@ -304,12 +304,27 @@ class TextUserInterface:
         c_highlight_text = kwargs.get('color_highlight_text', 'black')
         c_highlight_bg = kwargs.get('color_highlight_bg', 'light gray')
 
+        BASIC_COLORS = {'black', 'dark red', 'dark green', 'brown', 'dark blue',
+                        'dark magenta', 'dark cyan', 'light gray', 'dark gray',
+                        'light red', 'light green', 'yellow', 'light blue',
+                        'light magenta', 'light cyan', 'white', 'default'}
+
+        def get_palette_entry(name, fg, bg):
+            fg_basic = fg if fg in BASIC_COLORS else 'default'
+            bg_basic = bg if bg in BASIC_COLORS else 'default'
+
+            if fg == fg_basic and bg == bg_basic:
+                return (name, fg, bg)
+            else:
+                # (name, fg_basic, bg_basic, mono, fg_high, bg_high)
+                return (name, fg_basic, bg_basic, '', fg, bg)
+
         palette = [
-            ('default', c_text, c_bg),
-            ('highlight', c_highlight_text, c_highlight_bg),
-            ('header', c_header_text, c_header_bg),
-            ('footer', c_footer_text, c_footer_bg),
-            ('box', c_box, c_box_bg),
+            get_palette_entry('default', c_text, c_bg),
+            get_palette_entry('highlight', c_highlight_text, c_highlight_bg),
+            get_palette_entry('header', c_header_text, c_header_bg),
+            get_palette_entry('footer', c_footer_text, c_footer_bg),
+            get_palette_entry('box', c_box, c_box_bg),
             ]
 
         self.tui_widget = TextUserInterfaceWidget(*args, **kwargs)
