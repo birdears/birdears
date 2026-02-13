@@ -25,6 +25,10 @@ Inspired by the [Functional Ear Trainer](https://play.google.com/store/apps/deta
 
 https://github.com/user-attachments/assets/9743b9d3-e138-49fd-8862-a79537873a81
 
+### chromatic, progression I-IV-V-I
+
+[Screen_Recording_20260213_083515_Termux.webm](https://github.com/user-attachments/assets/7dfd2438-26a5-4262-91d7-0812c85bb00f)
+
 ## 🚀 Quick Start
 
 ### Installation
