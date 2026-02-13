@@ -67,14 +67,19 @@ class KeyboardButton(urwid.Padding):
         fill = urwid.Filler(text)
         adapter = urwid.BoxAdapter(fill, height=3)
         pad = urwid.Padding(adapter)
-        box = urwid.LineBox(pad)
-        attr = urwid.AttrMap(w=box, attr_map='default')
+        pad_attr = urwid.AttrMap(pad, 'default')
+        box = urwid.LineBox(pad_attr)
+        attr = urwid.AttrMap(w=box, attr_map={None: 'box'})
 
         super(KeyboardButton, self).__init__(w=attr, *args, **kwargs)
 
     def highlight(self, state=False):
 
-        attr_map = {None: 'default' if not state else 'highlight'}
+        if state:
+            attr_map = {None: 'highlight', 'default': 'highlight', 'box': 'highlight'}
+        else:
+            attr_map = {None: 'box', 'default': 'default'}
+
         self.original_widget.set_attr_map(attr_map=attr_map)
 
     def mouse_event(self, size, event, button, col, row, focus):
@@ -170,9 +175,11 @@ class Keyboard(urwid.Filler):
         diatonic = urwid.Columns(widget_list=diatonic_keys, dividechars=1)
 
         keyboard = urwid.Pile([chromatic, diatonic])
-        box = urwid.LineBox(keyboard)
+        keyboard_attr = urwid.AttrMap(keyboard, 'default')
+        box = urwid.LineBox(keyboard_attr)
+        box_attr = urwid.AttrMap(box, {None: 'box'})
 
-        super(Keyboard, self).__init__(body=box, min_height=10,
+        super(Keyboard, self).__init__(body=box_attr, min_height=10,
                                        *args, **kwargs)
 
     def highlight_key(self, element=None):
@@ -232,7 +239,8 @@ class QuestionWidget(urwid.Padding):
     def __init__(self, top_widget=None, keyboard=None, bottom_widget=None,
                  display=None, keyboard_width=60, *args, **kwargs):
 
-        self.top_widget = urwid.Filler(urwid.LineBox(top_widget))
+        top_widget_attr = urwid.AttrMap(top_widget, 'default')
+        self.top_widget = urwid.Filler(urwid.AttrMap(urwid.LineBox(top_widget_attr), {None: 'box'}))
 
         self.keyboard = keyboard
 
@@ -240,7 +248,7 @@ class QuestionWidget(urwid.Padding):
 
         if not top_widget:
             self.question_text = urwid.Text('..')
-            self.top_widget = urwid.Filler(urwid.LineBox(self.display_text))
+            self.top_widget = urwid.Filler(urwid.AttrMap(urwid.LineBox(self.display_text), {None: 'box'}))
 
         self.display_widget = self.draw_display(question_display=display)
 
@@ -266,7 +274,8 @@ class QuestionWidget(urwid.Padding):
 
         for key, value in question_display.items():
             self.display[key] = urwid.Text(value)
-            display_wids.append(urwid.LineBox(self.display[key]))
+            display_attr = urwid.AttrMap(self.display[key], 'default')
+            display_wids.append(urwid.AttrMap(urwid.LineBox(display_attr), {None: 'box'}))
 
         display_widget = urwid.Filler(urwid.Pile(widget_list=display_wids))
 
@@ -284,11 +293,23 @@ class TextUserInterface:
         self.correct = 0
         self.wrong = 0
 
+        c_text = kwargs.get('color_text', 'default')
+        c_bg = kwargs.get('color_bg', 'default')
+        c_box = kwargs.get('color_box', 'default')
+        c_box_bg = kwargs.get('color_box_bg', 'default')
+        c_header_text = kwargs.get('color_header_text', 'light gray')
+        c_header_bg = kwargs.get('color_header_bg', 'dark blue')
+        c_footer_text = kwargs.get('color_footer_text', 'light gray')
+        c_footer_bg = kwargs.get('color_footer_bg', 'dark blue')
+        c_highlight_text = kwargs.get('color_highlight_text', 'black')
+        c_highlight_bg = kwargs.get('color_highlight_bg', 'light gray')
+
         palette = [
-            ('default', 'default', 'default'),
-            ('highlight', 'black', 'light gray'),
-            ('header', 'light gray', 'dark blue', '', '#fff', '#336'),
-            ('footer', 'light gray', 'dark blue', '', '#fff', '#336'),
+            ('default', c_text, c_bg),
+            ('highlight', c_highlight_text, c_highlight_bg),
+            ('header', c_header_text, c_header_bg, '', '#fff', '#336'),
+            ('footer', c_footer_text, c_footer_bg, '', '#fff', '#336'),
+            ('box', c_box, c_box_bg),
             ]
 
         self.tui_widget = TextUserInterfaceWidget(*args, **kwargs)

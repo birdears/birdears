@@ -30,12 +30,14 @@ VALID_RESOLUTION_METHODS = tuple(RESOLUTION_METHODS.keys())
 
 INTERFACE = False
 KEYBOARD_WIDTH = 60
+COLORS = {}
 
 def load_interface(*args, **kwargs):
 
     if INTERFACE == 'urwid':
         from .interfaces.urwid import TextUserInterface
         kwargs['keyboard_width'] = KEYBOARD_WIDTH
+        kwargs.update(COLORS)
         tui = TextUserInterface(**kwargs)
     else:
         cli = CommandLine(cli_prompt_next, cli_no_scroll, cli_no_resolution,
@@ -90,13 +92,56 @@ class SortCommands(click.Group):
 @click.option('-k', '--keyboard_width', type=click.IntRange(10, 100),
               default=60, metavar='<width>', envvar="KEYBOARD_WIDTH",
               help='The width of the keyboard in percentage (\'urwid\' only)')
-def cli(debug, urwid, cli, prompt, no_scroll, no_resolution, keyboard_width):
+@click.option('--color-text', default='default', help='Text color')
+@click.option('--color-bg', default='default', help='Background color')
+@click.option('--color-box', default='default', help='Box lines color')
+@click.option('--color-box-bg', default='default', help='Box background color')
+@click.option('--color-header-text', default='light gray', help='Header text color')
+@click.option('--color-header-bg', default='dark blue', help='Header background color')
+@click.option('--color-footer-text', default='light gray', help='Footer text color')
+@click.option('--color-footer-bg', default='dark blue', help='Footer background color')
+@click.option('--color-highlight-text', default='black', help='Highlight text color')
+@click.option('--color-highlight-bg', default='light gray', help='Highlight background color')
+@click.option('--bw', is_flag=True, help='Black and white mode (monochrome)')
+def cli(debug, urwid, cli, prompt, no_scroll, no_resolution, keyboard_width,
+        color_text, color_bg, color_box, color_box_bg,
+        color_header_text, color_header_bg,
+        color_footer_text, color_footer_bg,
+        color_highlight_text, color_highlight_bg, bw):
     """birdears ─ Functional Ear Training for Musicians!"""
 
     global INTERFACE
     global KEYBOARD_WIDTH
+    global COLORS
 
     KEYBOARD_WIDTH = keyboard_width
+
+    if bw:
+        COLORS = {
+            'color_text': 'default',
+            'color_bg': 'default',
+            'color_box': 'default',
+            'color_box_bg': 'default',
+            'color_header_text': 'default',
+            'color_header_bg': 'default',
+            'color_footer_text': 'default',
+            'color_footer_bg': 'default',
+            'color_highlight_text': 'black',
+            'color_highlight_bg': 'white',
+        }
+    else:
+        COLORS = {
+            'color_text': color_text,
+            'color_bg': color_bg,
+            'color_box': color_box,
+            'color_box_bg': color_box_bg,
+            'color_header_text': color_header_text,
+            'color_header_bg': color_header_bg,
+            'color_footer_text': color_footer_text,
+            'color_footer_bg': color_footer_bg,
+            'color_highlight_text': color_highlight_text,
+            'color_highlight_bg': color_highlight_bg,
+        }
 
     if debug:
         from .logger import logger
