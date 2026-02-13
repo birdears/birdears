@@ -350,7 +350,7 @@ class TextUserInterface:
             # Fallback if urwid.raw_display is not available directly
             screen = urwid.Screen()
 
-        screen.set_terminal_properties(colors=256)
+        screen.set_terminal_properties(colors=2**24)
         self.loop = urwid.MainLoop(widget=self.tui_widget, palette=palette, screen=screen)
 
         try:
