@@ -230,7 +230,7 @@ class TextUserInterfaceWidget(urwid.Frame):
 class QuestionWidget(urwid.Padding):
 
     def __init__(self, top_widget=None, keyboard=None, bottom_widget=None,
-                 display=None, *args, **kwargs):
+                 display=None, keyboard_width=60, *args, **kwargs):
 
         self.top_widget = urwid.Filler(urwid.LineBox(top_widget))
 
@@ -248,7 +248,7 @@ class QuestionWidget(urwid.Padding):
         frame_body = urwid.Pile(widget_list=frame_elements)
 
         super(QuestionWidget, self).__init__(frame_body, align='center',
-                                             width=('relative', 60))
+                                             width=('relative', keyboard_width))
 
     def redraw_display(self, question_display):
 
@@ -488,9 +488,12 @@ class TextUserInterface:
 
         top_widget = urwid.Text(top_text)
 
+        keyboard_width = self.arguments.get('keyboard_width', 60)
+
         self.question_widget = QuestionWidget(top_widget=top_widget,
                                               keyboard=self.keyboard,
-                                              display=self.question.display)
+                                              display=self.question.display,
+                                              keyboard_width=keyboard_width)
 
         self.tui_widget.contents.update({'body': (self.question_widget, None)})
 
