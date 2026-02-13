@@ -37,10 +37,34 @@ FILL_HEIGHT = 3
 LOCK = threading.Lock()
 
 
-def Pad(weight=1):
+class LayoutConfig:
+    def __init__(self, rows=None):
+        self.screen_height = rows
+        self.compact = False
+
+        # Heuristic for compact mode
+        # Standard terminal height is 24.
+        if rows and rows < 24:
+            self.compact = True
+
+        if self.compact:
+            self.key_height = 1
+            self.key_border = False
+            self.keyboard_border = False
+            self.widget_border = False
+        else:
+            self.key_height = 3
+            self.key_border = True
+            self.keyboard_border = True
+            self.widget_border = True
+
+
+def Pad(weight=1, height=None):
+    if height is None:
+        height = FILL_HEIGHT
     return ('weight',
             weight,
-            urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR), height=FILL_HEIGHT))
+            urwid.BoxAdapter(urwid.SolidFill(SPACE_CHAR), height=height))
 
 
 def is_chromatic(key):
@@ -53,8 +77,8 @@ class KeyboardButton(urwid.Padding):
 
     signals = ['click']
 
-    def __init__(self, top="", middle="", bottom="", pitch=None, *args,
-                 **kwargs):
+    def __init__(self, top="", middle="", bottom="", pitch=None,
+                 layout_config=None, *args, **kwargs):
 
         self.key_char = bottom
         self.pitch = pitch
@@ -63,12 +87,29 @@ class KeyboardButton(urwid.Padding):
 
         top = self.note_str
 
-        text = urwid.Text("{}\n{}\n{}".format(top, middle, bottom))
+        height = FILL_HEIGHT
+        border = True
+        compact = False
+
+        if layout_config:
+            height = layout_config.key_height
+            border = layout_config.key_border
+            compact = layout_config.compact
+
+        if compact:
+            text = urwid.Text("{} {} {}".format(top, middle, bottom))
+        else:
+            text = urwid.Text("{}\n{}\n{}".format(top, middle, bottom))
+
         fill = urwid.Filler(text)
-        adapter = urwid.BoxAdapter(fill, height=3)
+        adapter = urwid.BoxAdapter(fill, height=height)
         pad = urwid.Padding(adapter)
-        box = urwid.LineBox(pad)
-        attr = urwid.AttrMap(w=box, attr_map='default')
+
+        if border:
+            box = urwid.LineBox(pad)
+            attr = urwid.AttrMap(w=box, attr_map='default')
+        else:
+            attr = urwid.AttrMap(w=pad, attr_map='default')
 
         super(KeyboardButton, self).__init__(w=attr, *args, **kwargs)
 
@@ -88,7 +129,7 @@ class KeyboardButton(urwid.Padding):
 class Keyboard(urwid.Filler):
 
     def __init__(self, scale, question_tonic_pitch, main_loop=None,
-                 keyboard_index=None, *args, **kwargs):
+                 keyboard_index=None, layout_config=None, *args, **kwargs):
 
         self.main_loop = main_loop
 
@@ -106,14 +147,22 @@ class Keyboard(urwid.Filler):
         chromatic_keys = list()
         diatonic_keys = list()
 
+        # Layout params
+        key_height = FILL_HEIGHT
+        keyboard_border = True
+
+        if layout_config:
+            key_height = layout_config.key_height
+            keyboard_border = layout_config.keyboard_border
+
         is_key_chromatic = is_chromatic(key=tonic_str)
 
         # start (left) padding
         first_pad = diatonic_keys if is_key_chromatic else chromatic_keys
         if tonic_str == "E" or tonic_str == "B":
-            first_pad.append(Pad(weight=1.5))
+            first_pad.append(Pad(weight=1.5, height=key_height))
         else:
-            first_pad.append(Pad(weight=0.5))
+            first_pad.append(Pad(weight=0.5, height=key_height))
 
         first_chromatic = [pitch for pitch in key_scale
                            if len(pitch.note) == 2][0]
@@ -133,21 +182,23 @@ class Keyboard(urwid.Filler):
             if is_chromatic(pitch.note):
 
                 if KEY_PADS[note_str] == 1 and (pitch is not first_chromatic):
-                    chromatic_keys.append(Pad(weight=1))
+                    chromatic_keys.append(Pad(weight=1, height=key_height))
 
                 chromatic_keys.append(KeyboardButton(pitch=pitch,
                                                      middle=middle_text,
-                                                     bottom=bottom_text))
+                                                     bottom=bottom_text,
+                                                     layout_config=layout_config))
 
             else:
                 diatonic_keys.append(KeyboardButton(pitch=pitch,
                                                     middle=middle_text,
-                                                    bottom=bottom_text))
+                                                    bottom=bottom_text,
+                                                    layout_config=layout_config))
 
         # end (right) padding:
         if is_key_chromatic:
             weight = 0.5
-            diatonic_keys.append(Pad(weight=weight))
+            diatonic_keys.append(Pad(weight=weight, height=key_height))
 
         else:
 
@@ -156,11 +207,11 @@ class Keyboard(urwid.Filler):
                     weight = 0.5
                 else:
                     weight = (KEY_PADS[first_chromatic.note]/2) + 1
-                chromatic_keys.append(Pad(weight=weight))
+                chromatic_keys.append(Pad(weight=weight, height=key_height))
 
             if not KEY_PADS[first_chromatic.note]:
                 weight = 0.5
-                chromatic_keys.append(Pad(weight=weight))
+                chromatic_keys.append(Pad(weight=weight, height=key_height))
 
         self.key_index = {item.pitch_str: item
                           for item in chromatic_keys+diatonic_keys
@@ -170,9 +221,17 @@ class Keyboard(urwid.Filler):
         diatonic = urwid.Columns(widget_list=diatonic_keys, dividechars=1)
 
         keyboard = urwid.Pile([chromatic, diatonic])
-        box = urwid.LineBox(keyboard)
 
-        super(Keyboard, self).__init__(body=box, min_height=10,
+        if keyboard_border:
+            box = urwid.LineBox(keyboard)
+        else:
+            box = keyboard
+
+        min_height = 10
+        if layout_config and layout_config.compact:
+            min_height = 2
+
+        super(Keyboard, self).__init__(body=box, min_height=min_height,
                                        *args, **kwargs)
 
     def highlight_key(self, element=None):
@@ -230,9 +289,17 @@ class TextUserInterfaceWidget(urwid.Frame):
 class QuestionWidget(urwid.Padding):
 
     def __init__(self, top_widget=None, keyboard=None, bottom_widget=None,
-                 display=None, *args, **kwargs):
+                 display=None, layout_config=None, *args, **kwargs):
 
-        self.top_widget = urwid.Filler(urwid.LineBox(top_widget))
+        self.layout_config = layout_config
+        widget_border = True
+        if layout_config:
+            widget_border = layout_config.widget_border
+
+        if widget_border:
+            self.top_widget = urwid.Filler(urwid.LineBox(top_widget))
+        else:
+            self.top_widget = urwid.Filler(top_widget)
 
         self.keyboard = keyboard
 
@@ -240,7 +307,13 @@ class QuestionWidget(urwid.Padding):
 
         if not top_widget:
             self.question_text = urwid.Text('..')
-            self.top_widget = urwid.Filler(urwid.LineBox(self.display_text))
+            if widget_border:
+                # Assuming self.display_text was a bug and self.question_text was intended
+                # But to avoid changing behavior too much (even if buggy),
+                # I'll stick to self.question_text which is defined above.
+                self.top_widget = urwid.Filler(urwid.LineBox(self.question_text))
+            else:
+                self.top_widget = urwid.Filler(self.question_text)
 
         self.display_widget = self.draw_display(question_display=display)
 
@@ -264,9 +337,16 @@ class QuestionWidget(urwid.Padding):
         self.display = dict()
         display_wids = list()
 
+        widget_border = True
+        if hasattr(self, 'layout_config') and self.layout_config:
+            widget_border = self.layout_config.widget_border
+
         for key, value in question_display.items():
             self.display[key] = urwid.Text(value)
-            display_wids.append(urwid.LineBox(self.display[key]))
+            if widget_border:
+                display_wids.append(urwid.LineBox(self.display[key]))
+            else:
+                display_wids.append(self.display[key])
 
         display_widget = urwid.Filler(urwid.Pile(widget_list=display_wids))
 
@@ -446,11 +526,15 @@ class TextUserInterface:
                                octave=self.question.lowest_tonic_pitch.octave,
                                n_octaves=self.question.n_octaves)
 
+        cols, rows = self.loop.screen.get_cols_rows()
+        layout_config = LayoutConfig(rows=rows)
+
         self.keyboard = \
             Keyboard(scale=scale,
                      question_tonic_pitch=self.question.tonic_pitch,
                      main_loop=self.loop,
-                     keyboard_index=self.question.keyboard_index)
+                     keyboard_index=self.question.keyboard_index,
+                     layout_config=layout_config)
 
         for key in self.keyboard.key_index.values():
             urwid.connect_signal(key, 'click', self.on_key_click)
@@ -490,7 +574,8 @@ class TextUserInterface:
 
         self.question_widget = QuestionWidget(top_widget=top_widget,
                                               keyboard=self.keyboard,
-                                              display=self.question.display)
+                                              display=self.question.display,
+                                              layout_config=layout_config)
 
         self.tui_widget.contents.update({'body': (self.question_widget, None)})
 
