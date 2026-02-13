@@ -77,7 +77,7 @@ class SortCommands(click.Group):
 @click.option('--urwid/--no-urwid',
               help='Use urwid as interface (default)',
               default=True, envvar='URWID')
-@click.option('--cli/--no-cli',
+@click.option('--cli/--no-cli', "command_line_interface",
               help='Use command line as interface',
               default=False, envvar='CLI')
 @click.option('--prompt',
@@ -118,7 +118,7 @@ class SortCommands(click.Group):
 @click.option('--box-italic', is_flag=True, help='Italic box')
 @click.option('--box-underline', is_flag=True, help='Underline box')
 @click.option('--bw', is_flag=True, help='Black and white mode (monochrome)')
-def cli(debug, urwid, cli, prompt, no_scroll, no_resolution, keyboard_width,
+def cli(debug, urwid, command_line_interface, prompt, no_scroll, no_resolution, keyboard_width,
         color_text, color_bg, color_box, color_box_bg,
         color_header_text, color_header_bg,
         color_footer_text, color_footer_bg,
@@ -202,7 +202,7 @@ def cli(debug, urwid, cli, prompt, no_scroll, no_resolution, keyboard_width,
         logger.setLevel(logging.DEBUG)
         logger.debug('debug is on.')
 
-    if cli or not urwid:
+    if command_line_interface:
         INTERFACE = 'commandline'
     
         global cli_prompt_next
