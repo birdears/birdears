@@ -1,6 +1,8 @@
 # birdears 🎵
 
-<video src="https://raw.githubusercontent.com/birdears/birdears/refs/heads/master/birdears-logo.png" width="100%"></video>
+<div align="center">
+<img src="https://raw.githubusercontent.com/birdears/birdears/refs/heads/master/birdears-logo.png" width="256px" height="256px" />
+</div>
 
 [![Maintenance](https://img.shields.io/maintenance/yes/2026.svg?style=flat-square)](https://github.com/iacchus/birdears/issues/new?title=Is+birdears+still+maintained&body=Please+file+an+issue+if+the+maintained+button+says+no)
 [![Build Status](https://api.cirrus-ci.com/github/iacchus/birdears.svg)](https://cirrus-ci.com/github/iacchus/birdears)
