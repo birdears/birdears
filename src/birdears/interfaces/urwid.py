@@ -307,15 +307,21 @@ class TextUserInterface:
         palette = [
             ('default', c_text, c_bg),
             ('highlight', c_highlight_text, c_highlight_bg),
-            ('header', c_header_text, c_header_bg, '', '#fff', '#336'),
-            ('footer', c_footer_text, c_footer_bg, '', '#fff', '#336'),
+            ('header', c_header_text, c_header_bg),
+            ('footer', c_footer_text, c_footer_bg),
             ('box', c_box, c_box_bg),
             ]
 
         self.tui_widget = TextUserInterfaceWidget(*args, **kwargs)
 
-        self.loop = urwid.MainLoop(widget=self.tui_widget, palette=palette)
-        self.loop.screen.set_terminal_properties(colors=256)
+        try:
+            screen = urwid.raw_display.Screen()
+        except AttributeError:
+            # Fallback if urwid.raw_display is not available directly
+            screen = urwid.Screen()
+
+        screen.set_terminal_properties(colors=256)
+        self.loop = urwid.MainLoop(widget=self.tui_widget, palette=palette, screen=screen)
 
         try:
 
