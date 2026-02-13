@@ -1,6 +1,0 @@
-exercise = 'melodic'
-
-tonic = 'C'
-octave = 4
-n_octaves = 2
-valid_intervals = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
