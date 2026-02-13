@@ -29,12 +29,13 @@ VALID_PREQUESTION_METHODS = tuple(PREQUESTION_METHODS.keys())
 VALID_RESOLUTION_METHODS = tuple(RESOLUTION_METHODS.keys())
 
 INTERFACE = False
-
+KEYBOARD_WIDTH = 60
 
 def load_interface(*args, **kwargs):
 
     if INTERFACE == 'urwid':
         from .interfaces.urwid import TextUserInterface
+        kwargs['keyboard_width'] = KEYBOARD_WIDTH
         tui = TextUserInterface(**kwargs)
     else:
         cli = CommandLine(cli_prompt_next, cli_no_scroll, cli_no_resolution,
@@ -86,10 +87,16 @@ class SortCommands(click.Group):
 @click.option('--no-resolution',
               help='Do not play resolution after answer (\'cli\' only)',
               default=False, is_flag=True, envvar='NO_RESOLUTION')
-def cli(debug, urwid, cli, prompt, no_scroll, no_resolution):
+@click.option('-k', '--keyboard_width', type=click.IntRange(10, 100),
+              default=60, metavar='<width>',
+              help='The width of the keyboard in percentage.')
+def cli(debug, urwid, cli, prompt, no_scroll, no_resolution, keyboard_width):
     """birdears ─ Functional Ear Training for Musicians!"""
 
     global INTERFACE
+    global KEYBOARD_WIDTH
+
+    KEYBOARD_WIDTH = keyboard_width
 
     if debug:
         from .logger import logger
@@ -177,10 +184,6 @@ repeat_only_resolution_method_option = \
     click.option('-r', '--resolution_method', type=str,
                  default='repeat_only', metavar='<resolution_method>',
                  help='The name of a resolution method.')
-keyboard_width_option = \
-    click.option('-k', '--keyboard_width', type=click.IntRange(10, 100),
-                 default=60, metavar='<width>',
-                 help='The width of the keyboard in percentage.')
 
 
 #
@@ -219,7 +222,6 @@ Valid values are as follows:
 @user_durations_option
 @prequestion_method_option
 @resolution_method_option
-@keyboard_width_option
 def melodic(*args, **kwargs):
     """Melodic interval recognition
     """
@@ -264,7 +266,6 @@ Valid values are as follows:
 @user_durations_option
 @prequestion_method_option
 @resolution_method_option
-@keyboard_width_option
 def harmonic(*args, **kwargs):
     """Harmonic interval recognition
     """
@@ -312,7 +313,6 @@ Valid values are as follows:
 @prequestion_method_option
 #@resolution_method_option
 @repeat_only_resolution_method_option
-@keyboard_width_option
 def dictation(*args, **kwargs):
     """Melodic dictation
     """
@@ -362,7 +362,6 @@ Valid values are as follows:
 @prequestion_method_option
 #@resolution_method_option
 @repeat_only_resolution_method_option
-@keyboard_width_option
 def instrumental(*args, **kwargs):
     """Instrumental melodic dictation (time-based)
     """
@@ -407,7 +406,6 @@ Valid values are as follows:
 @user_durations_option
 @prequestion_method_option
 @resolution_method_option
-@keyboard_width_option
 def notename(*args, **kwargs):
     """Note name by interval recognition
     """
