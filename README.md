@@ -23,6 +23,8 @@ Inspired by the [Functional Ear Trainer](https://play.google.com/store/apps/deta
 
 ---
 
+https://github.com/user-attachments/assets/9743b9d3-e138-49fd-8862-a79537873a81
+
 ## 🚀 Quick Start
 
 ### Installation
