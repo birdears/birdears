@@ -1,14 +1,13 @@
 # birdears 🎵
 
-<div align="center">
-  <img src="https://raw.githubusercontent.com/birdears/birdears/refs/heads/master/birdears-logo.png" width="256px" height="256px" />
-</div>
-
-
 [![Maintenance](https://img.shields.io/maintenance/yes/2026.svg?style=flat-square)](https://github.com/iacchus/birdears/issues/new?title=Is+birdears+still+maintained&body=Please+file+an+issue+if+the+maintained+button+says+no)
 [![Build Status](https://api.cirrus-ci.com/github/iacchus/birdears.svg)](https://cirrus-ci.com/github/iacchus/birdears)
 [![PyPI Version](https://img.shields.io/pypi/v/birdears.svg?style=flat-square)](https://pypi.python.org/pypi/birdears)
 [![Documentation Status](https://img.shields.io/badge/readthedocs-latest-orange.svg?style=flat-square)](https://birdears.readthedocs.io/en/latest/)
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/birdears/birdears/refs/heads/master/birdears-logo.png" width="256px" height="256px" />
+</div>
 
 **birdears** is a functional ear training tool for musicians. It helps you develop your musical ear by teaching you to recognize notes by their function within a key, rather than just by interval distance.
 
