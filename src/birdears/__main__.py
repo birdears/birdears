@@ -89,7 +89,7 @@ class SortCommands(click.Group):
               default=False, is_flag=True, envvar='NO_RESOLUTION')
 @click.option('-k', '--keyboard_width', type=click.IntRange(10, 100),
               default=60, metavar='<width>', envvar="KEYBOARD_WIDTH",
-              help='The width of the keyboard in percentage.')
+              help='The width of the keyboard in percentage (\'urwid\' only)')
 def cli(debug, urwid, cli, prompt, no_scroll, no_resolution, keyboard_width):
     """birdears ─ Functional Ear Training for Musicians!"""
 
