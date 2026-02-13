@@ -102,12 +102,32 @@ class SortCommands(click.Group):
 @click.option('--color-footer-bg', default='dark blue', help='Footer background color')
 @click.option('--color-highlight-text', default='black', help='Highlight text color')
 @click.option('--color-highlight-bg', default='light gray', help='Highlight background color')
+@click.option('--text-bold', is_flag=True, help='Bold text')
+@click.option('--text-italic', is_flag=True, help='Italic text')
+@click.option('--text-underline', is_flag=True, help='Underline text')
+@click.option('--header-bold', is_flag=True, help='Bold header')
+@click.option('--header-italic', is_flag=True, help='Italic header')
+@click.option('--header-underline', is_flag=True, help='Underline header')
+@click.option('--footer-bold', is_flag=True, help='Bold footer')
+@click.option('--footer-italic', is_flag=True, help='Italic footer')
+@click.option('--footer-underline', is_flag=True, help='Underline footer')
+@click.option('--highlight-bold', is_flag=True, help='Bold highlight')
+@click.option('--highlight-italic', is_flag=True, help='Italic highlight')
+@click.option('--highlight-underline', is_flag=True, help='Underline highlight')
+@click.option('--box-bold', is_flag=True, help='Bold box')
+@click.option('--box-italic', is_flag=True, help='Italic box')
+@click.option('--box-underline', is_flag=True, help='Underline box')
 @click.option('--bw', is_flag=True, help='Black and white mode (monochrome)')
 def cli(debug, urwid, cli, prompt, no_scroll, no_resolution, keyboard_width,
         color_text, color_bg, color_box, color_box_bg,
         color_header_text, color_header_bg,
         color_footer_text, color_footer_bg,
-        color_highlight_text, color_highlight_bg, bw):
+        color_highlight_text, color_highlight_bg,
+        text_bold, text_italic, text_underline,
+        header_bold, header_italic, header_underline,
+        footer_bold, footer_italic, footer_underline,
+        highlight_bold, highlight_italic, highlight_underline,
+        box_bold, box_italic, box_underline, bw):
     """birdears ─ Functional Ear Training for Musicians!"""
 
     global INTERFACE
@@ -128,6 +148,21 @@ def cli(debug, urwid, cli, prompt, no_scroll, no_resolution, keyboard_width,
             'color_footer_bg': 'default',
             'color_highlight_text': 'black',
             'color_highlight_bg': 'white',
+            'text_bold': False,
+            'text_italic': False,
+            'text_underline': False,
+            'header_bold': False,
+            'header_italic': False,
+            'header_underline': False,
+            'footer_bold': False,
+            'footer_italic': False,
+            'footer_underline': False,
+            'highlight_bold': False,
+            'highlight_italic': False,
+            'highlight_underline': False,
+            'box_bold': False,
+            'box_italic': False,
+            'box_underline': False,
         }
     else:
         COLORS = {
@@ -141,6 +176,21 @@ def cli(debug, urwid, cli, prompt, no_scroll, no_resolution, keyboard_width,
             'color_footer_bg': color_footer_bg,
             'color_highlight_text': color_highlight_text,
             'color_highlight_bg': color_highlight_bg,
+            'text_bold': text_bold,
+            'text_italic': text_italic,
+            'text_underline': text_underline,
+            'header_bold': header_bold,
+            'header_italic': header_italic,
+            'header_underline': header_underline,
+            'footer_bold': footer_bold,
+            'footer_italic': footer_italic,
+            'footer_underline': footer_underline,
+            'highlight_bold': highlight_bold,
+            'highlight_italic': highlight_italic,
+            'highlight_underline': highlight_underline,
+            'box_bold': box_bold,
+            'box_italic': box_italic,
+            'box_underline': box_underline,
         }
 
     if debug:

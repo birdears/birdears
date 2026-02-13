@@ -309,22 +309,37 @@ class TextUserInterface:
                         'light red', 'light green', 'yellow', 'light blue',
                         'light magenta', 'light cyan', 'white', 'default'}
 
-        def get_palette_entry(name, fg, bg):
+        def get_palette_entry(name, fg, bg, bold=False, italic=False, underline=False):
+
             fg_basic = fg if fg in BASIC_COLORS else 'default'
             bg_basic = bg if bg in BASIC_COLORS else 'default'
 
+            # Construct attributes string for foreground
+            attrs = []
+            if bold: attrs.append('bold')
+            if italic: attrs.append('italics')
+            if underline: attrs.append('underline')
+
+            fg_attrs = ",".join(attrs + [fg])
+            fg_basic_attrs = ",".join(attrs + [fg_basic])
+
             if fg == fg_basic and bg == bg_basic:
-                return (name, fg, bg)
+                return (name, fg_basic_attrs, bg)
             else:
                 # (name, fg_basic, bg_basic, mono, fg_high, bg_high)
-                return (name, fg_basic, bg_basic, '', fg, bg)
+                return (name, fg_basic_attrs, bg_basic, '', fg_attrs, bg)
 
         palette = [
-            get_palette_entry('default', c_text, c_bg),
-            get_palette_entry('highlight', c_highlight_text, c_highlight_bg),
-            get_palette_entry('header', c_header_text, c_header_bg),
-            get_palette_entry('footer', c_footer_text, c_footer_bg),
-            get_palette_entry('box', c_box, c_box_bg),
+            get_palette_entry('default', c_text, c_bg,
+                              kwargs.get('text_bold'), kwargs.get('text_italic'), kwargs.get('text_underline')),
+            get_palette_entry('highlight', c_highlight_text, c_highlight_bg,
+                              kwargs.get('highlight_bold'), kwargs.get('highlight_italic'), kwargs.get('highlight_underline')),
+            get_palette_entry('header', c_header_text, c_header_bg,
+                              kwargs.get('header_bold'), kwargs.get('header_italic'), kwargs.get('header_underline')),
+            get_palette_entry('footer', c_footer_text, c_footer_bg,
+                              kwargs.get('footer_bold'), kwargs.get('footer_italic'), kwargs.get('footer_underline')),
+            get_palette_entry('box', c_box, c_box_bg,
+                              kwargs.get('box_bold'), kwargs.get('box_italic'), kwargs.get('box_underline')),
             ]
 
         self.tui_widget = TextUserInterfaceWidget(*args, **kwargs)
