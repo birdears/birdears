@@ -13,16 +13,7 @@ from .. import CHROMATIC_TYPE
 
 from ..questionbase import QUESTION_CLASSES
 
-# from os import popen
-
-# TODO: find which version this function was implemented to set minimum python
-#       version.
 from shutil import get_terminal_size
-
-#  try:
-#      from shutil import get_terminal_size
-#  except ImportError:
-#      from click import get_terminal_size
 
 COLS, LINES = get_terminal_size()
 
