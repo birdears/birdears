@@ -97,12 +97,18 @@ class SortCommands(click.Group):
 @click.option('--color-bg', default='default', help='Background color')
 @click.option('--color-box', default='default', help='Box lines color')
 @click.option('--color-box-bg', default='default', help='Box background color')
-@click.option('--color-header-text', default='light gray', help='Header text color')
-@click.option('--color-header-bg', default='dark blue', help='Header background color')
-@click.option('--color-footer-text', default='light gray', help='Footer text color')
-@click.option('--color-footer-bg', default='dark blue', help='Footer background color')
-@click.option('--color-highlight-text', default='black', help='Highlight text color')
-@click.option('--color-highlight-bg', default='light gray', help='Highlight background color')
+@click.option('--color-header-text', default='light gray',
+              help='Header text color')
+@click.option('--color-header-bg', default='dark blue',
+              help='Header background color')
+@click.option('--color-footer-text', default='light gray',
+              help='Footer text color')
+@click.option('--color-footer-bg', default='dark blue',
+              help='Footer background color')
+@click.option('--color-highlight-text', default='black',
+              help='Highlight text color')
+@click.option('--color-highlight-bg', default='light gray',
+              help='Highlight background color')
 @click.option('--text-bold', is_flag=True, help='Bold text')
 @click.option('--text-italic', is_flag=True, help='Italic text')
 @click.option('--text-underline', is_flag=True, help='Underline text')
@@ -114,7 +120,8 @@ class SortCommands(click.Group):
 @click.option('--footer-underline', is_flag=True, help='Underline footer')
 @click.option('--highlight-bold', is_flag=True, help='Bold highlight')
 @click.option('--highlight-italic', is_flag=True, help='Italic highlight')
-@click.option('--highlight-underline', is_flag=True, help='Underline highlight')
+@click.option('--highlight-underline', is_flag=True,
+              help='Underline highlight')
 @click.option('--box-bold', is_flag=True, help='Bold box')
 @click.option('--box-italic', is_flag=True, help='Italic box')
 @click.option('--box-underline', is_flag=True, help='Underline box')
