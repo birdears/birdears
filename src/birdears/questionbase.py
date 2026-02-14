@@ -70,13 +70,16 @@ def get_valid_pitches(scale, valid_intervals=CHROMATIC_TYPE):
             print('Warning: invalid `valid_interval`: ', item)
             continue
 
+    tonic_pitch_int = int(tonic_pitch)
+    valid_semitones_set = set(valid_semitones)
+
     for pitch in scale:
 
         # this will work with multple octaves
         chromatic_offset = \
-            abs(int(tonic_pitch) - int(pitch)) % 12
+            abs(tonic_pitch_int - int(pitch)) % 12
 
-        if chromatic_offset in valid_semitones:
+        if chromatic_offset in valid_semitones_set:
             valid_scale.append(pitch)
 
     return valid_scale

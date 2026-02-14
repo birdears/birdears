@@ -67,12 +67,7 @@ class Note:
     # https://en.wikipedia.org/wiki/Pitch_class
     @property
     def pitch_class(self):
-        if self.note in CHROMATIC_SHARP:
-            value = CHROMATIC_SHARP.index(self.note)
-        else:
-            value = CHROMATIC_FLAT.index(self.note)
-
-        return value
+        return NOTE_TO_PITCH_CLASS[self.note]
 
     def __eq__(self, compare):
         # TODO: think a way to compare pitchs vs strings vs notes
