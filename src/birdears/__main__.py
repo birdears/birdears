@@ -120,7 +120,8 @@ class SortCommands(click.Group):
 @click.option('--box-underline', is_flag=True, help='Underline box')
 @click.option('--bw', is_flag=True, help='Black and white mode (monochrome)')
 @click.pass_context
-def cli(ctx: click.Context, debug, urwid, command_line_interface, prompt, no_scroll, no_resolution, keyboard_width,
+def cli(ctx: click.Context, debug, urwid, command_line_interface, prompt,
+        no_scroll, no_resolution, keyboard_width,
         color_text, color_bg, color_box, color_box_bg,
         color_header_text, color_header_bg,
         color_footer_text, color_footer_bg,
@@ -216,13 +217,45 @@ def cli(ctx: click.Context, debug, urwid, command_line_interface, prompt, no_scr
         cli_prompt_next = prompt
         cli_no_scroll = no_scroll
         cli_no_resolution = no_resolution
-
         if cli_no_scroll:
             cli_prompt_next = True
+
+        from .interfaces.commandline import CommandLine
+        interface_class = CommandLine
+
+        interface_params = {
+                "name": "commandline",
+                "cli_prompt_next": prompt,
+                "cli_no_scroll": no_scroll,
+                "cli_no_resolution": no_resolution,
+                }
+
     else:
         INTERFACE = 'urwid'
 
+        from .interfaces.urwid import TextUserInterface
+        interface_class = TextUserInterface
+
+        interface_params = {
+                "name": "urwid",
+                }
+
+    #  ctx.obj.update({})
     ctx.obj.update(ctx.params)
+    ctx.obj.update({"interface_class": interface_class})
+    ctx.obj.update({"interface_params": interface_params})
+    ctx.obj.update(COLORS)
+
+#  def load_interface(*args, **kwargs):
+#
+#      if INTERFACE == 'urwid':
+#          from .interfaces.urwid import TextUserInterface
+#          kwargs['keyboard_width'] = KEYBOARD_WIDTH
+#          kwargs.update(COLORS)
+#          tui = TextUserInterface(**kwargs)
+#      else:
+#          cli = CommandLine(cli_prompt_next, cli_no_scroll, cli_no_resolution,
+#                *args, **kwargs)
 
 #
 # EXERCISES' OPTIONS
@@ -329,8 +362,24 @@ def melodic(ctx, *args, **kwargs):
     """
 
     kwargs.update({'exercise': 'melodic'})
-    load_interface(*args, **kwargs)
+    #  load_interface(*args, **kwargs)
 
+    interface_class = ctx.obj['interface_class']
+    interface_params = ctx.obj['interface_params']
+
+    interface = interface_class(**interface_params, **ctx.obj, **kwargs)
+
+
+#  def load_interface(*args, **kwargs):
+#
+#      if INTERFACE == 'urwid':
+#          from .interfaces.urwid import TextUserInterface
+#          kwargs['keyboard_width'] = KEYBOARD_WIDTH
+#          kwargs.update(COLORS)
+#          tui = TextUserInterface(**kwargs)
+#      else:
+#          cli = CommandLine(cli_prompt_next, cli_no_scroll, cli_no_resolution,
+#                *args, **kwargs)
 
 #
 # harmonic interval
