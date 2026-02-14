@@ -180,9 +180,7 @@ class Sequence(list):
         duration = chord.duration or self.duration
         delay = chord.delay or self.delay
 
-        chord_plucks = str()
-        for note in chord:
-            chord_plucks += " pluck {} ".format(note)
+        chord_plucks = "".join([" pluck {} ".format(note) for note in chord])
 
         # FIXME: this is experimental, revert to the old code if it is the case
         command = (
