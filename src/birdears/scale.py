@@ -73,36 +73,6 @@ class DiatonicScale(ScaleBase):
 
         self.extend(scale)
 
-    # FIXME: aybe ake this a function
-    def get_triad(self, index=0, degree=None):
-        """Returns an array with notes from a scale's triad.
-
-        Args:
-            index (int): triad index (eg.: 0 for 1st degree triad.)
-            degree (int): Degree of the scale. If provided, overrides the
-                `index` argument. (eg.: `1` for the 1st degree triad.)
-        Returns:
-            An array with three pitches, one for each note of the triad.
-        """
-
-        tonic = self.tonic
-        mode = self.mode
-
-        diatonic = DiatonicScale(tonic=tonic.note, mode=mode,
-                                 octave=tonic.octave, n_octaves=2,
-                                 descending=False, dont_repeat_tonic=False)
-
-        if degree:
-            index = degree - 1
-
-        form = [0, 2, 4]
-
-        triad = [diatonic[index+note] for note in form]
-
-        chord = Chord(triad)
-
-        return chord
-
     def __repr__(self):
 
         repr = "<DiatonicScale {tonic} {mode} {direction} {first}-{to} " \
@@ -160,31 +130,31 @@ class ChromaticScale(ScaleBase):
 
         self.extend(scale)
 
-    def get_triad(self, mode, index=0, degree=None):
-        """Returns an array with notes from a scale's triad.
 
-        Args:
-            mode (str): Mode of the scale (eg. 'major' or 'minor')
-            index (int): Triad index (eg.: 0 for 1st degree triad.)
-            degree (int): Degree of the scale. If provided, overrides the
-                `index` argument. (eg.: `1` for the 1st degree triad.)
-        Returns:
-            A list with three pitches (str), one for each note of the triad.
-        """
+def get_triad(tonic, mode, index=0, degree=None):
+    """Returns an array with notes from a scale's triad.
 
-        tonic = self.tonic
+    Args:
+        tonic (Pitch): The tonic pitch of the scale.
+        mode (str): Mode of the scale (eg. 'major' or 'minor')
+        index (int): Triad index (eg.: 0 for 1st degree triad.)
+        degree (int): Degree of the scale. If provided, overrides the
+            `index` argument. (eg.: `1` for the 1st degree triad.)
+    Returns:
+        An array with three pitches, one for each note of the triad.
+    """
 
-        diatonic = DiatonicScale(tonic=tonic.note, mode=mode,
-                                 octave=tonic.octave, n_octaves=2,
-                                 descending=False, dont_repeat_tonic=False)
+    diatonic = DiatonicScale(tonic=tonic.note, mode=mode,
+                             octave=tonic.octave, n_octaves=2,
+                             descending=False, dont_repeat_tonic=False)
 
-        if degree:
-            index = degree - 1
+    if degree:
+        index = degree - 1
 
-        form = [0, 2, 4]
+    form = [0, 2, 4]
 
-        triad = [diatonic[index+note] for note in form]
+    triad = [diatonic[index+note] for note in form]
 
-        chord = Chord(triad)
+    chord = Chord(triad)
 
-        return chord
+    return chord

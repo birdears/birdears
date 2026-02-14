@@ -5,6 +5,7 @@ import subprocess
 import time
 
 from .scale import ChromaticScale
+from .scale import get_triad
 
 from .note_and_pitch import Pitch
 from .note_and_pitch import Chord
@@ -129,12 +130,8 @@ class Sequence(list):
                 of each triad.
         """
 
-        tonic_str = tonic_pitch.note
-        octave = tonic_pitch.octave
-        scale = ChromaticScale(tonic=tonic_str, octave=octave)
-
         for degree in degrees:
-            chord = scale.get_triad(mode=mode, degree=degree)
+            chord = get_triad(tonic=tonic_pitch, mode=mode, degree=degree)
             self.append(chord)
 
     @log_event
