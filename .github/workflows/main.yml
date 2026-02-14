@@ -23,8 +23,10 @@ jobs:
       - name: Install dependencies
         run: sudo apt install sox && \
              python -m pip install --upgrade pip setuptools wheel pytest coveralls
+      - name: Install birdears
+        run: pip -e install .
       - name: Run tests
-        run: coverage run --source=mypkg -m pytest tests/
+        run: coverage run --source=birdears -m pytest tests/
       - name: Send to Coveralls
         run: coveralls
 
