@@ -25,7 +25,7 @@ jobs:
       - name: Installing binaries
         run: sudo apt install sox
       - name: Install birdears
-        run: pip -e install .
+        run: pip install -e .
       - name: Run tests
         run: coverage run --source=birdears -m pytest tests/
       - name: Send to Coveralls
