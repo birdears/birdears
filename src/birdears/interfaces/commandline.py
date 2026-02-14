@@ -197,11 +197,6 @@ class CommandLine:
 
         self.exercise = exercise
 
-        ####if 'n_notes' in kwargs:
-            ####self.dictate_notes = kwargs['n_notes']
-        ####else:
-            ####self.dictate_notes = 1
-
         getch = _Getch()
 
         self.new_question_bit = True
@@ -299,8 +294,6 @@ class CommandLine:
                                            self.question.keyboard_index)
                 print(input_str, end='')
 
-            # FIXME: use self.question.n_notes instead
-            #if len(self.input_keys) == self.dictate_notes:
             if len(self.input_keys) == self.question.n_notes:
 
                 response = self.question.check_question(self.input_keys)
