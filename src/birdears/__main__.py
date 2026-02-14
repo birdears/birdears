@@ -2,6 +2,7 @@
 
 import urwid
 import click
+import toml
 
 from . import DIATONIC_MODES
 
@@ -28,7 +29,7 @@ VALID_MODES = tuple(DIATONIC_MODES) + ('r', 'R')
 VALID_PREQUESTION_METHODS = tuple(PREQUESTION_METHODS.keys())
 VALID_RESOLUTION_METHODS = tuple(RESOLUTION_METHODS.keys())
 
-INTERFACE = False
+INTERFACE = 'urwid'
 KEYBOARD_WIDTH = 60
 COLORS = {}
 
@@ -118,7 +119,8 @@ class SortCommands(click.Group):
 @click.option('--box-italic', is_flag=True, help='Italic box')
 @click.option('--box-underline', is_flag=True, help='Underline box')
 @click.option('--bw', is_flag=True, help='Black and white mode (monochrome)')
-def cli(debug, urwid, command_line_interface, prompt, no_scroll, no_resolution, keyboard_width,
+@click.pass_context
+def cli(ctx: click.Context, debug, urwid, command_line_interface, prompt, no_scroll, no_resolution, keyboard_width,
         color_text, color_bg, color_box, color_box_bg,
         color_header_text, color_header_bg,
         color_footer_text, color_footer_bg,
@@ -129,6 +131,8 @@ def cli(debug, urwid, command_line_interface, prompt, no_scroll, no_resolution, 
         highlight_bold, highlight_italic, highlight_underline,
         box_bold, box_italic, box_underline, bw):
     """birdears ─ Functional Ear Training for Musicians!"""
+
+    ctx.ensure_object(dict)
 
     global INTERFACE
     global KEYBOARD_WIDTH
@@ -194,21 +198,21 @@ def cli(debug, urwid, command_line_interface, prompt, no_scroll, no_resolution, 
         }
 
     if debug:
+        global logger
+
         from .logger import logger
         from .logger import logging
-
-        global logger
 
         logger.setLevel(logging.DEBUG)
         logger.debug('debug is on.')
 
     if command_line_interface:
         INTERFACE = 'commandline'
-    
+
         global cli_prompt_next
         global cli_no_scroll
         global cli_no_resolution
-        
+
         cli_prompt_next = prompt
         cli_no_scroll = no_scroll
         cli_no_resolution = no_resolution
@@ -217,6 +221,8 @@ def cli(debug, urwid, command_line_interface, prompt, no_scroll, no_resolution, 
             cli_prompt_next = True
     else:
         INTERFACE = 'urwid'
+
+    ctx.obj.update(ctx.params)
 
 #
 # EXERCISES' OPTIONS
@@ -317,7 +323,8 @@ Valid values are as follows:
 @user_durations_option
 @prequestion_method_option
 @resolution_method_option
-def melodic(*args, **kwargs):
+@click.pass_context
+def melodic(ctx, *args, **kwargs):
     """Melodic interval recognition
     """
 
@@ -361,7 +368,8 @@ Valid values are as follows:
 @user_durations_option
 @prequestion_method_option
 @resolution_method_option
-def harmonic(*args, **kwargs):
+@click.pass_context
+def harmonic(ctx, *args, **kwargs):
     """Harmonic interval recognition
     """
 
@@ -408,7 +416,8 @@ Valid values are as follows:
 @prequestion_method_option
 #@resolution_method_option
 @repeat_only_resolution_method_option
-def dictation(*args, **kwargs):
+@click.pass_context
+def dictation(ctx, *args, **kwargs):
     """Melodic dictation
     """
 
@@ -457,7 +466,8 @@ Valid values are as follows:
 @prequestion_method_option
 #@resolution_method_option
 @repeat_only_resolution_method_option
-def instrumental(*args, **kwargs):
+@click.pass_context
+def instrumental(ctx, *args, **kwargs):
     """Instrumental melodic dictation (time-based)
     """
 
@@ -501,7 +511,8 @@ Valid values are as follows:
 @user_durations_option
 @prequestion_method_option
 @resolution_method_option
-def notename(*args, **kwargs):
+@click.pass_context
+def notename(ctx, *args, **kwargs):
     """Note name by interval recognition
     """
 
@@ -515,14 +526,10 @@ def notename(*args, **kwargs):
 
 @cli.command(options_metavar='')
 @click.argument('filename', type=click.File(), metavar='<filename>')
-def load(filename, *args, **kwargs):
+@click.pass_context
+def load(ctx, filename, *args, **kwargs):
     """Load exercise preset from .toml config file <filename>.
     """
-
-    try:
-        import toml
-    except ImportError:
-        from .toml import toml
 
     toml_file_str = filename.read()
     config_dict = toml.loads(toml_file_str)
