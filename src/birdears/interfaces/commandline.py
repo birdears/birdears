@@ -290,17 +290,11 @@ class CommandLine:
 
             self.input_keys.append(user_input)
 
-            ###if self.exercise == 'dictation':
-                ###input_str = make_input_str(self.input_keys,
-                ###    self.question.keyboard_index)
-                ###print(input_str, end='')
             if self.question.n_input_notes > 1:
                 input_str = make_input_str(self.input_keys,
                                            self.question.keyboard_index)
                 print(input_str, end='')
 
-            # FIXME: use self.question.n_notes instead
-            #if len(self.input_keys) == self.dictate_notes:
             if len(self.input_keys) == self.question.n_notes:
 
                 response = self.question.check_question(self.input_keys)
@@ -332,8 +326,6 @@ class CommandLine:
 
         # backspace
         elif user_input == '\x7f':
-            # FIXME: use self.question.n_input_notes instead
-            #if(len(self.input_keys) > 0) and self.exercise == 'dictation':
             if(len(self.input_keys) > 0) and (self.question.n_input_notes > 1):
                 del(self.input_keys[-1])
                 input_str = make_input_str(self.input_keys,
