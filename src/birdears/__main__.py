@@ -30,8 +30,8 @@ VALID_PREQUESTION_METHODS = tuple(PREQUESTION_METHODS.keys())
 VALID_RESOLUTION_METHODS = tuple(RESOLUTION_METHODS.keys())
 
 INTERFACE = 'urwid'
-KEYBOARD_WIDTH = 60
-COLORS = {}
+#  KEYBOARD_WIDTH = 60
+#  COLORS = {}
 
 #  def load_interface(*args, **kwargs):
 #
@@ -135,11 +135,13 @@ def cli(ctx: click.Context, debug, urwid, command_line_interface, prompt,
 
     ctx.ensure_object(dict)
 
-    global INTERFACE
-    global KEYBOARD_WIDTH
-    global COLORS
+    #  global INTERFACE
+    #  global KEYBOARD_WIDTH
+    #  global COLORS
 
-    KEYBOARD_WIDTH = keyboard_width
+    COLORS = dict()
+
+    #  KEYBOARD_WIDTH = keyboard_width
 
     if bw:
         COLORS = {
@@ -208,17 +210,19 @@ def cli(ctx: click.Context, debug, urwid, command_line_interface, prompt,
         logger.debug('debug is on.')
 
     if command_line_interface:
-        INTERFACE = 'commandline'
+        #  INTERFACE = 'commandline'
 
-        global cli_prompt_next
-        global cli_no_scroll
-        global cli_no_resolution
+        #  global cli_prompt_next
+        #  global cli_no_scroll
+        #  global cli_no_resolution
 
-        cli_prompt_next = prompt
-        cli_no_scroll = no_scroll
-        cli_no_resolution = no_resolution
-        if cli_no_scroll:
-            cli_prompt_next = True
+        #  cli_prompt_next = prompt
+        #  cli_no_scroll = no_scroll
+        #  cli_no_resolution = no_resolution
+        #  if cli_no_scroll:
+        #      cli_prompt_next = True
+        if no_scroll:
+            prompt = True
 
         from .interfaces.commandline import CommandLine
         interface_class = CommandLine
@@ -231,7 +235,7 @@ def cli(ctx: click.Context, debug, urwid, command_line_interface, prompt,
                 }
 
     else:
-        INTERFACE = 'urwid'
+        #  INTERFACE = 'urwid'
 
         from .interfaces.urwid import TextUserInterface
         interface_class = TextUserInterface
