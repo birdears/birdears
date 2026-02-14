@@ -1,6 +1,5 @@
 "__Main__ docs are here."
 
-import urwid
 import click
 import toml
 
@@ -21,7 +20,6 @@ CTX_SETTINGS = dict(
 )
 
 VALID_MODES = tuple(DIATONIC_MODES) + ('r', 'R')
-
 VALID_PREQUESTION_METHODS = tuple(PREQUESTION_METHODS.keys())
 VALID_RESOLUTION_METHODS = tuple(RESOLUTION_METHODS.keys())
 
