@@ -58,8 +58,6 @@ class Sequence(list):
         if hasattr(SEQUENCE_THREAD, 'is_alive') and SEQUENCE_THREAD.is_alive():
             SEQUENCE_THREAD.join()
 
-        # TODO: later we should passa callback and end_callback here so the
-        # thread can talk to user interfaces, cli/tui/gui etc
         SEQUENCE_THREAD = Thread(target=self.async_play,
                                  kwargs={'callback': callback,
                                          'end_callback': end_callback,
@@ -87,8 +85,17 @@ class Sequence(list):
             is_last = (index == len(self) - 1)
 
             if callback:
+                duration = element.duration or self.duration
+                delay = element.delay or self.delay
 
-                cb_thread = Thread(target=callback, args=[element])
+                element_dict = {
+                    'element': element,
+                    'index': index,
+                    'duration': duration,
+                    'delay': delay,
+                    'is_last': is_last,
+                }
+                cb_thread = Thread(target=callback, args=[element_dict])
                 cb_thread.start()
 
             if type(element) == Pitch:
@@ -100,10 +107,6 @@ class Sequence(list):
 
             if hasattr(cb_thread, 'is_alive'):
                 cb_thread.join()
-
-            # TODO we should later get the element information and pass via a
-            # dict to Sequence._async_play()'s callback so it can inform the
-            # user interfaces on the status of the element current being played
 
         if self.pos_delay:
             self._wait(self.pos_delay)
