@@ -1,5 +1,6 @@
 from ..logger import log_event
 
+from ..response import Response
 from ..questionbase import QuestionBase
 from ..questionbase import register_question_class
 
@@ -179,8 +180,10 @@ user {} “{}”
 {} semitones
 """.format(correct_note, signal, user_note, self.interval['semitones'])
 
-        response = dict(
-            is_correct=False,
+        is_correct = user_note == correct_note
+
+        response = Response(
+            is_correct=is_correct,
             # user_interval=user_interval,
             user_note=user_note,
             # correct_interval=correct_interval,
@@ -189,11 +192,5 @@ user {} “{}”
             correct_response_str=correct_note,
             extra_response_str=extra_response_str,
         )
-
-        if user_note == correct_note:
-            response.update({'is_correct': True})
-
-        else:
-            response.update({'is_correct': False})
 
         return response

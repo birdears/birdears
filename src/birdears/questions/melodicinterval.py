@@ -2,6 +2,7 @@ from .. import CHROMATIC_TYPE
 
 from ..logger import log_event
 
+from ..response import Response
 from ..questionbase import QuestionBase
 from ..questionbase import register_question_class
 
@@ -192,13 +193,13 @@ class MelodicIntervalQuestion(QuestionBase):
            us=str(user_semitones).rjust(semitones_length),
            ut=user_semitones_text)
 
-        response = {
-            'is_correct': is_correct,
-            'user_interval': user_interval,
-            'correct_interval': correct_interval,
-            'user_response_str': user_interval,
-            'correct_response_str': correct_interval,
-            'extra_response_str': extra_response_str,
-        }
+        response = Response(
+            is_correct=is_correct,
+            user_interval=user_interval,
+            correct_interval=correct_interval,
+            user_response_str=user_interval,
+            correct_response_str=correct_interval,
+            extra_response_str=extra_response_str,
+        )
 
         return response

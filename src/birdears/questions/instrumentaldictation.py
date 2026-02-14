@@ -2,6 +2,7 @@ from random import choice
 
 from .. import CHROMATIC_TYPE
 
+from ..response import Response
 from ..questionbase import QuestionBase
 from ..questionbase import register_question_class
 
@@ -160,9 +161,9 @@ The intervals and notes of this question:
 {intervals}
 {notes}
 """.format(**dict(intervals=intervals, notes=notes))
-        response = {
-            'correct_semitones': self.random_pitches,
-            'correct_response_str': correct_response_str
-        }
+        response = Response(
+            correct_semitones=self.random_pitches,
+            correct_response_str=correct_response_str
+        )
 
         return response
