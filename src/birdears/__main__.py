@@ -133,6 +133,8 @@ def cli(ctx: click.Context, debug, urwid, command_line_interface, prompt,
         box_bold, box_italic, box_underline, bw):
     """birdears ─ Functional Ear Training for Musicians!"""
 
+    # NOTE: urwid and keyboard_width are being passed through obj.params
+
     ctx.ensure_object(dict)
 
     COLORS = dict()
