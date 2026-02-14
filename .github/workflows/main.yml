@@ -21,7 +21,7 @@ jobs:
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
       - name: Install dependencies
-        run: apt install sox && \
+        run: sudo apt install sox && \
              python -m pip install --upgrade pip setuptools wheel pytest coveralls
       - name: Run tests
         run: coverage run --source=mypkg -m pytest tests/
