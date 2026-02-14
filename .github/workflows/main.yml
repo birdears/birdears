@@ -9,8 +9,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v5
-      - env: 
-        - GITHUB_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
       - name: Set up Python
         # This is the version of the action for setting up Python, not the Python version.
         uses: actions/setup-python@v5
@@ -31,5 +29,7 @@ jobs:
       - name: Run tests
         run: coverage run --source=birdears -m pytest tests/
       - name: Send to Coveralls
+        env: 
+          GITHUB_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
         run: coveralls
 
