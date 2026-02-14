@@ -213,11 +213,6 @@ class CommandLine:
 
         self.exercise = exercise
 
-        ####if 'n_notes' in kwargs:
-            ####self.dictate_notes = kwargs['n_notes']
-        ####else:
-            ####self.dictate_notes = 1
-
         getch = _Getch()
 
         self.new_question_bit = True
