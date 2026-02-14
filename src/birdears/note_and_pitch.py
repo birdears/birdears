@@ -78,15 +78,11 @@ class Note:
         # TODO: think a way to compare pitchs vs strings vs notes
 
         # FIXME: we should use isinstance() here
-        if type(compare) == str and str(self) == compare:
+        if isinstance(compare, str) and str(self) == compare:
             return True
 
-        elif type(compare) == Note and int(self) == int(compare):
+        elif isinstance(compare, Note) and int(self) == int(compare):
             return True
-
-        elif type(compare) == Pitch and int(self) == int(compare):
-            return True
-
 
         return False
 
