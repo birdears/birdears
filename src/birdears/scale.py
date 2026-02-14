@@ -61,13 +61,14 @@ class DiatonicScale(ScaleBase):
 
         pitch_num = int(self[0])
 
+        accident = ('flat' if (('b' in tonic) or (tonic == 'F'))
+                    else 'sharp')
+
         for i in range((form_length * n_octaves) + repeat_tonic):
             step = next(diatonic_loop)
 
             pitch_num += step * direction
 
-            accident = ('flat' if (('b' in tonic) or (tonic == 'F'))
-                        else 'sharp')
             pitch = get_pitch_by_number(numeric=pitch_num, accident=accident)
             scale.append(pitch)
 
