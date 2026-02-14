@@ -3,7 +3,6 @@ from random import choice
 
 from . import D
 
-from . import KEYBOARD_INDICES
 from . import CHROMATIC_TYPE
 from . import KEYS
 from . import DEGREE_INDEX
@@ -181,11 +180,7 @@ class QuestionBase:
 
         self.n_octaves = n_octaves
 
-        direction = 'descending' if descending else 'ascending'
-
-        # FIXME: maybe this should go to __main__
-        self.keyboard_index = \
-            tuple(KEYBOARD_INDICES['chromatic'][direction][self.mode])
+        self.keyboard_index = None
 
         if isinstance(tonic, list) or isinstance(tonic, tuple):
             tonic = choice(tonic)

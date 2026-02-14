@@ -1,6 +1,7 @@
 from random import choice
 
 from birdears import KEYS
+from birdears import get_keyboard_index
 
 from birdears.questions.harmonicinterval import HarmonicIntervalQuestion
 
@@ -19,6 +20,8 @@ def test_harmonicintervalclass():
         a = HarmonicIntervalQuestion(mode=mode, tonic=tonic, octave=octave,
                                      descending=descending,
                                      chromatic=chromatic, n_octaves=n_octaves)
+
+        a.keyboard_index = get_keyboard_index(a.mode, a.is_descending)
 
         # why not guess some interval
         a.check_question('x')

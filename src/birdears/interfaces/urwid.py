@@ -9,6 +9,7 @@ from .. import KEYS
 from .. import CHROMATIC_SHARP
 from .. import CHROMATIC_FLAT
 from .. import INTERVALS
+from .. import get_keyboard_index
 
 from ..questionbase import QUESTION_CLASSES
 
@@ -444,6 +445,9 @@ class TextUserInterface:
             raise Exception("Invalid `exercise` value:", exercise)
 
         self.question = QUESTION_CLASS(**kwargs)
+        self.question.keyboard_index = \
+            get_keyboard_index(self.question.mode,
+                               self.question.is_descending)
         self.question.display.callback = self.update_question_display
 
         self.input_keys = list()
