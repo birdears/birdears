@@ -7,14 +7,20 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+        # python-version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
+
     steps:
       - uses: actions/checkout@v5
-      - name: Set up Python
+      - name: Set up Python ${{ matrix.python-version }}
         # This is the version of the action for setting up Python, not the Python version.
         uses: actions/setup-python@v5
         with:
           # Semantic version range syntax or exact version of a Python version
-          python-version: '3.11'
+          # python-version: '3.11'
+          python-version: ${{ matrix.python-version }}
           # Optional - x64 or x86 architecture, defaults to x64
           architecture: 'x64'
       # You can test your matrix by printing the current Python version
@@ -28,10 +34,8 @@ jobs:
         run: pip install -e .
       - name: Run tests
         run: pytest --cov-config .coveragerc --cov birdears tests/
-        # run: coverage run --source=birdears -m pytest tests/
       - name: Send to Coveralls
         run: coveralls --service=github
         env: 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # GITHUB_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
 
