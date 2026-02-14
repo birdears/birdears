@@ -6,8 +6,6 @@ import toml
 
 from . import DIATONIC_MODES
 
-from .interfaces.commandline import CommandLine
-
 from . import CHROMATIC_SHARP
 from . import CHROMATIC_FLAT
 from . import CHROMATIC_TYPE
@@ -16,8 +14,6 @@ from .prequestion import PREQUESTION_METHODS
 from .resolution import RESOLUTION_METHODS
 
 from .questions import *
-
-from . import D
 
 CTX_SETTINGS = dict(
     help_option_names=['-h', '--help'],
@@ -28,21 +24,6 @@ VALID_MODES = tuple(DIATONIC_MODES) + ('r', 'R')
 
 VALID_PREQUESTION_METHODS = tuple(PREQUESTION_METHODS.keys())
 VALID_RESOLUTION_METHODS = tuple(RESOLUTION_METHODS.keys())
-
-INTERFACE = 'urwid'
-#  KEYBOARD_WIDTH = 60
-#  COLORS = {}
-
-#  def load_interface(*args, **kwargs):
-#
-#      if INTERFACE == 'urwid':
-#          from .interfaces.urwid import TextUserInterface
-#          kwargs['keyboard_width'] = KEYBOARD_WIDTH
-#          kwargs.update(COLORS)
-#          tui = TextUserInterface(**kwargs)
-#      else:
-#          cli = CommandLine(cli_prompt_next, cli_no_scroll, cli_no_resolution,
-#                *args, **kwargs)
 
 
 main_epilog = """
@@ -147,7 +128,7 @@ def cli(ctx: click.Context, debug, urwid, command_line_interface, prompt,
     COLORS = dict()
 
     if bw:
-        COLORS = {
+        colors = {
             'color_text': 'default',
             'color_bg': 'default',
             'color_box': 'default',
@@ -175,7 +156,7 @@ def cli(ctx: click.Context, debug, urwid, command_line_interface, prompt,
             'box_underline': False,
         }
     else:
-        COLORS = {
+        colors = {
             'color_text': color_text,
             'color_bg': color_bg,
             'color_box': color_box,
@@ -240,7 +221,7 @@ def cli(ctx: click.Context, debug, urwid, command_line_interface, prompt,
     ctx.obj.update(ctx.params)
     ctx.obj.update({"interface_class": interface_class})
     ctx.obj.update({"interface_params": interface_params})
-    ctx.obj.update(COLORS)
+    ctx.obj.update(colors)
 
 
 #
@@ -348,24 +329,12 @@ def melodic(ctx, *args, **kwargs):
     """
 
     kwargs.update({'exercise': 'melodic'})
-    #  load_interface(*args, **kwargs)
 
     interface_class = ctx.obj['interface_class']
     interface_params = ctx.obj['interface_params']
 
     interface = interface_class(**interface_params, **ctx.obj, **kwargs)
 
-
-#  def load_interface(*args, **kwargs):
-#
-#      if INTERFACE == 'urwid':
-#          from .interfaces.urwid import TextUserInterface
-#          kwargs['keyboard_width'] = KEYBOARD_WIDTH
-#          kwargs.update(COLORS)
-#          tui = TextUserInterface(**kwargs)
-#      else:
-#          cli = CommandLine(cli_prompt_next, cli_no_scroll, cli_no_resolution,
-#                *args, **kwargs)
 
 #
 # harmonic interval
@@ -409,7 +378,6 @@ def harmonic(ctx, *args, **kwargs):
     """
 
     kwargs.update({'exercise': 'harmonic'})
-    #  load_interface(*args, **kwargs)
 
     interface_class = ctx.obj['interface_class']
     interface_params = ctx.obj['interface_params']
@@ -462,7 +430,6 @@ def dictation(ctx, *args, **kwargs):
     """
 
     kwargs.update({'exercise': 'dictation'})
-    #  load_interface(*args, **kwargs)
 
     interface_class = ctx.obj['interface_class']
     interface_params = ctx.obj['interface_params']
@@ -517,7 +484,6 @@ def instrumental(ctx, *args, **kwargs):
     """
 
     kwargs.update({'exercise': 'instrumental'})
-    #  load_interface(*args, **kwargs)
 
     interface_class = ctx.obj['interface_class']
     interface_params = ctx.obj['interface_params']
@@ -567,7 +533,6 @@ def notename(ctx, *args, **kwargs):
     """
 
     kwargs.update({'exercise': 'notename'})
-    #  load_interface(*args, **kwargs)
 
     interface_class = ctx.obj['interface_class']
     interface_params = ctx.obj['interface_params']
@@ -594,7 +559,7 @@ def load(ctx, filename, *args, **kwargs):
     interface_class = ctx.obj['interface_class']
     interface_params = ctx.obj['interface_params']
 
-    interface = interface_class(*args, *kwargs, **interface_params, **ctx.obj)
+    interface = interface_class(*args, *kwargs, **interface_params, **ctx.obj, **config_dict)
 
 
 if __name__ == "__main__":
