@@ -1,4 +1,5 @@
 import threading
+import time
 
 try:
     import urwid
@@ -426,6 +427,9 @@ class TextUserInterface:
 
         self.tui_widget.footer_right.set_text(answers_text)
         self._draw_screen()
+        # Sleep a bit to allow the screen to update before blocking
+        # with play_resolution
+        time.sleep(0.05)
 
         kwargs = {
             'callback': self.keyboard.highlight_key,
