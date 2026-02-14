@@ -164,10 +164,10 @@ class NoteNameQuestion(QuestionBase):
         if user_note in CHROMATIC_SHARP:
             user_semitones = CHROMATIC_SHARP.index(user_note)
         elif user_note in CHROMATIC_FLAT:
-            user_semitones = CHROMATIC_SHARP.index(user_note)
+            user_semitones = CHROMATIC_FLAT.index(user_note)
 
         if correct_note in CHROMATIC_SHARP:
-            correct_semitones = CHROMATIC_SHARP.index(user_note)
+            correct_semitones = CHROMATIC_SHARP.index(correct_note)
         elif correct_note in CHROMATIC_FLAT:
             correct_semitones = CHROMATIC_FLAT.index(correct_note)
 
