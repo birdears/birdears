@@ -110,7 +110,7 @@ class Keyboard(urwid.Filler):
         c_current_x = origin
         for k in keys:
             if k['is_chromatic']:
-                start = k['pos'] - 0.5
+                start = k['pos']
                 gap = start - c_current_x
                 if gap > 0:
                     chromatic_widgets.append(Pad(weight=gap))
