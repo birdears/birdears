@@ -141,7 +141,7 @@ class QuestionBase:
 
         self.display = DictCallback({'main_display': str()})
 
-        if isinstance(mode, str) and any(el == mode for el in ('R', 'r')):
+        if isinstance(mode, str) and mode in ('R', 'r'):
             mode = choice(list(DIATONIC_FORMS))
 
         self.mode = mode
