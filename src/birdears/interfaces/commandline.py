@@ -232,7 +232,8 @@ class CommandLine:
                 elif self.exercise == 'instrumental':
                     exercise_title  = 'Instrumental melodic ' \
                                       'time-based detection'
-                    # TODO: question_prompt
+                    question_prompt = 'Listen to the melody and then ' \
+                                      'play it on your instrument.'
 
                 else:               # 'notename':
                     exercise_title  = 'Note name by interval recognition'
@@ -261,6 +262,8 @@ class CommandLine:
                     print(center_text(question_prompt))
                     print(center_text(
                         'key- answer   r- repeat   q- quit', sep=False, nl=1))
+                else:
+                    print(center_text(question_prompt))
 
             if self.exercise == 'instrumental':
                 for r in range(self.question.n_repeats):
