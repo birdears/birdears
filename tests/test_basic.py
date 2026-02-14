@@ -11,6 +11,7 @@ from birdears.interval import Interval
 from birdears.scale import ScaleBase
 from birdears.scale import DiatonicScale
 from birdears.scale import ChromaticScale
+from birdears.scale import get_triad
 
 from birdears.sequence import Sequence
 
@@ -160,7 +161,7 @@ def test_diatonicscaleclass():
 def test_diatonicscale_gettriad():
 
     a = DiatonicScale(tonic='C', mode='major')
-    b = a.get_triad(degree=7)
+    b = get_triad(tonic=a.tonic, mode=a.mode, degree=7)
     assert(b)
 
 
@@ -173,7 +174,7 @@ def test_chromaticscaleclass():
 def test_chromaticscale_gettriad():
 
     a = ChromaticScale(tonic='C')
-    b = a.get_triad(mode='major', degree=7)
+    b = get_triad(tonic=a.tonic, mode='major', degree=7)
     assert(b)
 
 
