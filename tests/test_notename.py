@@ -1,7 +1,7 @@
 import pytest
 from random import choice
 from birdears import CHROMATIC_SHARP, CHROMATIC_FLAT, KEYBOARD_INDICES
-from birdears.questions.notename import NoteNameQuestion
+from birdears.questions.note_name import NoteNameQuestion
 
 def test_notename_question_init():
     keys = list(CHROMATIC_SHARP)
