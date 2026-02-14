@@ -3,5 +3,5 @@ __all__ = [
         'harmonicinterval',
         'melodicdictation',
         'instrumentaldictation',
-        'notename',
+        'note_name',
         ]
