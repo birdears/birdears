@@ -204,21 +204,18 @@ class QuestionBase:
                                        octave=self.octave,
                                        descending=descending,
                                        n_octaves=n_octaves)
+            self.diatonic_scale = self.scale
+            self._chromatic_scale = None
         else:
             self.scale = ChromaticScale(tonic=self.tonic_str,
                                         octave=self.octave,
                                         descending=descending,
                                         n_octaves=n_octaves)
-
-        self.diatonic_scale = DiatonicScale(tonic=self.tonic_str, mode=mode,
-                                            octave=self.octave,
-                                            descending=descending,
-                                            n_octaves=n_octaves)
-
-        self.chromatic_scale = ChromaticScale(tonic=self.tonic_str,
-                                              octave=self.octave,
-                                              descending=descending,
-                                              n_octaves=n_octaves)
+            self._chromatic_scale = self.scale
+            self.diatonic_scale = DiatonicScale(tonic=self.tonic_str, mode=mode,
+                                                octave=self.octave,
+                                                descending=descending,
+                                                n_octaves=n_octaves)
 
         self.tonic_accident = ('flat' if (('b' in self.tonic_str)
                                or (self.tonic_str == 'F'))
@@ -263,6 +260,15 @@ class QuestionBase:
 
         self.prequestion_method = prequestion_method
         self.resolution_method = resolution_method
+
+    @property
+    def chromatic_scale(self):
+        if getattr(self, '_chromatic_scale', None) is None:
+            self._chromatic_scale = ChromaticScale(tonic=self.tonic_str,
+                                                   octave=self.octave,
+                                                   descending=self.is_descending,
+                                                   n_octaves=self.n_octaves)
+        return self._chromatic_scale
 
     def make_question(self):
         """This method should be overwritten by the question subclasses.
