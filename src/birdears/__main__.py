@@ -33,16 +33,16 @@ INTERFACE = 'urwid'
 KEYBOARD_WIDTH = 60
 COLORS = {}
 
-def load_interface(*args, **kwargs):
-
-    if INTERFACE == 'urwid':
-        from .interfaces.urwid import TextUserInterface
-        kwargs['keyboard_width'] = KEYBOARD_WIDTH
-        kwargs.update(COLORS)
-        tui = TextUserInterface(**kwargs)
-    else:
-        cli = CommandLine(cli_prompt_next, cli_no_scroll, cli_no_resolution,
-              *args, **kwargs)
+#  def load_interface(*args, **kwargs):
+#
+#      if INTERFACE == 'urwid':
+#          from .interfaces.urwid import TextUserInterface
+#          kwargs['keyboard_width'] = KEYBOARD_WIDTH
+#          kwargs.update(COLORS)
+#          tui = TextUserInterface(**kwargs)
+#      else:
+#          cli = CommandLine(cli_prompt_next, cli_no_scroll, cli_no_resolution,
+#                *args, **kwargs)
 
 
 main_epilog = """
@@ -423,7 +423,12 @@ def harmonic(ctx, *args, **kwargs):
     """
 
     kwargs.update({'exercise': 'harmonic'})
-    load_interface(*args, **kwargs)
+    #  load_interface(*args, **kwargs)
+
+    interface_class = ctx.obj['interface_class']
+    interface_params = ctx.obj['interface_params']
+
+    interface = interface_class(**interface_params, **ctx.obj, **kwargs)
 
 
 #
@@ -471,7 +476,12 @@ def dictation(ctx, *args, **kwargs):
     """
 
     kwargs.update({'exercise': 'dictation'})
-    load_interface(*args, **kwargs)
+    #  load_interface(*args, **kwargs)
+
+    interface_class = ctx.obj['interface_class']
+    interface_params = ctx.obj['interface_params']
+
+    interface = interface_class(**interface_params, **ctx.obj, **kwargs)
 
 
 #
@@ -521,7 +531,12 @@ def instrumental(ctx, *args, **kwargs):
     """
 
     kwargs.update({'exercise': 'instrumental'})
-    load_interface(*args, **kwargs)
+    #  load_interface(*args, **kwargs)
+
+    interface_class = ctx.obj['interface_class']
+    interface_params = ctx.obj['interface_params']
+
+    interface = interface_class(**interface_params, **ctx.obj, **kwargs)
 
 
 #
@@ -566,7 +581,12 @@ def notename(ctx, *args, **kwargs):
     """
 
     kwargs.update({'exercise': 'notename'})
-    load_interface(*args, **kwargs)
+    #  load_interface(*args, **kwargs)
+
+    interface_class = ctx.obj['interface_class']
+    interface_params = ctx.obj['interface_params']
+
+    interface = interface_class(**interface_params, **ctx.obj, **kwargs)
 
 
 #
@@ -583,7 +603,12 @@ def load(ctx, filename, *args, **kwargs):
     toml_file_str = filename.read()
     config_dict = toml.loads(toml_file_str)
 
-    load_interface(*args, **kwargs, **config_dict)
+    #  load_interface(*args, **kwargs, **config_dict)
+
+    interface_class = ctx.obj['interface_class']
+    interface_params = ctx.obj['interface_params']
+
+    interface = interface_class(*args, *kwargs, **interface_params, **ctx.obj)
 
 
 if __name__ == "__main__":
