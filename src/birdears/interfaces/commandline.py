@@ -206,6 +206,9 @@ class CommandLine:
 
         self.new_question_bit = True
 
+        self.last_main_display = None
+        self.last_counter = None
+
         print('\n')
 
         while True:
@@ -263,15 +266,11 @@ class CommandLine:
                         'key- answer   r- repeat   q- quit', sep=False, nl=1))
 
             if self.exercise == 'instrumental':
-                for r in range(self.question.n_repeats):
-                    self.question.play_question()
+                self.last_main_display = None
+                self.last_counter = None
+                self.question.display.callback = self.update_display
 
-                # FIXME: Instrumental is broken in CLI, double countdown...
-                for i in range(self.question.wait_time):
-                    time_left = str(self.question.wait_time - i).rjust(3)
-                    text = '{} seconds remaining...'.format(time_left)
-                    print(center_text(text, sep=False), end='')
-                    self.question.question._wait(1)
+                self.question.play_question()
 
                 response = self.question.check_question()
                 print_instrumental(response)
@@ -282,6 +281,20 @@ class CommandLine:
 
             user_input = getch()
             self.process_key(user_input)
+
+    def update_display(self):
+        display = self.question.display
+
+        msg = display.get('main_display', '')
+        counter = display.get('counter', '')
+
+        if msg and msg != self.last_main_display:
+            print(center_text(msg, sep=False), end='')
+            self.last_main_display = msg
+
+        if counter and counter != self.last_counter:
+            print(center_text(counter, sep=False), end='')
+            self.last_counter = counter
 
     def process_key(self, user_input):
 
