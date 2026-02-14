@@ -9,15 +9,15 @@ from .exception import InvalidPitch
 # eg.: C4 == (0) + (4*12), == 60
 
 
-def get_pitch_class(note):
-    if note in CHROMATIC_SHARP:
-        pitch_class = CHROMATIC_SHARP.index(note)
-    elif note in CHROMATIC_FLAT:
-        pitch_class = CHROMATIC_FLAT.index(note)
-    else:
-        raise InvalidNote
+NOTE_TO_PITCH_CLASS = {note: i for i, note in enumerate(CHROMATIC_SHARP)}
+NOTE_TO_PITCH_CLASS.update({note: i for i, note in enumerate(CHROMATIC_FLAT)})
 
-    return pitch_class
+
+def get_pitch_class(note):
+    try:
+        return NOTE_TO_PITCH_CLASS[note]
+    except KeyError:
+        raise InvalidNote
 
 
 def get_pitch_number(note, octave):
