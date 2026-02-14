@@ -101,7 +101,7 @@ class Keyboard(urwid.Filler):
             return
 
         min_pos = min(k['pos'] for k in keys)
-        origin = int(min_pos)
+        origin = min_pos
 
         chromatic_widgets = []
         diatonic_widgets = []
