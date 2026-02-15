@@ -182,8 +182,24 @@ class CommandLine:
             cli_no_scroll (bool): True if --no-scroll is set.
             cli_no_resolution (bool): True if --no-resolution is set.
             exercise (str): The question name.
-            **kwargs (kwargs): FIXME: The kwargs can contain options for
-                specific questions.
+            **kwargs: Keyword arguments passed to the question class.
+                Common arguments include:
+                - mode (str): The mode of the question (e.g., 'major', 'minor').
+                - tonic (str): The tonic of the question (e.g., 'C').
+                - octave (int): A scientific octave notation.
+                - descending (bool): Is the question direction in descending.
+                - chromatic (bool): If the question can have chromatic intervals.
+                - n_octaves (int): Maximum number of octaves of the question.
+                - valid_intervals (list): A list with valid intervals (int).
+                - user_durations (str): A string with default durations.
+                - prequestion_method (str): Method of playing a cadence.
+                - resolution_method (str): Method of playing the resolution.
+
+                Specific question arguments:
+                - n_notes (int): The number of notes (dictation).
+                - max_intervals (int): Max number of random intervals (dictation).
+                - wait_time (float): Wait time in seconds (instrumental).
+                - n_repeats (int): Number of repeats (instrumental).
         """
 
         if exercise in QUESTION_CLASSES:
