@@ -91,7 +91,18 @@ class Sequence(list):
 
             if callback:
 
-                cb_thread = Thread(target=callback, args=[element])
+                duration = element.duration or self.duration
+                delay = element.delay or self.delay
+
+                element_data = {
+                    'element': element,
+                    'index': index,
+                    'duration': duration,
+                    'delay': delay,
+                    'is_last': is_last,
+                }
+
+                cb_thread = Thread(target=callback, args=[element_data])
                 cb_thread.start()
 
             if type(element) == Pitch:
@@ -107,10 +118,6 @@ class Sequence(list):
                 except KeyboardInterrupt:
                     print('Ctrl+C')
                     exit(0)
-
-            # TODO we should later get the element information and pass via a
-            # dict to Sequence._async_play()'s callback so it can inform the
-            # user interfaces on the status of the element current being played
 
         if self.pos_delay:
             self._wait(self.pos_delay)

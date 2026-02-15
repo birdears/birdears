@@ -156,6 +156,9 @@ class Keyboard(urwid.Filler):
 
     def highlight_key(self, element=None):
 
+        if isinstance(element, dict):
+            element = element.get('element')
+
         with LOCK:
 
             # for key in self.key_index.values():
