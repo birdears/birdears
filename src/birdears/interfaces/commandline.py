@@ -301,10 +301,6 @@ class CommandLine:
 
             self.input_keys.append(user_input)
 
-            ###if self.exercise == 'dictation':
-                ###input_str = make_input_str(self.input_keys,
-                ###    self.question.keyboard_index)
-                ###print(input_str, end='')
             if self.question.n_input_notes > 1:
                 input_str = make_input_str(self.input_keys,
                                            self.question.keyboard_index)
