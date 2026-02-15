@@ -119,8 +119,7 @@ class Sequence(list):
             cb_thread = Thread(target=end_callback)
             cb_thread.start()
 
-    # FIXME: implement octave here:
-    def make_chord_progression(self, tonic_pitch, mode, degrees):
+    def make_chord_progression(self, tonic_pitch, mode, degrees, octave=None):
         """Appends triad chord(s) to the Sequence.
 
         Args:
@@ -128,7 +127,12 @@ class Sequence(list):
             mode (str): Mode of the scale from which build the triads upon.
             degrees (array_type): List with integers represending the degrees
                 of each triad.
+            octave (int): Octave of the scale from which build the triads upon.
         """
+
+        if octave is not None:
+            tonic_pitch = Pitch(note=tonic_pitch.note, octave=octave,
+                                accident=tonic_pitch.accident)
 
         for degree in degrees:
             chord = get_triad(tonic=tonic_pitch, mode=mode, degree=degree)
