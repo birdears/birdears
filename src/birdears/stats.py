@@ -103,7 +103,7 @@ class Stats:
 
     def get_global_stats(self):
         """
-        Retrieves aggregated global statistics.
+        Retrieves aggregated global statistics by exercise type.
 
         Returns:
             list: A list of dictionaries, one for each exercise type.
@@ -124,6 +124,40 @@ class Stats:
                 percent = (correct / total * 100) if total > 0 else 0.0
                 stats.append({
                     'exercise_type': row[0],
+                    'total': total,
+                    'correct': correct,
+                    'percent': percent
+                })
+            return stats
+
+    def get_detailed_stats(self):
+        """
+        Retrieves detailed statistics grouped by exercise, mode, tonic, and octave.
+
+        Returns:
+            list: A list of dictionaries.
+        """
+        with self._get_cursor() as cursor:
+            cursor.execute('''
+                SELECT exercise_type, mode, tonic, octave,
+                       COUNT(*), SUM(CASE WHEN is_correct THEN 1 ELSE 0 END)
+                FROM attempts
+                GROUP BY exercise_type, mode, tonic, octave
+                ORDER BY exercise_type, mode, tonic, octave
+            ''')
+            rows = cursor.fetchall()
+
+            stats = []
+            for row in rows:
+                # row: (exercise_type, mode, tonic, octave, total, correct)
+                total = row[4]
+                correct = row[5] if row[5] else 0
+                percent = (correct / total * 100) if total > 0 else 0.0
+                stats.append({
+                    'exercise_type': row[0],
+                    'mode': row[1],
+                    'tonic': row[2],
+                    'octave': row[3],
                     'total': total,
                     'correct': correct,
                     'percent': percent

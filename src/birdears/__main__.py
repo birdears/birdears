@@ -602,22 +602,37 @@ def report(ctx, *args, **kwargs):
         stats_obj = Stats(filename='birdears.sqlite')
 
     try:
-        global_stats = stats_obj.get_global_stats()
+        detailed_stats = stats_obj.get_detailed_stats()
     except Exception as e:
         print(f"Error accessing database: {e}")
         return
 
-    if not global_stats:
+    if not detailed_stats:
         print("No statistics found.")
         return
 
-    print("\nGlobal Statistics:\n")
-    print(f"{'Exercise':<15} | {'Total':<10} | {'Correct':<10} | {'Percent':<10}")
-    print("-" * 55)
+    print("\nDetailed Statistics:\n")
 
-    for stat in global_stats:
+    header = "{:<15} | {:<10} | {:<5} | {:<5} | {:<8} | {:<8} | {:<8}".format(
+        "Exercise", "Mode", "Tonic", "Oct", "Total", "Correct", "Percent"
+    )
+    separator = "-" * len(header)
+
+    print(header)
+    print(separator)
+
+    for stat in detailed_stats:
         percent_str = f"{stat['percent']:.1f}%"
-        print(f"{stat['exercise_type']:<15} | {str(stat['total']):<10} | {str(stat['correct']):<10} | {percent_str:<10}")
+        row = "{:<15} | {:<10} | {:<5} | {:<5} | {:<8} | {:<8} | {:<8}".format(
+            stat['exercise_type'],
+            stat['mode'],
+            stat['tonic'],
+            str(stat['octave']),
+            str(stat['total']),
+            str(stat['correct']),
+            percent_str
+        )
+        print(row)
     print("\n")
 
 
