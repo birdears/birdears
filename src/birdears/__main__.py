@@ -74,8 +74,10 @@ class SortCommands(click.Group):
               default=False, is_flag=True, envvar='NO_RESOLUTION')
 @click.option('--stats',
               help='Record stats to [filename.sqlite] (default: birdears.sqlite)',
-              required=False, is_flag=False, flag_value='birdears.sqlite',
-              default=None, metavar='[filename.sqlite]')
+              required=False, is_flag=True, default=False)
+@click.option('--stats-file',
+              help='Specify custom stats filename (implies --stats)',
+              required=False, default=None, metavar='[filename.sqlite]')
 @click.option('-k', '--keyboard_width', type=click.IntRange(10, 100),
               default=60, metavar='<width>', envvar="KEYBOARD_WIDTH",
               help='The width of the keyboard in percentage (\'urwid\' only)')
@@ -114,7 +116,7 @@ class SortCommands(click.Group):
 @click.option('--bw', is_flag=True, help='Black and white mode (monochrome)')
 @click.pass_context
 def cli(ctx: click.Context, debug, urwid, command_line_interface, prompt,
-        no_scroll, no_resolution, stats, keyboard_width,
+        no_scroll, no_resolution, stats, stats_file, keyboard_width,
         color_text, color_bg, color_box, color_box_bg,
         color_header_text, color_header_bg,
         color_footer_text, color_footer_bg,
@@ -199,8 +201,16 @@ def cli(ctx: click.Context, debug, urwid, command_line_interface, prompt,
         logger.debug('debug is on.')
 
     stats_obj = None
-    if stats:
-        stats_obj = Stats(filename=stats)
+
+    # Determine stats filename and activation
+    final_stats_file = None
+    if stats_file:
+        final_stats_file = stats_file
+    elif stats:
+        final_stats_file = 'birdears.sqlite'
+
+    if final_stats_file:
+        stats_obj = Stats(filename=final_stats_file)
 
     if command_line_interface:
 
