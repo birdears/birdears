@@ -142,7 +142,12 @@ class Keyboard(urwid.Filler):
         diatonic = urwid.Columns(widget_list=diatonic_widgets, dividechars=0)
 
         keyboard = urwid.Pile([chromatic, diatonic])
-        box = urwid.LineBox(keyboard)
+
+        total_width = max_width - origin
+        # Use Fixed filler to ensure columns don't stretch
+        padded_keyboard = urwid.Padding(keyboard, width=total_width, align='center')
+
+        box = urwid.LineBox(padded_keyboard)
 
         super(Keyboard, self).__init__(body=box, min_height=10,
                                        *args, **kwargs)
