@@ -386,7 +386,7 @@ class TextUserInterface:
         answer = self.question.check_question(user_input)
 
         # TODO: UPDATE DISPLAY BEFORE play_resolution
-        if answer['is_correct']:
+        if answer.is_correct:
             self.correct += 1
             self.question.display['main_display'] = 'Correct!'
         else:
