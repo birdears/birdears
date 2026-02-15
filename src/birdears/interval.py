@@ -2,8 +2,7 @@ from . import INTERVALS
 
 
 def get_interval_by_semitones(semitones):
-    # TODO: PLEASE WRITE ME
-    pass
+    return INTERVALS[abs(semitones)]
 
 
 class Interval(dict):
