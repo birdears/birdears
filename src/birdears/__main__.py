@@ -2,6 +2,7 @@
 
 import click
 import toml
+import datetime
 
 from . import DIATONIC_MODES
 
@@ -13,6 +14,8 @@ from .prequestion import PREQUESTION_METHODS
 from .resolution import RESOLUTION_METHODS
 
 from .questions import *
+
+from .stats import Stats
 
 CTX_SETTINGS = dict(
     help_option_names=['-h', '--help'],
@@ -69,6 +72,10 @@ class SortCommands(click.Group):
 @click.option('--no-resolution',
               help='Do not play resolution after answer (\'cli\' only)',
               default=False, is_flag=True, envvar='NO_RESOLUTION')
+@click.option('--stats',
+              help='Record stats to [filename.sqlite] (default: birdears.sqlite)',
+              required=False, is_flag=False, flag_value='birdears.sqlite',
+              default=None, metavar='[filename.sqlite]')
 @click.option('-k', '--keyboard_width', type=click.IntRange(10, 100),
               default=60, metavar='<width>', envvar="KEYBOARD_WIDTH",
               help='The width of the keyboard in percentage (\'urwid\' only)')
@@ -107,7 +114,7 @@ class SortCommands(click.Group):
 @click.option('--bw', is_flag=True, help='Black and white mode (monochrome)')
 @click.pass_context
 def cli(ctx: click.Context, debug, urwid, command_line_interface, prompt,
-        no_scroll, no_resolution, keyboard_width,
+        no_scroll, no_resolution, stats, keyboard_width,
         color_text, color_bg, color_box, color_box_bg,
         color_header_text, color_header_bg,
         color_footer_text, color_footer_bg,
@@ -191,6 +198,10 @@ def cli(ctx: click.Context, debug, urwid, command_line_interface, prompt,
         logger.setLevel(logging.DEBUG)
         logger.debug('debug is on.')
 
+    stats_obj = None
+    if stats:
+        stats_obj = Stats(filename=stats)
+
     if command_line_interface:
 
         if no_scroll:
@@ -220,67 +231,53 @@ def cli(ctx: click.Context, debug, urwid, command_line_interface, prompt,
     ctx.obj.update({"interface_class": interface_class})
     ctx.obj.update({"interface_params": interface_params})
     ctx.obj.update(colors)
+    ctx.obj.update({"stats": stats_obj})
 
 
 #
 # EXERCISES' OPTIONS
 #
 
-mode_option = \
-    click.option('-m', '--mode', type=click.Choice(VALID_MODES),
+mode_option =     click.option('-m', '--mode', type=click.Choice(VALID_MODES),
                  default='major', metavar='<mode>',
                  help="Mode of the question.")
-wait_time_option = \
-    click.option('-w', '--wait_time', type=click.IntRange(1, 60), default=7,
+wait_time_option =     click.option('-w', '--wait_time', type=click.IntRange(1, 60), default=7,
                  metavar='<seconds>',
                  help='Time in seconds for next question/repeat.')
-n_repeats_option = \
-    click.option('-u', '--n_repeats', type=click.IntRange(1, 10), default=1,
+n_repeats_option =     click.option('-u', '--n_repeats', type=click.IntRange(1, 10), default=1,
                 metavar='<times>', help='Times to repeat question.')
-max_intervals_option = \
-    click.option('-i', '--max_intervals', type=click.IntRange(2, 12),
+max_intervals_option =     click.option('-i', '--max_intervals', type=click.IntRange(2, 12),
                  default=3, metavar='<n max>',
                  help='Max random intervals for the dictation.')
-n_notes_option = \
-    click.option('-x', '--n_notes', type=click.IntRange(1, 20), default=4,
+n_notes_option =     click.option('-x', '--n_notes', type=click.IntRange(1, 20), default=4,
                  metavar='<n notes>',
                  help='Number of notes for the dictation.')
-tonic_option = \
-    click.option('-t', '--tonic', type=str, default='C', metavar='<tonic>',
+tonic_option =     click.option('-t', '--tonic', type=str, default='C', metavar='<tonic>',
                  help='Tonic of the question.')
-octave_option = \
-    click.option('-o', '--octave', type=str, default='4', metavar='<octave>',
+octave_option =     click.option('-o', '--octave', type=str, default='4', metavar='<octave>',
                  help="Octave of the question.")
-descending_option = \
-    click.option('-d', '--descending', is_flag=True,
+descending_option =     click.option('-d', '--descending', is_flag=True,
                  help='Whether the question interval is descending.')
-chromatic_option = \
-    click.option('-c', '--chromatic', is_flag=True,
+chromatic_option =     click.option('-c', '--chromatic', is_flag=True,
                  help='If chosen, question has chromatic notes.')
-n_octaves_option = \
-    click.option('-n', '--n_octaves', type=click.IntRange(1, 2), default=1,
+n_octaves_option =     click.option('-n', '--n_octaves', type=click.IntRange(1, 2), default=1,
                  metavar='<n max>', help='Maximum number of octaves.')
-valid_intervals_option = \
-    click.option('-v', '--valid_intervals', type=str,
+valid_intervals_option =     click.option('-v', '--valid_intervals', type=str,
                  default=str(",").join([str(item) for item in CHROMATIC_TYPE]),
                  metavar='<1,2,..>',
                  help='A comma-separated list without spaces of valid scale '
                       'degrees to be chosen for the question.')
-user_durations_option = \
-    click.option('-q', '--user_durations', type=str, default=None,
+user_durations_option =     click.option('-q', '--user_durations', type=str, default=None,
                  metavar='<1,0.5,n..>',
                  help='A comma-separated list without spaces with PRECISLY 9'
                       ' floating values. Or \'n\' for default duration.')
-prequestion_method_option = \
-    click.option('-p', '--prequestion_method', type=str, default='tonic_only',
+prequestion_method_option =     click.option('-p', '--prequestion_method', type=str, default='tonic_only',
                  metavar='<prequestion_method>',
                  help='The name of a pre-question method.')
-resolution_method_option = \
-    click.option('-r', '--resolution_method', type=str,
+resolution_method_option =     click.option('-r', '--resolution_method', type=str,
                  default='nearest_tonic', metavar='<resolution_method>',
                  help='The name of a resolution method.')
-repeat_only_resolution_method_option = \
-    click.option('-r', '--resolution_method', type=str,
+repeat_only_resolution_method_option =     click.option('-r', '--resolution_method', type=str,
                  default='repeat_only', metavar='<resolution_method>',
                  help='The name of a resolution method.')
 
@@ -558,6 +555,44 @@ def load(ctx, filename, *args, **kwargs):
     interface_params = ctx.obj['interface_params']
 
     interface = interface_class(*args, *kwargs, **interface_params, **ctx.obj, **config_dict)
+
+#
+# report
+#
+
+@cli.command()
+@click.pass_context
+def report(ctx, *args, **kwargs):
+    """Show global statistics from recorded attempts.
+    """
+
+    # Check if stats object is already initialized from main group
+    stats_obj = ctx.obj.get('stats')
+
+    if not stats_obj:
+        # If not, try to initialize with default or provided filename if accessible
+        # Since this command runs after the main group, ctx.obj['stats'] should be there if --stats was used.
+        # But if user just runs , we should look at default file.
+        stats_obj = Stats(filename='birdears.sqlite')
+
+    try:
+        global_stats = stats_obj.get_global_stats()
+    except Exception as e:
+        print(f"Error accessing database: {e}")
+        return
+
+    if not global_stats:
+        print("No statistics found.")
+        return
+
+    print("\nGlobal Statistics:\n")
+    print(f"{'Exercise':<15} | {'Total':<10} | {'Correct':<10} | {'Percent':<10}")
+    print("-" * 55)
+
+    for stat in global_stats:
+        percent_str = f"{stat['percent']:.1f}%"
+        print(f"{stat['exercise_type']:<15} | {str(stat['total']):<10} | {str(stat['correct']):<10} | {percent_str:<10}")
+    print("\n")
 
 
 if __name__ == "__main__":

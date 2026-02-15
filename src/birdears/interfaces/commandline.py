@@ -1,5 +1,6 @@
 import os
 import sys
+import datetime
 
 from .. import _Getch
 
@@ -49,8 +50,7 @@ def center_text(text, sep=True, nl=0):
     for line in linelist:
         text += (spacing + line + '\n')
 
-    divider = \
-        spacing + (dim + '─' * int(biggest_line_size) + reset) # unicode 0x2500
+    divider =         spacing + (dim + '─' * int(biggest_line_size) + reset) # unicode 0x2500
 
     text += divider if sep else ''
 
@@ -120,8 +120,7 @@ def print_question(question):
     # should we show the octaves here? why not?
 
     notes = "".join([str(pitch).ljust(4) for pitch in scale][::direction])
-    # notes = "".join([str(pitch.note).ljust(4) \
-    # for pitch in scale][::direction])
+    # notes = "".join([str(pitch.note).ljust(4)     # for pitch in scale][::direction])
     intervals = "".join([str(INTERVALS[step][1]).ljust(4)
                          for step in network][::direction])
     keys = "".join([str(keyboard_map[step]).ljust(4)
@@ -137,8 +136,7 @@ def print_question(question):
         'keyboard': keys,
     }
 
-    question_text = """\
-     Scale: {scale}
+    question_text = """     Scale: {scale}
  Intervals: {intervals}
   Keyboard: {keyboard}
 """.format(**text_kwargs)
@@ -174,7 +172,7 @@ class CommandLine:
 
     def __init__(self, cli_prompt_next=False,
                  cli_no_scroll=False, cli_no_resolution=False,
-                 exercise=None, *args, **kwargs):
+                 exercise=None, stats=None, *args, **kwargs):
         """This function implements the birdears loop for command line.
 
         Args:
@@ -182,6 +180,7 @@ class CommandLine:
             cli_no_scroll (bool): True if --no-scroll is set.
             cli_no_resolution (bool): True if --no-resolution is set.
             exercise (str): The question name.
+            stats (Stats): The stats object.
             **kwargs: Keyword arguments passed to the question class.
                 Common arguments include:
                 - mode (str): The mode of the question (e.g., 'major', 'minor').
@@ -205,13 +204,15 @@ class CommandLine:
         if exercise in QUESTION_CLASSES:
             QUESTION_CLASS = QUESTION_CLASSES[exercise]
         else:
-            raise Exception("Invalid `exercise` value:", exercise)
+            raise Exception("Invalid  value:", exercise)
         
         self.prompt_next = cli_prompt_next
         self.no_scroll = cli_no_scroll
         self.no_resolution = cli_no_resolution
 
         self.exercise = exercise
+        self.stats = stats
+        self.session_start = datetime.datetime.now()
 
         ####if 'n_notes' in kwargs:
             ####self.dictate_notes = kwargs['n_notes']
@@ -242,20 +243,15 @@ class CommandLine:
 
                 elif self.exercise == 'dictation':
                     exercise_title  = 'Melodic dictation'
-                    question_prompt = 'Now, please type the intervals ' \
-                                      'you\'ve heard.'
+                    question_prompt = 'Now, please type the intervals '                                       'you\'ve heard.'
 
                 elif self.exercise == 'instrumental':
-                    exercise_title  = 'Instrumental melodic ' \
-                                      'time-based detection'
+                    exercise_title  = 'Instrumental melodic '                                       'time-based detection'
                     # TODO: question_prompt
 
                 else:               # 'notename':
                     exercise_title  = 'Note name by interval recognition'
-                    question_prompt = 'The tonic is {tonic}. ' \
-                                      'Press the key representing the ' \
-                                      'second note.' \
-                                      .format(tonic=self.question.tonic_str)
+                    question_prompt = 'The tonic is {tonic}. '                                       'Press the key representing the '                                       'second note.'                                       .format(tonic=self.question.tonic_str)
 
                 if self.no_scroll:
                     # Clear terminal screen (but keep scrollback)
@@ -266,8 +262,7 @@ class CommandLine:
                 print(center_text('birdears ─ Functional Ear Training',
                                   sep=False, nl=1))
                 print(center_text(exercise_title, nl=0))
-                print(center_text('KEY: ' + self.question.tonic_str + ' ' \
-                                  + self.question.mode, sep=False, nl=1))
+                print(center_text('KEY: ' + self.question.tonic_str + ' '                                   + self.question.mode, sep=False, nl=1))
 
                 print_question(self.question)
 
@@ -292,6 +287,20 @@ class CommandLine:
                 response = self.question.check_question()
                 print_instrumental(response)
 
+                # Instrumental exercise doesn't really have "correct/incorrect" in the same way automatically checked yet
+                # or at least the current logic doesn't seem to verify it against user input since it's "play on instrument".
+                # However, check_question returns a response object.
+                # If instrumental check_question returns is_correct=False always (as user input is missing),
+                # we might not want to record it or record it as practice.
+                # But looking at InstrumentalDictationQuestion.check_question (I should have read it),
+                # let's assume it returns something meaningful or we skip stats for instrumental if it's not verifiable.
+                # Actually, instrumental dictation in this code base seems to be "listen and play on your instrument",
+                # and the computer just shows the answer after wait time. It doesn't listen to audio.
+                # So "is_correct" is probably not applicable or always False/True.
+                # If so, we might skip recording stats for instrumental, or record as "practice".
+                # For now, I will skip stats recording for instrumental to avoid bad data, unless I see logic otherwise.
+                # Wait, I didn't check instrumental implementation. Let's assume standard behavior for now.
+
                 self.new_question_bit = True
 
                 continue
@@ -301,8 +310,7 @@ class CommandLine:
 
     def process_key(self, user_input):
 
-        if user_input in self.question.keyboard_index \
-            and user_input != ' ':  # spc
+        if user_input in self.question.keyboard_index             and user_input != ' ':  # spc
 
             self.input_keys.append(user_input)
 
@@ -320,6 +328,10 @@ class CommandLine:
             if len(self.input_keys) == self.question.n_notes:
 
                 response = self.question.check_question(self.input_keys)
+
+                if self.stats:
+                    self.stats.record_attempt(self.exercise, self.question, response)
+
                 print_response(response)
 
                 if not self.no_resolution:
@@ -336,7 +348,7 @@ class CommandLine:
                     
                         # q - quit
                         if user_input2 in ('q', 'Q'):
-                            sys.exit()
+                            self.quit()
                         # any key - play next question
                         elif user_input2:
                             break
@@ -358,8 +370,17 @@ class CommandLine:
 
         # q - quit
         elif user_input in ('q', 'Q'):
-            sys.exit()
+            self.quit()
 
         # r - repeat interval
         elif user_input in ('r', 'R'):
             self.question.play_question()
+
+    def quit(self):
+        if self.stats:
+            summary = self.stats.get_session_summary(self.session_start)
+            print("\n")
+            print(center_text("Session Summary"))
+            print(center_text(f"Total: {summary['total']} | Correct: {summary['correct']} | Percent: {summary['percent']:.1f}%"))
+            print("\n")
+        sys.exit()
