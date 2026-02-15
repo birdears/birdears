@@ -73,7 +73,8 @@ class SortCommands(click.Group):
               help='Do not play resolution after answer (\'cli\' only)',
               default=False, is_flag=True, envvar='NO_RESOLUTION')
 @click.option('--stats',
-              help='Record stats to [filename.sqlite] (default: birdears.sqlite)',
+              help='Record stats to [filename.sqlite] '
+                   '(default: birdears.sqlite)',
               required=False, is_flag=True, default=False)
 @click.option('--stats-file',
               help='Specify custom stats filename (implies --stats)',
