@@ -5,6 +5,7 @@ from .note_and_pitch import Chord
 from .note_and_pitch import get_pitch_by_number
 
 from itertools import cycle
+from functools import lru_cache
 
 # https://docs.python.org/3/reference/datamodel.html#emulating-container-types
 
@@ -132,6 +133,13 @@ class ChromaticScale(ScaleBase):
         self.extend(scale)
 
 
+@lru_cache(maxsize=128)
+def _get_cached_diatonic_scale(tonic_note, mode, octave):
+    return DiatonicScale(tonic=tonic_note, mode=mode,
+                         octave=octave, n_octaves=2,
+                         descending=False, dont_repeat_tonic=False)
+
+
 def get_triad(tonic, mode, index=0, degree=None):
     """Returns an array with notes from a scale's triad.
 
@@ -145,9 +153,8 @@ def get_triad(tonic, mode, index=0, degree=None):
         An array with three pitches, one for each note of the triad.
     """
 
-    diatonic = DiatonicScale(tonic=tonic.note, mode=mode,
-                             octave=tonic.octave, n_octaves=2,
-                             descending=False, dont_repeat_tonic=False)
+    diatonic = _get_cached_diatonic_scale(tonic_note=tonic.note, mode=mode,
+                                          octave=tonic.octave)
 
     if degree:
         index = degree - 1
