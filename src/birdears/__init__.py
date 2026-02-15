@@ -206,10 +206,9 @@ KEYBOARD_INDICES = {
             'minor': 'z xc v bn m Z XC V BN M,',
             'major': 'z x cv b n mZ X CV B NM,'
         },
-        # FIXME
         'descending': {
-            'minor': 'z xc v bn m Z XC V BN M,',
-            'major': 'z x cv b n mZ X CV B NM,'
+            'minor': ', M NB V CX Z m nb v cx z',
+            'major': ',M N B VC X Zm n b vc x z'
         },
     },
     'chromatic': {
