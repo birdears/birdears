@@ -130,21 +130,30 @@ class Stats:
                 })
             return stats
 
-    def get_detailed_stats(self):
+    def get_detailed_stats(self, start_time=None):
         """
         Retrieves detailed statistics grouped by exercise, mode, tonic, and octave.
+
+        Args:
+            start_time (datetime): Optional start time to filter results.
 
         Returns:
             list: A list of dictionaries.
         """
+        query = '''
+            SELECT exercise_type, mode, tonic, octave,
+                   COUNT(*), SUM(CASE WHEN is_correct THEN 1 ELSE 0 END)
+            FROM attempts
+        '''
+        params = []
+        if start_time:
+            query += ' WHERE timestamp >= ?'
+            params.append(start_time)
+
+        query += ' GROUP BY exercise_type, mode, tonic, octave ORDER BY exercise_type, mode, tonic, octave'
+
         with self._get_cursor() as cursor:
-            cursor.execute('''
-                SELECT exercise_type, mode, tonic, octave,
-                       COUNT(*), SUM(CASE WHEN is_correct THEN 1 ELSE 0 END)
-                FROM attempts
-                GROUP BY exercise_type, mode, tonic, octave
-                ORDER BY exercise_type, mode, tonic, octave
-            ''')
+            cursor.execute(query, tuple(params))
             rows = cursor.fetchall()
 
             stats = []
@@ -163,3 +172,37 @@ class Stats:
                     'percent': percent
                 })
             return stats
+
+    def format_detailed_stats(self, start_time=None):
+        """
+        Formats detailed statistics into a table string.
+        """
+        stats = self.get_detailed_stats(start_time)
+        if not stats:
+            return "No statistics found."
+
+        lines = []
+        # Header formatting
+        # Ex: Exercise | Mode | Tonic | Oct | Total | Correct | Percent
+        header = "{:<15} | {:<10} | {:<5} | {:<5} | {:<8} | {:<8} | {:<8}".format(
+            "Exercise", "Mode", "Tonic", "Oct", "Total", "Correct", "Percent"
+        )
+        separator = "-" * len(header)
+
+        lines.append(header)
+        lines.append(separator)
+
+        for stat in stats:
+            percent_str = f"{stat['percent']:.1f}%"
+            row = "{:<15} | {:<10} | {:<5} | {:<5} | {:<8} | {:<8} | {:<8}".format(
+                stat['exercise_type'],
+                stat['mode'],
+                stat['tonic'],
+                str(stat['octave']),
+                str(stat['total']),
+                str(stat['correct']),
+                percent_str
+            )
+            lines.append(row)
+
+        return "\n".join(lines)

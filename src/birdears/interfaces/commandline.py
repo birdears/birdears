@@ -383,4 +383,15 @@ class CommandLine:
             print(center_text("Session Summary"))
             print(center_text(f"Total: {summary['total']} | Correct: {summary['correct']} | Percent: {summary['percent']:.1f}%"))
             print("\n")
+
+            detailed_table = self.stats.format_detailed_stats(self.session_start)
+            if detailed_table != "No statistics found.":
+                print(center_text("Detailed Breakdown"))
+                # Note: table lines might not be centered, but the block can be.
+                # However, center_text assumes uniform centering.
+                # Table lines are pre-formatted with padding.
+                # Just printing it is probably better to preserve alignment.
+                print(center_text(detailed_table))
+                print("\n")
+
         sys.exit()

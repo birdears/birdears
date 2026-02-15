@@ -602,38 +602,13 @@ def report(ctx, *args, **kwargs):
         stats_obj = Stats(filename='birdears.sqlite')
 
     try:
-        detailed_stats = stats_obj.get_detailed_stats()
+        table = stats_obj.format_detailed_stats()
+        print("\nDetailed Statistics:\n")
+        print(table)
+        print("\n")
     except Exception as e:
         print(f"Error accessing database: {e}")
         return
-
-    if not detailed_stats:
-        print("No statistics found.")
-        return
-
-    print("\nDetailed Statistics:\n")
-
-    header = "{:<15} | {:<10} | {:<5} | {:<5} | {:<8} | {:<8} | {:<8}".format(
-        "Exercise", "Mode", "Tonic", "Oct", "Total", "Correct", "Percent"
-    )
-    separator = "-" * len(header)
-
-    print(header)
-    print(separator)
-
-    for stat in detailed_stats:
-        percent_str = f"{stat['percent']:.1f}%"
-        row = "{:<15} | {:<10} | {:<5} | {:<5} | {:<8} | {:<8} | {:<8}".format(
-            stat['exercise_type'],
-            stat['mode'],
-            stat['tonic'],
-            str(stat['octave']),
-            str(stat['total']),
-            str(stat['correct']),
-            percent_str
-        )
-        print(row)
-    print("\n")
 
 
 if __name__ == "__main__":

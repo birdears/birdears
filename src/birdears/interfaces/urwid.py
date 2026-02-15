@@ -381,6 +381,11 @@ class TextUserInterface:
                 print(f"Session Summary")
                 print(f"Total: {summary['total']} | Correct: {summary['correct']} | Percent: {summary['percent']:.1f}%", end="\n\n")
 
+                detailed_table = self.stats.format_detailed_stats(self.session_start)
+                if detailed_table != "No statistics found.":
+                    print("Detailed Breakdown")
+                    print(detailed_table, end="\n\n")
+
             print("Correct: {} /  Wrong: {}".format(self.correct, self.wrong), end="\n\n")
 
     def on_key_click(self, button, key_char):
