@@ -1,4 +1,5 @@
 # Temporary and binary files
+*.sqlite
 *~
 *.py[cod]
 *.so

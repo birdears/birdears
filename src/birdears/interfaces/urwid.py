@@ -1,4 +1,5 @@
 import threading
+import datetime
 
 try:
     import urwid
@@ -256,10 +257,12 @@ class QuestionWidget(urwid.Padding):
 
 class TextUserInterface:
 
-    def __init__(self, exercise=None, *args, **kwargs):
+    def __init__(self, exercise=None, stats=None, *args, **kwargs):
 
         self.exercise = exercise
         self.arguments = kwargs
+        self.stats = stats
+        self.session_start = datetime.datetime.now()
 
         self.counter = 0
         self.correct = 0
@@ -353,8 +356,7 @@ class TextUserInterface:
                             continue
 
                         # these inputs are answers to the exercise
-                        if input_key in self.question.keyboard_index \
-                           and input_key != ' ':  # space char
+                        if input_key in self.question.keyboard_index                            and input_key != ' ':  # space char
 
                             self.input_keys.append(input_key)
                             if self.question.n_input_notes > 1:
@@ -370,9 +372,20 @@ class TextUserInterface:
 
                     new_question = True
 
-        except urwid.ExitMainLoop:
+        except (urwid.ExitMainLoop, KeyboardInterrupt):
             print("Birdears <https://github.com/iacchus/birdears>")
             print("Exiting...", end="\n\n")
+
+            if self.stats:
+                summary = self.stats.get_session_summary(self.session_start)
+                print(f"Session Summary")
+                print(f"Total: {summary['total']} | Correct: {summary['correct']} | Percent: {summary['percent']:.1f}%", end="\n\n")
+
+                detailed_table = self.stats.format_detailed_stats(self.session_start)
+                if detailed_table != "No statistics found.":
+                    print("Detailed Breakdown")
+                    print(detailed_table, end="\n\n")
+
             print("Correct: {} /  Wrong: {}".format(self.correct, self.wrong), end="\n\n")
 
     def on_key_click(self, button, key_char):
@@ -385,6 +398,9 @@ class TextUserInterface:
 
         answer = self.question.check_question(user_input)
 
+        if self.stats:
+            self.stats.record_attempt(self.exercise, self.question, answer)
+
         # TODO: UPDATE DISPLAY BEFORE play_resolution
         if answer['is_correct']:
             self.correct += 1
@@ -393,8 +409,7 @@ class TextUserInterface:
             self.wrong += 1
             self.question.display['main_display'] = 'Incorrect!'
 
-        answers_text = "Answers: +{correct} / -{incorrect} ".\
-            format(correct=self.correct, incorrect=self.wrong)
+        answers_text = "Answers: +{correct} / -{incorrect} ".            format(correct=self.correct, incorrect=self.wrong)
 
         self.tui_widget.footer_right.set_text(answers_text)
         self._draw_screen()
@@ -413,7 +428,7 @@ class TextUserInterface:
         if exercise in QUESTION_CLASSES:
             QUESTION_CLASS = QUESTION_CLASSES[exercise]
         else:
-            raise Exception("Invalid `exercise` value:", exercise)
+            raise Exception("Invalid  value:", exercise)
 
         self.question = QUESTION_CLASS(**kwargs)
         self.question.display.callback = self.update_question_display
@@ -464,19 +479,16 @@ class TextUserInterface:
     def draw_question(self):
 
         if self.exercise != 'notename':
-            scale = \
-                ChromaticScale(tonic=self.question.lowest_tonic_pitch.note,
+            scale =                 ChromaticScale(tonic=self.question.lowest_tonic_pitch.note,
                                octave=self.question.lowest_tonic_pitch.octave,
                                descending=False,
                                n_octaves=self.question.n_octaves)
         else:
-            scale = \
-                ChromaticScale(tonic=self.question.tonic_str,
+            scale =                 ChromaticScale(tonic=self.question.tonic_str,
                                octave=self.question.lowest_tonic_pitch.octave,
                                n_octaves=self.question.n_octaves)
 
-        self.keyboard = \
-            Keyboard(scale=scale,
+        self.keyboard =             Keyboard(scale=scale,
                      question_tonic_pitch=self.question.tonic_pitch,
                      main_loop=self.loop,
                      keyboard_index=self.question.keyboard_index)
@@ -509,11 +521,7 @@ class TextUserInterface:
         # C Chromatic Descending scale
         # 1 octave
 
-        top_text = "Key: {tonic} {mode} {random}({n_octaves} {octaves_str})\n"\
-                   "Descending: {descending}\n" \
-                   "Chromatic: {chromatic}\n" \
-                   "Intervals: {intervals}" \
-                   .format(**top_variables)
+        top_text = "Key: {tonic} {mode} {random}({n_octaves} {octaves_str})\n"                   "Descending: {descending}\n"                    "Chromatic: {chromatic}\n"                    "Intervals: {intervals}"                    .format(**top_variables)
 
         top_widget = urwid.Text(top_text)
 
@@ -527,8 +535,7 @@ class TextUserInterface:
         self.tui_widget.contents.update({'body': (self.question_widget, None)})
 
         if self.question.n_input_notes > 0:
-            answers_text = "Answers: +{correct} / -{incorrect} ".\
-                format(correct=self.correct, incorrect=self.wrong)
+            answers_text = "Answers: +{correct} / -{incorrect} ".                format(correct=self.correct, incorrect=self.wrong)
         else:
             answers_text = "(Question type doesn't takes answer)"
         self.tui_widget.footer_right.set_text(answers_text)

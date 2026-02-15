@@ -56,11 +56,7 @@ class Sequence(list):
         global SEQUENCE_THREAD
 
         if hasattr(SEQUENCE_THREAD, 'is_alive') and SEQUENCE_THREAD.is_alive():
-            try:
-                SEQUENCE_THREAD.join()
-            except KeyboardInterrupt:
-                print('Ctrl+C')
-                exit(0)
+            SEQUENCE_THREAD.join()
 
         # TODO: later we should passa callback and end_callback here so the
         # thread can talk to user interfaces, cli/tui/gui etc
@@ -69,6 +65,7 @@ class Sequence(list):
                                          'end_callback': end_callback,
                                          'args': args,
                                          'kwargs': kwargs})
+        SEQUENCE_THREAD.daemon = True
         SEQUENCE_THREAD.start()
 
         return SEQUENCE_THREAD
@@ -102,11 +99,7 @@ class Sequence(list):
                 raise InvalidSequenceElement
 
             if hasattr(cb_thread, 'is_alive'):
-                try:
-                    cb_thread.join()
-                except KeyboardInterrupt:
-                    print('Ctrl+C')
-                    exit(0)
+                cb_thread.join()
 
             # TODO we should later get the element information and pass via a
             # dict to Sequence._async_play()'s callback so it can inform the

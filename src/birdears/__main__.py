@@ -2,6 +2,7 @@
 
 import click
 import toml
+import datetime
 
 from . import DIATONIC_MODES
 
@@ -13,6 +14,8 @@ from .prequestion import PREQUESTION_METHODS
 from .resolution import RESOLUTION_METHODS
 
 from .questions import *
+
+from .stats import Stats
 
 CTX_SETTINGS = dict(
     help_option_names=['-h', '--help'],
@@ -69,6 +72,13 @@ class SortCommands(click.Group):
 @click.option('--no-resolution',
               help='Do not play resolution after answer (\'cli\' only)',
               default=False, is_flag=True, envvar='NO_RESOLUTION')
+@click.option('--stats',
+              help='Record stats to [filename.sqlite] '
+                   '(default: birdears.sqlite)',
+              required=False, is_flag=True, default=False)
+@click.option('--stats-file',
+              help='Specify custom stats filename (implies --stats)',
+              required=False, default=None, metavar='[filename.sqlite]')
 @click.option('-k', '--keyboard_width', type=click.IntRange(10, 100),
               default=60, metavar='<width>', envvar="KEYBOARD_WIDTH",
               help='The width of the keyboard in percentage (\'urwid\' only)')
@@ -107,7 +117,7 @@ class SortCommands(click.Group):
 @click.option('--bw', is_flag=True, help='Black and white mode (monochrome)')
 @click.pass_context
 def cli(ctx: click.Context, debug, urwid, command_line_interface, prompt,
-        no_scroll, no_resolution, keyboard_width,
+        no_scroll, no_resolution, stats, stats_file, keyboard_width,
         color_text, color_bg, color_box, color_box_bg,
         color_header_text, color_header_bg,
         color_footer_text, color_footer_bg,
@@ -191,6 +201,18 @@ def cli(ctx: click.Context, debug, urwid, command_line_interface, prompt,
         logger.setLevel(logging.DEBUG)
         logger.debug('debug is on.')
 
+    stats_obj = None
+
+    # Determine stats filename and activation
+    final_stats_file = None
+    if stats_file:
+        final_stats_file = stats_file
+    elif stats:
+        final_stats_file = 'birdears.sqlite'
+
+    if final_stats_file:
+        stats_obj = Stats(filename=final_stats_file)
+
     if command_line_interface:
 
         if no_scroll:
@@ -220,6 +242,7 @@ def cli(ctx: click.Context, debug, urwid, command_line_interface, prompt,
     ctx.obj.update({"interface_class": interface_class})
     ctx.obj.update({"interface_params": interface_params})
     ctx.obj.update(colors)
+    ctx.obj.update({"stats": stats_obj})
 
 
 #
@@ -558,6 +581,34 @@ def load(ctx, filename, *args, **kwargs):
     interface_params = ctx.obj['interface_params']
 
     interface = interface_class(*args, *kwargs, **interface_params, **ctx.obj, **config_dict)
+
+#
+# report
+#
+
+@cli.command()
+@click.pass_context
+def report(ctx, *args, **kwargs):
+    """Show global statistics from recorded attempts.
+    """
+
+    # Check if stats object is already initialized from main group
+    stats_obj = ctx.obj.get('stats')
+
+    if not stats_obj:
+        # If not, try to initialize with default or provided filename if accessible
+        # Since this command runs after the main group, ctx.obj['stats'] should be there if --stats was used.
+        # But if user just runs , we should look at default file.
+        stats_obj = Stats(filename='birdears.sqlite')
+
+    try:
+        table = stats_obj.format_detailed_stats()
+        print("\nDetailed Statistics:\n")
+        print(table)
+        print("\n")
+    except Exception as e:
+        print(f"Error accessing database: {e}")
+        return
 
 
 if __name__ == "__main__":
