@@ -10,6 +10,7 @@ from .. import CHROMATIC_FLAT
 from .. import INTERVALS
 from .. import DIATONIC_MODES
 from .. import CHROMATIC_TYPE
+from .. import get_keyboard_index
 
 from ..questionbase import QUESTION_CLASSES
 
@@ -226,6 +227,9 @@ class CommandLine:
 
                 self.input_keys = list()
                 self.question = QUESTION_CLASS(**kwargs)
+                self.question.keyboard_index = \
+                    get_keyboard_index(self.question.mode,
+                                       self.question.is_descending)
 
                 if   self.exercise == 'melodic':
                     exercise_title  = 'Melodic interval recognition'

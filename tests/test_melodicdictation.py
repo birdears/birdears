@@ -1,6 +1,7 @@
 from random import choice
 
 from birdears import KEYS
+from birdears import get_keyboard_index
 from birdears.questions.melodicdictation import MelodicDictationQuestion
 
 
@@ -21,6 +22,8 @@ def test_melodicintervalclass():
                                      octave=octave, descending=descending,
                                      chromatic=chromatic, n_octaves=n_octaves,
                                      prequestion_method='none')
+
+        a.keyboard_index = get_keyboard_index(a.mode, a.is_descending)
 
 # why not guess some interval
         a.check_question(['z', 'x', 'x', 'Z'])

@@ -245,6 +245,14 @@ KEYBOARD_INDICES = {
 MAX_SEMITONES_RESOLVE_BELOW = 5
 
 
+def get_keyboard_index(mode, descending):
+    """
+    Returns the keyboard index for the given mode and direction.
+    """
+    direction = 'descending' if descending else 'ascending'
+    return tuple(KEYBOARD_INDICES['chromatic'][direction][mode])
+
+
 # http://code.activestate.com/recipes/134892/
 class _Getch:
     """Gets a single character from standard input.  Does not echo to the
