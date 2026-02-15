@@ -63,39 +63,15 @@ class Resolution:
         return self.METHOD(question=self.question, *args, **kwargs)
 
 
-@register_resolution_method
-def nearest_tonic(question):
-    """Resolution method that resolve the intervals to their nearest tonics.
-
-    Args:
-        question (obj): Question object from which to generate the
-            resolution sequence. (this is provided by the `Prequestion` class
-            when it is `__call__`ed)
+def _resolve_pitch(random_pitch, question):
+    """
+    Helper function to resolve a single pitch to its nearest tonic.
     """
 
     tonic_pitch = question.tonic_pitch
-
-    # if hasattr(question, 'random_pitch'):
-    #    random_pitch = tuple(question.random_pitch)
-    # else:
-    #    random_pitch = tuple(question.random_pitches)
-    #
-    # TODO:
-    if hasattr(question, 'random_pitches'):
-        raise Exception('NEAREST_TONIC FOR MULTIPLE PITCHES IS STILL TO BE'
-                        'IMPLEMENTED')
-    random_pitch = question.random_pitch
-
-    duration = question.durations['resol']['duration']
-    delay = question.durations['resol']['delay']
-    pos_delay = question.durations['resol']['pos_delay']
-
-    # this function will receive: tonic, scale and random_pitch (which may be
-    # chromatic, ie., not in `scale`)
+    scale_random_pitch = question.diatonic_scale
 
     semitones = (int(random_pitch) - int(tonic_pitch)) % 12
-
-    scale_random_pitch = question.diatonic_scale
 
     direction = -1 if (semitones <= MAX_SEMITONES_RESOLVE_BELOW) else +1
     # invert `direction` signal if descending:
@@ -104,7 +80,6 @@ def nearest_tonic(question):
     resolution = []
 
     if random_pitch not in scale_random_pitch:  # random_pitch is chromatic
-        resolution.append(random_pitch)
         # if this note is chromatic then the
         # next ones above or below are in the diatonic for sure, so we
         # add one semitone and we will have the next diatonic degree:
@@ -145,8 +120,33 @@ def nearest_tonic(question):
 
         resolution = resolution_harmonic
 
+    return resolution
+
+
+@register_resolution_method
+def nearest_tonic(question):
+    """Resolution method that resolve the intervals to their nearest tonics.
+
+    Args:
+        question (obj): Question object from which to generate the
+            resolution sequence. (this is provided by the `Prequestion` class
+            when it is `__call__`ed)
+    """
+
+    duration = question.durations['resol']['duration']
+    delay = question.durations['resol']['delay']
+    pos_delay = question.durations['resol']['pos_delay']
+
+    elements = []
+
+    if hasattr(question, 'random_pitches'):
+        for pitch in question.random_pitches:
+            elements.extend(_resolve_pitch(pitch, question))
+    elif hasattr(question, 'random_pitch'):
+        elements.extend(_resolve_pitch(question.random_pitch, question))
+
     # resolution
-    return Sequence(elements=resolution, duration=duration, delay=delay,
+    return Sequence(elements=elements, duration=duration, delay=delay,
                     pos_delay=pos_delay)
 
 
