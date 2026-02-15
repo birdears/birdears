@@ -68,7 +68,7 @@ class KeyboardButton(urwid.Padding):
 
 class Keyboard(urwid.Filler):
 
-    SEMITONE_OFFSETS = [0, 0.5, 1, 1.5, 2, 3, 3.5, 4, 4.5, 5, 5.5, 6]
+    SEMITONE_OFFSETS = [0, 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12]
     CHROMATIC_INDICES = (1, 3, 6, 8, 10)
 
     def __init__(self, scale, question_tonic_pitch, main_loop=None,
@@ -81,7 +81,7 @@ class Keyboard(urwid.Filler):
 
         keys = []
         for pitch in scale:
-            pitch_pos = pitch.octave * 7 + self.SEMITONE_OFFSETS[pitch.pitch_class]
+            pitch_pos = pitch.octave * 14 + self.SEMITONE_OFFSETS[pitch.pitch_class]
             _idx = abs(int(question_tonic_pitch) - int(pitch))
             letter = keyboard_index[_idx]
             middle_text = INTERVALS[keyboard_index.index(letter)][1]
@@ -114,8 +114,8 @@ class Keyboard(urwid.Filler):
                 gap = start - c_current_x
                 if gap > 0:
                     chromatic_widgets.append(Pad(weight=gap))
-                chromatic_widgets.append(('weight', 1, k['widget']))
-                c_current_x = start + 1
+                chromatic_widgets.append(('weight', 2, k['widget']))
+                c_current_x = start + 2
 
         # Bottom row (Diatonic)
         d_current_x = origin
@@ -125,8 +125,8 @@ class Keyboard(urwid.Filler):
                 gap = start - d_current_x
                 if gap > 0:
                     diatonic_widgets.append(Pad(weight=gap))
-                diatonic_widgets.append(('weight', 1, k['widget']))
-                d_current_x = start + 1
+                diatonic_widgets.append(('weight', 2, k['widget']))
+                d_current_x = start + 2
 
         max_width = max(c_current_x, d_current_x)
 
