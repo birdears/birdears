@@ -249,46 +249,61 @@ def cli(ctx: click.Context, debug, urwid, command_line_interface, prompt,
 # EXERCISES' OPTIONS
 #
 
-mode_option =     click.option('-m', '--mode', type=click.Choice(VALID_MODES),
+mode_option = \
+    click.option('-m', '--mode', type=click.Choice(VALID_MODES),
                  default='major', metavar='<mode>',
                  help="Mode of the question.")
-wait_time_option =     click.option('-w', '--wait_time', type=click.IntRange(1, 60), default=7,
+wait_time_option = \
+    click.option('-w', '--wait_time', type=click.IntRange(1, 60), default=7,
                  metavar='<seconds>',
                  help='Time in seconds for next question/repeat.')
-n_repeats_option =     click.option('-u', '--n_repeats', type=click.IntRange(1, 10), default=1,
+n_repeats_option = \
+    click.option('-u', '--n_repeats', type=click.IntRange(1, 10), default=1,
                 metavar='<times>', help='Times to repeat question.')
-max_intervals_option =     click.option('-i', '--max_intervals', type=click.IntRange(2, 12),
+max_intervals_option = \
+    click.option('-i', '--max_intervals', type=click.IntRange(2, 12),
                  default=3, metavar='<n max>',
                  help='Max random intervals for the dictation.')
-n_notes_option =     click.option('-x', '--n_notes', type=click.IntRange(1, 20), default=4,
+n_notes_option = \
+    click.option('-x', '--n_notes', type=click.IntRange(1, 20), default=4,
                  metavar='<n notes>',
                  help='Number of notes for the dictation.')
-tonic_option =     click.option('-t', '--tonic', type=str, default='C', metavar='<tonic>',
+tonic_option = \
+    click.option('-t', '--tonic', type=str, default='C', metavar='<tonic>',
                  help='Tonic of the question.')
-octave_option =     click.option('-o', '--octave', type=str, default='4', metavar='<octave>',
+octave_option = \
+    click.option('-o', '--octave', type=str, default='4', metavar='<octave>',
                  help="Octave of the question.")
-descending_option =     click.option('-d', '--descending', is_flag=True,
+descending_option = \
+    click.option('-d', '--descending', is_flag=True,
                  help='Whether the question interval is descending.')
-chromatic_option =     click.option('-c', '--chromatic', is_flag=True,
+chromatic_option = \
+    click.option('-c', '--chromatic', is_flag=True,
                  help='If chosen, question has chromatic notes.')
-n_octaves_option =     click.option('-n', '--n_octaves', type=click.IntRange(1, 2), default=1,
+n_octaves_option = \
+    click.option('-n', '--n_octaves', type=click.IntRange(1, 2), default=1,
                  metavar='<n max>', help='Maximum number of octaves.')
-valid_intervals_option =     click.option('-v', '--valid_intervals', type=str,
+valid_intervals_option = \
+    click.option('-v', '--valid_intervals', type=str,
                  default=str(",").join([str(item) for item in CHROMATIC_TYPE]),
                  metavar='<1,2,..>',
                  help='A comma-separated list without spaces of valid scale '
                       'degrees to be chosen for the question.')
-user_durations_option =     click.option('-q', '--user_durations', type=str, default=None,
+user_durations_option = \
+    click.option('-q', '--user_durations', type=str, default=None,
                  metavar='<1,0.5,n..>',
                  help='A comma-separated list without spaces with PRECISLY 9'
                       ' floating values. Or \'n\' for default duration.')
-prequestion_method_option =     click.option('-p', '--prequestion_method', type=str, default='tonic_only',
+prequestion_method_option = \
+    click.option('-p', '--prequestion_method', type=str, default='tonic_only',
                  metavar='<prequestion_method>',
                  help='The name of a pre-question method.')
-resolution_method_option =     click.option('-r', '--resolution_method', type=str,
+resolution_method_option = \
+    click.option('-r', '--resolution_method', type=str,
                  default='nearest_tonic', metavar='<resolution_method>',
                  help='The name of a resolution method.')
-repeat_only_resolution_method_option =     click.option('-r', '--resolution_method', type=str,
+repeat_only_resolution_method_option = \
+    click.option('-r', '--resolution_method', type=str,
                  default='repeat_only', metavar='<resolution_method>',
                  help='The name of a resolution method.')
 
