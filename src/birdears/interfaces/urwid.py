@@ -372,7 +372,7 @@ class TextUserInterface:
 
                     new_question = True
 
-        except urwid.ExitMainLoop:
+        except (urwid.ExitMainLoop, KeyboardInterrupt):
             print("Birdears <https://github.com/iacchus/birdears>")
             print("Exiting...", end="\n\n")
 
