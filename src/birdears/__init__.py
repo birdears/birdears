@@ -90,63 +90,36 @@ TONIC = 0
 TONE = 2
 SEMITONE = 1
 
-DIATONIC_FORMS = {
-    'major': (TONE, TONE, SEMITONE, TONE, TONE, TONE, SEMITONE),
-    'dorian': (TONE, SEMITONE, TONE, TONE, TONE, SEMITONE, TONE),
-    'phrygian': (SEMITONE, TONE, TONE, TONE, SEMITONE, TONE, TONE),
-    'lydian': (TONE, TONE, TONE, SEMITONE, TONE, TONE, SEMITONE),
-    'mixolydian': (TONE, TONE, SEMITONE, TONE, TONE, SEMITONE, TONE),
-    'minor': (TONE, SEMITONE, TONE, TONE, SEMITONE, TONE, TONE),
-    'locrian': (SEMITONE, TONE, TONE, SEMITONE, TONE, TONE, TONE),
-}
-
 DIATONIC_MODES = {
-    'major': (0, 2, 4, 5, 7, 9, 11),
-    'dorian': (0, 2, 3, 5, 7, 9, 10),
-    'phrygian': (0, 1, 3, 5, 7, 8, 10),
-    'lydian': (0, 2, 4, 6, 7, 9, 11),
-    'mixolydian': (0, 2, 4, 5, 7, 9, 10),
-    'minor': (0, 2, 3, 5, 7, 8, 10),
-    'locrian': (0, 1, 3, 5, 6, 8, 10),
+    'major': '101011010101',
+    'dorian': '101101010110',
+    'phrygian': '110101011010',
+    'lydian': '101010110101',
+    'mixolydian': '101011010110',
+    'minor': '101101011010',
+    'locrian': '110101101010',
 }
 
-# DIATONIC_MODES = {
-#    'major': (0, 2, 4, 5, 7, 9, 11, 12),
-#    'dorian': (0, 2, 3, 5, 7, 9, 10, 12),
-#    'phrygian': (0, 1, 3, 5, 7, 8, 10, 12),
-#    'lydian': (0, 2, 4, 6, 7, 9, 11, 12),
-#    'mixolydian': (0, 2, 4, 5, 7, 9, 10, 12),
-#    'minor': (0, 2, 3, 5, 7, 8, 10, 12),
-#    'locrian': (0, 1, 3, 5, 6, 8, 10, 12),
-# }
+
+def _binary_to_intervals(binary_str):
+    # '101011010101' -> (2, 2, 1, 2, 2, 2, 1)
+    # Indices of '1': 0, 2, 4, 5, 7, 9, 11
+    indices = [i for i, x in enumerate(binary_str) if x == '1']
+    intervals = []
+    for i in range(len(indices) - 1):
+        intervals.append(indices[i + 1] - indices[i])
+    # Last interval to 12 (octave)
+    intervals.append(len(binary_str) - indices[-1])
+    return tuple(intervals)
+
+
+DIATONIC_FORMS = {
+    k: _binary_to_intervals(v) for k, v in DIATONIC_MODES.items()
+}
 
 DIATONIC_MASK = {
-    'major': (1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1),
-    'dorian': (1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0),
-    'phrygian': (1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0),
-    'lydian': (1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1),
-    'mixolydian': (1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0),
-    'minor': (1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0),
-    'locrian': (1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0),
+    k: tuple(int(x) for x in v) for k, v in DIATONIC_MODES.items()
 }
-
-# TODO: maybe DIATONIC_MODES could use binary notation or TONE-SEMITONE
-# notation, eg:
-#
-# binary:
-#
-#   'major': (1, 0, 1, 0, 1,1,0,1,0,1,0,1,1)
-#   or:
-#   'major': '1010110101011'
-#
-# tone-semitone:
-#
-#   'major': (2,2,1,2,2,2,1)
-#   or:
-#   TONE = 2
-#   SEMITONE = 1
-#   'major': (TONE, TONE, SEMITONE, TONE, TONE, TONE, SEMITONE)
-# this way we can iterare and just sum up the Pitches' pitch_numbers
 
 """dict of tuples: A map of the diatonic scale.
 
