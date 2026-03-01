@@ -11,6 +11,8 @@ from .note_and_pitch import Chord
 
 from functools import wraps
 
+import copy
+
 RESOLUTION_METHODS = {}
 # http://stackoverflow.com/questions/5910703/howto-get-all-methods-of-a-pyt\
 # hon-class-with-given-decorator
@@ -163,7 +165,34 @@ def repeat_only(question):
     """
 
     elements = list()
-    if hasattr(question, 'random_pitches'):
+
+    if hasattr(question, 'pre_question') and hasattr(question, 'question'):
+        for index, element in enumerate(question.pre_question):
+            new_element = copy.copy(element)
+
+            if new_element.duration is None:
+                new_element.duration = question.pre_question.duration
+
+            if index == len(question.pre_question) - 1:
+                new_element.delay = question.pre_question.pos_delay
+            else:
+                if new_element.delay is None:
+                    new_element.delay = question.pre_question.delay
+
+            elements.append(new_element)
+
+        for index, element in enumerate(question.question):
+            new_element = copy.copy(element)
+
+            if new_element.duration is None:
+                new_element.duration = question.question.duration
+
+            if new_element.delay is None:
+                new_element.delay = question.question.delay
+
+            elements.append(new_element)
+
+    elif hasattr(question, 'random_pitches'):
         elements.extend(question.random_pitches)
     else:
         elements.append(question.random_pitch)
