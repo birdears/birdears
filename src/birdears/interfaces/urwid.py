@@ -402,7 +402,7 @@ class TextUserInterface:
             self.stats.record_attempt(self.exercise, self.question, answer)
 
         # TODO: UPDATE DISPLAY BEFORE play_resolution
-        if answer['is_correct']:
+        if answer.is_correct:
             self.correct += 1
             self.question.display['main_display'] = 'Correct!'
         else:

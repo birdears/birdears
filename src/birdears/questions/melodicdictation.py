@@ -2,6 +2,7 @@ from random import choice
 
 from .. import CHROMATIC_TYPE
 
+from ..response import Response
 from ..questionbase import QuestionBase
 from ..questionbase import register_question_class
 
@@ -179,15 +180,15 @@ class MelodicDictationQuestion(QuestionBase):
 
         is_correct = user_pitches == self.random_pitches
 
-        response = {
-            'is_correct': is_correct,
-            'user_input': user_input_keys,
-            'user_semitones': user_semitones,
-            'question_semitones': self.random_pitches,
-            'correct_semitones': correct_semitones,
-            'user_response_str': user_response_str,
-            'correct_response_str': correct_response_str,
-            'extra_response_str': extra_response_str
-        }
+        response = Response(
+            is_correct=is_correct,
+            user_input=user_input_keys,
+            user_semitones=user_semitones,
+            question_semitones=self.random_pitches,
+            correct_semitones=correct_semitones,
+            user_response_str=user_response_str,
+            correct_response_str=correct_response_str,
+            extra_response_str=extra_response_str
+        )
 
         return response

@@ -66,8 +66,7 @@ def print_response(response):
         response (dict): A response returned by question's check_question()
     """
 
-    # TODO: make a class for response
-    if response['is_correct']:
+    if response.is_correct:
         response_text = "Correct!"
         color = '\033[32m' # green
     else:
@@ -76,8 +75,8 @@ def print_response(response):
 
     reset = '\033[0m' # reset terminal color
 
-    if 'extra_response_str' in response.keys():
-        print(center_text(response['extra_response_str'], nl=0))
+    if hasattr(response, 'extra_response_str'):
+        print(center_text(response.extra_response_str, nl=0))
 
     print(color + center_text(response_text, sep=False, nl=1) + reset)
 
@@ -90,7 +89,7 @@ def print_instrumental(response):
     """
 
     text_kwargs = dict(
-        correct_resp=response['correct_response_str']
+        correct_resp=response.correct_response_str
     )
 
     response_text = """
